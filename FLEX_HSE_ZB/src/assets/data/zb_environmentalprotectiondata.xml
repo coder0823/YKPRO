@@ -1,0 +1,1373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘〔环保管理部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-11  -->
+ <!-- 加入在线监测数据 　                    设计：肖丰斌  Version:1.1 日期：2013-5-27  -->
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+ 
+ <!--*************************一、字段说明如下*************************************************************************************
+        yearid:年度id                                           label:年、月、板块或企业的显示标签
+        dealNumbers:固废处理量                                        properlyDealNumbers：妥善处理量
+        comprehensiveUtilizationNumbers：综合利用量                 properlyDealRation:妥善处理率
+        comprehensiveUtilizationRation：综合利用率                  plateid:板块id
+        subCorpid：企业ID                                        subCorpname：企业名称
+        monthid:月度id                                           number:某个指标的值
+        unit:计量单位名                                                 ratio:某个指标所占的比例
+        monthAveragePlanNumbers：月均计划量                          outputValueNumber：产值
+        profitNumber：利润                                            saveTaxNumber：减免税
+        y2yOutputValueRatio:环比产值变化率                           y2yProfitRatio：环比利润变化率
+        y2ysaveTaxRatio：环比减免税变化率                                           
+        URL:某条对应企业记录的URL
+  *********************************************************************************************************
+         本部分为新增的在线监测数据的字段说明   xfb  2013-5-28
+  *********************************************************************************************************       
+        totalMonitorProjectNumbers:总监测项目数                     totalMonitorCorpNumbers:总监测企业数
+        warningProjectNumbers:报警项目数                             normalProjectNumbers:正常项目数
+        warningCorpNumbers:有报警项目的企业数                         tagDescription:监测位号描述
+        monitorProjectName:监测项目名称                               value:检测值
+        unit:工程单位                                                   GSvalue:国标值，本值可能是一个范围值
+        GSstatus：对应国标值的状态  R:红色报警  Y：黄色报警  G:正常      PSvalue:地标值，本值可能是一个范围值 
+        PSstatus：对应地标值的状态  R:红色报警  Y：黄色报警  G:正常      tagType:污染物类型，目前只有废气和废水
+        time:趋势线对应的时间，精确到分 
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，某个计算合计项的数据
+        2.当前版本只包含总体情况，分板块和分企业的带方案设计完成后再完善   
+  -->
+ 
+ <!--二.总体情况 -->
+ <overallData>
+    <!--21.固废处理指标-->
+    <environmentalIndicatorData id="INDICATOR-A" label="固废处理量" unit="万吨" >
+      <dataset yearid="2008" label="2008" dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+               properlyDealRation="80" comprehensiveUtilizationRation= "90">
+           <!--板块数据，用作弹出表格 -->    
+          <plateData   plateid="" label="油田"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="炼化"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="销售"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="工程"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="其它"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />  
+          <plateData   plateid="00" label="小计"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />                                                                  
+      </dataset>  
+      <dataset yearid="2009" label="2009" dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+               properlyDealRation="80" comprehensiveUtilizationRation= "90">
+          <plateData   plateid="" label="油田"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="炼化"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="销售"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="工程"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="其它"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />   
+          <plateData   plateid="00" label="小计"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />                                                                 
+      </dataset>    
+      <dataset yearid="2010" label="2010" dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+               properlyDealRation="80" comprehensiveUtilizationRation= "90">
+          <plateData   plateid="" label="油田"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="炼化"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="销售"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="工程"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="其它"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  /> 
+          <plateData   plateid="00" label="小计"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />                                                                   
+      </dataset>   
+      <dataset yearid="2011" label="2011" dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+               properlyDealRation="80" comprehensiveUtilizationRation= "90">
+          <plateData   plateid="" label="油田"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="炼化"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="销售"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="工程"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="其它"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />                                                    
+          <plateData   plateid="00" label="小计"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />                
+      </dataset> 
+      <dataset yearid="2012" label="2012" dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+               properlyDealRation="80" comprehensiveUtilizationRation= "90">
+          <plateData   plateid="" label="油田"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="炼化"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="销售"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="工程"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />
+          <plateData   plateid="" label="其它"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />  
+          <plateData   plateid="00" label="小计"   dealNumbers="44" properlyDealNumbers="33" comprehensiveUtilizationNumbers="55" 
+                       properlyDealRation="80" comprehensiveUtilizationRation= "90"  />                                                                 
+      </dataset>
+    </environmentalIndicatorData>
+    
+    <!--22.废气排放量指标-->
+    <environmentalIndicatorData id="INDICATOR-B" label="废气排放量" unit="亿标立" >
+      <dataset yearid="2008" label="2008" numbers="55" >
+        <!--构成数据，本部分根据实际业务应该是活的-->
+        <constituteData id="" label="氨氮" numbers="55" ration="" >
+           <!--板块数据，用作弹出窗口-->
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="SO2" numbers="55" ration="" >
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="氮氧化物" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData> 
+        <constituteData id="" label="其它" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+      </dataset>
+      
+      <dataset yearid="2009" label="2009" numbers="55" >
+        <!--构成数据，本部分根据实际业务应该是活的-->
+        <constituteData id="" label="氨氮" numbers="55" ration="" >
+           <!--板块数据，用作弹出窗口-->
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="SO2" numbers="55" ration="" >
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="氮氧化物" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData> 
+        <constituteData id="" label="其它" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+      </dataset>
+      
+      <dataset yearid="2010" label="2010" numbers="55" >
+        <!--构成数据，本部分根据实际业务应该是活的-->
+        <constituteData id="" label="氨氮" numbers="55" ration="" >
+           <!--板块数据，用作弹出窗口-->
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="SO2" numbers="55" ration="" >
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="氮氧化物" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData> 
+        <constituteData id="" label="其它" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+      </dataset>
+      
+      <dataset yearid="2011" label="2011" numbers="55" >
+        <!--构成数据，本部分根据实际业务应该是活的-->
+        <constituteData id="" label="氨氮" numbers="55" ration="" >
+           <!--板块数据，用作弹出窗口-->
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="SO2" numbers="55" ration="" >
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="氮氧化物" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData> 
+        <constituteData id="" label="其它" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+      </dataset>
+      
+      <dataset yearid="2012" label="2012" numbers="55" >
+        <!--构成数据，本部分根据实际业务应该是活的-->
+        <constituteData id="" label="氨氮" numbers="55" ration="" >
+           <!--板块数据，用作弹出窗口-->
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="SO2" numbers="55" ration="" >
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+        <constituteData id="" label="氮氧化物" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData> 
+        <constituteData id="" label="其它" numbers="55" ration=""> 
+           <plateData   plateid="" label="油田"   numbers="55" ration=""/>
+           <plateData   plateid="" label="炼化"   numbers="55" ration=""/>
+           <plateData   plateid="" label="销售"   numbers="55" ration=""/>
+           <plateData   plateid="" label="工程"   numbers="55" ration=""/>
+           <plateData   plateid="" label="其它"   numbers="55" ration=""/>
+           <plateData   plateid="00" label="小计"   numbers="55" ration=""/>
+        </constituteData>
+      </dataset>
+    </environmentalIndicatorData>
+    
+    <!-- 2.3废水达标排放率指标--> 
+    <environmentalIndicatorData id="INDICATOR-C" label="废水达标排放率" unit="亿吨">
+      <dataset yearid="2008" label="2008" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="02" label="2月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="03" label="3月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="12" label="12月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+      </dataset>
+      <dataset yearid="2009" label="2009" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="02" label="2月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="03" label="3月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="12" label="12月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+      </dataset>
+      <dataset yearid="2010" label="2010" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="02" label="2月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="03" label="3月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="12" label="12月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+      </dataset>
+      <dataset yearid="2011" label="2011" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="02" label="2月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="03" label="3月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="12" label="12月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+      </dataset>
+      <dataset yearid="2012" label="2012" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="02" label="2月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="03" label="3月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+        <monthData montid="12" label="12月" numbers="76">
+          <plateData   plateid="" label="油田"   numbers="55" />
+          <plateData   plateid="" label="炼化"   numbers="55" />
+          <plateData   plateid="" label="销售"   numbers="55" />
+          <plateData   plateid="" label="工程"   numbers="55" />
+          <plateData   plateid="" label="其它"   numbers="55" />
+          <plateData   plateid="00" label="小计"   numbers="55" />
+        </monthData>
+      </dataset>
+    </environmentalIndicatorData>
+    
+    <!--  2.4废水排放量指标--> 
+   <environmentalIndicatorData id="INDICATOR-D" label="废水排放量" unit="亿吨">
+      <dataset yearid="2008" label="2008" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2009" label="2009" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2010" label="2010" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2011" label="2011" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2012" label="2012" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+   </environmentalIndicatorData>
+   
+   
+    <!--  2.5工业取水量指标--> 
+   <environmentalIndicatorData id="INDICATOR-E" label="工业取水量" unit="万吨">
+      <dataset yearid="2008" label="2008" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2009" label="2009" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2010" label="2010" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2011" label="2011" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2012" label="2012" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+  </environmentalIndicatorData>
+  
+  <!--  2.6工业取水量指标--> 
+   <environmentalIndicatorData id="INDICATOR-F" label="SO2排放量" unit="万吨">
+      <dataset yearid="2008" label="2008" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2009" label="2009" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2010" label="2010" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2011" label="2011" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2012" label="2012" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+    </environmentalIndicatorData>
+    
+    <!--  2.7工业取水量指标--> 
+    <environmentalIndicatorData id="INDICATOR-G" label="COD排放量" unit="万吨">
+      <dataset yearid="2008" label="2008" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2009" label="2009" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2010" label="2010" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2011" label="2011" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+      
+      <dataset yearid="2012" label="2012" numbers="55" >
+        <!--本处每个年度要列出12个月的数据，示例以4个月为例-->
+        <monthData montid="01" label="1月" numbers="55" monthAveragePlanNumbers="56">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="02" label="2月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="03" label="3月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+        <monthData montid="12" label="12月" numbers="55" monthAveragePlanNumbers="56">
+          <plateData   plateid="" label="油田"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="炼化"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="销售"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="工程"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="" label="其它"   numbers="55" monthAveragePlanNumbers="56"/>
+          <plateData   plateid="00" label="小计"   numbers="55" monthAveragePlanNumbers="56"/>
+        </monthData>
+      </dataset>  
+    </environmentalIndicatorData>
+    
+    <!--  2.8综合经济效益利润指标--> 
+    <environmentalIndicatorData id="INDICATOR-H" label="综合经济效益利润" unit="万元">
+      <dataset yearid="2008" label="2008" outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                          y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18" />
+          <plateData   plateid="" label="炼化"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="销售"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="工程"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="其它"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="00" label="小计"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+      </dataset>  
+      
+       <dataset yearid="2009" label="2009" outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                          y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18" />
+          <plateData   plateid="" label="炼化"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="销售"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="工程"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="其它"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="00" label="小计"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+      </dataset>  
+      
+       <dataset yearid="2010" label="2010" outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                          y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18" />
+          <plateData   plateid="" label="炼化"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="销售"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="工程"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="其它"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="00" label="小计"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+      </dataset>  
+      
+       <dataset yearid="2011" label="2011" outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                          y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18" />
+          <plateData   plateid="" label="炼化"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="销售"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="工程"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="其它"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="00" label="小计"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+      </dataset>  
+      
+       <dataset yearid="2012" label="2012" outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                          y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18">
+          <!--板块数据，用作弹出表格-->
+          <plateData   plateid="" label="油田"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18" />
+          <plateData   plateid="" label="炼化"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="销售"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="工程"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="" label="其它"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" ratio=""
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+          <plateData   plateid="00" label="小计"   outputValueNumber="34" profitNumber="66" saveTaxNumber="20" 
+                                                y2yOutputValueRatio="74" y2yProfitRatio="52" y2ysaveTaxRatio="18"/>
+      </dataset>  
+    </environmentalIndicatorData>  
+   </overallData>
+
+   <!--四.在线监测 xfb 2013-5-28 -->
+ <onlineMonitor>
+   <!--4.1大纲,展示总体情况数据-->
+   <outline totalMonitorProjectNumbers="366" totalMonitorCorpNumbers="18" warningProjectNumbers="15"
+            normalProjectNumbers="351" warningCorpNumbers="9"/>
+   <!--4.2企业列表,用作展示企业树型列表，下述全部必须具有，其他的根据实际情况有多少家企业则显示多少家-->  
+   <corpListData label="中国石化" corpid="00">
+      <corpList  corpid = "111"          label="安庆" />
+      <corpList  corpid = "222"          label="沧州" />
+      <corpList  corpid = "333"          label="长岭" />
+      <corpList  corpid = "444"          label="高桥" />
+      <corpList  corpid = "555"          label="广州" />
+      <corpList  corpid = "666"          label="湖北化肥" />
+      <corpList  corpid = "777"          label="上海" />
+   </corpListData>  
+   <!--4.3监测数据，用作表格中展示，下面列出三条作为示例-->  
+   <monitorData>
+      <dataset  corpid = "333"  tagDescription="1#硫磺尾气排放"  monitorProjectName="压力" value="-170.94" unit="KPa" GSvalue="-185" GSstatus="G" PSvalue="-185" PSstatus="G" tagType="废气">
+        <!--下面部分为某条监测数据的具体的趋势信息，具体的数据条数应该根据监测系统取数的频率而定，下同，不再单独注释 -->
+        <trendData  time="18:00"  value="-171.03" GSvalue="-185" PSvalue="-185"/>
+        <trendData  time="18:30"  value="-172.11" GSvalue="-185" PSvalue="-185"/>
+        <trendData  time="19:00"  value="-172.04" GSvalue="-185" PSvalue="-185"/>
+        <trendData  time="19:30"  value="-175.06" GSvalue="-185" PSvalue="-185"/>
+        <trendData  time="20:00"  value="-176.77" GSvalue="-185" PSvalue="-185"/>
+        <trendData  time="20:30"  value="-137.11" GSvalue="-185" PSvalue="-185"/>
+      </dataset>
+      <dataset  corpid = "111"  tagDescription="1#硫磺尾气排放"  monitorProjectName="温度" value="-151.36" unit="℃" GSvalue="140" GSstatus="Y" PSvalue="160" PSstatus="G" tagType="废气">
+        <trendData  time="18:00"  value="139.92" GSvalue="140" PSvalue="160"/>
+        <trendData  time="18:30"  value="142.66" GSvalue="140" PSvalue="160"/>
+        <trendData  time="19:00"  value="143.02" GSvalue="140" PSvalue="160"/>
+        <trendData  time="19:30"  value="142.71" GSvalue="140" PSvalue="160"/>
+        <trendData  time="20:00"  value="144.02" GSvalue="140" PSvalue="160"/>
+        <trendData  time="20:30"  value="144.17" GSvalue="140" PSvalue="160"/>
+      </dataset>
+      <dataset  corpid = "222"  tagDescription="1#硫磺尾气排放"  monitorProjectName="流量" value="8278.79" unit="Nm3/h" GSvalue="8000" GSstatus="R" PSvalue="8200" PSstatus="Y" tagType="废气">
+        <trendData  time="18:00"  value="8288.79" GSvalue="8000" PSvalue="8200"/>
+        <trendData  time="18:30"  value="8291.56" GSvalue="8000" PSvalue="8200"/>
+        <trendData  time="19:00"  value="8290.01" GSvalue="8000" PSvalue="8200"/>
+        <trendData  time="19:30"  value="8283.18" GSvalue="8000" PSvalue="8200"/>
+        <trendData  time="20:00"  value="8279.03" GSvalue="8000" PSvalue="8200"/>
+        <trendData  time="20:30"  value="8278.79" GSvalue="8000" PSvalue="8200"/>
+      </dataset>
+   </monitorData>        
+ </onlineMonitor>
+
+</model>

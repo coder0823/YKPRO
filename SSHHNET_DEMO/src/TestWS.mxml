@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			protected function init():void{
+				
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				// TODO Auto-generated method stub
+				outTxt.text=String(event.result);
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				// TODO Auto-generated method stub
+				outTxt.text=event.message.toString();
+			}
+			
+			protected function search1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				ws.wsdl="http://116.228.55.22:7011/nihb/services/BUSQUERY?wsdl";
+				ws.loadWSDL();
+				ws.getBUSQUERY(inTxt.text);
+			}
+			protected function search2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				ws.wsdl="http://116.228.55.22:7011/nihb/services/ENCRYPTION?wsdl";
+				ws.loadWSDL();
+				ws.getENCRYPTION(inTxt.text);
+			}
+			protected function search3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				ws.wsdl="http://116.228.55.22:7011/nihb/services/GEOCODING?wsdl";
+				ws.loadWSDL();
+				ws.getGEOCODING(inTxt.text);
+			}
+			protected function search4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				ws.wsdl="http://116.228.55.22:7011/nihb/services/POIQUERY?wsdl";
+				ws.loadWSDL();
+				ws.getPOIQUERY(inTxt.text);
+			}
+			protected function search5_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				ws.wsdl="http://116.228.55.22:7011/nihb/services/ROUTING?wsdl";
+				ws.loadWSDL();
+				ws.getROUTING(inTxt.text);
+			}
+			protected function search6_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				ws.wsdl="http://116.228.55.17/nimap/services/MAPQUERY?wsdl";
+				ws.loadWSDL();
+				ws.getMAPQUERY(inTxt.text);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "DataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="-1" paddingBottom="5" paddingTop="5" paddingLeft="5" paddingRight="5"/>
+	</s:layout>
+	<s:TextArea id="inTxt" width="100%" height="200"/>
+	<s:HGroup>
+		<s:Button id="search1" label="BUSQUERY" click="search1_clickHandler(event)"/>
+		<s:Button id="search2" label="ENCRYPTION" click="search2_clickHandler(event)"/>
+		<s:Button id="search3" label="GEOCODING" click="search3_clickHandler(event)"/>
+		<s:Button id="search4" label="POIQUERY" click="search4_clickHandler(event)"/>
+		<s:Button id="search5" label="ROUTING" click="search5_clickHandler(event)"/>
+		<s:Button id="search6" label="MAPQUERY" click="search6_clickHandler(event)"/>
+	</s:HGroup>
+	
+	
+	<s:TextArea id="outTxt" width="100%" height="300" text=""/>
+	
+</s:Application>

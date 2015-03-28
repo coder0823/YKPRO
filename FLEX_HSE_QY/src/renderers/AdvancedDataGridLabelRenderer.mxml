@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  width="100%" height="100%" rollOverColor="#FFFFFF" 
+								  autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var txt:String="";
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					txt = data[advancedDataGridListData.dataField];
+				}else{
+					txt = "";
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Label id="lblData" text="{txt}" textAlign="center" styleName="dataGridItemLabel" width="100%" verticalCenter="0"/>
+</s:MXAdvancedDataGridItemRenderer>

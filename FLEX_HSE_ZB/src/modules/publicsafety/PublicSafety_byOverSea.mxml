@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" xmlns:views="views.*" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：总部仪表盘-公共安全-境外
+	* 参数：年份（2012）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import events.PopupEvent;
+			
+			public const _dataPath:String = "assets/data/zb_publicsafetydata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			private var isFirstLoad:Boolean=true;
+			private var dateStrChanged:Boolean=false;
+			[Bindable]
+			private var dateStr:String="2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String="境外";
+			
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String="";
+			[Bindable]
+			private var tab1_topRightTitle:String="";
+			[Bindable]
+			private var tab1_downLeftTitle:String="";
+			[Bindable]
+			private var tab1_downRightTitle:String="";
+			
+			[Bindable]
+			private var tab1_plateCurrSelect:String="";
+			private var tab1_plateNameCurrSelect:String="";
+			[Bindable]
+			private var tab1_plateDS:ArrayCollection;
+			[Bindable]
+			private var tab1_cateCurrSelect:String="byRegion";
+			private var tab1_cateNameCurrSelect:String="按地区";
+			[Bindable]
+			private var tab1_mthCurrSelect:String="";
+			private var tab1_mthNameCurrSelect:String="";
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void{
+				tab1_topLeftDS=new ArrayCollection();
+				tab1_topRightDS=new ArrayCollection();
+				tab1_downLeftDS=new ArrayCollection();
+				tab1_downRightDS=new ArrayCollection();
+				
+				tab1_topLeftConfDS=new ArrayCollection([
+					{name:"案件数",field:"vol1",type:"lineSeries",axis:"left"},
+				]);
+				tab1_topRightConfDS=new ArrayCollection([
+					{name:"案件综合损失",field:"vol1",type:"lineSeries",axis:"left"},
+				]);
+				tab1_downLeftConfDS=new ArrayCollection([
+					{name:"总数",field:"vol1",type:"barSeries",axis:"left"},//程序中进行重写
+				]);
+				tab1_downRightConfDS=new ArrayCollection([
+					{name:"金额",field:"vol1",type:"barSeries",axis:"left"},
+				]);
+				refreshData();
+				isFirstLoad=false;
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。。。。
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetPublicsafety(dateStr);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				tab1_plateDS=getTab1_plateDS();
+				
+				tab1_topLeftDS=getTab1_topLeftDS();		
+				tab1_topRightDS=getTab1_topRightDS();	
+				tab1_downLeftConfDS=getTab1_downLeftConfDS();
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				tab1_downRightDS=getTab1_downRightDS();	
+				executeBindTab1Title();
+			}
+			private function executeBindTab1Title():void{
+				if(tab1_plateNameCurrSelect=="全部"){
+				    tab1_topLeftTitle="中国石化"  +dateStr+"年"+"境外案件发生起数趋势";
+				    tab1_topRightTitle="中国石化"  +dateStr+"年"+"境外案件造成综合经济损失趋势";
+				    tab1_downLeftTitle="中国石化"  +dateStr+"年"+tab1_mthNameCurrSelect+""+tab1_cateNameCurrSelect+"构成图(起)";
+				    tab1_downRightTitle="中国石化"  +dateStr+"年"+tab1_mthNameCurrSelect+""+"案件造成综合经济损失情况(万元)";
+				}else{
+					tab1_topLeftTitle=dateStr+"年"+tab1_plateNameCurrSelect+"板块境外案件发生起数趋势";
+					tab1_topRightTitle=dateStr+"年"+tab1_plateNameCurrSelect+"板块境外案件造成综合经济损失趋势";
+					tab1_downLeftTitle=dateStr+"年"+tab1_mthNameCurrSelect+""+tab1_plateNameCurrSelect+"板块"+tab1_cateNameCurrSelect+"构成图(起)";
+					tab1_downRightTitle=dateStr+"年"+tab1_mthNameCurrSelect+""+tab1_plateNameCurrSelect+"板块案件造成综合经济损失情况(万元)";	
+				}
+			}
+			
+			private function getTab1_plateDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.oversea.plateData;
+					if(tmpList.length()>0)
+					{
+						tab1_plateCurrSelect=tmpList[0].@plateid;//设置默认选择
+						tab1_plateNameCurrSelect=tmpList[0].@label;
+						tab1_plateNameCurrSelect=tab1_plateNameCurrSelect==null?"":tab1_plateNameCurrSelect;
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,value:xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData;
+					if(tmpList.length()>0)
+					{
+						tab1_mthCurrSelect=tmpList[0].@monthid;//设置默认选择
+						tab1_mthNameCurrSelect=tmpList[0].@label;
+						tab1_mthNameCurrSelect=tab1_mthNameCurrSelect==null?"":tab1_mthNameCurrSelect;
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,vol1:xml.@accidentNumbers,id:xml.@monthid};
+							tmpArrayCollection.addItem(obj);							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_topRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.domestic.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,vol1:xml.@comprehensiveEconomiLoss,id:xml.@monthid};
+							tmpArrayCollection.addItem(obj);							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downLeftConfDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					switch(tab1_cateCurrSelect){
+						case "byRegion":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byRegion.regionData;
+							break;
+						case "byPost":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byPost.postData;
+							break;
+						case "bySubcontractor":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.bySubcontractor.subcontractorData;
+							break;
+						case "byCorp":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byCorp.corpData;
+							break;
+						default:
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byRegion.regionData;
+							break;					
+					}
+					
+					if(tmpList.length()>0)
+					{
+						for(var i:int=0;i<tmpList.length();i++){
+							var obj:Object={name:tmpList[i].label,field:"vol"+i,type:"barSeries",axis:"top"};
+							tmpArrayCollection.addItem(obj);	
+						}
+						
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_downLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					switch(tab1_cateCurrSelect){
+						case "byRegion":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byRegion.regionData;
+							break;
+						case "byPost":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byPost.postData;
+							break;
+						case "bySubcontractor":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.bySubcontractor.subcontractorData;
+							break;
+						case "byCorp":
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byCorp.corpData;
+							break;
+						default:
+							tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect).deathTollData.byRegion.regionData;
+							break;					
+					}
+					
+					if(tmpList.length()>0)
+					{
+						var obj:Object=new Object();
+						obj.label="死亡人数";
+						var obj2:Object=new Object();
+						obj2.label="事件起数";
+						for(var i:int=0;i<tmpList.length();i++){
+							obj["vol"+i]=tmpList[i].deathTollNumber;
+							obj2["vol"+i]=tmpList[i].accidentNumbers;
+						}
+						tmpArrayCollection.addItem(obj);	
+						tmpArrayCollection.addItem(obj2);	
+						
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_downRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.oversea.plateData.(@plateid==tab1_plateCurrSelect).dataset.(@yearid==dateStr).monthData.(@monthid==tab1_mthCurrSelect);
+					if(tmpList.length()>0)
+					{
+						var xml:XML=tmpList[0];
+						var obj2:Object={label:"间接经济损失",
+							vol1:xml.@indirectEconomicLoss
+						};
+						tmpArrayCollection.addItem(obj2);	
+						var obj:Object={label:"直接经济损失",
+							vol1:xml.@directEconomicLoss
+						};
+						tmpArrayCollection.addItem(obj);	
+						
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			public function set DateStr(value:String):void
+			{
+				if(value!=dateStr){
+					dateStrChanged=true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if(!isFirstLoad){
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+
+			protected function tab1_downByRegion_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_cateCurrSelect="byRegion";//设置默认选择
+				tab1_cateNameCurrSelect="按地区";
+				tab1_cateNameCurrSelect=tab1_cateNameCurrSelect==null?"":tab1_cateNameCurrSelect;
+				tab1_downLeftConfDS=getTab1_downLeftConfDS();
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				executeBindTab1Title();
+			}
+			
+			protected function tab1_downByPost_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_cateCurrSelect="byPost";//设置默认选择
+				tab1_cateNameCurrSelect="按岗位";
+				tab1_cateNameCurrSelect=tab1_cateNameCurrSelect==null?"":tab1_cateNameCurrSelect;
+				tab1_downLeftConfDS=getTab1_downLeftConfDS();
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				executeBindTab1Title();
+			}
+			
+			protected function tab1_downBySubcontractor_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_cateCurrSelect="bySubcontractor";//设置默认选择
+				tab1_cateNameCurrSelect="按分包";
+				tab1_cateNameCurrSelect=tab1_cateNameCurrSelect==null?"":tab1_cateNameCurrSelect;
+				tab1_downLeftConfDS=getTab1_downLeftConfDS();
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				executeBindTab1Title();
+			}
+			
+			protected function tab1_downByCorp_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_cateCurrSelect="byCorp";//设置默认选择
+				tab1_cateNameCurrSelect="按企业";
+				tab1_cateNameCurrSelect=tab1_cateNameCurrSelect==null?"":tab1_cateNameCurrSelect;
+				tab1_downLeftConfDS=getTab1_downLeftConfDS();
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				executeBindTab1Title();
+			}
+			
+			protected function tab1_topLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				tab1_mthCurrSelect=item.id;//设置默认选择
+				tab1_mthNameCurrSelect=item.label;
+				tab1_mthNameCurrSelect=tab1_mthNameCurrSelect==null?"":tab1_mthNameCurrSelect;
+				tab1_downLeftConfDS=getTab1_downLeftConfDS();
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				tab1_downRightDS=getTab1_downRightDS();	
+				executeBindTab1Title();
+			}
+			
+			protected function tab1_topRight_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				tab1_mthCurrSelect=item.id;//设置默认选择
+				tab1_mthNameCurrSelect=item.label;
+				tab1_mthNameCurrSelect=tab1_mthNameCurrSelect==null?"":tab1_mthNameCurrSelect;
+				tab1_downLeftConfDS=getTab1_downLeftConfDS();
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				tab1_downRightDS=getTab1_downRightDS();	
+				executeBindTab1Title();
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+		<s:RadioButtonGroup id="tab1_plateGrp" />
+		<s:RadioButtonGroup id="tab1_cateGrp" />
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0" />
+	</s:layout>
+	<s:HGroup width="100%" height="30" horizontalAlign="center" gap="-1">
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<s:layout>
+				<s:HorizontalLayout horizontalAlign="right" verticalAlign="middle"/>
+			</s:layout>
+			<mx:HBox borderStyle="outset" styleName="controlBox" paddingLeft="10" paddingRight="10">
+				<mx:Repeater id="tab1_plateRep" dataProvider="{tab1_plateDS}">
+					<s:RadioButton groupName="tab1_plateGrp" label="{tab1_plateRep.currentItem.label}" value="{tab1_plateRep.currentItem.value}" selected="{tab1_plateRep.currentItem.value==tab1_plateCurrSelect}"/>
+				</mx:Repeater>
+			</mx:HBox>
+		</s:BorderContainer>
+	</s:HGroup>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:LineMulti id="tab1_topLeft" ShowDataLabel="{showDataLabel}" AxisLeftTiltle="案件：起" width="100%" height="100%" title="{tab1_topLeftTitle}" PopupClick="tab1_topLeft_PopupClickHandler(event)"
+								 showTitle="true" showLegend="false" DataSourceConf="{tab1_topLeftConfDS}" DataSource="{tab1_topLeftDS}"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:LineMulti id="tab1_topRight" ShowDataLabel="{showDataLabel}" AxisLeftTiltle="金额：万元" width="100%" height="100%" title="{tab1_topRightTitle}" PopupClick="tab1_topRight_PopupClickHandler(event)"
+								 showTitle="true" showLegend="false" DataSourceConf="{tab1_topRightConfDS}" DataSource="{tab1_topRightDS}"/>
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="120" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<s:RadioButton id="tab1_downByRegion" label="按地区" width="150" groupName="tab1_cateGrp" selected="true" click="tab1_downByRegion_clickHandler(event)"/>			  
+				<s:RadioButton id="tab1_downByPost" label="按岗位" width="150" groupName="tab1_cateGrp" click="tab1_downByPost_clickHandler(event)"/>
+				<s:RadioButton id="tab1_downBySubcontractor" label="按分包" width="150" groupName="tab1_cateGrp" click="tab1_downBySubcontractor_clickHandler(event)"/>
+				<s:RadioButton id="tab1_downByCorp" label="按企业" width="150" groupName="tab1_cateGrp" click="tab1_downByCorp_clickHandler(event)"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:BarMulti id="tab1_downLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab1_downLeftTitle}" DataSourceConf="{tab1_downLeftConfDS}" DataSource="{tab1_downLeftDS}"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:BarMulti id="tab1_downRight" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="false" title="{tab1_downRightTitle}" DataSourceConf="{tab1_downRightConfDS}" DataSource="{tab1_downRightDS}"/>
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

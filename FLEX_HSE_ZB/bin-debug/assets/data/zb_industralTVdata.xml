@@ -1,0 +1,3279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<!-- 总部HSE仪表盘〔工业电视〕xml数据 Version:1.0 日期：2013-7-17 -->
+	<!--*************************一、字段说明如下****************************** label：工业电视显示名称(企业显示名称) 
+		URL: 工业电视调用地址 cid： 工业电视的id,用于调用工业电视的超链接 see:当前的工业电视是否可看(true&false) *********************二、其它说明************************************************************************************************* 
+		版本1.0说明： 测试数据 找得一些数据均为可看设备 <rootNode>:根目录 <qyNode>:企业节点 <sccsNode>:生产场所节点 
+		<videoNode>:工业电视节点(设备名称&装置位置) -->
+
+	<!--一.文件总览 -->
+	<dataOutline dataYear="2012" dataStartDate="" dataEndDate=""
+		timestamp="" />
+
+	<!--工业电视服务地址 依靠服务变更来配置 -->
+	<!--<serviceInterface>http://10.5.5.143:2001/index.aspx</serviceInterface> -->
+	<serviceInterface>http://10.1.18.91:12345/index.html</serviceInterface>
+
+
+	<!--二.工业电视数据，成树形结构，从属关系 -->
+	<IndustrialData>
+		<rootNode label="中国石化">
+			<qyNode label="燕山石化" id="">
+				<videoNode label="油品汽车装车台" cid="YAS_CYBW69_01" URL="" see="" />
+				<videoNode label="重油隔油池" cid="YAS_CYZYGQ84_05" URL="" see="" />
+				<videoNode label="罐东" cid="YAS_CYNKYGQ53_02" URL="" see="" />
+				<videoNode label="储运装油火车台" cid="YAS_CYBW69_04" URL="" see="" />
+				<videoNode label="罐西" cid="YAS_NKYGQ53_03" URL="" see="" />
+				<videoNode label="航煤付长辛店" cid="YAS_CYYHQGQ85_08" URL=""
+					see="" />
+				<videoNode label="液气化分输站" cid="YAS_CYYHQGQ85_03" URL=""
+					see="" />
+				<videoNode label="油品1" cid="YAS_CYQYGQ83_01" URL="" see="" />
+				<videoNode label="重油泵房1" cid="YAS_CYZYGQ84_02" URL="" see="" />
+				<videoNode label="新原油罐区" cid="YAS_CYQYGQ83_05" URL="" see="" />
+				<videoNode label="渣油装车站台" cid="YAS_LYBW70_01" URL="" see="" />
+				<videoNode label="油品露天泵" cid="YAS_CYZYGQ84_01" URL="" see="" />
+				<videoNode label="汽车站台" cid="YAS_DLS64_01" URL="" see="" />
+				<videoNode label="101罐灯塔" cid="YAS_YP60_01" URL="" see="" />
+				<videoNode label="716罐灯塔" cid="YAS_YP60_04" URL="" see="" />
+				<videoNode label="501罐灯塔" cid="YAS_YP60_02" URL="" see="" />
+				<videoNode label="火车站台" cid="YAS_YP61_07" URL="" see="" />
+				<videoNode label="火车站台" cid="YAS_DLS64_02" URL="" see="" />
+				<videoNode label="丙烷汽车站台" cid="YAS_DLS91_03" URL="" see="" />
+				<videoNode label="石脑油罐区" cid="YAS_DLS91_02" URL="" see="" />
+				<videoNode label="304罐灯塔" cid="YAS_YP60_03" URL="" see="" />
+				<videoNode label="罐区全景" cid="YAS_JBXHJ62_02" URL="" see="" />
+				<videoNode label="103罐灯塔" cid="YAS_YP61_01" URL="" see="" />
+				<videoNode label="720灯塔" cid="YAS_YP61_04" URL="" see="" />
+				<videoNode label="老球罐" cid="YAS_LJ52_01" URL="" see="" />
+				<videoNode label="大热区西北侧管廊下" cid="YAS_LJ72_04" URL="" see="" />
+				<videoNode label="454塔" cid="YAS_LJ53_06" URL="" see="" />
+				<videoNode label="压缩机厂房北侧" cid="YAS_LJ53_03" URL="" see="" />
+				<videoNode label="压缩机厂房西南侧" cid="YAS_LJ53_02" URL="" see="" />
+				<videoNode label="老炉区西侧" cid="YAS_LJ52_03" URL="" see="" />
+				<videoNode label="压缩现场东南侧下" cid="YAS_LJ72_08" URL="" see="" />
+				<videoNode label="新球罐" cid="YAS_LJ52_05" URL="" see="" />
+				<videoNode label="压缩机房" cid="YAS_YEC59_04" URL="" see="" />
+				<videoNode label="EO站台" cid="YAS_YEC59_02" URL="" see="" />
+				<videoNode label="EO罐区" cid="YAS_YEC59_01" URL="" see="" />
+				<videoNode label="510塔" cid="YAS_YEC59_03" URL="" see="" />
+				<videoNode label="GB1201压缩机房东" cid="YAS_LJ52_08" URL=""
+					see="" />
+				<videoNode label="总貌" cid="YAS_YJ62_03" URL="" see="" />
+				<videoNode label="尾气回收系统" cid="YAS_YJ58_03" URL="" see="" />
+				<videoNode label="聚合南侧G201" cid="YAS_YJ58_08" URL="" see="" />
+				<videoNode label="聚合西侧C301" cid="YAS_YJ62_02" URL="" see="" />
+				<videoNode label="聚合南侧" cid="YAS_EJ60_08" URL="" see="" />
+				<videoNode label="西侧" cid="YAS_EJ60_04" URL="" see="" />
+				<videoNode label="罐区全景" cid="YAS_EBF62_05" URL="" see="" />
+				<videoNode label="装置东侧全景" cid="YAS_EBF62_03" URL="" see="" />
+				<videoNode label="精馏区全景" cid="YAS_EBF62_04" URL="" see="" />
+				<videoNode label="装置二线切粒厂房" cid="YAS_GYZJ84_02" URL=""
+					see="" />
+				<videoNode label="分离干燥" cid="YAS_DYJYX57_01" URL="" see="" />
+				<videoNode label="罐区全景" cid="YAS_DY101_03" URL="" see="" />
+				<videoNode label="己烷回收区域全景" cid="YAS_DY101_04" URL="" see="" />
+				<videoNode label="反应坝区" cid="YAS_EGYJYX56_03" URL="" see="" />
+				<videoNode label="压缩厂房1" cid="YAS_EGYJYX56_02" URL="" see="" />
+				<videoNode label="压缩厂房2" cid="YAS_EGYJYX56_07" URL="" see="" />
+				<videoNode label="控制室房顶" cid="YAS_DYJYX57_02" URL="" see="" />
+				<videoNode label="二层压缩机厂房东南侧" cid="YAS_YGY105_08" URL=""
+					see="" />
+				<videoNode label="聚合坝区1" cid="YAS_GYJYX54_01" URL="" see="" />
+				<videoNode label="聚合坝区2" cid="YAS_GYJYX54_03" URL="" see="" />
+				<videoNode label="聚合坝区3" cid="YAS_GYJYX54_05" URL="" see="" />
+				<videoNode label="聚合装置全景" cid="YAS_YGY105_04" URL="" see="" />
+				<videoNode label="装置三线切粒厂房" cid="YAS_GYZJ84_03" URL=""
+					see="" />
+				<videoNode label="装置一线切粒厂房" cid="YAS_GYZJ84_01" URL=""
+					see="" />
+				<videoNode label="氢压机厂房" cid="YAS_ZBZH89_06" URL="" see="" />
+				<videoNode label="抽提" cid="YAS_ZBZH89_04" URL="" see="" />
+				<videoNode label="制苯加氢2" cid="YAS_ZBZH89_02" URL="" see="" />
+				<videoNode label="T-202塔" cid="YAS_1YX55_07" URL="" see="" />
+				<videoNode label="L-101炉" cid="YAS_1YX55_05" URL="" see="" />
+				<videoNode label="原料罐区2" cid="YAS-JEJB56_03" URL="" see="" />
+				<videoNode label="L-201炉" cid="YAS_JEJB56_01" URL="" see="" />
+				<videoNode label="烯烃装置-DMF抽提装置东" cid="YAS_DMFCTDEX53_02"
+					URL="" see="" />
+				<videoNode label="丁基橡胶-压缩中" cid="YAS_DJXJ52_01" URL=""
+					see="" />
+				<videoNode label="烃装置-DMF压缩机厂房" cid="YAS_DMFCTDEX53_04"
+					URL="" see="" />
+				<videoNode label="丁基橡胶-精制东" cid="YAS_DJXJ52_04" URL=""
+					see="" />
+				<videoNode label="炼油一厂火炬" cid="YAS_JBCJYJQLH55_08" URL=""
+					see="" />
+				<videoNode label="炼油三厂三催火炬" cid="YAS_LEHJ68_02" URL=""
+					see="" />
+				<videoNode label="化工一厂裂解新火炬" cid="YAS_LJ53_04" URL="" see="" />
+				<videoNode label="炼油二厂联合火炬" cid="YAS_LEHJ68_03" URL=""
+					see="" />
+				<videoNode label="橡胶厂抽提火炬" cid="YAS_JCHJ54_01" URL="" see="" />
+				<videoNode label="橡胶厂尾气回收火炬" cid="YAS_JCHJ54_02" URL=""
+					see="" />
+				<videoNode label="橡胶厂丁基火炬" cid="YAS_DJXJ52_06" URL="" see="" />
+				<videoNode label="聚丙烯火炬" cid="YAS_JBXHJ62_01" URL="" see="" />
+				<videoNode label="炼油二厂二催火炬" cid="YAS_LEHJ68_01" URL=""
+					see="" />
+				<videoNode label="化工一厂裂解老火炬" cid="YAS_LJ53_05" URL="" see="" />
+				<videoNode label="石蜡加氢-压缩机厂房门口" cid="YAS_LYSLJQ95_01" URL=""
+					see="" />
+				<videoNode label="三蒸馏-热油泵房顶" cid="YAS_LYSZL94_03" URL=""
+					see="" />
+				<videoNode label="四蒸馏-常压炉西北" cid="YAS_LYSZL96_07" URL=""
+					see="" />
+				<videoNode label="加氢裂化-反应器南" cid="YAS_JBCJYJQLH55_04" URL=""
+					see="" />
+				<videoNode label="三废-P-5506东南" cid="YAS_LYZQ91_03" URL=""
+					see="" />
+				<videoNode label="加氢裂化-东区压机厂房西北角" cid="YAS_LYYCJH92_06"
+					URL="" see="" />
+				<videoNode label="延迟焦化-焦化纤维膜泵区东" cid="YAS_LYSZL96_08" URL=""
+					see="" />
+				<videoNode label="三蒸馏-燃料油罐顶" cid="YAS_LYSZL94_06" URL=""
+					see="" />
+				<videoNode label="制氢-D4108罐顶" cid="YAS_LYZQ91_06" URL=""
+					see="" />
+				<videoNode label="石蜡加氢-泵房内" cid="YAS_LYSLJQ95_07" URL=""
+					see="" />
+				<videoNode label="延迟焦化-装置全景" cid="YAS_LYBW70_02" URL=""
+					see="" />
+				<videoNode label="延迟焦化-焦化压缩机东北部" cid="YAS_LYYCJH92_03"
+					URL="" see="" />
+				<videoNode label="三废-硫磺库" cid="YAS_LYBW70_03" URL="" see="" />
+				<videoNode label="东区外围-冷凝水北灯塔" cid="YAS_LYZQ91_01" URL=""
+					see="" />
+				<videoNode label="东区外围-火炬二层平台南侧" cid="YAS_LYZQ91_02" URL=""
+					see="" />
+				<videoNode label="石蜡加氢-泵房顶西" cid="YAS_LYSLJQ95_06" URL=""
+					see="" />
+				<videoNode label="石蜡加氢-冷换区东侧" cid="YAS_LYSLJQ95_05" URL=""
+					see="" />
+				<videoNode label="加氢裂化-主管廊南" cid="YAS_JBCJYJQLH55_01" URL=""
+					see="" />
+				<videoNode label="三蒸馏-冷油泵房内" cid="YAS_LYSZL94_04" URL=""
+					see="" />
+				<videoNode label="加氢裂化-主管廊北" cid="YAS_JBCJYJQLH55_02" URL=""
+					see="" />
+				<videoNode label="加氢裂化-压缩机厂房南" cid="YAS_JBCJYJQLH55_05"
+					URL="" see="" />
+				<videoNode label="四蒸馏-常压框架东南" cid="YAS_JBCJYJQLH56_03"
+					URL="" see="" />
+				<videoNode label="制氢-泵区" cid="YAS_LYZQ91_05" URL="" see="" />
+				<videoNode label="三蒸馏-冷油泵房顶" cid="YAS_LYSZL94_05" URL=""
+					see="" />
+				<videoNode label="四蒸馏-减压炉东侧灯塔" cid="YAS_LYSZL96_06" URL=""
+					see="" />
+				<videoNode label="四蒸馏-泵区南头" cid="YAS_JBCJYJQLH56_01" URL=""
+					see="" />
+				<videoNode label="四蒸馏-泵区北头" cid="YAS_JBCJYJQLH56_02" URL=""
+					see="" />
+				<videoNode label="三蒸馏-热油泵房内2" cid="YAS_LYSZL94_02" URL=""
+					see="" />
+				<videoNode label="石蜡加氢-压缩机厂房内1" cid="YAS_LYSLJQ95_02" URL=""
+					see="" />
+				<videoNode label="四蒸馏-装置全景" cid="YAS_LYBW70_04" URL=""
+					see="" />
+				<videoNode label="延迟焦化-焦化C-2102顶" cid="YAS_LYSZL96_05"
+					URL="" see="" />
+				<videoNode label="三催化-三催化罐区" cid="YAS_SCH61_02" URL=""
+					see="" />
+				<videoNode label="芳烃抽提-抽提泵房" cid="YAS_CYJQ64_04" URL=""
+					see="" />
+				<videoNode label="气分罐区-石脑油罐区" cid="YAS_QFGQ100_03" URL=""
+					see="" />
+				<videoNode label="烷基化-E1旁" cid="YAS_LEWJH99_01" URL=""
+					see="" />
+				<videoNode label="气分罐区-烷基化罐区" cid="YAS_QFGQ100_02" URL=""
+					see="" />
+				<videoNode label="气分罐区-联合罐区" cid="YAS_QFGQ100_04" URL=""
+					see="" />
+				<videoNode label="气分罐区-气分罐区" cid="YAS_QFGQ100_01" URL=""
+					see="" />
+				<videoNode label="烷基化-M4旁" cid="YAS_LEWJH99_04" URL=""
+					see="" />
+				<videoNode label="烷基化-操作室房顶" cid="YAS_LEWJH99_02" URL=""
+					see="" />
+				<videoNode label="烷基化-精制区" cid="YAS_LEWJH99_03" URL=""
+					see="" />
+				<videoNode label="气分装置-精制区" cid="YAS_LEWJH99_06" URL=""
+					see="" />
+				<videoNode label="吸附脱硫-新氢压缩机东" cid="YAS_LEXFTL101_01" URL=""
+					see="" />
+				<videoNode label="吸附脱硫-循环氢压缩机西" cid="YAS_LEXFTL101_03"
+					URL="" see="" />
+				<videoNode label="吸附脱硫-原料泵" cid="YAS_LEXFTL101_02" URL=""
+					see="" />
+				<videoNode label="二催化-反应区" cid="YAS_ECH57_02" URL="" see="" />
+				<videoNode label="一催化-轻油泵房北" cid="YAS_YCH66_01" URL=""
+					see="" />
+				<videoNode label="二催化-分馏区" cid="YAS_ECH57_03" URL="" see="" />
+				<videoNode label="一催化-轻油泵房南" cid="YAS_YCH66_02" URL=""
+					see="" />
+				<videoNode label="一催化-容204D顶" cid="YAS_YCH65_06" URL=""
+					see="" />
+				<videoNode label="一催化-脱硫区北" cid="YAS_YCH65_07" URL="" see="" />
+				<videoNode label="二催化-轻油泵南" cid="YAS_ECH58_03" URL="" see="" />
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL=""
+					see="" />
+				<videoNode label="一蒸馏-加热炉" cid="YAS_YZL52_01" URL="" see="" />
+				<videoNode label="一蒸馏-热油泵房" cid="YAS_YZL52_03" URL="" see="" />
+				<videoNode label="一蒸馏-塔区" cid="YAS_YZL52_02" URL="" see="" />
+				<videoNode label="制硫-操作室顶" cid="YAS_LEZL102_07" URL=""
+					see="" />
+				<videoNode label="制硫-火炬平台" cid="YAS_LEZL102_04" URL=""
+					see="" />
+				<videoNode label="制硫-造粒厂房顶" cid="YAS_LEZL102_08" URL=""
+					see="" />
+				<videoNode label="烷基化-装置全景" cid="YAS_SCH61_01" URL="" see="" />
+				<videoNode label="吸附脱硫-反应器顶" cid="YAS_LEXFTL101_04" URL=""
+					see="" />
+				<videoNode label="二催化-热油泵南" cid="YAS_ECH58_06" URL="" see="" />
+				<videoNode label="二催化-车间房顶" cid="YAS_ECH57_01" URL="" see="" />
+				<videoNode label="柴油加氢-原料罐" cid="YAS_CYJQ64_02" URL=""
+					see="" />
+				<videoNode label="柴油加氢-压缩机" cid="YAS_CYJQ64_01" URL=""
+					see="" />
+				<videoNode label="芳烃抽提-反应器" cid="YAS_CYJQ64_03" URL=""
+					see="" />
+				<videoNode label="芳烃抽提-压缩机" cid="YAS_CYJQ64_05" URL=""
+					see="" />
+				<videoNode label="丙烷装置-热油泵房南" cid="YAS_LSBW86_07" URL=""
+					see="" />
+				<videoNode label="二蒸馏-二蒸馏加热炉" cid="YAS_EZL54_04" URL=""
+					see="" />
+				<videoNode label="丙烷装置-操作室房顶" cid="YAS_LSBW86_03" URL=""
+					see="" />
+				<videoNode label="丙烷装置-丙烷泵房北" cid="YAS_LSBW86_05" URL=""
+					see="" />
+				<videoNode label="丙烷装置-泵房顶平台" cid="YAS_LSBW86_01" URL=""
+					see="" />
+				<videoNode label="二蒸馏-加热炉" cid="YAS_EZL54_02" URL="" see="" />
+			</qyNode>
+			<qyNode label="东方石化" id="">
+				<videoNode label="东方公司东方有机化工厂VAE装置压缩机&#xA;" cid="30005&#xA;"
+					URL="" see="" />
+				<videoNode label="东方公司东方助剂二厂第二聚乙烯装置3&#xA;" cid="1000115&#xA;"
+					URL="" see="" />
+				<videoNode label="东方公司东方化工厂烯烃北门&#xA;" cid="2000102&#xA;"
+					URL="" see="" />
+				<videoNode label="东方公司化工四厂丙烯灌区&#xA;" cid="3000105&#xA;"
+					URL="" see="" />
+			</qyNode>
+			<qyNode label="天津石化" id="">
+				<videoNode label="气分空冷" cid="TJLYB_LYQF05" URL="" see="" />
+				<videoNode label="气分碱洗区" cid="TJLYB_LYQF04" URL="" see="" />
+				<videoNode label="一套催化热联合平台" cid="TJLYB_YTCJY12" URL=""
+					see="" />
+				<videoNode label="气分脱硫塔区" cid="TJLYB_LYQF03" URL="" see="" />
+				<videoNode label="一套催化装置管廊总貌" cid="TJLYB_YTCJY11" URL=""
+					see="" />
+				<videoNode label="一套催化四机组" cid="TJLYB_YTCJY06" URL="" see="" />
+				<videoNode label="二套常减压塔-102底液位" cid="TJLYB_XQDCS33160106"
+					URL="" see="" />
+				<videoNode label="二套常减压泵-R120" cid="TJLYB_XQDCS33160104"
+					URL="" see="" />
+				<videoNode label="二套常减压塔-101" cid="TJLYB_XQDCS33160103"
+					URL="" see="" />
+				<videoNode label="二套常减压构-2" cid="TJLYB_XQDCS33160105" URL=""
+					see="" />
+				<videoNode label="二套常减压构-1" cid="TJLYB_XQDCS33160107" URL=""
+					see="" />
+				<videoNode label="1号柴油加氢泵区" cid="TJLYB_CYJQ01" URL="" see="" />
+				<videoNode label="汽柴油加氢泵区" cid="TJLYB_QCYJQ03" URL="" see="" />
+				<videoNode label="汽柴油加氢塔器区" cid="TJLYB_QCYJQ01" URL=""
+					see="" />
+				<videoNode label="二套常减压泵区_炉区" cid="TJLYB_ECJY02" URL=""
+					see="" />
+				<videoNode label="1号柴油加氢高换容器" cid="TJLYB_CYJQ02" URL=""
+					see="" />
+				<videoNode label="二套常减压构1" cid="TJLYB_ECJY01" URL="" see="" />
+				<videoNode label="加氢裂化炉-201" cid="TJLYB_XQDCS33160201"
+					URL="" see="" />
+				<videoNode label="加氢裂化循氧机三层平台" cid="TJLYB_XQDCS33160202"
+					URL="" see="" />
+				<videoNode label="加氢裂化高分液位" cid="TJLYB_XQDCS33160204" URL=""
+					see="" />
+				<videoNode label="加氢裂化余锅气包液位" cid="TJLYB_XQDCS33160205"
+					URL="" see="" />
+				<videoNode label="加氢裂化循环油罐第三块玻璃板" cid="TJLYB_XQDCS33160206"
+					URL="" see="" />
+				<videoNode label="加氢裂化泵-209" cid="TJLYB_XQDCS33160203"
+					URL="" see="" />
+				<videoNode label="制氢A系列空冷平台" cid="TJLYB_ZHQ06" URL="" see="" />
+				<videoNode label="1号加氢裂化高压空冷" cid="TJLYB_JQLH06" URL=""
+					see="" />
+				<videoNode label="制氢B系列空冷平台" cid="TJLYB_ZHQ07" URL="" see="" />
+				<videoNode label="制氢压缩机厂房内部" cid="TJLYB_ZHQ05" URL="" see="" />
+				<videoNode label="1号加氢裂化压缩机" cid="TJLYB_JQLH02" URL=""
+					see="" />
+				<videoNode label="1号加氢裂化加热炉" cid="TJLYB_JQLH01" URL=""
+					see="" />
+				<videoNode label="六万吨硫磺机柜间南" cid="TJLYB_XQDCS33160208"
+					URL="" see="" />
+				<videoNode label="污水汽提污水原料水罐" cid="TJLYB_XQDCS33160102"
+					URL="" see="" />
+				<videoNode label="六万吨硫磺成型西" cid="TJLYB_XQDCS33160207" URL=""
+					see="" />
+				<videoNode label="污水汽提310t平台" cid="TJLYB_XQDCS33160101"
+					URL="" see="" />
+				<videoNode label="污水汽提装车站台" cid="TJLYB_WSQT01" URL="" see="" />
+				<videoNode label="脱硫制硫泵区" cid="TJLYB_TLZL02" URL="" see="" />
+				<videoNode label="脱硫制硫成型间顶" cid="TJLYB_TLZL01" URL="" see="" />
+				<videoNode label="焦化办公楼顶" cid="tjsh-lyb-yhjh01" URL=""
+					see="" />
+				<videoNode label="焦化气压机厂房南侧中间位置" cid="tjsh-lyb-yhjh05"
+					URL="" see="" />
+				<videoNode label="蜡油加氢新氢机北侧" cid="TJSH-LYB-CCR1ECR3316HF04cam1"
+					URL="" see="" />
+				<videoNode label="蜡油加氢泵区" cid="TJSH-LYB-CCR1ECR3316HF04cam14"
+					URL="" see="" />
+				<videoNode label="3号常减压装置" cid="TJSH-LYB-CCR1ECR3316HF04cam7"
+					URL="" see="" />
+				<videoNode label="3号常减压D104顶" cid="TJSH-LYB-CCR1ECR3316HF04cam10"
+					URL="" see="" />
+				<videoNode label="3号常减压加热炉区" cid="TJSH-LYB-CCR1ECR3316HF04cam15"
+					URL="" see="" />
+				<videoNode label="2号柴油高压换热器" cid="TJLYB_WEYZK1_ECR3316cam5"
+					URL="" see="" />
+				<videoNode label="2号柴油加氢压缩机" cid="TJLYB_WEYZK1_ECR3316cam7"
+					URL="" see="" />
+				<videoNode label="F201分馏加热炉" cid="TJLYB_WEYZK1_ECR3316cam9"
+					URL="" see="" />
+				<videoNode label="2号柴油加氢反应塔" cid="TJLYB_WEYZK1_ECR3316cam15"
+					URL="" see="" />
+				<videoNode label="2号延迟焦化06" cid="TJLYB_WEYZK2_ECR3316cam10"
+					URL="" see="" />
+				<videoNode label="2号延迟焦化03" cid="TJLYB_WEYZK2_ECR3316cam7"
+					URL="" see="" />
+				<videoNode label="大型储罐北塔西" cid="TJLYB_CCR3_ECR3316cam1"
+					URL="" see="" />
+				<videoNode label="大型储罐592-3" cid="TJLYB_CCR3_ECR3316cam9"
+					URL="" see="" />
+				<videoNode label="大型储罐南塔北" cid="TJLYB_CCR3_ECR3316cam6"
+					URL="" see="" />
+				<videoNode label="大型储罐南塔中" cid="TJLYB_CCR3_ECR3316cam5"
+					URL="" see="" />
+				<videoNode label="大型储罐北塔东" cid="TJLYB_CCR3_ECR3316cam3"
+					URL="" see="" />
+				<videoNode label="大型储罐南塔西" cid="TJLYB_CCR3_ECR3316cam4"
+					URL="" see="" />
+				<videoNode label="大型储罐592-1" cid="TJLYB_CCR3_ECR3316cam7"
+					URL="" see="" />
+				<videoNode label="大型储罐592-2" cid="TJLYB_CCR3_ECR3316cam8"
+					URL="" see="" />
+				<videoNode label="大型储罐北塔中" cid="TJLYB_CCR3_ECR3316cam2"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离500区2" cid="YiXiKongZhiShi08"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离A罐区3" cid="YiXiKongZhiShi07"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离700区" cid="YiXiKongZhiShi01"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离火炬气柜" cid="YiXiKongZhiShi09"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离进料平台" cid="YiXiKongZhiShi03"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离压缩机房" cid="YiXiKongZhiShi02"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离A罐区2" cid="YiXiKongZhiShi05"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离A罐区1" cid="YiXiKongZhiShi04"
+					URL="" see="" />
+				<videoNode label="乙烯裂解压缩分离500区" cid="YiXiKongZhiShi06"
+					URL="" see="" />
+				<videoNode label="烯烃油品汽车卸石脑油栈台西侧" cid="XTB_YPZYB08" URL=""
+					see="" />
+				<videoNode label="烯烃油品丁烯罐区东侧" cid="XTB_YPZYB07" URL=""
+					see="" />
+				<videoNode label="烯烃聚丙烯造粒顶楼" cid="XTB_JBX01" URL="" see="" />
+				<videoNode label="烯烃油品B罐区东边中间位置管廊上" cid="XTB_YPZYB05" URL=""
+					see="" />
+				<videoNode label="烯烃聚乙烯循环气压缩机K-4003旁" cid="XTB_JYX04" URL=""
+					see="" />
+				<videoNode label="烯烃油品B罐区西边中间位置管廊上" cid="XTB_YPZYB01" URL=""
+					see="" />
+				<videoNode label="烯烃聚乙烯老造粒厂房五层北侧" cid="XTB_JYX01" URL=""
+					see="" />
+				<videoNode label="烯烃聚丙烯P301" cid="XTB_JBX07" URL="" see="" />
+				<videoNode label="烯烃油品C装载栈台旁" cid="XTB_YPZYB03" URL=""
+					see="" />
+				<videoNode label="烯烃油品2万立灌区西侧" cid="XTB_YPZYB09" URL=""
+					see="" />
+				<videoNode label="烯烃聚乙烯C5009X新脱气仓顶部" cid="XTB_JYX03" URL=""
+					see="" />
+				<videoNode label="烯烃聚丙烯化学品库-润滑油站外管廊" cid="XTB_JBX02" URL=""
+					see="" />
+				<videoNode label="烯烃油品A装载栈台旁" cid="XTB_YPZYB04" URL=""
+					see="" />
+				<videoNode label="烯烃乙二醇膜回收系统" cid="XTB_YEC03" URL="" see="" />
+				<videoNode label="烯烃乙二醇装车站台" cid="XTB_YEC01" URL="" see="" />
+				<videoNode label="烯烃乙二醇T701AB罐" cid="XTB_YEC0" URL="" see="" />
+				<videoNode label="烯烃乙二醇V951罐" cid="TJSH_XTB_YEC04" URL=""
+					see="" />
+				<videoNode label="烯烃油品C罐区西边中间位置管廊上" cid="XTB_YPZYB02" URL=""
+					see="" />
+				<videoNode label="烯烃乙二醇P401泵池" cid="XTB_YEC05" URL="" see="" />
+				<videoNode label="烯烃油品拔头油罐区北侧中间位置" cid="XTB_YPZYB06" URL=""
+					see="" />
+				<videoNode label="BPX吸附塔" cid="TJSHHG_BPXZKS_04" URL=""
+					see="" />
+				<videoNode label="BPX球罐区2" cid="TJSHHG_BPXZKS_02" URL=""
+					see="" />
+				<videoNode label="BPX二甲苯塔" cid="TJSHHG_BPXZKS_03" URL=""
+					see="" />
+				<videoNode label="BPX球罐区1" cid="TJSHHG_BPXZKS_01" URL=""
+					see="" />
+				<videoNode label="BPX_F-401加热炉1" cid="HGBPX-ECR3316-HFcam1"
+					URL="" see="" />
+				<videoNode label="BPX_F-401加热炉2" cid="HGBPX-ECR3316-HFcam2"
+					URL="" see="" />
+				<videoNode label="BPX_F-401加热炉4" cid="HGBPX-ECR3316-HFcam4"
+					URL="" see="" />
+				<videoNode label="BPX吸附泵区" cid="TJSHHG_BPXZKS_05" URL=""
+					see="" />
+				<videoNode label="BPX废热锅炉" cid="TJSHHG_BPXZKS_06" URL=""
+					see="" />
+				<videoNode label="BPX重整泵区" cid="TJSHHG_BPXZKS_07" URL=""
+					see="" />
+				<videoNode label="BPX加氢压缩机" cid="TJSHHG_BPXZKS_08" URL=""
+					see="" />
+				<videoNode label="BPX歧化压缩机" cid="TJSHHG_BPXZKS_09" URL=""
+					see="" />
+				<videoNode label="BPX_F-401加热炉3" cid="HGBPX-ECR3316-HFcam3"
+					URL="" see="" />
+				<videoNode label="BPX抽提泵区" cid="TJSHHG_BPXZKS_10" URL=""
+					see="" />
+				<videoNode label="PTA_TU-801" cid="HGPTA-ECR3316-HFcam4"
+					URL="" see="" />
+				<videoNode label="PTA_TU-802" cid="HGPTA-ECR3316-HFcam2"
+					URL="" see="" />
+				<videoNode label="PTA_TZ504残渣" cid="HGPTA-ECR3316-HFcam3"
+					URL="" see="" />
+				<videoNode label="PTA空压机" cid="HGPTA-ECR3316-HFcam1" URL=""
+					see="" />
+				<videoNode label="芳烃汽车站台" cid="TJSHHG_FTDDS_01_03" URL=""
+					see="" />
+				<videoNode label="芳烃702塔" cid="HGFTDDS02" URL="" see="" />
+				<videoNode label="芳烃P-921中间罐" cid="HGFTDDS06" URL="" see="" />
+				<videoNode label="芳烃405塔" cid="HGFTDDS01" URL="" see="" />
+				<videoNode label="芳烃402泵" cid="HGFTDDS03" URL="" see="" />
+				<videoNode label="芳烃C-501" cid="HGFTDDS04" URL="" see="" />
+				<videoNode label="芳烃北罐" cid="HGFTDDS05" URL="" see="" />
+				<videoNode label="芳烃南罐东南角" cid="HGFTDDS09" URL="" see="" />
+				<videoNode label="芳烃南罐角度2" cid="TJSHHG_FTDDS_01_02" URL=""
+					see="" />
+				<videoNode label="芳烃南罐角度1" cid="TJSHHG_FTDDS_01_01" URL=""
+					see="" />
+				<videoNode label="芳烃站台斜对面" cid="TJSHHG_FTDDS_01_04" URL=""
+					see="" />
+				<videoNode label="聚酯14区切粒机3" cid="TJSH_HIK_02_03" URL=""
+					see="" />
+				<videoNode label="聚酯14区切粒机1" cid="TJSH_HIK_02_01" URL=""
+					see="" />
+				<videoNode label="聚酯15区切粒机" cid="TJSH_HIK_02_04" URL=""
+					see="" />
+				<videoNode label="聚酯14区切粒机2" cid="TJSH_HIK_02_02" URL=""
+					see="" />
+				<videoNode label="短丝B线热煤泵站" cid="HGDS-ECR3316-HFcam2" URL=""
+					see="" />
+				<videoNode label="短丝A线热煤泵站" cid="HGDS-ECR3316-HFcam1" URL=""
+					see="" />
+				<videoNode label="脱硫9号炉循环泵房" cid="TJRDB_CCTL_VS-3308cam2"
+					URL="" see="" />
+				<videoNode label="脱硫8号皮带机" cid="TJRDB_CCTL_VS-3308cam4"
+					URL="" see="" />
+				<videoNode label="脱硫10号炉循环泵房" cid="TJRDB_CCTL_VS-3308cam1"
+					URL="" see="" />
+				<videoNode label="燃料车间1号煤场南灯塔" cid="RDB_RLYEQ03_DS8009HS07"
+					URL="" see="" />
+				<videoNode label="燃料车间碎煤机房" cid="RDB_RLYEQ_DS8008HS01"
+					URL="" see="" />
+				<videoNode label="燃料车间1号煤场北灯塔" cid="RDB_RLYEQ03_DS8009HS06"
+					URL="" see="" />
+			</qyNode>
+			<qyNode label="石家庄炼化" id="">
+				<videoNode label="化纤厂储运环己酮西南角" cid="erger" URL="" see="" />
+				<videoNode label="08装置04" cid="804" URL="" see="" />
+				<videoNode label="08装置03" cid="803" URL="" see="" />
+				<videoNode label="常减压15号泵" cid="YLH08" URL="" see="" />
+				<videoNode label="常减压换热区1" cid="YLH04" URL="" see="" />
+				<videoNode label="常减压换热区2" cid="YLH06" URL="" see="" />
+				<videoNode label="常减压换热区3" cid="YLH07" URL="" see="" />
+				<videoNode label="08装置02" cid="802" URL="" see="" />
+				<videoNode label="常减压加热炉" cid="YLH09" URL="" see="" />
+				<videoNode label="08装置01" cid="801" URL="" see="" />
+				<videoNode label="塔底泵" cid="YLH05" URL="" see="" />
+				<videoNode label="换热催化脱硫区" cid="YLH03" URL="" see="" />
+				<videoNode label="储运液氨西南角" cid="767gtrfd" URL="" see="" />
+				<videoNode label="储运液氨东北角" cid="345reterterterter" URL=""
+					see="" />
+				<videoNode label="储运甲苯" cid="345ergtds" URL="" see="" />
+				<videoNode label="储运环己酮东北角" cid="43twet34w342" URL="" see="" />
+				<videoNode label="催化裂化泵区" cid="YLH02" URL="" see="" />
+				<videoNode label="催化裂化换热区" cid="YLH01" URL="" see="" />
+				<videoNode label="储运正乙烷" cid="dfgfbbdrg" URL="" see="" />
+				<videoNode label="5" cid="dsfdsfdsfdsfdsf" URL="" see="" />
+				<videoNode label="4" cid="e54thgfgb" URL="" see="" />
+				<videoNode label="3" cid="54654rgdf" URL="" see="" />
+				<videoNode label="2" cid="et34t6dfg" URL="" see="" />
+				<videoNode label="1" cid="ewfrewt5" URL="" see="" />
+				<videoNode label="空冷九" cid="345stfres" URL="" see="" />
+				<videoNode label="焦炭7米塔南" cid="45efdsf" URL="" see="" />
+				<videoNode label="焦炭7米塔北" cid="erdsffd" URL="" see="" />
+				<videoNode label="焦炭39米塔南" cid="ertefdsffds" URL="" see="" />
+				<videoNode label="全貌" cid="5ewtrefdsf" URL="" see="" />
+				<videoNode label="焦炭39" cid="546gdf" URL="" see="" />
+				<videoNode label="汽车衡石油焦地磅" cid="sferewdfsfds" URL="" see="" />
+				<videoNode label="泵区" cid="w34rfdsfds" URL="" see="" />
+				<videoNode label="汽车衡西北门地磅" cid="xibeimen01" URL="" see="" />
+				<videoNode label="30万立罐区西面" cid="dftrtes" URL="" see="" />
+				<videoNode label="原油20万立罐区南1" cid="gtrtfcv" URL="" see="" />
+				<videoNode label="原油20万立罐区北1" cid="efadsfas" URL="" see="" />
+				<videoNode label="原油20万立罐区南2" cid="rtbhj" URL="" see="" />
+				<videoNode label="原油30万立罐区东面" cid="etyhbfvbxc" URL="" see="" />
+				<videoNode label="原油20万立罐区北2" cid="erfads" URL="" see="" />
+			</qyNode>
+			<qyNode label="沧州石化" id="">
+				<videoNode label="减压换热区" cid="CH01" URL="" see="" />
+				<videoNode label="减压塔底泵" cid="CH02" URL="" see="" />
+				<videoNode label="常压泵房" cid="CH03" URL="" see="" />
+				<videoNode label="减压泵房" cid="CH04" URL="" see="" />
+				<videoNode label="常压泵房顶换热区" cid="CH05" URL="" see="" />
+				<videoNode label="催化热油泵房" cid="CH07" URL="" see="" />
+				<videoNode label="催化汽油泵房" cid="CH08" URL="" see="" />
+				<videoNode label="汽包液位" cid="CH09" URL="" see="" />
+				<videoNode label="气压机" cid="CH10" URL="" see="" />
+				<videoNode label="分馏换热区" cid="CH11" URL="" see="" />
+				<videoNode label="催化烟机" cid="CH12" URL="" see="" />
+				<videoNode label="减压炉膛火焰" cid="CH13" URL="" see="" />
+				<videoNode label="火炬1" cid="CH14" URL="" see="" />
+				<videoNode label="气分泵房西" cid="CH15" URL="" see="" />
+				<videoNode label="气分泵房东" cid="CH16" URL="" see="" />
+				<videoNode label="制氢气包" cid="EB01" URL="" see="" />
+				<videoNode label="制氢空汽" cid="EB02" URL="" see="" />
+				<videoNode label="氢转化炉" cid="EB03" URL="" see="" />
+				<videoNode label="加氢空汽" cid="EB04" URL="" see="" />
+				<videoNode label="加氢炉子" cid="EB05" URL="" see="" />
+				<videoNode label="加氢柴油采样口" cid="EB06" URL="" see="" />
+				<videoNode label="重整热载体泵" cid="EB07" URL="" see="" />
+				<videoNode label="重整汽油采样口" cid="EB08" URL="" see="" />
+				<videoNode label="重整分馏塔" cid="EB09" URL="" see="" />
+				<videoNode label="中间罐区" cid="EB10" URL="" see="" />
+				<videoNode label="制氢转化炉南" cid="EB11" URL="" see="" />
+				<videoNode label="制氢转化炉北" cid="EB12" URL="" see="" />
+				<videoNode label="1号炉水位" cid="RD01" URL="" see="" />
+				<videoNode label="2号炉水位" cid="RD02" URL="" see="" />
+				<videoNode label="3号炉水位" cid="RD03" URL="" see="" />
+				<videoNode label="1号炉火焰" cid="RD04" URL="" see="" />
+				<videoNode label="2号炉火焰" cid="RD05" URL="" see="" />
+				<videoNode label="3号炉火焰" cid="RD06" URL="" see="" />
+				<videoNode label="中压烟囱" cid="RD07" URL="" see="" />
+				<videoNode label="109罐区" cid="YY01" URL="" see="" />
+				<videoNode label="原油罐区" cid="YY02" URL="" see="" />
+				<videoNode label="渣油罐区" cid="YY03" URL="" see="" />
+				<videoNode label="柴油罐区" cid="YY04" URL="" see="" />
+				<videoNode label="成品油罐区北" cid="YY05" URL="" see="" />
+				<videoNode label="成品油罐区南" cid="YY06" URL="" see="" />
+				<videoNode label="柴油大罐区" cid="YY07" URL="" see="" />
+				<videoNode label="汽油罐区" cid="YY08" URL="" see="" />
+				<videoNode label="轻油泵房外阀组" cid="YY09" URL="" see="" />
+				<videoNode label="装油栈桥西端" cid="YY10" URL="" see="" />
+				<videoNode label="装油栈桥东端" cid="YY11" URL="" see="" />
+				<videoNode label="调和泵房" cid="YY12" URL="" see="" />
+				<videoNode label="轻油泵房" cid="YY13" URL="" see="" />
+			</qyNode>
+			<qyNode label="齐鲁石化" id="">
+				<videoNode label="南火炬1" cid="6713801" URL="" see="" />
+				<videoNode label="南火炬2" cid="11001001" URL="" see="" />
+				<videoNode label="北火炬1" cid="11001003" URL="" see="" />
+				<videoNode label="北火炬2" cid="11001004" URL="" see="" />
+				<videoNode label="低压聚乙烯反应器1" cid="11004003" URL="" see="" />
+				<videoNode label="低压聚乙烯反应器2" cid="11004004" URL="" see="" />
+				<videoNode label="低压聚乙烯反应器3" cid="11004007" URL="" see="" />
+				<videoNode label="低压聚乙烯火炬" cid="11004001" URL="" see="" />
+				<videoNode label="低压聚乙烯料仓" cid="11004002" URL="" see="" />
+				<videoNode label="低压聚乙烯料仓2" cid="11004005" URL="" see="" />
+				<videoNode label="低压聚乙烯料仓3" cid="11004006" URL="" see="" />
+				<videoNode label="高压聚乙烯二次机" cid="11004015" URL="" see="" />
+				<videoNode label="高压聚乙烯反应器" cid="11004011" URL="" see="" />
+				<videoNode label="高压聚乙烯反应器1" cid="11004016" URL="" see="" />
+				<videoNode label="高压聚乙烯反应器安全阀" cid="11004013" URL="" see="" />
+				<videoNode label="高压聚乙烯压缩机" cid="11004014" URL="" see="" />
+				<videoNode label="高压聚乙烯引发剂泵" cid="11004012" URL="" see="" />
+				<videoNode label="线性聚乙烯反应单元" cid="11004009" URL="" see="" />
+				<videoNode label="线性聚乙烯精制单元" cid="11004008" URL="" see="" />
+				<videoNode label="线性聚乙烯料仓" cid="11004010" URL="" see="" />
+				<videoNode label="高压聚乙烯料仓" cid="11006002" URL="" see="" />
+				<videoNode label="高压聚乙烯反应器2" cid="11006001" URL="" see="" />
+				<videoNode label="聚丙烯300号" cid="11006006" URL="" see="" />
+				<videoNode label="聚丙烯火炬" cid="11006007" URL="" see="" />
+				<videoNode label="聚丙烯三乙基铝" cid="11006005" URL="" see="" />
+				<videoNode label="聚丙烯造粒1" cid="11006003" URL="" see="" />
+				<videoNode label="聚丙烯造粒2" cid="11006004" URL="" see="" />
+				<videoNode label="苯乙烯C101" cid="11006008" URL="" see="" />
+				<videoNode label="苯乙烯C301" cid="11006016" URL="" see="" />
+				<videoNode label="苯乙烯GB301" cid="11006015" URL="" see="" />
+				<videoNode label="苯乙烯P201" cid="11006013" URL="" see="" />
+				<videoNode label="苯乙烯P206" cid="11006014" URL="" see="" />
+				<videoNode label="苯乙烯P301" cid="11006010" URL="" see="" />
+				<videoNode label="苯乙烯P404" cid="11006009" URL="" see="" />
+				<videoNode label="苯乙烯罐区" cid="11006012" URL="" see="" />
+				<videoNode label="苯乙烯装车台" cid="11006011" URL="" see="" />
+				<videoNode label="裂解炉" cid="11005001" URL="" see="" />
+				<videoNode label="歧化压缩机" cid="11005003" URL="" see="" />
+				<videoNode label="压缩机" cid="11005002" URL="" see="" />
+				<videoNode label="反应塔" cid="11003007" URL="" see="" />
+				<videoNode label="废液池" cid="11003005" URL="" see="" />
+				<videoNode label="罐区" cid="11003001" URL="" see="" />
+				<videoNode label="搅拌器" cid="11003008" URL="" see="" />
+				<videoNode label="运行泵" cid="11003002" URL="" see="" />
+				<videoNode label="运行泵2" cid="11003006" URL="" see="" />
+				<videoNode label="装置" cid="1103003" URL="" see="" />
+				<videoNode label="装置2" cid="11003004" URL="" see="" />
+				<videoNode label="火炬" cid="11002001" URL="" see="" />
+			</qyNode>
+			<qyNode label="济南石化" id="">
+				<videoNode label="液蜡装车台" cid="10_127_142_111_0" URL=""
+					see="" />
+				<videoNode label="沥青装车台北" cid="10_127_142_112_0" URL=""
+					see="" />
+				<videoNode label="仓库1号" cid="10_127_142_113_0" URL="" see="" />
+				<videoNode label="仓库2号" cid="10_127_142_114_0" URL="" see="" />
+				<videoNode label="仓库3号" cid="10_127_142_115_0" URL="" see="" />
+				<videoNode label="仓库4号" cid="10_127_142_116_0" URL="" see="" />
+				<videoNode label="板蜡装车台" cid="10_127_142_117_0" URL=""
+					see="" />
+				<videoNode label="泵区" cid="10_127_142_142_0" URL="" see="" />
+				<videoNode label="东泵区" cid="10_127_142_143_0" URL="" see="" />
+				<videoNode label="南墙" cid="10_127_142_47_0" URL="" see="" />
+				<videoNode label="架24号处" cid="10_127_142_48_0" URL="" see="" />
+				<videoNode label="加氢反应器" cid="10_127_142_49_0" URL="" see="" />
+				<videoNode label="052号西" cid="10_127_142_26_0" URL="" see="" />
+				<videoNode label="052号东" cid="10_127_142_27_0" URL="" see="" />
+				<videoNode label="051号东" cid="10_127_142_28_0" URL="" see="" />
+				<videoNode label="051号西" cid="10_127_142_29_0" URL="" see="" />
+				<videoNode label="001号东" cid="10_127_142_30_0" URL="" see="" />
+				<videoNode label="001号西" cid="10_127_142_31_0" URL="" see="" />
+				<videoNode label="002号东" cid="10_127_142_32_0" URL="" see="" />
+				<videoNode label="002号西" cid="10_127_142_33_0" URL="" see="" />
+				<videoNode label="楼顶" cid="10_127_142_37_0" URL="" see="" />
+				<videoNode label="四机组主控室" cid="10_127_142_38_0" URL=""
+					see="" />
+				<videoNode label="苯装车台" cid="10_127_142_106_0" URL="" see="" />
+				<videoNode label="沥青装车台南" cid="10_127_142_120_0" URL=""
+					see="" />
+				<videoNode label="压缩机厂房内" cid="10_127_142_43_0" URL=""
+					see="" />
+				<videoNode label="二催化三机组主控室" cid="10_127_142_53_0" URL=""
+					see="" />
+			</qyNode>
+			<qyNode label="青岛炼化" id="">
+				<videoNode label="常减压压缩机西侧" cid="1201001" URL="" see="" />
+				<videoNode label="火炬" cid="1201002" URL="" see="" />
+				<videoNode label="常减压换热剂框架下" cid="1201003" URL="" see="" />
+				<videoNode label="双脱框架下侧中间" cid="1201004" URL="" see="" />
+				<videoNode label="催化泵区内东南侧" cid="1201005" URL="" see="" />
+				<videoNode label="催化南侧压缩机厂房" cid="1201006" URL="" see="" />
+				<videoNode label="催化泵区内西北侧" cid="1201007" URL="" see="" />
+				<videoNode label="反应器1110" cid="1201008" URL="" see="" />
+				<videoNode label="装置南侧" cid="1201009" URL="" see="" />
+				<videoNode label="反应器1110R" cid="1201010" URL="" see="" />
+				<videoNode label="焦化炉" cid="1201011" URL="" see="" />
+				<videoNode label="高压泵房" cid="1201012" URL="" see="" />
+				<videoNode label="低压泵房" cid="1201013" URL="" see="" />
+				<videoNode label="煤油加氢装置北地层" cid="1201014" URL="" see="" />
+				<videoNode label="煤油加氢产品分馏塔3层上" cid="1201015" URL="" see="" />
+				<videoNode label="柴油加氢机库内南" cid="1201016" URL="" see="" />
+				<videoNode label="罐区1" cid="1202001" URL="" see="" />
+				<videoNode label="罐区2" cid="1202004" URL="" see="" />
+				<videoNode label="码头" cid="1202005" URL="" see="" />
+				<videoNode label="东北角污油罐" cid="1202006" URL="" see="" />
+				<videoNode label="火车站台1" cid="1210001" URL="" see="" />
+				<videoNode label="火车站台2" cid="1210002" URL="" see="" />
+			</qyNode>
+			<qyNode label="青岛石化" id="">
+				<videoNode label="火车栈道1" cid="1653001" URL="" see="" />
+				<videoNode label="火车栈道2" cid="1653002" URL="" see="" />
+				<videoNode label="操作室-房顶" cid="20401001" URL="" see="" />
+				<videoNode label="操作室-炉子" cid="20401002" URL="" see="" />
+				<videoNode label="操作室-泵区" cid="20401003" URL="" see="" />
+				<videoNode label="操作室-氢压机房顶" cid="20401004" URL="" see="" />
+				<videoNode label="操作室-泵区" cid="20402001" URL="" see="" />
+				<videoNode label="操作室-气压机2楼" cid="20402002" URL="" see="" />
+				<videoNode label="操作室-主风机2楼" cid="20402003" URL="" see="" />
+			</qyNode>
+			<qyNode label="洛阳石化" id="">
+				<videoNode label="DVR116-17管廊" cid="10" URL="" see="" />
+				<videoNode label="DVR1吸附塔区" cid="9" URL="" see="" />
+				<videoNode label="DVR1苯抽管廊" cid="12" URL="" see="" />
+				<videoNode label="DVR2加热炉区" cid="19" URL="" see="" />
+				<videoNode label="DVR1PTA外操室" cid="22" URL="" see="" />
+				<videoNode label="DVR2PTA电解制氢" cid="26" URL="" see="" />
+				<videoNode label="DVR2PTA包装" cid="25" URL="" see="" />
+				<videoNode label="DVR1PTA空压机厂房" cid="21" URL="" see="" />
+				<videoNode label="DVR1PTA氧化管廊" cid="23" URL="" see="" />
+				<videoNode label="DVR2PTA精制管廊" cid="27" URL="" see="" />
+				<videoNode label="DVR1PTA" cid="24" URL="" see="" />
+				<videoNode label="DVR2PTA精制离心机" cid="28" URL="" see="" />
+				<videoNode label="DVR2Camera04" cid="36" URL="" see="" />
+				<videoNode label="DVR1Camera01" cid="29" URL="" see="" />
+				<videoNode label="DVR2Camera03" cid="35" URL="" see="" />
+				<videoNode label="DVR2Camera02" cid="34" URL="" see="" />
+				<videoNode label="DVR1Camera02" cid="30" URL="" see="" />
+				<videoNode label="DVR2Camera01" cid="33" URL="" see="" />
+				<videoNode label="DVR1Camera03" cid="31" URL="" see="" />
+				<videoNode label="DVR1Camera04" cid="32" URL="" see="" />
+				<videoNode label="常减压装置1脱硫醇二层" cid="4" URL="" see="" />
+				<videoNode label="常减压常装置1底泵" cid="1" URL="" see="" />
+				<videoNode label="常减压装置1架62原油泵区" cid="2" URL="" see="" />
+				<videoNode label="常减压装置1架67原油泵区" cid="3" URL="" see="" />
+				<videoNode label="常减压装置2架热泵区" cid="7" URL="" see="" />
+				<videoNode label="常减压装置2电精制区" cid="6" URL="" see="" />
+			</qyNode>
+			<qyNode label="中原石化" id="">
+				<videoNode label="主风机" cid="f2rf" URL="" see="" />
+				<videoNode label="3001" cid="ewrrr" URL="" see="" />
+				<videoNode label="6001" cid="er321ewr" URL="" see="" />
+				<videoNode label="全貌" cid="3223frf" URL="" see="" />
+				<videoNode label="反应器" cid="ffdsfdsf" URL="" see="" />
+				<videoNode label="罐区全景1" cid="guanqu1" URL="" see="" />
+				<videoNode label="石脑油卸车栈1" cid="shinao1" URL="" see="" />
+				<videoNode label="阀一" cid="332rfsf" URL="" see="" />
+				<videoNode label="罐区全景2" cid="quanjign2" URL="" see="" />
+				<videoNode label="石脑油卸车栈2" cid="shinao2" URL="" see="" />
+				<videoNode label="轻烃甲醇汽车停车场北" cid="e5guangl" URL="" see="" />
+				<videoNode label="原料罐区" cid="xinzeng" URL="" see="" />
+				<videoNode label="阀二" cid="rewrsf" URL="" see="" />
+				<videoNode label="轻烃甲醇汽车停车场南" cid="quanc" URL="" see="" />
+				<videoNode label="轻烃汽车卸车栈2" cid="xieche2" URL="" see="" />
+				<videoNode label="轻烃汽车卸车栈1" cid="xieche1" URL="" see="" />
+				<videoNode label="电气两套总变" cid="zongbian" URL="" see="" />
+				<videoNode label="PSA装置" cid="PSA" URL="" see="" />
+				<videoNode label="OCC南侧和苯抽提南" cid="ghhb" URL="" see="" />
+				<videoNode label="苯抽装置抽提小罐区" cid="chongti" URL="" see="" />
+				<videoNode label="OCC装置北侧高温区" cid="gaowen" URL="" see="" />
+				<videoNode label="新老反应区" cid="xinlao" URL="" see="" />
+				<videoNode label="PP全貌" cid="PPchuan" URL="" see="" />
+				<videoNode label="新料仓区" cid="xinliaoc" URL="" see="" />
+				<videoNode label="反应区和精制区" cid="rerwewrew" URL="" see="" />
+				<videoNode label="PE全貌" cid="pequanmao" URL="" see="" />
+				<videoNode label="T2区" cid="T2" URL="" see="" />
+				<videoNode label="老泵房" cid="laobengfang" URL="" see="" />
+				<videoNode label="新循环水泵站" cid="xunhuan" URL="" see="" />
+				<videoNode label="全貌" cid="etquanmao" URL="" see="" />
+				<videoNode label="全厂全貌" cid="tingcc1" URL="" see="" />
+				<videoNode label="E5区管廊" cid="dfdfd" URL="" see="" />
+				<videoNode label="大机组" cid="dajiz" URL="" see="" />
+				<videoNode label="E6区管廊" cid="e6guagnl" URL="" see="" />
+			</qyNode>
+			<qyNode label="武汉石化" id="">
+				<videoNode label="压缩机厂房2" cid="CZ07" URL="" see="" />
+				<videoNode label="泵区1" cid="CZ01" URL="" see="" />
+				<videoNode label="装车泵房" cid="QG07" URL="" see="" />
+				<videoNode label="泵区2" cid="CZ05" URL="" see="" />
+				<videoNode label="装船泵房" cid="QG09" URL="" see="" />
+				<videoNode label="压缩机厂房1" cid="CZ06" URL="" see="" />
+				<videoNode label="操作室" cid="CZ12" URL="" see="" />
+				<videoNode label="泵区4" cid="CZ11" URL="" see="" />
+				<videoNode label="泵区3" cid="CZ10" URL="" see="" />
+				<videoNode label="新球灯塔东" cid="XQ02" URL="" see="" />
+				<videoNode label="循北应急池一" cid="YX01" URL="" see="" />
+				<videoNode label="新泵房" cid="XQ04" URL="" see="" />
+				<videoNode label="灯塔西" cid="XQ01" URL="" see="" />
+				<videoNode label="操作室" cid="XQ03" URL="" see="" />
+				<videoNode label="循加氯间" cid="YX03" URL="" see="" />
+				<videoNode label="老泵房" cid="XQ05" URL="" see="" />
+				<videoNode label="循北应急池二" cid="YX02" URL="" see="" />
+				<videoNode label="原油1号门" cid="XC06" URL="" see="" />
+				<videoNode label="原油泵房2" cid="CY01" URL="" see="" />
+				<videoNode label="原油泵房3" cid="CY03" URL="" see="" />
+				<videoNode label="渣油泵房" cid="CY02" URL="" see="" />
+				<videoNode label="新航煤泵房" cid="CY08" URL="" see="" />
+				<videoNode label="新柴油泵房" cid="CY07" URL="" see="" />
+				<videoNode label="灯塔" cid="YC15" URL="" see="" />
+				<videoNode label="原油泵房1" cid="CY04" URL="" see="" />
+				<videoNode label="重油泵房" cid="CY05" URL="" see="" />
+				<videoNode label="101罐" cid="YC07" URL="" see="" />
+				<videoNode label="105罐" cid="YC11" URL="" see="" />
+				<videoNode label="汽装站路口" cid="XC02" URL="" see="" />
+				<videoNode label="103罐" cid="YC08" URL="" see="" />
+				<videoNode label="106罐" cid="YC10" URL="" see="" />
+				<videoNode label="104罐" cid="YC12" URL="" see="" />
+				<videoNode label="104罐后" cid="YC05" URL="" see="" />
+				<videoNode label="汽油罐路口" cid="XC04" URL="" see="" />
+				<videoNode label="内操" cid="CY09" URL="" see="" />
+				<videoNode label="原油2号门" cid="XC01" URL="" see="" />
+				<videoNode label="102罐" cid="YC09" URL="" see="" />
+				<videoNode label="航煤泵房" cid="CY06" URL="" see="" />
+				<videoNode label="107罐" cid="YC13" URL="" see="" />
+				<videoNode label="112罐" cid="YC14" URL="" see="" />
+				<videoNode label="汽修门" cid="XC03" URL="" see="" />
+				<videoNode label="老柴油泵房1" cid="LC01" URL="" see="" />
+				<videoNode label="303罐灯塔" cid="LC05" URL="" see="" />
+				<videoNode label="老柴油泵房2" cid="LC02" URL="" see="" />
+				<videoNode label="老柴油操作室" cid="LC04" URL="" see="" />
+				<videoNode label="老柴油加氢泵房" cid="LC03" URL="" see="" />
+				<videoNode label="机泵区" cid="XLH03" URL="" see="" />
+				<videoNode label="环烷酸2" cid="XLH12" URL="" see="" />
+				<videoNode label="外操室" cid="XLH02" URL="" see="" />
+				<videoNode label="成型机厂房" cid="XLH04" URL="" see="" />
+				<videoNode label="C5303平台" cid="XLH06" URL="" see="" />
+				<videoNode label="操作室" cid="XLH01" URL="" see="" />
+				<videoNode label="环烷酸" cid="XLH11" URL="" see="" />
+				<videoNode label="半敞开仓库" cid="XLH05" URL="" see="" />
+				<videoNode label="1号焦化焦碳塔39米平台" cid="JH01" URL="" see="" />
+				<videoNode label="15层平台" cid="LH07" URL="" see="" />
+				<videoNode label="1号焦化7米平台" cid="JH05" URL="" see="" />
+				<videoNode label="1号焦化焦化7米平台" cid="JH12" URL="" see="" />
+				<videoNode label="1号焦化塔-201" cid="JH04" URL="" see="" />
+				<videoNode label="1号焦化压缩机房" cid="JH02" URL="" see="" />
+				<videoNode label="1号码头" cid="MT02" URL="" see="" />
+				<videoNode label="1号码头囤船" cid="MT04" URL="" see="" />
+				<videoNode label="1号火炬" cid="HJ02" URL="" see="" />
+				<videoNode label="10层平台" cid="LH08" URL="" see="" />
+				<videoNode label="2号常压泵区1" cid="5" URL="" see="" />
+				<videoNode label="2号火炬" cid="HJ01" URL="" see="" />
+				<videoNode label="2号常压泵区3" cid="7" URL="" see="" />
+				<videoNode label="2号焦化72米平台" cid="JH06" URL="" see="" />
+				<videoNode label="2号焦化11米平台" cid="JH08" URL="" see="" />
+				<videoNode label="2号焦化52米平台" cid="JH07" URL="" see="" />
+				<videoNode label="2号码头" cid="MT01" URL="" see="" />
+				<videoNode label="75T锅炉操作室" cid="PQ03" URL="" see="" />
+				<videoNode label="操作室屋顶" cid="LH05" URL="" see="" />
+				<videoNode label="8层平台" cid="LH01" URL="" see="" />
+				<videoNode label="2号码头囤船" cid="MT03" URL="" see="" />
+				<videoNode label="供水净水池" cid="GS03" URL="" see="" />
+				<videoNode label="火炬操作室" cid="HJ03" URL="" see="" />
+				<videoNode label="催化预分馏路口" cid="CH06" URL="" see="" />
+				<videoNode label="芳烃装置3" cid="CZ08" URL="" see="" />
+				<videoNode label="芳烃装置2" cid="CZ04" URL="" see="" />
+				<videoNode label="催化原料预处理" cid="GD02" URL="" see="" />
+				<videoNode label="芳烃装置1" cid="CZ03" URL="" see="" />
+				<videoNode label="催化操作室" cid="PQ01" URL="" see="" />
+				<videoNode label="大庄泵房" cid="QG08" URL="" see="" />
+				<videoNode label="氮氧站操作室" cid="PQ02" URL="" see="" />
+				<videoNode label="常压炉SF-101" cid="LH02" URL="" see="" />
+				<videoNode label="供水大门" cid="GS02" URL="" see="" />
+				<videoNode label="共青团大道" cid="CZ09" URL="" see="" />
+				<videoNode label="火炬压缩机" cid="HJ04" URL="" see="" />
+				<videoNode label="老厂房西" cid="JQ05" URL="" see="" />
+				<videoNode label="老厂房东" cid="JQ04" URL="" see="" />
+				<videoNode label="D7105顶" cid="JQ06" URL="" see="" />
+				<videoNode label="加氢操作室" cid="JQ03" URL="" see="" />
+				<videoNode label="配电房顶2" cid="JQ02" URL="" see="" />
+				<videoNode label="新加氢泵区" cid="JQ08" URL="" see="" />
+				<videoNode label="甲醇泵房" cid="QG10" URL="" see="" />
+				<videoNode label="新加氢管廊" cid="JQ07" URL="" see="" />
+				<videoNode label="配电房顶1" cid="JQ01" URL="" see="" />
+				<videoNode label="加氢压缩机" cid="JQ09" URL="" see="" />
+				<videoNode label="切焦泵区" cid="JH09" URL="" see="" />
+				<videoNode label="外操室" cid="JH03" URL="" see="" />
+				<videoNode label="吸收稳定区" cid="JH13" URL="" see="" />
+				<videoNode label="加热炉区" cid="JH10" URL="" see="" />
+				<videoNode label="加热炉进料泵" cid="JH11" URL="" see="" />
+				<videoNode label="操作室" cid="JH14" URL="" see="" />
+				<videoNode label="成品仓库1" cid="QW06" URL="" see="" />
+				<videoNode label="包装线" cid="QW09" URL="" see="" />
+				<videoNode label="D-201" cid="QW01" URL="" see="" />
+				<videoNode label="操作室" cid="QW11" URL="" see="" />
+				<videoNode label="火炬" cid="QW04" URL="" see="" />
+				<videoNode label="D-901" cid="QW08" URL="" see="" />
+				<videoNode label="管廊1" cid="QW02" URL="" see="" />
+				<videoNode label="成品仓库内" cid="QW10" URL="" see="" />
+				<videoNode label="成品仓库2" cid="QW07" URL="" see="" />
+				<videoNode label="粉料包装间" cid="QW03" URL="" see="" />
+				<videoNode label="调度楼屋顶" cid="MT05" URL="" see="" />
+				<videoNode label="配件库01" cid="WP1" URL="" see="" />
+				<videoNode label="配件库03" cid="WP3" URL="" see="" />
+				<videoNode label="配件库09" cid="WP9" URL="" see="" />
+				<videoNode label="配件库06" cid="WP6" URL="" see="" />
+				<videoNode label="配件库04" cid="WP4" URL="" see="" />
+				<videoNode label="配件库05" cid="WP5" URL="" see="" />
+				<videoNode label="配件库02" cid="WP2" URL="" see="" />
+				<videoNode label="配件库08" cid="WP8" URL="" see="" />
+				<videoNode label="配件库07" cid="WP7" URL="" see="" />
+				<videoNode label="西大门龙门架" cid="XBM-07" URL="" see="" />
+				<videoNode label="西大门快球" cid="XBM-04" URL="" see="" />
+				<videoNode label="物资处仓库房顶" cid="XBM-05" URL="" see="" />
+				<videoNode label="北大门外" cid="XBM-02" URL="" see="" />
+				<videoNode label="北大门龙门架" cid="XBM-01" URL="" see="" />
+				<videoNode label="北大门快球" cid="XBM-03" URL="" see="" />
+				<videoNode label="共青团大道龙门架" cid="XBM-06" URL="" see="" />
+			</qyNode>
+			<qyNode label="荆门石化" id="">
+				<videoNode label="1" cid="nzl01" URL="" see="" />
+				<videoNode label="2" cid="nzl02" URL="" see="" />
+				<videoNode label="3" cid="nzl03" URL="" see="" />
+				<videoNode label="4" cid="nzl04" URL="" see="" />
+				<videoNode label="2" cid="qf02" URL="" see="" />
+				<videoNode label="1" cid="qf01" URL="" see="" />
+				<videoNode label="6" cid="ych06" URL="" see="" />
+				<videoNode label="1" cid="yicuei01" URL="" see="" />
+				<videoNode label="3" cid="ych03" URL="" see="" />
+				<videoNode label="4" cid="ych04" URL="" see="" />
+				<videoNode label="2" cid="ych02" URL="" see="" />
+				<videoNode label="5" cid="ych05" URL="" see="" />
+				<videoNode label="7" cid="ych07" URL="" see="" />
+				<videoNode label="2" cid="cz02" URL="" see="" />
+				<videoNode label="1" cid="cz01" URL="" see="" />
+			</qyNode>
+			<qyNode label="湖北化肥" id="">
+				<videoNode label="合成压缩机" cid="1" URL="" see="" />
+				<videoNode label="合成一段炉" cid="2" URL="" see="" />
+				<videoNode label="汽包液位计" cid="3" URL="" see="" />
+				<videoNode label="合成通道" cid="4" URL="" see="" />
+			</qyNode>
+			<qyNode label="西安石化" id="">
+				<videoNode label="催化泵棚01" cid="lhzz01" URL="" see="" />
+				<videoNode label="常压装置" cid="lhzz002" URL="" see="" />
+				<videoNode label="催化泵棚03" cid="lhzz004" URL="" see="" />
+				<videoNode label="催化泵棚02" cid="lhzz003" URL="" see="" />
+				<videoNode label="催化主机风组" cid="lhzz005" URL="" see="" />
+				<videoNode label="火炬远景" cid="lhzz006" URL="" see="" />
+				<videoNode label="火炬近景" cid="lhzz007" URL="" see="" />
+			</qyNode>
+			<qyNode label="塔河炼化" id="">
+				<videoNode label="2空分压站北" cid="tahdvr11-02" URL="" see="" />
+				<videoNode label="2空分压站南" cid="tahdvr11-01" URL="" see="" />
+				<videoNode label="V309北侧平台" cid="tahdvr7-15" URL="" see="" />
+				<videoNode label="2污水处理厂东" cid="tahdvr10-03" URL="" see="" />
+				<videoNode label="2污水处理厂" cid="tahdvr10-02" URL="" see="" />
+				<videoNode label="2循环水场加料间" cid="tahdvr11-13" URL="" see="" />
+				<videoNode label="C202B东管桥" cid="tahdvr7-02" URL="" see="" />
+				<videoNode label="铁路04" cid="tahdvr14-04" URL="" see="" />
+				<videoNode label="铁路05" cid="tahdvr14-05" URL="" see="" />
+				<videoNode label="铁路02" cid="tahdvr14-02" URL="" see="" />
+				<videoNode label="铁路03" cid="tahdvr14-03" URL="" see="" />
+				<videoNode label="储运机柜间" cid="tahdvr6-01" URL="" see="" />
+				<videoNode label="罐区北" cid="tahdvr3-08" URL="" see="" />
+				<videoNode label="罐区南" cid="tahdvr3-07" URL="" see="" />
+				<videoNode label="泵房" cid="tahdvr6-03" URL="" see="" />
+				<videoNode label="罐区北1" cid="tahdvr6-13" URL="" see="" />
+				<videoNode label="火车站装油线北" cid="tahdvr2-08" URL="" see="" />
+				<videoNode label="火车站装油线南" cid="tahdvr2-07" URL="" see="" />
+				<videoNode label="苯抽提塔南" cid="tahdvr1-01" URL="" see="" />
+				<videoNode label="高压水泵房" cid="tahdvr9-07" URL="" see="" />
+				<videoNode label="机泵管廊南侧" cid="tahdvr7-13" URL="" see="" />
+				<videoNode label="高压水泵房北侧" cid="tahdvr9-04" URL="" see="" />
+				<videoNode label="风机平台" cid="tahdvr11-07" URL="" see="" />
+				<videoNode label="四合一炉西" cid="tahdvr1-04" URL="" see="" />
+				<videoNode label="稳定塔北" cid="tahdvr1-02" URL="" see="" />
+				<videoNode label="反应器东" cid="tahdvr1-05" URL="" see="" />
+				<videoNode label="管廊南端" cid="tahdvr7-05" URL="" see="" />
+				<videoNode label="大门西侧门" cid="tahdvr3-10" URL="" see="" />
+				<videoNode label="动力站锅炉北三层平台" cid="tahdvr2-11" URL="" see="" />
+				<videoNode label="动力站氮氧站内" cid="tahdvr2-10" URL="" see="" />
+				<videoNode label="主管架下" cid="tahdvr1-03" URL="" see="" />
+				<videoNode label="炉2102西" cid="tahdvr1-11" URL="" see="" />
+				<videoNode label="酸性气提塔顶" cid="tahdvr1-12" URL="" see="" />
+				<videoNode label="炉4001房顶内" cid="tahdvr1-13" URL="" see="" />
+				<videoNode label="压缩机房东" cid="tahdvr1-07" URL="" see="" />
+				<videoNode label="分馏单元平台" cid="tahdvr1-09" URL="" see="" />
+				<videoNode label="R401东南角平台" cid="tahdvr1-10" URL="" see="" />
+				<videoNode label="压缩机房西" cid="tahdvr1-06" URL="" see="" />
+				<videoNode label="E4002西" cid="tahdvr1-14" URL="" see="" />
+				<videoNode label="主管架下" cid="tahdvr1-08" URL="" see="" />
+				<videoNode label="冷焦水罐北管架上" cid="tahdvr2-02" URL="" see="" />
+				<videoNode label="焦炭塔底" cid="tahdvr2-04" URL="" see="" />
+				<videoNode label="焦炭塔十一米平台" cid="tahdvr9-10" URL="" see="" />
+				<videoNode label="炉筒南" cid="tahdvr2-05" URL="" see="" />
+				<videoNode label="焦炭塔北焦化炉南" cid="tahdvr2-03" URL="" see="" />
+				<videoNode label="边界管廊北侧" cid="tahdvr7-07" URL="" see="" />
+				<videoNode label="仓库一楼" cid="tahdvr8-04" URL="" see="" />
+				<videoNode label="酸性气炉西面" cid="tahdvr1-16" URL="" see="" />
+				<videoNode label="尾气炉北管架上" cid="tahdvr2-01" URL="" see="" />
+				<videoNode label="主管架下" cid="tahdvr1-15" URL="" see="" />
+				<videoNode label="原油泵房顶" cid="tahdvr2-13" URL="" see="" />
+				<videoNode label="污水处理变压器房顶" cid="tahdvr2-06" URL="" see="" />
+				<videoNode label="泵房" cid="tahdvr12-03" URL="" see="" />
+				<videoNode label="气压机二层平台" cid="tahdvr9-08" URL="" see="" />
+				<videoNode label="中间原料油罐区西" cid="tahdvr6-16" URL="" see="" />
+				<videoNode label="西碱房房顶" cid="tahdvr2-09" URL="" see="" />
+				<videoNode label="液化石油罐北管架" cid="tahdvr3-01" URL="" see="" />
+				<videoNode label="四号管桥中路" cid="tahdvr9-12" URL="" see="" />
+				<videoNode label="中间原料罐区西" cid="tahdvr3-05" URL="" see="" />
+				<videoNode label="液化气泵房" cid="tahdvr6-08" URL="" see="" />
+				<videoNode label="中间原料油罐区南" cid="tahdvr6-02" URL="" see="" />
+				<videoNode label="中间原料罐区东" cid="tahdvr3-04" URL="" see="" />
+				<videoNode label="消防泵泵房顶" cid="tahdvr3-02" URL="" see="" />
+				<videoNode label="五号管桥南侧" cid="tahdvr9-05" URL="" see="" />
+				<videoNode label="中控室机房西墙" cid="tahdvr3-11" URL="" see="" />
+				<videoNode label="中间原料罐区北" cid="tahdvr3-06" URL="" see="" />
+				<videoNode label="石脑油罐区东" cid="tahdvr6-09" URL="" see="" />
+				<videoNode label="消防塔塔平台东南角" cid="tahdvr3-09" URL="" see="" />
+				<videoNode label="液化石油罐区西" cid="tahdvr2-16" URL="" see="" />
+				<videoNode label="池东" cid="tahdvr2-12" URL="" see="" />
+				<videoNode label="塔河苯罐区苯罐房顶" cid="tahdvr2-15" URL="" see="" />
+				<videoNode label="中间原料油罐房顶" cid="tahdvr3-03" URL="" see="" />
+				<videoNode label="塔河苯罐区罐区东" cid="tahdvr2-14" URL="" see="" />
+				<videoNode label="灯塔西" cid="tahdvr12-02" URL="" see="" />
+				<videoNode label="液化石油气罐区灯塔南" cid="tahdvr6-05" URL="" see="" />
+				<videoNode label="F101管架" cid="tahdvr7-09" URL="" see="" />
+				<videoNode label="C101东侧" cid="tahdvr7-04" URL="" see="" />
+				<videoNode label="边界" cid="tahdvr7-10" URL="" see="" />
+				<videoNode label="101顶" cid="tahdvr8-03" URL="" see="" />
+			</qyNode>
+			<qyNode label="安庆石化" id="">
+				<videoNode label="1" cid="11" URL="" see="" />
+				<videoNode label="3" cid="13" URL="" see="" />
+				<videoNode label="4" cid="14" URL="" see="" />
+				<videoNode label="5" cid="15" URL="" see="" />
+				<videoNode label="6" cid="16" URL="" see="" />
+				<videoNode label="7" cid="17" URL="" see="" />
+				<videoNode label="8" cid="18" URL="" see="" />
+				<videoNode label="1" cid="4" URL="" see="" />
+				<videoNode label="5" cid="8" URL="" see="" />
+			</qyNode>
+			<qyNode label="扬子石化" id="">
+				<videoNode label="联合加氢中压加氢裂化反应器" cid="YZ-LYDA01-10" URL=""
+					see="" />
+				<videoNode label="2号焦化加热炉进料泵" cid="YZ-LYDA01-08" URL=""
+					see="" />
+				<videoNode label="2号焦化焦碳塔12M平台2" cid="YZ-LYDA01-04" URL=""
+					see="" />
+				<videoNode label="催化裂化主风机厂房" cid="YZ-LYDA01-12" URL=""
+					see="" />
+				<videoNode label="联合加氢循环氢压缩机" cid="YZ-LYDA01-07" URL=""
+					see="" />
+				<videoNode label="2号焦化焦碳塔12M平台1" cid="YZ-LYDA01-01" URL=""
+					see="" />
+				<videoNode label="2号焦化焦碳塔55M平台1" cid="YZ-LYDA01-06" URL=""
+					see="" />
+				<videoNode label="催化裂化副风机厂房" cid="YZ-LYDA01-13" URL=""
+					see="" />
+				<videoNode label="催化裂化分馏单元泵房" cid="YZ-LYDA01-14" URL=""
+					see="" />
+				<videoNode label="转阀3" cid="ECR-1-013" URL="" see="" />
+				<videoNode label="二甲苯装置压缩机" cid="ECR-1-011" URL="" see="" />
+				<videoNode label="大阀" cid="ECR-1-012" URL="" see="" />
+				<videoNode label="重整装置区压缩机" cid="ECR-1-002" URL="" see="" />
+				<videoNode label="二甲苯装置转阀1" cid="ECR-1-009" URL="" see="" />
+				<videoNode label="加氢压缩机" cid="ECR-1-003" URL="" see="" />
+				<videoNode label="火炬气回收" cid="ECR-2-005" URL="" see="" />
+				<videoNode label="火炬" cid="ECR-1-007" URL="" see="" />
+				<videoNode label="码头火炬" cid="ECR-4-001" URL="" see="" />
+				<videoNode label="制氢炉" cid="ECR-1-001" URL="" see="" />
+				<videoNode label="油品装车台" cid="ECR-3-001" URL="" see="" />
+				<videoNode label="二甲苯装置转阀2" cid="ECR-1-010" URL="" see="" />
+				<videoNode label="压缩机" cid="ECR-1-006" URL="" see="" />
+				<videoNode label="空冷器" cid="ECR-1-004" URL="" see="" />
+				<videoNode label="换热器" cid="ECR-1-005" URL="" see="" />
+				<videoNode label="反应器" cid="ECR-1-008" URL="" see="" />
+			</qyNode>
+			<qyNode label="清江石化" id="">
+				<videoNode label="气分" cid="10051" URL="" see="" />
+				<videoNode label="加氢南" cid="10052" URL="" see="" />
+				<videoNode label="轻油罐区" cid="10053" URL="" see="" />
+				<videoNode label="渣油罐区" cid="10055" URL="" see="" />
+				<videoNode label="中间罐区" cid="10054" URL="" see="" />
+				<videoNode label="100万吨南" cid="10056" URL="" see="" />
+				<videoNode label="火炬" cid="10060" URL="" see="" />
+				<videoNode label="原油罐区" cid="10050" URL="" see="" />
+			</qyNode>
+			<qyNode label="金陵石化" id="">
+				<videoNode label="焦碳塔底" cid="30001" URL="" see="" />
+				<videoNode label="热油泵房" cid="30002" URL="" see="" />
+				<videoNode label="二套压缩机" cid="30003" URL="" see="" />
+				<videoNode label="一套冷油泵房" cid="30004" URL="" see="" />
+				<videoNode label="二套压缩机平台" cid="30006" URL="" see="" />
+				<videoNode label="焦碳塔加热炉区" cid="30007" URL="" see="" />
+				<videoNode label="二套分馏冷换机" cid="30008" URL="" see="" />
+				<videoNode label="冷焦水远景" cid="30009" URL="" see="" />
+				<videoNode label="气化楼九楼A炉" cid="32001" URL="" see="" />
+				<videoNode label="气化七楼八楼" cid="32002" URL="" see="" />
+				<videoNode label="储运中控" cid="32003" URL="" see="" />
+				<videoNode label="气化楼九楼B炉" cid="32004" URL="" see="" />
+				<videoNode label="P6303A上方立柱" cid="32005" URL="" see="" />
+				<videoNode label="气化楼九楼C炉" cid="32006" URL="" see="" />
+				<videoNode label="液氩罐西侧" cid="32009" URL="" see="" />
+				<videoNode label="排空火炬" cid="32010" URL="" see="" />
+				<videoNode label="渣水五楼西北角" cid="32014" URL="" see="" />
+				<videoNode label="V6801AB" cid="33002" URL="" see="" />
+				<videoNode label="甲烷化西侧管廊" cid="33003" URL="" see="" />
+				<videoNode label="管带机" cid="33004" URL="" see="" />
+				<videoNode label="管带机2" cid="33005" URL="" see="" />
+				<videoNode label="机组2" cid="33006" URL="" see="" />
+				<videoNode label="管带机机尾" cid="33007" URL="" see="" />
+				<videoNode label="振动筛" cid="33008" URL="" see="" />
+				<videoNode label="一套成品北" cid="99001" URL="" see="" />
+				<videoNode label="一套成品南" cid="99003" URL="" see="" />
+				<videoNode label="一套结片" cid="99006" URL="" see="" />
+				<videoNode label="金晖仓库" cid="99007" URL="" see="" />
+				<videoNode label="狗场" cid="99010" URL="" see="" />
+			</qyNode>
+			<qyNode label="仪征化纤" id="">
+				<videoNode label="PTA1中控楼" cid="10013" URL="" see="" />
+				<videoNode label="总罐区三号门卫" cid="20003" URL="" see="" />
+				<videoNode label="总罐区办公楼" cid="20005" URL="" see="" />
+				<videoNode label="总罐区二号门卫" cid="20004" URL="" see="" />
+				<videoNode label="化工厂西南角" cid="20002" URL="" see="" />
+				<videoNode label="二厂前纺" cid="10001" URL="" see="" />
+				<videoNode label="聚酯八单元" cid="20011" URL="" see="" />
+				<videoNode label="二厂切片楼" cid="10002" URL="" see="" />
+				<videoNode label="工程塑料" cid="10012" URL="" see="" />
+				<videoNode label="三厂切片楼" cid="10008" URL="" see="" />
+				<videoNode label="三厂前纺" cid="10009" URL="" see="" />
+				<videoNode label="聚酯五单元" cid="10011" URL="" see="" />
+				<videoNode label="一厂S3南" cid="10005" URL="" see="" />
+				<videoNode label="一厂-前纺" cid="10006" URL="" see="" />
+				<videoNode label="一厂切片楼" cid="10007" URL="" see="" />
+				<videoNode label="仓库北路西" cid="20012" URL="" see="" />
+				<videoNode label="码头前沿" cid="20006" URL="" see="" />
+			</qyNode>
+			<qyNode label="镇海炼化" id="">
+				<videoNode label="装车站15轴" cid="137067001" URL="" see="" />
+				<videoNode label="装车站8轴" cid="137067003" URL="" see="" />
+				<videoNode label="装车站1轴" cid="137067006" URL="" see="" />
+				<videoNode label="装车站14轴" cid="137067005" URL="" see="" />
+				<videoNode label="EO-EG-540装车站" cid="137072004" URL=""
+					see="" />
+				<videoNode label="环氧丙烷装车台1" cid="137195003" URL="" see="" />
+				<videoNode label="苯乙烯装车台2" cid="137195002" URL="" see="" />
+				<videoNode label="环氧丙烷装车台2" cid="137195004" URL="" see="" />
+				<videoNode label="苯乙烯装车台1" cid="137195001" URL="" see="" />
+				<videoNode label="装车站6轴" cid="137067004" URL="" see="" />
+				<videoNode label="装车站10轴" cid="137067002" URL="" see="" />
+				<videoNode label="回流罐平台全景" cid="137005011" URL="" see="" />
+				<videoNode label="泵区西区机泵" cid="137005006" URL="" see="" />
+				<videoNode label="压缩机" cid="137005010" URL="" see="" />
+				<videoNode label="异构化泵区机泵" cid="137005012" URL="" see="" />
+				<videoNode label="泵区" cid="13702004" URL="" see="" />
+				<videoNode label="泵区东区机泵" cid="137005008" URL="" see="" />
+				<videoNode label="泵区西区" cid="13702003" URL="" see="" />
+				<videoNode label="1号泵棚" cid="137070008" URL="" see="" />
+				<videoNode label="2号泵棚" cid="137071001" URL="" see="" />
+				<videoNode label="6" cid="137197008" URL="" see="" />
+				<videoNode label="3" cid="137197005" URL="" see="" />
+				<videoNode label="4" cid="137197006" URL="" see="" />
+				<videoNode label="5" cid="137197007" URL="" see="" />
+				<videoNode label="1" cid="137197003" URL="" see="" />
+				<videoNode label="3号泵棚" cid="137071002" URL="" see="" />
+				<videoNode label="2" cid="137197004" URL="" see="" />
+				<videoNode label="3号转运站4" cid="137164006" URL="" see="" />
+				<videoNode label="破碎楼栈桥" cid="137166003" URL="" see="" />
+				<videoNode label="1号圆型煤场2" cid="137166006" URL="" see="" />
+				<videoNode label="1号圆型煤场3" cid="137166007" URL="" see="" />
+				<videoNode label="2号圆型煤场1" cid="137166009" URL="" see="" />
+				<videoNode label="2号圆型煤场5" cid="137166013" URL="" see="" />
+				<videoNode label="3号转运站1" cid="137166014" URL="" see="" />
+				<videoNode label="1号圆型煤场4" cid="137166008" URL="" see="" />
+				<videoNode label="2号圆型煤场2" cid="137166010" URL="" see="" />
+				<videoNode label="2号圆型煤场3" cid="137166011" URL="" see="" />
+				<videoNode label="3号转运站2" cid="137166015" URL="" see="" />
+				<videoNode label="1号圆型煤场1" cid="137166005" URL="" see="" />
+				<videoNode label="主厂房38m层输煤间" cid="137166001" URL="" see="" />
+				<videoNode label="3号转运站3" cid="137166016" URL="" see="" />
+				<videoNode label="除铁间栈桥" cid="137166004" URL="" see="" />
+				<videoNode label="2号圆型煤场4" cid="137166012" URL="" see="" />
+				<videoNode label="主厂房45m层栈桥" cid="137166002" URL="" see="" />
+				<videoNode label="二催化主风机" cid="13701009" URL="" see="" />
+				<videoNode label="二催化气分泵区" cid="13701007" URL="" see="" />
+				<videoNode label="一催化气压机" cid="13703004" URL="" see="" />
+				<videoNode label="一催化全貌" cid="13703003" URL="" see="" />
+				<videoNode label="一催化主风机" cid="13703005" URL="" see="" />
+				<videoNode label="二催化分馏泵区" cid="13701008" URL="" see="" />
+				<videoNode label="一加氢氢压机1" cid="13703010" URL="" see="" />
+				<videoNode label="一加氢分馏" cid="13703008" URL="" see="" />
+				<videoNode label="二重控制室顶" cid="13703016" URL="" see="" />
+				<videoNode label="四重整泵区" cid="13702007" URL="" see="" />
+				<videoNode label="四重整炉区" cid="13702008" URL="" see="" />
+				<videoNode label="四加氢泵区" cid="13702001" URL="" see="" />
+				<videoNode label="三重整压缩机" cid="13701004" URL="" see="" />
+				<videoNode label="一加氢塔区" cid="13703006" URL="" see="" />
+				<videoNode label="三重整再生框架" cid="13701003" URL="" see="" />
+				<videoNode label="三重整泵区" cid="13701005" URL="" see="" />
+				<videoNode label="四重整压缩机房" cid="13702006" URL="" see="" />
+				<videoNode label="一加氢氢压机2" cid="13703009" URL="" see="" />
+				<videoNode label="三加氢泵区" cid="13701002" URL="" see="" />
+				<videoNode label="三加氢塔区" cid="13701001" URL="" see="" />
+				<videoNode label="四重整再生框架" cid="13702005" URL="" see="" />
+				<videoNode label="二加氢氢压机" cid="13703015" URL="" see="" />
+				<videoNode label="4号炉水位计" cid="137164004" URL="" see="" />
+				<videoNode label="3号炉水位计" cid="137164003" URL="" see="" />
+				<videoNode label="5号炉水位计" cid="137164005" URL="" see="" />
+				<videoNode label="4号汽轮机" cid="137165005" URL="" see="" />
+				<videoNode label="3号汽轮机" cid="137165004" URL="" see="" />
+				<videoNode label="1号汽轮机" cid="137165002" URL="" see="" />
+				<videoNode label="1号炉水位计" cid="137164002" URL="" see="" />
+				<videoNode label="2号汽轮机" cid="137165003" URL="" see="" />
+				<videoNode label="2号炉水位计" cid="137164001" URL="" see="" />
+				<videoNode label="聚烯泾火炬" cid="138_zhlhdvr33_08" URL=""
+					see="" />
+				<videoNode label="高架火炬" cid="137196007" URL="" see="" />
+				<videoNode label="废碱液附近" cid="137197002" URL="" see="" />
+				<videoNode label="锅炉烟囱" cid="137165001" URL="" see="" />
+				<videoNode label="化学水西南角" cid="137165007" URL="" see="" />
+				<videoNode label="高压泵房" cid="137075003" URL="" see="" />
+				<videoNode label="机柜间" cid="137074006" URL="" see="" />
+				<videoNode label="化学水东北角" cid="137165006" URL="" see="" />
+				<videoNode label="废水池" cid="137076007" URL="" see="" />
+				<videoNode label="混合C4罐区" cid="137076002" URL="" see="" />
+				<videoNode label="空分2" cid="137075008" URL="" see="" />
+				<videoNode label="空分1" cid="137075007" URL="" see="" />
+				<videoNode label="空气压缩机房" cid="137075005" URL="" see="" />
+				<videoNode label="化肥火炬" cid="137_zhlhdvr34_08" URL="" see="" />
+				<videoNode label="挤压机" cid="138_zhlhdvr33_04" URL="" see="" />
+				<videoNode label="歧化泵区" cid="13702010" URL="" see="" />
+				<videoNode label="后景" cid="138_zhlhdvr33_05" URL="" see="" />
+				<videoNode label="芳烃换热区框架" cid="13701006" URL="" see="" />
+				<videoNode label="火炬" cid="13704005" URL="" see="" />
+				<videoNode label="加热炉区域" cid="137005009" URL="" see="" />
+				<videoNode label="歧化泵区机泵" cid="137005002" URL="" see="" />
+				<videoNode label="芳烃泵区" cid="137239011" URL="" see="" />
+				<videoNode label="歧化压缩机" cid="137005004" URL="" see="" />
+				<videoNode label="歧化反应器-白土塔" cid="137005005" URL="" see="" />
+				<videoNode label="歧化回流罐平台及其下方管架" cid="137005003" URL=""
+					see="" />
+				<videoNode label="芳烃换热区框架" cid="137239013" URL="" see="" />
+				<videoNode label="六硫磺反应炉区" cid="12123902" URL="" see="" />
+				<videoNode label="六硫磺二汽提" cid="12123901" URL="" see="" />
+				<videoNode label="芳烃塔区" cid="137239012" URL="" see="" />
+				<videoNode label="乙苯" cid="137196005" URL="" see="" />
+				<videoNode label="现场罐区2" cid="137074008" URL="" see="" />
+				<videoNode label="压缩机房" cid="137075002" URL="" see="" />
+				<videoNode label="球罐棚-1" cid="137076001" URL="" see="" />
+				<videoNode label="全压力2号罐区" cid="137070002" URL="" see="" />
+				<videoNode label="清水池" cid="137072007" URL="" see="" />
+				<videoNode label="燃料油装车台2" cid="137195006" URL="" see="" />
+				<videoNode label="球罐棚5" cid="137076005" URL="" see="" />
+				<videoNode label="球罐棚3" cid="137076003" URL="" see="" />
+				<videoNode label="燃料油装车台1" cid="137195005" URL="" see="" />
+				<videoNode label="现场罐区1" cid="137074007" URL="" see="" />
+				<videoNode label="前景" cid="138_zhlhdvr33_06" URL="" see="" />
+				<videoNode label="全压力1号罐区" cid="137070001" URL="" see="" />
+				<videoNode label="压缩机厂房3" cid="137076006" URL="" see="" />
+				<videoNode label="五万立罐区" cid="13704006" URL="" see="" />
+				<videoNode label="热油系统" cid="138_zhlhdvr33_01" URL="" see="" />
+				<videoNode label="五加氢东側泵区" cid="13702002" URL="" see="" />
+				<videoNode label="算山8号罐区" cid="ecr08004" URL="" see="" />
+				<videoNode label="尾气回收" cid="137_zhlhdvr34_05" URL="" see="" />
+				<videoNode label="烷基化泵区" cid="13703012" URL="" see="" />
+				<videoNode label="算山2号泊位" cid="ecr08002" URL="" see="" />
+				<videoNode label="算山1号泊位" cid="ecr08003" URL="" see="" />
+				<videoNode label="算山5号罐区" cid="ecr08001" URL="" see="" />
+			</qyNode>
+			<qyNode label="上海石化" id="">
+				<videoNode label="气压机房" cid="2003" URL="" see="" />
+				<videoNode label="主风机房" cid="2004" URL="" see="" />
+				<videoNode label="油浆泵区" cid="2006" URL="" see="" />
+				<videoNode label="火炬" cid="2007" URL="" see="" />
+				<videoNode label="醋酸装置全景" cid="92001" URL="" see="" />
+				<videoNode label="1PE1系列压缩机" cid="12102" URL="" see="" />
+				<videoNode label="1PE2系列压缩机" cid="12103" URL="" see="" />
+				<videoNode label="1PE反应器" cid="12101" URL="" see="" />
+				<videoNode label="2PE装置全景" cid="12201" URL="" see="" />
+				<videoNode label="2PE反应器" cid="12203" URL="" see="" />
+				<videoNode label="2PE压缩机" cid="12202" URL="" see="" />
+				<videoNode label="3PE压缩机" cid="12403" URL="" see="" />
+				<videoNode label="3PE反应器" cid="12401" URL="" see="" />
+				<videoNode label="3PE装置全景" cid="12402" URL="" see="" />
+				<videoNode label="4聚乙烯挤出机" cid="12405" URL="" see="" />
+				<videoNode label="4聚乙烯装置主走廊" cid="12411" URL="" see="" />
+				<videoNode label="4聚乙烯装置南侧" cid="12410" URL="" see="" />
+				<videoNode label="4聚乙烯装置西侧" cid="12408" URL="" see="" />
+				<videoNode label="4聚乙烯包装" cid="12404" URL="" see="" />
+				<videoNode label="1PP走廊" cid="12301" URL="" see="" />
+				<videoNode label="1PP装置全景" cid="12302" URL="" see="" />
+				<videoNode label="2PP走廊" cid="12304" URL="" see="" />
+				<videoNode label="2PP装置全景" cid="12305" URL="" see="" />
+				<videoNode label="3PP装置全景" cid="12406" URL="" see="" />
+				<videoNode label="3PP主走廊" cid="12407" URL="" see="" />
+				<videoNode label="1乙烯中间罐区1" cid="61002" URL="" see="" />
+				<videoNode label="1乙烯装置东西大道" cid="61003" URL="" see="" />
+				<videoNode label="1乙烯裂解炉2" cid="61004" URL="" see="" />
+				<videoNode label="1乙烯压缩机" cid="61013" URL="" see="" />
+				<videoNode label="1乙烯中间罐区2" cid="61014" URL="" see="" />
+				<videoNode label="1乙烯氢压机" cid="61012" URL="" see="" />
+				<videoNode label="1乙烯裂解炉1" cid="61001" URL="" see="" />
+				<videoNode label="1乙烯装置分离" cid="61011" URL="" see="" />
+				<videoNode label="2乙烯老区裂解炉2" cid="62012" URL="" see="" />
+				<videoNode label="2乙烯出料系统" cid="62007" URL="" see="" />
+				<videoNode label="2乙烯蒸发器" cid="64004" URL="" see="" />
+				<videoNode label="2乙烯输送泵" cid="64008" URL="" see="" />
+				<videoNode label="2乙烯开工锅炉" cid="64002" URL="" see="" />
+				<videoNode label="2乙烯老区压缩机" cid="64001" URL="" see="" />
+				<videoNode label="2乙烯新区压缩机" cid="62009" URL="" see="" />
+				<videoNode label="2乙烯老区裂解炉1" cid="62001" URL="" see="" />
+				<videoNode label="2乙烯新区裂解炉" cid="64011" URL="" see="" />
+				<videoNode label="2乙烯汽油塔" cid="64005" URL="" see="" />
+				<videoNode label="2乙烯新区分离" cid="64009" URL="" see="" />
+				<videoNode label="2乙烯球罐" cid="64010" URL="" see="" />
+				<videoNode label="2常原油罐区" cid="1002" URL="" see="" />
+				<videoNode label="2常换热器区" cid="1003" URL="" see="" />
+				<videoNode label="2常加热炉区" cid="1001" URL="" see="" />
+				<videoNode label="3常加热炉区" cid="1004" URL="" see="" />
+				<videoNode label="3常换热器区" cid="1006" URL="" see="" />
+				<videoNode label="3常高温泵区" cid="1005" URL="" see="" />
+				<videoNode label="600U" cid="67014" URL="" see="" />
+				<videoNode label="高压加氢裂化压缩机" cid="67003" URL="" see="" />
+				<videoNode label="300U" cid="67005" URL="" see="" />
+				<videoNode label="400U" cid="67008" URL="" see="" />
+				<videoNode label="异构化" cid="67006" URL="" see="" />
+				<videoNode label="高压加氢裂化全景" cid="67001" URL="" see="" />
+				<videoNode label="2氧化干燥器" cid="13304" URL="" see="" />
+				<videoNode label="氧化反应器" cid="13302" URL="" see="" />
+				<videoNode label="空压机" cid="13301" URL="" see="" />
+				<videoNode label="动力车间" cid="13305" URL="" see="" />
+				<videoNode label="加氢反应器" cid="13303" URL="" see="" />
+				<videoNode label="C115压缩机房" cid="95003" URL="" see="" />
+				<videoNode label="装置西侧" cid="95002" URL="" see="" />
+				<videoNode label="装置主走廊" cid="95004" URL="" see="" />
+				<videoNode label="装置南侧" cid="94003" URL="" see="" />
+				<videoNode label="压缩机C" cid="94002" URL="" see="" />
+				<videoNode label="反应器" cid="94001" URL="" see="" />
+				<videoNode label="装置全景" cid="95001" URL="" see="" />
+				<videoNode label="55万吨加氢溶剂泵区" cid="2001" URL="" see="" />
+				<videoNode label="55万吨加氢反应器区" cid="2002" URL="" see="" />
+				<videoNode label="主管架炉区" cid="4001" URL="" see="" />
+				<videoNode label="裂化机房" cid="4002" URL="" see="" />
+				<videoNode label="加热炉区" cid="4003" URL="" see="" />
+				<videoNode label="55万吨加氢氢压机房" cid="2008" URL="" see="" />
+				<videoNode label="55万吨加氢氢压机房2" cid="2009" URL="" see="" />
+				<videoNode label="反应器高压换热器区域" cid="4006" URL="" see="" />
+				<videoNode label="加裂压缩机房" cid="3005" URL="" see="" />
+				<videoNode label="航煤加氢分馏换热区" cid="、" URL="" see="" />
+				<videoNode label="压缩机" cid="91003" URL="" see="" />
+				<videoNode label="合成工段" cid="91002" URL="" see="" />
+				<videoNode label="聚合工段" cid="91001" URL="" see="" />
+				<videoNode label="南侧全景" cid="93001" URL="" see="" />
+				<videoNode label="老区反应器" cid="93003" URL="" see="" />
+				<videoNode label="球罐" cid="93002" URL="" see="" />
+				<videoNode label="C1401冷冻机" cid="93006" URL="" see="" />
+				<videoNode label="C101空压机" cid="93005" URL="" see="" />
+				<videoNode label="新区反应器" cid="93004" URL="" see="" />
+				<videoNode label="加热炉区" cid="1007" URL="" see="" />
+				<videoNode label="高压换热器区" cid="3004" URL="" see="" />
+				<videoNode label="压缩机房1" cid="1008" URL="" see="" />
+				<videoNode label="压缩机房2" cid="1009" URL="" see="" />
+				<videoNode label="分馏换热区" cid="1010" URL="" see="" />
+				<videoNode label="高压给水泵" cid="71004" URL="" see="" />
+				<videoNode label="装置全景2" cid="71002" URL="" see="" />
+				<videoNode label="乙焦泵" cid="71014" URL="" see="" />
+				<videoNode label="老区压缩机" cid="72009" URL="" see="" />
+				<videoNode label="新区压缩机" cid="71008" URL="" see="" />
+				<videoNode label="装置全景1" cid="71001" URL="" see="" />
+				<videoNode label="金阳装置聚合" cid="14302" URL="" see="" />
+				<videoNode label="出焦区" cid="3002" URL="" see="" />
+				<videoNode label="加热炉区" cid="3006" URL="" see="" />
+				<videoNode label="金阳装置溶解机" cid="14301" URL="" see="" />
+				<videoNode label="南门" cid="20001" URL="" see="" />
+				<videoNode label="中压压缩机房" cid="3003" URL="" see="" />
+				<videoNode label="反应器催化剂再生系统" cid="4007" URL="" see="" />
+				<videoNode label="主管架炉区" cid="4004" URL="" see="" />
+				<videoNode label="机房" cid="4005" URL="" see="" />
+			</qyNode>
+			<qyNode label="高桥石化" id="">
+				<videoNode label="现场2" cid="107512" URL="" see="" />
+				<videoNode label="现场3" cid="107513" URL="" see="" />
+				<videoNode label="现场4" cid="107514" URL="" see="" />
+				<videoNode label="现场5" cid="107515" URL="" see="" />
+				<videoNode label="现场6" cid="107516" URL="" see="" />
+				<videoNode label="油1罐区1" cid="1070101" URL="" see="" />
+				<videoNode label="油1罐区2" cid="1070102" URL="" see="" />
+				<videoNode label="油1罐区3" cid="1070103" URL="" see="" />
+				<videoNode label="油1罐区4" cid="1070104" URL="" see="" />
+				<videoNode label="油1罐区5" cid="1070105" URL="" see="" />
+				<videoNode label="油2罐区1" cid="1070201" URL="" see="" />
+				<videoNode label="油2罐区2" cid="1070202" URL="" see="" />
+				<videoNode label="油2罐区3" cid="1070203" URL="" see="" />
+				<videoNode label="油2罐区4" cid="1070204" URL="" see="" />
+				<videoNode label="油四罐区1" cid="1070301" URL="" see="" />
+				<videoNode label="油四罐区2" cid="1070302" URL="" see="" />
+				<videoNode label="A线防缩化1" cid="170401" URL="" see="" />
+				<videoNode label="海滨码头1" cid="1070303" URL="" see="" />
+				<videoNode label="海滨码头2" cid="1070304" URL="" see="" />
+				<videoNode label="A线防缩化2" cid="1070402" URL="" see="" />
+				<videoNode label="B线防缩化1" cid="1070403" URL="" see="" />
+				<videoNode label="B线防缩化2" cid="1070404" URL="" see="" />
+				<videoNode label="C线防缩化1" cid="1070405" URL="" see="" />
+				<videoNode label="C线防缩化2" cid="1070406" URL="" see="" />
+				<videoNode label="D线防缩化1" cid="1070407" URL="" see="" />
+				<videoNode label="D线防缩化2" cid="1070408" URL="" see="" />
+				<videoNode label="1号均化器核液位" cid="1070501" URL="" see="" />
+				<videoNode label="2号均化器核液位" cid="1070502" URL="" see="" />
+				<videoNode label="3号均化器核液位" cid="1070503" URL="" see="" />
+				<videoNode label="1号线框架核液位" cid="1070504" URL="" see="" />
+				<videoNode label="2号线框架核液位" cid="1070505" URL="" see="" />
+				<videoNode label="3号线框架核液位" cid="1070506" URL="" see="" />
+				<videoNode label="5号门危险品仓库" cid="1070507" URL="" see="" />
+				<videoNode label="1号线切粒间" cid="1070508" URL="" see="" />
+				<videoNode label="2号线切粒间" cid="1070509" URL="" see="" />
+				<videoNode label="3号线切粒间" cid="1070510" URL="" see="" />
+				<videoNode label="1号脱水振动筛" cid="1070601" URL="" see="" />
+				<videoNode label="2号脱水振动筛" cid="1070602" URL="" see="" />
+				<videoNode label="3号脱水振动筛" cid="1070603" URL="" see="" />
+				<videoNode label="1号脱水挤压机" cid="1070604" URL="" see="" />
+				<videoNode label="1号挤压机料口" cid="1070605" URL="" see="" />
+				<videoNode label="2号脱水挤压机" cid="1070606" URL="" see="" />
+				<videoNode label="2号挤压机料口" cid="1070607" URL="" see="" />
+				<videoNode label="3号脱水挤压机" cid="1070608" URL="" see="" />
+				<videoNode label="3号挤压机料口" cid="1070609" URL="" see="" />
+				<videoNode label="1号膨胀机料口" cid="1070610" URL="" see="" />
+				<videoNode label="2号膨胀机料口" cid="1070611" URL="" see="" />
+				<videoNode label="3号膨胀机料口" cid="1070701" URL="" see="" />
+				<videoNode label="1号线硫化床" cid="1070702" URL="" see="" />
+				<videoNode label="2号线硫化床" cid="1070703" URL="" see="" />
+				<videoNode label="3号线硫化床" cid="1070704" URL="" see="" />
+				<videoNode label="1号线喂料机" cid="1070705" URL="" see="" />
+				<videoNode label="2号线喂料机" cid="1070706" URL="" see="" />
+				<videoNode label="3号线喂料机" cid="1070707" URL="" see="" />
+				<videoNode label="1号线压块机" cid="1070708" URL="" see="" />
+				<videoNode label="2号线压块机" cid="1070709" URL="" see="" />
+				<videoNode label="3号线压块机" cid="1070710" URL="" see="" />
+				<videoNode label="中间罐区" cid="1070711" URL="" see="" />
+			</qyNode>
+			<qyNode label="九江石化" id="">
+				<videoNode label="6kv配电室" cid="27" URL="" see="" />
+				<videoNode label="主变压器" cid="26" URL="" see="" />
+				<videoNode label="电缆室" cid="29" URL="" see="" />
+				<videoNode label="110kv开关室" cid="28" URL="" see="" />
+				<videoNode label="小芳烃顶" cid="cjy08" URL="" see="" />
+				<videoNode label="炉子南" cid="cjy09" URL="" see="" />
+				<videoNode label="7" cid="cjy07" URL="" see="" />
+				<videoNode label="5" cid="cjy05" URL="" see="" />
+				<videoNode label="4" cid="cjy04" URL="" see="" />
+				<videoNode label="3" cid="cjy03" URL="" see="" />
+				<videoNode label="2" cid="cjy02" URL="" see="" />
+				<videoNode label="1" cid="cjy01" URL="" see="" />
+				<videoNode label="6" cid="cjy06" URL="" see="" />
+				<videoNode label="油浆拔头" cid="cjy11" URL="" see="" />
+				<videoNode label="小芳烃后" cid="cjy10" URL="" see="" />
+				<videoNode label="7" cid="52" URL="" see="" />
+				<videoNode label="4" cid="49" URL="" see="" />
+				<videoNode label="5" cid="50" URL="" see="" />
+				<videoNode label="6" cid="51" URL="" see="" />
+				<videoNode label="2" cid="47" URL="" see="" />
+				<videoNode label="1" cid="45" URL="" see="" />
+				<videoNode label="3" cid="48" URL="" see="" />
+				<videoNode label="压缩机厂房西" cid="33" URL="" see="" />
+				<videoNode label="中控室东" cid="34" URL="" see="" />
+				<videoNode label="氨罐东南" cid="41" URL="" see="" />
+				<videoNode label="加热炉北" cid="42" URL="" see="" />
+				<videoNode label="露天仓库" cid="37" URL="" see="" />
+				<videoNode label="成品皮带机" cid="38" URL="" see="" />
+				<videoNode label="办公楼南" cid="36" URL="" see="" />
+				<videoNode label="放射源" cid="39" URL="" see="" />
+				<videoNode label="罐区南侧" cid="40" URL="" see="" />
+				<videoNode label="空压站北" cid="43" URL="" see="" />
+				<videoNode label="氨罐西南" cid="35" URL="" see="" />
+				<videoNode label="炭黑水罐北" cid="44" URL="" see="" />
+				<videoNode label="90万吨加氢炉区火嘴" cid="20" URL="" see="" />
+				<videoNode label="二联合重整炉201南侧" cid="9" URL="" see="" />
+				<videoNode label="1" cid="53" URL="" see="" />
+				<videoNode label="2" cid="54" URL="" see="" />
+				<videoNode label="3" cid="55" URL="" see="" />
+				<videoNode label="4" cid="56" URL="" see="" />
+				<videoNode label="5" cid="57" URL="" see="" />
+				<videoNode label="6" cid="58" URL="" see="" />
+				<videoNode label="1" cid="jubingxi01" URL="" see="" />
+				<videoNode label="2" cid="jubingxi02" URL="" see="" />
+				<videoNode label="3" cid="jubingxi03" URL="" see="" />
+				<videoNode label="4" cid="jubingxi04" URL="" see="" />
+				<videoNode label="5" cid="jubingxi05" URL="" see="" />
+				<videoNode label="ky6" cid="22" URL="" see="" />
+				<videoNode label="ky5" cid="21" URL="" see="" />
+				<videoNode label="ky4" cid="20" URL="" see="" />
+				<videoNode label="总进" cid="45" URL="" see="" />
+				<videoNode label="中水" cid="46" URL="" see="" />
+				<videoNode label="碱渣" cid="32" URL="" see="" />
+				<videoNode label="仓库" cid="30" URL="" see="" />
+				<videoNode label="泵区" cid="31" URL="" see="" />
+				<videoNode label="燃运车间三号线" cid="4" URL="" see="" />
+			</qyNode>
+			<qyNode label="四川维尼纶厂" id="">
+				<videoNode label="Y390火炬" cid="00001CWAS000100001" URL=""
+					see="" />
+				<videoNode label="Y580火炬" cid="00001CWAS000100002" URL=""
+					see="" />
+				<videoNode label="Y590火炬" cid="00001CWAS000100003" URL=""
+					see="" />
+				<videoNode label="Y0390火炬" cid="00001CWAS000100004" URL=""
+					see="" />
+				<videoNode label="Y0580火炬" cid="00001CWAS000100005" URL=""
+					see="" />
+				<videoNode label="Y0590火炬" cid="00001CWAS000100006" URL=""
+					see="" />
+				<videoNode label="小罐区" cid="00001CWAS000400001" URL=""
+					see="" />
+				<videoNode label="罐区" cid="00001CWAS000400002" URL="" see="" />
+				<videoNode label="大罐区" cid="00001CWAS000400003" URL=""
+					see="" />
+				<videoNode label="装车站" cid="00001CWAS000400004" URL=""
+					see="" />
+				<videoNode label="NAOH泵" cid="00001CWAS000400005" URL=""
+					see="" />
+				<videoNode label="添加液槽" cid="00001CWAS000400006" URL=""
+					see="" />
+				<videoNode label="VAC罐区" cid="00001CWAS000400007" URL=""
+					see="" />
+				<videoNode label="VAC罐区02" cid="00001CWAS000400008" URL=""
+					see="" />
+			</qyNode>
+			<qyNode label="长岭石化" id="">
+				<videoNode label="三机操作室" cid="201" URL="" see="" />
+				<videoNode label="烟机" cid="202" URL="" see="" />
+				<videoNode label="主分机一楼" cid="203" URL="" see="" />
+				<videoNode label="汽压机" cid="204" URL="" see="" />
+				<videoNode label="二号灌区" cid="702" URL="" see="" />
+				<videoNode label="三号灌区" cid="703" URL="" see="" />
+				<videoNode label="东边灌区和输油管" cid="704" URL="" see="" />
+				<videoNode label="灌区全貌" cid="705" URL="" see="" />
+				<videoNode label="一号水码头" cid="706" URL="" see="" />
+				<videoNode label="二号油码头" cid="707" URL="" see="" />
+				<videoNode label="三号码头" cid="708" URL="" see="" />
+				<videoNode label="四号码头" cid="709" URL="" see="" />
+				<videoNode label="五号码头" cid="710" URL="" see="" />
+				<videoNode label="输油管阀门" cid="711" URL="" see="" />
+				<videoNode label="六号码头" cid="712" URL="" see="" />
+				<videoNode label="1" cid="801" URL="" see="" />
+				<videoNode label="2" cid="802" URL="" see="" />
+				<videoNode label="3" cid="803" URL="" see="" />
+				<videoNode label="4" cid="804" URL="" see="" />
+				<videoNode label="5" cid="805" URL="" see="" />
+				<videoNode label="6" cid="806" URL="" see="" />
+				<videoNode label="7" cid="807" URL="" see="" />
+				<videoNode label="8" cid="808" URL="" see="" />
+				<videoNode label="9" cid="809" URL="" see="" />
+				<videoNode label="10" cid="810" URL="" see="" />
+				<videoNode label="11" cid="811" URL="" see="" />
+				<videoNode label="12" cid="812" URL="" see="" />
+				<videoNode label="13" cid="813" URL="" see="" />
+				<videoNode label="14" cid="814" URL="" see="" />
+				<videoNode label="15" cid="815" URL="" see="" />
+				<videoNode label="16" cid="816" URL="" see="" />
+			</qyNode>
+			<qyNode label="巴陵石化" id="">
+				<videoNode label="1" cid="bahougou01" URL="" see="" />
+				<videoNode label="2" cid="bahougou02" URL="" see="" />
+				<videoNode label="3" cid="bahougou03" URL="" see="" />
+				<videoNode label="4" cid="bahaogou04" URL="" see="" />
+				<videoNode label="5" cid="bahaogou05" URL="" see="" />
+				<videoNode label="6" cid="bahaogou06" URL="" see="" />
+				<videoNode label="7" cid="bahaogou07" URL="" see="" />
+				<videoNode label="8" cid="bahaogou08" URL="" see="" />
+				<videoNode label="1" cid="wuhaogou01" URL="" see="" />
+				<videoNode label="2" cid="wuhaogou02" URL="" see="" />
+				<videoNode label="2200单元东面框架下" cid="110" URL="" see="" />
+				<videoNode label="22单元南面第5柱子" cid="111" URL="" see="" />
+				<videoNode label="2500厂棚南面" cid="107" URL="" see="" />
+				<videoNode label="E2102西面框架" cid="102" URL="" see="" />
+				<videoNode label="E2102蒸汽放空框" cid="104" URL="" see="" />
+				<videoNode label="E2112东侧" cid="103" URL="" see="" />
+				<videoNode label="J2101塔顶" cid="113" URL="" see="" />
+				<videoNode label="J25012平台北面" cid="106" URL="" see="" />
+				<videoNode label="J2601西面" cid="112" URL="" see="" />
+				<videoNode label="P2204AB对面管廊" cid="109" URL="" see="" />
+				<videoNode label="R2100管架东南拄子" cid="105" URL="" see="" />
+				<videoNode label="T201塔顶" cid="101" URL="" see="" />
+				<videoNode label="T2201四平台" cid="108" URL="" see="" />
+				<videoNode label="4422凉水塔" cid="hjtzz12" URL="" see="" />
+				<videoNode label="753锅炉" cid="hjtzz05" URL="" see="" />
+				<videoNode label="755楼顶" cid="hjtzz13" URL="" see="" />
+				<videoNode label="V8G8罐" cid="hjtzz09" URL="" see="" />
+				<videoNode label="低压走廊" cid="hjtzz08" URL="" see="" />
+				<videoNode label="火炬" cid="hjtzz14" URL="" see="" />
+				<videoNode label="老办公楼顶" cid="hjtzz02" URL="" see="" />
+				<videoNode label="配电房" cid="hztzz04" URL="" see="" />
+				<videoNode label="消防塔" cid="hjtzz06" URL="" see="" />
+				<videoNode label="氧化东入口" cid="hjtzz10" URL="" see="" />
+				<videoNode label="氧化东山坡" cid="hjtzz03" URL="" see="" />
+				<videoNode label="氧化南入口" cid="hjtzz01" URL="" see="" />
+				<videoNode label="氧化三楼平台" cid="hztzz07" URL="" see="" />
+				<videoNode label="氧化一楼中" cid="hjtzz11" URL="" see="" />
+				<videoNode label="煤代油装置" cid="127" URL="" see="" />
+				<videoNode label="尿素楼顶" cid="123" URL="" see="" />
+				<videoNode label="尿素水塔" cid="121" URL="" see="" />
+				<videoNode label="尿素四层" cid="124" URL="" see="" />
+				<videoNode label="污水立柱东" cid="129" URL="" see="" />
+				<videoNode label="污水立柱南" cid="128" URL="" see="" />
+				<videoNode label="污水平房顶" cid="130" URL="" see="" />
+				<videoNode label="造粒塔7层" cid="125" URL="" see="" />
+				<videoNode label="造粒塔顶" cid="122" URL="" see="" />
+				<videoNode label="20000吨离子膜生产区" cid="HY05" URL="" see="" />
+				<videoNode label="50000吨离子膜生产区" cid="HY06" URL="" see="" />
+				<videoNode label="3000吨房顶" cid="HY03" URL="" see="" />
+				<videoNode label="500吨房顶" cid="HY02" URL="" see="" />
+				<videoNode label="公用工程房顶" cid="HY04" URL="" see="" />
+				<videoNode label="移动塔" cid="HY01" URL="" see="" />
+				<videoNode label="柴汽油灌" cid="2" URL="" see="" />
+				<videoNode label="常压炉" cid="6" URL="" see="" />
+				<videoNode label="汽油罐区及后门" cid="1" URL="" see="" />
+			</qyNode>
+			<qyNode label="茂名石化" id="">
+				<videoNode label="气冷干机东南" cid="gqlgjdn" URL="" see="" />
+				<videoNode label="干气吸附塔顶" cid="gqxftd" URL="" see="" />
+				<videoNode label="干气压缩机东北" cid="gqysjdb" URL="" see="" />
+				<videoNode label="干气压缩机东南" cid="gqysjdn" URL="" see="" />
+				<videoNode label="A火炬" cid="fdsfds" URL="" see="" />
+				<videoNode label="B火炬" cid="gfnhjyuyuu" URL="" see="" />
+				<videoNode label="C火炬" cid="mvnegtroo" URL="" see="" />
+				<videoNode label="催化裂化火炬" cid="eww4334" URL="" see="" />
+			</qyNode>
+			<qyNode label="东兴" id="">
+				<videoNode label="摄像机01号" cid="dljgjsxj01h" URL="" see="" />
+				<videoNode label="摄像机02号" cid="dljgjsxj02h" URL="" see="" />
+				<videoNode label="摄像机03号" cid="dljgjsxj03h" URL="" see="" />
+				<videoNode label="摄像机04号" cid="dljgjsxj04h" URL="" see="" />
+				<videoNode label="摄像机05号" cid="dljgjsxj05h" URL="" see="" />
+				<videoNode label="摄像机06号" cid="dljgjsxj06h" URL="" see="" />
+				<videoNode label="摄像机07号" cid="dljgjsxj07h" URL="" see="" />
+				<videoNode label="摄像机08号" cid="dljgjsxj08h" URL="" see="" />
+				<videoNode label="摄像机09号" cid="dljgjsxj09h" URL="" see="" />
+				<videoNode label="10号" cid="jlbf10h" URL="" see="" />
+				<videoNode label="11号" cid="jlbf11h" URL="" see="" />
+				<videoNode label="12号" cid="jlbf12h" URL="" see="" />
+				<videoNode label="13号G016_1" cid="jlbf13hg016_1" URL=""
+					see="" />
+				<videoNode label="14号G016_2" cid="jlbf14hg016_2" URL=""
+					see="" />
+				<videoNode label="16号G016A_2" cid="jlbf16hg016a_2" URL=""
+					see="" />
+				<videoNode label="19号G015A_1" cid="jlbf19hg015a_1" URL=""
+					see="" />
+				<videoNode label="1号G011_1" cid="jlbf1hg011_1" URL="" see="" />
+				<videoNode label="21号" cid="jlbf21h" URL="" see="" />
+				<videoNode label="22号" cid="jlbf22h" URL="" see="" />
+				<videoNode label="23号" cid="jlbf23h" URL="" see="" />
+				<videoNode label="4号G012_2" cid="jlbf4hg012_2" URL="" see="" />
+				<videoNode label="5号G013_1" cid="jlbf5hg013_1" URL="" see="" />
+				<videoNode label="6号G013_2" cid="jlbf6hg013_2" URL="" see="" />
+				<videoNode label="7号G014_1" cid="jlbf7hg014_1" URL="" see="" />
+				<videoNode label="8号G014_2" cid="jlbf8hg014_2" URL="" see="" />
+				<videoNode label="10号" cid="lchjgj10h" URL="" see="" />
+				<videoNode label="11号" cid="lchjgj11h" URL="" see="" />
+				<videoNode label="12号" cid="lchjgj12h" URL="" see="" />
+				<videoNode label="13号" cid="lchjgj13h" URL="" see="" />
+				<videoNode label="16号" cid="lchjgj16h" URL="" see="" />
+				<videoNode label="17号" cid="lchjgj17h" URL="" see="" />
+				<videoNode label="18号" cid="lchjgj18h" URL="" see="" />
+				<videoNode label="19号" cid="lchjgj19h" URL="" see="" />
+				<videoNode label="20号" cid="lchjgj20h" URL="" see="" />
+				<videoNode label="2号" cid="lchjgj2h" URL="" see="" />
+				<videoNode label="3号" cid="lchjgj3h" URL="" see="" />
+				<videoNode label="4通道" cid="lchjgj4td" URL="" see="" />
+				<videoNode label="5号" cid="lchjgj5h" URL="" see="" />
+				<videoNode label="7号" cid="lchjgj7h" URL="" see="" />
+				<videoNode label="8号" cid="lchjgj8h" URL="" see="" />
+				<videoNode label="9号" cid="lchjgj9h" URL="" see="" />
+				<videoNode label="柴油泵房" cid="cybf" URL="" see="" />
+				<videoNode label="柴油泵房顶" cid="cybfd" URL="" see="" />
+				<videoNode label="东避雷塔" cid="dblt" URL="" see="" />
+				<videoNode label="东操作室顶" cid="dczsd" URL="" see="" />
+				<videoNode label="框架顶" cid="kjd" URL="" see="" />
+				<videoNode label="汽油泵房" cid="qybf" URL="" see="" />
+				<videoNode label="汽油泵房顶" cid="qybfd" URL="" see="" />
+				<videoNode label="燃料油泵房" cid="rlybf" URL="" see="" />
+				<videoNode label="尾油泵房" cid="wybf" URL="" see="" />
+				<videoNode label="尾油泵房顶" cid="wybfd" URL="" see="" />
+				<videoNode label="西避雷塔" cid="xblt" URL="" see="" />
+				<videoNode label="西操作室顶" cid="xczsd" URL="" see="" />
+				<videoNode label="重油泵房" cid="zybf" URL="" see="" />
+				<videoNode label="重油泵房顶" cid="zybfd" URL="" see="" />
+				<videoNode label="12号_3号" cid="yhlhkzs12h_3h" URL="" see="" />
+				<videoNode label="14号" cid="yhlhkzs14h" URL="" see="" />
+				<videoNode label="18号_9号" cid="yhlhkzs18h_9" URL="" see="" />
+				<videoNode label="21号" cid="yhlhkzs21h" URL="" see="" />
+				<videoNode label="22号_4号" cid="yhlhkzs22h_4" URL="" see="" />
+				<videoNode label="24号" cid="yhlhkzs24h" URL="" see="" />
+				<videoNode label="25号" cid="yhlhkzs25h" URL="" see="" />
+				<videoNode label="27号_光端7" cid="yhlhkzs27h_gd7" URL=""
+					see="" />
+				<videoNode label="1号_加氢430塔" cid="yhlhkzs430t" URL="" see="" />
+				<videoNode label="4号_重要机组" cid="yhlhkzs4h_zyjz" URL=""
+					see="" />
+				<videoNode label="5号_重整空冷" cid="yhlhkzs5h_czkl" URL=""
+					see="" />
+				<videoNode label="6号_蒸馏泵房" cid="yhlhkzs6h_zl" URL="" see="" />
+				<videoNode label="7号_蒸馏炉区" cid="yhlhkzs7h_zllq" URL=""
+					see="" />
+				<videoNode label="9号_蒸馏1005" cid="yhlhkzs9h_zl1005" URL=""
+					see="" />
+				<videoNode label="17号_8号" cid="ylhkzs177h_8h" URL="" see="" />
+				<videoNode label="8号_蒸馏换热器" cid="ylhkzs8h_zlhrq" URL=""
+					see="" />
+				<videoNode label="泵房_2" cid="yygqbf_2" URL="" see="" />
+				<videoNode label="G017_3" cid="yygqg017_3" URL="" see="" />
+				<videoNode label="G017_4" cid="yygqg017_4" URL="" see="" />
+				<videoNode label="G018_1" cid="yygqg018_1" URL="" see="" />
+				<videoNode label="G018_5" cid="yygqg018_5" URL="" see="" />
+				<videoNode label="G018_6" cid="yygqg018_6" URL="" see="" />
+				<videoNode label="G019_7" cid="yygqg019_7" URL="" see="" />
+				<videoNode label="G019_8" cid="yygqg019_8" URL="" see="" />
+			</qyNode>
+			<qyNode label="广州石化" id="">
+				<videoNode label="75区泵廊" cid="gzsh14wbltlzz75q" URL=""
+					see="" />
+				<videoNode label="72_73区泵廊" cid="gzsh14wtlzz72-73" URL=""
+					see="" />
+				<videoNode label="74_75区尾气炉" cid="gzsh14wtlzz74_75qwql"
+					URL="" see="" />
+				<videoNode label="74区框架" cid="gzsh14wtlzz74qkj" URL=""
+					see="" />
+				<videoNode label="罐区" cid="gzsh14wtlzzgq" URL="" see="" />
+				<videoNode label="全貌" cid="gzsh14wtlzzqm" URL="" see="" />
+				<videoNode label="仪表间1" cid="gzsh14wtlzzybj1" URL="" see="" />
+				<videoNode label="仪表间2" cid="gzsh14wtlzzybj2" URL="" see="" />
+				<videoNode label="电脱盐罐" cid="gzsh1hcsyzzdtyg" URL="" see="" />
+				<videoNode label="加热炉" cid="gzsh1hcsyzzjrr" URL="" see="" />
+				<videoNode label="泵区" cid="gzsh1hjhbq" URL="" see="" />
+				<videoNode label="气压机" cid="gzsh1hjhqyj" URL="" see="" />
+				<videoNode label="全貌" cid="gzsh1hjhqm" URL="" see="" />
+				<videoNode label="四通阀" cid="gzsh1hjhstf" URL="" see="" />
+				<videoNode label="泵廊" cid="gzsh1hczzzbl" URL="" see="" />
+				<videoNode label="反再框架北面" cid="gzsh1hczzzfzkjbm" URL=""
+					see="" />
+				<videoNode label="反再框架西面" cid="gzsh1hczzzfzkjxm" URL=""
+					see="" />
+				<videoNode label="全貌" cid="gzsh1hczzzqm" URL="" see="" />
+				<videoNode label="预加氢区" cid="gzsh1hczzzyjqq" URL="" see="" />
+				<videoNode label="泵廊" cid="gzsh1hczzzbl" URL="" see="" />
+				<videoNode label="反再框架北面" cid="gzsh1hczzzfzkjbm" URL=""
+					see="" />
+				<videoNode label="反再框架西面" cid="gzsh1hczzzfzkjxm" URL=""
+					see="" />
+				<videoNode label="全貌" cid="gzsh1hczzzqm" URL="" see="" />
+				<videoNode label="预加氢区" cid="gzsh1hczzzyjqq" URL="" see="" />
+				<videoNode label="泵房" cid="gzsh2hjhzzbf" URL="" see="" />
+				<videoNode label="地面区域" cid="gzsh2hjhzzdmqy" URL="" see="" />
+				<videoNode label="辐射泵" cid="gzsh2hjhzzfsb" URL="" see="" />
+				<videoNode label="焦化塔顶" cid="gzsh2hjhzzjhdd" URL="" see="" />
+				<videoNode label="焦炭塔" cid="gzsh2hjhzzjdt" URL="" see="" />
+				<videoNode label="焦炭塔二楼" cid="gzsh2hjhzzjddel" URL="" see="" />
+				<videoNode label="气压机" cid="gzsh2hjhzzqyj" URL="" see="" />
+				<videoNode label="外操室" cid="gzsh2hjhzzcs" URL="" see="" />
+				<videoNode label="1" cid="gzshbzpe01" URL="" see="" />
+				<videoNode label="2" cid="gzshbzpek02" URL="" see="" />
+				<videoNode label="3" cid="gzshbzpek04" URL="" see="" />
+				<videoNode label="4" cid="gzshbzpek004" URL="" see="" />
+				<videoNode label="5" cid="gzshbzpek05" URL="" see="" />
+				<videoNode label="103-104泵区域" cid="gzshgqtn01" URL="" see="" />
+				<videoNode label="109-113泵区" cid="gzshgqtn03" URL="" see="" />
+				<videoNode label="120炉" cid="gzshgqtn05" URL="" see="" />
+				<videoNode label="泵区走廊" cid="gzshgqtn04" URL="" see="" />
+				<videoNode label="冰房区域" cid="gzshgqtn07" URL="" see="" />
+				<videoNode label="压缩机厂房" cid="gzshgqtn02" URL="" see="" />
+				<videoNode label="压缩机厂房" cid="gzshgqtn06" URL="" see="" />
+				<videoNode label="103界区" cid="gzshhgqcy103jq" URL="" see="" />
+				<videoNode label="P0618泵管廊" cid="gzshhgqcyp0618" URL=""
+					see="" />
+				<videoNode label="PO636泵管廊" cid="gzshhgqcyp0636bgl" URL=""
+					see="" />
+				<videoNode label="TK0601罐" cid="gzshhgqcytk0601g" URL=""
+					see="" />
+				<videoNode label="TK0603罐区" cid="gzshhgqcytk603gq" URL=""
+					see="" />
+				<videoNode label="TK0604罐附件" cid="gzshhgqcytk0604gfj" URL=""
+					see="" />
+				<videoNode label="TK0607-TK06" cid="gzshhgqcytk0607-tk06"
+					URL="" see="" />
+				<videoNode label="TK0607罐区" cid="gzshhgqcytk0607gq" URL=""
+					see="" />
+				<videoNode label="TK0609A罐" cid="gzshhgqcytk0609ag" URL=""
+					see="" />
+				<videoNode label="TK0610罐" cid="gzshhgqcytk0610g" URL=""
+					see="" />
+				<videoNode label="TK0610罐" cid="gzshhgqcytk0610gp--" URL=""
+					see="" />
+				<videoNode label="TK-0611B罐" cid="gzshhgqcytk-06118g" URL=""
+					see="" />
+				<videoNode label="TK0613罐旁" cid="gzshhgqtk0613gpcy" URL=""
+					see="" />
+				<videoNode label="TK0615罐区" cid="gzshhgqcytk0615gq" URL=""
+					see="" />
+				<videoNode label="TK0617罐旁" cid="gzshhgqcytk0617gp" URL=""
+					see="" />
+				<videoNode label="TK0622罐区" cid="gzshhgqcytk0622gq" URL=""
+					see="" />
+				<videoNode label="炼油1/2号火炬" cid="gzshly1h2hhj" URL="" see="" />
+				<videoNode label="地面区域" cid="gzshhjdmqy" URL="" see="" />
+				<videoNode label="加氢联合3号火炬" cid="gzshlhzz02" URL="" see="" />
+				<videoNode label="区域" cid="gzshhjqy" URL="" see="" />
+				<videoNode label="压缩机房" cid="gzshhjysjf" URL="" see="" />
+				<videoNode label="P3004泵区" cid="gzshjqljzz3bq" URL="" see="" />
+				<videoNode label="P3011泵区" cid="gzsjjqlhzz3bq" URL="" see="" />
+				<videoNode label="泵区" cid="gzshjqhzzbq" URL="" see="" />
+				<videoNode label="空冷区" cid="gzshjqlhzzklq" URL="" see="" />
+				<videoNode label="全貌" cid="gzshjqlhzzqm" URL="" see="" />
+				<videoNode label="新氢压缩机" cid="gzsjjqlhzzxqysj" URL="" see="" />
+				<videoNode label="循环氢压缩机" cid="gzshjqlhzzhqysj" URL=""
+					see="" />
+				<videoNode label="液压透平" cid="gzshjqlhzzytp" URL="" see="" />
+				<videoNode label="T-1023颗粒水池" cid="gzshjbyxt-1023klsc"
+					URL="" see="" />
+				<videoNode label="T-2023颗粒水池" cid="gzshjbyxt-2023klsc"
+					URL="" see="" />
+				<videoNode label="x1023一线切粒机" cid="gzshjbyx" URL="" see="" />
+				<videoNode label="X1024整冻筛" cid="gzshx1024zds" URL="" see="" />
+				<videoNode label="x2023二线切粒机" cid="gzshjbyxx2023" URL=""
+					see="" />
+				<videoNode label="x2024二线切粒机" cid="gzshjbyxx2024" URL=""
+					see="" />
+				<videoNode label="产品料库" cid="gzshjbyxcplk" URL="" see="" />
+				<videoNode label="切胶机" cid="gzshjbyxqjj" URL="" see="" />
+				<videoNode label="泵房东面" cid="gzshqczzbfdm" URL="" see="" />
+				<videoNode label="泵房西面" cid="gzshqczzbfxm" URL="" see="" />
+				<videoNode label="反应框架" cid="gzshqczzfykj" URL="" see="" />
+				<videoNode label="全貌" cid="gzshqczzqm" URL="" see="" />
+				<videoNode label="泵区东面" cid="gzsh3hcjyzzbqdm" URL="" see="" />
+				<videoNode label="泵区西面" cid="gzsh3hcjyzzbqxm" URL="" see="" />
+				<videoNode label="电气配电间1" cid="gzsh3hcjyzzdqpdj1" URL=""
+					see="" />
+				<videoNode label="电气配电间2" cid="gzsh3hcjyzzdqpdj2" URL=""
+					see="" />
+				<videoNode label="电脱盐区" cid="gzsh3hcjyzzdtyq" URL="" see="" />
+				<videoNode label="加热炉烟囱" cid="gzsh3hcjyzzjrlyc" URL=""
+					see="" />
+				<videoNode label="减压框架" cid="gzsh3hcjyzzjykj" URL="" see="" />
+				<videoNode label="轻烃框架" cid="gzsh3hcjyzzqtkj" URL="" see="" />
+				<videoNode label="调节阀" cid="gzsh3hcjyzjfzt" URL="" see="" />
+				<videoNode label="13万气炬" cid="gzsh13wqj" URL="" see="" />
+				<videoNode label="101罐" cid="gzshyy1g" URL="" see="" />
+				<videoNode label="102罐" cid="gzshyy2g" URL="" see="" />
+				<videoNode label="103罐" cid="gzshyy103g" URL="" see="" />
+				<videoNode label="109罐" cid="gzshyy109g" URL="" see="" />
+				<videoNode label="D9202脱氧水槽区域" cid="gzshzqzz9tyszqy" URL=""
+					see="" />
+				<videoNode label="K1151干气压缩机区域" cid="gzshzqzzkgqysjqy"
+					URL="" see="" />
+				<videoNode label="K5101氢气压缩机区域" cid="gzshzqzzkqqysjqy"
+					URL="" see="" />
+				<videoNode label="干气区域" cid="gzshzqzzgqqy" URL="" see="" />
+				<videoNode label="管廊区域" cid="gzshzqzzlqy" URL="" see="" />
+				<videoNode label="配电间1" cid="gzshzqzzpdj1" URL="" see="" />
+				<videoNode label="配电间2" cid="gzshzqzzpdj2" URL="" see="" />
+				<videoNode label="配电间3" cid="gzshzqzzpdj3" URL="" see="" />
+				<videoNode label="配电间4" cid="gzshzqzzpdj4" URL="" see="" />
+				<videoNode label="脱硫区域" cid="gzshzqzztlqy" URL="" see="" />
+				<videoNode label="脱碳D1404区域" cid="gzshzqzzttd1404qy" URL=""
+					see="" />
+				<videoNode label="脱碳TE1402A区域" cid="gzshzqtttqy" URL=""
+					see="" />
+				<videoNode label="脱盐水区域" cid="gzshzqzztysqy" URL="" see="" />
+				<videoNode label="转化炉底区域" cid="gzshzqzzzhrdqy" URL="" see="" />
+				<videoNode label="泵区东面" cid="gzshzczz03" URL="" see="" />
+				<videoNode label="泵区西面" cid="gzshzczz02" URL="" see="" />
+				<videoNode label="锅炉水位计" cid="gzshzczz06" URL="" see="" />
+				<videoNode label="气压机" cid="gzshzczz05" URL="" see="" />
+				<videoNode label="全貌" cid="gzshzczz04" URL="" see="" />
+				<videoNode label="四机组" cid="gzshzczz01" URL="" see="" />
+			</qyNode>
+			<qyNode label="海南炼化" id="">
+				<videoNode label="新增航煤罐区" cid="Camera007" URL="" see="" />
+				<videoNode label="二层机组平台1" cid="HNLHDDVR040" URL="" see="" />
+				<videoNode label="总变35KV" cid="HNLHDVR" URL="" see="" />
+				<videoNode label="南侧" cid="hnlhdvr001" URL="" see="" />
+				<videoNode label="走廊1" cid="hnlhdvr002" URL="" see="" />
+				<videoNode label="走廊2" cid="hnlhdvr003" URL="" see="" />
+				<videoNode label="机组西侧" cid="hnlhdvr004" URL="" see="" />
+				<videoNode label="N3配电间南侧" cid="hnlhdvr005" URL="" see="" />
+				<videoNode label="N4配电间北侧" cid="hnlhdvr006" URL="" see="" />
+				<videoNode label="配电间" cid="hnlhdvr014" URL="" see="" />
+				<videoNode label="配走廊" cid="hnlhdvr015" URL="" see="" />
+				<videoNode label="反应罐平台" cid="hnlhdvr016" URL="" see="" />
+				<videoNode label="西侧1" cid="hnlhdvr008" URL="" see="" />
+				<videoNode label="南侧1" cid="hnlhdvr009" URL="" see="" />
+				<videoNode label="东侧1" cid="hnlhdvr010" URL="" see="" />
+				<videoNode label="海南炼化-老原油罐区-东侧2" cid="hnlhdvr011" URL=""
+					see="" />
+				<videoNode label="海南炼化-老原油罐区-西侧2" cid="hnlhdvr012" URL=""
+					see="" />
+				<videoNode label="海南炼化-老原油罐区-泵区" cid="hnlhdvr013" URL=""
+					see="" />
+				<videoNode label="N4配电间" cid="hnlhdvr017" URL="" see="" />
+				<videoNode label="平台" cid="hnlhdvr018" URL="" see="" />
+				<videoNode label="监测液位" cid="hnlhdvr019" URL="" see="" />
+				<videoNode label="N7配电间" cid="hnlhdvr020" URL="" see="" />
+				<videoNode label="溶剂再生平台" cid="hnlhdvr021" URL="" see="" />
+				<videoNode label="东侧平台" cid="hnlhdvr022" URL="" see="" />
+				<videoNode label="泵区走廊" cid="hnlhdvr023" URL="" see="" />
+				<videoNode label="平台" cid="hnlhdvr024" URL="" see="" />
+				<videoNode label="N1配电间" cid="hnlhdvr035" URL="" see="" />
+				<videoNode label="泵区走廊2" cid="HNLHDVR036" URL="" see="" />
+				<videoNode label="平台2" cid="HNLHDVR037" URL="" see="" />
+				<videoNode label="平台3" cid="HNLHDVR038" URL="" see="" />
+				<videoNode label="N5配电间" cid="hnlhdvr025" URL="" see="" />
+				<videoNode label="泵区西侧" cid="hnlhdvr026" URL="" see="" />
+				<videoNode label="平台" cid="hnlhdvr027" URL="" see="" />
+				<videoNode label="机组1" cid="hnlhdvr028" URL="" see="" />
+				<videoNode label="机组2" cid="hnlhdvr029" URL="" see="" />
+				<videoNode label="锅炉平台1" cid="hnlhdvr030" URL="" see="" />
+				<videoNode label="锅炉平台2" cid="hnlhdvr031" URL="" see="" />
+				<videoNode label="锅炉平台3" cid="hnlhdvr032" URL="" see="" />
+				<videoNode label="锅炉平台5" cid="hnlhdvr034" URL="" see="" />
+				<videoNode label="锅炉平台4" cid="hnlhdvr33" URL="" see="" />
+				<videoNode label="催化原料预处理" cid="HNLHDVR039" URL="" see="" />
+				<videoNode label="泵区走廊" cid="HNLHDVR042" URL="" see="" />
+				<videoNode label="N12配电间" cid="HNLHDVR043" URL="" see="" />
+				<videoNode label="N14配电间" cid="HNLHDVR044" URL="" see="" />
+				<videoNode label="1" cid="HNLHDVR045" URL="" see="" />
+				<videoNode label="2" cid="HNLHDVR046" URL="" see="" />
+				<videoNode label="3" cid="HNLHDVR047" URL="" see="" />
+				<videoNode label="4" cid="HNLHDVR048" URL="" see="" />
+				<videoNode label="5" cid="HNLHDVR049" URL="" see="" />
+				<videoNode label="6" cid="HNLHDVR050" URL="" see="" />
+				<videoNode label="循环水处理厂N8配电间" cid="HNLHDVR051" URL=""
+					see="" />
+				<videoNode label="N16配电间" cid="HNLHDVR052" URL="" see="" />
+				<videoNode label="配电间" cid="HNLHDVR053" URL="" see="" />
+				<videoNode label="挤压造粒" cid="HNLHDVR054" URL="" see="" />
+				<videoNode label="环管三平台" cid="HNLHDVR055" URL="" see="" />
+				<videoNode label="变CS10配电间1" cid="HNLHDVR056" URL="" see="" />
+				<videoNode label="变CS20配电间2" cid="HNLHDVR057" URL="" see="" />
+				<videoNode label="变CS30配电间3" cid="HNLHDVR058" URL="" see="" />
+				<videoNode label="大厅1" cid="HNLHDVR059" URL="" see="" />
+				<videoNode label="大厅2" cid="HNLHDVR060" URL="" see="" />
+				<videoNode label="火炬东监测塔" cid="HNLHDVR061" URL="" see="" />
+				<videoNode label="通道坏" cid="HNLHDVR062" URL="" see="" />
+				<videoNode label="总变" cid="HNLHDVR063" URL="" see="" />
+				<videoNode label="总变GIS" cid="HNLHDVR064" URL="" see="" />
+				<videoNode label="N9配电所" cid="HNLHDVR066" URL="" see="" />
+				<videoNode label="火炬西监测塔" cid="HNLHDVR067" URL="" see="" />
+				<videoNode label="操作室门口" cid="HNLHDVR068" URL="" see="" />
+				<videoNode label="走廊1" cid="HNLHDVR069" URL="" see="" />
+				<videoNode label="走廊2" cid="HNLHDVR070" URL="" see="" />
+				<videoNode label="走廊3" cid="HNLHDVR071" URL="" see="" />
+				<videoNode label="罐区1" cid="HNLHDVR073" URL="" see="" />
+				<videoNode label="罐区2" cid="HNLHDVR074" URL="" see="" />
+				<videoNode label="泵区3" cid="HNLHDVR075" URL="" see="" />
+				<videoNode label="罐区4" cid="HNLHDVR076" URL="" see="" />
+				<videoNode label="罐顶" cid="HNLHDVR077" URL="" see="" />
+				<videoNode label="围网5" cid="HNLHDVR0100" URL="" see="" />
+				<videoNode label="围网6" cid="HNLHDVR0101" URL="" see="" />
+				<videoNode label="海南炼化-原油码-头管廊" cid="HNLHDVR078" URL=""
+					see="" />
+				<videoNode label="海南炼化-原油码-头泵房顶" cid="HNLHDVR079" URL=""
+					see="" />
+				<videoNode label="1号泊位二楼配电" cid="HNLHDVR080" URL="" see="" />
+				<videoNode label="1号泊位调度室J" cid="HNLHDVR081" URL="" see="" />
+				<videoNode label="管廊1" cid="HNLHDVR082" URL="" see="" />
+				<videoNode label="管廊2" cid="HNLHDVR083" URL="" see="" />
+				<videoNode label="管廊3" cid="HNLHDVR084" URL="" see="" />
+				<videoNode label="头走廊1" cid="HNLHDVR085" URL="" see="" />
+				<videoNode label="头走廊2" cid="HNLHDVR086" URL="" see="" />
+				<videoNode label="头走廊3" cid="HNLHDVR087" URL="" see="" />
+				<videoNode label="头走廊4" cid="HNLHDVR088" URL="" see="" />
+				<videoNode label="头调度室" cid="HNLHDVR089" URL="" see="" />
+				<videoNode label="走廊1" cid="HNLHDVR090" URL="" see="" />
+				<videoNode label="走廊2" cid="HNLHDVR091" URL="" see="" />
+				<videoNode label="4号泊位配电间" cid="HNLHDVR092" URL="" see="" />
+				<videoNode label="3号泊位走廊" cid="HNLHDVR093" URL="" see="" />
+				<videoNode label="2号泊位二楼配电" cid="HNLHDVR094" URL="" see="" />
+				<videoNode label="2号泊位调度室J" cid="HNLHDVR095" URL="" see="" />
+				<videoNode label="围网1" cid="HNLHDVR096" URL="" see="" />
+				<videoNode label="围网2" cid="HNLHDVR097" URL="" see="" />
+				<videoNode label="围网3" cid="HNLHDVR098" URL="" see="" />
+				<videoNode label="围网4" cid="HNLHDVR099" URL="" see="" />
+			</qyNode>
+			<qyNode label="中原油田石化总厂" id="">
+				<videoNode label="塔区" cid="1" URL="" see="" />
+				<videoNode label="加热炉101" cid="3" URL="" see="" />
+				<videoNode label="精制区" cid="6" URL="" see="" />
+				<videoNode label="换109" cid="2" URL="" see="" />
+				<videoNode label="冷泵区" cid="5" URL="" see="" />
+				<videoNode label="加热炉102" cid="7" URL="" see="" />
+				<videoNode label="热泵区" cid="8" URL="" see="" />
+				<videoNode label="泵房东" cid="ch07" URL="" see="" />
+				<videoNode label="气压机1楼" cid="ch02" URL="" see="" />
+				<videoNode label="泵房西" cid="ch08" URL="" see="" />
+				<videoNode label="主风机1楼" cid="ch04" URL="" see="" />
+				<videoNode label="脱硫" cid="cu06" URL="" see="" />
+				<videoNode label="主风机2楼" cid="ch05" URL="" see="" />
+				<videoNode label="气压机2楼" cid="ch03" URL="" see="" />
+				<videoNode label="操作室外" cid="ch01" URL="" see="" />
+				<videoNode label="泵区" cid="jiaqing04" URL="" see="" />
+				<videoNode label="仪表室" cid="jiaqing11" URL="" see="" />
+				<videoNode label="操作室" cid="jiaqing12" URL="" see="" />
+				<videoNode label="压缩机南" cid="jiaqing05" URL="" see="" />
+				<videoNode label="脱硫塔" cid="jiaqing06" URL="" see="" />
+				<videoNode label="配电室" cid="jiaqing10" URL="" see="" />
+				<videoNode label="加热炉" cid="jiaqing09" URL="" see="" />
+				<videoNode label="压缩机北" cid="jiaqing07" URL="" see="" />
+				<videoNode label="过虑器" cid="jiaqing01" URL="" see="" />
+				<videoNode label="冷换平台" cid="jiaqing02" URL="" see="" />
+				<videoNode label="小柴油灌区" cid="34trfds" URL="" see="" />
+				<videoNode label="成品泵区" cid="rew" URL="" see="" />
+				<videoNode label="液化气泵房" cid="3456dfgdf" URL="" see="" />
+				<videoNode label="小渣油罐区" cid="687g" URL="" see="" />
+				<videoNode label="大渣油灌区" cid="ttfewfsfdas" URL="" see="" />
+				<videoNode label="液化气灌区" cid="yp1z" URL="" see="" />
+				<videoNode label="汽油灌区" cid="erewfdsf" URL="" see="" />
+				<videoNode label="汽柴油大灌区" cid="yp1z08" URL="" see="" />
+				<videoNode label="罐区02" cid="11" URL="" see="" />
+				<videoNode label="泵房02" cid="12" URL="" see="" />
+				<videoNode label="大门" cid="10" URL="" see="" />
+				<videoNode label="西侧通道2" cid="18" URL="" see="" />
+				<videoNode label="泵房" cid="13" URL="" see="" />
+				<videoNode label="装车台2" cid="16" URL="" see="" />
+				<videoNode label="西侧通道" cid="14" URL="" see="" />
+				<videoNode label="北侧通道" cid="17" URL="" see="" />
+				<videoNode label="装车台1" cid="15" URL="" see="" />
+				<videoNode label="罐区03" cid="19" URL="" see="" />
+				<videoNode label="罐区01" cid="9" URL="" see="" />
+			</qyNode>
+			<qyNode label="河南石油" id="">
+				<videoNode label="G-01号罐" cid="ayyk001" URL="" see="" />
+				<videoNode label="办公行政院" cid="ayyk013" URL="" see="" />
+				<videoNode label="地磅房" cid="ayyk015" URL="" see="" />
+				<videoNode label="东大门" cid="ayyk016" URL="" see="" />
+				<videoNode label="发油现场南" cid="ayyk010" URL="" see="" />
+				<videoNode label="发油现场" cid="ayyk007" URL="" see="" />
+				<videoNode label="火运卸油泵房" cid="ayyk012" URL="" see="" />
+				<videoNode label="南消防通道" cid="ayyk002" URL="" see="" />
+				<videoNode label="铁路大门" cid="ayyk008" URL="" see="" />
+				<videoNode label="西大门" cid="ayyk011" URL="" see="" />
+				<videoNode label="收费室" cid="hbdryk013" URL="" see="" />
+				<videoNode label="办公楼" cid="hbdryk002" URL="" see="" />
+				<videoNode label="铁路南" cid="hbdryk006" URL="" see="" />
+				<videoNode label="大门口" cid="hbdryk001" URL="" see="" />
+				<videoNode label="北草坪" cid="hbdryk008" URL="" see="" />
+				<videoNode label="泵房" cid="hbdryk005" URL="" see="" />
+				<videoNode label="东北角" cid="hbdryk009" URL="" see="" />
+				<videoNode label="地磅" cid="hbdryk004" URL="" see="" />
+				<videoNode label="东草坪2" cid="hbdryk011" URL="" see="" />
+				<videoNode label="东草坪1" cid="hbdryk010" URL="" see="" />
+				<videoNode label="门卫北" cid="hbdryk012" URL="" see="" />
+				<videoNode label="水塔" cid="hndryk003" URL="" see="" />
+				<videoNode label="铁路北" cid="hbdryk007" URL="" see="" />
+				<videoNode label="1-4号油罐区" cid="jyyk005" URL="" see="" />
+				<videoNode label="10-11号罐区" cid="jyyk008" URL="" see="" />
+				<videoNode label="铁路专用线东门口" cid="jyyk004" URL="" see="" />
+				<videoNode label="铁路专用线北门口" cid="jyyk007" URL="" see="" />
+				<videoNode label="铁路专用线卸油线" cid="jyyk013" URL="" see="" />
+				<videoNode label="大门口" cid="jyyk009" URL="" see="" />
+				<videoNode label="生活区" cid="jyyk002" URL="" see="" />
+				<videoNode label="发油货位后" cid="jyyk012" URL="" see="" />
+				<videoNode label="发油货位前" cid="jyyk011" URL="" see="" />
+				<videoNode label="大门内侧" cid="jyyk001" URL="" see="" />
+				<videoNode label="储油罐区" cid="jyyk003" URL="" see="" />
+				<videoNode label="后围墙" cid="jyyk006" URL="" see="" />
+				<videoNode label="8号罐区" cid="jyyk010" URL="" see="" />
+				<videoNode label="正大门" cid="jzysyk--001" URL="" see="" />
+				<videoNode label="发油区西" cid="jzysyk--002" URL="" see="" />
+				<videoNode label="柴油泵房" cid="jzysyk--004" URL="" see="" />
+				<videoNode label="罐区东1" cid="jzysykl--005" URL="" see="" />
+				<videoNode label="罐区东2" cid="jzysyk--006" URL="" see="" />
+				<videoNode label="罐区西1" cid="jzysyk--007" URL="" see="" />
+				<videoNode label="开票室" cid="jzysyk--008" URL="" see="" />
+				<videoNode label="专用线东" cid="jzysyk--011" URL="" see="" />
+				<videoNode label="发油室" cid="jzysyk--009" URL="" see="" />
+				<videoNode label="专用线西" cid="jzysyk--010" URL="" see="" />
+				<videoNode label="柴油接卸区" cid="jzysyk--003" URL="" see="" />
+				<videoNode label="河南石油洛阳油库楼顶全景" cid="lyyk06" URL="" see="" />
+				<videoNode label="河南石油洛阳油库大门口" cid="lyyk01" URL="" see="" />
+				<videoNode label="河南石油洛阳油库罐区西北角" cid="lyyk02" URL="" see="" />
+				<videoNode label="河南石油洛阳油库二号岗" cid="llyk03" URL="" see="" />
+				<videoNode label="河南石油洛阳油库粘油泵房" cid="llyk04" URL="" see="" />
+				<videoNode label="河南石油洛阳油库轻油卸车泵房" cid="lyyk05" URL="" see="" />
+				<videoNode label="河南石油南阳油库发油棚南" cid="nyyk09" URL="" see="" />
+				<videoNode label="河南石油南阳油库磅坑东" cid="nyyk04" URL="" see="" />
+				<videoNode label="河南石油南阳油库大门南侧" cid="nyyk14" URL="" see="" />
+				<videoNode label="河南石油南阳油库发油棚北" cid="nyyk11" URL="" see="" />
+				<videoNode label="河南石油南阳油库磅坑西" cid="nyyk03" URL="" see="" />
+				<videoNode label="河南石油南阳油库磅坑" cid="nyyk02" URL="" see="" />
+				<videoNode label="河南石油南阳油库灯塔" cid="nyyk05" URL="" see="" />
+				<videoNode label="河南石油南阳油库水塔" cid="nyyk08" URL="" see="" />
+				<videoNode label="河南石油南阳油库地磅" cid="nyyk12" URL="" see="" />
+				<videoNode label="河南石油南阳油库大门口" cid="nyyk13" URL="" see="" />
+				<videoNode label="卸油栈桥" cid="PDSYK001" URL="" see="" />
+				<videoNode label="地磅" cid="PDSYK002" URL="" see="" />
+				<videoNode label="发油现场" cid="PDSYK003" URL="" see="" />
+				<videoNode label="煤油罐区" cid="PDSYK005" URL="" see="" />
+				<videoNode label="乙醇罐区" cid="PDSYK006" URL="" see="" />
+				<videoNode label="卸油泵房" cid="PDSYK004" URL="" see="" />
+				<videoNode label="南库罐区东" cid="PDSYK007" URL="" see="" />
+				<videoNode label="南库罐区中" cid="PDSYK008" URL="" see="" />
+				<videoNode label="大门口" cid="PDSYK009" URL="" see="" />
+				<videoNode label="南库罐区西" cid="PDSYK010" URL="" see="" />
+				<videoNode label="泵房西" cid="SMXYK015" URL="" see="" />
+				<videoNode label="泵房东" cid="SMXYK016" URL="" see="" />
+				<videoNode label="发油东测" cid="SMXYK010" URL="" see="" />
+				<videoNode label="G-04罐" cid="TEST01" URL="" see="" />
+				<videoNode label="库区西围墙" cid="SMXYK002" URL="" see="" />
+				<videoNode label="铁路西大门" cid="SMXYK005" URL="" see="" />
+				<videoNode label="铁路栈桥" cid="SMXYK008" URL="" see="" />
+				<videoNode label="润滑油西门" cid="SMXYK011" URL="" see="" />
+				<videoNode label="润滑油东门" cid="SMXYK013" URL="" see="" />
+				<videoNode label="发油泵西侧" cid="SMXYK014" URL="" see="" />
+				<videoNode label="D-04-05罐" cid="SMXYK003" URL="" see="" />
+				<videoNode label="铁路东大门" cid="SMXYK004" URL="" see="" />
+				<videoNode label="乙醇罐区" cid="SMXYK006" URL="" see="" />
+				<videoNode label="卸油泵房" cid="SMXYK009" URL="" see="" />
+				<videoNode label="油库大门" cid="SMXYK012" URL="" see="" />
+				<videoNode label="罐区西南角" cid="90889" URL="" see="" />
+				<videoNode label="罐区西北角" cid="SQYK003" URL="" see="" />
+				<videoNode label="发油棚东南角" cid="SQYK004" URL="" see="" />
+				<videoNode label="罐区东南角" cid="SQYK005" URL="" see="" />
+				<videoNode label="东罐区中" cid="SQYK006" URL="" see="" />
+				<videoNode label="正门口" cid="xxyk001" URL="" see="" />
+				<videoNode label="车队维修区东" cid="xxyk012" URL="" see="" />
+				<videoNode label="消防泵房" cid="xxyk005" URL="" see="" />
+				<videoNode label="车队后院南" cid="xxyk013" URL="" see="" />
+				<videoNode label="车队后院北" cid="xxyk007" URL="" see="" />
+				<videoNode label="二道门" cid="xxyk002" URL="" see="" />
+				<videoNode label="车队大门" cid="xxyk006" URL="" see="" />
+				<videoNode label="车队办公室大门" cid="xxyk008" URL="" see="" />
+				<videoNode label="发油区北" cid="xxyk004" URL="" see="" />
+				<videoNode label="车队协调" cid="xxyk009" URL="" see="" />
+				<videoNode label="车队办公区" cid="xxyk010" URL="" see="" />
+				<videoNode label="发油区南" cid="xxyk003" URL="" see="" />
+				<videoNode label="车队维修区西" cid="xxyk011" URL="" see="" />
+				<videoNode label="河南石油郑州油库地磅北" cid="zzyk12" URL="" see="" />
+				<videoNode label="铁路线" cid="zzyk1--006" URL="" see="" />
+				<videoNode label="东围墙南" cid="zzyk1--008" URL="" see="" />
+				<videoNode label="河南石油郑州油库发油北21号22号货位" cid="zzyk06" URL=""
+					see="" />
+				<videoNode label="河南石油郑州油库发油北17号18号" cid="zzyk07" URL=""
+					see="" />
+				<videoNode label="河南油田郑州油库发油北7号8号" cid="zzyk10" URL=""
+					see="" />
+				<videoNode label="东围墙北" cid="zzyk1--010" URL="" see="" />
+				<videoNode label="河南石油郑州油库发油北11号12号" cid="zzyk09" URL=""
+					see="" />
+				<videoNode label="河南石油郑州油库发油北3号4号" cid="zzyk11" URL=""
+					see="" />
+				<videoNode label="轻油泵房顶部" cid="zzyk1--009" URL="" see="" />
+				<videoNode label="南围墙" cid="zzyk1--001" URL="" see="" />
+				<videoNode label="办公楼北侧" cid="zzyk1--014" URL="" see="" />
+				<videoNode label="河南石油郑州油库发油北13号14号" cid="zzyk08" URL=""
+					see="" />
+				<videoNode label="发油区7-8货位" cid="zzyk1--004" URL="" see="" />
+				<videoNode label="发油区13-14" cid="zzyk1--005" URL="" see="" />
+				<videoNode label="东大门" cid="zzyk1--013" URL="" see="" />
+				<videoNode label="西围墙" cid="zzyk1--002" URL="" see="" />
+				<videoNode label="化验室" cid="zzyk--011" URL="" see="" />
+				<videoNode label="消防中队" cid="zzyk1--012" URL="" see="" />
+				<videoNode label="河南石油郑州油库发油南15号和16号" cid="zzyk04" URL=""
+					see="" />
+				<videoNode label="西大门" cid="zzyk1--003" URL="" see="" />
+				<videoNode label="铁路栈桥" cid="zzyk1--007" URL="" see="" />
+				<videoNode label="微机楼西侧" cid="zkyk003" URL="" see="" />
+				<videoNode label="铁路北侧" cid="zkyk011" URL="" see="" />
+				<videoNode label="铁路栈桥中段" cid="zkyk004" URL="" see="" />
+				<videoNode label="办公楼东侧" cid="zkyk001" URL="" see="" />
+				<videoNode label="中转泵房" cid="zkyk015" URL="" see="" />
+				<videoNode label="办公楼东南角" cid="zkyk018" URL="" see="" />
+				<videoNode label="3000罐区西南" cid="zkyk005" URL="" see="" />
+				<videoNode label="营业室内" cid="zkyk012" URL="" see="" />
+				<videoNode label="卸油泵房" cid="zkyk017" URL="" see="" />
+				<videoNode label="发油区" cid="zkyk008" URL="" see="" />
+				<videoNode label="营业室" cid="zkyk016" URL="" see="" />
+				<videoNode label="暂缺" cid="zkyk007" URL="" see="" />
+				<videoNode label="警卫二门" cid="zkyk002" URL="" see="" />
+				<videoNode label="油罐区" cid="zkyk009" URL="" see="" />
+				<videoNode label="化验室南花园" cid="zkyk019" URL="" see="" />
+				<videoNode label="一道门口" cid="zkyk014" URL="" see="" />
+				<videoNode label="消防泵房院内" cid="zkyk013" URL="" see="" />
+				<videoNode label="5000罐区西南" cid="zkyk006" URL="" see="" />
+				<videoNode label="5000油罐西南" cid="zkyk010" URL="" see="" />
+				<videoNode label="发油区西侧" cid="ZMDYK004" URL="" see="" />
+				<videoNode label="办公区消防通道" cid="ZMDYK006" URL="" see="" />
+				<videoNode label="栈桥东侧" cid="ZMDYK001" URL="" see="" />
+				<videoNode label="栈桥西侧" cid="ZMDYK005" URL="" see="" />
+				<videoNode label="消防通道西" cid="ZMDYK002" URL="" see="" />
+				<videoNode label="发油区北侧" cid="ZMDYK008" URL="" see="" />
+				<videoNode label="罐区消防通道" cid="ZMDYK003" URL="" see="" />
+				<videoNode label="发油区东侧" cid="ZMDYK007" URL="" see="" />
+				<videoNode label="漯河油库地磅" cid="lhyk007" URL="" see="" />
+				<videoNode label="漯河油库大门" cid="lhyk004" URL="" see="" />
+				<videoNode label="漯河油库后大门" cid="lhyk005" URL="" see="" />
+				<videoNode label="发油区后二" cid="lhyk002" URL="" see="" />
+				<videoNode label="漯河油库南大门" cid="lhyk006" URL="" see="" />
+				<videoNode label="发油区前" cid="lhyk003" URL="" see="" />
+				<videoNode label="发油区后一" cid="lhyk001" URL="" see="" />
+			</qyNode>
+			<qyNode label="北京石油" id="">
+				<videoNode label="北京石油-滨河路加油站-滨河路加油区1" cid="binhelujiayouzhan01-04"
+					URL="" see="" />
+				<videoNode label="北京石油-滨河路加油站-滨河路加油区2" cid="binhelujiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="北京石油-滨河路加油站-滨河路出入口" cid="binhelujiayouzhan01-08"
+					URL="" see="" />
+				<videoNode label="北京石油-大兴油库-大门" cid="daxing01" URL="" see="" />
+				<videoNode label="北京石油-大兴油库-停车场" cid="daxing02" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-监控室" cid="daxing03" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-铁路大门" cid="daxing04" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-配电室" cid="daxing05" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-锅炉房油罐" cid="daxing06" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-铁路栈桥01" cid="daxing07" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-铁路栈桥02" cid="daxing08" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-接卸泵站" cid="daxing09" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-接卸配电" cid="daxing10" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-油池区01" cid="daxing11" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-油池区02" cid="daxing12" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-油池区03" cid="daxing13" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-油气回收" cid="daxing14" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-发货泵房" cid="daxing15" URL=""
+					see="" />
+				<videoNode label="北京石油-大兴油库-发货场" cid="daxing16" URL=""
+					see="" />
+				<videoNode label="北京石油-东方油库-大门" cid="dongfangyouku01" URL=""
+					see="" />
+				<videoNode label="北京石油-东方油库-厂区" cid="dongfangyouku06" URL=""
+					see="" />
+				<videoNode label="北京石油-和平里加油站-和平里出入口" cid="hepinglijiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="北京石油-和平里加油站-和平里加油区2" cid="hepinglijiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="北京石油-和平里加油站-和平里加油区3" cid="hepinglijiayouzhan01-07"
+					URL="" see="" />
+				<videoNode label="北京石油-和平里加油站-和平里加油区1" cid="hepinglijiayouzhan-2"
+					URL="" see="" />
+				<videoNode label="北京石油-金融街加油站-金融街加油区" cid="jinrongjiejiayouzhan01-04"
+					URL="" see="" />
+				<videoNode label="北京石油-金融街加油站-金融街云台" cid="jinrongjiejiayouzhan01-06"
+					URL="" see="" />
+				<videoNode label="北京石油-金融街加油站-金融街卸油口" cid="jinrongjiejiayouzhan01-07"
+					URL="" see="" />
+				<videoNode label="北京石油-金融街加油站-金融街出入口" cid="jinrongjiejiayouzhan01-08"
+					URL="" see="" />
+				<videoNode label="北京石油-九棵树加油站-九棵树加油区2" cid="jiuekeshujiayouzhan01-04"
+					URL="" see="" />
+				<videoNode label="北京石油-九棵树加油站-九棵树云台" cid="jiukeshujiayouzhan01-01"
+					URL="" see="" />
+				<videoNode label="北京石油-九棵树加油站-九棵树出入区" cid="jiukeshujiayouzhan01-02"
+					URL="" see="" />
+				<videoNode label="北京石油-九棵树加油站-九棵树加油区1" cid="jiukeshujiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="北京石油-九棵树加油站-九棵树加油区3" cid="jiukeshujiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-办公楼南云" cid="kangzhangyouku05"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-发油台东-1" cid="kangzhuagnyouku07"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-消防泵房" cid="kangzhuagnyouku16"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-戋桥南云" cid="kangzhuagnyouku18"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-营业厅-1" cid="kangzhuangyouku01"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-营业厅-2" cid="kangzhuangyouku02"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-办公区大门" cid="kangzhuangyouku03"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-发油区大门" cid="kangzhuangyouku04"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-发油台西北云" cid="kangzhuangyouku06"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-发油台东-2" cid="kangzhuangyouku08"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-发油台东-3" cid="kangzhuangyouku09"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-发油台南云" cid="kangzhuangyouku10"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-水塔云" cid="kangzhuangyouku11"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-灌区东北角云" cid="kangzhuangyouku12"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-灌区西北角云" cid="kangzhuangyouku13"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-灌区南中云" cid="kangzhuangyouku14"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-灌区西南角云" cid="kangzhuangyouku15"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-戋桥北云" cid="kangzhuangyouku17"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-戋桥配电室" cid="kangzhuangyouku19"
+					URL="" see="" />
+				<videoNode label="北京石油-康庄油库-戋桥卸油泵房" cid="kangzhuangyouku20"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-消防泵房" cid="miaochengyouku06"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-灌区2" cid="miaochengyouku08"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-灌区3" cid="miaochengyouku09"
+					URL="" see="" />
+				<videoNode label="北京石油-庙城油库-发货场1" cid="miaochengyouku1"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-发货场5" cid="miaochengyouku10"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-灌区4" cid="miaochengyouku11"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-泵房内部" cid="miaochengyouku12"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-营业厅" cid="miaochengyouku13"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-办公室楼道" cid="miaochengyouku14"
+					URL="" see="" />
+				<videoNode label="北京石油-庙城油库-发货场2" cid="miaochengyouku2"
+					URL="" see="" />
+				<videoNode label="北京石油-庙城油库-发货场3" cid="miaochengyouku3"
+					URL="" see="" />
+				<videoNode label="北京石油-庙城油库-发货场4" cid="miaochengyouku4"
+					URL="" see="" />
+				<videoNode label="北京石油-庙城油库-发货场大门" cid="miaochengyouku5"
+					URL="" see="" />
+				<videoNode label="北京石油-北庄油库-灌区1" cid="miaochengyouku7"
+					URL="" see="" />
+				<videoNode label="北京石油-密云油库-油库院内" cid="miyunyouku01-01"
+					URL="" see="" />
+				<videoNode label="北京石油-密云油库-发货场1" cid="miyunyouku01-03"
+					URL="" see="" />
+				<videoNode label="北京石油-密云油库-发货场2" cid="miyunyouku01-04"
+					URL="" see="" />
+				<videoNode label="北京石油-祁家豁子加油站-博大路云台" cid="qijiahuozijiayouzhan01-01"
+					URL="" see="" />
+				<videoNode label="北京石油-祁家豁子加油站-博大路加油区1" cid="qijiahuozijiayouzhan01-02"
+					URL="" see="" />
+				<videoNode label="北京石油-祁家豁子加油站-博大路加油区2" cid="qijiahuozijiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="北京石油-祁家豁子加油站-博大路卸油口" cid="qijiahuozijiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="北京石油-沙河油库-消防泵房" cid="shahe01" URL=""
+					see="" />
+				<videoNode label="北京石油-沙河油库-办公楼南" cid="shahe02" URL=""
+					see="" />
+				<videoNode label="北京石油-沙河油库-办公楼北" cid="shahe03" URL=""
+					see="" />
+				<videoNode label="北京石油-沙河油库-验卡室" cid="shahe04" URL="" see="" />
+				<videoNode label="北京石油-沙河油库-沙河发货场南" cid="shahe05" URL=""
+					see="" />
+				<videoNode label="北京石油-沙河油库-沙河发货场北" cid="shahe06" URL=""
+					see="" />
+				<videoNode label="北京石油-顺义油库-8号货位" cid="shunyiyouiu02" URL=""
+					see="" />
+				<videoNode label="北京石油-顺义油库-开票室" cid="shunyiyouku005" URL=""
+					see="" />
+				<videoNode label="北京石油-顺义油库-12号货位" cid="shunyiyouku01"
+					URL="" see="" />
+				<videoNode label="北京石油-顺义油库-6号货位" cid="shunyiyouku03" URL=""
+					see="" />
+				<videoNode label="北京石油-顺义油库--5号货位" cid="shunyiyouku05"
+					URL="" see="" />
+				<videoNode label="北京石油-永昌加油站-永昌云台" cid="yongchangjiayouzhan01-01"
+					URL="" see="" />
+				<videoNode label="北京石油-永昌加油站-永昌入口" cid="yongchangjiayouzhan01-02"
+					URL="" see="" />
+				<videoNode label="北京石油-永昌加油站-永昌卸油口" cid="yongchangjiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="北京石油-永昌加油站-永昌加油区1" cid="yongchangjiayouzhan01-04"
+					URL="" see="" />
+				<videoNode label="北京石油-永昌加油站-永昌加油区2" cid="yongchangjiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-住海铁道" cid="zhuhaiyouku0101"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-住海侧门" cid="zhuhaiyouku0102"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-住海正门" cid="zhuhaiyouku0103"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-住海办公楼" cid="zhuhaiyouku0104"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-住海卸油台" cid="zhuhaiyouku0105"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-住海消防通道" cid="zhuhaiyouku0106"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-住海罐区" cid="zhuhaiyouku0108"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-消防泵房" cid="ZHYK-ECR3316-HFcam10"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-PLC机房" cid="ZHYK-ECR3316-HFcam11"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-配电机房" cid="ZHYK-ECR3316-HFcam12"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-传输机房" cid="ZHYK-ECR3316-HFcam13"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-计量棚" cid="ZHYK-ECR3316-HFcam14"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-水塔" cid="ZHYK-ECR3316-HFcam15"
+					URL="" see="" />
+				<videoNode label="北京石油-住海油库-站控室" cid="ZHYK-ECR3316-HFcam16"
+					URL="" see="" />
+			</qyNode>
+			<qyNode label="浙江石油" id="">
+				<videoNode label="宁波石油分公司-三官堂油库-停车场" cid="yihaoyuanxingliaocang6"
+					URL="" see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-槽车对位" cid="yilianhe0007"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-综合楼边门" cid="yilianhe0004"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库3-开票台" cid="yilianhe00003"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-操作间" cid="yilianhe0005"
+					URL="" see="" />
+				<videoNode label="舟山石油分公司-高亭油库-灌区3" cid="binhelujiayouzhan01-08"
+					URL="" see="" />
+				<videoNode label="舟山石油分公司-高亭油库-油库门外" cid="daxing06" URL=""
+					see="" />
+				<videoNode label="杭州石油分公-小河油库-润滑油罐区消防通" cid="daxing10"
+					URL="" see="" />
+				<videoNode label="杭州石油公司-糠桥油库-码头门禁" cid="daxing13" URL=""
+					see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-开票室" cid="daxing14" URL=""
+					see="" />
+				<videoNode label="丽水石油分公司-莲都油库-行政楼东侧" cid="dongfangyouku01"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-后门1" cid="qijiahuozijiayouzhan01-02"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-后山云台" cid="shagnpuyouku00004"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-轻油灌区东" cid="shagnpuyouku00008"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-苏库水加" cid="shangpuyouku00001"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-T1南" cid="shagnpuyouku00013"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-大门" cid="shaoxingyouku00002"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-东围墙4" cid="shaoxingyouku00003"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-东围墙5" cid="jtgyk00001" URL=""
+					see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-桶装仓库" cid="jtgyk00009" URL=""
+					see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-综合楼大厅" cid="zhuangyuanyouku00003"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-办公楼侧面" cid="zhuangyuanyouku00022"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-大门2" cid="feiyunyouku00003"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-道路1" cid="xsyk000006" URL=""
+					see="" />
+				<videoNode label="衢州石油分公司-上铺油库-后门" cid="xsyk000015" URL=""
+					see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-厂区后大街" cid="4545edefd" URL=""
+					see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-发油台1" cid="gaotingyouku00006"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-大门" cid="69" URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道西北" cid="74" URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-大门内" cid="p102changzhan00004"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库3-总控室" cid="zhuhaiyouku0104"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-厂貌" cid="zhuhaiyouku0102"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-05" cid="zhuhaiyouku0108"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-14" cid="xhyk00003" URL=""
+					see="" />
+				<videoNode label="浙江公司直属-萧山油库-公路发油区" cid="xhyk00006" URL=""
+					see="" />
+				<videoNode label="舟山石油分公司-高亭油库-灌区2" cid="kqyk000015" URL=""
+					see="" />
+				<videoNode label="杭州石油分公司-小河油库-围墙" cid="kqyk000007" URL=""
+					see="" />
+				<videoNode label="杭州石油分公司-小河油库-围墙西南角" cid="kqyk000005"
+					URL="" see="" />
+				<videoNode label="杭州石油公司-糠桥油库-行政大厅" cid="kqyk000002" URL=""
+					see="" />
+				<videoNode label="杭州石油公司-糠桥油库-杭储大门" cid="lksyk00009" URL=""
+					see="" />
+				<videoNode label="杭州石油公司-糠桥油库-杭储码头" cid="lksyk00005" URL=""
+					see="" />
+				<videoNode label="杭州石油公司-糠桥油库-消防通道东" cid="stsyk00011" URL=""
+					see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-轻油泵房" cid="tongxiangyouku00008"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-停车场" cid="tongxiangyouku00007"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-发油台2" cid="liandouyouku00003"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-码头西" cid="sgtyk00006" URL=""
+					see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-油库大门" cid="jiaxingyouku0001"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-发油台西" cid="jiaxingyouku00002"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-1号发油栅2" cid="jiaxingyouku00008"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-T1北" cid="tongxiangyouku00005"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-东围墙1" cid="tongxiangyouku00006"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-发油亭1" cid="p201changzhan00001"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-T1与T3灌区" cid="p202changzhan00005"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-T4灌区" cid="p203changzhan00001"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-后溪油库-灌区北" cid="p204changzhan00002"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-后溪油库-围墙" cid="p204changzhan00004"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-发油台1" cid="p304changzhan00002"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-灌区总汇" cid="jiqizongzhan00004"
+					URL="" see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-发油台2" cid="yihaohuochezhuangchelou00007"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-管道灌区2" cid="yihaohuochezhuangchelou00004"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道1" cid="erhaoyuanxingliaocang002"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道6" cid="erlianhe0008"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-综合楼四楼" cid="erlianhe00002"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-厂区通道" cid="erlianhe00001"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-灌区2" cid="erlianhe00006"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-料仓" cid="liulianhe007"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-12" cid="sanlianhe00005"
+					URL="" see="" />
+				<videoNode label="杭州石油分公司-小河油库-北街" cid="silianhe003" URL=""
+					see="" />
+				<videoNode label="杭州石油公司-糠桥油库-3000灌区" cid="silianhe00005"
+					URL="" see="" />
+				<videoNode label="杭州石油公司-糠桥油库-发货场西" cid="wulianhe0002"
+					URL="" see="" />
+				<videoNode label="杭州石油公司-糠桥油库-发货台" cid="wulianhe06" URL=""
+					see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-后大门" cid="daxing01" URL=""
+					see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-T3灌区" cid="daxing09" URL=""
+					see="" />
+				<videoNode label="丽水石油分公司-莲都油库-污水处理区" cid="daxing11" URL=""
+					see="" />
+				<videoNode label="丽水石油分公司-莲都油库-卸油区" cid="jiukeshujiayouzhan01-01"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-码头岗" cid="miyunyouku01-03"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-中岗" cid="qijiahuozijiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-东围墙3" cid="houxiyouku000013"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-发油亭2" cid="houxiyouku000012"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-1号发油栅3" cid="shagnpuyouku00005"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-1号发油栅4" cid="shangpuyouku00009"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-场站" cid="shaoxingyouku00005"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-东北区" cid="jtgyk00014" URL=""
+					see="" />
+				<videoNode label="衢州石油分公司-上铺油库-发油台2" cid="jtgyk00003" URL=""
+					see="" />
+				<videoNode label="衢州石油分公司-上铺油库-阀门2" cid="jtgyk00008" URL=""
+					see="" />
+				<videoNode label="衢州石油分公司-上铺油库-管道" cid="zhuangyuanyouku00008"
+					URL="" see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-槽车中部" cid="feiyunyouku00009"
+					URL="" see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-总厂区" cid="feiyunyouku00008"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道4" cid="feiyunyouku00006"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-大门通道" cid="xsyk000013"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-码头" cid="59" URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库3-开票室" cid="71" URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-06" cid="p101changzhan00006"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-07" cid="p103changzhan00003"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-13" cid="p105changzhan00004"
+					URL="" see="" />
+				<videoNode label="舟山石油分公司-高亭油库-油库内" cid="p105changzhan00002"
+					URL="" see="" />
+				<videoNode label="舟山石油分公司-高亭油库-装油台" cid="ZHYK-ECR3316-HFcam15"
+					URL="" see="" />
+				<videoNode label="杭州石油分公司-小河油库-发油泵房" cid="xhyk00007" URL=""
+					see="" />
+				<videoNode label="杭州石油分公司-小河油库-码头" cid="kqyk000008" URL=""
+					see="" />
+				<videoNode label="杭州石油分公司-小河油库-围墙西" cid="kqyk000010" URL=""
+					see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-中门-1" cid="kqyk000001"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-中门-2" cid="lksyk00006"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-混油罐区" cid="stsyk00006"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-发油泵房" cid="liandouyouku00009"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-门口" cid="liandouyouku00010"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-站场2" cid="stsyk00009" URL=""
+					see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-东围墙6" cid="stsyk00015" URL=""
+					see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-1号管道泵房" cid="jiaxingyouku00004"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-海监通道" cid="jiaxingyouku00010"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-花色汽油泵房" cid="sgtyk00007"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-轻油泵房" cid="sgtyk00008"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-润滑油泵房" cid="tongxiangyouku00004"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-质检中心球机" cid="tongxiangyouku00010"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-后溪油库-通道" cid="p105changzhan00006"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-阀门1" cid="p106changzhan00004"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-泵房" cid="p106changzhan00002"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道东南" cid="p107changzhan00002"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-综合楼五楼" cid="p107changzhan00006"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库3-开票室2" cid="p107changzhan00003"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库3-开票室大门" cid="p2011changzhan00006"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-厂区内1" cid="p202changzhan00006"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-09" cid="p203changzhan00003"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-11" cid="p203changzhan00007"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-油灌区" cid="p204changzhan00005"
+					URL="" see="" />
+				<videoNode label="舟山石油分公司-高亭油库-灌区1" cid="p302changzhan00004"
+					URL="" see="" />
+				<videoNode label="杭州石油分公司-小河油库-大门" cid="p303chagnzhan00001"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-发油台" cid="p305changzhan00006"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-西码头" cid="jiqizongzhan00003"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-T2罐区" cid="erhaohuochezhuangchelou0001"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-桶装库" cid="erhaoyuanxingliaocang0001"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-1号发油栅1" cid="erlianhe0007"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-东围墙2" cid="liulianhe003"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-2号管道泵房" cid="liulianhe01"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-大门1" cid="liulianhe06" URL=""
+					see="" />
+				<videoNode label="衢州石油分公司-上铺油库-灌区北侧" cid="sanlianhe0002"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道3" cid="sanlianhe00006"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道东北" cid="silianhe005"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-大门外" cid="wulianhe04" URL=""
+					see="" />
+				<videoNode label="舟山石油分公司-高亭油库-装卸平台" cid="wulianhe0001"
+					URL="" see="" />
+				<videoNode label="杭州石油公司-糠桥油库-行政大门" cid="wulianhe03" URL=""
+					see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-T1罐区" cid="yihaoyuanxingliaocang8"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-车队" cid="yihaoyuanxingliaocang2"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-二级消防泵房" cid="yihaoyuanxingliaocang4"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-卸油码头" cid="yilianhe00006"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-润滑油灌区1" cid="yilianhe00005"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-润滑油灌区2" cid="yihaohuochezhuagnchelou002"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-中岗大门" cid="miaochengyouku08"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-大门西" cid="daxing16" URL=""
+					see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-码头" cid="daxing03" URL=""
+					see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-1号码头球机" cid="daxing02"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-站场西" cid="hepinglijiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-后溪油库-大门" cid="jiukeshujiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-后溪油库-全貌" cid="miyunyouku01-01"
+					URL="" see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-灌区北路" cid="qijiahuozijiayouzhan01-01"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-泵房外" cid="shangpuyouku00006"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道5" cid="shagnpuyouku00011"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道西南" cid="shangpuyouku00012"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-西门" cid="shaoxingyouku00007"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库2-综合楼大门" cid="shaoxingyouku00001"
+					URL="" see="" />
+				<videoNode label="温州石油分公司-状元油库3-开票大厅" cid="jtgyk00006"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-办公区" cid="zhuangyuanyouku00004"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-大门" cid="zhuangyuanyouku00001"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-发油泵房" cid="zhuangyuanyouku00018"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-消防泵房" cid="xsyk000007" URL=""
+					see="" />
+				<videoNode label="杭州石油分公司-小河油库-轻油罐消防通道" cid="xsyk08" URL=""
+					see="" />
+				<videoNode label="杭州石油公司-糠桥油库-5000灌区" cid="xsyk000014"
+					URL="" see="" />
+				<videoNode label="杭州石油公司-糠桥油库-管输末站" cid="gaotingyouku00001"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-消防通道" cid="gaotingyouku00003"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-发油台1" cid="p102changzhan00002"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-后门2" cid="p102changzhan00003"
+					URL="" see="" />
+				<videoNode label="丽水石油分公司-莲都油库-卸右泵房" cid="p102changzhan00005"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-T1与T2灌区" cid="p103changzhan00004"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-后溪油库-灌区西" cid="p105changzhan00005"
+					URL="" see="" />
+				<videoNode label="衢州石油分公司-上铺油库-发油台3" cid="yongchangjiayouzhan01-02"
+					URL="" see="" />
+				<videoNode label="绍兴石油分公司-绍兴油库-槽车总台" cid="yongchangjiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-管道灌区1" cid="xhyk00004"
+					URL="" see="" />
+				<videoNode label="台洲石油分公司-九条坑油库-过道2" cid="xhyk00001" URL=""
+					see="" />
+				<videoNode label="温州石油分公司-状元油库2-活动室" cid="xhyk00008" URL=""
+					see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-厂区大道" cid="lksyk00007"
+					URL="" see="" />
+				<videoNode label="温州石油工业分公司-飞云油库-灌区1" cid="lksyk00008"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-08" cid="stsyk00005" URL=""
+					see="" />
+				<videoNode label="浙江公司直属-萧山油库-10" cid="liandouyouku00011"
+					URL="" see="" />
+				<videoNode label="浙江公司直属-萧山油库-污水处理区及进出" cid="liandouyouku00001"
+					URL="" see="" />
+				<videoNode label="舟山石油分公司-高亭油库-管道泵区" cid="stsyk00008" URL=""
+					see="" />
+				<videoNode label="杭州石油公司-糠桥油库-发货泵房" cid="jiaxingyouku00007"
+					URL="" see="" />
+				<videoNode label="湖州石油分公-砻糠山油库-发油台桶装仓库" cid="sgtyk00013"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-砻糠山油库-油库门岗" cid="sgtyk00004"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-T2罐区2" cid="sgtyk00012"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-东通道" cid="sgtyk00011" URL=""
+					see="" />
+				<videoNode label="嘉兴石油分公司-桐乡油库-发油台" cid="sgtyk00010" URL=""
+					see="" />
+				<videoNode label="丽水石油分公司-莲都油库-发油台东" cid="p105changzhan00003"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-09换票室" cid="p106changzhan00001"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-码头油泵房" cid="p107changzhan00007"
+					URL="" see="" />
+				<videoNode label="湖州石油分公司-苏台山油库-站场1" cid="p107changzhan00001"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-水泵房" cid="p2011changzhan00008"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-污水处理站" cid="p2011changzhan00007"
+					URL="" see="" />
+				<videoNode label="嘉兴石油分公司-嘉兴油库-西围墙码头" cid="p201changzhan00003"
+					URL="" see="" />
+				<videoNode label="宁波石油分公司-三官堂油库-三号发油台" cid="p3011chagnzhan00008"
+					URL="" see="" />
+			</qyNode>
+			<qyNode label="西北油田" id="">
+				<videoNode label="三厂10-6计转站" cid="p301zhanchang00003" URL=""
+					see="" />
+				<videoNode label="三厂8-1计转站" cid="p301zhanchang00005" URL=""
+					see="" />
+				<videoNode label="三厂8-3计转站" cid="p301zhankongshi00001"
+					URL="" see="" />
+				<videoNode label="三厂8-4计转站" cid="p305changzhan00005" URL=""
+					see="" />
+				<videoNode label="三厂轻烃罐区西侧" cid="jiqizongzhan00002" URL=""
+					see="" />
+				<videoNode label="雅克拉采集厂大涝坝集气站加热炉" cid="wushuizhan00003"
+					URL="" see="" />
+				<videoNode label="三厂8-5计转站" cid="erhaohuochezhuangchelou0003"
+					URL="" see="" />
+				<videoNode label="雅克拉采集厂大涝坝集气站大门口" cid="erhaohuochezhuangchelou0007"
+					URL="" see="" />
+				<videoNode label="三厂分流单元" cid="erlianhe00004" URL="" see="" />
+				<videoNode label="雅克拉采集厂大涝坝集气站消防水罐" cid="liulianhe004"
+					URL="" see="" />
+				<videoNode label="三厂10-3计转站" cid="liulianhe02" URL="" see="" />
+				<videoNode label="一厂120万吨操作间" cid="sanlianhe0007" URL=""
+					see="" />
+				<videoNode label="一厂集输岗值班室门口" cid="sanlianhe0004" URL=""
+					see="" />
+				<videoNode label="雅克拉采集厂大涝坝集气站外输泵房" cid="sanlianhe00002"
+					URL="" see="" />
+				<videoNode label="雅克拉采集厂大涝坝集气站西侧低压流程" cid="wulianhe0004"
+					URL="" see="" />
+				<videoNode label="一厂扩建阀组东侧" cid="wulianhe0003" URL="" see="" />
+			</qyNode>
+			<qyNode label="胜利油田" id="">
+				<videoNode label="油品柴油5号罐区" cid="yilianhe0003" URL="" see="" />
+				<videoNode label="OCTM管架" cid="yilianhe0001" URL="" see="" />
+				<videoNode label="码头" cid="yihaohuochezhuagnchelou003"
+					URL="" see="" />
+				<videoNode label="轻烃罐区西北角" cid="yihaohuochezhuagnchelou007"
+					URL="" see="" />
+			</qyNode>
+			<qyNode label="普光净化厂" id="">
+				<videoNode label="普光采气厂-P101场站-站控室" cid="binhelujiayouzhan01-04"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P103场站-加热炉区" cid="daxing12" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P103场站-装置区" cid="jinrongjiejiayouzhan01-08"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P201场站-井口区" cid="jinrongjiejiayouzhan01-06"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P202场站-门口" cid="sgtyk00003" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P3011-井口区" cid="houxiyouku000015"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P301-阀组区" cid="shagnpuyouku00010"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P301-井口区" cid="jtgyk00015" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P302-火炬" cid="jtgyk00011" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P303-收发球筒区" cid="zhuangyuanyouku00009"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P303-装置区" cid="zhuangyuanyouku00019"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P304-门口" cid="zhuangyuanyouku00021"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P305-井口区" cid="feiyunyouku00002"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P305-门口" cid="xsyk010" URL="" see="" />
+				<videoNode label="普光采气厂-P305-站控室" cid="xsyk000012" URL=""
+					see="" />
+				<videoNode label="普光净化厂-1号火车装车楼-顶层1" cid="gghghghghhhgh"
+					URL="" see="" />
+				<videoNode label="普光净化厂-1号火车装车楼-顶层2" cid="gaotingyouku00004"
+					URL="" see="" />
+				<videoNode label="普光净化厂-仓库-包装厂房1" cid="63" URL="" see="" />
+				<videoNode label="普光净化厂-仓库-包装厂房2" cid="24" URL="" see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-大机行走" cid="6701006" URL=""
+					see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-廊道出口" cid="p102changzhan00007"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-周边3" cid="p102changzhan00006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第二列排污池旁过道" cid="p102changzhan00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第一二列通道管架中间" cid="ZHYK-ECR3316-HFcam11"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第一列402塔" cid="ZHYK-ECR3316-HFcam13"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-配电室" cid="xhyk00010" URL=""
+					see="" />
+				<videoNode label="普光净化厂-四联合-第二列3层空冷器台" cid="lksyk00003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第二列克劳斯燃烧器旁" cid="lksy00010"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第一列急冷水泵" cid="stsyk00001" URL=""
+					see="" />
+				<videoNode label="普光净化厂-五联合-第二列克劳斯燃烧器旁" cid="tongxiangyouku00002"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第一列急冷水泵" cid="sgtyk00005" URL=""
+					see="" />
+				<videoNode label="普光净化厂-五联合-第一轮排污池旁过道" cid="jiaxingyouku00003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-大机行走" cid="sgtyk00014" URL=""
+					see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-周边4" cid="p202changzhan00007"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第二列克劳斯炉燃烧器" cid="p202changzhan00004"
+					URL="" see="" />
+				<videoNode label="普光净化厂--一联合-第一二列通道管架中" cid="p203changzhan00004"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第一列半富胺液泵" cid="p204changzhan00003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第一列排污池旁过道" cid="p302changzhan00006"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P102场站-装置区" cid="p302changzhan00001"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P201场站-站控室" cid="p303changzhan00002"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P202场站-火炬" cid="p303changzhan00003"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P203场站-站控室" cid="p304changzhan00001"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P204场站-门口" cid="erhaoyuanxingliaocang00008"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P204场站-装置区" cid="erhaoyuanxingliaocang00003"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P304-井口区" cid="erhaoyuanxingliaocang00004"
+					URL="" see="" />
+				<videoNode label="普光采气厂-集气总站-收发球筒" cid="erlianhe0003" URL=""
+					see="" />
+				<videoNode label="普光净化厂-1号火车装车楼-第三层" cid="lioulianhe002"
+					URL="" see="" />
+				<videoNode label="普光净化厂-2号火车装车楼-第一层2" cid="liulianhe008"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-大机堆料" cid="sanlianhe0008"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第二列急冷水泵" cid="sanlianhe0006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第一列急冷水泵" cid="silianhe006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第一列克劳斯炉燃烧器" cid="silianhe00003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-机柜间" cid="yihaoyuanxingliaocang3"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第二列克劳斯燃烧器旁" cid="yilianhe0002"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-配电室" cid="yilianhe00004" URL=""
+					see="" />
+				<videoNode label="普光净化厂-四联合-第一列3层空冷器台" cid="yilianhe0000"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-配电室" cid="yihaohuochezhuagnchelou001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第二列3层空冷器台" cid="yihaohuochezhuagnchelou005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-机柜间" cid="miaochengyouku14"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P101场站-装置区2" cid="miaochengyouku7"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P103场站-火炬" cid="daxing15" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P105场站-火炬" cid="hepinglijiayouzhan01-07"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P105场站-井口区" cid="jiuekeshujiayouzhan01-04"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P105场站-新增" cid="shangpuyouku00003"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P106场站-火炬" cid="shangpuyouku00002"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P106场站-井口区" cid="jtgyk00005" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P107场站-火炬" cid="jtgyk00012" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P107场站-井口区" cid="zhuangyuanyouku00002"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P107场站-装置区" cid="gaotingyouku00008"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P2011场站-井口区" cid="25" URL="" see="" />
+				<videoNode label="普光采气厂-P202场站-收发球筒区" cid="6701002" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P203场站-井口区" cid="1202005" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P203场站-收发球筒区" cid="p101changzhan00003"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P204场站-井口" cid="p103changzhan00001"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P302-门口" cid="yongchangjiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P303-站控室" cid="ZHYK-ECR3316-HFcam10"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P305-紧急逃生门" cid="kqyk000012" URL=""
+					see="" />
+				<videoNode label="普光采气厂-集气总站-装置区" cid="stsyk00003" URL=""
+					see="" />
+				<videoNode label="普光净化厂-仓库-仓库3" cid="stsyk00002" URL=""
+					see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-大机回转" cid="stsyk00013" URL=""
+					see="" />
+				<videoNode label="普光净化厂-二联合-第二列克劳斯炉燃烧器" cid="tongxiangyouku00011"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第一列3层空冷器台" cid="liandouyouku00007"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第一列克劳斯燃烧器旁" cid="liandouyouku00008"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-机柜间" cid="stsyk00016" URL=""
+					see="" />
+				<videoNode label="普光净化厂-三联合-第二列3层空冷器台" cid="jiaxingyouku00009"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-机柜间" cid="jiaxingyouku00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第一列排污池旁过道" cid="sgtyk00015"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第二列半富胺液泵" cid="jiaxingyouku00011"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第一列402室" cid="p106changzhan00005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第一列半富胺液泵" cid="p202changzhan00002"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-大机取料" cid="p204changzhan00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-廊道出口" cid="p302chagnzhan00002"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-周边2" cid="p304changzhan00005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-机柜间" cid="yihaohuochezhuangchelou00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-配电室" cid="erhaohuochezhuangchelou0008"
+					URL="" see="" />
+				<videoNode label="普光净化厂-转运-4号转运1" cid="sanlianhe0003" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P102场站-火炬" cid="sanlianhe0005"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P102场站-井口区" cid="silianhe008" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P102场站-门口" cid="yilianhe0008" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P103场站-门口" cid="yilianhe00001"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P105场站-门口" cid="yihaohuochezhuagnchelou006"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P105场站-装置区" cid="miaochengyouku12"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P106场站-站控室" cid="daxing05" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P107场站-收发球筒区" cid="daxing07" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P107场站-站控室" cid="jinrongjiejiayouzhan01-07"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P2011场站-加热炉" cid="jiukeshujiayouzhan01-02"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P2011场站-装置区" cid="jiukeshujiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P201场站-大门" cid="miyunyouku01-04"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P3011-装置区" cid="houxiyouku000011"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P301-火炬区" cid="houxiyouku00001"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P301-门口区" cid="shaoxingyouku00004"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P301-站控室" cid="jtgyk00016" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P305-火炬" cid="jtgyk00007" URL=""
+					see="" />
+				<videoNode label="普光采气厂-集气总站-外输" cid="jtgyk00010" URL=""
+					see="" />
+				<videoNode label="普光采气厂-污水站-过滤缓冲区" cid="jtgyk00002" URL=""
+					see="" />
+				<videoNode label="普光净化厂-仓库-仓库5" cid="zhuangyuanyouku00005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-仓库-铁路尾部" cid="zhuangyuanyouku00017"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第二列半富胺液泵" cid="feiyunyouku00011"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第一二列通道管架中间" cid="feiyunyouku00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第一列急冷水泵" cid="xsyk000004" URL=""
+					see="" />
+				<videoNode label="普光净化厂-三联合-第二列克劳斯炉燃烧器" cid="xsyk000003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第一二列通道管架中间" cid="72" URL=""
+					see="" />
+				<videoNode label="普光净化厂-三联合-第一列急冷水泵" cid="yongchangjiayouzhan01-01"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第一二列通道管架中间" cid="zhuhaiyouku0101"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第一列3层空冷器台" cid="zhuhaiyouku0106"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第一列3层空冷器台" cid="zhuhaiyouku0103"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第一列402塔" cid="xhyk00002" URL=""
+					see="" />
+				<videoNode label="普光净化厂-转运-4号转运2" cid="kqyk000003" URL=""
+					see="" />
+				<videoNode label="普光净化厂-转运-5号转运2" cid="kqyk000006" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P102场站-排污池区" cid="lksyk00002" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P102场站-收发球筒区" cid="stsyk00010"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P102场站-站控室" cid="liandouyouku00014"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P202场站-站控室" cid="liandouyouku00012"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P202场站-装置区" cid="tongxiangyouku00003"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P203场站-装置区" cid="p107changzhan00004"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P204场站-火炬" cid="p201changzhan00005"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P302-焚烧炉" cid="p203changzhan00005"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P302-站控室" cid="p203changzhan00002"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P303-井口区" cid="p301zhanchang00006"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P303-门口区" cid="p303changzhan00006"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P304-站控室" cid="p304changzhan00003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-大机取料" cid="wushuizhan00004"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-周边1" cid="wushuizhan00005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-周边2" cid="yihaohuochezhuangchelou00002"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第一列3层空冷器台" cid="erhaoyuanxingliaocang00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第二列3层空冷器台" cid="erhaoyuanxingliaocang00006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第二列急冷水泵" cid="erlianhe00003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第二列急冷水泵" cid="erlianhe00005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第二列排污池旁过道" cid="liulianhe001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第一二列排污池旁过道" cid="sanlianhe0001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第一列半富胺液泵" cid="sanlianhe00003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-周边1" cid="silianhe00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂--一联合-第二列3层空冷器台" cid="silianhe000006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第二列半富胺液泵" cid="wulianhe0006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第一列急冷水泵" cid="yihaoyuanxingliaocang5"
+					URL="" see="" />
+				<videoNode label="普光净化厂-转运-1号火车" cid="miaochengyouku09"
+					URL="" see="" />
+				<videoNode label="普光净化厂-转运-4号转运4" cid="binhelujiayouzhan01-05"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P101场站-装置区" cid="daxing04" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P103场站-站控室" cid="dongfangyouku06"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P106场站-门口" cid="qijiahuozijiayouzhan01-03"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P202场站-井口区" cid="houxiyouku000014"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P204场站-站控室" cid="shangpuyouku00007"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P302-井口区" cid="shaoxingyouku00008"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P304-火炬" cid="jtgyk00013" URL=""
+					see="" />
+				<videoNode label="普光净化厂-2号火车装车楼-顶层2" cid="jtgyk00004" URL=""
+					see="" />
+				<videoNode label="普光净化厂-仓库-火车装车楼顶层1" cid="zhuangyuanyouku00007"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第一列3层空冷器台" cid="feiyunyouku00007"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第一列排污池旁过道" cid="feiyunyouku00005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第二列急冷水泵" cid="xsyk07" URL=""
+					see="" />
+				<videoNode label="普光净化厂-一联合-第二列急冷水泵" cid="xsyk11" URL=""
+					see="" />
+				<videoNode label="普光净化厂-一联合-第一列克劳斯炉燃烧器" cid="xsyk000005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-转运-5号转运1" cid="gaotingyouku00005"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P107场站-大门口" cid="73" URL="" see="" />
+				<videoNode label="普光采气厂-P201场站-火炬" cid="23" URL="" see="" />
+				<videoNode label="普光采气厂-P203场站-火炬" cid="6701003" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P203场站-门口" cid="p103changzhan00005"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P301-汇管区" cid="ZHYK-ECR3316-HFcam14"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P303-火炬区" cid="ZHYK-ECR3316-HFcam12"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P304-装置区" cid="ZHYK-ECR3316-HFcam16"
+					URL="" see="" />
+				<videoNode label="普光采气厂-污水站-密闭撬块区" cid="zhuhaiyouku0105"
+					URL="" see="" />
+				<videoNode label="普光采气厂-污水站-污泥处理" cid="kqyk000009" URL=""
+					see="" />
+				<videoNode label="普光净化厂-2号火车装车楼-第三层" cid="lksyk00004" URL=""
+					see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-廊道底层" cid="lksyk00001" URL=""
+					see="" />
+				<videoNode label="普光净化厂-二号圆型料仓-周边4" cid="stsyk00004" URL=""
+					see="" />
+				<videoNode label="普光净化厂-二联合-第一列半富胺液泵" cid="tongxiangyouku00009"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-配电室" cid="tongxiangyouku00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第一列402室" cid="liandouyouku00004"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第一列402塔" cid="sgtyk00009" URL=""
+					see="" />
+				<videoNode label="普光净化厂-三联合-第一列半富胺液泵" cid="stsyk00014"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第一列克劳斯炉燃烧器" cid="stsyk00007"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-机柜间" cid="jiaxingyouku00013"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第二列排污池旁过道" cid="jiaxingyouku00012"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-周边3" cid="jiaxingyouku00014"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P103场站-井口区" cid="sgtyk00001" URL=""
+					see="" />
+				<videoNode label="普光采气厂-P105场站-站控室" cid="p105changzhan00001"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P106场站-装置区" cid="p106changzhan00003"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P107场站-门口区" cid="p107changzhan00005"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P201场站-装置区" cid="p201changzhan00002"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P203场站-污水池" cid="p203changzhan00006"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P302-汇管区" cid="p302changzhan00008"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P302-装置区" cid="p302changzhan00005"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P304-收发球筒区" cid="p304changzhan00006"
+					URL="" see="" />
+				<videoNode label="普光采气厂-P305-装置区" cid="p305changzhan00003"
+					URL="" see="" />
+				<videoNode label="普光采气厂-集气总站-站控室" cid="jiqizongzhan00001"
+					URL="" see="" />
+				<videoNode label="普光采气厂-污水站-外输泵区" cid="wushuizhan00002"
+					URL="" see="" />
+				<videoNode label="普光采气厂-污水站-站控室" cid="wushuizhan00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-1号火车装车楼-第一层1" cid="yihaohuochezhuangchelou00008"
+					URL="" see="" />
+				<videoNode label="普光净化厂-2号火车装车楼-第一层1" cid="yihaohuochezhuangchelou0000003"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第二列3层空冷器台" cid="erlianhe0002"
+					URL="" see="" />
+				<videoNode label="普光净化厂-二联合-第一列排污池旁过道" cid="erlianhe0005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第二列半富胺液泵" cid="liulianhe04"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第二列排污池旁过道" cid="liulianhe006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第一列半富胺液泵" cid="liulianhe03"
+					URL="" see="" />
+				<videoNode label="普光净化厂-六联合-第一列排污池旁过道" cid="liulianhe005"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第二列半富胺液泵" cid="sanlianhe00004"
+					URL="" see="" />
+				<videoNode label="普光净化厂-三联合-第一列克劳斯炉燃烧器" cid="sanlianhe00001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第二列半富胺液泵" cid="silianhe" URL=""
+					see="" />
+				<videoNode label="普光净化厂-四联合-第一二列通道管架中间" cid="silianhe004"
+					URL="" see="" />
+				<videoNode label="普光净化厂-四联合-第一列402塔" cid="silianhe001"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第二列急冷水泵" cid="wulianhe0008"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-第一列克劳斯燃烧器旁" cid="wulianhe01"
+					URL="" see="" />
+				<videoNode label="普光净化厂-五联合-配电室" cid="wulianh05" URL=""
+					see="" />
+				<videoNode label="普光净化厂-一号圆型料仓-廊道底层" cid="yihaoyuanxingliaocang1"
+					URL="" see="" />
+				<videoNode label="普光净化厂-一联合-第二列排污池旁过道" cid="yilianhe0006"
+					URL="" see="" />
+				<videoNode label="普光净化厂-转运-4号转运3" cid="yihaohuochezhuagnchelou004"
+					URL="" see="" />
+				<videoNode label="普光净化厂-转运-6号转运" cid="yihaohuochezhuagnchelou008"
+					URL="" see="" />
+			</qyNode>
+		</rootNode>
+	</IndustrialData>
+</model>

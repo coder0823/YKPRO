@@ -1,0 +1,1527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-教育培训-取证培训
+		 * 参数：开始年月（2012-01），结束年月（2012-12）
+		 * 作者：孙山虎
+		 * 日期：2012年12月29日
+	     * 修改日期2015年1月17日 刘本林
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.events.IndexChangeEvent;
+			
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			
+			import views.PopupTitleWinDG;
+			
+			public const _dataPath:String = "assets/data/zb_traindata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "板块间对比分析";
+			[Bindable]
+			private var tab2_title:String = "按培训对象完成情况";
+			[Bindable]
+			private var tab3_title:String = "企业间对比分析";
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String = "";
+			[Bindable]
+			private var tab1_topRightTitle:String = "";
+			[Bindable]
+			private var tab1_downLeftTitle:String = "";
+			[Bindable]
+			private var tab1_downRightTitle:String = "";
+			[Bindable]
+			private var tab2_topTitle:String = "";
+			[Bindable]
+			private var tab2_downTitle:String = "";
+			[Bindable]
+			private var tab3_leftTitle:String = "";
+			[Bindable]
+			private var tab3_rightTitle:String = "";
+			
+			[Bindable]
+			private var tab3_plateCurrSelect:String;
+			private var tab3_plateNameCurrSelect:String;
+			[Bindable]
+			private var tab3_levelCurrSelect:String;
+			private var tab3_levelNameCurrSelect:String;
+			[Bindable]
+			private var tab3_level2CurrSelect:String;
+			private var tab3_level2NameCurrSelect:String;
+			
+			[Bindable]
+			private var tab3_plateDS:ArrayCollection;
+			[Bindable]
+			private var tab3_levelDS:ArrayCollection;
+			[Bindable]
+			private var tab3_level2DS:ArrayCollection;
+			
+			[Bindable]
+			private var tab3_showCorpCnt:int = _showCorpCnt;
+			[Bindable]
+			private var tab3_showCorpCntMax:int = 1000;
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab2_topConfDS:ArrayCollection;
+			[Bindable]
+			private var tab2_downConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab3_leftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab3_rightConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topLeft_plan:Number = 0;
+			[Bindable]
+			private var tab1_topLeft_act:Number = 0;
+			[Bindable]
+			private var tab1_topLeft_sur:Number = 0;
+			[Bindable]
+			private var tab1_topLeft_rate:Number = 0;
+			[Bindable]
+			private var tab1_topRight_rate:Number = 0;
+			
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab2_topDS:ArrayCollection;
+			[Bindable]
+			private var tab2_downDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab3_leftDS:ArrayCollection;
+			[Bindable]
+			private var tab3_rightDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				tab1_topLeftDS = new ArrayCollection();
+				tab1_topRightDS = new ArrayCollection();
+				tab1_downLeftDS = new ArrayCollection();
+				tab1_downRightDS = new ArrayCollection();
+				tab2_topDS = new ArrayCollection();
+				tab2_downDS = new ArrayCollection();
+				tab3_leftDS = new ArrayCollection();
+				tab3_rightDS = new ArrayCollection();
+				
+				tab1_downLeftConfDS = new ArrayCollection([{name: "计划", field: "planPerson", axis: "left"}, {name: "已取证", field: "certifiedPersons", axis: "left"}, {name: "未取证", field: "uncertifiedPersons", axis: "left"},]);
+				
+				tab1_downRightConfDS = new ArrayCollection([{name: "取证率", field: "certifiedRatio", type: "columnSeries", axis: "left"}, 
+					//{name:"日历进度",field:"calendarRatio",type:"lineSeries",axis:"left",showLabel:0},
+					{name: "平均取证率", field: "averageRatio", type: "lineSeries", axis: "left", showLabel: 0},]);
+				tab2_topConfDS = new ArrayCollection([{name: "计划", field: "planPerson", axis: "left"}, {name: "已取证", field: "certifiedPersons", axis: "left"}, {name: "未取证", field: "uncertifiedPersons", axis: "left"},]);
+				
+				tab2_downConfDS = new ArrayCollection([{name: "取证率", field: "certifiedRatio", type: "columnSeries", axis: "left"}, 
+					//{name:"日历进度",field:"calendarRatio",type:"lineSeries",axis:"left",showLabel:0},
+					{name: "平均取证率", field: "averageRatio", type: "lineSeries", axis: "left", showLabel: 0},]);
+				
+				tab3_leftConfDS = new ArrayCollection([{name: "取证率", field: "certifiedRatio", type: "columnSeries", axis: "left"}, 
+					//{name:"日历进度",field:"calendarRatio",type:"lineSeries",axis:"left",showLabel:0},
+					{name: "平均取证率", field: "averageRatio", type: "lineSeries", axis: "left", showLabel: 0},]);
+				tab3_rightConfDS = new ArrayCollection([{name: "取证率", field: "certifiedRatio", type: "columnSeries", axis: "left"}, 
+					//{name:"日历进度",field:"calendarRatio",type:"lineSeries",axis:"left",showLabel:0},
+					{name: "平均取证率", field: "averageRatio", type: "lineSeries", axis: "left", showLabel: 0},]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				tab3_plateDS = new ArrayCollection([{label: "全部", value: "ALL"}, {label: "油田", value: "YT"}, {label: "炼化", value: "LH"}, {label: "销售", value: "XS"}, {label: "工程", value: "GC"}, {label: "其他", value: "QT"}]);
+				tab3_plateDS = new ArrayCollection([{label: "全部", value: "ALL"}, {label: "油田", value: "YT"}, {label: "炼化", value: "LH"}, {label: "销售", value: "XS"}, {label: "工程", value: "GC"}, {label: "其他", value: "QT"}]);
+				//。。。。。。给其他图赋值，这里省略。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetTrain(dateStr, "byCertifiedData");
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab3_plateDS = getTab3_plateDS();
+				tab3_levelDS = getTab3_levelDS();
+				tab3_level2DS = getTab3_level2DS();
+				
+				tab3_showCorpCnt = getTab3_CorpCntDS(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				tab3_showCorpCntMax = getTab3_CorpCntMax(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				
+				getTab1_topLeftDS();
+				getTab1_topRightDS();
+				tab1_downLeftDS = getTab1_downLeftDS();
+				tab1_downRightDS = getTab1_downRightDS();
+				
+				tab2_topDS = getTab2_topDS();
+				tab2_downDS = getTab2_downDS();
+				
+				tab3_leftDS = getTab3_leftDS();
+				tab3_rightDS = getTab3_rightDS();
+				
+				executeBindTab1_topLeftTitle();
+				executeBindTab1_topRightTitle();
+				executeBindTab1_downLeftTitle();
+				executeBindTab1_downRightTitle();
+				executeBindTab2_topTitle();
+				executeBindTab2_downTitle();
+				executeBindTab3_leftTitle();
+				executeBindTab3_rightTitle();
+			
+			}
+			
+			private function executeBindTab1_topLeftTitle():void
+			{
+				tab1_topLeftTitle = "中国石化" + dateStr + "年取证培训完成情况";
+			}
+			
+			private function executeBindTab1_topRightTitle():void
+			{
+				tab1_topRightTitle = "中国石化" + dateStr + "年按人次取证培训完成情况";
+			}
+			
+			private function executeBindTab1_downLeftTitle():void
+			{
+				tab1_downLeftTitle = "中国石化" + dateStr + "年按人次取证培训完成情况";
+			}
+			
+			private function executeBindTab1_downRightTitle():void
+			{
+				tab1_downRightTitle = "中国石化" + dateStr + "年按人次取证培训完成率";
+			}
+			
+			private function executeBindTab2_topTitle():void
+			{
+				tab2_topTitle = "中国石化" + dateStr + "年按培训对象取证教育培训完成人数情况";
+			}
+			
+			private function executeBindTab2_downTitle():void
+			{
+				tab2_downTitle = "中国石化" + dateStr + "年按培训对象取证教育培训完成率情况";
+			}
+			
+			private function executeBindTab3_leftTitle():void
+			{
+				tab3_leftTitle = tab3_plateNameCurrSelect + "板块" + dateStr + "年" + tab3_level2NameCurrSelect + "取证教育培训企业间对比（前" + tab3_showCorpCnt + "名）"; //tab3_levelNameCurrSelect+
+			}
+			
+			private function executeBindTab3_rightTitle():void
+			{
+				tab3_rightTitle = tab3_plateNameCurrSelect + "板块" + dateStr + "年" + tab3_level2NameCurrSelect + "取证教育培训企业间对比（后" + tab3_showCorpCnt + "名）"; //tab3_levelNameCurrSelect+
+			}
+			
+			private function getTab3_plateDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byCorp.plateData;
+					if (tmpList.length() > 0)
+					{
+						tab3_plateCurrSelect = tmpList[0].@plateid; //设置默认选择
+						tab3_plateNameCurrSelect = tmpList[0].@plateLabel;
+						tab3_plateNameCurrSelect = tab3_plateNameCurrSelect == null ? "" : tab3_plateNameCurrSelect;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@plateLabel, value: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab3_levelDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byCorp.plateData.(@plateid == tab3_plateCurrSelect);
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var tmpList2:XMLList = tmpList[0].objectData;
+						if (tmpList2 != null && tmpList2.length() > 0)
+						{
+							tab3_levelCurrSelect = tmpList2[0].@objectid; //设置默认选择
+							tab3_levelNameCurrSelect = tmpList2[0].@objectLabel;
+							tab3_levelNameCurrSelect = tab3_levelNameCurrSelect == null ? "" : tab3_levelNameCurrSelect;
+							for each (var xml:XML in tmpList2)
+							{
+								var obj:Object = {label: xml.@objectLabel, value: xml.@objectid};
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab3_level2DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byCorp.plateData.(@plateid == tab3_plateCurrSelect)
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var tmpList2:XMLList = tmpList[0].objectData.(@objectid == tab3_levelCurrSelect);
+						if (tmpList2 != null && tmpList2.length() > 0)
+						{
+							var tmpList3:XMLList = tmpList2[0].kindData;
+							
+							tab3_level2CurrSelect = tmpList3[0].@kindid; //设置默认选择
+							tab3_level2NameCurrSelect = tmpList3[0].@label;
+							tab3_level2NameCurrSelect = tab3_level2NameCurrSelect == null ? "" : tab3_level2NameCurrSelect;
+							for each (var xml:XML in tmpList3)
+							{
+								var obj:Object = {label: xml.@label, value: xml.@kindid};
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab3_CorpCntDS(plateid:String, levelid:String, level2id:String):int
+			{
+				var _cnt:int = getTab3_CorpCntMax(plateid, levelid, level2id);
+				if (_cnt > _showCorpCnt)
+					_cnt = _showCorpCnt;
+				return _cnt;
+			}
+			
+			private function getTab3_CorpCntMax(plateid:String, levelid:String, level2id:String):int
+			{
+				var _cnt:int = 0;
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byCorp.plateData.(@plateid == plateid).objectData.(@objectid == levelid).kindData.(@kindid == level2id).dataset;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						_cnt = tmpList.length();
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//分左右2部分显示
+				_cnt = Math.floor((_cnt + 1) / 2);
+				return _cnt;
+			}
+			
+			private function getTab1_topLeftDS():void
+			{
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byPlate;
+					
+					if (tmpList.length() > 0)
+					{
+						var xml:XML = tmpList[0];
+						tab1_topLeft_plan = xml.@planPerson;
+						tab1_topLeft_act = xml.@certifiedPersons;
+						tab1_topLeft_sur = xml.@uncertifiedPersons;
+						tab1_topLeft_rate = xml.@certifiedRatio;
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+			}
+			
+			private function getTab1_topRightDS():void
+			{
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byPlate;
+					
+					if (tmpList.length() > 0)
+					{
+						var xml:XML = tmpList[0];
+						tab1_topRight_rate = xml.@certifiedRatio;
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+			}
+			
+			private function getTab1_downLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byPlate.plateData;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							obj.label = xml.@plateLabel;
+							obj.planPerson = xml.@planPerson;
+							obj.certifiedPersons = xml.@certifiedPersons;
+							obj.uncertifiedPersons = xml.@uncertifiedPersons;
+							obj.plateid = xml.@plateid;
+							obj.certifiedRatio = xml.@certifiedRatio;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			
+			}
+			
+			private function getTab1_downRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byPlate.plateData;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							obj.label = xml.@plateLabel;
+							obj.certifiedRatio = xml.@certifiedRatio;
+							obj.calendarRatio = xml.@calendarRatio;
+							obj.averageRatio = xml.@averageRatio;
+							obj.plateid = xml.@plateid;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab2_topDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byObject.objectData;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							obj.label = xml.@objectLabel;
+							obj.planPerson = xml.@planPerson;
+							obj.certifiedPersons = xml.@certifiedPersons;
+							obj.uncertifiedPersons = xml.@uncertifiedPersons;
+							obj.objectid = xml.@objectid;
+							obj.certifiedRatio = xml.@certifiedRatio;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab2_downDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byObject.objectData;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@objectLabel, certifiedRatio: xml.@certifiedRatio, averageRatio: xml.@averageRatio, objectid: xml.@objectid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab3_leftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byCorp.plateData.(@plateid == tab3_plateCurrSelect).objectData.(@objectid == tab3_levelCurrSelect).kindData.(@kindid == tab3_level2CurrSelect).dataset;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						//						var tmpCnt:int=0;
+						for each (var xml:XML in tmpList)
+						{
+							//							tmpCnt++;
+							//							if(tmpCnt>tab2_showCorpCnt) break;
+							var obj:Object = {label: xml.@subCorpname, certifiedRatio: xml.@certifiedRatio, averageRatio: xml.@averageRatio};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("certifiedRatio", true, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					if (i >= tab3_showCorpCnt)
+						break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			private function getTab3_rightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byCorp.plateData.(@plateid == tab3_plateCurrSelect).objectData.(@objectid == tab3_levelCurrSelect).kindData.(@kindid == tab3_level2CurrSelect).dataset;
+					if (tmpList.length() > 0)
+					{
+						//						var tmpCnt:int=0;
+						//for each (var xml:XML in tmpList) {  
+						for (var i:int = tmpList.length() - 1; i >= 0; i--)
+						{
+							//							tmpCnt++;
+							//							if(tmpCnt>tab2_showCorpCnt) break;
+							var xml:XML = tmpList[i];
+							var obj:Object = {label: xml.@subCorpname, certifiedRatio: xml.@certifiedRatio, averageRatio: xml.@averageRatio};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("certifiedRatio", false, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var j:int = 0; j < tmpArrayCollection.length; j++)
+				{
+					if (j >= tab3_showCorpCnt)
+						break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(j));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			//****************************************************
+			//            取证培训-板块数据
+			//****************************************************
+			//弹出窗口
+			private var titleWindow1:views.PopupTitleWinDG;
+			
+			protected function showPlateMXbyPlate():void
+			{
+				titleWindow1 = new views.PopupTitleWinDG();
+				titleWindow1.TitleValue = "中国石化取证培训完成情况(" + dateStr + "年) 计量单位：人次";
+				titleWindow1.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow1);
+					});
+				titleWindow1.IfShowFirstRecordBgColor = true;
+				titleWindow1.IfShowFrontRecordColor = false;
+				titleWindow1.IfShowBackRecordColor = false;
+				titleWindow1.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "板块", dataField: "label", width: "40", textAlign: "center", sortable: true, draggable: true,enableUrlLink:true,footHeakerText:"合计"},
+					{headerText: "计划", dataField: "planPerson", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "已取证", dataField: "certifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "未取证", dataField: "uncertifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "取证率%", dataField: "certifiedRatio", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"certifiedPersons,planPerson"}
+					//{headerText:"日历进度%",dataField:"calendarRatio",width:"40",textAlign:"center",sortable:true,draggable:true},
+					//{headerText: "平均取证率%", dataField: "averageRatio", width: "40", textAlign: "center", sortable: true, draggable: true},
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList;
+					//合计数据
+					/*组件2自动合计，因此不需要数据计算，注释掉
+					tmpList = hseDataXML.byCertifiedData.byPlate;
+					if (tmpList.length() > 0)
+					{
+						var xml4:XML = tmpList[0];
+						var obj_total:Object = {label: "合计", planPerson: Number(xml4.@planPerson), certifiedPersons: Number(xml4.@certifiedPersons), uncertifiedPersons: Number(xml4.@uncertifiedPersons), certifiedRatio: Number(xml4.@certifiedRatio), averageRatio: Number(xml4.@averageRatio), index: 1, order: "", id: "00"};
+						tmpArrayCollection.addItem(obj_total);
+					}
+					*/
+					tmpList = hseDataXML.byCertifiedData.byPlate.plateData;
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@plateLabel, planPerson: Number(xml.@planPerson), certifiedPersons: Number(xml.@certifiedPersons), uncertifiedPersons: Number(xml.@uncertifiedPersons), certifiedRatio: Number(xml.@certifiedRatio), averageRatio: Number(xml.@averageRatio), index: index, order: order, id: xml.@plateid};
+							obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+						
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("certifiedRatio", true, true),new SortField("displayindex", false, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+					}
+					titleWindow1.DataSource = tmpArrayCollection;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//titleWindow1.addEventListener(events.PopupEvent.PopupDoubleClick, popCorp);
+				titleWindow1.addEventListener(events.PopupEvent.PopupItemClick, popCorp);
+				PopUpManager.addPopUp(titleWindow1, this, true);
+				PopUpManager.centerPopUp(titleWindow1);
+			}
+			
+			//在板块列表中双击弹出 企业列表
+			//titleWindow5.addEventListener(events.PopupEvent.PopupDoubleClick,popPersonsCorp);
+			protected function popCorp(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				if (obj.item == "label")
+				{
+					if (obj.id != "00")
+					{
+						showCorpMXbyPlate(obj.id);
+					}
+				}
+			}
+			//****************************************************
+			//            取证培训-企业信息（板块）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow2:views.PopupTitleWinDG;
+			
+			protected function showCorpMXbyPlate(plateid:String):void
+			{
+				//Alert.show("asdfasdfasdf");
+				
+				titleWindow2 = new views.PopupTitleWinDG();
+				titleWindow2.TitleValue = "中国石化取证培训完成情况(" + dateStr + "年) 计量单位：人次";
+				titleWindow2.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow2);
+					});
+				titleWindow2.IfShowFirstRecordBgColor = true;
+				titleWindow2.IfShowFrontRecordColor = false;
+				titleWindow2.IfShowBackRecordColor = false;
+				titleWindow2.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "企业", dataField: "label", width: "40", textAlign: "center", sortable: true, draggable: true,sortByCustomField:"displayindex",footHeakerText:"合计"}, 
+					{headerText: "计划", dataField: "planPerson", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "已取证", dataField: "certifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "未取证", dataField: "uncertifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "取证率%", dataField: "certifiedRatio", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"certifiedPersons,planPerson"} 
+					//{headerText:"日历进度%",dataField:"calendarRatio",width:"40",textAlign:"center",sortable:true,draggable:true},
+					//{headerText: "平均取证率%", dataField: "averageRatio", width: "40", textAlign: "center", sortable: true, draggable: true},
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList;
+					if (plateid == "00")
+					{
+						tmpList = hseDataXML.byCertifiedData.byPlate.plateData.dataset;
+					}
+					else
+					{
+						tmpList = hseDataXML.byCertifiedData.byPlate.plateData.(@plateid == plateid).dataset;
+					}
+					
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@subCorpname, planPerson: Number(xml.@planPerson), certifiedPersons: Number(xml.@certifiedPersons), uncertifiedPersons: Number(xml.@uncertifiedPersons), certifiedRatio: Number(xml.@certifiedRatio), averageRatio: Number(xml.@averageRatio), index: index, order: order};
+							obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+						
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("certifiedRatio", true, true),new SortField("displayindex", false, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+						
+					}
+					titleWindow2.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow2, this, true);
+				PopUpManager.centerPopUp(titleWindow2);
+			}
+			//****************************************************
+			//            取证培训-企业数据（类别）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow3:views.PopupTitleWinDG;
+			
+			protected function showCorpMXbyObject(objectid:String):void
+			{
+				titleWindow3 = new views.PopupTitleWinDG();
+				titleWindow3.TitleValue = "中国石化取证培训完成情况(" + dateStr + "年) 计量单位：人次";
+				titleWindow3.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow3);
+					});
+				titleWindow3.IfShowFirstRecordBgColor = true;
+				titleWindow3.IfShowFrontRecordColor = false;
+				titleWindow3.IfShowBackRecordColor = false;
+				titleWindow3.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "培训对象", dataField: "label", width: "40", textAlign: "center", sortable: true, draggable: true,sortByCustomField:"displayindex",footHeakerText:"合计"},
+					{headerText: "计划", dataField: "planPerson", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "已取证", dataField: "certifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "未取证", dataField: "uncertifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "取证率%", dataField: "certifiedRatio", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"certifiedPersons,planPerson"}
+					//{headerText:"日历进度%",dataField:"calendarRatio",width:"40",textAlign:"center",sortable:true,draggable:true},
+					//{headerText: "平均取证率%", dataField: "averageRatio", width: "40", textAlign: "center", sortable: true, draggable: true},
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList;
+					//合计数据
+					/*组件2自动合计，因此不需要数据计算，注释掉
+					tmpList = hseDataXML.byCertifiedData.byObject.objectData.(@objectid == objectid);
+					if (tmpList.length() > 0)
+					{
+						var xml4:XML = tmpList[0];
+						var obj_total:Object = {label: xml4.@objectLabel + "小计", planPerson: Number(xml4.@planPerson), certifiedPersons: Number(xml4.@certifiedPersons), uncertifiedPersons: Number(xml4.@uncertifiedPersons), certifiedRatio: Number(xml4.@certifiedRatio), averageRatio: Number(xml4.@averageRatio), index: 1, order: ""};
+						tmpArrayCollection2.addItem(obj_total);
+					}
+					*/
+					tmpList = hseDataXML.byCertifiedData.byObject.objectData.(@objectid == objectid).dataset;
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@subCorpname, planPerson: Number(xml.@planPerson), certifiedPersons: Number(xml.@certifiedPersons), uncertifiedPersons: Number(xml.@uncertifiedPersons), certifiedRatio: Number(xml.@certifiedRatio), averageRatio: Number(xml.@averageRatio), index: index, order: order};
+							obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+						
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("certifiedRatio", true, true),new SortField("displayindex", false, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+						
+					}
+					titleWindow3.DataSource = tmpArrayCollection2;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow3, this, true);
+				PopUpManager.centerPopUp(titleWindow3);
+			}
+			
+			//****************************************************
+			//            取证培训-企业数据（级别）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow4:views.PopupTitleWinDG;
+			protected function showCorpMXbyCorp(plateid:String, levelid:String, level2id:String):void
+			{
+				titleWindow4 = new views.PopupTitleWinDG();
+				titleWindow4.TitleValue = "中国石化取证培训完成情况(" + dateStr + "年) 计量单位：人次";
+				titleWindow4.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow4);
+					});
+				titleWindow4.IfShowFirstRecordBgColor = true;
+				titleWindow4.IfShowFrontRecordColor = false;
+				titleWindow4.IfShowBackRecordColor = false;
+				titleWindow4.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "企业", dataField: "label", width: "40", textAlign: "center", sortable: true, draggable: true,sortByCustomField:"displayindex",footHeakerText:"合计"}, 
+					{headerText: "计划", dataField: "planPerson", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "已取证", dataField: "certifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "未取证", dataField: "uncertifiedPersons", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "取证率%", dataField: "certifiedRatio", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"certifiedPersons,planPerson"}
+					//{headerText:"日历进度%",dataField:"calendarRatio",width:"40",textAlign:"center",sortable:true,draggable:true},
+					//{headerText: "平均取证率%", dataField: "averageRatio", width: "40", textAlign: "center", sortable: true, draggable: true},
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byCertifiedData.byCorp.plateData.(@plateid == plateid).objectData.(@objectid == levelid).kindData.(@kindid == level2id);
+					//合计数据
+					/*组件2自动合计，因此不需要数据计算，注释掉
+					if (tmpList.length() > 0)
+					{
+						var xml4:XML = tmpList[0];
+						var obj_total:Object = {label: xml4.@label + "小计", planPerson: Number(xml4.@planPerson), certifiedPersons: Number(xml4.@certifiedPersons), uncertifiedPersons: Number(xml4.@uncertifiedPersons), certifiedRatio: Number(xml4.@certifiedRatio), averageRatio: Number(xml4.@averageRatio), index: 1, order: ""};
+						tmpArrayCollection2.addItem(obj_total);
+					}
+					*/
+					tmpList = tmpList.dataset;
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@subCorpname, planPerson: xml.@planPerson, certifiedPersons: xml.@certifiedPersons, uncertifiedPersons: xml.@uncertifiedPersons, certifiedRatio: xml.@certifiedRatio, averageRatio: xml.@averageRatio, index: index, order: order};
+							obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+						
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("certifiedRatio", true, true),new SortField("displayindex", false, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+						
+					}
+					titleWindow4.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow4, this, true);
+				PopUpManager.centerPopUp(titleWindow4);
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab3_plate_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab3_plateCurrSelect = RadioButton(event.target).value.toString();
+				tab3_plateNameCurrSelect = RadioButton(event.target).label;
+				tab3_plateNameCurrSelect = tab3_plateNameCurrSelect == null ? "" : tab3_plateNameCurrSelect;
+				
+				tab3_levelDS = getTab3_levelDS();
+				tab3_showCorpCnt = getTab3_CorpCntDS(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				tab3_showCorpCntMax = getTab3_CorpCntMax(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				tab3_leftDS = getTab3_leftDS();
+				tab3_rightDS = getTab3_rightDS();
+				executeBindTab3_leftTitle();
+				executeBindTab3_rightTitle();
+			}
+			
+//			protected function tab3_level_clickHandler(event:MouseEvent):void
+//			{
+//				// TODO Auto-generated method stub
+//				tab3_levelCurrSelect=RadioButton(event.target).value.toString();
+//				tab3_levelNameCurrSelect=RadioButton(event.target).label;
+//				tab3_levelNameCurrSelect=tab3_levelNameCurrSelect==null?"":tab3_levelNameCurrSelect;
+//				
+//				tab3_showCorpCnt = getTab3_CorpCntDS(this.tab3_plateCurrSelect,this.tab3_levelCurrSelect,this.tab3_level2CurrSelect);
+//				tab3_showCorpCntMax=getTab3_CorpCntMax(this.tab3_plateCurrSelect,this.tab3_levelCurrSelect,this.tab3_level2CurrSelect);
+//				tab3_leftDS= getTab3_leftDS();	
+//				tab3_rightDS= getTab3_rightDS();	
+//				executeBindTab3_leftTitle();
+//				executeBindTab3_rightTitle();
+//			}
+			protected function tab3_levelRep_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab3_levelCurrSelect = tab3_levelRep.selectedItem.value;
+				tab3_levelNameCurrSelect = tab3_levelRep.selectedItem.label;
+				tab3_levelNameCurrSelect = tab3_levelNameCurrSelect == null ? "" : tab3_levelNameCurrSelect;
+				
+				tab3_showCorpCnt = getTab3_CorpCntDS(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				tab3_showCorpCntMax = getTab3_CorpCntMax(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				tab3_leftDS = getTab3_leftDS();
+				tab3_rightDS = getTab3_rightDS();
+				executeBindTab3_leftTitle();
+				executeBindTab3_rightTitle();
+			}
+			
+			protected function tab3_level2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab3_level2CurrSelect = RadioButton(event.target).value.toString();
+				tab3_level2NameCurrSelect = RadioButton(event.target).label;
+				tab3_level2NameCurrSelect = tab3_level2NameCurrSelect == null ? "" : tab3_level2NameCurrSelect;
+				
+				tab3_showCorpCnt = getTab3_CorpCntDS(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				tab3_showCorpCntMax = getTab3_CorpCntMax(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+				tab3_leftDS = getTab3_leftDS();
+				tab3_rightDS = getTab3_rightDS();
+				executeBindTab3_leftTitle();
+				executeBindTab3_rightTitle();
+			}
+			
+			protected function tab3_cnt_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				tab3_showCorpCnt = int(NumericStepper(event.target).value);
+				tab3_leftDS = getTab3_leftDS();
+				tab3_rightDS = getTab3_rightDS();
+				executeBindTab3_leftTitle();
+				executeBindTab3_rightTitle();
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.showPlateMXbyPlate();
+			}
+			
+			protected function tab1_downLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				this.showCorpMXbyPlate(item.plateid);
+			}
+			
+			protected function tab1_downRight_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				this.showCorpMXbyPlate(item.plateid);
+			}
+			
+			protected function tab2_top_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				this.showCorpMXbyObject(item.objectid);
+			}
+			
+			protected function tab2_down_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				this.showCorpMXbyObject(item.objectid);
+			}
+			
+			protected function tab3_left_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.showCorpMXbyCorp(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+			}
+			
+			protected function tab3_right_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.showCorpMXbyCorp(this.tab3_plateCurrSelect, this.tab3_levelCurrSelect, this.tab3_level2CurrSelect);
+			}
+			
+			[Bindable]
+			private var tab3_leftAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab3_leftAxisMinimum:Number = 0;
+			[Bindable]
+			private var tab3_rightAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab3_rightAxisMinimum:Number = 0;
+			
+			protected function tab3_left_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab3_leftAxisMaximum = event.getLeftAxisMaximum>tab3_leftAxisMaximum?event.getLeftAxisMaximum:tab3_leftAxisMaximum;
+				tab3_leftAxisMinimum = event.getLeftAxisMinimum<tab3_leftAxisMaximum?event.getLeftAxisMinimum:tab3_leftAxisMinimum;
+				tab3_rightAxisMaximum = event.getRightAxisMaximum>tab3_rightAxisMaximum?event.getLeftAxisMaximum:tab3_rightAxisMaximum;
+				tab3_rightAxisMinimum = event.getRightAxisMinimum<tab3_rightAxisMinimum?event.getLeftAxisMinimum:tab3_rightAxisMinimum;
+			}
+			
+			protected function tab3_right_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab3_leftAxisMaximum = event.getLeftAxisMaximum>tab3_leftAxisMaximum?event.getLeftAxisMaximum:tab3_leftAxisMaximum;
+				tab3_leftAxisMinimum = event.getLeftAxisMinimum<tab3_leftAxisMaximum?event.getLeftAxisMinimum:tab3_leftAxisMinimum;
+				tab3_rightAxisMaximum = event.getRightAxisMaximum>tab3_rightAxisMaximum?event.getLeftAxisMaximum:tab3_rightAxisMaximum;
+				tab3_rightAxisMinimum = event.getRightAxisMinimum<tab3_rightAxisMinimum?event.getLeftAxisMinimum:tab3_rightAxisMinimum;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+
+		<s:RadioButtonGroup id="tab3_plateGrp" />
+		<s:RadioButtonGroup id="tab3_levelGrp" />
+		<s:RadioButtonGroup id="tab3_level2Grp" />
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+		<s:layout>
+			<s:BasicLayout />
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="25" styleName="tabButtonStyle2" right="5" top="5"/>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack"
+				  width="100%"
+				  height="100%"
+				  styleName="tabContentBox"
+				  borderStyle="inset">
+
+		<!--标签1-->
+		<s:NavigatorContent id="tab1"
+							width="100%"
+							height="100%"
+							label="{tab1_title}">
+			<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="60%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnPlanActSurRate id="tab1_topLeft"
+													IfSingle="true"
+													width="100%"
+													height="100%"
+													showTitle="true"
+													title="{tab1_topLeftTitle}"
+													showLegend="true"
+													showLegendValue="true"
+													planTxt="计划"
+													actTxt="取证情况"
+													surTxt="剩余"
+													rateTxt="取证率"
+													AxisLeftTiltle="人次" ShowDataLabel="{showDataLabel}"
+													PlanVol="{tab1_topLeft_plan}"
+													ActVol="{tab1_topLeft_act}"
+													SurVol="{tab1_topLeft_sur}"
+													RateVol="{tab1_topLeft_rate}"
+													PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+					<s:BorderContainer width="40%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center"
+											  paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5" />
+						</s:layout>
+						<!--<s:Label text="{tab3_topRightTitle}" width="100%" height="30" textAlign="center" styleName="titleStyle"/>-->
+						<views:Gauge value="{tab1_topRight_rate}"
+									 width="200"
+									 height="200" />
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="60%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnMulti id="tab1_downLeft"
+										   AxisLeftTiltle="人次"
+										   width="100%"
+										   height="100%"
+										   showTitle="true" ShowDataLabel="{showDataLabel}"
+										   title="{tab1_downLeftTitle}"
+										   showLegend="true"
+										   DataSourceConf="{tab1_downLeftConfDS}"
+										   DataSource="{tab1_downLeftDS}"
+										   PopupDoubleClick="tab1_downLeft_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+					<s:BorderContainer width="40%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center"
+											  paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_downRight"
+											   AxisLeftUnit="%"
+											   width="100%"
+											   height="100%"
+											   showTitle="true" ShowDataLabel="{showDataLabel}"
+											   title="{tab1_downRightTitle}"
+											   showLegend="true"
+											   DataSourceConf="{tab1_downRightConfDS}"
+											   DataSource="{tab1_downRightDS}"
+											   PopupDoubleClick="tab1_downRight_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<!--标签2-->
+		<s:NavigatorContent id="tab2"
+							width="100%"
+							height="100%"
+							label="{tab2_title}">
+			<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnMulti id="tab2_top"
+										   AxisLeftTiltle="人次"
+										   width="100%"
+										   height="100%"
+										   showTitle="true" ShowDataLabel="{showDataLabel}"
+										   title="{tab2_topTitle}"
+										   showLegend="true"
+										   DataSourceConf="{tab2_topConfDS}"
+										   DataSource="{tab2_topDS}"
+										   PopupDoubleClick="tab2_top_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab2_down"
+											   width="100%"
+											   AxisLeftUnit="%"
+											   height="100%"
+											   showTitle="true" ShowDataLabel="{showDataLabel}"
+											   title="{tab2_downTitle}"
+											   showLegend="true"
+											   DataSourceConf="{tab2_downConfDS}"
+											   DataSource="{tab2_downDS}"
+											   PopupDoubleClick="tab2_down_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+
+
+		<!--标签3-->
+		<s:NavigatorContent id="tab3"
+							width="100%"
+							height="100%"
+							label="{tab3_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left"
+								  verticalAlign="middle"
+								  gap="0" />
+			</s:layout>
+			<s:HGroup width="100%"
+					  height="30"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+					<s:layout>
+						<s:HorizontalLayout horizontalAlign="right"
+											verticalAlign="middle" />
+					</s:layout>
+					<mx:HBox borderStyle="outset"
+							 styleName="controlBox"
+							 paddingLeft="10"
+							 paddingRight="10">
+						<mx:Repeater id="tab3_plateRep"
+									 dataProvider="{tab3_plateDS}">
+							<s:RadioButton groupName="tab3_plateGrp"
+										   label="{tab3_plateRep.currentItem.label}"
+										   value="{tab3_plateRep.currentItem.value}"
+										   selected="{tab3_plateRep.currentItem.value==tab3_plateCurrSelect}"
+										   click="tab3_plate_clickHandler(event)" />
+						</mx:Repeater>
+					</mx:HBox>
+					<mx:HBox borderStyle="outset"
+							 styleName="controlBox"
+							 paddingLeft="10"
+							 paddingRight="10">
+						<mx:Repeater id="tab3_level2Rep"
+									 dataProvider="{tab3_level2DS}">
+							<s:RadioButton groupName="tab3_level2Grp"
+										   label="{tab3_level2Rep.currentItem.label}"
+										   value="{tab3_level2Rep.currentItem.value}"
+										   selected="{tab3_level2Rep.currentItem.value==tab3_level2CurrSelect}"
+										   click="tab3_level2_clickHandler(event)" />
+						</mx:Repeater>
+					</mx:HBox>
+					<s:Label text="显示企业数" />
+					<mx:NumericStepper id="tab3_cnt"
+									   value="{tab3_showCorpCnt}"
+									   minimum="0"
+									   maximum="{tab3_showCorpCntMax}"
+									   color="#000000"
+									   change="tab3_cnt_changeHandler(event)" />
+				</s:BorderContainer>
+			</s:HGroup>
+			<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="130"
+									   height="100%"
+									   styleName="contentBox">
+						<mx:VBox width="100%"
+								 height="100%"
+								 horizontalAlign="left">
+							<s:List id="tab3_levelRep"
+									width="100%"
+									height="100%"
+									selectedIndex="0"
+									dataProvider="{tab3_levelDS}"
+									change="tab3_levelRep_changeHandler(event)">
+							</s:List>
+						</mx:VBox>
+					</s:BorderContainer>
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab3_left"
+											   AxisLeftUnit="%"
+											   labelRotationX="45"
+											   width="100%"
+											   height="100%"
+											   showTitle="true"
+											   showLegend="true"
+											   title="{tab3_leftTitle}"
+											   PopupDoubleClick="tab3_left_PopupDoubleClickHandler(event)"
+											   DataSourceConf="{tab3_leftConfDS}"
+											   DataSource="{tab3_leftDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}"
+											   SetAxisComplate="tab3_left_SetAxisComplateHandler(event)"
+											   UseCustomAxisMaxMinmum="true"
+											   LeftAxisMaximum="{tab3_leftAxisMaximum}"
+											   LeftAxisMinimum="{tab3_leftAxisMinimum}"
+											   RightAxisMaximum="{tab3_rightAxisMaximum}"
+											   RightAxisMinimum="{tab3_rightAxisMinimum}" />
+					</s:BorderContainer>
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab3_right"
+											   AxisLeftUnit="%"
+											   labelRotationX="45"
+											   width="100%"
+											   height="100%"
+											   showTitle="true"
+											   showLegend="true"
+											   title="{tab3_rightTitle}"
+											   PopupDoubleClick="tab3_right_PopupDoubleClickHandler(event)"
+											   DataSourceConf="{tab3_rightConfDS}"
+											   DataSource="{tab3_rightDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}"
+											   SetAxisComplate="tab3_right_SetAxisComplateHandler(event)"
+											   UseCustomAxisMaxMinmum="true"
+											   LeftAxisMaximum="{tab3_leftAxisMaximum}"
+											   LeftAxisMinimum="{tab3_leftAxisMinimum}"
+											   RightAxisMaximum="{tab3_rightAxisMaximum}"
+											   RightAxisMinimum="{tab3_rightAxisMinimum}" />
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+
+	</mx:ViewStack>
+</s:Group>

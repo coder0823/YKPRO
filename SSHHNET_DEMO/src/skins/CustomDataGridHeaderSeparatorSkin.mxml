@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<s:SparkSkin name="CustomDataGridHeaderBackgroundSkin" 
+			 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark"> 
+	<s:Line height="100%">
+		<s:stroke>
+			<s:SolidColorStroke color="#6D89AE"/><!--#A9D7E4-->
+		</s:stroke>
+	</s:Line>
+</s:SparkSkin>

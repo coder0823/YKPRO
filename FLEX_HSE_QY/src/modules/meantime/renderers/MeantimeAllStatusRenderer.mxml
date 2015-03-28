@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				width="100%" height="100%" rollOverColor="#FFFFFF" 
+				autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			
+			import mx.controls.Image;
+			import mx.controls.Label;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			
+			import spark.primitives.Ellipse;
+			//import events.MeantimeOverAllStatusEvent;
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				hgroup.removeAllElements();
+				if(advancedDataGridListData != null){
+					var str:String = data[advancedDataGridListData.dataField];
+					var arr:Array = str.split(",");
+					var status0:int = 0;
+					var status1:int = 0;
+					var status2:int = 0;
+					var status3:int = 0;
+					var status4:int = 0;
+					for each(var str_:String in arr){
+						switch(str_){
+							case "0":
+								status0++;
+								break;
+							case "1":
+								status1++;
+								break;
+							case "2":
+								status2++;
+								break;
+							case "3":
+								status3++;
+								break;
+							case "4":
+								status4++;
+								break;
+						}
+					}
+					
+					
+					
+					var alarm0:Ellipse=new Ellipse();
+					alarm0.width=20;
+					alarm0.height=20;
+					alarm0.verticalCenter=0;
+					alarm0.horizontalCenter=0;
+					alarm0.fill=new SolidColor(0x00FF00);
+					
+					var alarm1:Ellipse=new Ellipse();
+					alarm1.width=20;
+					alarm1.height=20;
+					alarm1.verticalCenter=0;
+					alarm1.horizontalCenter=0;
+					alarm1.fill=new SolidColor(0xFFFF00);
+					
+					var alarm2:Ellipse=new Ellipse();
+					alarm2.width=20;
+					alarm2.height=20;
+					alarm2.verticalCenter=0;
+					alarm2.horizontalCenter=0;
+					alarm2.fill=new SolidColor(0xFF0000);
+					
+					var alarm3:Ellipse=new Ellipse();
+					alarm3.width=20;
+					alarm3.height=20;
+					alarm3.verticalCenter=0;
+					alarm3.horizontalCenter=0;
+					alarm3.fill=new SolidColor(0xFF0000);
+					
+					var alarm4:Ellipse=new Ellipse();
+					alarm4.width=20;
+					alarm4.height=20;
+					alarm4.verticalCenter=0;
+					alarm4.horizontalCenter=0;
+					alarm4.fill=new SolidColor(0xFF0000);
+					
+					
+					
+					var item:HGroup=new HGroup();
+					var image:Image = new Image();
+					var label:Label = new Label();
+					if(status0 > 0){
+						image = new Image();
+						image.width = 20;
+						image.height = 20;
+						image.source = "assets/images/icoGood.png";
+						label = new Label();
+						label.text = ""+status0 + " ";
+						item=new HGroup();
+						item.toolTip="正常："+status0;
+						item.addEventListener(MouseEvent.CLICK,click0);
+						item.horizontalAlign="left";
+						item.minWidth=60;
+						item.gap=10;
+						item.addElement(image);
+						//item.addElement(alarm0);
+						item.addElement(label);
+						hgroup.addElement(item);
+					}
+	
+					if(status1 > 0){
+						image = new Image();
+						image.width = 20;
+						image.height = 20;
+						image.source = "assets/images/icoWarning.png";
+						label = new Label();
+						label.text = ""+status1 + " ";
+						item=new HGroup();
+						item.toolTip="预警："+status1;
+						item.addEventListener(MouseEvent.CLICK,click1);
+						item.horizontalAlign="left";
+						item.minWidth=60;
+						item.gap=10;
+						item.addElement(image);
+						//item.addElement(alarm1);
+						item.addElement(label);
+						hgroup.addElement(item);
+					}
+					
+					if(status2 > 0){
+						image = new Image();
+						image.width = 20;
+						image.height = 20;
+						image.source = "assets/images/icoAlarm.png";
+						label = new Label();
+						label.text = ""+status2 + " ";
+						item=new HGroup();
+						item.toolTip="超期："+status2;
+						item.addEventListener(MouseEvent.CLICK,click2);
+						item.horizontalAlign="left";
+						item.minWidth=60;
+						item.gap=10;
+						item.addElement(image);
+						//item.addElement(alarm2);
+						item.addElement(label);
+						hgroup.addElement(item);
+					}
+					
+					/* if(status3 > 0){
+						image = new Image();
+						image.width = 20;
+						image.height = 20;
+						image.source = "assets/images/icoFinishedAlarm.png";
+						label = new Label();
+						label.text = ""+status3 + " ";
+						item=new HGroup();
+						item.toolTip="超期："+status3;
+						item.addEventListener(MouseEvent.CLICK,click3);
+						item.horizontalAlign="left";
+						item.minWidth=60;
+						item.gap=10;
+						item.addElement(image);
+						//item.addElement(alarm2);
+						item.addElement(label);
+						hgroup.addElement(item);
+					} */
+					
+					if(status4 > 0||status3 >0){
+						image = new Image();
+						image.width = 20;
+						image.height = 20;
+						image.source = "assets/images/icoFinished.png";
+						label = new Label();
+						label.text = status4 +status3+"";
+						item=new HGroup();
+						item.toolTip="完成："+label.text;
+						item.addEventListener(MouseEvent.CLICK,click4);
+						item.horizontalAlign="left";
+						item.minWidth=60;
+						item.gap=10;
+						item.addElement(image);
+						//item.addElement(alarm2);
+						item.addElement(label);
+						hgroup.addElement(item);
+					}
+				}
+			}
+			
+			private function click0(event:MouseEvent):void{
+				//this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"0"));
+			}
+			private function click1(event:MouseEvent):void{
+				this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"1"));
+			}
+			private function click2(event:MouseEvent):void{
+				this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"2"));
+			}
+			private function click3(event:MouseEvent):void{
+				//this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"2"));
+			}
+			private function click4(event:MouseEvent):void{
+				this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"4"));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+	</fx:Declarations>
+	
+	<s:HGroup id="hgroup" width="100%" height="100%" gap="2" paddingLeft="10" verticalAlign="middle">
+	</s:HGroup>
+	
+</s:MXAdvancedDataGridItemRenderer>

@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()">
+	<!--<fx:Style source="assets/css/WB_SimSun.css"/>-->
+	<fx:Style source="assets/css/style.css"/>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			
+			[Bindable]
+			private var showDataLabel:Boolean=false;
+			
+			
+			[Bindable]
+			private var ColumnMulitDSConf1:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS1:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf2:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS2:ArrayCollection;
+			
+			[Bindable]
+			private var LineMulitDSConf1:ArrayCollection;
+			[Bindable]
+			private var LineMulitDS1:ArrayCollection;
+			
+			[Bindable]
+			private var ColumnLineMulitDSConf1:ArrayCollection;
+			[Bindable]
+			private var ColumnLineMulitDS1:ArrayCollection;
+			[Bindable]
+			private var ColumnLineMulitDSConf2:ArrayCollection;
+			[Bindable]
+			private var ColumnLineMulitDS2:ArrayCollection;
+			
+			
+			[Bindable]
+			private var ColumnPlanActSurRateDS2:ArrayCollection;
+			[Bindable]
+			private var ColumnPlanActSurLineRateDS2:ArrayCollection;
+			[Bindable]
+			private var ColumnPlanActRateDS2:ArrayCollection;
+			[Bindable]
+			private var ColumnActSurLineRateDS2:ArrayCollection;
+			
+			[Bindable]
+			private var BarMulitDSConf:ArrayCollection;
+			[Bindable]
+			private var BarMulitDS:ArrayCollection;
+			[Bindable]		
+			private var BarStaticDSConf:ArrayCollection;
+			[Bindable]
+			private var BarStaticDS:ArrayCollection;
+			
+			[Bindable]
+			private var pieDS:ArrayCollection;
+			[Bindable]
+			private var pieEff1DS:ArrayCollection;
+			[Bindable]
+			private var pieEff2DS:ArrayCollection;
+			
+			[Bindable]
+			private var expensesAC:ArrayCollection
+			
+			
+			
+			[Bindable]
+			private var tab3_leftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab3_leftDS:ArrayCollection;
+			[Bindable]
+			private var tab3_rightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab3_rightDS:ArrayCollection;
+			
+			
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			private var dateStart:String;
+			protected function init():void{
+				this.styleManager.loadStyleDeclarations2("./assets/fonts/WB_SimSun.swf");
+				
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					for(var j:int=12;j>0;j--)
+					{
+						if(!(i==dateCurrYear&&j>dateCurrMth)){
+							var obj:Object=new Object();
+							obj.name=i+"年"+j+"月";
+							obj.value=i+"-"+(j<10?"0"+j.toString():j.toString());
+							dateArrCol.addItem(obj);
+						}
+					}
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				dateStart=dateArrCol.getItemAt(12).name;
+				
+				
+				ColumnMulitDS1=new ArrayCollection();
+				ColumnMulitDS2=new ArrayCollection();
+				ColumnLineMulitDS1= new ArrayCollection();
+				ColumnLineMulitDS2= new ArrayCollection();
+				ColumnPlanActSurRateDS2=new ArrayCollection();
+				ColumnPlanActSurLineRateDS2=new ArrayCollection();
+				ColumnPlanActRateDS2=new ArrayCollection();
+				ColumnActSurLineRateDS2=new ArrayCollection();
+				BarMulitDS =new ArrayCollection();				
+				BarStaticDS=new ArrayCollection();				
+				pieDS= new ArrayCollection();				
+				pieEff1DS= new ArrayCollection();
+				pieEff2DS=new ArrayCollection();				
+				
+				
+				ColumnMulitDSConf1=new ArrayCollection([
+					{name:"计划",field:"vol1",color:0xcc0000},
+				]);
+				ColumnMulitDSConf2=new ArrayCollection([
+					{name:"计划",field:"vol1",axis:"left",color:0xcc0000},
+					{name:"完成",field:"vol2",axis:"left",color:0x00cc00},
+				]);
+				ColumnLineMulitDSConf1=new ArrayCollection([
+					{name:"计划",field:"plan",type:"columnSeries",axis:"left",color:0xcc0000},
+					{name:"实际",field:"act",type:"lineSeries",axis:"left",color:0x00cc00},					
+				]);
+				ColumnLineMulitDSConf2=new ArrayCollection([
+					{name:"计划",field:"plan",type:"columnSeries",axis:"left",color:0xcc0000},
+					{name:"实际",field:"act",type:"columnSeries",axis:"left",color:0x00cc00},
+					{name:"完成率",field:"rate",type:"lineSeries",axis:"right",color:0x0000cc},
+					{name:"日历进度",field:"rili",type:"lineSeries",axis:"right",color:0xffff00,showLabel:0},
+				]);
+				BarMulitDSConf=new ArrayCollection([
+					{name:"计划",field:"vol1"},
+					{name:"完成",field:"vol2"},
+					{name:"剩余",field:"vol3"},
+				]);
+				LineMulitDSConf1=new ArrayCollection([
+					{name:"计划",field:"vol1",color:0xcc0000},
+					{name:"实际",field:"vol2",color:0x00cc00}
+				]);
+				
+				
+				ColumnMulitDSConf1=new ArrayCollection([
+					{name:"计划",field:"vol1"},
+				]);
+				ColumnMulitDSConf2=new ArrayCollection([
+					{name:"计划",field:"vol1",axis:"left"},
+					{name:"完成",field:"vol2",axis:"left"},
+				]);
+				ColumnLineMulitDSConf1=new ArrayCollection([
+					{name:"计划",field:"plan",type:"columnSeries",axis:"left"},
+					{name:"实际",field:"act",type:"lineSeries",axis:"left"},					
+				]);
+				ColumnLineMulitDSConf2=new ArrayCollection([
+					{name:"计划",field:"plan",type:"columnSeries",axis:"left"},
+					{name:"实际",field:"act",type:"columnSeries",axis:"left"},
+					{name:"完成率",field:"rate",type:"lineSeries",axis:"right"},
+					{name:"日历进度",field:"rili",type:"lineSeries",axis:"right",showLabel:0},
+				]);
+				BarMulitDSConf=new ArrayCollection([
+					{name:"计划",field:"vol1",id:"aaaaaa"},
+					{name:"完成",field:"vol2"},
+					{name:"剩余",field:"vol3"},
+				]);
+				LineMulitDSConf1=new ArrayCollection([
+					{name:"计划",field:"vol1"},
+					{name:"实际",field:"vol2"}
+				]);
+				
+				tab3_leftConfDS = new ArrayCollection([{name: "整改率", field: "vol1", type: "columnSeries", axis: "left"}, {name: "平均整改率", field: "vol2", type: "lineSeries", axis: "left", showLabel: 0}]);
+				tab3_rightConfDS = new ArrayCollection([{name: "整改率", field: "vol1", type: "columnSeries", axis: "left"}, {name: "平均整改率", field: "vol2", type: "lineSeries", axis: "left", showLabel: 0}]);
+				
+
+				loadDemo();
+			}
+			
+			
+			private function loadDemo():void{
+				tab3_leftDS = new ArrayCollection([
+					{label:"单位1",vol1:99},
+					{label:"单位2",vol1:89},
+					{label:"单位3",vol1:79},
+					{label:"单位4",vol1:69},
+					{label:"单位5",vol1:59},
+					{label:"单位6",vol1:49},
+					{label:"单位7",vol1:39},
+					{label:"单位8",vol1:29},
+					{label:"单位9",vol1:19},
+					{label:"单位10",vol1:9}
+				]);
+				tab3_rightDS = new ArrayCollection([
+					{label:"单位1",vol1:0},
+					{label:"单位2",vol1:1},
+					{label:"单位3",vol1:2},
+					{label:"单位4",vol1:3},
+					{label:"单位5",vol1:4},
+					{label:"单位6",vol1:5},
+					{label:"单位7",vol1:6},
+					{label:"单位8",vol1:7},
+					{label:"单位9",vol1:8},
+					{label:"单位10",vol1:9}
+				]);
+				
+				
+				ColumnMulitDS1=new ArrayCollection([
+					{label:"油田",vol1:20000},
+					{label:"炼化",vol1:40000},
+					{label:"销售",vol1:90000},
+					{label:"工程",vol1:60000},
+					{label:"其他",vol1:60000}
+				]);
+				ColumnMulitDS2=new ArrayCollection([
+					{label:"油田",vol1:20000,vol2:20000},
+					{label:"炼化",vol1:40000,vol2:30000},
+					{label:"销售",vol1:90000,vol2:60000},
+					{label:"工程",vol1:60000,vol2:20000},
+					{label:"其他",vol1:60000,vol2:50000}
+				]);
+				ColumnLineMulitDS1= new ArrayCollection([
+					{label:"油田",plan:20000,act:30000},
+					{label:"炼化",plan:40000,act:40000},
+					{label:"销售",plan:90000,act:90000},
+					{label:"工程",plan:60000,act:60000},
+					{label:"其他",plan:60000,act:60000}
+				]);
+				ColumnLineMulitDS2= new ArrayCollection([
+					{label:"油田",plan:20000,act:77000,rate:90,rili:80},
+					{label:"炼化",plan:40000,act:66000,rate:22,rili:80},
+					{label:"销售",plan:90000,act:55000,rate:33,rili:80},
+					{label:"工程",plan:60000,act:44000,rate:55,rili:80},
+					{label:"其他",plan:60000,act:33000,rate:77,rili:80}
+				]);
+				ColumnPlanActSurRateDS2=new ArrayCollection([
+					{label:"油田",plan:20000,act:10000,sur:10000,rate:50},
+					{label:"炼化",plan:20000,act:20000,sur:0,rate:100},
+					{label:"销售",plan:10000,act:10000,sur:0,rate:100},
+					{label:"工程",plan:30000,act:20000,sur:10000,rate:66.6},
+					{label:"其他",plan:30000,act:20000,sur:10000,rate:66.6}
+				]);
+				ColumnPlanActSurLineRateDS2=new ArrayCollection([
+					{label:"油田",plan:20000,act:10000,sur:10000,rate:50},
+					{label:"炼化",plan:20000,act:20000,sur:0,rate:100},
+					{label:"销售",plan:10000,act:10000,sur:0,rate:100},
+					{label:"工程",plan:30000,act:20000,sur:10000,rate:66.6},
+					{label:"其他",plan:30000,act:20000,sur:10000,rate:66.6}
+				]);
+				ColumnPlanActRateDS2=new ArrayCollection([
+					{label:"油田",plan:20000,act:10000,sur:10000,rate:50},
+					{label:"炼化",plan:20000,act:20000,sur:0,rate:100},
+					{label:"销售",plan:10000,act:10000,sur:0,rate:100},
+					{label:"工程",plan:30000,act:20000,sur:10000,rate:66.6},
+					{label:"其他",plan:30000,act:20000,sur:10000,rate:66.6}
+				]);
+				ColumnActSurLineRateDS2=new ArrayCollection([
+					{label:"油田",plan:20000,act:10000,sur:10000,rate:50},
+					{label:"炼化",plan:20000,act:20000,sur:0,rate:100},
+					{label:"销售",plan:10000,act:10000,sur:0,rate:100},
+					{label:"工程",plan:30000,act:20000,sur:10000,rate:66.6},
+					{label:"其他",plan:30000,act:20000,sur:10000,rate:66.6}
+				]);
+				BarMulitDS = new ArrayCollection([
+					{label:"油田",vol1:20000,vol2:300000,vol3:400000},
+					{label:"炼化",vol1:40000,vol2:400000,vol3:500000},
+					{label:"销售",vol1:90000,vol2:900000,vol3:1000000},
+					{label:"工程",vol1:60000,vol2:600000,vol3:700000},
+					{label:"其他",vol1:60000,vol2:600000,vol3:700000}
+				]);
+				
+				BarStaticDS= new ArrayCollection([
+					{label:"油田",plan:200,act:110,sur:90},
+					{label:"炼化",plan:400,act:300,sur:100},
+					{label:"销售",plan:900,act:800,sur:100},
+					{label:"工程",plan:600,act:400,sur:200},
+					{label:"其他",plan:600,act:560}
+				]);
+				
+				pieDS= new ArrayCollection([
+					{label:"颜色1",id:"1",value:5},
+					{label:"颜色2",id:"2",value:5},
+					{label:"颜色3",id:"3",value:5},
+					{label:"颜色4",id:"4",value:5},
+					{label:"颜色5",id:"5",value:5},
+					{label:"颜色6",id:"6",value:5},
+					{label:"颜色7",id:"7",value:5},
+					{label:"颜色8",id:"8",value:5},
+					{label:"颜色9",id:"9",value:5},
+					{label:"颜色10",id:"10",value:5}
+				]);
+				
+				pieEff1DS= new ArrayCollection([
+					{label:"颜色1",id:"1",value:5},
+					{label:"颜色2",id:"2",value:5},
+					{label:"颜色3",id:"3",value:5},
+					{label:"颜色4",id:"4",value:5},
+					{label:"颜色5",id:"5",value:5},
+					{label:"颜色6",id:"6",value:5},
+					{label:"颜色7",id:"7",value:5},
+					{label:"颜色8",id:"8",value:5},
+					{label:"颜色9",id:"9",value:5},
+					{label:"颜色10",id:"10",value:5},
+				]);
+				pieEff2DS= new ArrayCollection([
+					{label:"颜色1",id:"1",value:5},
+					{label:"颜色2",id:"2",value:5},
+					{label:"颜色3",id:"3",value:5},
+					{label:"颜色4",id:"4",value:5},
+					{label:"颜色5",id:"5",value:5},
+					{label:"颜色6",id:"6",value:5},
+					{label:"颜色7",id:"7",value:5},
+					{label:"颜色8",id:"8",value:5},
+					{label:"颜色9",id:"9",value:5},
+					{label:"颜色10",id:"10",value:5}
+				]);
+				
+				LineMulitDS1=new ArrayCollection([
+					{label:"1月",vol1:20000,vol2:34562},
+					{label:"2月",vol1:40000,vol2:33372},
+					{label:"3月",vol1:90000,vol2:38762},
+					{label:"4月",vol1:60000,vol2:34992},
+					{label:"5月",vol1:60000,vol2:35562}
+				]);
+				
+				expensesAC = new ArrayCollection( [ 
+					{ Month: "Jan测试", Profit: 2000, Expenses: 1500, Amount: 450 }, 
+					{ Month: "Feb", Profit: 1000, Expenses: 200, Amount: 600 }, 
+					{ Month: "Mar", Profit: 1500, Expenses: 500, Amount: 300 }, 
+					{ Month: "Apr", Profit: 1800, Expenses: 1200, Amount: 900 }, 
+					{ Month: "May", Profit: 2400, Expenses: 575, Amount: 500 } ]); 
+			}
+			
+			
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			protected function btnPopUpTest_clickHandler(event:MouseEvent):void
+			{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.title = "年承包商构成情况表";    
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);	});
+				//双击窗口任意地方都关闭
+				//titleWindow.doubleClickEnabled=true;
+				//titleWindow.addEventListener(MouseEvent.DOUBLE_CLICK,function closeEV2():void{PopUpManager.removePopUp(titleWindow);	});
+				//titleWindow.width = 800;    
+				//titleWindow.height = 400;    
+				//titleWindow.height=this.height-60;
+				//titleWindow.width=this.width-60;
+				
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width1:"90",textAlign:"left",sortable:true,draggable:false,footHeakerText:""},
+					{headerText:"级别1",dataField:"label",width1:"90",textAlign:"left",sortable:true,draggable:false,enableUrlLink:true,sortByCustomField:"id",footHeakerText:"合计"},
+					{headerText:"合格1",dataField:"goodNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText:"不合格1",dataField:"badNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false,footLblFunEnable:true,footLblFunType:"avg",footLblFunCustomField:"badNumbers"},
+					{headerText:"小计1",dataField:"contractorNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"goodNumbers,badNumbers"},
+				]);
+				titleWindow.DataSource= new ArrayCollection([
+					//{order:1,label:"小计",id:5,goodNumbers:2,badNumbers:3,contractorNumbers:2,index:1,labelURL:"http://www.baidu.com/"},
+					{order:2,label:"一级1",id:6,goodNumbers:2,badNumbers:3,contractorNumbers:2,index:2,labelURL:"http://www.baidu.com/"},
+					{order:3,label:"二级1",id:2,goodNumbers:3,badNumbers:1,contractorNumbers:1},
+					{order:4,label:"三级1",id:3,goodNumbers:4,badNumbers:2,contractorNumbers:3},
+				]);
+				titleWindow.addEventListener(events.PopupEvent.PopupDoubleClick,pop2);
+				titleWindow.addEventListener(events.PopupEvent.PopupItemClick,pop3);
+				//titleWindow.addEventListener(events.ExportEvent.ExportClick,exportFun);
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow);  
+			}
+			protected function pop2(event:events.PopupEvent):void{
+				var obj:Object=event.hitDataItem;
+				Alert.show("弹出第二个窗口："+obj.label);
+			}
+			protected function pop3(event:events.PopupEvent):void{
+				var obj:Object=event.hitDataItem;
+				Alert.show("弹出Item窗口："+obj.label);
+			}
+			
+			protected function piemultiwitheffect11_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				//Alert.show("asdf");
+			}
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			
+			protected function barsubtotalmulti1_PopupCfgClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitCfgItem;
+				var iData:Object=event.hitDataItem;
+				Alert.show(iData.label+","+item.name);
+			}
+			
+			
+			
+			
+			[Bindable]
+			private var tab3_leftAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab3_leftAxisMinimum:Number = 0;
+			[Bindable]
+			private var tab3_rightAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab3_rightAxisMinimum:Number = 0;
+			protected function tab3_left_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab3_leftAxisMaximum = event.getLeftAxisMaximum>tab3_leftAxisMaximum?event.getLeftAxisMaximum:tab3_leftAxisMaximum;
+				tab3_leftAxisMinimum = event.getLeftAxisMinimum<tab3_leftAxisMaximum?event.getLeftAxisMinimum:tab3_leftAxisMinimum;
+				tab3_rightAxisMaximum = event.getRightAxisMaximum>tab3_rightAxisMaximum?event.getLeftAxisMaximum:tab3_rightAxisMaximum;
+				tab3_rightAxisMinimum = event.getRightAxisMinimum<tab3_rightAxisMinimum?event.getLeftAxisMinimum:tab3_rightAxisMinimum;
+			}
+			protected function tab3_right_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab3_leftAxisMaximum = event.getLeftAxisMaximum>tab3_leftAxisMaximum?event.getLeftAxisMaximum:tab3_leftAxisMaximum;
+				tab3_leftAxisMinimum = event.getLeftAxisMinimum<tab3_leftAxisMaximum?event.getLeftAxisMinimum:tab3_leftAxisMinimum;
+				tab3_rightAxisMaximum = event.getRightAxisMaximum>tab3_rightAxisMaximum?event.getLeftAxisMaximum:tab3_rightAxisMaximum;
+				tab3_rightAxisMinimum = event.getRightAxisMinimum<tab3_rightAxisMinimum?event.getLeftAxisMinimum:tab3_rightAxisMinimum;
+			}
+			
+			
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<s:SolidColorStroke id="s1" color="blue" weight="5"/> 
+		<s:SolidColorStroke id="s2" color="red" weight="5"/> 
+		<s:SolidColorStroke id="s3" color="green" weight="5"/> 
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<!--标签0,整体概况-->
+		<s:NavigatorContent width="100%" height="100%" label="整体概况（第一层）">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0" />
+			</s:layout>
+			<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+				<s:layout>
+					<s:BasicLayout/>
+				</s:layout>
+				<s:ButtonBar id="buttonBar91" dataProvider="{viewStack91}" height="25" styleName="tabButtonStyle2" right="5" top="5"/>
+			</s:BorderContainer>
+			<mx:ViewStack id="viewStack91" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+				<s:NavigatorContent width="100%" height="100%" label="整体概况（第二层）1">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0" />
+					</s:layout>
+					<s:BorderContainer width="100%" height="34" styleName="tabHead3Box">
+						<s:layout>
+							<s:BasicLayout/>
+						</s:layout>
+						<s:ButtonBar id="buttonBar911" dataProvider="{viewStack911}" height="25" styleName="tabButtonStyle3" left="5" top="5"/>
+					</s:BorderContainer>
+					<mx:ViewStack id="viewStack911" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+						<s:NavigatorContent width="100%" height="100%" label="整体概况（第三层）1">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+								<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+									<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+										<s:layout>
+											<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+										</s:layout>
+										<views:ColumnLineMulti labelRotationX="45" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnLineMulitDSConf2}" DataSource="{ColumnLineMulitDS2}"/>
+									</s:BorderContainer> 
+									<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+										<s:layout>
+											<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+										</s:layout>
+										<views:ColumnLineMulti labelRotationX="45" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnLineMulitDSConf2}" DataSource="{ColumnLineMulitDS2}"/>
+									</s:BorderContainer>
+								</s:HGroup>
+								<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+									<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+										<s:layout>
+											<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+										</s:layout>
+										<views:ColumnLineMulti labelRotationX="45" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnLineMulitDSConf2}" DataSource="{ColumnLineMulitDS2}"/>
+									</s:BorderContainer>
+									<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+										<s:layout>
+											<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+										</s:layout>
+										<views:ColumnLineMulti labelRotationX="45" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnLineMulitDSConf2}" DataSource="{ColumnLineMulitDS2}"/>
+									</s:BorderContainer>
+								</s:HGroup>
+							</s:VGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="整体概况（第三层）2">
+							<s:VGroup width="100%"
+									  height="100%"
+									  horizontalAlign="center"
+									  gap="-1">
+								<s:HGroup width="100%"
+										  height="100%"
+										  horizontalAlign="center"
+										  verticalAlign="top"
+										  gap="-1">
+									<s:BorderContainer width="100%"
+													   height="100%"
+													   styleName="contentBox">
+										<s:layout>
+											<s:VerticalLayout paddingLeft="5"
+															  paddingTop="5"
+															  paddingBottom="5"
+															  paddingRight="5"
+															  horizontalAlign="justify" />
+										</s:layout>
+										<views:ColumnLineMulti id="tab3_left"
+															   labelRotationX="45"
+															   showTitle="true"
+															   showLegend="true"
+															   title="左侧前几名"
+															   AxisLeftUnit="%"
+															   DataSource="{tab3_leftDS}"
+															   DataSourceConf="{tab3_leftConfDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}"
+															   SetAxisComplate="tab3_left_SetAxisComplateHandler(event)" 
+															   UseCustomAxisMaxMinmum="true"
+															   LeftAxisMaximum="{tab3_leftAxisMaximum}"
+															   LeftAxisMinimum="{tab3_leftAxisMinimum}"
+															   RightAxisMaximum="{tab3_rightAxisMaximum}"
+															   RightAxisMinimum="{tab3_rightAxisMinimum}" />
+									</s:BorderContainer>
+									<s:BorderContainer width="100%"
+													   height="100%"
+													   styleName="contentBox">
+										<s:layout>
+											<s:VerticalLayout paddingLeft="5"
+															  paddingTop="5"
+															  paddingBottom="5"
+															  paddingRight="5"
+															  horizontalAlign="justify" />
+										</s:layout>
+										<views:ColumnLineMulti id="tab3_right"
+															   labelRotationX="45"
+															   showTitle="true"
+															   showLegend="true"
+															   title="右侧后几名"
+															   AxisLeftUnit="%"
+															   DataSource="{tab3_rightDS}"
+															   DataSourceConf="{tab3_rightConfDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}"
+															   SetAxisComplate="tab3_right_SetAxisComplateHandler(event)"
+															   UseCustomAxisMaxMinmum="true"
+															   LeftAxisMaximum="{tab3_leftAxisMaximum}"
+															   LeftAxisMinimum="{tab3_leftAxisMinimum}"
+															   RightAxisMaximum="{tab3_rightAxisMaximum}"
+															   RightAxisMinimum="{tab3_rightAxisMinimum}" />
+									</s:BorderContainer>
+								</s:HGroup>
+							</s:VGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="整体概况（第三层）3"/>
+						<s:NavigatorContent width="100%" height="100%" label="整体概况（第三层）4"/>
+					</mx:ViewStack>
+				</s:NavigatorContent>
+				<s:NavigatorContent width="100%" height="100%" label="整体概况（第二层）2"/>
+				<s:NavigatorContent width="100%" height="100%" label="整体概况（第二层）3"/>
+				<s:NavigatorContent width="100%" height="100%" label="整体概况（第二层）4"/>
+			</mx:ViewStack>
+			
+		</s:NavigatorContent>
+		
+		
+		<!--标签1-->
+		<s:NavigatorContent width="100%" height="100%" label="柱状图（动态）">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<s:ButtonBar id="buttonBarA" dataProvider="{viewStackA}" height="25" styleName="tabButtonStyle2"/>
+			<mx:ViewStack id="viewStackA" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+				<s:NavigatorContent width="100%" height="100%" label="柱图">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+					</s:layout>
+					<s:HGroup width="100%" height="100%" horizontalAlign="center">
+						<s:BorderContainer width="49%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:ColumnMulti showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnMulitDSConf1}" DataSource="{ColumnMulitDS1}"/>
+							</s:VGroup>
+						</s:BorderContainer>
+						<s:BorderContainer width="49%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:ColumnMulti width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnMulitDSConf2}" DataSource="{ColumnMulitDS2}"/>
+							</s:VGroup>
+						</s:BorderContainer>
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent width="100%" height="100%" label="柱线图">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+					</s:layout>
+					<s:HGroup width="100%" height="100%" horizontalAlign="center">
+						<s:BorderContainer width="49%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:ColumnLineMulti showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnLineMulitDSConf1}" DataSource="{ColumnLineMulitDS1}"/>
+							</s:VGroup>
+						</s:BorderContainer>
+						<s:BorderContainer width="49%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:ColumnLineMulti width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnLineMulitDSConf2}" DataSource="{ColumnLineMulitDS2}"/>
+							</s:VGroup>
+						</s:BorderContainer>
+					</s:HGroup>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+		<!--标签2-->
+		<s:NavigatorContent width="100%" height="100%" label="柱状图（固定）">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<s:ButtonBar id="buttonBarB" dataProvider="{viewStackB}" height="25" styleName="tabButtonStyle2"/>
+			<mx:ViewStack id="viewStackB" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+				<s:NavigatorContent width="100%" height="100%" label="单值情况">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+					</s:layout>
+					<s:ButtonBar id="buttonBarB1" dataProvider="{viewStackB1}" height="25"  styleName="tabButtonStyle3"/>
+					<mx:ViewStack id="viewStackB1" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+						<s:NavigatorContent width="100%" height="100%" label="计划完成剩余完成率（柱）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnPlanActSurRate IfSingle="true" width="100%" height="100%" showTitle="false" showLegend="true" showLegendValue="true" 
+																	planTxt="计划" actTxt="完成" surTxt="剩余" rateTxt="完成率" 
+																	cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}" cColor3="{new SolidColor(0x0000cc)}" cColor4="{new SolidColor(0xcccc00)}" 
+																	PlanVol="100" ActVol="90" SurVol="10" RateVol="90"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="计划完成剩余完成率（柱线）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnPlanActSurLineRate IfSingle="true" width="100%" height="100%" showTitle="false" showLegend="true" showLegendValue="true" 
+																		planTxt="计划" actTxt="完成" surTxt="剩余" rateTxt="完成率" 
+																		cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}" cColor3="{new SolidColor(0x0000cc)}" lColor1="{new SolidColor(0xcccc00)}"
+																		lColorStroke1="{new SolidColorStroke(0xcccc00,2,1)}"
+																		PlanVol="100" ActVol="90" SurVol="10" RateVol="90"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="计划完成完成率（柱）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnPlanActRate IfSingle="true" width="100%" height="100%" showTitle="false" showLegend="true" showLegendValue="true" 
+																 planTxt="计划" actTxt="完成" rateTxt="完成率" 
+																 cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}" cColor3="{new SolidColor(0x0000cc)}"
+																 PlanVol="100" ActVol="90" RateVol="90"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="完成剩余完成率（柱线）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnActSurLineRate IfSingle="true" width="100%" height="100%" showTitle="false" showLegend="true" showLegendValue="true" 
+																	actTxt="完成" surTxt="剩余" rateTxt="完成率" 
+																	cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}" lColor1="{new SolidColor(0xcccc00)}" 
+																	lColorStroke1="{new SolidColorStroke(0xcccc00,2,1)}"
+																	ActVol="10" SurVol="90" RateVol="90"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+					</mx:ViewStack>
+				</s:NavigatorContent>
+				<s:NavigatorContent width="100%" height="100%" label="多值情况">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+					</s:layout>
+					<s:ButtonBar id="buttonBarB2" dataProvider="{viewStackB2}" height="25"  styleName="tabButtonStyle3"/>
+					<mx:ViewStack id="viewStackB2" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+						<s:NavigatorContent width="100%" height="100%" label="计划完成剩余完成率（柱）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnPlanActSurRate IfSingle="false" width="100%" height="100%" showTitle="false" showLegend="true" 
+																	planTxt="计划" actTxt="完成" surTxt="剩余" rateTxt="完成率" 
+																	cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}" cColor3="{new SolidColor(0x0000cc)}" cColor4="{new SolidColor(0xcccc00)}"
+																	DataSource="{ColumnPlanActSurRateDS2}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="计划完成剩余完成率（柱线）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnPlanActSurLineRate IfSingle="false" width="100%" height="100%" showTitle="false" showLegend="true" 
+																		planTxt="计划" actTxt="完成" surTxt="剩余" rateTxt="完成率" 
+																		cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}" cColor3="{new SolidColor(0x0000cc)}" lColor1="{new SolidColor(0xcccc00)}"
+																		lColorStroke1="{new SolidColorStroke(0xcccc00,2,1)}"
+																		DataSource="{ColumnPlanActSurLineRateDS2}" />
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="计划完成完成率（柱）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnPlanActRate IfSingle="false" width="100%" height="100%" showTitle="false" showLegend="true" 
+																 planTxt="计划" actTxt="完成" rateTxt="完成率" 
+																 cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}" cColor3="{new SolidColor(0x0000cc)}"
+																 DataSource="{ColumnPlanActRateDS2}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="完成剩余完成率（柱线）">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:ColumnActSurLineRate IfSingle="false" width="100%" height="100%" showTitle="false" showLegend="true" 
+																	actTxt="完成" surTxt="剩余" rateTxt="完成率" 
+																	cColor1="{new SolidColor(0xcc0000)}" cColor2="{new SolidColor(0x00cc00)}"  lColor1="{new SolidColor(0xcccc00)}"
+																	lColorStroke1="{new SolidColorStroke(0xcccc00,2,1)}"
+																	DataSource="{ColumnActSurLineRateDS2}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+					</mx:ViewStack>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+		<!--标签3-->
+		<s:NavigatorContent width="100%" height="100%" label="饼图">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<s:ButtonBar id="buttonBarC" dataProvider="{viewStackC}" height="25"  styleName="tabButtonStyle2"/>
+			<mx:ViewStack id="viewStackC" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+				<s:NavigatorContent width="100%" height="100%" label="饼图实例">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+					</s:layout>
+					<s:ButtonBar id="buttonBarC1" dataProvider="{viewStackC1}" height="25"  styleName="tabButtonStyle3"/>
+					<mx:ViewStack id="viewStackC1" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+						<s:NavigatorContent width="100%" height="100%" label="饼图">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:PieMulti DataSource="{pieDS}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="饼图带动画1">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:PieMultiWithEffect1 DataSource="{pieDS}" dataUnit="个" PopupClick="piemultiwitheffect11_PopupClickHandler(event)"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="饼图带动画2">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:PieMultiWithEffect2 DataSource="{pieDS}" dataUnit="个"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="饼图上下半饼">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:PieMultiDouble dataUnit="个" DataSourceUp="{pieEff1DS}" DataSourceDown="{pieEff2DS}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="饼图上半饼">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:PieMultiUpHalf dataUnit="个" DataSource="{pieDS}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+						<s:NavigatorContent width="100%" height="100%" label="饼图下半饼">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:PieMultiDownHalf dataUnit="个" DataSource="{pieDS}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+					</mx:ViewStack>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+		<!--标签4-->
+		<s:NavigatorContent width="100%" height="100%" label="线图">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<s:ButtonBar id="buttonBarD" dataProvider="{viewStackD}" height="25"  styleName="tabButtonStyle2"/>
+			<mx:ViewStack id="viewStackD" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+				<s:NavigatorContent width="100%" height="100%" label="线图实例">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+					</s:layout>
+					<s:ButtonBar id="buttonBarD2" dataProvider="{viewStackD2}" height="25"  styleName="tabButtonStyle3"/>
+					<mx:ViewStack id="viewStackD2" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+						<s:NavigatorContent width="100%" height="100%" label="线图">
+							<s:layout>
+								<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+							</s:layout>
+							<s:HGroup width="100%" height="100%" horizontalAlign="center">
+								<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+									<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+										<views:LineMulti width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{LineMulitDSConf1}" DataSource="{LineMulitDS1}"/>
+									</s:VGroup>
+								</s:BorderContainer>
+							</s:HGroup>
+						</s:NavigatorContent>
+					</mx:ViewStack>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+		<!--标签5-->
+		<s:NavigatorContent width="100%" height="100%" label="条形图">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<s:ButtonBar id="buttonBarE" dataProvider="{viewStackE}" height="25"  styleName="tabButtonStyle2"/>
+			<mx:ViewStack id="viewStackE" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+				<s:NavigatorContent width="100%" height="100%" label="堆积">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+					</s:layout>
+					<s:HGroup width="100%" height="100%" horizontalAlign="center">
+						<s:BorderContainer width="99%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:BarMulti showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{BarMulitDSConf}" DataSource="{BarMulitDS}"/>
+							</s:VGroup>
+						</s:BorderContainer>
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent width="100%" height="100%" label="固定">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+					</s:layout>
+					<s:HGroup width="100%" height="100%" horizontalAlign="center">
+						<s:BorderContainer width="99%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:BarPlanActSur showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" DataSource="{BarStaticDS}"/>
+							</s:VGroup>
+						</s:BorderContainer>
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent width="100%" height="100%" label="自动带合计">
+					<s:layout>
+						<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" paddingTop="10"/>
+					</s:layout>
+					<s:HGroup width="100%" height="50%" horizontalAlign="center">
+						<s:BorderContainer width="50%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:BarSubTotalMulti showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" xAxisAt="top" yAxisAt="left" PopupCfgClick="barsubtotalmulti1_PopupCfgClickHandler(event)"/>
+							</s:VGroup>
+						</s:BorderContainer>
+						<s:BorderContainer width="50%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:BarSubTotalMulti showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" xAxisAt="top" yAxisAt="right"/>
+							</s:VGroup>
+						</s:BorderContainer>
+					</s:HGroup>
+					<s:HGroup width="100%" height="50%" horizontalAlign="center">
+						<s:BorderContainer width="50%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:BarSubTotalMulti showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" xAxisAt="bottom" yAxisAt="left"/>
+							</s:VGroup>
+						</s:BorderContainer>
+						<s:BorderContainer width="50%" height="99%" styleName="contentBox">
+							<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+								<views:BarSubTotalMulti showZoomControlBox="true" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="true" xAxisAt="bottom" yAxisAt="right"/>
+							</s:VGroup>
+						</s:BorderContainer>
+					</s:HGroup>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+		<!--标签5-->
+		<s:NavigatorContent width="100%" height="100%" label="弹出层（详细数据）">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<mx:Button id="btnPopUpTest" click="btnPopUpTest_clickHandler(event)" label="点击查看详细信息"/>
+			<mx:NumericStepper value="1" minimum="0" maximum="10" stepSize="1"/>
+			<s:NumericStepper value="1" minimum="0" maximum="10" stepSize="1"/>
+			
+		</s:NavigatorContent>
+		<!--标签6-->
+		<s:NavigatorContent width="100%" height="100%" label="仪表">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<views:Gauge value="90" width="200" height="200"/>
+		</s:NavigatorContent>
+		<!--标签7-->
+		<s:NavigatorContent width="100%" height="100%" label="测试">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<mx:ColumnChart id="lineChart" dataProvider="{expensesAC}" paddingBottom="10" paddingLeft="10"
+							paddingRight="10" paddingTop="10" showDataTips="true" styleName="chart"> 
+				<mx:horizontalAxis> 
+					<mx:CategoryAxis id="datetime_axis" categoryField="Month"/> 
+				</mx:horizontalAxis> 
+				<mx:horizontalAxisRenderers> 
+					<mx:AxisRenderer axis="{datetime_axis}" canDropLabels="false" canStagger="true"
+									 labelRotation="45"> 
+					</mx:AxisRenderer> 
+				</mx:horizontalAxisRenderers> 
+				<mx:series> 
+					<mx:LineSeries displayName="Profit" form="curve" lineStroke="{s1}" yField="Profit"/> 
+					<mx:LineSeries displayName="Expenses" form="curve" lineStroke="{s2}"
+								   yField="Expenses"/> 
+					<mx:LineSeries displayName="Amount" form="curve" lineStroke="{s3}" yField="Amount"/> 
+				</mx:series> 
+			</mx:ColumnChart> 
+		</s:NavigatorContent>
+		<!--标签7-->
+		<s:NavigatorContent width="100%" height="100%" label="测试2">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<s:HGroup width="100%" height="100%" horizontalAlign="center">
+				<s:BorderContainer width="49%" height="99%" styleName="contentBox">
+					<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top">
+						<views:ColumnLineMulti labelRotationX="45" width="100%" height="100%" showTitle="true" showLegend="true" DataSourceConf="{ColumnLineMulitDSConf2}" DataSource="{ColumnLineMulitDS2}"/>
+					</s:VGroup>
+				</s:BorderContainer>
+			</s:HGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Application>

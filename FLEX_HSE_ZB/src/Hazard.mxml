@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()" xmlns:hazard="modules.hazard.*">
+	<!--
+	/* *
+	* 名称：总部仪表盘-隐患管理
+	* 参数：年月（2012-12）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import as_class.Menu_as;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.DateField;
+			import mx.events.FlexEvent;
+			
+			import skins.ButtonBarSkin;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况"; 
+			[Bindable]
+			private var tab2_title:String="分板块";
+			[Bindable]
+			private var tab3_title:String="分企业";
+			[Bindable]
+			private var tab4_title:String="重点监管项目情况";
+			[Bindable]
+			private var tab5_title:String="项目进度完成情况对比";
+			
+
+			
+			[Bindable]
+			private var DateStr:String="2012-12";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				this.contextMenu = Menu_as.Instance.add_menu(this,viewStack);
+				this.styleManager.loadStyleDeclarations2("./assets/fonts/WB_SimSun.swf");
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					for(var j:int=12;j>0;j--)
+					{
+						if(!(i==dateCurrYear&&j>dateCurrMth)){
+							var obj:Object=new Object();
+							obj.name=i+"年"+j+"月";
+							obj.value=i+"-"+(j<10?"0"+j.toString():j.toString());
+							dateArrCol.addItem(obj);
+						}
+					}
+				}
+				
+				dateYearMth.dataProvider=dateArrCol;
+				dateYearMth.selectedIndex = 0;
+				DateStr=dateYearMth.selectedItem.value;
+			}
+			
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				DateStr=dateYearMth.selectedItem.value;
+			}
+
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年月" />
+			<s:ComboBox right="5" id="dateYearMth" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5" creationPolicy="auto">
+		<s:NavigatorContent width="100%" height="100%" label="{tab1_title}">
+			<hazard:Hazard_overAll width="100%" height="100%" id="overAll" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>	
+		
+		<s:NavigatorContent width="100%" height="100%" label="{tab2_title}">
+			<hazard:Hazard_byPlate width="100%" height="100%" id="byPlate" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent width="100%" height="100%" label="{tab3_title}">
+			<hazard:Hazard_byCorp width="100%" height="100%" id="byCorp" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>
+		<!--
+		
+		<s:NavigatorContent width="100%" height="100%" label="{tab4_title}">
+			<hazard:Hazard_majorSupervision width="100%" height="100%" id="majorSupervision" DateStr="{DateStr}"/>
+		</s:NavigatorContent>
+
+		<s:NavigatorContent width="100%" height="100%" label="{tab5_title}">
+			<hazard:Hazard_byCorpProj width="100%" height="100%" id="byCorpProj" DateStr="{DateStr}"/>
+		</s:NavigatorContent>
+		-->
+
+		<s:NavigatorContent width="100%" height="100%" label="{tab4_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="right" verticalAlign="middle" gap="0"/>
+			</s:layout>
+			<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+				<s:layout>
+					<s:BasicLayout/>
+				</s:layout>
+				<s:ButtonBar id="buttonBarA" dataProvider="{viewStackA}" height="25"  styleName="tabButtonStyle2" right="5" top="5"/>
+			</s:BorderContainer>
+			<mx:ViewStack id="viewStackA" width="100%" height="100%" styleName="tabContentBox" borderStyle="inset">
+				<s:NavigatorContent width="100%" height="100%" label="总部领导重点监管项目">
+					<hazard:Hazard_majorSupervisionItem width="100%" height="100%" id="goupLeaderSupervisionData" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}" wsID="goupLeaderSupervisionData" wsTitle="总部领导重点监管项目"/>
+				</s:NavigatorContent>
+				<s:NavigatorContent width="100%" height="100%" label="总部部门重点监管项目">
+					<hazard:Hazard_majorSupervisionItem width="100%" height="100%" id="departmentManagerSupervisionData" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}" wsID="departmentManagerSupervisionData" wsTitle="总部部门重点监管项目"/>
+				</s:NavigatorContent>
+				<s:NavigatorContent width="100%" height="100%" label="专业公司重点监管项目">
+					<hazard:Hazard_majorSupervisionItem width="100%" height="100%" id="profCorpSupervisionData" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}" wsID="profCorpSupervisionData" wsTitle="专业公司重点监管项目"/>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+
+	</mx:ViewStack>
+	
+</s:Application>
+

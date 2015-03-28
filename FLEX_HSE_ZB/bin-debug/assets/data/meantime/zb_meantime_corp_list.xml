@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘 三同时 总体情况，分板块的一级页面  日期：2013-2-19  -->
+ <!--*************************一、字段说明如下******************************
+  order:项目显示序号                                         typeid：类型id，取值为5种
+  projectNumber:项目数                                      sequence：项目阶段的序号
+  label：某个id对应的标签                                     nostartNumber:未启动项目数
+  inprocessNumber:正在进行的项目数                           finishedNumber:已完成的项目数
+  plateid：板块ID                                       subCorpid：企业ID
+  corpid:企业id                                         status：状态，其取值:　NO-START:未启动  IN-PROCESS：进行中 FINISHED:已完成
+  currentStageSequence：项目当前所处阶段的序号                URL:某个具体企业项目对应系统url
+  projectName：项目名称
+ 
+ -->
+ 
+<dataOutline dataYear="2012-2013"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+<corps>
+	<corpData corpType="总体概述">
+		<rateDatas rateType="green" label="绿色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="yellow" label="黄色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="40"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="60"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="red" label="红色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+	</corpData>
+	<corpData corpType="安全">
+		<rateDatas rateType="green" label="绿色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="60"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="yellow" label="黄色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="red" label="红色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+	</corpData>
+	<corpData corpType="环保">
+		<rateDatas rateType="green" label="绿色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="yellow" label="黄色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="red" label="红色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+	</corpData>
+	<corpData corpType="职业卫生">
+		<rateDatas rateType="green" label="绿色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="yellow" label="黄色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="red" label="红色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+	</corpData>
+	<corpData corpType="抗震">
+		<rateDatas rateType="green" label="绿色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="yellow" label="黄色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="red" label="红色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+	</corpData>
+	<corpData corpType="消防">
+		<rateDatas rateType="green" label="绿色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="yellow" label="黄色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+		<rateDatas rateType="red" label="红色">
+			<topDatas numbers="3">
+				<dataset label="石家庄" numbers="90"/>
+		 		<dataset label="燕山" numbers="80"/>
+		 		<dataset label="扬子" numbers="70"/>
+			</topDatas>
+			<bottomDatas numbers="3">
+				<dataset label="洛阳" numbers="10"/>
+		 		<dataset label="广州" numbers="20"/>
+		 		<dataset label="茂名" numbers="30"/>
+			</bottomDatas>
+		</rateDatas>
+	</corpData>
+</corps>
+ 
+</model>

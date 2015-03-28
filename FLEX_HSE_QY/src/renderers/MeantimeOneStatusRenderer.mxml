@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx"
+								  focusEnabled="true" dataChange="mxadvanceddatagriditemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var isSum:Boolean=false;
+			[Bindable]
+			private var txt:String="";
+			protected function mxadvanceddatagriditemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				currentState = "state_1";
+				if(advancedDataGridListData != null){
+					isSum=data['isSum']=="1"?true:false;
+					if(isSum){
+						currentState = "state5";
+						//this.setStyle("backgroundColor",0xFFBF00);
+						var obj2:Object=data[advancedDataGridListData.dataField];
+						if(obj2!=null){
+							txt=obj2['statusCnt']
+						}
+						
+					}else{
+						var obj:Object=data[advancedDataGridListData.dataField];
+						if(obj!=null){
+							this.toolTip=obj['alarmTxt']+"";
+							if(obj['status']=="NO-START" || obj['status']=="IN-PROCESS"){//未启动和进行中
+								if(obj['warning']=="0"){//正常
+									currentState = "state0";
+								}else if(obj['warning']=="1"){//预警
+									currentState = "state1";
+								}else if(obj['warning']=="2"){//超期
+									currentState = "state2";
+								}
+							}else if(obj['status']=="FINISHED"){//已完成
+								if(obj['warning']=="3"){//超期完成
+									currentState = "state3";
+								}else if(obj['warning']=="4"){//已完成
+									currentState = "state4";
+								}
+							}else if(obj['status']=="Ignore"){//忽略
+								
+							}
+						}
+					}
+				}
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state_1" stateGroups="group1"/>
+		<s:State name="state0" stateGroups="group1"/>
+		<s:State name="state1" stateGroups="group1"/>
+		<s:State name="state2" stateGroups="group1"/>
+		<s:State name="state3" stateGroups="group1"/>
+		<s:State name="state4" stateGroups="group1"/>
+		<s:State name="state5" stateGroups="group2"/>
+	</s:states>
+	<s:Group id="hgroup" includeIn="group1" width="100%" height="100%" visible="{!isSum}">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:Image width="20" height="20" horizontalCenter="0" verticalCenter="0"
+				 source.state0="assets/images/icoGood.png"
+				 source.state1="assets/images/icoWarning.png"
+				 source.state2="assets/images/icoAlarm.png"
+				 source.state3="assets/images/icoFinishedAlarm.png"
+				 source.state4="assets/images/icoFinished.png"/>
+		<!--
+		<s:Ellipse width="20" height="20" horizontalCenter="0" verticalCenter="0">
+			<s:fill>
+				<s:SolidColor alpha.state_1="0" 
+							  color.state0="#00FF00" 
+							  color.state1="#FFFF00"
+							  color.state2="#FF0000"
+							  color.state3="#00FF00"
+							  color.state4="#00FF00"/>
+			</s:fill>
+		</s:Ellipse>
+		<s:Label horizontalCenter="0" verticalCenter="0" fontWeight="bold" alpha="1"
+				 text.state3="!" color.state3="#FF0000" fontFamily="宋体"
+				 text.state4="√" color.state4="#137F00"
+				 />
+		-->
+		<!--
+		<mx:Image width="20" height="20" 
+		alpha.state_1="0"
+		source.state0="assets/images/no-start.gif" alpha.state0="1"
+		source.state1="assets/images/in-progress.gif" alpha.state1="1"
+		source.state2="assets/images/in-progress.gif" alpha.state2="1"
+		source.state3="assets/images/finished.gif" alpha.state3="1"
+		source.state4="assets/images/finished.gif" alpha.state4="1"
+		/>
+		<s:Rect width="100%" height="100%" horizontalCenter="0" verticalCenter="0">
+			<s:fill>
+				<s:SolidColor alpha.state_1="0" color.state_1="#FFFFFF" color.state0="#FF0000" color.state1="#E2AE00" color.state2="#00FF00" color.state3="#00FF00" color.state4="#00FF00"/>
+			</s:fill>
+		</s:Rect>
+		<s:Label text.state_1="" text.state0="正常" color.state0="#FF0000" text.state1="预警" color.state1="#00FF00" text.state2="超期" color.state2="#00FF00" text.state3="超期完成" color.state3="#00FF00" text.state4="已完成" color.state4="#00FF00" />
+		-->
+	</s:Group>
+	<s:Group id="hgroup2" includeIn="group2" width="100%" height="100%" visible="{isSum}">
+		<s:Label text="{txt}" horizontalCenter="0" verticalCenter="0"/>
+	</s:Group>
+</s:MXAdvancedDataGridItemRenderer>

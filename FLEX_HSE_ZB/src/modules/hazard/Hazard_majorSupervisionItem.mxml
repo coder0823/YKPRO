@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-隐患管理-重点监管项目
+		 * 参数：年月（2012-01）
+		 * 作者：孙山虎
+		 * 日期：2013年5月8日
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import events.PopupEvent;
+			
+			import views.ExportToExcel;
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/zb_hazardMajorSupervisiondata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 12;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			
+			[Bindable]
+			private var dateStr:String = "2013-05";
+			private var dateStrName:String = "2013年05月";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			public var wsTitle:String = "总部领导重点监管项目"; //总部领导重点监管项目；企业领导重点监管项目；专业公司重点监管项目
+			public var wsID:String = "goupLeaderSupervisionData"; //goupLeaderSupervisionData；departmentManagerSupervisionData；profCorpSupervisionData
+			
+			[Bindable]
+			private var tab1_plateCurrSelect:String = "00";
+			private var tab1_plateNameCurrSelect:String = "全部";
+			[Bindable]
+			private var tab1_plateDS:ArrayCollection;
+			[Bindable]
+			private var tab1_plateCtlShow:Boolean = true;
+			
+			[Bindable]
+			private var tab1_typeCurrSelect:String = "00";
+			private var tab1_typeNameCurrSelect:String = "全部";
+			[Bindable]
+			private var tab1_typeDS:ArrayCollection;
+			[Bindable]
+			private var tab1_typeCtlShow:Boolean = true;
+			
+			[Bindable]
+			private var tab1_smallTypeCurrSelect:String = "00";
+			private var tab1_smallTypeNameCurrSelect:String = "全部";
+			[Bindable]
+			private var tab1_smallTypeDS:ArrayCollection;
+			[Bindable]
+			private var tab1_smallTypeCtlShow:Boolean = true;
+			
+			[Bindable]
+			private var tab1__DS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				tab1__DS = new ArrayCollection();
+				tab1_plateDS = gettab1_plateDS();
+				tab1_typeDS = gettab1_typeDS();
+				tab1_smallTypeDS = gettab1_smallTypeDS();
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetHazard(dateStr, wsID, tab1_plateCurrSelect, tab1_typeCurrSelect, tab1_smallTypeCurrSelect);
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				
+				tab1__DS = gettab1__DS();
+			}
+			
+			private function gettab1_plateDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					tab1_plateCurrSelect = "00"; //设置默认选择
+					tab1_plateNameCurrSelect = "全部";
+					tmpArrayCollection.addItem({label: "全部", value: "00"});
+					tmpArrayCollection.addItem({label: "油田", value: "YT"});
+					tmpArrayCollection.addItem({label: "炼化", value: "LH"});
+					tmpArrayCollection.addItem({label: "销售", value: "XS"});
+					tmpArrayCollection.addItem({label: "工程", value: "GC"});
+					tmpArrayCollection.addItem({label: "其他", value: "QT"});
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function gettab1_typeDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					tab1_typeCurrSelect = "00"; //设置默认选择
+					tab1_typeNameCurrSelect = "全部";
+					tmpArrayCollection.addItem({label: "全部", value: "00"});
+					tmpArrayCollection.addItem({label: "存续", value: "CX"});
+					tmpArrayCollection.addItem({label: "股份", value: "GF"});
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function gettab1_smallTypeDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					tab1_smallTypeCurrSelect = "00"; //设置默认选择
+					tab1_smallTypeNameCurrSelect = "全部";
+					switch (tab1_plateCurrSelect)
+					{
+						case "LH": 
+							switch (tab1_typeCurrSelect)
+						{
+							case "CX": 
+								tmpArrayCollection.addItem({label: "全部", value: "00"});
+								tmpArrayCollection.addItem({label: "炼化", value: "01"});
+								tmpArrayCollection.addItem({label: "施工", value: "02"});
+								tab1_smallTypeCtlShow = true;
+								break;
+							case "GF": 
+								tmpArrayCollection.addItem({label: "全部", value: "00"});
+								tmpArrayCollection.addItem({label: "炼油", value: "11"});
+								tmpArrayCollection.addItem({label: "化工", value: "12"});
+								tab1_smallTypeCtlShow = true;
+								break;
+							default: 
+								tmpArrayCollection.addItem({label: "全部", value: "00"});
+								tab1_smallTypeCtlShow = false;
+								break;
+						}
+							break;
+						default: 
+							tmpArrayCollection.addItem({label: "全部", value: "00"});
+							tab1_smallTypeCtlShow = false;
+							break;
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function gettab1__DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					switch (wsID)
+					{
+						case "goupLeaderSupervisionData": 
+							tmpList = hseDataXML.currectSelect.goupLeaderSupervisionData;
+							break;
+						case "departmentManagerSupervisionData": 
+							tmpList = hseDataXML.currectSelect.departmentManagerSupervisionData;
+							break;
+						case "profCorpSupervisionData": 
+							tmpList = hseDataXML.currectSelect.profCorpSupervisionData;
+							break;
+					}
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var obj_total:Object = new Object();
+						obj_total.isSum = "1";
+						obj_total.order = ""; //xml.@order;
+						obj_total.label = tmpList[0].@subCorpname;
+						obj_total.projectName = "";
+						var obj_progress_total:Object = new Object();
+						var ii:int = 1;
+						for each (var xml_total_:XML in tmpList.stageData)
+						{
+							obj_progress_total['field' + ii] = xml_total_.@inStatus;
+							//obj_progress_total['fieldsum' + ii] = xml_total_.@inStatus;
+							
+							
+							//用于导出
+							obj_total['field' + ii]=obj_progress_total['field' + ii];
+							
+							ii++;
+						}
+						obj_total['project'] = obj_progress_total;
+						
+						var obj_investment_total:Object = new Object();
+						obj_investment_total['investment'] = Number(tmpList[0].@investment);
+						obj_investment_total['finishedInvestment'] = Number(tmpList[0].@finishedInvestment);
+						obj_investment_total['unfinishedInvestment'] = Number(tmpList[0].@unfinishedInvestment);
+						obj_investment_total['finishedRation'] = tmpList[0].@finishedRation + "";
+						obj_total['investmentGroup'] = obj_investment_total;
+						
+						//用于导出
+						obj_total['investment'] =obj_investment_total['investment'];
+						obj_total['finishedInvestment'] =obj_investment_total['finishedInvestment'];
+						obj_total['unfinishedInvestment'] =obj_investment_total['unfinishedInvestment'];
+						obj_total['finishedRation'] =obj_investment_total['finishedRation'];
+						
+						obj_total.groupCharger = "";
+						obj_total.subCorpCharger = "";
+						obj_total.chargeDeparment = "";
+						tmpArrayCollection.addItem(obj_total);
+						
+						tmpList = tmpList.projectdata;
+						if (tmpList != null && tmpList.length() > 0)
+						{
+							var index:int = 1;
+							for each (var xml:XML in tmpList)
+							{
+								var obj:Object = new Object();
+								obj.isSum = "0";
+								obj.order = index; //xml.@order;
+								obj.label = xml.@subCorpname;
+								obj.projectName = xml.@projectName;
+								var obj_progress:Object = new Object();
+								var i:int = 1;
+								for each (var xml_:XML in xml.stageData)
+								{
+									obj_progress['field' + i] = xml_.@status;
+									
+									//用于导出
+									obj['field' + i]=obj_progress['field' + i]=="DONING"?"进行中":"" ;
+									
+									i++;
+								}
+								obj['project'] = obj_progress;
+								
+								var obj_investment:Object = new Object();
+								obj_investment['investment'] = Number(xml.@investment);
+								obj_investment['finishedInvestment'] = Number(xml.@finishedInvestment);
+								obj_investment['unfinishedInvestment'] = Number(xml.@unfinishedInvestment);
+								obj_investment['finishedRation'] = xml.@finishedRation + "";
+								obj['investmentGroup'] = obj_investment;
+								
+								//用于导出
+								obj['investment'] =obj_investment['investment'];
+								obj['finishedInvestment'] =obj_investment['finishedInvestment'];
+								obj['unfinishedInvestment'] =obj_investment['unfinishedInvestment'];
+								obj['finishedRation'] =obj_investment['finishedRation'];
+								
+								obj.groupCharger = xml.@groupCharger;
+								obj.subCorpCharger = xml.@subCorpCharger;
+								obj.chargeDeparment = xml.@chargeDeparment;
+								tmpArrayCollection.addItem(obj);
+								index++;
+							}
+							
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function colorFunction(item:Object, color:uint):uint
+			{
+				if (item.order == "")
+					color = 0xFFBF00;
+				return color;
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					dateStrName = dateStr.substr(0, 4) + "年" + dateStr.substr(5, 2) + "月";
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						init();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_rbPlate_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.tab1_plateCurrSelect = RadioButton(event.target).value.toString();
+				this.tab1_plateNameCurrSelect = RadioButton(event.target).label;
+				this.tab1_plateNameCurrSelect = tab1_plateNameCurrSelect == null ? "" : tab1_plateNameCurrSelect;
+				tab1_typeDS = gettab1_typeDS();
+				tab1_smallTypeDS = gettab1_smallTypeDS();
+				refreshData();
+			}
+			
+			protected function tab1_rbType_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.tab1_typeCurrSelect = RadioButton(event.target).value.toString();
+				this.tab1_typeNameCurrSelect = RadioButton(event.target).label;
+				this.tab1_typeNameCurrSelect = tab1_typeNameCurrSelect == null ? "" : tab1_typeNameCurrSelect;
+				tab1_smallTypeDS = gettab1_smallTypeDS();
+				refreshData();
+			}
+			
+			protected function tab1_rbSmallType_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.tab1_smallTypeCurrSelect = RadioButton(event.target).value.toString();
+				this.tab1_smallTypeNameCurrSelect = RadioButton(event.target).label;
+				this.tab1_smallTypeNameCurrSelect = tab1_smallTypeNameCurrSelect == null ? "" : tab1_smallTypeNameCurrSelect;
+				refreshData();
+			}
+			
+			protected function btnExoprt_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				//adg1.displayItemsExpanded=true; //导出前展开所有节点 否则只能导出当前展示节点
+				//adg1.validateNow(); //刷新  展开后需要进行刷新   
+				//views.ExportToExcel.dataGridExporter(adg1,"重点监管项目.xls");
+				
+				var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue = "重点监管项目";   
+				titleWindow.width=1000;
+				titleWindow.height=800;
+				//order label projectName field1 field2 field3 field4 investment finishedInvestment unfinishedInvestment finishedRation groupCharger subCorpCharger chargeDeparment
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"排序号",dataField:"order",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"企业",dataField:"label",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"项目名称",dataField:"projectName",width1:"140",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"正在设计",dataField:"field1",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"等待施工",dataField:"field2",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"正在施工",dataField:"field3",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"完成",dataField:"field4",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"总投资",dataField:"investment",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"完成投资",dataField:"finishedInvestment",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"未完成投资",dataField:"unfinishedInvestment",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"完成率(%)",dataField:"finishedRation",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"总部负责人",dataField:"groupCharger",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"企业负责人",dataField:"subCorpCharger",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"总部主管",dataField:"chargeDeparment",width1:"90",textAlign:"center",sortable:true,draggable:false}
+				]);
+				titleWindow.DataSource= tab1__DS;
+				titleWindow.exportToExcel();
+
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab1_plateGrp" />
+		<s:RadioButtonGroup id="tab1_typeGrp" />
+		<s:RadioButtonGroup id="tab1_smallTypeGrp" />
+
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	<s:HGroup width="100%"
+			  height="30"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<s:layout>
+				<s:HorizontalLayout horizontalAlign="right"
+									verticalAlign="middle" />
+			</s:layout>
+			<s:HGroup horizontalAlign="center"
+					  verticalAlign="middle"
+					  styleName="controlBox"
+					  paddingLeft="10">
+				<s:Spacer width="10" />
+				<s:Rect width="10"
+						height="10"
+						horizontalCenter="0"
+						verticalCenter="0"
+						fill="{new SolidColor(0xFF0000)}" />
+				<s:Label text="未启动" />
+				<s:Spacer width="10" />
+				<s:Rect width="10"
+						height="10"
+						horizontalCenter="0"
+						verticalCenter="0"
+						fill="{new SolidColor(0xE2AE00)}" />
+				<s:Label text="进行中" />
+				<s:Spacer width="10" />
+				<s:Rect width="10"
+						height="10"
+						horizontalCenter="0"
+						verticalCenter="0"
+						fill="{new SolidColor(0x00FF00)}" />
+				<s:Label text="已完成" />
+			</s:HGroup>
+			<s:Spacer width="100%" />
+			<mx:HBox borderStyle="outset"
+					 styleName="controlBox"
+					 paddingLeft="10"
+					 paddingRight="10"
+					 visible="{tab1_plateCtlShow}"
+					 includeInLayout="{tab1_plateCtlShow}">
+				<mx:Repeater id="tab1_plateRep"
+							 dataProvider="{tab1_plateDS}">
+					<s:RadioButton groupName="tab1_plateGrp"
+								   label="{tab1_plateRep.currentItem.label}"
+								   value="{tab1_plateRep.currentItem.value}"
+								   selected="{tab1_plateRep.currentItem.value==tab1_plateCurrSelect}"
+								   click="tab1_rbPlate_clickHandler(event)" />
+				</mx:Repeater>
+			</mx:HBox>
+			<mx:HBox borderStyle="outset"
+					 styleName="controlBox"
+					 paddingLeft="10"
+					 paddingRight="10"
+					 visible="{tab1_typeCtlShow}"
+					 includeInLayout="{tab1_typeCtlShow}">
+				<mx:Repeater id="tab1_typeRep"
+							 dataProvider="{tab1_typeDS}">
+					<s:RadioButton groupName="tab1_typeGrp"
+								   label="{tab1_typeRep.currentItem.label}"
+								   value="{tab1_typeRep.currentItem.value}"
+								   selected="{tab1_typeRep.currentItem.value==tab1_typeCurrSelect}"
+								   click="tab1_rbType_clickHandler(event)" />
+				</mx:Repeater>
+			</mx:HBox>
+			<mx:HBox borderStyle="outset"
+					 styleName="controlBox"
+					 paddingLeft="10"
+					 paddingRight="10"
+					 visible="{tab1_smallTypeCtlShow}"
+					 includeInLayout="{tab1_smallTypeCtlShow}">
+				<mx:Repeater id="tab1_smallTypeRep"
+							 dataProvider="{tab1_smallTypeDS}">
+					<s:RadioButton groupName="tab1_smallTypeGrp"
+								   label="{tab1_smallTypeRep.currentItem.label}"
+								   value="{tab1_smallTypeRep.currentItem.value}"
+								   selected="{tab1_smallTypeRep.currentItem.value==tab1_smallTypeCurrSelect}"
+								   click="tab1_rbSmallType_clickHandler(event)" />
+				</mx:Repeater>
+			</mx:HBox>
+		</s:BorderContainer>
+	</s:HGroup>
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<mx:AdvancedDataGrid id="adg1"
+									 dataProvider="{tab1__DS}"
+									 alternatingItemColors="[#FFFFFF,#FFFFFF]"
+									 fontSize="14"
+									 color="#000000"
+									 width="100%"
+									 height="100%"
+									 sortExpertMode="true"
+									 sortableColumns="false"
+									 horizontalGridLines="true"
+									 textAlign="center"
+									 borderVisible="false">
+					<mx:groupedColumns>
+						<mx:AdvancedDataGridColumn dataField="order"
+												   headerText="序号"
+												   width="40" />
+						<mx:AdvancedDataGridColumn dataField="label"
+												   headerText="企业"
+												   width="110"
+												   textAlign="left" />
+						<mx:AdvancedDataGridColumn dataField="projectName"
+												   headerText="项目名称"
+												   width="280"
+												   textAlign="left" />
+						<mx:AdvancedDataGridColumnGroup dataField="project"
+														headerText="进度完成情况">
+							<mx:AdvancedDataGridColumn dataField="field1"
+													   headerText="正在设计"
+													   itemRenderer="modules.hazard.renderers.HazardProjectStatusRenderer2" />
+							<mx:AdvancedDataGridColumn dataField="field2"
+													   headerText="等待施工"
+													   itemRenderer="modules.hazard.renderers.HazardProjectStatusRenderer2" />
+							<mx:AdvancedDataGridColumn dataField="field3"
+													   headerText="正在施工"
+													   itemRenderer="modules.hazard.renderers.HazardProjectStatusRenderer2" />
+							<mx:AdvancedDataGridColumn dataField="field4"
+													   headerText="完成"
+													   itemRenderer="modules.hazard.renderers.HazardProjectStatusRenderer2" />
+						</mx:AdvancedDataGridColumnGroup>
+						<mx:AdvancedDataGridColumnGroup dataField="investmentGroup"
+														headerText="投资完成情况(万元)"
+														width="230">
+							<mx:AdvancedDataGridColumn dataField="investment"
+													   headerText="总投资" />
+							<mx:AdvancedDataGridColumn dataField="finishedInvestment"
+													   headerText="完成投资" />
+							<mx:AdvancedDataGridColumn dataField="unfinishedInvestment"
+													   headerText="未完成投资" />
+							<mx:AdvancedDataGridColumn dataField="finishedRation"
+													   headerText="完成率(%)" />
+						</mx:AdvancedDataGridColumnGroup>
+						<mx:AdvancedDataGridColumn dataField="groupCharger"
+												   headerText="总部负责人" />
+						<mx:AdvancedDataGridColumn dataField="subCorpCharger"
+												   headerText="企业负责人" />
+						<mx:AdvancedDataGridColumn dataField="chargeDeparment" width="100"
+												   headerText="总部主管部门" />
+					</mx:groupedColumns>
+				</mx:AdvancedDataGrid>
+				<mx:Button label="导出" id="btnExoprt" click="btnExoprt_clickHandler(event)"/>
+			</s:BorderContainer>
+		</s:HGroup>
+
+	</s:VGroup>
+</s:Group>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:views="views.*"
+		  xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" horizontalAlign="center" creationComplete="init(true)">
+	<!--
+	/* *
+	* 名称：柱线组件（固定）
+	* 参数：
+	* 作者：孙山虎
+	* 日期：2012年12月29日
+	* */
+	-->
+	<fx:Metadata>
+		[Event(name="PopupClick", type="events.PopupEvent")]
+		[Event(name="PopupDoubleClick", type="events.PopupEvent")]
+		[Event(name="SetAxisComplate",type="events.SetAxisComplateEvent")]
+	</fx:Metadata>
+	<fx:Declarations>
+		<!--组件属性-->
+		<fx:String id="title">报表标题</fx:String>
+		<fx:String id="planTxt">计划</fx:String>
+		<fx:String id="actTxt">完成</fx:String>
+		<fx:String id="surTxt">未完成</fx:String>
+		<fx:String id="rateTxt">完成率</fx:String>
+		<fx:Boolean id="showTitle">true</fx:Boolean>
+		<fx:Boolean id="showLegend">true</fx:Boolean>
+		<fx:Boolean id="showLegendValue">true</fx:Boolean>
+		<fx:Number id="labelRotationX">{CustomVariable.ChartBottomLabelRotation}</fx:Number>
+		<fx:Boolean id="showZoomControlBox">false</fx:Boolean>
+		<fx:Boolean id="showLabelControlBox">false</fx:Boolean>
+		<mx:SeriesInterpolate id="si" duration="2000" />
+		<mx:SeriesZoom id="sz" duration="2000" />
+		<mx:SeriesSlide id="ss" direction="up" duration="2000"/>
+		<mx:WipeRight id="wr" duration="2000"/>
+		<s:NumberFormatter id="numberFormatter" fractionalDigits="0" useGrouping="false"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.ChartItem;
+			import mx.charts.HitData;
+			import mx.charts.LineChart;
+			import mx.charts.chartClasses.IAxis;
+			import mx.charts.chartClasses.Series;
+			import mx.charts.events.ChartItemEvent;
+			import mx.charts.series.items.ColumnSeriesItem;
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			import mx.utils.StringUtil;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			[Bindable]
+			public var showDataTips:Boolean=true;
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			private var ifSingleChanged:Boolean=false;
+			private var dataSourceChanged:Boolean=false;
+			//是否是单个
+			public var IfSingle:Boolean=false;
+			//多值数据源
+			[Bindable]
+			private var dataSource:ArrayCollection;
+			[Bindable]
+			public var cColor1:SolidColor=views.CustomColor.CSolidColor[0];
+			[Bindable]
+			public var cColor2:SolidColor=views.CustomColor.CSolidColor[1];
+			[Bindable]
+			public var cColor3:SolidColor=views.CustomColor.CSolidColor[2];
+			[Bindable]
+			public var cColor4:SolidColor=views.CustomColor.CSolidColor[3];
+			
+			private var singleDataChanged:Boolean=false;
+			[Bindable]
+			private var planVol:Number=0;
+			[Bindable]
+			private var actVol:Number=0;
+			[Bindable]
+			private var surVol:Number=0;
+			[Bindable]
+			private var rateVol:Number=0;
+			[Bindable]
+			public var AxisLeftUnit:String="";
+			[Bindable]
+			public var AxisRightUnit:String="%";
+			[Bindable]
+			public var AxisBottomTiltle:String="";
+			[Bindable]
+			public var AxisLeftTiltle:String="";
+			[Bindable]
+			public var AxisTopTiltle:String="";
+			[Bindable]
+			public var AxisRightTiltle:String="";
+			//用于输入当前坐标最大最小值
+			public var UseCustomAxisMaxMinmum:Boolean=false;	
+			[Bindable]
+			private var leftAxisMaximum:Number=0;
+			[Bindable]
+			private var leftAxisMinimum:Number=0;
+			[Bindable]
+			private var rightAxisMaximum:Number=0;
+			[Bindable]
+			private var rightAxisMinimum:Number=0;
+			public function get LeftAxisMaximum():Number
+			{
+				return leftAxisMaximum;
+			}
+			public function set LeftAxisMaximum(value:Number):void
+			{
+				leftAxisMaximum = value;
+			}
+			public function get RightAxisMaximum():Number
+			{
+				return rightAxisMaximum;
+			}
+			public function set RightAxisMaximum(value:Number):void
+			{
+				rightAxisMaximum = value;
+			}
+			public function get LeftAxisMinimum():Number
+			{
+				return leftAxisMinimum;
+			}
+			public function set LeftAxisMinimum(value:Number):void
+			{
+				leftAxisMinimum = value;
+			}
+			public function get RightAxisMinimum():Number
+			{
+				return rightAxisMinimum;
+			}
+			public function set RightAxisMinimum(value:Number):void
+			{
+				rightAxisMinimum = value;
+			}
+			protected function init(IfFirst:Boolean=false):void{
+				refresh(IfFirst);
+			}
+			protected function refresh(IfFirst:Boolean):void{
+				if(IfSingle){
+					dataSource=new ArrayCollection([{label:planTxt,plan:planVol},{label:actTxt,act:actVol,sur:surVol,actTxt:actTxt,surTxt:surTxt},{label:rateTxt,rate:rateVol}]);
+				}else{
+					showLegendValue=false;
+				}
+				columnChart.dataProvider=dataSource;
+				if(!UseCustomAxisMaxMinmum||IfFirst){//如果最大值最小值非外面传入则
+					initAxis();
+				}
+				
+				//添加阴影
+				var chart:LineChart = new LineChart();
+				columnChart.seriesFilters = chart.seriesFilters;
+			}
+			protected function initAxis():void
+			{
+					var minL:Number=Number.MAX_VALUE;
+					var minR:Number=Number.MAX_VALUE;
+					var maxL:Number=Number.MIN_VALUE;
+					var maxR:Number=Number.MIN_VALUE;
+					if(dataSource!=null&&dataSource.length>0){
+						for each (var vol:Object in dataSource){
+							var plan:Number=(vol.plan!=null&&vol.plan!="undefined"&&vol.plan!="")?Number(vol.plan):0;
+							var act:Number=(vol.act!=null&&vol.act!="undefined"&&vol.act!="")?Number(vol.act):0;
+							var sur:Number=(vol.sur!=null&&vol.sur!="undefined"&&vol.sur!="")?Number(vol.sur):0;
+							var rate:Number=(vol.rate!=null&&vol.rate!="undefined"&&vol.rate!="")?Number(vol.rate):0;
+							maxL=Math.max(maxL,plan,act,sur);
+							maxR=Math.max(maxR,rate);
+							minL=Math.min(minL,plan,act,sur);
+							minR=Math.min(minR,rate);
+						}
+						if(maxL>8){
+							vLAxis.maximum=Math.round(maxL*CustomVariable.ChartLeftAxisMaxCoefficient);
+						}else if(maxL>4){
+							vLAxis.maximum=10;
+						}else{
+							vLAxis.maximum=5;
+						}
+						if(maxR>8){
+							vRAxis.maximum=Math.round(maxR*CustomVariable.ChartRightAxisMaxCoefficient);
+						}else if(maxR>4){
+							vRAxis.maximum=10;
+						}else{
+							vRAxis.maximum=5;
+						}
+						
+						if(minL<-8){
+							vLAxis.minimum=Math.round(minL*CustomVariable.ChartRightAxisMaxCoefficient);
+						}else if(minL<-4){
+							vLAxis.minimum=-10;
+						}else if(minL<0){
+							vLAxis.minimum=-5;
+						}else{
+							vLAxis.minimum=0;
+						}					
+						if(minR<-8){
+							vRAxis.minimum=Math.round(minR*CustomVariable.ChartRightAxisMinCoefficient);
+						}else if(minR<-4){
+							vRAxis.minimum=-10;
+						}else if(minR<0){
+							vRAxis.minimum=-5;
+						}else{
+							vRAxis.minimum=0;
+						}
+					}
+					leftAxisMaximum=vLAxis.maximum;
+					leftAxisMinimum=vLAxis.minimum;
+					rightAxisMaximum=vRAxis.maximum;
+					rightAxisMinimum=vRAxis.minimum;
+					var eventObj:SetAxisComplateEvent = new SetAxisComplateEvent(SetAxisComplateEvent.SetAxisComplate);  
+					eventObj.setLeftAxisMaximum=leftAxisMaximum;
+					eventObj.setLeftAxisMinimum=leftAxisMinimum;
+					eventObj.setRightAxisMaximum=rightAxisMaximum;
+					eventObj.setRightAxisMinimum=rightAxisMinimum;
+					dispatchEvent(eventObj);
+			}
+			//左侧Y轴显示
+			private function vLAxis_LabelFunction(item:Object, prevValue:Object, axis:IAxis):String {
+				return numberFormatter.format(item)+AxisLeftUnit;
+			}
+			//右侧Y轴显示
+			private function vRAxis_LabelFunction(item:Object,prevValue:Object,axis:IAxis):String   
+			{  
+				return  numberFormatter.format(item)+AxisRightUnit;  
+			} 
+			//柱子Tips信息
+			private function columnChart_dataTipFunc(item:HitData):String {
+				var cSI:ColumnSeriesItem = item.chartItem as ColumnSeriesItem;
+				var col:String = ColumnSeries(item.element).yField;
+				var label:String=ColumnSeries(item.element).displayName;//cSI.item.label;
+				//return StringUtil.substitute("<b>{0}</b><br>{1}: {2}",label , col, numberFormatter.format(cSI.item[col]));
+				return StringUtil.substitute("<b>{0}:</b>{1}",label , numberFormatter.format(cSI.item[col]));
+			}
+			//柱子上的标签
+			private function columnSeries_labelFunc(chartItem:ChartItem, series:Series):String {
+				var col:String = ColumnSeries(chartItem.element).yField;
+				return  numberFormatter.format(chartItem.item[col]);
+				//return  ColumnSeries(chartItem.element).displayName+numberFormatter.format(chartItem.item[col]);
+			}
+			//柱子上的标签，百分比
+			private function percent_labelFunction(element:ChartItem, series:Series):String { 
+				var csi:ColumnSeriesItem = ColumnSeriesItem(element);
+				var ser:ColumnSeries = ColumnSeries(series); 
+				return String(csi.yValue)+"%";  
+			}
+			
+			public function get DataSource():ArrayCollection
+			{
+				return dataSource;
+			}
+			public function set DataSource(value:ArrayCollection):void
+			{
+				dataSourceChanged=true;
+				dataSource = value;
+				invalidateProperties();
+			}
+			
+			public function get PlanVol():Number
+			{
+				return planVol;
+			}
+			public function set PlanVol(value:Number):void
+			{
+				if(!isNaN(value)){
+					singleDataChanged=true;
+					planVol = value;
+					invalidateProperties();
+				}
+			}
+			public function get ActVol():Number
+			{
+				return actVol;
+			}
+			public function set ActVol(value:Number):void
+			{
+				if(!isNaN(value)){
+					singleDataChanged=true;
+					actVol = value;
+					invalidateProperties();
+				}
+			}
+			public function get SurVol():Number
+			{
+				return surVol;
+			}
+			public function set SurVol(value:Number):void
+			{
+				if(!isNaN(value)){
+					singleDataChanged=true;
+					surVol = value;
+					invalidateProperties();
+				}
+			}
+			public function get RateVol():Number
+			{
+				return rateVol;
+			}
+			public function set RateVol(value:Number):void
+			{
+				if(!isNaN(value)){
+					singleDataChanged=true;
+					rateVol = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				init(false);
+			}		
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (dataSourceChanged)
+				{
+					dataSourceChanged = false;
+					refresh(true);
+					//invalidateDisplayList();  // invalidate in case the titles 					
+				}
+				if (singleDataChanged)
+				{
+					singleDataChanged=false;
+					refresh(true);					
+					//invalidateDisplayList();  // invalidate in case the titles 
+				}
+			}
+			protected function columnChart_itemClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=ColumnSeries(event.hitData.element).displayName;//cSI.item.label;
+				obj.seriesType="columnSeries"
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupClick);  
+				//这里一定跟上面[Event(name="PopupClick", ...)],使用的name相同，否则，派发的事件不会被接收到
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);
+			}
+			protected function columnChart_itemDoubleClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=ColumnSeries(event.hitData.element).displayName;//cSI.item.label;
+				obj.seriesType="columnSeries"
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupDoubleClick);  
+				//这里一定跟上面[Event(name="PopupDoubleClick", ...)],使用的name相同，否则，派发的事件不会被接收到				
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);				
+			}
+			//主程序调用
+			//			 PopupClick="xxxx_lightHandler(event)"
+			//			protected function xxxx_lightHandler(event:events.PopupEvent):void
+			//			{
+			//				// TODO Auto-generated method stub
+			//				var item:Object=event.hitDataItem;
+			//				.....
+			//			}
+			
+			protected function widthDropDown_changeHandler(event:IndexChangeEvent):void  
+			{  
+				totalPage = int(widthDropDown.selectedItem.@value);  
+				hsb.maximum = (totalPage - 1) * 10;  
+				hsb.value = 0;  
+				setDataProvider();  
+			}  
+			protected function hsb_changeHandler(event:Event):void  
+			{  
+				setDataProvider();  
+			}  
+			private var totalPage:int = 1;  
+			protected function zoomin(event:MouseEvent):void  
+			{  
+				if(totalPage >= (1 << 4))  
+					return;  
+				hsb.value = hsb.value * 0.5;  
+				totalPage = totalPage << 1;  
+				hsb.maximum = (totalPage - 1) * 10;  
+				setDataProvider();  
+			}  
+			protected function zoomout(event:MouseEvent):void  
+			{  
+				if(totalPage == 1)  
+					return;  
+				hsb.value = hsb.value * 2;  
+				totalPage = totalPage >> 1;  
+				hsb.maximum = (totalPage - 1) * 10;  
+				setDataProvider();  
+			}  
+			protected function setDataProvider():void  
+			{  
+				var j:int = int(hsb.value / hsb.maximum * (hsb.maximum / 10 / totalPage) * dataSource.length);  
+				var ac:ArrayCollection = new ArrayCollection();  
+				var len:int = Math.ceil(1.0 * dataSource.length / totalPage);  
+				for (var i:int = 0; (i < len) && (i + j) < dataSource.length; i++)   
+				{  
+					ac.addItem(dataSource.getItemAt(i + j));  
+				}  
+				columnChart.dataProvider = ac;  
+			}  
+			
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+				init(false);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--标题-->  
+	<mx:Label text="{title}" styleName="titleStyle" visible="{showTitle}"/>
+	<!--控制器-->
+	<s:HGroup width="98%" height="25" horizontalAlign="center" verticalAlign="middle" visible="{this.showZoomControlBox}" includeInLayout="{this.showZoomControlBox}">  
+		<s:ComboBox id="widthDropDown" width="90" change="widthDropDown_changeHandler(event)"  
+						labelField="@label" requireSelection="true">  
+			<s:XMLListCollection>  
+				<fx:XMLList xmlns="">  
+					<node label="原始宽度" value="1"/>  
+					<node label="两倍宽度" value="2"/>  
+					<node label="四倍宽度" value="4"/>  
+				</fx:XMLList>  
+			</s:XMLListCollection>  
+		</s:ComboBox>  
+		<s:Button label="放大" click="zoomin(event)"/>  
+		<s:Button label="缩小" click="zoomout(event)"/>  
+		<s:HScrollBar id="hsb" width="100%" height="20" change="hsb_changeHandler(event)"  
+					  maximum="0" minimum="0" snapInterval="1" value="0"/>  
+		<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)" visible="{this.showLabelControlBox}" includeInLayout="{this.showLabelControlBox}"/>
+	</s:HGroup>  
+	<!--统计图-->  
+	<mx:ColumnChart id="columnChart"  styleName="chart" dataProvider="{dataSource}" width="100%" height="100%" showDataTips="{showDataTips}" doubleClickEnabled="true" dataTipFunction="columnChart_dataTipFunc" itemClick="columnChart_itemClickHandler(event)" itemDoubleClick="columnChart_itemDoubleClickHandler(event)">    
+		<mx:backgroundElements>
+			<mx:GridLines horizontalStroke="{views.CustomColor.AxisSolidColorStroke}"/>
+		</mx:backgroundElements>
+		<!--横坐标-->  
+		<mx:horizontalAxis>
+			<mx:CategoryAxis id="hAxis" categoryField = "label" title="{AxisBottomTiltle}"/>
+		</mx:horizontalAxis>
+		<!--纵坐标1-->  
+		<mx:verticalAxis>
+			<mx:LinearAxis id="vLAxis" labelFunction="vLAxis_LabelFunction" baseAtZero="true" title="{AxisLeftTiltle}" maximum="{leftAxisMaximum}" minimum="{leftAxisMinimum}"/>
+		</mx:verticalAxis>
+		<!--横坐标渲染-->  
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer tickStroke="{views.CustomColor.TickSolidColorStroke}" minorTickStroke="{views.CustomColor.MinorTickSolidColorStroke}" axisStroke="{views.CustomColor.AxisSolidColorStroke}" showLine="true" tickLength="5" tickPlacement="outside" axis="{hAxis}" placement="bottom"  labelGap="0" labelRotation="{labelRotationX}"/>
+		</mx:horizontalAxisRenderers>
+		<!--纵坐标渲染-->  <!--itemRenderer="drawhelper.solidSkin"-->
+		<mx:verticalAxisRenderers>  
+			<mx:AxisRenderer id="axisY1" tickStroke="{views.CustomColor.TickSolidColorStroke}" minorTickStroke="{views.CustomColor.MinorTickSolidColorStroke}" axisStroke="{views.CustomColor.AxisSolidColorStroke}" showLine="true" tickLength="5" tickPlacement="outside" placement="left" axis="{vLAxis}"  labelGap="0"/>
+			<mx:AxisRenderer id="axisY2" tickStroke="{views.CustomColor.TickSolidColorStroke}" minorTickStroke="{views.CustomColor.MinorTickSolidColorStroke}" axisStroke="{views.CustomColor.AxisSolidColorStroke}" showLine="true" tickLength="5" tickPlacement="outside" placement="right" axis="{vRAxis}"  labelGap="0"/>
+		</mx:verticalAxisRenderers>  
+		<mx:series>
+			<mx:ColumnSeries id="columnA" maxColumnWidth="30" fills="{cColor1}" yField = "plan" displayName="{planTxt}" labelFunction="columnSeries_labelFunc" verticalAxis="{vLAxis}" labelPosition="{showDataLabel?'outside':'none'}" showDataEffect="{ss}" fillFunction="{views.CommFunction.colFillFun(cColor1.color)}"/>
+			<views:ColumnSet type="stacked">
+				<mx:ColumnSeries id="columnB" maxColumnWidth="30" fills="{cColor2}" yField = "act" displayName="{actTxt}" labelFunction="columnSeries_labelFunc" verticalAxis="{vLAxis}" labelPosition="{showDataLabel?'outside':'none'}" showDataEffect="{ss}" fillFunction="{views.CommFunction.colFillFun(cColor2.color)}"/>
+				<mx:ColumnSeries id="columnC" maxColumnWidth="30" fills="{cColor3}" yField = "sur" displayName="{surTxt}" labelFunction="columnSeries_labelFunc" verticalAxis="{vLAxis}" labelPosition="{showDataLabel?'outside':'none'}" showDataEffect="{ss}" fillFunction="{views.CommFunction.colFillFun(cColor3.color)}"/>
+			</views:ColumnSet>
+			<mx:ColumnSeries id="columnD" maxColumnWidth="30" fills="{cColor4}" yField = "rate" displayName="{rateTxt}" labelFunction="percent_labelFunction" labelAlign="center" labelPosition="{showDataLabel?'outside':'none'}" showDataEffect="{ss}" fillFunction="{views.CommFunction.colFillFun(cColor4.color)}">
+				<mx:verticalAxis>  
+					<mx:LinearAxis id="vRAxis" title="{AxisRightTiltle}" labelFunction="vRAxis_LabelFunction" baseAtZero="true" maximum="{rightAxisMaximum}" minimum="{rightAxisMinimum}"/>  
+				</mx:verticalAxis>  
+			</mx:ColumnSeries>
+		</mx:series>
+	</mx:ColumnChart>
+	<!--图例-->
+	<mx:Canvas id="legend" visible="{showLegend}" includeInLayout="{showLegend}" width="100%">
+		<s:BorderContainer styleName="legendBox" verticalCenter="0" horizontalCenter="0">
+			<mx:Legend horizontalAlign="center" horizontalCenter="0">
+				<s:HGroup>
+					<mx:LegendItem markerHeight="10" markerWidth="10" label="{planTxt}{showLegendValue?':'+planVol:''}" fill="{cColor1}"/>
+					<mx:LegendItem markerHeight="10" markerWidth="10" label="{actTxt}{showLegendValue?':'+actVol:''}" fill="{cColor2}"/>
+					<mx:LegendItem markerHeight="10" markerWidth="10" label="{surTxt}{showLegendValue?':'+surVol:''}" fill="{cColor3}"/>
+					<mx:LegendItem markerHeight="10" markerWidth="10" label="{rateTxt}{showLegendValue?':'+rateVol+'%':''}" fill="{cColor4}"/>
+				</s:HGroup>
+			</mx:Legend>
+		</s:BorderContainer>
+	</mx:Canvas>	
+</s:VGroup>

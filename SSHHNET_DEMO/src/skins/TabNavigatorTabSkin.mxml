@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+			 minWidth="21" minHeight="21">
+	<!-- layer 1: fill -->
+	<s:Rect left="1" right="1" top="1" bottom="0" topLeftRadiusY="25" topRightRadiusY="25" topLeftRadiusX="25" topRightRadiusX="25">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0x70A7E8" alpha="1" />
+				<s:GradientEntry color="0x3A71D5" alpha="1" />
+				
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<!-- layer 2: highlight stroke -->
+	<s:Rect left="1" right="1" top="1" bottom="1" alpha=".22"  topLeftRadiusY="25" topRightRadiusY="25" topLeftRadiusX="25" topRightRadiusX="25">
+		<s:stroke>
+			<s:LinearGradientStroke rotation="90">
+				<s:GradientEntry color="0x4BACC6" alpha="1" />
+				<s:GradientEntry color="0x4BACC6" alpha="1" />
+				
+			</s:LinearGradientStroke>
+		</s:stroke>
+	</s:Rect>
+	<!-- layer 3: fill highlight -->
+	<s:Rect left="1" right="1" top="1" bottom="1"  topLeftRadiusY="25" topRightRadiusY="25" topLeftRadiusX="25" topRightRadiusX="25">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0xFFFFFF"
+								 ratio="0.0"
+								 alpha="0.12"/>
+				<s:GradientEntry color="0xFFFFFF"
+								 ratio="0.48"
+								 alpha="0.12" />
+				<s:GradientEntry color="0xFFFFFF"
+								 ratio="0.48001"
+								 alpha="0" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<!-- layer 4: border - unselected only -->
+	<s:Rect left="0" right="0" top="0" bottom="0"  topLeftRadiusY="25" topRightRadiusY="25" topLeftRadiusX="25" topRightRadiusX="25">
+		<s:stroke>
+			<s:SolidColorStroke color="0xbed1d7" alpha="1" />
+		</s:stroke>
+	</s:Rect>
+</s:SparkSkin>

@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" xmlns:views="views.*" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：总部仪表盘-公共安全-总体情况
+	* 参数：年份（2012）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import as_class.SequenceItemRenderer;
+			
+			import events.PopupEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			
+			import renderers.MyADGILinkRenderer;
+			
+			import views.PopupTitleWin;
+			import views.PopupTitleWin_noExport;
+			import views.RowAdvDataGrid;
+			
+			public const _dataPath:String = "assets/data/zb_publicsafetydata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			private var isFirstLoad:Boolean=true;
+			private var dateStrChanged:Boolean=false;
+			[Bindable]
+			private var dateStr:String="2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			
+			private var itemLinkRenderer:IFactory = new ClassFactory(MyADGILinkRenderer);
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String="";
+			[Bindable]
+			private var tab1_topRightTitle:String="";
+			[Bindable]
+			private var tab1_downLeftTitle:String="";
+			[Bindable]
+			private var tab1_downRightTitle:String="";
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void{
+				tab1_topLeftDS=new ArrayCollection();
+				tab1_topRightDS=new ArrayCollection();
+				tab1_downLeftDS=new ArrayCollection();
+				tab1_downRightDS=new ArrayCollection();
+				
+				tab1_topLeftConfDS=new ArrayCollection([
+					{name:"案件数",field:"vol1",type:"columnSeries",axis:"left"},
+				]);
+				tab1_topRightConfDS=new ArrayCollection([
+					{name:"案件综合损失",field:"vol1",type:"columnSeries",axis:"left"},
+				]);
+				tab1_downLeftConfDS=new ArrayCollection([
+					{name:"案件数",field:"vol1",type:"columnSeries",axis:"left"},
+				]);
+				tab1_downRightConfDS=new ArrayCollection([
+					{name:"案件综合损失",field:"vol1",type:"columnSeries",axis:"left"},
+				]);
+				refreshData();
+				isFirstLoad=false;
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。。。。
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetPublicsafety(dateStr);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				tab1_topLeftDS=getTab1_topLeftDS();		
+				tab1_topRightDS=getTab1_topRightDS();	
+				tab1_downLeftDS=getTab1_downLeftDS();		
+				tab1_downRightDS=getTab1_downRightDS();	
+				executeBindTab1Title();
+			}
+			private function executeBindTab1Title():void{
+				tab1_topLeftTitle="中国石化连续五年境内案件发生起数";
+				tab1_topRightTitle="中国石化连续五年境内案件造成综合经济损失情况";
+				tab1_downLeftTitle="中国石化连续五年境外案件发生起数";
+				tab1_downRightTitle="中国石化连续五年境外案件造成综合经济损失情况";
+			}
+			
+			private function getTab1_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.domestic.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,vol1:xml.@caseNumbers,id:xml.@yearid};
+							tmpArrayCollection.addItem(obj);							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_topRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.domestic.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,vol1:xml.@comprehensiveEconomiLoss,id:xml.@yearid};
+							tmpArrayCollection.addItem(obj);							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_downLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.oversea.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,vol1:xml.@accidentNumbers,id:xml.@yearid};
+							tmpArrayCollection.addItem(obj);							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_downRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.oversea.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,vol1:xml.@comprehensiveEconomiLoss,id:xml.@yearid};
+							tmpArrayCollection.addItem(obj);							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			public function set DateStr(value:String):void
+			{
+				if(value!=dateStr){
+					dateStrChanged=true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}	
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if(!isFirstLoad){
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				//popupPlateMX(item.plateid,item.label+"板块");
+				popupPlateMX(item.id);
+			}
+			
+			private var titleWindow1:views.PopupTitleWin_noExport;
+			private var str_date:String = "";
+			private function popupPlateMX(dateid:String):void
+			{
+				str_date = dateid;
+				titleWindow1 = new views.PopupTitleWin_noExport();
+//				titleWindow1.setStyle("skinClass",skins.popWinStyle_noExport);
+				titleWindow1.TitleValue = "中国石化案件统计表" + "(" + dateid + "年)"; //tab1_levelNameCurrSelect+
+				titleWindow1.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow1);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupPlateMXADG("板块");
+					var advancedAc:ArrayCollection = createPopupPlateMXData(dateid);
+					advancedDataGrid.dataProvider = advancedAc;
+					
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow1.width-2;
+					borderContainer.height =titleWindow1.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow1.Content = group;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow1.addEventListener(events.PopupEvent.PopupItemClick, popCorpMX);
+//				titleWindow1.addEventListener(events.ExportEvent.ExportClick,DoExoprt1);
+				PopUpManager.addPopUp(titleWindow1, this, true);
+				PopUpManager.centerPopUp(titleWindow1);
+			}
+			
+			protected function popCorpMX(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				
+				if (obj.columnIndex == 1)
+				{
+					if (obj.plateid != "00")
+					{
+						popupCorpMX(obj.plateid, obj.value);
+					}
+				}
+				else
+				{
+//					var items:String = String(obj.item);
+//					var itemArr:Array = items.split("___");
+//					if (itemArr.length > 0 && obj.plateid != "00")
+//					{
+//						Alert.show(itemArr[0]);
+//						popupCorpMX2(obj.plateid, obj.plate, itemArr[0], itemArr[1]);
+//					}
+				}
+			}
+//二次钻取
+			protected function popItemMX_bycorp(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				
+				if (obj.columnIndex == 1)
+				{
+					if (obj.plateid != "00")
+					{
+						popupKeyDeviceMX_zq(obj,"");
+					}
+				}
+				else
+				{
+					var items:String = String(obj.item);
+					var itemArr:Array = items.split("___");
+					if (itemArr.length > 0 && obj.plateid != "00")
+					{
+//						Alert.show(itemArr[0]);
+						popupKeyDeviceMX_zq(obj, itemArr[1]);
+					}
+				}
+			}
+//三次钻取			
+			private var titleWindow1_zq:views.PopupTitleWinDG;
+			private var tmpList_zq:XMLList;
+			protected function popupKeyDeviceMX_zq(obj:Object,str_type:String):void
+			{
+				//				var obj:Object = event.hitDataItem;
+				var order:int = 1;
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				
+				var corpid:String = obj.corpid;
+				var plateid:String = obj.plateid;
+				var typeid:String = obj.typeid;
+				tmpList_zq = hseDataXML.domestic.plateData.(@plateid == plateid).dataset.(@yearid==obj.dateid).monthData.byCorp.kindData.(@corpid == corpid).caseInfoData;
+				if(str_type&&str_type!=""){
+					tmpList_zq = tmpList_zq.(@caseType==str_type);
+				}
+//				if(typeid&&typeid!=""){
+//					tmpList_zq = tmpList_zq.typeData.(@typeid == typeid).leaderData.(@leaderid == obj.leaderid).noImplemented;
+//				}else{
+//					tmpList_zq = tmpList_zq.typeData.leaderData.noImplemented;
+//				}
+				
+				titleWindow1_zq = new views.PopupTitleWinDG();
+				titleWindow1_zq.TitleValue ="企业案件明细表("+str_date+")";
+				titleWindow1_zq.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow1_zq);
+				});
+				titleWindow1_zq.IfShowFirstRecordBgColor = false;
+				titleWindow1_zq.IfShowFrontRecordColor = false;
+				titleWindow1_zq.IfShowBackRecordColor = false;
+				titleWindow1_zq.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "left", sortable: false, draggable: false},
+					{headerText: "案件类别", dataField: "caseType", width: "60", textAlign: "left", sortable: true, draggable: true,sortByCustomField:"displayindex"},
+					{headerText: "单位名称", dataField: "unitName", width: "50", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:false,footLblFunType:"sum"}, 
+					{headerText: "发生时间", dataField: "inspectionType", width: "60", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "发生地点", dataField: "inspectionLevel", width: "60", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "公安部门\n是否立案", dataField: "problemDescription", width: "50", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "是否原有\n成品油泄漏", dataField: "check", width: "50", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "被盗及泄漏\n原油/成品油数量", dataField: "checkDate", width: "80", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "直接经济\n损失", dataField: "direct", width: "45", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "间接经济\n损失", dataField: "indirect", width: "45", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "上报日期", dataField: "reportDate", width: "60", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "上报状态", dataField: "reportState", width: "60", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "状态", dataField: "state", width: "40", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+				]);
+				
+				
+				for each (var xml:XML in tmpList_zq)
+				{
+					var obj1:Object = {order:order,caseType: xml.@caseType,unitName:xml.@unitName,
+						inspectionType: xml.@inspectionType,inspectionLevel:xml.@inspectionLevel,problemDescription: xml.@problemDescription,
+						check: xml.@check,checkDate: xml.@checkDate,
+						direct: xml.@direct,indirect: xml.@indirect,
+						reportDate: xml.@reportDate,
+						reportState: xml.@reportState,
+						state: xml.@state
+					};
+					obj1.displayindex=Number(xml.@displayindex);
+					tmpArrayCollection.addItem(obj1);
+					order++;
+				}
+				
+				var sort:Sort=new Sort();  
+				sort.fields=[new SortField("displayindex",false,true)];  
+				tmpArrayCollection.sort=sort;
+				tmpArrayCollection.refresh();
+				
+				titleWindow1_zq.DataSource = tmpArrayCollection;
+				PopUpManager.addPopUp(titleWindow1_zq, this, true);
+				PopUpManager.centerPopUp(titleWindow1_zq);
+				
+			}
+			
+			
+			private var titleWindow2:views.PopupTitleWin_noExport;
+			private function popupCorpMX(plateid:String, platename:String):void
+			{
+				titleWindow2 = new views.PopupTitleWin_noExport();
+				titleWindow2.TitleValue = "中国石化"+platename+"板块案件统计表" + "(" + str_date + "年)"; //tab1_levelNameCurrSelect+
+				titleWindow2.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow2);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupPlateMXADG("企业");
+					var advancedAc:ArrayCollection = createPopupPlateMXData_bycorp(str_date,plateid);
+					advancedDataGrid.dataProvider = advancedAc;
+					
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow2.width-2;
+					borderContainer.height =titleWindow2.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow2.Content = group;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow2.addEventListener(events.PopupEvent.PopupItemClick, popItemMX_bycorp);
+				PopUpManager.addPopUp(titleWindow2, this, true);
+				PopUpManager.centerPopUp(titleWindow2);
+			}
+			
+			private function createPopupPlateMXADG(str_name:String):RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					var col:AdvancedDataGridColumn;
+					column = new AdvancedDataGridColumn();
+					column.width = 40;
+					column.dataField = "order";
+					column.setStyle("textAlign", "center");
+					column.headerText = "序号";
+					column.itemRenderer=new ClassFactory(as_class.SequenceItemRenderer);
+					column.sortable=false;
+					column.width=40;					
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "plate";
+					column.showDataTips = true;
+					column.width = 80;
+					column.setStyle("textAlign", "left");
+					column.headerText = str_name+"名称";
+					column.itemRenderer = itemLinkRenderer; //添加链接					
+					column.sortable=false;
+					advancedDataArray.push(column);
+					
+					//合计，数量/占比
+					//一级，数量/占级别比例/占板块比例
+					
+					var columnGP0:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP0.headerText = "合计";
+					var advancedDataGrpArray0:Array = new Array();
+					var column1:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column1.dataField = "sum___合计___caseNumbers";
+					column1.headerText = "发生起数";
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "sum___合计___comprehensiveEconomiLoss";
+					column1.headerText = "损失(万元)";
+					column1.sortable=false;
+					column1.width = 60;
+					advancedDataGrpArray0.push(column1);
+					columnGP0.children = advancedDataGrpArray0;
+					advancedDataArray.push(columnGP0);
+					
+				 	var xmllist:XMLList = hseDataXML.domestic.plateData[0].dataset[0].monthData[0].byCaseKind.kindData;
+					if (xmllist != null && xmllist.length() > 0)
+					{
+						for each (var xml:XML in xmllist)
+						{
+							var columnGP:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+							columnGP.headerText = xml.@label;
+							var advancedDataGrpArray:Array = new Array();
+							var column2:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+							column2.dataField = xml.@kindid + "___" + xml.@label + "___caseNumbers";
+							column2.headerText = "发生起数";
+							column2.width = 70;
+							column2.sortable=false;
+							column2.itemRenderer = itemLinkRenderer; //添加链接
+							advancedDataGrpArray.push(column2);
+							column2 = new AdvancedDataGridColumn();
+							column2.dataField = xml.@kindid + "___" + xml.@label + "___comprehensiveEconomiLoss";
+							column2.headerText = "损失(万元)";
+							column2.sortable=false;
+							column2.itemRenderer = itemLinkRenderer; //添加链接
+							column2.width = 70;
+							advancedDataGrpArray.push(column2);
+							columnGP.children = advancedDataGrpArray;
+							advancedDataArray.push(columnGP);
+						}
+					} 
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function colorFunction(item:Object, color:uint):uint
+			{
+				if (item.order == "")
+					color = 0xFFBF00;
+				return color;
+			}
+			
+			private function createPopupPlateMXData(dateid:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//级别
+					var levelList:XMLList = new XMLList();
+					var plateList:XMLList = new XMLList();
+					levelList = hseDataXML.domestic.plateData[0].dataset[0].monthData[0].byCaseKind.kindData;
+					plateList = hseDataXML.domestic.plateData.(@plateid != "00");
+					
+					
+					if (plateList != null && plateList.length() > 0)
+					{
+						//Start 合计行开始
+						var sum_obj:Object = new Object();
+						sum_obj['index'] = 1;
+						sum_obj['order'] = "";
+						sum_obj['plate'] = "合计";
+						sum_obj['plateid'] = "00";
+						sum_obj['sum___合计___ratio'] = "";
+						var sum_sumList:XMLList = new XMLList();
+						sum_sumList = hseDataXML.domestic.plateData.(@plateid == "00").dataset.(@yearid == dateid);
+						
+						if (sum_sumList != null && sum_sumList.length() > 0)
+						{
+							sum_obj['sum___合计___caseNumbers'] = Number(sum_sumList[0].@caseNumbers);
+							sum_obj['sum___合计___comprehensiveEconomiLoss'] = Number(sum_sumList[0].@comprehensiveEconomiLoss);
+						}
+						else
+						{
+							sum_obj['sum___合计___caseNumbers'] = 0;
+							sum_obj['sum___合计___comprehensiveEconomiLoss'] = 0;
+						}
+						
+						if (levelList != null && levelList.length() > 0)
+						{
+							for each (var sum_xml2:XML in levelList)
+							{
+								//获取该板块级别数据
+								var tmpList:XMLList = plateList.dataset.(@yearid==dateid).monthData.byCaseKind.kindData.(@label == sum_xml2.@label);
+								if (tmpList && tmpList.length() > 0)
+								{
+									var num_caseNumbers:Number = 0;
+									var num_comprehensiveEconomiLoss:Number = 0;
+									for each (var xml0:XML in tmpList)
+									{
+										num_caseNumbers += Number(xml0.@caseNumbers);
+										num_comprehensiveEconomiLoss += Number(xml0.@comprehensiveEconomiLoss);
+									}
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___caseNumbers"] = num_caseNumbers;
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___comprehensiveEconomiLoss"] = num_comprehensiveEconomiLoss;
+								}
+								else
+								{
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___caseNumbers"] = 0;
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___comprehensiveEconomiLoss"] = 0;
+								}
+//								sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___caseNumbers"] = Number(sum_xml2.@caseNumbers);
+//								sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___comprehensiveEconomiLoss"] = Number(sum_xml2.@comprehensiveEconomiLoss);
+							}
+						}
+						sum_obj.isSumBgColor = 1;
+						sum_obj.bgcolor = 0xFFBF00;
+						sum_obj.color = 0x000000;
+						tmpArrayCollection.addItem(sum_obj);
+						//End 合计行结束
+						
+						//Start 明细数据开始
+					 	var order:int = 1;
+						var index:int = 1;
+						for each (var xml:XML in plateList)
+						{
+							var obj:Object = new Object();
+							obj['index'] = index;
+							obj['order'] = order;
+							obj['plate'] = xml.@label;
+							obj['plateid'] = xml.@plateid;
+							var sumList:XMLList = xml.dataset.(@yearid == dateid);
+							if (sumList != null && sumList.length() > 0)
+							{
+								obj['sum___合计___caseNumbers'] = Number(sumList[0].@caseNumbers);
+								obj['sum___合计___comprehensiveEconomiLoss'] = Number(sumList[0].@comprehensiveEconomiLoss);
+							}
+							else
+							{
+								obj['sum___合计___caseNumbers'] = 0;
+								obj['sum___合计___comprehensiveEconomiLoss'] = 0;
+							}
+							
+							if (levelList != null && levelList.length() > 0)
+							{
+								for each (var xml2:XML in levelList)
+								{
+									//获取该板块级别数据
+//									var tmpList:XMLList = hseDataXML.domestic.plateData.(@plateid == obj['plateid']).dataset.(@yearid == String(xml2.@levelid)).plateData.(@plateid == String(xml.@plateid));
+									var tmpList:XMLList = sumList.monthData.byCaseKind.kindData.(@label == xml2.@label);
+									if (tmpList && tmpList.length() > 0)
+									{
+										var num_caseNumbers:Number = 0;
+										var num_comprehensiveEconomiLoss:Number = 0;
+										for each (var xml0:XML in tmpList)
+										{
+											num_caseNumbers += Number(xml0.@caseNumbers);
+											num_comprehensiveEconomiLoss += Number(xml0.@comprehensiveEconomiLoss);
+										}
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___caseNumbers"] = num_caseNumbers;
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___comprehensiveEconomiLoss"] = num_comprehensiveEconomiLoss;
+									}
+									else
+									{
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___caseNumbers"] = 0;
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___comprehensiveEconomiLoss"] = 0;
+									}
+								}
+							}
+							//obj.isSumBgColor=1;
+							//obj.bgcolor=FirstRecordBgColor;
+							obj.color = 0x000000;
+							tmpArrayCollection.addItem(obj);
+							order++;
+							index++;
+						} 
+						//End 明细数据结束
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function createPopupPlateMXData_bycorp(dateid:String,plateid:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//级别
+					var levelList:XMLList = new XMLList();
+					var plateList:XMLList = new XMLList();
+					if(plateid!=""){
+						levelList = hseDataXML.domestic.plateData.(@plateid == plateid).dataset[0].monthData[0].byCaseKind.kindData;
+//						levelList = hseDataXML.domestic.plateData.(@plateid == plateid).dataset.(@yearid == dateid).monthData.byCaseKind.kindData;
+						plateList = hseDataXML.domestic.plateData.(@plateid == plateid);
+					}
+					
+					
+					if (plateList != null && plateList.length() > 0)
+					{
+						//Start 合计行开始
+						var sum_obj:Object = new Object();
+						sum_obj['index'] = 1;
+						sum_obj['order'] = "";
+						sum_obj['plate'] = "合计";
+						sum_obj['plateid'] = "00";
+						sum_obj['sum___合计___ratio'] = "";
+						var sum_sumList:XMLList = new XMLList();
+						sum_sumList = plateList.dataset.(@yearid == dateid);
+						
+						if (sum_sumList != null && sum_sumList.length() > 0)
+						{
+							sum_obj['sum___合计___caseNumbers'] = Number(sum_sumList[0].@caseNumbers);
+							sum_obj['sum___合计___comprehensiveEconomiLoss'] = Number(sum_sumList[0].@comprehensiveEconomiLoss);
+						}
+						else
+						{
+							sum_obj['sum___合计___caseNumbers'] = 0;
+							sum_obj['sum___合计___comprehensiveEconomiLoss'] = 0;
+						}
+						
+						if (levelList != null && levelList.length() > 0)
+						{
+							for each (var sum_xml2:XML in levelList)
+							{
+								var tmpList:XMLList = plateList.dataset.(@yearid==dateid).monthData.byCaseKind.kindData.(@label == sum_xml2.@label);
+								if (tmpList && tmpList.length() > 0)
+								{
+									var num_caseNumbers:Number = 0;
+									var num_comprehensiveEconomiLoss:Number = 0;
+									for each (var xml0:XML in tmpList)
+									{
+										num_caseNumbers += Number(xml0.@caseNumbers);
+										num_comprehensiveEconomiLoss += Number(xml0.@comprehensiveEconomiLoss);
+									}
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___caseNumbers"] = num_caseNumbers;
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___comprehensiveEconomiLoss"] = num_comprehensiveEconomiLoss;
+								}
+								else
+								{
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___caseNumbers"] = 0;
+									sum_obj[String(sum_xml2.@kindid) + "___" + sum_xml2.@label + "___comprehensiveEconomiLoss"] = 0;
+								}
+							}
+						}
+						sum_obj.isSumBgColor = 1;
+						sum_obj.bgcolor = 0xFFBF00;
+						sum_obj.color = 0x000000;
+						tmpArrayCollection.addItem(sum_obj);
+						//End 合计行结束
+						
+						//Start 明细数据开始
+						var order:int = 1;
+						var index:int = 1;
+						var sumList_info:XMLList = plateList.dataset.(@yearid == dateid).monthData[0].byCorp.kindData;
+						for each (var xml:XML in sumList_info)
+						{
+							var obj:Object = new Object();
+							var sumList:XMLList = plateList.dataset.(@yearid == dateid).monthData.byCorp.kindData.(@label == xml.@label);;
+							obj['index'] = index;
+							obj['order'] = order;
+							obj['plate'] = xml.@label;
+							obj['plateid'] = plateid;
+							obj['dateid'] = dateid;
+							obj['corpid'] = xml.@corpid;
+							if (sumList != null && sumList.length() > 0)
+							{
+
+								var num_caseNumbers2:Number = 0;
+								var num_comprehensiveEconomiLoss2:Number = 0;
+								for each (var xml02:XML in sumList)
+								{
+									num_caseNumbers2 += Number(xml02.@caseNumbers);
+									num_comprehensiveEconomiLoss2 += Number(xml02.@comprehensiveEconomiLoss);
+								}
+								obj['sum___合计___caseNumbers'] = num_caseNumbers2;
+								obj['sum___合计___comprehensiveEconomiLoss'] = num_comprehensiveEconomiLoss2;
+							}
+							else
+							{
+								obj['sum___合计___caseNumbers'] = 0;
+								obj['sum___合计___comprehensiveEconomiLoss'] = 0;
+							}
+							
+							
+							
+							
+							
+							
+							if (levelList != null && levelList.length() > 0)
+							{
+								for each (var xml2:XML in levelList)
+								{
+									//获取该板块级别数据
+									var tmpList3:XMLList = plateList.dataset.(@yearid == dateid).monthData.byCorp.kindData.(@corpid == xml.@corpid).kindType.(@label == xml2.@label);
+//									for each(){
+//										
+//									}
+//									sumList_info
+									if (tmpList3 && tmpList3.length() > 0)
+									{
+										var num_caseNumbers3:Number = 0;
+										var num_comprehensiveEconomiLoss3:Number = 0;
+										for each (var xml03:XML in tmpList3)
+										{
+											num_caseNumbers3 += Number(xml03.@caseNumbers);
+											num_comprehensiveEconomiLoss3 += Number(xml03.@comprehensiveEconomiLoss);
+										}
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___caseNumbers"] = num_caseNumbers3;
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___comprehensiveEconomiLoss"] = num_comprehensiveEconomiLoss3;
+									}
+									else
+									{
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___caseNumbers"] = 0;
+										obj[String(xml2.@kindid) + "___" + xml2.@label + "___comprehensiveEconomiLoss"] = 0;
+									}
+								}
+							}
+							//obj.isSumBgColor=1;
+							//obj.bgcolor=FirstRecordBgColor;
+							obj.color = 0x000000;
+							tmpArrayCollection.addItem(obj);
+							order++;
+							index++;
+						}
+						//End 明细数据结束
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+		<s:RadioButtonGroup id="tab3_plateGrp" />
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_topLeft" ShowDataLabel="{showDataLabel}" AxisLeftTiltle="案件：起" width="100%" height="100%" title="{tab1_topLeftTitle}"
+								   showTitle="true" showLegend="false" DataSourceConf="{tab1_topLeftConfDS}" DataSource="{tab1_topLeftDS}" 
+								   PopupDoubleClick="PopupDoubleClickHandler(event)" />
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_topRight" ShowDataLabel="{showDataLabel}" AxisLeftTiltle="金额：万元" width="100%" height="100%" title="{tab1_topRightTitle}"
+								   showTitle="true" showLegend="false" DataSourceConf="{tab1_topRightConfDS}" DataSource="{tab1_topRightDS}" 
+								   PopupDoubleClick="PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+		<!--
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_downLeft" ShowDataLabel="{showDataLabel}" AxisLeftTiltle="案件：起" width="100%" height="100%" title="{tab1_downLeftTitle}"
+								   showTitle="true" showLegend="false" DataSourceConf="{tab1_downLeftConfDS}" DataSource="{tab1_downLeftDS}"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_downRight" ShowDataLabel="{showDataLabel}" AxisLeftTiltle="金额：万元" width="100%" height="100%" title="{tab1_downRightTitle}"
+								   showTitle="true" showLegend="false" DataSourceConf="{tab1_downRightConfDS}" DataSource="{tab1_downRightDS}"/>
+			</s:BorderContainer>
+		</s:HGroup>
+		-->
+	</s:VGroup>
+</s:Group>

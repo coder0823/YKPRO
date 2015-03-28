@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2012-2013" dataStartDate=""
+		dataEndDate="" timestamp=""></dataOutline>
+
+	<!-- 已下为在此请求的企业项目信息 -->
+<!-- 
+ws.GetMeantime(dataType,dateYear,plateid,corpid,levelid,profid,stageid,statusid);
+第一个参数：dataType:	数据类型：	overAll/overAllDetails/byCorp/majorSupervision（作废）
+第二个参数：dateYear:	年度：		2013
+第三个参数：plateid:		板块：		00/YT/LH/XS/GC/QT
+第四个参数：corpid：		企业：		(空)/id.....(取某个企业)
+第五个参数：levelid:		级别：		00（全部级别）/LEVEL-0（集团公司级）/LEVEL-1（事业部级）/LEVEL-2（企业级）
+第六个参数：profid:		专业id		safety（安全）/environmentalProtection（环保）/health（职业卫生）/fireControl（消防）/anti-seismic（抗震）
+第七个参数：stageid:		阶段id		(空)/阶段编码yyyy
+第八个参数: statusid:	状态id		暂时不用(空表示所有)/NO-START/IN-PROCESS/FINISHED
+
+实例一：
+获取总体概况和分板块：ws.GetMeantime("overAll","2013","00","","00","","","");
+
+实例二：
+获取总统概况钻取数据：ws.GetMeantime("overAllDetails","2013","00","","00","safety","","");
+
+实例三：
+获取分企业数据：		ws.GetMeantime("byCorp","2013","00","","00","safety","","");
+
+实例四，弹出：
+获取分企业数据：		ws.GetMeantime("overAllDetails","2013","00","企业编码","00","safety","","");
+
+实例五，重点监管
+获取数据：			ws.GetMeantime("majorSupervision","2013","00","","00","safety","","");
+ -->
+ 
+<!-- xml数据 Version:3.0 日期：2013-8-8 
+allDataCollect，概况
+	order:序号 
+	prof：专业 
+	label：阶段
+	num：在此阶段项目数
+	status：此阶段项目此阶段报警状态，逗号分隔：（0：正常，不显示，1黄色报警，2红色报警，3绿色横线超期完成，4绿色正常完成）
+	profid（*）：专业编码：safety（安全）/environmentalProtection（环保）/health（职业卫生）/fireControl（消防）/anti-seismic（抗震）
+	stageid（*）：阶段编码：(空表示所有)/NO-START/IN-PROCESS/FINISHED
+	
+	
+allData 分专业数据
+	order：序号
+	projectName：项目名称
+	investment：项目计划投资额 
+	currentStage：1,2,3,4,5 分别为 可研批复、基础设计批复、正在施工、开始试运行、试运行6个月
+	corpName（*）：所属企业
+	corpid：企业编码
+	level（*）：项目级别
+	stagedata 阶段数据
+		sequence：序号
+		label：阶段
+		status：状态：NO-START:未启动 IN-PROCESS：进行中 FINISHED:已完成  Ignore 忽略
+		inStatus：是否经过此阶段（1表示此阶段完成或进行中，0表示还没到）
+		ifShow:是否在该阶段列表中显示
+		warning：报警（0：正常，不显示，1黄色报警，2红色报警，3绿色横线超期完成，4绿色正常完成）
+		alarmTxt：报警提示文字信息
+		
+	keyregulatory是否总部重点监管项目(1:是，0否)
+	regulatoryfocustype总部重点监管项目类型
+	groupLeader：总部负责人
+	corpLeader：	企业负责人
+	groupDirector：总部主管
+
+ -->
+ 
+<!--  <allData dataLabel="环保"> -->
+<!--     <dataset order="1" projectName="燕鑫通加油站" currentStage="4" investment="204" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级"> -->
+<!--        <stagedata sequence="1" label="环境影响评价" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="1"/> -->
+<!--       <stagedata sequence="2" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/> -->
+<!--       <stagedata sequence="3" label="验收" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/> -->
+<!--     </dataset> -->
+<!--     <dataset order="2" projectName="北京石油.房山区域.新红加油站整体改造" currentStage="4" investment="296" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级"> -->
+<!--       <stagedata sequence="1" label="环境影响评价" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/> -->
+<!--       <stagedata sequence="2" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/> -->
+<!--       <stagedata sequence="3" label="验收" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/> -->
+<!--     </dataset> -->
+<!--  </allData> -->
+  <allData dataLabel="安全">
+   <dataset order="50" projectName="热电锅炉脱硫脱硝项目" currentStage="3" investment="20895" warning="" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="金陵石化" level="集团公司级">
+<stagedata sequence="1" label="设立" status="FINISHED" inStatus="1" warning="4" alarmTxt="政府信息已批复，批复日期：2013-07-22" ifShow="0"/>
+<stagedata sequence="2" label="设计" status="FINISHED" inStatus="1" warning="4" alarmTxt="政府信息已批复，批复日期：2014-01-17" ifShow="0"/>
+<stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="1" alarmTxt="" ifShow="1"/>
+<stagedata sequence="4" label="验收" status="NO-START" inStatus="0" warning="" alarmTxt="" ifShow="0"/>
+</dataset>
+    <dataset order="2" projectName="北京石油.房山区域.新红加油站整体改造" currentStage="4" investment="296" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+		 <stagedata sequence="1" label="设立" status="IN-PROCESS" inStatus="1" warning="1" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="3" projectName="朝阳区南辛庄加油站项目" currentStage="4" investment="8312.70" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="IN-PROCESS" inStatus="1" warning="1" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="4" projectName="北京石油.房山区域.燕鑫通加油站整体改造" currentStage="4" investment="204" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="5" projectName="北京石油.房山区域.太阳港加油站整体改造" currentStage="4" investment="360" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="6" projectName="北京石油.房山区域.新兴加油站整体改造" currentStage="4" investment="295" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="7" projectName="北京石油.房山区域.燕云加油站整体改造" currentStage="4" investment="63.70" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="8" projectName="新兴加油站" currentStage="4" investment="294" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="9" projectName="新红加油站" currentStage="4" investment="296" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="10" projectName="迪生加油站" currentStage="4" investment="82.97" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="11" projectName="益特诺加油站改造" currentStage="4" investment="2450681.40" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+     <dataset order="12" projectName="新红加油站" currentStage="4" investment="296" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="13" projectName="迪生加油站" currentStage="4" investment="82.97" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="14" projectName="益特诺加油站改造" currentStage="4" investment="2450681.40" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+     <dataset order="15" projectName="新红加油站" currentStage="4" investment="296" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="16" projectName="迪生加油站" currentStage="4" investment="82.97" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+    <dataset order="17" projectName="益特诺加油站改造" currentStage="4" investment="2450681.40" warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader="" corpLeader="" corpName="北京石油" level="直属单位级">
+      <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯" ifShow="0"/>
+      <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"/>
+      <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2" alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"/>
+      <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1" alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1"/>
+    </dataset>
+	</allData>
+</model>

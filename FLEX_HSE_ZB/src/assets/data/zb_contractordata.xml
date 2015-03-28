@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+  <!--
+  *******************************************************************
+  2013年10月21日 孙山虎 
+  根据三期总部提出钻取要求进行修改：期中"......"的地方表示有扩展，请开发人员按实际输出
+  文档结构如下：
+  contractorData 				承包商数据：
+  	|_plateData 				板块数据：	plateid板块代码，plateLabel板块名称，contractorNumbers承包商数量，qualifiedNumbers合格数量，unqualifiedNumbers不合格数量
+  		|_corpData 				企业数据：	order序号，subCorpid企业编码，subCorpname企业名称，contractorNumbers承包商数量，qualifiedNumbers合格数量，unqualifiedNumbers不合格数量，URL链接（预留）
+  			|_contractorData 	承包商数据：	order序号，type类型（qualified合格，unqualified不合格），contractorid承包商编码，contractorName承包商名称，URL链接（预留）
+
+  注意：plateData中plateid="00"的为汇总数据，不用到企业
+  *******************************************************************
+  -->
+  <carriersData>
+  <!-- 承运商，同承包商 -->
+  </carriersData>
+  <contractorData>
+     <plateData   plateid="00" plateLabel="全部" contractorNumbers="2460" qualifiedNumbers="222" unqualifiedNumbers="111"/>
+     <plateData   plateid="YT" plateLabel="油田" contractorNumbers="710" qualifiedNumbers="222" unqualifiedNumbers="111">
+       	<corpData  order="1" subCorpid="YTA" subCorpname="油田企业A" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="YTACA" contractorName="油田企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="YTACB" contractorName="油田企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="YTACC" contractorName="油田企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="YTACD" contractorName="油田企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <corpData  order="1" subCorpid="YTB" subCorpname="油田企业B" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="YTBCA" contractorName="油田企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="YTBCB" contractorName="油田企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="YTBCC" contractorName="油田企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="YTBCD" contractorName="油田企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <!-- ...... -->
+     </plateData> 
+     <plateData   plateid="LH" plateLabel="炼化" contractorNumbers="460" qualifiedNumbers="222" unqualifiedNumbers="111">
+       	<corpData  order="1" subCorpid="LHA" subCorpname="炼化企业A" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="LHACA" contractorName="炼化企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="LHACB" contractorName="炼化企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="LHACC" contractorName="炼化企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="LHACD" contractorName="炼化企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <corpData  order="1" subCorpid="LHB" subCorpname="炼化企业B" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="LHBCA" contractorName="炼化企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="LHBCB" contractorName="炼化企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="LHBCC" contractorName="炼化企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="LHBCD" contractorName="炼化企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <!-- ...... -->
+     </plateData> 
+     <plateData   plateid="XS" plateLabel="销售" contractorNumbers="730" qualifiedNumbers="222" unqualifiedNumbers="111">
+       	<corpData  order="1" subCorpid="XSA" subCorpname="销售企业A" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="XSACA" contractorName="销售企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="XSACB" contractorName="销售企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="XSACC" contractorName="销售企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="XSACD" contractorName="销售企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <corpData  order="1" subCorpid="XSB" subCorpname="销售企业B" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="XSBCA" contractorName="销售企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="XSBCB" contractorName="销售企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="XSBCC" contractorName="销售企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="XSBCD" contractorName="销售企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData>
+       <!-- ...... --> 
+     </plateData> 
+     <plateData   plateid="GC" plateLabel="工程" contractorNumbers="70" qualifiedNumbers="222" unqualifiedNumbers="111">
+       	<corpData  order="1" subCorpid="GCA" subCorpname="工程企业A" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="GCACA" contractorName="工程企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="GCACB" contractorName="工程企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="GCACC" contractorName="工程企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="GCACD" contractorName="工程企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <corpData  order="1" subCorpid="GCB" subCorpname="工程企业B" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="GCBC1" contractorName="其他企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="GCBC2" contractorName="其他企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="GCBC3" contractorName="其他企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="GCBC4" contractorName="其他企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <!-- ...... -->
+     </plateData> 
+     <plateData   plateid="QT" plateLabel="其它" contractorNumbers="520" qualifiedNumbers="222" unqualifiedNumbers="111">
+       	<corpData  order="1" subCorpid="QTA" subCorpname="其他企业A" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="QTACA" contractorName="其他企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="QTACB" contractorName="其他企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="QTACC" contractorName="其他企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="QTACD" contractorName="其他企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData> 
+       <corpData  order="1" subCorpid="QTB" subCorpname="其他企业B" contractorNumbers="192" qualifiedNumbers="100" unqualifiedNumbers="92" URL="">
+	         <contractorData order="1" type="qualified" contractorid="QTBCA" contractorName="其他企业B合格承包商A" URL="" />
+	         <contractorData order="2" type="qualified" contractorid="QTBCB" contractorName="其他企业B合格承包商B" URL="" />
+	         <contractorData order="3" type="unqualified" contractorid="QTBCC" contractorName="其他企业B不合格承包商A" URL="" />
+	         <contractorData order="4" type="unqualified" contractorid="QTBCD" contractorName="其他企业B不合格承包商B" URL="" />
+	         <!-- ...... -->
+       </corpData>
+       <!-- ...... --> 
+     </plateData> 
+  </contractorData> 
+  
+  
+  
+ <!-- 已下是旧版本，备份--> 
+  
+ <!-- 总部HSE仪表盘〔承包商部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-3 -->
+ <!--*************************一、字段说明如下******************************
+   plateid:板块id                                  plateLabel：板块的显示标签
+   contractorNumbers：承包商数量                        label：承包商类型的显示名称或者合格不合格的显示名称
+   id：合格或不合格的承包商id                          numbers：合格或不合格的承包商数量 
+   order:企业排序序号，要求按承包商总数降序排列             subCorpid：企业ID                                
+   subCorpname：企业名称                                 URL:某个企业记录对应的业务系统URL
+   byCorpLabel:分企业时合计行显示的标签名
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，如分板块的“全部”选项
+        2.装置的级别和板块等应该是活的
+        3.WebService处理明细的企业，带有order字段时，应严格按照其比率降序排列数据,且所有字段值一律不准写null值   
+ -->  
+  <contractorData1 >
+     <plateData   plateid="00" plateLabel="总计" contractorNumbers="2460">
+       <qualifyData label = "合格" id = "qualified" numbers="2392" ratio="" />
+       <qualifyData label = "不合格" id = "unqualified" numbers="56" ratio="" >
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData URL="" contractorName="山东得标建设有限公司"
+						contractorid="2ADA32860D294A528D67937655F0D9CD" order="0" />
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	    </qualifyData>
+		<corpData  order="1" subCorpid="" subCorpname="镇海" contractorNumbers="192" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData> 
+       <corpData  order="2" subCorpid="" subCorpname="洛阳" contractorNumbers="79" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="77" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="2" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData>
+       <corpData  order="3" subCorpid="" subCorpname="杨子" contractorNumbers="67" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="67" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData> 
+       <corpData  order="4" subCorpid="" subCorpname="石家庄" contractorNumbers="65" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="64" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="1" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData>
+       <corpData  order="4" subCorpid="" subCorpname="茂名" contractorNumbers="44" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="44" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData>
+       <corpData  order="4" subCorpid="" subCorpname="广州" contractorNumbers="6" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="6" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData>
+       <corpData  order="4" subCorpid="" subCorpname="燕山" contractorNumbers="3" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="2" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="1" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData>
+     </plateData> 
+     <plateData   plateid="YT" plateLabel="油田" byCorpLabel="油田合计" contractorNumbers="710">
+       <qualifyData label = "合格" id = "qualified" numbers="699" ratio="" />
+       <qualifyData label = "不合格" id = "unqualified" numbers="8" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       <corpData  order="1" subCorpid="" subCorpname="镇海" contractorNumbers="192" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" >
+		     <!--本部分依据2013-10-21根据三期需求添加，合格承包商名目 -->
+	         <qualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData> 
+     </plateData> 
+     <plateData   plateid="LH" plateLabel="炼化" byCorpLabel="炼化合计" contractorNumbers="460">
+       <qualifyData label = "合格" id = "qualified" numbers="447" ratio="" />
+       <qualifyData label = "不合格" id = "unqualified" numbers="5" ratio=""/>
+       <corpData  order="1" subCorpid="" subCorpname="镇海" contractorNumbers="192" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" >
+		     <!--本部分依据2013-10-21根据三期需求添加，合格承包商名目 -->
+	         <qualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData> 
+     </plateData> 
+     <plateData   plateid="XS" plateLabel="销售" byCorpLabel="销售合计" contractorNumbers="730">
+       <qualifyData label = "合格" id = "qualified" numbers="694" ratio="" />
+       <qualifyData label = "不合格" id = "unqualified" numbers="20" ratio=""/>
+       <corpData  order="1" subCorpid="" subCorpname="镇海" contractorNumbers="192" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" >
+		     <!--本部分依据2013-10-21根据三期需求添加，合格承包商名目 -->
+	         <qualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData> 
+      </plateData> 
+     <plateData   plateid="GC" plateLabel="工程" byCorpLabel="工程合计" contractorNumbers="70">
+       <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" >
+		     <!--本部分依据2013-10-21根据三期需求添加，合格承包商名目 -->
+	         <qualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       <qualifyData label = "不合格" id = "unqualified" numbers="10" ratio=""/>
+       <corpData  order="1" subCorpid="" subCorpname="镇海" contractorNumbers="192" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData> 
+     </plateData> 
+     <plateData   plateid="QT" plateLabel="其它" byCorpLabel="其它合计" contractorNumbers="520">
+       <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" >
+		     <!--本部分依据2013-10-21根据三期需求添加，合格承包商名目 -->
+	         <qualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <qualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       <qualifyData label = "不合格" id = "unqualified" numbers="13" ratio=""/>
+       <corpData  order="1" subCorpid="" subCorpname="镇海" contractorNumbers="192" URL="">
+         <qualifyData label = "合格" id = "qualified" numbers="192" ratio="" />
+         <qualifyData label = "不合格" id = "unqualified" numbers="0" ratio="">
+	         <!--本部分依据2013-1-18与朱红对接要求，能在表格中弹出不合格承包商名单，本处示意性为4家，下同 -->
+	         <unqualifiedData order="1" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="2" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="3" contractorid="" contractorName="承包商X" URL="" />
+	         <unqualifiedData order="4" contractorid="" contractorName="承包商X" URL="" />
+	     </qualifyData>
+       </corpData> 
+     </plateData> 
+  </contractorData1 > 
+ 
+
+ 
+</model>

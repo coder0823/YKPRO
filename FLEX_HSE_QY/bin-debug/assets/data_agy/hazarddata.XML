@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2013" dataDate="" corpid="10000002"
+		corpname="河南石油" timestamp="" />
+	<hazardData>
+		<dataset typeid="ALL-LEVEL" level="1" projectLabel="河南石油合计"
+			finishedInvestment="20.0" unfinishedInvestment="1363.018">
+			<projectdata id="in-designer" label="正在设计" numbers="26"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="2"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="1"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="2" URL="" />
+		</dataset>
+		<dataset typeid="GROUP-LEVEL" level="2" projectLabel="集团公司级"
+			finishedInvestment="20.0" unfinishedInvestment="1363.0">
+			<projectdata id="in-designer" label="正在设计" numbers="2"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="2"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="1"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="GROUP-LEVEL" level="3" projectLabel="第一批"
+			finishedInvestment="20.0" unfinishedInvestment="1363.0">
+			<projectdata id="in-designer" label="正在设计" numbers="2"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="2"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="1"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="GROUP-LEVEL" level="3" projectLabel="第二批"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="GROUP-LEVEL" level="3" projectLabel="第三批"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL" level="2" projectLabel="企业级"
+			finishedInvestment="0.0" unfinishedInvestment="0.018">
+			<projectdata id="in-designer" label="正在设计" numbers="24"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="2" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="省公司级"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="郑州石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.015">
+			<projectdata id="in-designer" label="正在设计" numbers="14"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="2" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="开封石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="1"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="洛阳石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="新乡石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="安阳石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="鹤壁石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="7"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="濮阳石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="漯河石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="三门峡石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="平顶山分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="南阳石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="信阳石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="商丘石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="周口石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="济源石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0030">
+			<projectdata id="in-designer" label="正在设计" numbers="1"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="中原石油分公司"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="1"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+		<dataset typeid="CORP-LEVEL-2" level="3" projectLabel="洛阳第四十八站"
+			finishedInvestment="0.0" unfinishedInvestment="0.0">
+			<projectdata id="in-designer" label="正在设计" numbers="0"
+				URL="" />
+			<projectdata id="wait-construction" label="等待施工" numbers="0"
+				URL="" />
+			<projectdata id="in-construction" label="正在施工" numbers="0"
+				URL="" />
+			<projectdata id="finished" label="已完成" numbers="0" URL="" />
+		</dataset>
+	</hazardData>
+</model>

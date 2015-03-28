@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：企业仪表盘-三同时
+	* 参数：年度（2013）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import spark.components.Group;
+			import spark.components.NavigatorContent;
+			import events.MeantimeOverAllStatusEvent;
+			import renderers.AdvancedDataGridLabelRenderer;
+			import renderers.AdvancedDataGridProgressRenderer;
+			import renderers.AdvancedDataGridStateRenderer;
+			import renderers.AdvancedDataGridWarningRenderer;
+			import renderers.MeantimeOneStatusRenderer;
+			import views.MeaningTimeCompt;
+			import views.RowAdvDataGrid;
+			
+			public const _dataPath:String = "assets/data_agy/meantimedata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			[Bindable]
+			public var title:String="建设项目‘三同时’进度表";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			private var advancedLabel:IFactory = new ClassFactory(AdvancedDataGridLabelRenderer);
+			private var advancedProgress:IFactory = new ClassFactory(AdvancedDataGridProgressRenderer);
+			private var meantimeOneStatusRenderer:IFactory = new ClassFactory(MeantimeOneStatusRenderer);
+			private var advancedDataGridStateRenderer:IFactory = new ClassFactory(AdvancedDataGridStateRenderer);
+			private var advancedDataGridWarningRenderer:IFactory = new ClassFactory(AdvancedDataGridWarningRenderer);
+			private var stateArr:Array = ['可研批复','基础设计批复','正在施工','开始试运行','试运行6个月'];
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				////this.addEventListener(MeantimeOverAllNumEvent.NUM_CLICK,meantime_overall_num_click_handler);
+				this.addEventListener(MeantimeOverAllStatusEvent.STATUS_CLICK,meantime_overall_status_click_handler);
+				
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					var obj:Object=new Object();
+					obj.name=i+"年";
+					obj.value=i;
+					dateArrCol.addItem(obj);
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				
+				refreshData();
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.remoteMethod('8','',this.dateEnd.selectedItem.value);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				createTitle();
+				createTab1();
+				createTabX();
+			}
+			
+			private function createTitle():void{
+				var dept:String="";
+				if(hseDataXML.dataOutline){
+					dept=hseDataXML.dataOutline.@corpname;
+				}
+				title=dept+this.dateEnd.selectedItem.value+"年建设项目‘三同时’进度表";
+			}
+			
+			private function createTab1():void{
+				viewStack.removeAllElements();
+				var navigatorContent:NavigatorContent = new NavigatorContent();
+				navigatorContent.percentWidth = 100;
+				navigatorContent.percentHeight = 100;
+				navigatorContent.label = "项目总体进度情况";
+				
+				
+				try{
+					var aDGDataAc:ArrayCollection = new ArrayCollection();
+					for each(var xml:XML in hseDataXML.allDataCollect.allDataItem){
+						var obj:Object = new Object();
+						obj['order'] = int(xml.@order);
+						obj['prof'] = xml.@prof + "";
+						obj['stage'] = xml.@label + "";
+						obj['projectNumber'] = int(xml.@num);
+						obj['status'] = xml.@status + "";
+						aDGDataAc.addItem(obj);
+					}
+					
+					var advancedDataGrid:views.MeaningTimeCompt = new views.MeaningTimeCompt();
+					advancedDataGrid.advancedDataGridAc = aDGDataAc;
+					
+					navigatorContent.addElement(advancedDataGrid);
+				}catch(e:Event){
+					trace(e);
+				}
+				viewStack.addElement(navigatorContent);
+			}
+			
+			
+			
+			private function createTabX():void{
+				for each(var xml:XML in hseDataXML.allData){
+					var navigatorContent:NavigatorContent = new NavigatorContent();
+					navigatorContent.percentWidth = 100;
+					navigatorContent.percentHeight = 100;
+					navigatorContent.label = xml.@dataLabel;
+					var advancedDataGrid:mx.controls.AdvancedDataGrid = createTabXADG(xml.@dataLabel);
+					var advancedAc:ArrayCollection = createTabXData(xml.@dataLabel);
+					advancedDataGrid.dataProvider = advancedAc;
+					navigatorContent.addElement(advancedDataGrid);
+					viewStack.addElement(navigatorContent);
+				}
+			}
+			private function createTabXADG(dataLabel:String):RowAdvDataGrid{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize",16);
+					advancedDataGrid.setStyle("alternatingItemColors",['#EDF5F9','#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = false;
+					
+					//advancedDataGrid.addEventListener(ListEvent.ITEM_CLICK,TabXADG_itemClickHandler);
+					var advancedDataArray:Array = new Array();
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column = new AdvancedDataGridColumn();
+					column.width = 50;
+					column.dataField = "order";
+					column.headerText = "序号";
+					column.setStyle("textAlign","center");
+					//column.itemRenderer = advancedLabel;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 350;
+					column.dataField = "projectName";
+					column.headerText = "项目名称";
+					column.dataTipField="projectName";
+					column.showDataTips=true;
+					column.setStyle("textAlign","left");
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 100;
+					column.dataField = "investment";
+					column.headerText = "投资金额(万)";
+					column.setStyle("textAlign","center");
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 100;
+					column.dataField = "currentStage";
+					column.headerText = "项目进度";
+					column.setStyle("textAlign","center");
+					advancedDataArray.push(column);
+					
+					var xmllist:XMLList=hseDataXML.allData.(@dataLabel==dataLabel).dataset;
+					if(xmllist!=null&&xmllist.length()>0){
+						var i:int =0;
+						
+						var columnGP2:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+						columnGP2.headerText = "三同时进度";
+						var advancedDataGrpArray2:Array = new Array();
+						i = 1;
+						for each(var xml3:XML in xmllist[0].stagedata){
+							var column3:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+							column3.dataField = "field" + i;
+							column3.headerText = xml3.@label;
+							column3.itemRenderer = meantimeOneStatusRenderer;
+							advancedDataGrpArray2.push(column3);
+							i++;
+						}
+						columnGP2.children = advancedDataGrpArray2;
+						advancedDataArray.push(columnGP2);
+					}
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction=colorFunction;
+				}catch(e:Event){
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			private function createTabXData(dataLabel:String):ArrayCollection{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try{
+					var xmllist:XMLList=hseDataXML.allData.(@dataLabel==dataLabel).dataset;
+					if(xmllist!=null&&xmllist.length()>0){
+						var sum_obj:Object=new Object();
+						var sum_investment:Number=0;
+						var sum_objPro:Object=new Object();
+						var index:int=1;
+						for each(var xml:XML in xmllist){
+							sum_investment+=Number(xml.@investment);
+							var obj:Object = new Object();
+							obj['order'] = index;
+							obj['isSum']="0";
+							obj['investment'] = xml.@investment;
+							var currentStage:int = int(xml.@currentStage);
+							obj['currentStage'] = handlerCurrState(currentStage);
+							obj['projectName'] = xml.@projectName + "";
+							var i:int = 1;
+							var stopShow:Boolean = false;
+							if(xml.stagedata!=null&&xml.stagedata.length()>0){
+								for each(var xml2:XML in xml.stagedata){
+									if(!stopShow){
+										//if(xml2.@status == "NO-START" || xml2.@status == "IN-PROCESS"){
+										if(xml2.@ifShow == "1"){
+											//孙山虎2013年10月23日 注释掉，原因，各个阶段可以同时进行
+											stopShow = true;
+											if(sum_objPro['fieldCnt'+i]){
+												sum_objPro['fieldCnt'+i]++;
+											}else{
+												sum_objPro['fieldCnt'+i]=1;
+											}
+										}else{
+											//sum_objPro['fieldCnt'+i]=0;
+										}
+										var objStage:Object=new Object;
+										objStage.status=xml2.@status;
+										objStage.warning=xml2.@warning;
+										objStage.alarmTxt=xml2.@alarmTxt;
+										obj['field' + i] = objStage;
+										
+									}else{
+										obj['field' + i] = null;
+									}
+									i++;
+								}
+							}
+							index++;
+							tmpArrayCollection.addItem(obj);
+						}
+						sum_obj['order']="";
+						sum_obj['isSum']="1";
+						sum_obj['investment']=sum_investment
+						sum_obj['currentStage']="";
+						sum_obj['projectName']="合计";
+						var xmllist4:XMLList=hseDataXML.allData.(@dataLabel==dataLabel).dataset;
+						if(xmllist4!=null&&xmllist4.length()>0){
+							var j:int = 1;
+							for each(var xml3:XML in xmllist4[0].stagedata){
+								var sumObjStage:Object=new Object();
+								sumObjStage.statusCnt=sum_objPro['fieldCnt'+j]
+								sum_obj['field'+j]=sumObjStage;
+								j++;
+							}
+						}
+						
+						tmpArrayCollection.addItemAt(sum_obj,0);
+					}
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private var titleWindow:views.PopupTitleWin;  
+			private function meantime_overall_status_click_handler(event:MeantimeOverAllStatusEvent):void{
+				var item:Object=event.data;
+				var type:String=event.statusStr;
+				
+				titleWindow = new views.PopupTitleWin();  
+				titleWindow.TitleValue =  item["prof"]+"专业"+item["stage"]+ "阶段项目详细列表"+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				var dataLabel:String = viewStack.selectedChild.label;
+				var advancedDataGrid:mx.controls.AdvancedDataGrid; 
+				try{
+					advancedDataGrid = createTab1PopupADG(item,type);
+					var advancedAc:ArrayCollection = createTab1PopData(item,type);
+					advancedDataGrid.dataProvider = advancedAc;
+
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow.width-2;
+					borderContainer.height =titleWindow.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow.Content = group;
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function createTab1PopupADG(obj:Object,status:String):RowAdvDataGrid{
+				var advancedDataGrid:RowAdvDataGrid= new RowAdvDataGrid();
+				try{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize",14);
+					advancedDataGrid.setStyle("textAlign","center");
+					advancedDataGrid.setStyle("alternatingItemColors",['#EDF5F9','#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = false;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 50;
+					column.dataField = "order";
+					column.setStyle("textAlign","center");
+					column.headerText = "序号";
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "projectName";
+					column.showDataTips=true;
+					column.width = 250;
+					column.dataField = "projectName";
+					column.setStyle("textAlign","left");
+					column.headerText = "项目名称";
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 100;
+					column.dataField = "investment";
+					column.setStyle("textAlign","center");
+					column.headerText = "投资金额(万)";
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 100;
+					column.dataField = "currentStage";
+					column.setStyle("textAlign","center");
+					column.headerText = "项目进度";
+					advancedDataArray.push(column);
+					
+					var xmllist:XMLList=hseDataXML.allData.(@dataLabel==obj["prof"]).dataset;
+					if(xmllist!=null&&xmllist.length()>0){
+						var columnGP:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+						columnGP.headerText = "三同时进度";
+						var advancedDataGrpArray:Array = new Array();
+						var i:int = 1;
+						for each(var xml2:XML in xmllist[0].stagedata){
+							var column2:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+							column2.dataField = "field" + i;
+							column2.headerText = xml2.@label;
+							column2.width=60;
+							column2.itemRenderer = meantimeOneStatusRenderer;
+							advancedDataGrpArray.push(column2);
+							i++;
+						}
+						columnGP.children = advancedDataGrpArray;
+						advancedDataArray.push(columnGP);
+					}
+					
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction=colorFunction;
+				}catch(e:Event){
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			private function createTab1PopData(o:Object,status:String):ArrayCollection{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				var dataLabel:String=o["prof"];
+				var stageLabel:String=o["stage"];
+				try{
+					var xmllist:XMLList=hseDataXML.allData.(@dataLabel==dataLabel).dataset;//
+					if(xmllist!=null&&xmllist.length()>0){
+						var sum_obj:Object=new Object();
+						var sum_investment:Number=0;
+						var sum_objPro:Object=new Object();
+						var index:int=1;
+						for each(var xml:XML in xmllist){
+							//var xmlList2:XMLList=xml.stagedata.(@label==stageLabel).(@inStatus=="1");
+							//xmlList2=xmlList2.(@status=="IN-PROCESS" || @status=="NO-START");
+							var xmlList2:XMLList
+							if(stageLabel=="小计"||stageLabel==""){
+								xmlList2=xml.stagedata;
+							}else{
+								xmlList2=xml.stagedata.(@label==stageLabel).(@ifShow=="1");
+							}
+							
+							if(status&&status!=""){
+								xmlList2=xmlList2.(@status==status);
+							}
+							if(xmlList2!=null&&xmlList2.length()>0){
+								sum_investment+=Number(xml.@investment);
+								var obj:Object = new Object();
+								obj['order'] = index;
+								obj['isSum']="0";
+								obj['projectName'] = xml.@projectName + "";
+								obj['investment'] = xml.@investment + "";
+								var currentStage:int = int(xml.@currentStage);
+								obj['currentStage'] = handlerCurrState(currentStage);
+								var i:int = 1;
+								var stopShow:Boolean = false;
+								if(xml.stagedata!=null&&xml.stagedata.length()>0){
+									for each(var xml2:XML in xml.stagedata){
+										if(!stopShow){
+											//if(xml2.@status == "NO-START" || xml2.@status == "IN-PROCESS"){
+											if(xml2.@ifShow == "1"){
+												//孙山虎2013年10月23日 注释掉，原因，各个阶段可以同时进行
+												stopShow = true;
+												if(sum_objPro['fieldCnt'+i]){
+													sum_objPro['fieldCnt'+i]++;
+												}else{
+													sum_objPro['fieldCnt'+i]=1;
+												}
+											}else{
+												//sum_objPro['fieldCnt'+i]=0;
+											}
+											var objStage:Object=new Object;
+											objStage.status=xml2.@status;
+											objStage.warning=xml2.@warning;
+											objStage.alarmTxt=xml2.@alarmTxt;
+											obj['field' + i] = objStage;
+										}else{
+											obj['field' + i] = null;
+										}
+										i++;
+									}
+								}
+								index++;
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+						sum_obj['order']="";
+						sum_obj['isSum']="1";
+						sum_obj['investment']=sum_investment
+						sum_obj['currentStage']="";
+						sum_obj['projectName']="合计";
+						var xmllist4:XMLList=hseDataXML.allData.(@dataLabel==dataLabel).dataset;
+						if(xmllist4!=null&&xmllist4.length()>0){
+							var j:int = 1;
+							for each(var xml3:XML in xmllist4[0].stagedata){
+								var sumObjStage:Object=new Object();
+								sumObjStage.statusCnt=sum_objPro['fieldCnt'+j]
+								sum_obj['field'+j]=sumObjStage;
+								j++;
+							}
+						}
+						
+						tmpArrayCollection.addItemAt(sum_obj,0);
+					}
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function colorFunction(item:Object, color:uint):uint{	
+				if(item.order=="")
+					color=0xFFBF00;
+				return color;
+			}	
+			private function handlerCurrState(index:int):String{
+				if(index == 0){
+					return "";
+				}
+				return stateArr[index - 1];
+			}
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+		<s:RadioButtonGroup id="tab2_levelGrp" />
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<s:Label id="label" text="{title}" styleName="titleStyle" width="100%" y="{buttonBar.height+10}"/>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5"/>
+	<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+		<s:layout>
+			<s:HorizontalLayout horizontalAlign="right" verticalAlign="middle" paddingLeft="10" paddingRight="10"/>
+		</s:layout>
+		<s:HGroup horizontalAlign="center" verticalAlign="middle" styleName="controlBox" paddingLeft="10">
+			<s:Label text="预警状态：" fontWeight="bold"/>
+			<!--
+			<s:Ellipse width="20" height="20" horizontalCenter="0" verticalCenter="0">
+			<s:fill>
+			<s:SolidColor color="#00FF00"/>
+			</s:fill>
+			</s:Ellipse>
+			<s:Label text="正常"/>
+			<s:Ellipse width="20" height="20" horizontalCenter="0" verticalCenter="0">
+			<s:fill>
+			<s:SolidColor color="#FFFF00"/>
+			</s:fill>
+			</s:Ellipse>
+			<s:Label text="预警"/>
+			<s:Ellipse width="20" height="20" horizontalCenter="0" verticalCenter="0">
+			<s:fill>
+			<s:SolidColor color="#FF0000"/>
+			</s:fill>
+			</s:Ellipse>
+			<s:Label text="超期"/>
+			-->
+			<!--
+			<s:Group>
+			<s:layout>
+			<s:BasicLayout/>
+			</s:layout>
+			<s:Ellipse width="20" height="20" horizontalCenter="0" verticalCenter="0">
+			<s:fill>
+			<s:SolidColor color="#00FF00"/>
+			</s:fill>
+			</s:Ellipse>
+			<s:Label text="!" horizontalCenter="0" verticalCenter="0" fontWeight="bold" color="#FF0000"/>
+			</s:Group>
+			<s:Label text="超期完成"/>
+			-->
+			<!--
+			<s:Image width="20" height="20" horizontalCenter="0" verticalCenter="0"
+			source="assets/images/icoGood.png"/>
+			<s:Label text="正常进行"/>
+			-->
+			<s:Image width="20" height="20" horizontalCenter="0" verticalCenter="0"
+					 source="assets/images/icoWarning.png"/>
+			<s:Label text="预警"/>
+			<s:Image width="20" height="20" horizontalCenter="0" verticalCenter="0"
+					 source="assets/images/icoAlarm.png"/>
+			<s:Label text="超期"/>
+			<s:Image width="20" height="20" horizontalCenter="0" verticalCenter="0"
+					 source="assets/images/icoFinished.png"/>
+			<s:Label text="已完成"/>
+			<s:Image width="20" height="20" horizontalCenter="0" verticalCenter="0"
+					 source="assets/images/icoFinishedAlarm.png"/>
+			<s:Label text="超期完成"/>
+			
+		</s:HGroup>
+	</s:BorderContainer>
+</s:Application>

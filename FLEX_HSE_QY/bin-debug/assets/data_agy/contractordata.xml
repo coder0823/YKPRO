@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2012" dataDate="2012" corpid="10000002"
+		corpname="河南石油" timestamp="2013-05-21 0824:05:141" />
+	<contractorData goodLabel="合格" badLabel="不合格">
+		<dataset contractorid="LEVEL-A" label="合计" contractorNumbers="65"
+			goodNumbers="12" badNumbers="53" URL="" />
+		<dataset contractorid="LEVEL-B" label="省公司级"
+			contractorNumbers="8" goodNumbers="3" badNumbers="5" URL="" />
+		<dataset contractorid="LEVEL-C" label="地市公司级"
+			contractorNumbers="57" goodNumbers="9" badNumbers="48" URL="" />
+	</contractorData>
+</model>

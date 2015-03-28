@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘〔工业电视〕xml数据   Version:1.0 日期：2013-7-17 -->
+ <!--*************************一、字段说明如下******************************
+   label：工业电视显示名称(企业显示名称)
+   URL: 工业电视调用地址
+   cid： 工业电视的id,用于调用工业电视的超链接   
+   see:当前的工业电视是否可看(true&false)
+  *********************二、其它说明*************************************************************************************************
+  版本1.0说明：    测试数据     找得一些数据均为可看设备
+  
+	  <rootNode>:根目录
+	  <qyNode>:企业节点
+	  <sccsNode>:生产场所节点
+	  <videoNode>:工业电视节点(设备名称&装置位置)
+ -->  
+
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+ 
+ <!--工业电视服务地址 依靠服务变更来配置 -->
+  <!--<serviceInterface>http://10.5.5.143:2001/index.aspx</serviceInterface> -->
+  <serviceInterface>http://10.1.18.91:12345/index.html</serviceInterface> 
+  
+  
+  
+  <!--二.工业电视数据，成树形结构，从属关系-->
+  <IndustrialData>
+  	<rootNode label="中国石化">
+		<qyNode label="燕山石化">
+			<sccsNode label="炼油二厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+				<videoNode label="火炬-炼油二厂联合火炬" cid="YAS_LEHJ68_03" URL="" see=""></videoNode>
+				<videoNode label="二催化-车间房顶" cid="YAS_ECH57_01" URL="" see=""></videoNode>
+				<videoNode label="制硫-造粒厂房顶" cid="YAS_LEZL102_08" URL="" see=""></videoNode>
+				<videoNode label="制硫-火炬平台" cid="YAS_LEZL102_04" URL="" see=""></videoNode>
+				<videoNode label="制硫-操作室房顶" cid="YAS_LEZL102_07" URL="" see=""></videoNode>
+				<videoNode label="二成品-聚丙烯火炬" cid="YAS_JBXHJ62_01" URL="" see=""></videoNode>
+				<videoNode label="一蒸馏-加热炉" cid="YAS_YZL52_01" URL="" see=""></videoNode>
+				<videoNode label="一蒸馏-塔区" cid="YAS_YZL52_02" URL="" see=""></videoNode>
+				<videoNode label="二催化-反应区" cid="YAS_ECH57_02" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="炼油三厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="储运一厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="储运二厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="橡胶厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="炼油一厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="化工一厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="化工六厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="化工二厂">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			<sccsNode label="其他">
+				<videoNode label="一催化-原料油泵房北" cid="YAS_YCH66_03" URL="" see=""></videoNode>
+			</sccsNode>
+			
+		</qyNode>
+		<qyNode label="洛阳石化">
+		</qyNode>
+		<qyNode label="广州石化">
+		</qyNode>
+		<qyNode label="扬子石化">
+		</qyNode>
+		<qyNode label="石家庄炼化">
+		</qyNode>
+		<qyNode label="镇海炼化">
+		</qyNode>
+		<qyNode label="河南石油">
+		</qyNode>
+		<qyNode label="北京石油">
+		</qyNode>
+		<qyNode label="广东石油">
+		</qyNode>
+		<qyNode label="山东石油">
+		</qyNode>
+		<qyNode label="江苏油田">
+		</qyNode>
+		<qyNode label="浙江石油">
+		</qyNode>
+		<qyNode label="管道储运分公司">
+		</qyNode>
+	</rootNode>
+  </IndustrialData > 
+
+	
+ 
+</model>

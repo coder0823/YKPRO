@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark"  
+		  xmlns:views="views.*"
+		  xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" horizontalAlign="center" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：饼形组件
+	* 参数：
+	* 作者：孙山虎
+	* 日期：2012年12月29日
+	* */
+	-->
+	<fx:Metadata>
+		[Event(name="PopupClick", type="events.PopupEvent")]
+		[Event(name="PopupDoubleClick", type="events.PopupEvent")]
+	</fx:Metadata>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<!--组件属性-->
+		<fx:String id="title">报表标题</fx:String>
+		<fx:Boolean id="showTitle">true</fx:Boolean>
+		<fx:Boolean id="showLegend">true</fx:Boolean>
+		<fx:Boolean id="showLegendValue">true</fx:Boolean>
+
+		<mx:SeriesInterpolate id="si" duration="2000" />
+		<mx:SeriesZoom id="sz" duration="2000" />
+		<mx:SeriesSlide id="ss" duration="2000"/>
+		<s:NumberFormatter id="numberFormatter" fractionalDigits="0" useGrouping="false"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.HitData;
+			import mx.charts.LegendItem;
+			import mx.charts.events.ChartItemEvent;
+			import mx.charts.events.LegendMouseEvent;
+			import mx.charts.series.items.PieSeriesItem;
+			import mx.collections.ArrayCollection;
+			
+			import events.PopupEvent;
+			
+			public var dataUnit:String="";
+			public var IfShowVolInLabel:Boolean=true;
+			public var IfShowPerInLabel:Boolean=true;
+			public var IfShowVolInLegend:Boolean=false;
+			public var IfShowPerInLegend:Boolean=false;
+			public var IfShowUnitInLabel:Boolean=true;
+			public var IfShowUnitInLegend:Boolean=true;
+			
+			private var dataSourceChanged:Boolean=false;
+			private var pSolidColor2Changed:Boolean=false;
+			[Bindable]
+			private var pSolidColor2:Array=views.CustomColor.PSolidColor2;
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var dataSource:ArrayCollection= new ArrayCollection([
+				{label:"disabled",id:"4",value:14},
+				{label:"一级",id:"1",value:2},
+				{label:"二级",id:"1",value:5},
+				{label:"三级",id:"1",value:7},
+			]);
+			protected function init():void{
+				downHalfPie.dataProvider=dataSource;
+				if(showLegend){
+					initLegend();
+				}
+			}
+			/**
+			 * 饼图显示信息
+			 * */
+			private function pieLabelFunc(data:Object, field:String, index:Number, percentValue:Number):String{
+				if(data.label == "disabled"){
+					return "";
+				}else{
+					var msg:String="";
+					msg=data.label;
+					if(IfShowVolInLabel){
+						msg+=","+data.value;
+						if(IfShowUnitInLabel){
+							msg+=dataUnit;
+						}
+					}
+					
+					if(IfShowPerInLabel){
+						msg+=",\n占"+(2*percentValue).toFixed(2)+"%"
+					}
+					if(this.showDataLabel){
+						return msg;
+					}else{
+						return (percentValue).toFixed(2)+"%"
+					}
+				}
+			}
+			/**
+			 * 饼图提示信息
+			 * */
+			private function pieDataTipFunc(item:HitData):String {
+				var pSI:PieSeriesItem = item.chartItem as PieSeriesItem;
+				if(pSI.item.label == "disabled"){
+					return "";
+				}else{
+					return "<b>" + pSI.item.label + "</b><br />" +
+						pSI.item.value + dataUnit +"\n(<i>占总体" +
+						(2*pSI.percentValue).toFixed(2) + "%</i>)";
+				}
+			}
+			protected function initLegend():void{
+				if(dataSource!=null){
+					for(var i:int=0;i<dataSource.length;i++){  
+						var o:Object = dataSource.getItemAt(i);  
+						var legendItem:LegendItem=new LegendItem();
+						if(o["label"].toString()!="disabled")
+						{
+							legendItem.label=o["label"].toString()+(showLegendValue?":"+o["value"].toString():"");
+							legendItem.setStyle("fill", pSolidColor2[i]);					
+							legend1.addElement(legendItem);
+						}
+					}  
+				}
+			}
+			
+			
+			
+			
+			public function get PSolidColor():Array
+			{
+				return pSolidColor2;
+			}
+			public function set PSolidColor2(value:Array):void
+			{
+				//if (pSolidColor != value)
+				//{
+					pSolidColor2Changed=true;
+					pSolidColor2 = value;
+					
+				//}
+				invalidateProperties();
+			}
+			public function get DataSource():ArrayCollection
+			{
+				return dataSource;
+			}
+			public function set DataSource(value:ArrayCollection):void
+			{
+				//if (dataSource != value)
+				//{
+					dataSourceChanged=true;
+					dataSource = value;
+					var cnt:Number=0;
+					if(dataSource.length>0){
+						for each (var xml:Object in dataSource) {  
+							cnt+=Number(xml.value);
+						}
+					}
+					dataSource.addItemAt({label:"disabled",id:"100",value:cnt},0);
+				//}
+				invalidateProperties();
+			}	
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				init();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (dataSourceChanged)
+				{
+					dataSourceChanged = false;
+					downHalfPie.dataProvider=dataSource;
+					if(showLegend){
+						initLegend();
+					}
+					invalidateDisplayList();  // invalidate in case the titles 
+					
+				}
+				if(pSolidColor2Changed)
+				{
+					pSolidColor2Changed=false;
+				}
+			}
+			
+			
+			
+			protected function pieChart_itemClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=PieSeries(event.hitData.element).displayName;
+				obj.seriesType="pieSeries";
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupClick);  
+				//这里一定跟上面[Event(name="PopupClick", ...)],使用的name相同，否则，派发的事件不会被接收到
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);
+			}
+			protected function pieChart_itemDoubleClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=PieSeries(event.hitData.element).displayName;
+				obj.seriesType="pieSeries";
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupDoubleClick);  
+				//这里一定跟上面[Event(name="PopupDoubleClick", ...)],使用的name相同，否则，派发的事件不会被接收到				
+				eventObj.hitDataItem = event.hitData.item;
+				dispatchEvent(eventObj);				
+			}
+			//主程序调用
+			//			 PopupClick="xxxx_lightHandler(event)"
+			//			protected function xxxx_lightHandler(event:events.PopupEvent):void
+			//			{
+			//				// TODO Auto-generated method stub
+			//				var item:Object=event.hitDataItem;
+			//				.....
+			//			}
+			protected function legend1_itemClickHandler(event:LegendMouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var index:int=legend1.getChildIndex(event.item);
+				var obj:Object=dataSource.getItemAt(index);
+				obj.displayName=obj.label ;
+				obj.seriesType="pieSeries";
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupClick);  
+				//这里一定跟上面[Event(name="PopupClick", ...)],使用的name相同，否则，派发的事件不会被接收到
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);
+			}
+		]]>
+	</fx:Script>
+
+	<!--标题-->  
+	<mx:Label text="{title}" styleName="titleStyle" visible="{showTitle}"/>	
+	<s:VGroup id="body" width="100%" height="100%" gap="0">
+		<!-- 下半圆 -->
+		<mx:Canvas id="downHalfPieBd" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" >
+			<mx:PieChart id="downHalfPie" dataProvider="{dataSource}" height="{Math.min(downHalfPieBd.width*2,downHalfPieBd.height*2)}" y="{downHalfPieBd.height*2/-2}" width="100%" paddingRight="5" paddingLeft="5" showDataTips="true" dataTipFunction="pieDataTipFunc" itemClick="pieChart_itemClickHandler(event)" doubleClickEnabled="true" itemDoubleClick="pieChart_itemDoubleClickHandler(event)">  
+				<mx:series><!--labelPosition="callout"-->
+					<mx:PieSeries nameField="label" labelPosition="inside" field="value" labelFunction="pieLabelFunc" showDataEffect="{ss}"
+								  calloutStroke="{views.CustomColor.CalloutsSolidColorStroke}" radialStroke="{views.CustomColor.RadialSolidColorStroke}" stroke="{views.CustomColor.PieborderSolidColorStroke}" fills="{pSolidColor2}" fillFunction="{views.CommFunction.pieFillFun(pSolidColor2)}">
+					</mx:PieSeries>
+				</mx:series>
+			</mx:PieChart> 
+		</mx:Canvas>
+	</s:VGroup>
+	<!--图例-->
+	<mx:Canvas id="ChartLegend" visible="{showLegend}" includeInLayout="{showLegend}">
+		<s:BorderContainer styleName="legendBox" verticalCenter="0" horizontalCenter="0">
+			<mx:Legend id="legend1" height="20" bottom="10" horizontalGap="1" itemClick="legend1_itemClickHandler(event)"/>
+		</s:BorderContainer>
+	</mx:Canvas>
+</s:VGroup>

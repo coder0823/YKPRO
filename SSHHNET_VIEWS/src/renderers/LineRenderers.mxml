@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true">
+	<s:VGroup gap="0" horizontalAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="-9">
+		<s:Label color="{data.fill.color}" text="{data.yNumber}" fontSize="16"/>
+		<s:Rect id="node" width="7" height="7" rotation="45">
+			<s:fill>
+				<s:SolidColor color="{data.fill.color}"/>
+			</s:fill>
+		</s:Rect>
+	</s:VGroup>
+</s:ItemRenderer>
+ 

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+<!-- 按培训对象完成情况 -->
+	<dataOutline dataYear="2012" dataDate="" corpid="10000002"
+		corpname="河南石油" timestamp="" />
+	<overallData>
+		 <byClasses>
+    		 <byObject>
+         <objectData objectid="001" objectLabel="企业领导" planClasses="6892" finishedClasses="6689" remainderClasses="203" finishedRatio="97.05" averageFishedRatio="" calendarRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="单位1" planClasses="4223" finishedClasses="2323" remainderClasses="2323" url="http://www.baidu.com" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="2" subCorpid="" plateid="" subCorpname="单位2" planClasses="1231" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="3" subCorpid=""  plateid="" subCorpname="单位3" planClasses="2323" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="4" subCorpid=""  plateid="" subCorpname="单位4" planClasses="5674" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+             <dataset  order="5" subCorpid=""  plateid="" subCorpname="单位5" planClasses="3453" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="6" subCorpid=""  plateid="" subCorpname="单位6" planClasses="2343" finishedClasses="2323" remainderClasses="2323" url="http://www.baidu.com" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="7" subCorpid=""  plateid="" subCorpname="单位7" planClasses="2341" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="8" subCorpid=""  plateid="" subCorpname="单位8" planClasses="2334" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+             <dataset  order="9" subCorpid=""  plateid="" subCorpname="单位9" planClasses="5456" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="10" subCorpid=""  plateid="" subCorpname="单位10" planClasses="2342" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+         </objectData>
+          <objectData objectid="" objectLabel="安全管理" planClasses="12712" finishedClasses="12293" remainderClasses="419" finishedRatio="96.07" averageFishedRatio="" calendarRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+         </objectData>
+          <objectData objectid="" objectLabel="注册安全工程师" planClasses="12092" finishedClasses="10382" remainderClasses="1709" finishedRatio="85.87" averageFishedRatio="" calendarRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+         </objectData>
+         <objectData objectid="" objectLabel="消防管理" planClasses="13002" finishedClasses="11878" remainderClasses="1124" finishedRatio="91.36" averageFishedRatio="" calendarRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+         </objectData>
+         <objectData objectid="" objectLabel="岗位操作" planClasses="22371" finishedClasses="19873" remainderClasses="2498" finishedRatio="88.83" averageFishedRatio="" calendarRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataData order="4" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+         </objectData>
+         <objectData objectid="" objectLabel="特种作业" planClasses="11093" finishedClasses="10773" remainderClasses="320" finishedRatio="97.12" averageFishedRatio="" calendarRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+         </objectData>
+         <objectData objectid="" objectLabel="其它" planClasses="20197" finishedClasses="5538" remainderClasses="14659" finishedRatio="27.42" averageFishedRatio="" calendarRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planClasses="" finishedClasses="" remainderClasses="" finishedRatio="" averageFishedRatio="" calendarRatio=""/>
+         </objectData>
+     </byObject>
+    </byClasses> 
+    
+      <byPersons>
+      
+      	 <byObject>
+         <objectData objectid="001" objectLabel="企业领导" planPerson="20676" finishedPerons="19397" remainderPerons="1279" finishedRatio="93.81" certifiedPersons="" uncertifiedPersons="" certifiedRatio="">
+			 <dataset  order="1" subCorpid="" plateid="" subCorpname="单位1" planClasses="4223" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="2" subCorpid="" plateid="" subCorpname="单位2" planClasses="1231" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="3" subCorpid=""  plateid="" subCorpname="单位3" planClasses="2323" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="4" subCorpid=""  plateid="" subCorpname="单位4" planClasses="5674" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+             <dataset  order="5" subCorpid=""  plateid="" subCorpname="单位5" planClasses="3453" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="6" subCorpid=""  plateid="" subCorpname="单位6" planClasses="2343" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="7" subCorpid=""  plateid="" subCorpname="单位7" planClasses="2341" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="8" subCorpid=""  plateid="" subCorpname="单位8" planClasses="2334" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+             <dataset  order="9" subCorpid=""  plateid="" subCorpname="单位9" planClasses="5456" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+            <dataset  order="10" subCorpid=""  plateid="" subCorpname="单位10" planClasses="2342" finishedClasses="2323" remainderClasses="2323" finishedRatio="97.37" averageFishedRatio="0" calendarRatio="0"/>
+        
+         </objectData>
+           <objectData objectid="" objectLabel="安全管理" planPerson="153012" finishedPerons="132003" remainderPerons="21009" finishedRatio="86.27" certifiedPersons="" uncertifiedPersons="" certifiedRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+         </objectData>
+          <objectData objectid="" objectLabel="注册安全工程师" planPerson="122091" finishedPerons="113012" remainderPerons="9079" finishedRatio="92.56" certifiedPersons="" uncertifiedPersons="" certifiedRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+         </objectData>
+         <objectData objectid="" objectLabel="消防管理" planPerson="138130" finishedPerons="128791" remainderPerons="9339" finishedRatio="93.24" certifiedPersons="" uncertifiedPersons="" certifiedRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+         </objectData>
+          <objectData objectid="" objectLabel="岗位操作" planPerson="129903" finishedPerons="120541" remainderPerons="9362" finishedRatio="92.79" certifiedPersons="" uncertifiedPersons="" certifiedRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+         </objectData>
+         <objectData objectid="" objectLabel="特种作业" planPerson="49693" finishedPerons="34589" remainderPerons="15104" finishedRatio="69.61" certifiedPersons="" uncertifiedPersons="" certifiedRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+         </objectData>
+         <objectData objectid="" objectLabel="其它" planPerson="64495" finishedPerons="62587" remainderPerons="1908" finishedRatio="97.04" certifiedPersons="" uncertifiedPersons="" certifiedRatio="">
+           <dataset  order="1" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="2" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="3" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+           <dataset  order="4" subCorpid="" plateid="" subCorpname="" planPerson="" finishedPerons="" remainderPerons="" finishedRatio="" certifiedPersons="" uncertifiedPersons="" calendarRatio="" certifiedRatio="" />
+         </objectData>
+     </byObject>
+      
+      </byPersons>
+    
+	</overallData>
+</model>

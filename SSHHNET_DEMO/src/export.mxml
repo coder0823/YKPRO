@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script> 
+		<![CDATA[ 
+			import mx.controls.dataGridClasses.DataGridColumn; 
+			import com.as3xls.xls.Cell; 
+			import mx.collections.ArrayCollection; 
+			
+			import com.as3xls.xls.Sheet; 
+			import com.as3xls.xls.ExcelFile; 
+			
+			private var fileReference:FileReference; 
+			private var xls:Class; 
+			private var sheet:Sheet; 
+			
+			[Bindable] 
+			private var fields:Array = new Array(); 
+			
+			[Bindable] 
+			private var ItemDGDataProvider:ArrayCollection = new ArrayCollection([ 
+				{name:"Item1",value:"21",qty:"3",cost:"12.21", apples: "1"}, 
+				{name:"Item2",value:"20",qty:"4",cost:"12.22", apples: "1"}, 
+				{name:"Item3",value:"22",qty:"5",cost:"12.23", apples: "1"}, 
+				{name:"Item4",value:"23",qty:"2",cost:"12.24", apples: "1"} 
+			]); 
+			
+			private function fileReference_Cancel(event:Event):void 
+			{ 
+				fileReference = null; 
+			} 
+			
+			private function exportToExcel():void 
+			{ 
+				sheet = new Sheet(); 
+				var dataProviderCollection:ArrayCollection = rebateByItemDG.dataProvider as ArrayCollection; 
+				var rowCount:int = dataProviderCollection.length; 
+				sheet.resize(rowCount + 1,rebateByItemDG.columnCount); 
+				var columns:Array = rebateByItemDG.columns; 
+				var i:int = 0; 
+				for each (var field:DataGridColumn in columns){ 
+					fields.push(field.dataField.toString()); 
+					sheet.setCell(0,i,field.dataField.toString()); 
+					i++; 
+				} 
+				
+				for(var r:int=0; r < rowCount; r++) 
+				{ 
+					var record:Object = dataProviderCollection.getItemAt(r); 
+					/*insert record starting from row no 2 else 
+					headers will be overwritten*/ 
+					insertRecordInSheet(r+1,sheet,record); 
+				} 
+				var xls:ExcelFile = new ExcelFile(); 
+				xls.sheets.addItem(sheet); 
+				
+				var bytes: ByteArray = xls.saveToByteArray(); 
+				var fr:FileReference = new FileReference(); 
+				fr.save(bytes,"SampleExport.xls");   
+			} 
+			private function insertRecordInSheet(row:int,sheet:Sheet,record:Object):void 
+			{ 
+				var colCount:int = rebateByItemDG.columnCount; 
+				for(var c:int; c < colCount; c++) 
+				{ 
+					var i:int = 0; 
+					for each(var field:String in fields){ 
+						for each (var value:String in record){ 
+							if (record[field].toString() == value) 
+								sheet.setCell(row,i,value); 
+						} 
+						i++; 
+					} 
+				} 
+			} 
+		]]> 
+	</mx:Script> 
+	<mx:VBox width="100%" height="100%"> 
+		<mx:Form> 
+			<mx:FormItem label="Export Datagrid items to Excel?" fontWeight="bold"> 
+				<mx:Form> 
+					<mx:HBox width="100%" verticalAlign="middle"> 
+						<mx:DataGrid id="rebateByItemDG" includeInLayout="true" visible="true" dataProvider="{ItemDGDataProvider}" width="100%" editable="true"/> 
+						<mx:Button label="Export To Excel" click="exportToExcel();"/> 
+					</mx:HBox> 
+				</mx:Form> 
+			</mx:FormItem> 
+		</mx:Form> 
+	</mx:VBox> 
+</mx:Application>

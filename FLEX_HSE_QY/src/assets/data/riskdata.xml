@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<!-- 河南石油HSE仪表盘〔风险管理部分〕xml数据 设计：肖丰斌 Version:1.1 日期：2012-12-3 riskid：风险级别，取值采用下列枚举值 
+		label：风险显示的名称或风险解决状态的显示名称 riskNumbers：风险的数量 solveid：风险的解决状态，风险级别，取值采用下列枚举值 
+		numbers：风险解决状态对应的数量 order：表格中的序号 subCorpName：表格中分子公司项目的名称 deviceName:表格中作业活动设施的数量 
+		harm：表格中的危害 description:第一层表格中的风险状态描述 majorBadResult:第二层表格中的主要后果 status：第二层表格中的状态 
+		detailURL：第二层表格中的行对应的业务系统中的URL -->
+	<!--1.文件总览 -->
+	<dataOutline dataYear="2012" dataDate="" corpid=""
+		corpname="河南石油" timestamp="" />
+
+	<!--2.风险构成数据 -->
+	<riskData>
+		<dataset riskid="LEVEL-A" label="重大风险" riskNumbers="16" />
+		<dataset riskid="LEVEL-B" label="中等风险" riskNumbers="383" />
+		<dataset riskid="LEVEL-C" label="一般风险" riskNumbers="9861" />
+	</riskData>
+
+<!-- 
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+2013年6月4日新修改，
+注意：majorRiskSolveData节点添加riskid属性，用于区分是重大还是中等还是一般
+majorRiskSolveData节点个数要与 风险构成中的数量保持一致，
+majorRiskSolveData中的dataset要默认输出，如果没有就是0，dataset里的coprData可根据实际情况，如果没有就不输出
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+ -->
+
+	<!--3.重大风险处理情况，目前只有重大风险有处理情况 -->
+	<majorRiskSolveData riskid="LEVEL-A">
+		<dataset riskid="LEVEL-A" solveid="UNREVIEWED" label="未评审"
+			numbers="0" />
+		<dataset riskid="LEVEL-A" solveid="SOLVED" label="已评审措施已落实"
+			numbers="13" >
+			<corpData order="1" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="2" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="3" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="4" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="5" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="6" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="7" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="8" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="9" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="10" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="11" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="12" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="13" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="14" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			</dataset>
+		<dataset riskid="LEVEL-A" solveid="UNSOLVED" label="已评审措施未落实"
+			numbers="3" />
+	</majorRiskSolveData>
+	
+	<!--中等风险处理情况 -->
+	<majorRiskSolveData riskid="LEVEL-B">
+		<dataset riskid="LEVEL-A" solveid="UNREVIEWED" label="未评审"
+			numbers="0" />
+		<dataset riskid="LEVEL-A" solveid="SOLVED" label="已评审措施已落实"
+			numbers="13" >
+			<corpData order="1" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="2" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="3" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="4" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="5" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="6" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="7" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="8" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="9" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="10" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="11" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="12" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="13" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="14" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			</dataset>
+		<dataset riskid="LEVEL-A" solveid="UNSOLVED" label="已评审措施未落实"
+			numbers="3" />
+	</majorRiskSolveData>
+	
+	<!--一般风险处理情况 -->
+	<majorRiskSolveData riskid="LEVEL-C">
+		<dataset riskid="LEVEL-A" solveid="UNREVIEWED" label="未评审"
+			numbers="0" />
+		<dataset riskid="LEVEL-A" solveid="SOLVED" label="已评审措施已落实"
+			numbers="13" >
+			<corpData order="1" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="2" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="3" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="4" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="5" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="6" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="7" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="8" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="9" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="10" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="11" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="12" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="13" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			<corpData order="14" label="测井公司-完井测井分公司" jobActivity="现场安全管理"
+				harm="未监督驾驶员安全行车" consequence="发生交通事故" reviewStatus="已评审"
+				workableStatus="有行车管理规定，执行较好。" />
+			</dataset>
+		<dataset riskid="LEVEL-A" solveid="UNSOLVED" label="已评审措施未落实"
+			numbers="3" />
+	</majorRiskSolveData>
+
+	<!--4.弹出表格数据 -->
+	<popupTableData>
+		<!--第1层表格 -->
+		<dataset order="" riskid="LEVEL-A" label="重大风险" riskNumbers="16"
+			description="0未评审，评审中, 3已评审，措施未落实,13已评审，措施已落实">
+			<!--第2层表格 
+			<detaildata order="1" subCorpName="" deviceName="" harm=""
+				majorBadResult="" status="" detailURL="" />-->
+		</dataset>
+		<!--第1层表格 -->
+		<dataset order="" riskid="LEVEL-B" label="中等风险" riskNumbers="383"
+			description="现有措施有效，风险可接受">
+			<!--第2层表格 
+			<detaildata order="1" subCorpName="" deviceName="" harm=""
+				majorBadResult="" status="" detailURL="" />-->
+		</dataset>
+		<!--第1层表格 -->
+		<dataset order="" riskid="LEVEL-C" label="一般风险" riskNumbers="9861"
+			description="现有措施有效，风险可接受">
+			<!--第2层表格 
+			<detaildata order="1" subCorpName="" deviceName="" harm=""
+				majorBadResult="" status="" detailURL="" />-->
+		</dataset>
+	</popupTableData>
+
+  <byCorp>
+      <riskData riskid="LEVEL-A" label = "重大风险" riskNumbers="101"  ratio="80" >
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1011" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1012" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1013"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="1111" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11111"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11112"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11113"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="1112" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11121"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11122"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11123"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="1113" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11131"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11132"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11133"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="1114" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11141"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11142"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11143"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>     
+      <riskData riskid="LEVEL-B" label = "中等风险" riskNumbers="102"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30"/>
+      <riskData riskid="LEVEL-C" label = "一般风险" riskNumbers="103"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30"/>
+  </byCorp>
+</model>

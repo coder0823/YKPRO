@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				width="100%" height="100%" rollOverColor="#FFFFFF" 
+				autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			import modules.meantime.events.MeantimeOverAllStatusEvent_byStage;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.Image;
+			import mx.controls.Label;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			
+			import spark.components.HGroup;
+			import spark.primitives.Ellipse;
+			//import events.MeantimeOverAllStatusEvent;
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				vgroup.removeAllElements();
+//					trace("/n");
+//				return;
+				
+				
+				if(advancedDataGridListData != null){
+//					var str:String = data[advancedDataGridListData.dataField];
+					if(data[advancedDataGridListData.dataField]){
+						var arrayCollection:ArrayCollection = data[advancedDataGridListData.dataField];
+					}else{
+						return;
+					}
+					
+					for(var i:int=0;i<arrayCollection.length;i++){
+						var str:String = arrayCollection[i].status;
+						var label_before:Label = new Label();
+						if(arrayCollection[i].label!=""){
+							label_before.text = arrayCollection[i].label+"：";
+						}else{
+							label_before.text = '';
+						}
+						var arr:Array = str.split(",");
+						var status0:int = 0;
+						var status1:int = 0;
+						var status2:int = 0;
+						var status3:int = 0;
+						var status4:int = 0;
+						for each(var str_:String in arr){
+							switch(str_){
+								case "0":
+									status0++;
+									break;
+								case "1":
+									status1++;
+									break;
+								case "2":
+									status2++;
+									break;
+								case "3":
+									status3++;
+									break;
+								case "4":
+									status4++;
+									break;
+							}
+						}
+						
+						var item:HGroup=new HGroup();
+						var image:Image = new Image();
+						var label:Label = new Label();
+						item.addElement(label_before);
+						if(status0 > 0){
+							image = new Image();
+							image.width = 20;
+							image.height = 20;
+							image.source = "assets/images/icoGood.png";
+							label = new Label();
+							label.text = ""+status0 + " ";
+							image.toolTip="正常："+status0;
+							item.addEventListener(MouseEvent.CLICK,click0);
+							item.horizontalAlign="left";
+							item.minWidth=60;
+							item.gap=10;
+							item.addElement(image);
+							item.addElement(label);
+						}
+						
+						if(status1 > 0){
+							image = new Image();
+							image.width = 20;
+							image.height = 20;
+							image.source = "assets/images/icoWarning.png";
+							image.data = arrayCollection[i];
+							label = new Label();
+							label.text = ""+status1 + " ";
+							image.toolTip="预警："+status1;
+							image.addEventListener(MouseEvent.CLICK,click1);
+							item.horizontalAlign="left";
+							item.minWidth=60;
+							item.gap=10;
+							item.addElement(image);
+							item.addElement(label);
+						}
+						
+						if(status2 > 0){
+							image = new Image();
+							image.width = 20;
+							image.height = 20;
+							image.source = "assets/images/icoAlarm.png";
+							label = new Label();
+							label.text = ""+status2 + " ";
+							image.data = arrayCollection[i];
+							image.toolTip="超期："+status2;
+							image.addEventListener(MouseEvent.CLICK,click2);
+							item.horizontalAlign="left";
+							item.minWidth=60;
+							item.gap=10;
+							item.addElement(image);
+							item.addElement(label);
+						}
+						
+						/* if(status3 > 0){
+							image = new Image();
+							image.width = 20;
+							image.height = 20;
+							image.source = "assets/images/icoFinishedAlarm.png";
+							label = new Label();
+							label.text = ""+status3 + " ";
+							image.toolTip="超期："+status3;
+							label.addEventListener(MouseEvent.CLICK,click3);
+							item.horizontalAlign="left";
+							item.minWidth=60;
+							item.gap=10;
+							item.addElement(image);
+							item.addElement(label);
+						} */
+						
+						if(status4 > 0||status3 > 0){
+							image = new Image();
+							image.width = 20;
+							image.height = 20;
+							image.source = "assets/images/icoFinished.png";
+							label = new Label();
+							label.text = status4+status3+"";
+							image.data = arrayCollection[i];
+//							item=new HGroup();
+							image.toolTip="完成："+label.text;
+							image.addEventListener(MouseEvent.CLICK,click4);
+							item.horizontalAlign="left";
+							item.minWidth=60;
+							item.gap=10;
+							item.addElement(image);
+							//item.addElement(alarm2);
+							item.addElement(label);
+//							hgroup.addElement(item);
+						}
+						vgroup.addElement(item);
+					}
+						
+				}
+					
+			}
+			
+			private function click0(event:MouseEvent):void{
+				//this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"0"));
+			}
+			private function click1(event:MouseEvent):void{
+				this.dispatchEvent(new MeantimeOverAllStatusEvent_byStage(MeantimeOverAllStatusEvent_byStage.STATUS_CLICK,data,"1",event.currentTarget.data.stageidBefore+''));
+			}
+			private function click2(event:MouseEvent):void{
+				this.dispatchEvent(new MeantimeOverAllStatusEvent_byStage(MeantimeOverAllStatusEvent_byStage.STATUS_CLICK,data,"2",event.currentTarget.data.stageidBefore+''));
+			}
+			private function click3(event:MouseEvent):void{
+				//this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"2"));
+			}
+			private function click4(event:MouseEvent):void{
+//				Alert.show(event.currentTarget.data.label+'');
+				this.dispatchEvent(new MeantimeOverAllStatusEvent_byStage(MeantimeOverAllStatusEvent_byStage.STATUS_CLICK,data,"4",event.currentTarget.data.stageidBefore+''));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+	</fx:Declarations>
+	
+	<s:VGroup id="vgroup" width="100%" height="100%" gap="2" paddingLeft="10" verticalAlign="middle">
+	</s:VGroup>
+	
+</s:MXAdvancedDataGridItemRenderer>

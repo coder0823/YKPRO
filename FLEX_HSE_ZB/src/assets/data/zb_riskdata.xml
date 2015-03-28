@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+  
+   <!--
+  *******************************************************************
+  2013年10月21日 孙山虎 
+  根据三期总部提出钻取要求进行修改：期中"......"的地方表示有扩展，请开发人员按实际输出
+  文档结构如下：
+  riskData 					职业卫生数据：
+  	|_plateData 				板块数据：	plateid板块代码，plateLabel板块名称
+  		|_levelData				级别数据：	levelid级别编码，levelLabel级别名称
+  			|_corpData 			企业数据：	order序号，subCorpid企业编码，subCorpname企业名称，URL链接（预留）
+ 
+ riskNumbers="风险数量" 
+ ratio="占比" 
+ unreviewedNumbers="未评审" 
+ solvedNumbers="已评审措施已落实" 
+ unsolvedNumbers="已评审措施未落实" 
+ 
+ finishedRatio="完成率"
+ averageFishedratio="平均完成率"
+ 
+ 注意：plateData中plateid="00"的为汇总数据，就到levelData 不用到企业
+  *******************************************************************
+  -->
+  
+<riskData>
+		<plateData plateid="00" plateLabel="全部" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+			<levelData levelid="LEVEL-A" levelLabel="重大" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"/>
+ 			<!-- ...... -->
+ 		</plateData>
+ 		<plateData plateid="YT" plateLabel="油田" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 			<levelData levelid="LEVEL-A" levelLabel="重大" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<!-- ...... -->
+ 			</levelData>
+ 			<!-- ...... -->
+ 		</plateData>
+ 		<plateData plateid="LH" plateLabel="炼化" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 			<levelData levelid="LEVEL-A" levelLabel="重大" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<!-- ...... -->
+ 			</levelData>
+ 			<!-- ...... -->
+ 		</plateData>
+ 		<plateData plateid="XS" plateLabel="销售" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 			<levelData levelid="LEVEL-A" levelLabel="重大" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<!-- ...... -->
+ 			</levelData>
+ 			<!-- ...... -->
+ 		</plateData>
+ 		<plateData plateid="GC" plateLabel="工程" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 			<levelData levelid="LEVEL-A" levelLabel="重大" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<!-- ...... -->
+ 			</levelData>
+ 			<!-- ...... -->
+ 		</plateData>
+ 		<plateData plateid="QT" plateLabel="其他" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 			<levelData levelid="LEVEL-A" levelLabel="重大" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30">
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="" riskNumbers="30" ratio="30" unreviewedNumbers="30" solvedNumbers="30" unsolvedNumbers="30"  finishedRatio="22" averageFishedratio="22"/>
+ 				<!-- ...... -->
+ 			</levelData>
+ 			<!-- ...... -->
+ 		</plateData>
+</riskData>
+  
+  
+  
+  
+  
+  
+  
+  <!-- 已下是旧版本，备份--> 
+   <!-- 总部HSE仪表盘〔风险管理部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-8 -->
+ <!--*************************一、字段说明如下******************************
+   riskid：风险级别，取值采用下列枚举值                  label：风险显示的名称或风险解决状态的显示名称
+   riskNumbers：风险的数量                             ratio  :对应的比例
+   plateid:板块id                                  plateLabel：板块的显示标签
+   subCorpid：企业ID                                subCorpname：企业名称
+   solveid：风险的解决状态id，取值采用下列枚举值           numbers：风险解决状态对应的数量
+   order:排序序号                                        finishedRatio：已落实解决的比例
+   averageFishedRatio：平均已落实解决的比例             calendarRatio：日历进度比例
+   URL:某个企业记录对应的业务系统URL
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，如分板块的“全部”选项
+        2.装置的级别和板块等应该是活的
+        3.WebService处理明细的企业，带有order字段时，应严格按照其比率降序排列数据,且所有字段值一律不准写null值   
+ -->
+  
+
+  <!--二.总体情况 -->
+ <overallData>
+   <!--风险数据 ,本部分先分风险级别，再分板块，后分企业，最后分风险整改类别-->
+    <riskData >
+      <dataset riskid="LEVEL-A" label = "重大风险" riskNumbers="10"  ratio="78" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1001" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1002" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1003"  />
+        <plateData   plateid="YT" plateLabel="油田" riskNumbers="101"  ratio="77">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1011" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1012" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="10133"  />
+        </plateData>  
+        <plateData   plateid="LH" plateLabel="炼化" riskNumbers="102"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1021" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1022" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1023"  />
+        </plateData>  
+        <plateData   plateid="XS" plateLabel="销售" riskNumbers="103"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1031" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1032" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1033"  />
+        </plateData>  
+        <plateData   plateid="GC" plateLabel="工程" riskNumbers="104"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1041" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1042" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1043"  />
+        </plateData>  
+        <plateData   plateid="QT" plateLabel="其它" riskNumbers="105"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1051" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1052" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1053"  />
+        </plateData>       
+      </dataset>
+      <dataset riskid="LEVEL-B" label = "中等风险" riskNumbers="20"  ratio="80" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2001" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2002" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2003"  />
+        <plateData   plateid="YT" plateLabel="油田" riskNumbers="201"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2011" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2012" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2013"  />
+        </plateData>  
+        <plateData   plateid="LH" plateLabel="炼化" riskNumbers="202"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2021" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2022" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2023"  />
+        </plateData>  
+        <plateData   plateid="XS" plateLabel="销售" riskNumbers="203"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2031" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2032" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2033"  />
+        </plateData>  
+        <plateData   plateid="GC" plateLabel="工程" riskNumbers="204"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2041" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2042" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2043"  />
+        </plateData>  
+        <plateData   plateid="QT" plateLabel="其它" riskNumbers="205"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2051" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2052" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2053"  />
+        </plateData>
+      </dataset>
+      <dataset riskid="LEVEL-C" label = "一般风险" riskNumbers="30"  ratio="80" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3001" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3002" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3003"  />
+        <plateData   plateid="YT" plateLabel="油田" riskNumbers="301"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3011" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3012" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3013"  />
+        </plateData>  
+        <plateData   plateid="LH" plateLabel="炼化" riskNumbers="302"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3021" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3022" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3023"  /> 
+        </plateData>  
+        <plateData   plateid="XS" plateLabel="销售" riskNumbers="303"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3031" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3032" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3033"  />
+        </plateData>  
+        <plateData   plateid="GC" plateLabel="工程" riskNumbers="304"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3041" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3042" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3043"  />
+        </plateData>  
+        <plateData   plateid="QT" plateLabel="其它" riskNumbers="305"  ratio="80">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3051" />
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3052" />
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3053"  />
+        </plateData>
+   	  </dataset>
+   </riskData > 
+ </overallData>
+ 
+ <!--三、分企业-->
+  <byCorp>
+   <!--本部分先分板块，再分风险级别，后分企业，最后分整改情况 -->
+    <plateData   plateid="YT" plateLabel="油田" riskNumbers="10"  ratio="80">
+      <riskData riskid="LEVEL-A" label = "重大风险" riskNumbers="101"  ratio="80" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1011" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1012" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1013"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="1111" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11111"  ratio="80" URL="">
+      		<!--</未落实风险> -->
+  			<unfinishedHarm unfinishedHarmId="id" order="序号" type="风险级别" label="单位名称" activities="作业活动/设备"
+  			harm="危害" consequence="主要后果" reviewStatus="评审状态" toImplementState="落实状态"/>
+  			<unfinishedHarm unfinishedHarmId="id" order="序号" type="风险级别" label="单位名称" activities="作业活动/设备"
+  			harm="危害" consequence="主要后果" reviewStatus="评审状态" toImplementState="落实状态"/>
+  			<unfinishedHarm unfinishedHarmId="id" order="序号" type="风险级别" label="单位名称" activities="作业活动/设备"
+  			harm="危害" consequence="主要后果" reviewStatus="评审状态" toImplementState="落实状态"/>
+        </riskSolveData>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11112"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11113"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="1112" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11121"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11122"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11123"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="1113" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11131"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11132"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11133"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="1114" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11141"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11142"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11143"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>     
+      <riskData riskid="LEVEL-B" label = "中等风险" riskNumbers="102"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1021" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1022" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1023"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="1121" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11211"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11212"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11213"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="1122" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11221"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11222"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11223"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="1123" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11231"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11232"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11233"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="1124" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11241"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11242"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11243"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+      <riskData riskid="LEVEL-C" label = "一般风险" riskNumbers="103"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="1031" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="1032" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="1033"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="1131" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11311"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11312"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11313"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="1132" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11321"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11322"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11323"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="1133" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11331"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11332"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11333"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="1134" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="11341"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="11342"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="11343"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+    </plateData>
+    <plateData   plateid="LH" plateLabel="炼化" riskNumbers="20"  ratio="80">
+      <riskData riskid="LEVEL-A" label = "重大风险" riskNumbers="201"  ratio="80" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2011" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2012" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2013"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="2111" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="2112" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="2113" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="2114" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>     
+      <riskData riskid="LEVEL-B" label = "中等风险" riskNumbers="202"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2021" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2022" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2023"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="2121" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="2122" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="2123" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="2124" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+      <riskData riskid="LEVEL-C" label = "一般风险" riskNumbers="203"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="2031" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="2032" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="2033"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="2131" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="2132" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="2133" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="2134" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+    </plateData>
+    <plateData   plateid="XS" plateLabel="销售" riskNumbers="30"  ratio="80">
+      <riskData riskid="LEVEL-A" label = "重大风险" riskNumbers="301"  ratio="80" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="3111" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="3112" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="3113" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="3114" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>     
+      <riskData riskid="LEVEL-B" label = "中等风险" riskNumbers="302"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3021" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3022" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3023"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="3121" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="3122" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="3123" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="3124" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+      <riskData riskid="LEVEL-C" label = "一般风险" riskNumbers="303"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="3031" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="3032" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="3033"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="3131" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="3132" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="3133" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="3134" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+    </plateData>
+    <plateData   plateid="GC" plateLabel="工程" riskNumbers="40"  ratio="80">
+      <riskData riskid="LEVEL-A" label = "重大风险" riskNumbers="401"  ratio="80" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="4011" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="4012" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="4013"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="4111" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="4112" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="4113" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="4114" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>     
+      <riskData riskid="LEVEL-B" label = "中等风险" riskNumbers="402"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="4021" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="4022" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="4023"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="4121" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="4122" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="4123" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="4124" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+      <riskData riskid="LEVEL-C" label = "一般风险" riskNumbers="403"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="4031" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="4032" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="4033"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="4131" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="4132" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="4133" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="4134" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="44"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="44"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+    </plateData>
+    <plateData   plateid="QT" plateLabel="其它" riskNumbers="50"  ratio="80">
+      <riskData riskid="LEVEL-A" label = "重大风险" riskNumbers="501"  ratio="80" >
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="5011" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="5012" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="5013"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="5101" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51011"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51012"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51013"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="5102" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51021"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51022"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51023"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="5103" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51031"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51032"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51033"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="5104" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51041"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51042"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51043"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>     
+      <riskData riskid="LEVEL-B" label = "中等风险" riskNumbers="502"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="5021" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="5022" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="5023"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="5121" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51211"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51212"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51213"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="5122" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51221"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51222"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51223"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="5123" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51231"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51232"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51233"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="5124" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51241"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51242"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51243"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+      <riskData riskid="LEVEL-C" label = "一般风险" riskNumbers="503"  ratio="80"  finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+      	<!-- 孙山虎添加汇总数据 -->
+      	<riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="5031" />
+        <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="5032" />
+        <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="5033"  />
+        <corpData  order="1" subCorpid="ZH" subCorpname="镇海" riskNumbers="5131" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51311"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51312"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51313"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="2" subCorpid="YZ" subCorpname="扬子" riskNumbers="5132" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51321"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51322"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51323"  ratio="80" URL=""/>
+        </corpData>  
+        <corpData  order="3" subCorpid="MM" subCorpname="茂名" riskNumbers="5133" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51331"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51332"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51333"  ratio="80" URL=""/>
+        </corpData> 
+        <corpData  order="4" subCorpid="YS" subCorpname="燕山" riskNumbers="5134" ratio="80" finishedRatio="70" averageFishedratio="74" calendarRatio="30">
+             <riskSolveData  solveid = "UNREVIEWED"  label = "未评审" numbers="51341"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "SOLVED"  label = "已评审措施已落实" numbers="51342"  ratio="80" URL=""/>
+             <riskSolveData  solveid = "UNSOLVED"  label = "已评审措施未落实" numbers="51343"  ratio="80" URL=""/>
+        </corpData>
+      </riskData>
+    </plateData>
+  </byCorp>
+  
+  	<问题数据>
+  		<企业 id="" name="所有企业（42家）" type="所属板块">
+  			<为落实风险 type="风险级别" label="风险名称"></为落实风险>
+  			<!-- ... -->
+  		</企业>
+  		<!-- ... -->
+  	</问题数据>
+  	
+  	<!-- <问题数据> -->
+	<problemData>
+  		<corp id="企业ID" name="所有企业（42家）" type="所属板块(石油，炼化)">
+			<!--</未落实风险> -->
+  			<unfinishedHarm unfinishedHarmId="id" order="序号" type="风险级别" label="单位名称" activities="作业活动/设备"
+  			harm="危害" consequence="主要后果" reviewStatus="评审状态" toImplementState="落实状态"/>
+  			<unfinishedHarm unfinishedHarmId="id" order="序号" type="风险级别" label="单位名称" activities="作业活动/设备"
+  			harm="危害" consequence="主要后果" reviewStatus="评审状态" toImplementState="落实状态"/>
+  			<unfinishedHarm unfinishedHarmId="id" order="序号" type="风险级别" label="单位名称" activities="作业活动/设备"
+  			harm="危害" consequence="主要后果" reviewStatus="评审状态" toImplementState="落实状态"/>
+  		</corp>
+  		<!-- ... -->
+  	</problemData>
+  
+  
+  <!--四、企业风险落实情况, 本部分可直接使用[三、分企业]的数据-->
+  
+</model>

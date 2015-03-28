@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2013" dataDate="2013-05" corpid="10000002"
+		corpname="河南石油" timestamp="2013-05" />
+	<checkData>
+		<dataset id="LEVEL-A" order="1" label="省公司级" numbers="2"
+			checkNumbers="2" ProblemNumbers="2" correctProblemNumbers="1"
+			uncorrectProblemNumbers="1">
+			<checkdata order="1" leaderName="合计" checkNumbers="2"
+				ProblemNumbers="2" correctProblemNumbers="1"
+				uncorrectProblemNumbers="1" />
+		</dataset>
+		<dataset id="LEVEL-B" order="2" label="地市公司级" numbers="585"
+			checkNumbers="251" ProblemNumbers="585" correctProblemNumbers="495"
+			uncorrectProblemNumbers="90">
+			<checkdata order="1" leaderName="合计" checkNumbers="251"
+				ProblemNumbers="585" correctProblemNumbers="495"
+				uncorrectProblemNumbers="90" />
+		</dataset>
+		<dataset id="LEVEL-C" order="3" label="油库/片区级" numbers="1046"
+			checkNumbers="504" ProblemNumbers="1046" correctProblemNumbers="962"
+			uncorrectProblemNumbers="84">
+			<checkdata order="1" leaderName="合计" checkNumbers="504"
+				ProblemNumbers="1046" correctProblemNumbers="962"
+				uncorrectProblemNumbers="84" />
+		</dataset>
+		<dataset id="LEVEL-D" order="4" label="加油站级" numbers="1622"
+			checkNumbers="732" ProblemNumbers="1622" correctProblemNumbers="1335"
+			uncorrectProblemNumbers="287">
+			<checkdata order="1" leaderName="合计" checkNumbers="732"
+				ProblemNumbers="1622" correctProblemNumbers="1335"
+				uncorrectProblemNumbers="287" />
+		</dataset>
+	</checkData>
+	<problemData>
+		<dataset month="2013.1" label="1月" problemNumbers="649"
+			dealedProblemNumbers="555" rate="85.51" />
+		<dataset month="2013.2" label="2月" problemNumbers="747"
+			dealedProblemNumbers="661" rate="88.48" />
+		<dataset month="2013.3" label="3月" problemNumbers="832"
+			dealedProblemNumbers="727" rate="87.37" />
+		<dataset month="2013.4" label="4月" problemNumbers="741"
+			dealedProblemNumbers="617" rate="83.26" />
+		<dataset month="2013.5" label="5月" problemNumbers="286"
+			dealedProblemNumbers="233" rate="81.46" />
+		<dataset month="2013.6" label="6月" problemNumbers="0"
+			dealedProblemNumbers="0" rate="0.0" />
+		<dataset month="2013.7" label="7月" problemNumbers="0"
+			dealedProblemNumbers="0" rate="0.0" />
+		<dataset month="2013.8" label="8月" problemNumbers="0"
+			dealedProblemNumbers="0" rate="0.0" />
+		<dataset month="2013.9" label="9月" problemNumbers="0"
+			dealedProblemNumbers="0" rate="0.0" />
+		<dataset month="2013.10" label="10月" problemNumbers="0"
+			dealedProblemNumbers="0" rate="0.0" />
+		<dataset month="2013.11" label="11月" problemNumbers="0"
+			dealedProblemNumbers="0" rate="0.0" />
+		<dataset month="2013.12" label="12月" problemNumbers="0"
+			dealedProblemNumbers="0" rate="0.0" />
+	</problemData>
+	<popupTableData month="2013.1">
+		<tabledata order="1" subCorpName="中原石油分公司"
+			correctProblemNumbers="103" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="2" subCorpName="周口石油分公司"
+			correctProblemNumbers="90" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="3" subCorpName="新乡石油分公司"
+			correctProblemNumbers="5" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="4" subCorpName="开封石油分公司"
+			correctProblemNumbers="2" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="5" subCorpName="鹤壁石油分公司"
+			correctProblemNumbers="1" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="6" subCorpName="漯河石油分公司"
+			correctProblemNumbers="126" uncorrectProblemNumbers="1" rate="99.21" />
+		<tabledata order="7" subCorpName="濮阳石油分公司"
+			correctProblemNumbers="25" uncorrectProblemNumbers="1" rate="96.15" />
+		<tabledata order="8" subCorpName="商丘石油分公司"
+			correctProblemNumbers="71" uncorrectProblemNumbers="3" rate="95.94" />
+		<tabledata order="9" subCorpName="南阳石油分公司"
+			correctProblemNumbers="46" uncorrectProblemNumbers="3" rate="93.87" />
+		<tabledata order="10" subCorpName="郑州石油分公司"
+			correctProblemNumbers="168" uncorrectProblemNumbers="55" rate="75.33" />
+		<tabledata order="11" subCorpName="平顶山分公司"
+			correctProblemNumbers="18" uncorrectProblemNumbers="6" rate="75.0" />
+		<tabledata order="12" subCorpName="三门峡石油分公司"
+			correctProblemNumbers="14" uncorrectProblemNumbers="9" rate="60.86" />
+		<tabledata order="13" subCorpName="洛阳石油分公司"
+			correctProblemNumbers="7" uncorrectProblemNumbers="5" rate="58.33" />
+		<tabledata order="14" subCorpName="安阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="8" rate="0.0" />
+		<tabledata order="15" subCorpName="公司机关"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="16" subCorpName="信阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="17" subCorpName="济源石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="18" subCorpName="洛阳第四十八站"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+	</popupTableData>
+	<popupTableData month="2013.2">
+		<tabledata order="1" subCorpName="周口石油分公司"
+			correctProblemNumbers="95" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="2" subCorpName="新乡石油分公司"
+			correctProblemNumbers="54" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="3" subCorpName="平顶山分公司"
+			correctProblemNumbers="14" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="4" subCorpName="开封石油分公司"
+			correctProblemNumbers="2" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="5" subCorpName="鹤壁石油分公司"
+			correctProblemNumbers="1" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="6" subCorpName="中原石油分公司"
+			correctProblemNumbers="108" uncorrectProblemNumbers="2" rate="98.18" />
+		<tabledata order="7" subCorpName="南阳石油分公司"
+			correctProblemNumbers="42" uncorrectProblemNumbers="1" rate="97.67" />
+		<tabledata order="8" subCorpName="漯河石油分公司"
+			correctProblemNumbers="29" uncorrectProblemNumbers="1" rate="96.66" />
+		<tabledata order="9" subCorpName="濮阳石油分公司"
+			correctProblemNumbers="78" uncorrectProblemNumbers="3" rate="96.29" />
+		<tabledata order="10" subCorpName="商丘石油分公司"
+			correctProblemNumbers="122" uncorrectProblemNumbers="12" rate="91.04" />
+		<tabledata order="11" subCorpName="郑州石油分公司"
+			correctProblemNumbers="114" uncorrectProblemNumbers="42" rate="73.07" />
+		<tabledata order="12" subCorpName="三门峡石油分公司"
+			correctProblemNumbers="20" uncorrectProblemNumbers="10" rate="66.66" />
+		<tabledata order="13" subCorpName="洛阳石油分公司"
+			correctProblemNumbers="6" uncorrectProblemNumbers="10" rate="37.5" />
+		<tabledata order="14" subCorpName="公司机关"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="15" subCorpName="安阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="16" subCorpName="信阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="17" subCorpName="济源石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="18" subCorpName="洛阳第四十八站"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+	</popupTableData>
+	<popupTableData month="2013.3">
+		<tabledata order="1" subCorpName="新乡石油分公司"
+			correctProblemNumbers="39" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="2" subCorpName="开封石油分公司"
+			correctProblemNumbers="2" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="3" subCorpName="鹤壁石油分公司"
+			correctProblemNumbers="1" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="4" subCorpName="周口石油分公司"
+			correctProblemNumbers="161" uncorrectProblemNumbers="1" rate="99.38" />
+		<tabledata order="5" subCorpName="漯河石油分公司"
+			correctProblemNumbers="50" uncorrectProblemNumbers="2" rate="96.15" />
+		<tabledata order="6" subCorpName="南阳石油分公司"
+			correctProblemNumbers="41" uncorrectProblemNumbers="3" rate="93.18" />
+		<tabledata order="7" subCorpName="郑州石油分公司"
+			correctProblemNumbers="138" uncorrectProblemNumbers="17" rate="89.03" />
+		<tabledata order="8" subCorpName="中原石油分公司"
+			correctProblemNumbers="113" uncorrectProblemNumbers="22" rate="83.70" />
+		<tabledata order="9" subCorpName="商丘石油分公司"
+			correctProblemNumbers="132" uncorrectProblemNumbers="30" rate="81.48" />
+		<tabledata order="10" subCorpName="濮阳石油分公司"
+			correctProblemNumbers="44" uncorrectProblemNumbers="11" rate="80.0" />
+		<tabledata order="11" subCorpName="三门峡石油分公司"
+			correctProblemNumbers="29" uncorrectProblemNumbers="8" rate="78.37" />
+		<tabledata order="12" subCorpName="平顶山分公司"
+			correctProblemNumbers="15" uncorrectProblemNumbers="5" rate="75.0" />
+		<tabledata order="13" subCorpName="洛阳石油分公司"
+			correctProblemNumbers="7" uncorrectProblemNumbers="5" rate="58.33" />
+		<tabledata order="14" subCorpName="公司机关"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="15" subCorpName="安阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="16" subCorpName="信阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="17" subCorpName="济源石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="18" subCorpName="洛阳第四十八站"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+	</popupTableData>
+	<popupTableData month="2013.4">
+		<tabledata order="1" subCorpName="郑州石油分公司"
+			correctProblemNumbers="49" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="2" subCorpName="漯河石油分公司"
+			correctProblemNumbers="37" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="3" subCorpName="新乡石油分公司"
+			correctProblemNumbers="9" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="4" subCorpName="平顶山分公司"
+			correctProblemNumbers="7" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="5" subCorpName="开封石油分公司"
+			correctProblemNumbers="3" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="6" subCorpName="信阳石油分公司"
+			correctProblemNumbers="1" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="7" subCorpName="周口石油分公司"
+			correctProblemNumbers="159" uncorrectProblemNumbers="4" rate="97.54" />
+		<tabledata order="8" subCorpName="南阳石油分公司"
+			correctProblemNumbers="45" uncorrectProblemNumbers="4" rate="91.83" />
+		<tabledata order="9" subCorpName="中原石油分公司"
+			correctProblemNumbers="121" uncorrectProblemNumbers="15" rate="88.97" />
+		<tabledata order="10" subCorpName="商丘石油分公司"
+			correctProblemNumbers="91" uncorrectProblemNumbers="28" rate="76.47" />
+		<tabledata order="11" subCorpName="洛阳石油分公司"
+			correctProblemNumbers="11" uncorrectProblemNumbers="4" rate="73.33" />
+		<tabledata order="12" subCorpName="濮阳石油分公司"
+			correctProblemNumbers="95" uncorrectProblemNumbers="51" rate="65.06" />
+		<tabledata order="13" subCorpName="三门峡石油分公司"
+			correctProblemNumbers="22" uncorrectProblemNumbers="13" rate="62.85" />
+		<tabledata order="14" subCorpName="公司机关"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="15" subCorpName="安阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="16" subCorpName="鹤壁石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="17" subCorpName="济源石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="18" subCorpName="洛阳第四十八站"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+	</popupTableData>
+	<popupTableData month="2013.5">
+		<tabledata order="1" subCorpName="新乡石油分公司"
+			correctProblemNumbers="14" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="2" subCorpName="洛阳石油分公司"
+			correctProblemNumbers="5" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="3" subCorpName="开封石油分公司"
+			correctProblemNumbers="3" uncorrectProblemNumbers="0" rate="100.0" />
+		<tabledata order="4" subCorpName="漯河石油分公司"
+			correctProblemNumbers="104" uncorrectProblemNumbers="3" rate="97.19" />
+		<tabledata order="5" subCorpName="周口石油分公司"
+			correctProblemNumbers="115" uncorrectProblemNumbers="11" rate="91.26" />
+		<tabledata order="6" subCorpName="南阳石油分公司"
+			correctProblemNumbers="35" uncorrectProblemNumbers="4" rate="89.74" />
+		<tabledata order="7" subCorpName="郑州石油分公司"
+			correctProblemNumbers="15" uncorrectProblemNumbers="2" rate="88.23" />
+		<tabledata order="8" subCorpName="中原石油分公司"
+			correctProblemNumbers="11" uncorrectProblemNumbers="5" rate="68.75" />
+		<tabledata order="9" subCorpName="商丘石油分公司"
+			correctProblemNumbers="31" uncorrectProblemNumbers="19" rate="62.0" />
+		<tabledata order="10" subCorpName="三门峡石油分公司"
+			correctProblemNumbers="2" uncorrectProblemNumbers="6" rate="25.0" />
+		<tabledata order="11" subCorpName="濮阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="3" rate="0.0" />
+		<tabledata order="12" subCorpName="公司机关"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="13" subCorpName="安阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="14" subCorpName="鹤壁石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="15" subCorpName="平顶山分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="16" subCorpName="信阳石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="17" subCorpName="济源石油分公司"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+		<tabledata order="18" subCorpName="洛阳第四十八站"
+			correctProblemNumbers="0" uncorrectProblemNumbers="0" rate="0.0" />
+	</popupTableData>
+</model>

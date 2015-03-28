@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<!-- 河南石油HSE仪表盘〔HSE检查部分〕xml数据 
+	id:检查类型(3种) 
+	label:检查显示名称或月份的显示标签 
+	numbers:检查次数 
+	problemNumbers：检查发现的问题数 
+	dealedProblemNumbers：检查问题的处理数 
+	order:序号 
+	subCorpName:分/子公司名称 
+	month:月度 
+	correctProblemNumbers：检查问题的整改数 
+	uncorrectProblemNumbers：检查问题的未整改数 -->
+	<!--1.文件总览 -->
+	<dataOutline dataYear="2012" dataDate="" corpid=""
+		corpname="河南石油" timestamp="" />
+
+	<!--2.检查数据 -->
+	<checkData>
+		<!-- 构成数据 -->
+		<!--numbers和checkNumbers一样  -->
+		<dataset id="LEVEL-A" label="集团公司级" numbers="50" checkNumbers="5" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"
+		checkNumbersURL="http://检查数量链接地址（保留）"
+		ProblemNumbersURL="http://问题数量链接地址（保留）"
+		correctProblemNumbersURL="http://已整改问题链接地址（保留）"
+		uncorrectProblemNumbersURL="http://未整改问题链接地址">
+			<checkdata order="1" leaderName="张三" checkNumbers="3" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="2" leaderName="李四" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="3" leaderName="王五" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+		</dataset>
+		<dataset id="LEVEL-B" label="省公司级" numbers="313" checkNumbers="5" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"
+		checkNumbersURL="http://检查数量链接地址（保留）"
+		ProblemNumbersURL="http://问题数量链接地址（保留）"
+		correctProblemNumbersURL="http://已整改问题链接地址（保留）"
+		uncorrectProblemNumbersURL="http://未整改问题链接地址">
+			<checkdata order="1" leaderName="张三" checkNumbers="3" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="2" leaderName="李四" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="3" leaderName="王五" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+		</dataset>
+		<dataset id="LEVEL-C" label="地市公司级" numbers="771" checkNumbers="5" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"
+		checkNumbersURL="http://检查数量链接地址（保留）"
+		ProblemNumbersURL="http://问题数量链接地址（保留）"
+		correctProblemNumbersURL="http://已整改问题链接地址（保留）"
+		uncorrectProblemNumbersURL="http://未整改问题链接地址">
+			<checkdata order="1" leaderName="张三" checkNumbers="3" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="2" leaderName="李四" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="3" leaderName="王五" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+		</dataset>
+		<dataset id="LEVEL-D" label="油库/片区级" numbers="4801" checkNumbers="5" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"
+		checkNumbersURL="http://检查数量链接地址（保留）"
+		ProblemNumbersURL="http://问题数量链接地址（保留）"
+		correctProblemNumbersURL="http://已整改问题链接地址（保留）"
+		uncorrectProblemNumbersURL="http://未整改问题链接地址">
+			<checkdata order="1" leaderName="张三" checkNumbers="3" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="2" leaderName="李四" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="3" leaderName="王五" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+		</dataset>
+		<dataset id="LEVEL-E" label="加油站级" numbers="1156" checkNumbers="5" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"
+		checkNumbersURL="http://检查数量链接地址（保留）"
+		ProblemNumbersURL="http://问题数量链接地址（保留）"
+		correctProblemNumbersURL="http://已整改问题链接地址（保留）"
+		uncorrectProblemNumbersURL="http://未整改问题链接地址">
+			<checkdata order="1" leaderName="张三" checkNumbers="3" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="2" leaderName="李四" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+			<checkdata order="3" leaderName="王五" checkNumbers="2" ProblemNumbers="5" correctProblemNumbers="4" uncorrectProblemNumbers="1"/>
+		</dataset>
+	</checkData>
+
+	<!--3.问题及处理数据 -->
+	<problemData>
+		<dataset month="2012.1" label="1月" problemNumbers="456"
+			dealedProblemNumbers="450" rate="98.68" />
+		<dataset month="2012.2" label="2月" problemNumbers="660"
+			dealedProblemNumbers="655" rate="98.24" />
+		<dataset month="2012.3" label="3月" problemNumbers="705"
+			dealedProblemNumbers="703" rate="98.71" />
+		<dataset month="2012.4" label="4月" problemNumbers="634"
+			dealedProblemNumbers="634" rate="100" />
+		<dataset month="2012.5" label="5月" problemNumbers="756"
+			dealedProblemNumbers="755" rate="99.86" />
+		<dataset month="2012.6" label="6月" problemNumbers="562"
+			dealedProblemNumbers="562" rate="100" />
+		<dataset month="2012.7" label="7月" problemNumbers="454"
+			dealedProblemNumbers="443" rate="97.57" />
+		<dataset month="2012.8" label="8月" problemNumbers="466"
+			dealedProblemNumbers="444" rate="95.27" />
+		<dataset month="2012.9" label="9月" problemNumbers="605"
+			dealedProblemNumbers="554" rate="91.57" />
+		<dataset month="2012.10" label="10月" problemNumbers="681"
+			dealedProblemNumbers="656" rate="96.32" />
+		<dataset month="2012.11" label="11月" problemNumbers="857"
+			dealedProblemNumbers="793" rate="92.53" />
+		<dataset month="2012.12" label="12月" problemNumbers="37"
+			dealedProblemNumbers="22" rate="59.45" />
+	</problemData>
+
+	<!--4.右侧按月点击弹出表格数据 -->
+	<popupTableData month="2012.1">
+		<tabledata order="1" subCorpName="合计" correctProblemNumbers="456" personProblemNumbers="3"
+			uncorrectProblemNumbers="6" rate="98.7"
+			allProblecNumbersURL="http://问题链接地址（暂时保留）"
+			correctProblemNumbersURL="http://已解决问题链接地址（暂时保留）"
+			uncorrectProblemNumbersURL="http://未解决问题链接地址"
+			 />
+		<tabledata order="2" subCorpName="郑州石油分公司" personProblemNumbers="3"
+			correctProblemNumbers="56" uncorrectProblemNumbers="4" rate="93.33" 
+			allProblecNumbersURL="http://问题链接地址（暂时保留）"
+			correctProblemNumbersURL="http://已解决问题链接地址（暂时保留）"
+			uncorrectProblemNumbersURL="http://未解决问题链接地址"
+			 />
+		<tabledata order="3" subCorpName="洛阳石油分公司" personProblemNumbers="3"
+			correctProblemNumbers="7" uncorrectProblemNumbers="0" rate="100" 
+			allProblecNumbersURL="http://问题链接地址（暂时保留）"
+			correctProblemNumbersURL="http://已解决问题链接地址（暂时保留）"
+			uncorrectProblemNumbersURL="http://未解决问题链接地址"
+			 />
+		<tabledata order="4" subCorpName="新乡石油分公司" personProblemNumbers="3"
+			correctProblemNumbers="4" uncorrectProblemNumbers="0" rate="100" 
+			allProblecNumbersURL="http://问题链接地址（暂时保留）"
+			correctProblemNumbersURL="http://已解决问题链接地址（暂时保留）"
+			uncorrectProblemNumbersURL="http://未解决问题链接地址"
+			 />
+	</popupTableData>
+	<popupTableData month="2012.2"/>
+	<popupTableData month="2012.3"/>
+	<popupTableData month="2012.4"/>
+	<popupTableData month="2012.5"/>
+	<popupTableData month="2012.6"/>
+	<popupTableData month="2012.7"/>
+	<popupTableData month="2012.8"/>
+	<popupTableData month="2012.9"/>
+	<popupTableData month="2012.10"/>
+	<popupTableData month="2012.11"/>
+	<popupTableData month="2012.12"/>
+
+</model>

@@ -1,0 +1,1736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 xmlns:adg="modules.train.components.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-教育培训-领导取证管理
+		 * 参数：年度
+		 * 作者：孙山虎
+		 * 日期：2013年10月29日
+	     * 修改日期2015年1月17日 刘本林
+		 * */
+	-->
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab1_typeGrp" />
+		<s:RadioButtonGroup id="tab2_typeGrp" />
+		<s:RadioButtonGroup id="tab2_plateGrp" />
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import as_class.PopupEffert_move;
+			
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			
+			import modules.train.components.TrainLeaderCert_CorpList;
+			import modules.train.components.TrainLeaderCert_CorpList2;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.scrollClasses.ScrollThumb;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.events.IndexChangeEvent;
+			
+			public const _dataPath:String = "assets/data/zb_trainLeaderCert.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "分板块";
+			[Bindable]
+			private var tab2_title:String = "分企业";
+			
+			[Bindable]
+			private var tab1_topTitle:String = "";
+			[Bindable]
+			private var tab2_topTitle:String = "";
+			[Bindable]
+			private var tab2_topLeftTitle:String = "";
+			[Bindable]
+			private var tab2_topRightTitle:String = "";
+			
+			[Bindable]
+			private var tab1_topConfDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topConfDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topRightConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab2_downDS:ArrayCollection;
+
+			private var tab1_topListBoxStatus:String = "bylevel";
+			[Bindable]
+			private var tab1_topListCurrSelect:String="00";;
+			[Bindable]
+			private var tab1_topListNameCurrSelect:String="全部级别";
+			[Bindable]
+			private var tab1_topList2CurrSelect:String="00";
+			[Bindable]
+			private var tab1_topList2NameCurrSelect:String="全部类别";
+			[Bindable]
+			private var tab1_topList3CurrSelect:String="01";
+			[Bindable]
+			private var tab1_topList3NameCurrSelect:String="全部";
+			[Bindable]
+			private var tab1_topListDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topList2DS:ArrayCollection;
+			[Bindable]
+			private var tab1_topList3DS:ArrayCollection;
+			
+			private var tab2_topListBoxStatus:String = "bylevel";
+			[Bindable]
+			private var tab2_topListCurrSelect:String="00";;
+			[Bindable]
+			private var tab2_topListNameCurrSelect:String="全部级别";
+			[Bindable]
+			private var tab2_topList2CurrSelect:String="00";
+			[Bindable]
+			private var tab2_topList2NameCurrSelect:String="全部类别";
+			[Bindable]
+			private var tab2_topList3CurrSelect:String="00";
+			[Bindable]
+			private var tab2_topList3NameCurrSelect:String="全部";
+			[Bindable]
+			private var tab2_topListDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topList2DS:ArrayCollection;
+			[Bindable]
+			private var tab2_topList3DS:ArrayCollection;
+			
+			[Bindable]
+			private var tw_listDS:ArrayCollection;
+			[Bindable]
+			private var tw2_listDS:ArrayCollection;
+			
+			
+			
+			[Bindable]
+			private var tab1_typeCurrSelect:String="00";
+			[Bindable]
+			private var tab1_typeNameCurrSelect:String="全部";
+			[Bindable]
+			private var tab1_typeDS:ArrayCollection;
+			[Bindable]
+			private var tab1_plateCurrSelect:String;
+			[Bindable]
+			private var tab1_plateNameCurrSelect:String;
+			
+			[Bindable]
+			private var tab2_typeCurrSelect:String="00";
+			[Bindable]
+			private var tab2_typeNameCurrSelect:String="全部";
+			[Bindable]
+			private var tab2_typeDS:ArrayCollection;
+			[Bindable]
+			private var tab2_plateCurrSelect:String;
+			[Bindable]
+			private var tab2_plateNameCurrSelect:String;
+			[Bindable]
+			private var tab2_plateDS:ArrayCollection;
+			[Bindable]
+			private var tab2_corpCurrSelect:String;
+			[Bindable]
+			private var tab2_corpNameCurrSelect:String;
+			[Bindable]
+			private var tab2_showCorpCnt:int = _showCorpCnt;
+			[Bindable]
+			private var tab2_showCorpCntMax:int = 50;
+			
+			[Bindable]
+			private var tab_IfRefreshFirst:Boolean = true;
+			[Bindable]
+			private var tab_topListIndex:int = 0;
+			[Bindable]
+			private var tab_topList2Index:int = 0;
+			[Bindable]
+			private var tab_topList3Index:int = 1;
+			[Bindable]
+			private var tab_AccordionIndex:int = 0;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			private var local_x:Number = 0;
+			private var local_y:Number = 0;
+			
+			private function move_handler(event:MouseEvent):void{
+				if(!(event.target is ScrollThumb)){
+					startDrag();
+				}
+			}
+			private function stop_handler(event:MouseEvent):void{
+				if(!(event.target is ScrollThumb)){
+					stopDrag();
+				}
+			}
+			
+			protected function init():void
+			{
+//				tab1_tw.setStyle("fontFamily","微软雅黑");
+//				tab1_tw.setStyle("rollOverColor","haloBlue");
+				
+//				tw.moveArea.addEventListener(MouseEvent.MOUSE_DOWN,move_handler);
+//				tw.moveArea.addEventListener(MouseEvent.MOUSE_UP,stop_handler);
+				tab1_topDS = new ArrayCollection();
+				tab1_downDS = new ArrayCollection();
+				tab2_topDS = new ArrayCollection();
+				tab2_topRightDS = new ArrayCollection();
+				
+//				tab1_topConfDS = new ArrayCollection([{name: "完成率", field: "finishedRatio", type: "columnSeries", axis: "left"}, {name: "平均取证率", field: "averageFinishedRatio", type: "lineSeries", axis: "left", showLabel: 0},]);
+				//应持证人数要求去掉  20150211  本林
+				tab1_topConfDS = new ArrayCollection([
+					{name: "应持证人数", field: "certNum", type: "columnSeries", axis: "left"}, 
+					{name: "实际持证人数", field: "realityCertNum", type: "columnSeries", axis: "left"}, 
+					{name: "有效证", field: "effectiveCertNum", type: "columnSeries", axis: "left"},
+					{name: "持证率", field: "certRation", type: "lineSeries", axis: "right"},
+					{name: "有效率", field: "realityRation", type: "lineSeries", axis: "right",color:0x054685}
+				]);
+				
+				
+				tab2_topConfDS = new ArrayCollection([
+					{name: "应持证人数", field: "certNum", type: "columnSeries", axis: "left"}, 
+					{name: "实际持证人数", field: "realityCertNum", type: "columnSeries", axis: "left"}, 
+					{name: "有效证", field: "effectiveCertNum", type: "columnSeries", axis: "left"},
+					{name: "持证率", field: "certRation", type: "lineSeries", axis: "right"},
+					{name: "有效率", field: "realityRation", type: "lineSeries", axis: "right",color:0x054685}
+				]);
+//				tab2_topLeftConfDS = new ArrayCollection([{name: "完成率", field: "finishedRatio", type: "columnSeries", axis: "left"}, {name: "平均取证率", field: "averageFinishedRatio", type: "lineSeries", axis: "left", showLabel: 0},]);
+//				tab2_topRightConfDS = new ArrayCollection([{name: "完成率", field: "finishedRatio", type: "columnSeries", axis: "left"}, {name: "平均取证率", field: "averageFinishedRatio", type: "lineSeries", axis: "left", showLabel: 0},]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。给其他图赋值，这里省略。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetCardManage(dateStr,tab1_typeCurrSelect,tab1_topListCurrSelect,tab1_topList2CurrSelect,tab1_topList3CurrSelect);
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+//				tc1.back_but_clickHandler_call();
+				if (tab_IfRefreshFirst) {
+					tab1_typeDS = getTab1_typeDS();
+					tab2_typeDS = getTab2_typeDS();
+					tab2_plateDS = getTab2_plateDS();
+					tab1_topListDS = getTab1_topListDS();
+					tab1_topList2DS = getTab1_topList2DS();
+					tab1_topList3DS = getTab1_topList3DS();
+					tab2_topListDS = getTab2_topListDS();
+					tab2_topList2DS = getTab2_topList2DS();
+					tab2_topList3DS = getTab2_topList3DS();
+				}
+				tab2_showCorpCnt = getTab2_CorpCntDS(this.tab2_plateCurrSelect);
+				tab2_showCorpCntMax = getTab2_CorpCntMax(this.tab2_plateCurrSelect);
+				
+				tab1_topDS = getTab1_topDS();
+				tab1_downDS = getTab1_downDS();
+				tab2_topDS = getTab2_topDS();
+//				tab2_topLeftDS = getTab2_topLeftDS();
+//				tab2_topRightDS = getTab2_topRightDS();
+				tab2_downDS = getTab2_downDS();
+				executeBindTab1_topTitle();
+				executeBindTab2_topTitle();
+			}
+			
+			private function executeBindTab1_topTitle():void
+			{
+//				tab1_topTitle = "中国石化" + dateStr + "年各板块" + tab1_topListNameCurrSelect + tab1_topList2NameCurrSelect + tab1_topList3NameCurrSelect + "领导取证情况";
+				if(tab1_topListNameCurrSelect=="全部"||tab1_topListNameCurrSelect=="全部级别"){
+					tab1_topTitle = "中国石化" + dateStr + "年"  + tab1_topList3NameCurrSelect + "领导取证情况";
+				}else{
+					tab1_topTitle = "中国石化" + dateStr + "年" + tab1_topList3NameCurrSelect + "领导取证情况-"+ tab1_topListNameCurrSelect;
+				}
+				
+			}
+			
+			private function executeBindTab2_topTitle():void
+			{
+				if(tab2_plateNameCurrSelect=="全部"){
+					if(tab2_topListNameCurrSelect=="全部"||tab2_topListNameCurrSelect=="全部级别"){
+					     tab2_topTitle = "中国石化" + dateStr + "年" + tab2_topList3NameCurrSelect + "领导取证情况";
+					}else{
+						tab2_topTitle = "中国石化" + dateStr + "年" + tab2_topList3NameCurrSelect + "领导取证情况-"+ tab2_topListNameCurrSelect ;
+					}
+				}else{
+					if(tab2_topListNameCurrSelect=="全部"||tab2_topListNameCurrSelect=="全部级别"){
+				        tab2_topTitle = dateStr + "年"+tab2_plateNameCurrSelect +"板块"  + tab2_topList3NameCurrSelect + "领导取证情况";
+					}else{
+						tab2_topTitle = dateStr + "年"+tab2_plateNameCurrSelect +"板块" + tab2_topList3NameCurrSelect + "领导取证情况-"+ tab2_topListNameCurrSelect;
+					}
+				}
+				//				tab2_topLeftTitle = tab2_plateNameCurrSelect + "板块" + dateStr + "年" + tab2_topList3NameCurrSelect + "领导取证培训完成情况（前" + tab2_showCorpCnt + "名）";
+//				tab2_topRightTitle = tab2_plateNameCurrSelect + "板块" + dateStr + "年" + tab2_topList3NameCurrSelect + "领导取证培训完成情况（后" + tab2_showCorpCnt + "名）";
+			}
+			//tab1顶部数据类型选择
+			private function getTab1_typeDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				tmpArrayCollection.addItem({value: "00", label: "全部"});
+				tmpArrayCollection.addItem({value: "01", label: "新取证"});
+				tmpArrayCollection.addItem({value: "02", label: "复审证"});
+				tmpArrayCollection.addItem({value: "03", label: "换证"});
+				tab1_typeCurrSelect = "00";
+				tab1_typeNameCurrSelect = "全部";
+				return tmpArrayCollection;
+			}
+			//tab2顶部数据类型选择
+			private function getTab2_typeDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				tmpArrayCollection.addItem({value: "00", label: "全部"});
+				tmpArrayCollection.addItem({value: "01", label: "新取证"});
+				tmpArrayCollection.addItem({value: "02", label: "复审证"});
+				tmpArrayCollection.addItem({value: "03", label: "换证"});
+				tab2_typeCurrSelect = "00";
+				tab2_typeNameCurrSelect = "全部";
+				return tmpArrayCollection;
+			}
+			//tab2顶部板块选择
+			private function getTab2_plateDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				tmpArrayCollection.addItem({value: "00", label: "全部"});
+				tmpArrayCollection.addItem({value: "YT", label: "油田"});
+				tmpArrayCollection.addItem({value: "LH", label: "炼化"});
+				tmpArrayCollection.addItem({value: "XS", label: "销售"});
+				tmpArrayCollection.addItem({value: "GC", label: "工程"});
+				tmpArrayCollection.addItem({value: "QT", label: "其他"});
+				tab2_plateCurrSelect = "00";
+				tab2_plateNameCurrSelect = "全部";
+				return tmpArrayCollection;
+			}
+			//tab2顶部单位个数选择
+			private function getTab2_CorpCntDS(plateid:String):int
+			{
+				var _cnt:int = getTab2_CorpCntMax(plateid);
+				if (_cnt > _showCorpCnt)
+					_cnt = _showCorpCnt;
+				return _cnt;
+			}
+			//tab2顶部单位个数选择
+			private function getTab2_CorpCntMax(plateid:String):int
+			{
+				var _cnt:int = 0;
+				try
+				{
+					var tmpList:XMLList;
+					if (plateid == "00")
+					{
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData;
+					}
+					else
+					{
+						tmpList = hseDataXML.byLeaderCertData.plateData.(@plateid == plateid).corpData;
+					}
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						tab2_corpCurrSelect = tmpList[0].@subCorpid; //设置默认选择
+						tab2_corpNameCurrSelect = tmpList[0].@subCorpname;
+						tab2_corpNameCurrSelect = tab2_corpNameCurrSelect == null ? "" : tab2_corpNameCurrSelect;
+						
+						_cnt = tmpList.length();
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//分左右2部分显示
+//				_cnt = Math.floor((_cnt + 1) / 2);
+				return _cnt;
+			}
+			//tab1左侧培训级别选择
+			private function getTab1_topListDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				tmpArrayCollection.addItem( { value: "00", label: "全部级别" } );
+				tmpArrayCollection.addItem( { value: "01", label: "地方政府" } );
+				tmpArrayCollection.addItem( { value: "02", label: "集团公司" } );
+				/* tmpArrayCollection.addItem( { value: "03", label: "企业级" } ); */
+				tab1_topListCurrSelect = "00";
+				tab1_topListNameCurrSelect = "全部级别";
+				return tmpArrayCollection;
+			}
+			//tab1左侧证书类型选择
+			private function getTab1_topList2DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byLeaderCertData.config.certTypeData.certType;
+					if (tmpList.length() > 0)
+					{
+						tab1_topList2CurrSelect = tmpList[0].@typeid; //设置默认选择
+						tab1_topList2NameCurrSelect = tmpList[0].@typename;
+						tab1_topList2NameCurrSelect = tab1_topList2NameCurrSelect == null ? "" : tab1_topList2NameCurrSelect;
+						for each (var xml:XML in tmpList)
+						{
+							
+							var obj:Object = new Object();
+							obj.label = xml.@typename;
+							obj.value = xml.@typeid;
+							tmpArrayCollection.addItem(obj);
+//							if(xml.@typeid!="67b8d114-0c16-4b4b-b1cb-6f28ef90f5ec"&&
+//								xml.@typeid!="2a003515-d386-4161-bf79-7608e9c2dbdf"&&xml.@typeid!="d5ee1f37-9c2c-45ba-8431-91c4b8992548"){
+//								tmpArrayCollection.addItem(obj);
+//							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				return tmpArrayCollection;
+			}
+			
+			//tw_list证书类型选择
+			private function getTab1_twListDS(str:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byLeaderCertData.config.certTypeData.certType.(@typename == str).nodeType;
+					if (tmpList.length() > 0)
+					{
+						tab1_topList2CurrSelect = tmpList[0].@typeid; //设置默认选择
+						tab1_topList2NameCurrSelect = tmpList[0].@typename;
+						tab1_topList2NameCurrSelect = tab1_topList2NameCurrSelect == null ? "" : tab1_topList2NameCurrSelect;
+						for each (var xml:XML in tmpList)
+						{
+							
+							var obj:Object = new Object();
+							obj.label = xml.@typename;
+							obj.value = xml.@typeid;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				return tmpArrayCollection;
+			}
+			
+			//tab1左侧领导级别选择
+			private function getTab1_topList3DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				tmpArrayCollection.addItem({value: "00", label: "全部"});
+				tmpArrayCollection.addItem({value: "01", label: "局级"});
+				tmpArrayCollection.addItem({value: "02", label: "处级"});
+				tab1_topList3CurrSelect = "01";
+				tab1_topList3NameCurrSelect = "局级";
+				tab_topList3Index = tab1_top_list3.selectedIndex = 1;
+				return tmpArrayCollection;
+			}
+			//tab2左侧培训级别选择
+			private function getTab2_topListDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				tmpArrayCollection.addItem( { value: "00", label: "全部级别" } );
+				tmpArrayCollection.addItem( { value: "01", label: "地方政府" } );
+				tmpArrayCollection.addItem( { value: "02", label: "集团公司" } );
+				/* tmpArrayCollection.addItem( { value: "03", label: "企业级" } ); */
+				tab2_topListCurrSelect = "00";
+				tab2_topListNameCurrSelect = "全部级别";
+				return tmpArrayCollection;
+			}
+			//tab2左侧证书类型选择
+			private function getTab2_topList2DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byLeaderCertData.config.certTypeData.certType;
+					if (tmpList.length() > 0)
+					{
+						tab2_topList2CurrSelect = tmpList[0].@typeid; //设置默认选择
+						tab2_topList2NameCurrSelect = tmpList[0].@typename;
+						tab2_topList2NameCurrSelect = tab2_topList2NameCurrSelect == null ? "" : tab2_topList2NameCurrSelect;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							obj.label = xml.@typename;
+							obj.value = xml.@typeid;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			//tab2左侧领导级别选择
+			private function getTab2_topList3DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				tmpArrayCollection.addItem({value: "00", label: "全部"});
+				tmpArrayCollection.addItem({value: "01", label: "局级"});
+				tmpArrayCollection.addItem({value: "02", label: "处级"});
+				tab2_topList3CurrSelect = "00";
+				tab2_topList3NameCurrSelect = "全部";
+				return tmpArrayCollection;
+			}
+			
+			//tab1上部分数据源
+			private function getTab1_topDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byLeaderCertData.plateData;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						tab1_plateCurrSelect = tmpList[0].@plateid; //设置默认选择
+						tab1_plateNameCurrSelect = tmpList[0].@plateLabel;
+						tab1_plateNameCurrSelect = tab1_plateNameCurrSelect == null ? "" : tab1_plateNameCurrSelect;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							var sum_rate:Number = 0;
+							obj.label = xml.@plateLabel;
+							obj.certNum1 = xml.@certNum1;
+							obj.certNum = xml.@certNum;
+							obj.realityCertNum = xml.@realityCertNum;
+							obj.effectiveCertNum = xml.@effectiveCertNum;
+							sum_rate = Number(xml.@certNum) == 0 ? 0 : Number(obj.realityCertNum) * 100 / Number(obj.certNum);
+							obj.certRation = Number(sum_rate.toFixed(0));
+//							obj.certRation = xml.@certRation;
+							obj.realityRation = xml.@realityRation;
+							obj.id = xml.@plateid;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			//tab1下部分数据源
+			//flag
+			
+//		    private var flag_corp:Boolean = false;
+			private function getTab1_downDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byLeaderCertData.plateData;
+					var tmpList_all:XMLList = hseDataXML.byLeaderCertData.plateSum;
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							//order subCorpname planNumbers finishedNumbers finishedRatio comparedRatio persCnt persList
+							var obj:Object = new Object();
+							var rate:Number = 0;
+							obj.order = order; 
+							obj.id = xml.@plateid; 
+							obj.plateLabel = xml.@plateLabel; 
+							obj.certNum1 = xml.@certNum1; 
+							obj.certNum = xml.@certNum; 
+							obj.realityCertNum = xml.@realityCertNum; 
+							rate = Number(xml.@certNum) == 0 ? 0 : Number(obj.realityCertNum) * 100 / Number(obj.certNum);
+							obj.certRation = Number(rate.toFixed(0));
+//							obj.certRation = xml.@certRation; 
+							obj.effectiveCertNum = xml.@effectiveCertNum; 
+							obj.effectiveCert12 = xml.@effectiveCert12;
+							obj.effectiveCert12URL = xml.@effectiveCert12URL;
+							obj.effectiveCert6 = xml.@effectiveCert6;
+							obj.effectiveCert6URL = xml.@effectiveCert6URL;
+							obj.effectiveCert3 = xml.@effectiveCert3;
+							obj.effectiveCert3URL = xml.@effectiveCert3URL;
+							obj.beover = xml.@beover;
+							obj.beoverURL = xml.@beoverURL;
+							obj.realityRation = xml.@realityRation;
+							obj.remainderCert = xml.@remainderCert;
+							tmpArrayCollection.addItem(obj);
+							order++;
+						}
+						var obj_all:Object = new Object();
+						var sum_rate:Number = 0;
+						obj_all.id = "plate_all"; 
+						obj_all.plateLabel = "合计";
+						obj_all.plateSumURL = tmpList_all.@plateSumURL; 
+						obj_all.certNum1 = tmpList_all.@certNum1; 
+						obj_all.certNum = tmpList_all.@certNum; 
+						obj_all.realityCertNum = tmpList_all.@realityCertNum; 
+						sum_rate = Number(tmpList_all.@certNum) == 0 ? 0 : Number(obj_all.realityCertNum) * 100 / Number(obj_all.certNum);
+						obj_all.certRation = Number(sum_rate.toFixed(0));
+//						obj_all.certRation = tmpList_all.@certRation; 
+						obj_all.effectiveCertNum = tmpList_all.@effectiveCertNum; 
+						obj_all.effectiveCert12 = tmpList_all.@effectiveCert12;
+						obj_all.effectiveCert6 = tmpList_all.@effectiveCert6;
+						obj_all.effectiveCert3 = tmpList_all.@effectiveCert3;
+						obj_all.effectiveCert12URL = tmpList_all.@effectiveCert12URL;
+						obj_all.effectiveCert6URL = tmpList_all.@effectiveCert6URL;
+						obj_all.effectiveCert3URL = tmpList_all.@effectiveCert3URL;
+						obj_all.beoverURL = tmpList_all.@beoverURL;
+						obj_all.beover = tmpList_all.@beover
+						obj_all.realityRation = tmpList_all.@realityRation;
+						obj_all.remainderCert = tmpList_all.@remainderCert;
+						tmpArrayCollection.addItem(obj_all);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			//tab1 数据源钻取企业刷新
+			private function call_app(obj_id:String):void{
+				tab1_plateCurrSelect = obj_id;
+				tab1_downDS = getTab1_Corp();
+				trainLeaderCert_CorpList.DataSource=tab1_downDS;
+				trainLeaderCert_CorpList.TypeName=tab1_typeNameCurrSelect;
+				trainLeaderCert_CorpList.LevelName=tab1_topListNameCurrSelect; 
+				trainLeaderCert_CorpList.CertTypeName = tab1_topList2NameCurrSelect;
+				trainLeaderCert_CorpList.LeaderLevelName = tab1_topList3NameCurrSelect;
+				trainLeaderCert_CorpList.DateStr = dateStr+"年";
+				trainLeaderCert_CorpList.fun_call = call_app;
+				trainLeaderCert_CorpList.fun_back = call_app2;
+				trainLeaderCert_CorpList.hseDataXML = hseDataXML;
+//				executeBindTab1_topTitle();
+//				tab1_topTitle = "中国石化" + dateStr + "年各板块" + tab1_topList3NameCurrSelect + "领导取证培训完成情况";
+			}
+			
+			private function call_app2():void{
+				tab1_downDS = getTab1_downDS();
+				trainLeaderCert_CorpList.DataSource=tab1_downDS;
+				trainLeaderCert_CorpList.TypeName=tab1_typeNameCurrSelect;
+				trainLeaderCert_CorpList.LevelName=tab1_topListNameCurrSelect; 
+				trainLeaderCert_CorpList.CertTypeName = tab1_topList2NameCurrSelect;
+				trainLeaderCert_CorpList.LeaderLevelName = tab1_topList3NameCurrSelect;
+				trainLeaderCert_CorpList.DateStr = dateStr+"年";
+				trainLeaderCert_CorpList.fun_call = call_app;
+				trainLeaderCert_CorpList.fun_back = call_app2;
+				trainLeaderCert_CorpList.hseDataXML = hseDataXML;
+				//				executeBindTab1_topTitle();
+				//				tab1_topTitle = "中国石化" + dateStr + "年各板块" + tab1_topList3NameCurrSelect + "领导取证培训完成情况";
+			}
+			
+			private function getTab1_Corp():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.byLeaderCertData.plateData.(@plateid==tab1_plateCurrSelect).corpData;
+					var tmpList_all:XMLList = hseDataXML.byLeaderCertData.plateData.(@plateid==tab1_plateCurrSelect);
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							//order subCorpname planNumbers finishedNumbers finishedRatio comparedRatio persCnt persList
+							var obj:Object = new Object();
+							var sum_rate:Number = 0;
+							obj.order = order; 
+							obj.id = xml.@subCorpid; 
+							obj.plateLabel = xml.@subCorpname; 
+							obj.isCorp = "corp"; 
+							obj.corpURL = xml.@corpURL; 
+							obj.certNum1 = xml.@certNum1; 
+							obj.certNum = xml.@certNum; 
+							obj.realityCertNum = xml.@realityCertNum; 
+							sum_rate = Number(xml.@certNum) == 0 ? 0 : Number(obj.realityCertNum) * 100 / Number(obj.certNum);
+							obj.certRation = Number(sum_rate.toFixed(0));
+//							obj.certRation = xml.@certRation; 
+							obj.effectiveCertNum = xml.@effectiveCertNum; 
+							obj.effectiveCert12 = xml.effectiveCert12.@num;
+							obj.effectiveCert6 = xml.effectiveCert6.@num;
+							obj.effectiveCert3 = xml.effectiveCert3.@num;
+							obj.beover = xml.beover.@num;
+							obj.effectiveCert12URL = xml.effectiveCert12.@effectiveCert12URL;
+							obj.effectiveCert6URL = xml.effectiveCert6.@effectiveCert6URL;
+							obj.effectiveCert3URL = xml.effectiveCert3.@effectiveCert3URL;
+							obj.beoverURL = xml.beover.@beoverURL;
+							obj.realityRation = xml.@realityRation;
+							obj.remainderCert = xml.remainderCert.@num;
+							tmpArrayCollection.addItem(obj);
+							order++;
+						}
+						
+						var obj_all:Object = new Object();
+						obj_all.plateLabel = "合计";
+						obj_all.isCorp = "corp"; 
+						obj_all.totalCorpURL = tmpList_all.@totalCorpURL;
+						obj_all.certNum1 = tmpList_all.@certNum1;
+						obj_all.certNum = tmpList_all.@certNum; 
+						obj_all.realityCertNum = tmpList_all.@realityCertNum; 
+						obj_all.certRation = tmpList_all.@certRation; 
+						obj_all.effectiveCertNum = tmpList_all.@effectiveCertNum; 
+						obj_all.effectiveCert12 = tmpList_all.@effectiveCert12;
+						obj_all.effectiveCert6 = tmpList_all.@effectiveCert6;
+						obj_all.effectiveCert3 = tmpList_all.@effectiveCert3;
+						obj_all.beover = tmpList_all.@beover;
+						obj_all.realityRation = tmpList_all.@realityRation;
+						obj_all.remainderCert = tmpList_all.@remainderCert;
+						tmpArrayCollection.addItem(obj_all);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			
+			
+			//tab2上部分左侧数据源
+//			private function getTab2_topLeftDS():ArrayCollection
+			private function getTab2_topDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					if (tab2_plateCurrSelect == "00")
+					{
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData;
+					}
+					else
+					{
+						tmpList = hseDataXML.byLeaderCertData.plateData.(@plateid == tab2_plateCurrSelect).corpData;
+					}
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							obj.label = xml.@subCorpname;
+							obj.certNum = xml.@certNum;
+							obj.realityCertNum = xml.@realityCertNum;
+							obj.effectiveCertNum = xml.@effectiveCertNum;
+							obj.certRation = xml.@certRation;
+							obj.realityRation = xml.@realityRation;
+							obj.id = xml.@plateid;
+							tmpArrayCollection.addItem(obj);
+							/* var obj:Object = new Object();
+							obj.label = xml.@subCorpname;
+							obj.finishedRatio = xml.@finishedRatio;
+							obj.averageFinishedRatio = xml.@averageFinishedRatio;
+							obj.id = xml.@subCorpid;
+							obj.plateid = xml.parent().@plateid;
+							obj.platename = xml.parent().@plateLabel;
+							tmpArrayCollection.addItem(obj); */
+							
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//排序
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("certNum", true, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					if (i >= tab2_showCorpCnt)
+						break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			//tab2上部分右侧数据源
+			private function getTab2_topRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					if (tab2_plateCurrSelect == "00")
+					{
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData;
+					}
+					else
+					{
+						tmpList = hseDataXML.byLeaderCertData.plateData.(@plateid == tab2_plateCurrSelect).corpData;
+					}
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							obj.label = xml.@subCorpname;
+							obj.finishedRatio = xml.@finishedRatio;
+							obj.averageFinishedRatio = xml.@averageFinishedRatio;
+							obj.id = xml.@subCorpid;
+							obj.plateid = xml.parent().@plateid;
+							obj.platename = xml.parent().@plateLabel;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//排序
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("finishedRatio", false, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					if (i >= tab2_showCorpCnt)
+						break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			//tab2下部分数据源
+			private function getTab2_downDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					var tmpList_all:XMLList;
+//					tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==tab2_corpCurrSelect).leaderData;//(@plateid==tab2_plateCurrSelect).
+					if(tab2_plateCurrSelect=="00"){
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData;
+						tmpList_all = hseDataXML.byLeaderCertData.plateSum;
+					}else{
+						tmpList = hseDataXML.byLeaderCertData.plateData.(@plateid==tab2_plateCurrSelect).corpData;
+						tmpList_all = hseDataXML.byLeaderCertData.plateData.(@plateid==tab2_plateCurrSelect);
+					}
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							//order subCorpname planNumbers finishedNumbers finishedRatio comparedRatio persCnt persList
+							var obj:Object = new Object();
+							var rate:Number = 0;
+							obj.order = order; 
+							obj.id = xml.@subCorpid; 
+							obj.plateLabel = xml.@subCorpname; 
+							obj.corpURL = xml.@corpURL; 
+							obj.certNum1 = xml.@certNum1; 
+							obj.certNum = xml.@certNum; 
+							obj.realityCertNum = xml.@realityCertNum; 
+							rate = Number(xml.@certNum) == 0 ? 0 : Number(obj.realityCertNum) * 100 / Number(obj.certNum);
+							obj.certRation = Number(rate.toFixed(0));
+//							obj.certRation = xml.@certRation; 
+							obj.effectiveCertNum = xml.@effectiveCertNum; 
+							obj.effectiveCert12 = xml.effectiveCert12.@num;
+							obj.effectiveCert6 = xml.effectiveCert6.@num;
+							obj.effectiveCert3 = xml.effectiveCert3.@num;
+							obj.beover = xml.beover.@num;
+							obj.effectiveCert12URL = xml.effectiveCert12.@effectiveCert12URL;
+							obj.effectiveCert6URL = xml.effectiveCert6.@effectiveCert6URL;
+							obj.effectiveCert3URL = xml.effectiveCert3.@effectiveCert3URL;
+							obj.beoverURL = xml.beover.@beoverURL;
+							obj.realityRation = xml.@realityRation;
+							obj.remainderCert = xml.remainderCert.@num;
+							tmpArrayCollection.addItem(obj);
+							order++;
+						}
+						
+						var obj_all:Object = new Object();
+						var sum_rate:Number = 0;
+						obj_all.plateLabel = "合计";
+						if(tab2_plateCurrSelect=="00"){
+							var tmpList_all_plate:XMLList = hseDataXML.byLeaderCertData.plateSum;
+							obj_all.totalCorpURL = tmpList_all_plate.@plateSumURL; 
+						}else{	
+							obj_all.totalCorpURL = tmpList_all.@totalCorpURL;
+						}
+						obj_all.certNum1 = tmpList_all.@certNum1; 
+						obj_all.certNum = tmpList_all.@certNum; 
+						obj_all.realityCertNum = tmpList_all.@realityCertNum; 
+						sum_rate = Number(tmpList_all.@certNum) == 0 ? 0 : Number(obj_all.realityCertNum) * 100 / Number(obj_all.certNum);
+						obj_all.certRation = Number(sum_rate.toFixed(0));
+//						obj_all.certRation = tmpList_all.@certRation; 
+						obj_all.effectiveCertNum = tmpList_all.@effectiveCertNum; 
+						obj_all.effectiveCert12 = tmpList_all.@effectiveCert12;
+						obj_all.effectiveCert6 = tmpList_all.@effectiveCert6;
+						obj_all.effectiveCert3 = tmpList_all.@effectiveCert3;
+						obj_all.beover = tmpList_all.@beover;
+						obj_all.effectiveCert12URL = tmpList_all.@effectiveCert12URL;
+						obj_all.effectiveCert6URL = tmpList_all.@effectiveCert6URL;
+						obj_all.effectiveCert3URL = tmpList_all.@effectiveCert3URL;
+						obj_all.beoverURL = tmpList_all.@beoverURL;
+						obj_all.realityRation = tmpList_all.@realityRation;
+						obj_all.remainderCert = tmpList_all.@remainderCert;
+						tmpArrayCollection.addItem(obj_all);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			[Bindable]
+			private var tab2_leftAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab2_leftAxisMinimum:Number = 0;
+			[Bindable]
+			private var tab2_rightAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab2_rightAxisMinimum:Number = 0;
+			//tab2上部左侧坐标同步右侧
+			protected function tab2_top_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_leftAxisMaximum = event.getLeftAxisMaximum>tab2_leftAxisMaximum?event.getLeftAxisMaximum:tab2_leftAxisMaximum;
+				tab2_leftAxisMinimum = event.getLeftAxisMinimum<tab2_leftAxisMaximum?event.getLeftAxisMinimum:tab2_leftAxisMinimum;
+				tab2_rightAxisMaximum = event.getRightAxisMaximum>tab2_rightAxisMaximum?event.getLeftAxisMaximum:tab2_rightAxisMaximum;
+				tab2_rightAxisMinimum = event.getRightAxisMinimum<tab2_rightAxisMinimum?event.getLeftAxisMinimum:tab2_rightAxisMinimum;
+			}
+			protected function tab2_topRight_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_leftAxisMaximum = event.getLeftAxisMaximum>tab2_leftAxisMaximum?event.getLeftAxisMaximum:tab2_leftAxisMaximum;
+				tab2_leftAxisMinimum = event.getLeftAxisMinimum<tab2_leftAxisMaximum?event.getLeftAxisMinimum:tab2_leftAxisMinimum;
+				tab2_rightAxisMaximum = event.getRightAxisMaximum>tab2_rightAxisMaximum?event.getLeftAxisMaximum:tab2_rightAxisMaximum;
+				tab2_rightAxisMinimum = event.getRightAxisMinimum<tab2_rightAxisMinimum?event.getLeftAxisMinimum:tab2_rightAxisMinimum;
+			}
+			protected function tab1_top_list_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_topListBoxStatus = "bylevel";
+				tab1_topListCurrSelect = tab1_top_list.selectedItem.value;
+				tab1_topListNameCurrSelect = tab1_top_list.selectedItem.label;
+				
+				tab_topListIndex = tab1_top_list.selectedIndex;
+				tab2_topListCurrSelect=tab1_topListCurrSelect;
+				tab2_topListNameCurrSelect = tab1_topListNameCurrSelect;
+				
+				
+				//将list2收起，list2置于全部
+				tab_topList2Index = 0;
+				tab1_topList2CurrSelect = tab1_topList2DS.getItemAt(0).value;
+				tab1_topList2NameCurrSelect = tab1_topList2DS.getItemAt(0).label;
+				tab2_topList2CurrSelect=tab1_topList2CurrSelect;
+				tab2_topList2NameCurrSelect = tab1_topList2NameCurrSelect;
+				
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			protected function tab1_top_list2_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_topListBoxStatus = "bykind";
+//				tab1_topList2CurrSelect = tab1_top_list2.selectedItem.value;
+//				tab1_topList2NameCurrSelect = tab1_top_list2.selectedItem.label;
+				
+				if(tab1_topList2NameCurrSelect=="特种作业"){
+					tw_listDS = getTab1_twListDS(tab1_topList2NameCurrSelect);
+					tw.title = "特种作业类别";
+					tw.visible = true;
+					tw.width = 200;	
+					tw.height = 300;
+					tw.isPopUp=true;
+					PopupEffert_move.show(tw,this,false,29,150);
+					return;
+				}
+				
+				if(tab1_topList2NameCurrSelect=="特种设备作业"){
+					tw_listDS = getTab1_twListDS(tab1_topList2NameCurrSelect);
+					tw.title = "特种设备作业类别";
+					tw.visible = true;
+					tw.width = 200;	
+					tw.height = 300;
+					tw.isPopUp=true;
+					PopupEffert_move.show(tw,this,false,29,150);
+					return;
+				}
+//				tab_topList2Index = tab1_top_list2.selectedIndex;
+				tab2_topList2CurrSelect=tab1_topList2CurrSelect;
+				tab2_topList2NameCurrSelect = tab1_topList2NameCurrSelect;
+				
+				//将list1收起，list1置于全部
+				tab_topListIndex = 0;
+				tab1_topListCurrSelect = tab1_topListDS.getItemAt(0).value;
+				tab1_topListNameCurrSelect = tab1_topListDS.getItemAt(0).label;
+				tab2_topListCurrSelect=tab1_topListCurrSelect;
+				tab2_topListNameCurrSelect = tab1_topListNameCurrSelect;
+				
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			protected function tab1_top_list3_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_topList3CurrSelect = tab1_top_list3.selectedItem.value;
+				tab1_topList3NameCurrSelect = tab1_top_list3.selectedItem.label;
+				
+				tab_topList3Index = tab1_top_list3.selectedIndex;
+				tab2_topList3CurrSelect=tab1_topList3CurrSelect;
+				tab2_topList3NameCurrSelect = tab1_topList3NameCurrSelect;
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			protected function tab2_top_list_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_topListBoxStatus = "bylevel";
+				tab2_topListCurrSelect = tab2_top_list.selectedItem.value;
+				tab2_topListNameCurrSelect = tab2_top_list.selectedItem.label;
+				
+				tab_topListIndex = tab2_top_list.selectedIndex;
+				tab1_topListCurrSelect=tab2_topListCurrSelect;
+				tab1_topListNameCurrSelect = tab2_topListNameCurrSelect;
+
+				//将list2收起，list2置于全部
+				tab_topList2Index = 0;
+				tab2_topList2CurrSelect = tab2_topList2DS.getItemAt(0).value;
+				tab2_topList2NameCurrSelect = tab2_topList2DS.getItemAt(0).label;
+				tab1_topList2CurrSelect=tab2_topList2CurrSelect;
+				tab1_topList2NameCurrSelect = tab2_topList2NameCurrSelect;
+
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			protected function tab2_top_list2_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_topListBoxStatus = "bykind";
+//				tab2_topList2CurrSelect = tab2_top_list2.selectedItem.value;
+//				tab2_topList2NameCurrSelect = tab2_top_list2.selectedItem.label;
+				
+				if(tab2_topList2NameCurrSelect=="特种作业"){
+					tw2_listDS = getTab1_twListDS(tab2_topList2NameCurrSelect);
+					tw2.title = "特种作业类别";
+					tw2.visible = true;
+					tw2.width = 200;	
+					tw2.height = 300;
+					tw2.isPopUp=true;
+					PopupEffert_move.show(tw2,this,false,29,150);
+					return;
+				}
+				
+				if(tab2_topList2NameCurrSelect=="特种设备作业"){
+					tw2_listDS = getTab1_twListDS(tab2_topList2NameCurrSelect);
+					tw2.title = "特种设备作业类别";
+					tw2.visible = true;
+					tw2.width = 200;	
+					tw2.height = 300;
+					tw2.isPopUp=true;
+					PopupEffert_move.show(tw2,this,false,29,150);
+					return;
+				}
+				
+//				tab_topList2Index = tab2_top_list2.selectedIndex;
+				tab1_topList2CurrSelect=tab2_topList2CurrSelect;
+				tab1_topList2NameCurrSelect = tab2_topList2NameCurrSelect;
+				
+				//将list1收起，list1置于全部
+				tab_topListIndex = 0;
+				tab2_topListCurrSelect = tab2_topListDS.getItemAt(0).value;
+				tab2_topListNameCurrSelect = tab2_topListDS.getItemAt(0).label;
+				tab1_topListCurrSelect=tab2_topListCurrSelect;
+				tab1_topListNameCurrSelect = tab2_topListNameCurrSelect;
+				
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			protected function tab2_top_list3_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_topList3CurrSelect = tab2_top_list3.selectedItem.value;
+				tab2_topList3NameCurrSelect = tab2_top_list3.selectedItem.label;
+				
+				tab_topList3Index = tab2_top_list3.selectedIndex;
+				tab1_topList3CurrSelect=tab2_topList3CurrSelect;
+				tab1_topList3NameCurrSelect = tab2_topList3NameCurrSelect;
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			protected function radiobutton1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_typeCurrSelect = RadioButton(event.target).value.toString();
+				tab1_typeNameCurrSelect = RadioButton(event.target).label;
+				tab1_typeNameCurrSelect = tab1_typeNameCurrSelect == null ? "" : tab1_typeNameCurrSelect;
+				
+				tab2_typeCurrSelect = tab1_typeCurrSelect;
+				tab2_typeNameCurrSelect = tab1_typeNameCurrSelect;
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			protected function radiobutton22_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_typeCurrSelect = RadioButton(event.target).value.toString();
+				tab2_typeNameCurrSelect = RadioButton(event.target).label;
+				tab2_typeNameCurrSelect = tab2_typeNameCurrSelect == null ? "" : tab2_typeNameCurrSelect;
+				
+				tab1_typeCurrSelect = tab2_typeCurrSelect;
+				tab1_typeNameCurrSelect = tab2_typeNameCurrSelect;
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			protected function radiobutton2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_plateCurrSelect = RadioButton(event.target).value.toString();
+				tab2_plateNameCurrSelect = RadioButton(event.target).label;
+				tab2_plateNameCurrSelect = tab2_plateNameCurrSelect == null ? "" : tab2_plateNameCurrSelect;
+				tab2_showCorpCnt = getTab2_CorpCntDS(this.tab2_plateCurrSelect);
+				tab2_showCorpCntMax = getTab2_CorpCntMax(this.tab2_plateCurrSelect);
+				tab2_topDS = getTab2_topDS();
+//				tab2_topRightDS = getTab2_topRightDS();
+				tab2_downDS = getTab2_downDS();
+				executeBindTab2_topTitle();
+			}
+			
+			protected function numericstepper2_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+//				tab2_showCorpCnt = int(NumericStepper(event.target).value);
+				tab2_showCorpCnt = numericstepper2.value;
+				tab2_topDS = getTab2_topDS();
+//				tab2_topRightDS = getTab2_topRightDS();
+//				tab2_downDS = getTab2_downDS();
+				executeBindTab2_topTitle();
+			}
+			
+			private var trainLeaderCert_CorpList:TrainLeaderCert_CorpList;
+			protected function tab1_top_PopupClickHandler():void
+			{
+			/* 	var item:Object=event.hitDataItem;
+				tab1_plateCurrSelect=item.id;
+				tab1_plateNameCurrSelect=item.label;
+				tab1_downDS = getTab1_downDS();
+				executeBindTab1_topTitle(); */
+				
+				/* <adg:TrainLeaderCert_CorpList id="tc1" DataSource="{tab1_downDS}" ShowTitle="true" TypeName="{tab1_typeNameCurrSelect}" LevelName="{tab1_topListNameCurrSelect}" 
+				CertTypeName="{tab1_topList2NameCurrSelect}" LeaderLevelName="{tab1_topList3NameCurrSelect}领导" DateStr="{dateStr}年" 
+				fun_call="call_app" fun_back="call_app2" hseDataXML="{hseDataXML}"/> */
+				tab1_downDS = getTab1_downDS();
+				trainLeaderCert_CorpList = new TrainLeaderCert_CorpList();
+				trainLeaderCert_CorpList.DataSource=tab1_downDS;
+				trainLeaderCert_CorpList.TypeName=tab1_typeNameCurrSelect;
+				trainLeaderCert_CorpList.LevelName=tab1_topListNameCurrSelect; 
+				trainLeaderCert_CorpList.CertTypeName = tab1_topList2NameCurrSelect;
+				trainLeaderCert_CorpList.LeaderLevelName = tab1_topList3NameCurrSelect;
+				trainLeaderCert_CorpList.DateStr = dateStr+"年";
+				trainLeaderCert_CorpList.fun_call = call_app;
+				trainLeaderCert_CorpList.fun_back = call_app2;
+				trainLeaderCert_CorpList.hseDataXML = hseDataXML;
+//				trainLeaderCert_CorpList.title = obj.prof + "" + obj.stage + "" + "三同时项目进度情况";
+				PopUpManager.addPopUp(trainLeaderCert_CorpList, this, false);
+				PopUpManager.centerPopUp(trainLeaderCert_CorpList);
+				
+			}
+			
+			private var trainLeaderCert_CorpList2:TrainLeaderCert_CorpList2;
+			
+			protected function tab2_top_PopupClickHandler(event:PopupEvent):void
+			{
+				var item:Object=event.hitDataItem;
+				tab2_corpCurrSelect=item.id;
+				tab2_corpNameCurrSelect=item.label;
+				
+				executeBindTab2_topTitle();
+				trainLeaderCert_CorpList2 = new TrainLeaderCert_CorpList2();
+				trainLeaderCert_CorpList2.DataSource=getTab2_downDS();
+				trainLeaderCert_CorpList2.TypeName=tab2_typeNameCurrSelect;
+				trainLeaderCert_CorpList2.LevelName=tab2_topListNameCurrSelect; 
+				trainLeaderCert_CorpList2.CertTypeName = tab2_topList2NameCurrSelect;
+				trainLeaderCert_CorpList2.LeaderLevelName = tab2_topList3NameCurrSelect;
+				trainLeaderCert_CorpList2.DateStr = dateStr+"年";
+				trainLeaderCert_CorpList2.PlateName = tab2_plateNameCurrSelect+"板块";
+				trainLeaderCert_CorpList2.hseDataXML = hseDataXML;
+				PopUpManager.addPopUp(trainLeaderCert_CorpList2, this, false);
+				PopUpManager.centerPopUp(trainLeaderCert_CorpList2);
+			}
+			
+			protected function tw_closeHandler(event:CloseEvent):void
+			{
+				tw.visible = false;
+//				tab1_top_list2.selectedIndex = -1;
+			}
+			
+			protected function tab1_tw_changeHandler(event:IndexChangeEvent):void
+			{
+				tab1_topListBoxStatus = "bykind";
+				tab1_topList2CurrSelect = tab1_tw.selectedItem.value;
+				tab1_topList2NameCurrSelect = tab1_tw.selectedItem.label;
+//				tab_topList2Index = tab1_tw.selectedIndex;
+				tab2_topList2CurrSelect=tab1_topList2CurrSelect;
+				tab2_topList2NameCurrSelect = tab1_topList2NameCurrSelect;
+				
+				//将list1收起，list1置于全部
+				tab_topListIndex = 0;
+				tab1_topListCurrSelect = tab1_topListDS.getItemAt(0).value;
+				tab1_topListNameCurrSelect = tab1_topListDS.getItemAt(0).label;
+				tab2_topListCurrSelect=tab1_topListCurrSelect;
+				tab2_topListNameCurrSelect = tab1_topListNameCurrSelect;
+				
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			
+			protected function tw2_closeHandler(event:CloseEvent):void
+			{
+				tw2.visible = false;
+//				tab2_top_list2.selectedIndex = -1;
+			}
+			
+			protected function tab2_tw2_changeHandler(event:IndexChangeEvent):void
+			{
+				tab1_topListBoxStatus = "bykind";
+				tab1_topList2CurrSelect = tab2_tw2.selectedItem.value;
+				tab1_topList2NameCurrSelect = tab2_tw2.selectedItem.label;
+//				tab_topList2Index = tab2_tw2.selectedIndex;
+				tab2_topList2CurrSelect=tab1_topList2CurrSelect;
+				tab2_topList2NameCurrSelect = tab1_topList2NameCurrSelect;
+				
+				//将list1收起，list1置于全部
+				tab_topListIndex = 0;
+				tab1_topListCurrSelect = tab1_topListDS.getItemAt(0).value;
+				tab1_topListNameCurrSelect = tab1_topListDS.getItemAt(0).label;
+				tab2_topListCurrSelect=tab1_topListCurrSelect;
+				tab2_topListNameCurrSelect = tab1_topListNameCurrSelect;
+				
+				tab_IfRefreshFirst=false;
+				refreshData();
+			}
+			
+			protected function tab1_top_list2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				local_x = event.stageX;
+				local_y = event.stageY;
+			}
+			
+		]]>
+	</fx:Script>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+		<s:layout>
+			<s:BasicLayout />
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="25" styleName="tabButtonStyle2" right="5" top="5"/>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack"
+				  width="100%"
+				  height="100%"
+				  styleName="tabContentBox"
+				  borderStyle="inset">
+		<!--标签1-->
+		<s:NavigatorContent id="tab1"
+							width="100%"
+							height="100%"
+							label="{tab1_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left"
+								  verticalAlign="middle"
+								  gap="0" />
+			</s:layout>
+			<s:HGroup width="100%"
+					  height="30"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:BorderContainer width="100%" height="34" styleName="tabHead3Box">
+					<s:layout>
+						<s:HorizontalLayout horizontalAlign="left"
+											verticalAlign="middle" />
+					</s:layout>
+					<mx:HBox borderStyle="outset" includeInLayout="false" 
+							 styleName="controlBox"
+							 paddingLeft="10"
+							 paddingRight="10">
+						<mx:Repeater id="tab1_typeRep"
+									 dataProvider="{tab1_typeDS}">
+							<s:RadioButton groupName="tab1_typeGrp"
+										   label="{tab1_typeRep.currentItem.label}"
+										   value="{tab1_typeRep.currentItem.value}"
+										   selected="{tab1_typeRep.currentItem.value==tab1_typeCurrSelect}"
+										   click="radiobutton1_clickHandler(event)" />
+						</mx:Repeater>
+					</mx:HBox>
+				</s:BorderContainer>
+			</s:HGroup>
+			<!--<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">-->
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="120"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<mx:Accordion id="accordion"
+									  width="100%"
+									  height="100%" selectedIndex ="{tab_AccordionIndex}"
+									  headerStyleName="customAccordionHeadStyles">
+							<mx:VBox label="培训级别"
+									 height="100%">
+								<s:List id="tab1_top_list"
+										height="100%"
+										selectedIndex="{tab_topListIndex}"
+										dataProvider="{tab1_topListDS}"
+										change="tab1_top_list_changeHandler(event)">
+								</s:List>
+							</mx:VBox>
+							<!--
+							<mx:VBox label="证书类别"
+									 height="100%">
+								<s:List id="tab1_top_list2"
+										height="100%" 
+										selectedIndex="{tab_topList2Index}"
+										dataProvider="{tab1_topList2DS}"
+										change="tab1_top_list2_changeHandler(event)">
+								</s:List>
+							</mx:VBox>
+							-->
+						</mx:Accordion>
+						<mx:Accordion id="accordion12"
+									  width="100%"
+									  height="100%"
+									  headerStyleName="customAccordionHeadStyles">
+							<mx:VBox label="领导级别"
+									 height="100%">
+								<s:List id="tab1_top_list3"
+										height="100%"
+										selectedIndex="{tab_topList3Index}"
+										dataProvider="{tab1_topList3DS}"
+										change="tab1_top_list3_changeHandler(event)">
+								</s:List>
+							</mx:VBox>
+						</mx:Accordion>
+					</s:BorderContainer>
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_top"
+											   width="100%"
+											   height="100%"
+											   AxisLeftTiltle="" ShowDataLabel="{showDataLabel}"
+											   title="{tab1_topTitle}"
+											   DataSourceConf="{tab1_topConfDS}"
+											   DataSource="{tab1_topDS}"
+											   doubleClick="tab1_top_PopupClickHandler()" />
+
+					</s:BorderContainer>
+				</s:HGroup>
+				<!--<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<adg:TrainLeaderCert_CorpList id="tc1" DataSource="{tab1_downDS}" ShowTitle="true" TypeName="{tab1_typeNameCurrSelect}" LevelName="{tab1_topListNameCurrSelect}" 
+													  CertTypeName="{tab1_topList2NameCurrSelect}" LeaderLevelName="{tab1_topList3NameCurrSelect}领导" DateStr="{dateStr}年" 
+													  fun_call="call_app" fun_back="call_app2" hseDataXML="{hseDataXML}"/>
+					</s:BorderContainer>
+				</s:HGroup>-->
+			<!--</s:VGroup>-->
+			
+				<s:TitleWindow id="tw"
+							   includeInLayout="false"
+							   visible="false"
+							   width="200"
+							   height="400"
+							   close="tw_closeHandler(event)"
+							   skinClass="skins.popWinStyle">
+					<s:List id="tab1_tw"
+							width="100%"
+							height="100%" styleName="list_sty"
+							selectedIndex="0"
+							dataProvider="{tw_listDS}"
+							change="tab1_tw_changeHandler(event)">
+					</s:List>
+				</s:TitleWindow>
+		
+			
+		</s:NavigatorContent>
+		
+		<!--标签2-->
+		<s:NavigatorContent id="tab2"
+							width="100%"
+							height="100%"
+							label="{tab2_title}">
+			
+			
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left"
+								  verticalAlign="middle"
+								  gap="0" />
+			</s:layout>
+			<s:HGroup width="100%"
+					  height="30"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:BorderContainer width="100%" height="34" styleName="tabHead3Box">
+					<s:layout>
+						<s:HorizontalLayout horizontalAlign="right"
+											verticalAlign="middle" />
+					</s:layout>
+					<mx:HBox borderStyle="outset" includeInLayout="false" 
+							 styleName="controlBox"
+							 paddingLeft="10"
+							 paddingRight="10">
+						<mx:Repeater id="tab2_typeRep"
+									 dataProvider="{tab2_typeDS}">
+							<s:RadioButton groupName="tab2_typeGrp"
+										   label="{tab2_typeRep.currentItem.label}"
+										   value="{tab2_typeRep.currentItem.value}"
+										   selected="{tab2_typeRep.currentItem.value==tab2_typeCurrSelect}"
+										   click="radiobutton22_clickHandler(event)" />
+						</mx:Repeater>
+					</mx:HBox>
+					<mx:Spacer width="100%"/>
+					<mx:HBox borderStyle="outset"
+							 styleName="controlBox"
+							 paddingLeft="10"
+							 paddingRight="10">
+						<mx:Repeater id="tab2_plateRep"
+									 dataProvider="{tab2_plateDS}">
+							<s:RadioButton groupName="tab2_plateGrp"
+										   label="{tab2_plateRep.currentItem.label}"
+										   value="{tab2_plateRep.currentItem.value}"
+										   selected="{tab2_plateRep.currentItem.value==tab2_plateCurrSelect}"
+										   click="radiobutton2_clickHandler(event)" />
+						</mx:Repeater>
+					</mx:HBox>
+					
+					<s:Label text="显示企业数" />
+					<mx:NumericStepper id="numericstepper2"
+									   value="{tab2_showCorpCnt}"
+									   minimum="0"
+									   maximum="{tab2_showCorpCntMax}"
+									   color="#000000"
+									   click="numericstepper2_changeHandler(event)" />
+				</s:BorderContainer>
+			</s:HGroup>
+			<!--<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">-->
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="120"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<mx:Accordion id="accordion2"
+									  width="100%"
+									  height="100%" selectedIndex="{tab_AccordionIndex}"
+									  headerStyleName="customAccordionHeadStyles">
+							<mx:VBox label="培训级别"
+									 height="100%"
+									 width="100%">
+								<s:List id="tab2_top_list"
+										width="100%"
+										height="100%"
+										selectedIndex="{tab_topListIndex}"
+										dataProvider="{tab2_topListDS}"
+										change="tab2_top_list_changeHandler(event)">
+								</s:List>
+							</mx:VBox>
+							<!--
+							<mx:VBox label="证书类别"
+									 height="100%"
+									 width="100%">
+								<s:List id="tab2_top_list2"
+										width="100%"
+										height="100%"
+										selectedIndex="{tab_topList2Index}"
+										dataProvider="{tab2_topList2DS}"
+										change="tab2_top_list2_changeHandler(event)">
+								</s:List>
+							</mx:VBox>
+							-->
+						</mx:Accordion>
+						<mx:Accordion id="accordion22"
+									  width="100%"
+									  height="100%"
+									  headerStyleName="customAccordionHeadStyles">
+							<mx:VBox label="领导级别"
+									 height="100%">
+								<s:List id="tab2_top_list3"
+										height="100%"
+										selectedIndex="{tab_topList3Index}"
+										dataProvider="{tab2_topList3DS}"
+										change="tab2_top_list3_changeHandler(event)">
+								</s:List>
+							</mx:VBox>
+						</mx:Accordion>
+					</s:BorderContainer>
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab2_top"
+											   AxisLeftUnit=""
+											   width="100%"
+											   height="100%"
+											   AxisLeftTiltle="" ShowDataLabel="{showDataLabel}"
+											   title="{tab2_topTitle}"
+											   DataSourceConf="{tab2_topConfDS}"
+											   DataSource="{tab2_topDS}"
+											   PopupClick="tab2_top_PopupClickHandler(event)" />
+					</s:BorderContainer>
+				</s:HGroup>
+				<!--<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>-->
+						<!--<adg:TrainLeaderCert_AllLeaderList DataSource="{tab2_downDS}" ShowTitle="true" TypeName="{tab2_typeNameCurrSelect}" LevelName="{tab2_topListNameCurrSelect}" CertTypeName="{tab2_topList2NameCurrSelect}" LeaderLevelName="{tab2_topList3NameCurrSelect}领导" PlateName="{tab2_plateNameCurrSelect}板块" CorpName="{tab2_corpNameCurrSelect}" DateStr="{dateStr}年" />-->
+					<!--	<adg:TrainLeaderCert_CorpList2 id="tc2" DataSource="{tab2_downDS}" ShowTitle="true" TypeName="{tab2_typeNameCurrSelect}" LevelName="{tab2_topListNameCurrSelect}" 
+													  CertTypeName="{tab2_topList2NameCurrSelect}" LeaderLevelName="{tab2_topList3NameCurrSelect}领导" PlateName="{tab2_plateNameCurrSelect}板块" DateStr="{dateStr}年" hseDataXML="{hseDataXML}"/>-->
+				<!--	</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>-->
+			<s:TitleWindow id="tw2"
+						   includeInLayout="false"
+						   visible="false"
+						   width="200"
+						   height="400"
+						   close="tw2_closeHandler(event)"
+						   skinClass="skins.popWinStyle">
+				<s:List id="tab2_tw2"
+						width="100%"
+						height="100%" styleName="list_sty"
+						selectedIndex="0"
+						dataProvider="{tw2_listDS}"
+						change="tab2_tw2_changeHandler(event)">
+				</s:List>
+			</s:TitleWindow>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Group>

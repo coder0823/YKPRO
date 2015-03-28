@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				width="100%" height="100%" rollOverColor="#FFFFFF" 
+				autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import modules.meantime.events.MeantimeOverAllPlateStatusEvent;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var no_start_num:int = 0;
+			
+			[Bindable]
+			private var in_progress_num:int = 0;
+			
+			[Bindable]
+			private var finished_num:int = 0;
+			
+			[Bindable]
+			private var no_start_visible:Boolean = true;
+			
+			[Bindable]
+			private var in_progress_visible:Boolean = true;
+			
+			[Bindable]
+			private var finished_visible:Boolean = true;
+			
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					var str:String = data[advancedDataGridListData.dataField];
+					var arr:Array = str.split(",");
+					
+					finished_num = arr[0];
+					in_progress_num = arr[1];
+					no_start_num = arr[2];
+					
+					if(finished_num == 0){
+						finished_visible = false;
+					}else{
+						finished_visible = true;
+					}
+					
+					if(in_progress_num == 0){
+						in_progress_visible = false;
+					}else{
+						in_progress_visible = true;
+					}
+					
+					if(no_start_num == 0){
+						no_start_visible = false;
+					}else{
+						no_start_visible = true;
+					}
+				}else{
+					finished_visible = false;
+					in_progress_visible = false;
+					no_start_visible = false;
+				}
+			}
+			
+			protected function finished_clickHandler(event:MouseEvent):void
+			{
+				this.dispatchEvent(new MeantimeOverAllPlateStatusEvent(MeantimeOverAllPlateStatusEvent.STATUS_CLICK,data['prof'],data['profid'],data['stageid'],data['stage'],"FINISHED","已完成"));
+			}
+			
+			protected function in_prpgress_clickHandler(event:MouseEvent):void
+			{
+				this.dispatchEvent(new MeantimeOverAllPlateStatusEvent(MeantimeOverAllPlateStatusEvent.STATUS_CLICK,data['prof'],data['profid'],data['stageid'],data['stage'],"IN-PROCESS","进行中"));
+			}
+			
+			protected function no_start_clickHandler(event:MouseEvent):void
+			{
+				this.dispatchEvent(new MeantimeOverAllPlateStatusEvent(MeantimeOverAllPlateStatusEvent.STATUS_CLICK,data['prof'],data['profid'],data['stageid'],data['stage'],"NO-START","未启动"));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:HGroup id="hgroup" width="100%" height="100%" gap="0" paddingLeft="10" verticalAlign="middle">
+		<s:HGroup width="70" visible="{finished_visible}">
+			<mx:Image source="assets/images/meantime/finished.gif" width="20" height="20" buttonMode="true" toolTip="已完成：{finished_num}" click="finished_clickHandler(event)"/>
+			<s:Label text="{finished_num}" buttonMode="true" click="finished_clickHandler(event)"/>
+		</s:HGroup>
+		<s:HGroup width="70" visible="{in_progress_visible}">
+			<mx:Image source="assets/images/meantime/in-progress.gif" width="20" height="20" buttonMode="true" toolTip="进行中：{in_progress_num}" click="in_prpgress_clickHandler(event)"/>
+			<s:Label text="{in_progress_num}" buttonMode="true" click="in_prpgress_clickHandler(event)"/>
+		</s:HGroup>
+		<s:HGroup width="70" visible="{no_start_visible}">
+			<mx:Image source="assets/images/meantime/no-start.gif" width="20" height="20" buttonMode="true" toolTip="未启动：{no_start_num}" click="no_start_clickHandler(event)"/>
+			<s:Label text="{no_start_num}" buttonMode="true" click="no_start_clickHandler(event)"/>
+		</s:HGroup>
+	</s:HGroup>
+	
+	<fx:Declarations>
+	</fx:Declarations>
+	
+</s:MXAdvancedDataGridItemRenderer>

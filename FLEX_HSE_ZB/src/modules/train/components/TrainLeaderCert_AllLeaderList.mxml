@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%"
+		 height="100%"
+		 creationComplete="init()">
+	<fx:Declarations>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import spark.components.TitleWindow;
+			import skins.popWinStyle;
+			import mx.events.FlexEvent;
+			import events.PopupEvent;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			[Bindable]
+			public var DataSource:mx.collections.ArrayCollection;
+			[Bindable]
+			public var PlateName:String = "";
+			[Bindable]
+			public var CorpName:String = "";
+			[Bindable]
+			public var LevelName:String = "";
+			[Bindable]
+			public var CertTypeName:String = "";
+			[Bindable]
+			public var TypeName:String = "";
+			[Bindable]
+			public var LeaderLevelName:String = "";
+			[Bindable]
+			public var DateStr:String = "";
+			[Bindable]
+			public var ShowTitle:Boolean = true;
+			
+			protected function init():void
+			{
+				this.addEventListener(events.PopupEvent.PopupItemClick, popOneLeaderMX);
+			}
+			private var titleWin:TitleWindow = new TitleWindow;
+			private var leaderList:modules.train.components.TrainLeaderCert_OneLeaderList;
+			
+			private function popOneLeaderMX(event:events.PopupEvent):void
+			{
+				titleWin.removeAllElements();
+				titleWin.minWidth=900;
+				titleWin.minHeight=500;
+				titleWin.height=this.height;
+				titleWin.width=this.width-60;
+				titleWin.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWin);
+					});
+				leaderList = new modules.train.components.TrainLeaderCert_OneLeaderList();
+				var obj:Object = event.hitDataItem;
+				var OneLeaderDataSource:ArrayCollection = new ArrayCollection();
+				var order:int = 1;
+				for each (var obj2:Object in DataSource)
+				{
+					if (String(obj.leaderid) == String(obj2.leaderid))
+					{
+						obj2.order = order;
+						OneLeaderDataSource.addItem(obj2);
+						order++;
+					}
+				}
+				leaderList.ShowTitle = false;
+				leaderList.DataSource = OneLeaderDataSource;
+				leaderList.DateStr = DateStr;
+				leaderList.LeaderName = obj.leadername;
+				leaderList.LevelName = LevelName;
+				leaderList.CertTypeName = CertTypeName;
+				leaderList.TypeName = TypeName;
+				leaderList.CorpName = CorpName;
+				leaderList.PlateName = PlateName;
+				titleWin.title = obj.leadername + LevelName  + TypeName + "培训完成情况 (" + DateStr + ")";
+				
+				titleWin.setStyle("skinClass", skins.popWinStyle);
+				if (leaderList != null)
+				{
+					titleWin.addElement(leaderList);
+				}
+				PopUpManager.addPopUp(titleWin, this.root, true);
+				PopUpManager.centerPopUp(titleWin);
+			}
+		]]>
+	</fx:Script>
+	<!--
+	<s:Rect alpha="0.5"
+			x="0"
+			y="0"
+			width="100%"
+			height="100%">
+		<s:fill>
+			<s:SolidColor color="#010832" />
+		</s:fill>
+	</s:Rect>-->
+	<s:VGroup horizontalAlign="center"
+			  verticalAlign="middle"
+			  gap="0"
+			  width="100%"
+			  height="100%">
+		<mx:Label width="100%"
+				  height="30"
+				  text="{CorpName}{DateStr}{LevelName}{CertTypeName}{LeaderLevelName}{TypeName}培训完成情况"
+				  styleName="titleStyle"
+				  visible="{ShowTitle}"
+				  includeInLayout="{ShowTitle}" />
+		<mx:AdvancedDataGrid id="adg"
+							 styleName="CusAdvancedDataGrid"
+							 width="100%"
+							 height="100%"
+							 sortExpertMode="true"
+							 sortableColumns="false"
+							 selectionMode="none"
+							 horizontalGridLines="false"
+							 dataProvider="{DataSource}"
+							 textAlign="center"
+							 borderVisible="false">
+			<mx:groupedColumns>
+				<mx:AdvancedDataGridColumn width="60"
+										   dataField="order"
+										   headerText="序号" />
+				<mx:AdvancedDataGridColumn dataField="leadername"
+										   headerText="姓名"
+										   itemRenderer="renderers.MyADGILinkRenderer" />
+				<mx:AdvancedDataGridColumnGroup headerText="培训情况">
+					<mx:AdvancedDataGridColumn dataField="planFinishedDate"
+											   headerText="规定日期" />
+					<mx:AdvancedDataGridColumn dataField="actFinishedDate"
+											   headerText="实际完成日期" />
+					<mx:AdvancedDataGridColumn dataField="remainderDays"
+											   itemRenderer="modules.train.renderers.TrainAlertTextByRemainRenderer"
+											   headerText="剩余天数" />
+					<mx:AdvancedDataGridColumn dataField="remainderDays"
+											   itemRenderer="modules.train.renderers.TrainAlertByRemainRenderer"
+											   width="38"
+											   headerText="状态" />
+					<mx:AdvancedDataGridColumn dataField="outnumberDays"
+											   itemRenderer="modules.train.renderers.TrainAlertTextByOutRenderer"
+											   headerText="超期天数" />
+					<mx:AdvancedDataGridColumn dataField="className"
+											   headerText="培训班名称" />
+					<mx:AdvancedDataGridColumn dataField="score"
+											   headerText="成绩" />
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="证书情况">
+					<mx:AdvancedDataGridColumn dataField="certName"
+											   headerText="名称" />
+					<mx:AdvancedDataGridColumn dataField="certID"
+											   headerText="编号" />
+					<mx:AdvancedDataGridColumn dataField="certExpirationDate"
+											   headerText="有效期" />
+				</mx:AdvancedDataGridColumnGroup>
+			</mx:groupedColumns>
+		</mx:AdvancedDataGrid>
+		<mx:Label width="100%"
+				  height="20"
+				  text="注:剩余天数报警：如以完成则灰色，剩余小于等于10天红色，小于等于20天黄色，小于等于30天绿色\n超期领导报警：超期大于等于30天红色，大于等于20天黄色，大于等于10天绿色" />
+	</s:VGroup>
+</s:Group>

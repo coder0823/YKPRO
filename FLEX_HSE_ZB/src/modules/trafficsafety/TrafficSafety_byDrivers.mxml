@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="450"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-承运商
+		 * 参数：开始年月（2012-01），结束年月（2012-12）
+		 * 作者：孙山虎
+		 * 日期：2012年12月29日
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import events.PopupEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/zb_trafficsafetydata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "运输人员";
+			
+			[Bindable]
+			private var tab1_topTitle:String = "";
+			[Bindable]
+			private var tab1_downTitle:String = "";
+			
+			[Bindable]
+			private var tab1_topDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downDS_all:ArrayCollection = new ArrayCollection();
+			[Bindable]
+			private var tab1_downDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downConfDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			[Bindable]
+			private var tab2_showCorpCnt:int = _showCorpCnt;
+			[Bindable]
+			private var tab2_showCorpCntMax:int = 1000;
+			
+			private var _ws_flag:Boolean = true;
+			
+			protected function init():void
+			{
+				tab1_topDS = new ArrayCollection();
+				tab1_downDS = new ArrayCollection();
+				
+				tab1_topConfDS = new ArrayCollection([{name: "正常", field: "sub1", id: "NORMAL"}, {name: "一个月内到期", field: "sub2", id: "IN-M1"}, {name: "三个月内到期", field: "sub3", id: "IN-M3"}, {name: "超期", field: "sub4", id: "EXPRIED"}]);
+				tab1_downConfDS = new ArrayCollection([{name: "正常", field: "sub1", id: "NORMAL"}, {name: "一个月内到期", field: "sub2", id: "IN-M1"}, {name: "三个月内到期", field: "sub3", id: "IN-M3"}, {name: "超期", field: "sub4", id: "EXPRIED"}]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//........
+			
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					if(ws_flag){
+						ws.GetTrafficsafety(dateStr);
+					}else{
+						ws.GetTrafficConData(dateStr);
+					}
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab2_showCorpCnt = getTab2_CorpCntDS();
+				tab2_showCorpCntMax = getTab2_CorpCntMax();
+				tab1_topDS = getTab1_topDS();
+				tab1_downDS = getTab1_downDS();
+				executeBindTab1Title();
+			}
+			
+			protected function numericstepper1_changeHandler(event:Event):void
+			{
+				tab2_showCorpCnt = int(NumericStepper(event.target).value);
+				//初始化tab2_topDS
+				//				tab1_topDS = getTab1_topDS();
+				//初始化tab2_downDS
+				tab1_downDS = getTab1_downDS();
+			}
+			
+			private function getTab2_CorpCntDS():int
+			{
+				var _cnt:int = getTab2_CorpCntMax();
+				if (_cnt > _showCorpCnt)
+					_cnt = _showCorpCnt;
+				return _cnt;
+			}
+			
+			private function getTab2_CorpCntMax():int
+			{
+				var _cnt:int = 0;
+				try
+				{
+					var tmpList:XMLList = hseDataXML.carsData.constituteData.dataset.(@corpid != "20000000");
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						_cnt = tmpList.length();
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//分左右2部分显示
+				//_cnt=Math.floor((_cnt+1)/2);	
+				return _cnt;
+			}
+			
+			
+			private function executeBindTab1Title():void
+			{
+				if(ws_flag){
+					tab1_topTitle = "中国石化" + dateStr + "年各企业运输人员驾驶证年检情况(人)";
+				}else{
+					tab1_topTitle = "中国石化" + dateStr + "年各企业承运商运输人员驾驶证年检情况(人)";
+				}
+			}
+			
+			private function getTab1_topDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.driversData.constituteData.dataset.(@corpid == "20000000");
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var sum:Number = 0;
+							if (xml.projectdata && xml.kindData.length() > 0)
+							{
+								for each (var xml_sum:XML in xml.kindData)
+								{
+									sum += Number(xml_sum.@carNumbers);
+								}
+								var xml_in_designer:XMLList = xml.kindData.(@id == "NORMAL");
+								var xml_wait_construction:XMLList = xml.kindData.(@id == "IN-M1");
+								var xml_in_construction:XMLList = xml.kindData.(@id == "IN-M3");
+								var xml_finished:XMLList = xml.kindData.(@id == "EXPRIED");
+								var obj:Object = {label: xml.@label, total: sum, sub1: (xml_in_designer != null && xml_in_designer.length() > 0) ? xml_in_designer[0].@carNumbers : 0, sub2: (xml_wait_construction != null && xml_wait_construction.length() > 0) ? xml_wait_construction[0].@carNumbers : 0, sub3: (xml_in_construction != null && xml_in_construction.length() > 0) ? xml_in_construction[0].@carNumbers : 0, sub4: (xml_finished != null && xml_in_designer.length() > 0) ? xml_finished[0].@carNumbers : 0, msgFirst: "", msgLast: "", id: xml.@id};
+								
+								//格式化数据
+								obj.total = Number(obj.total) < 0 ? 0 : obj.total;
+								obj.sub1 = Number(obj.sub1) < 0 ? 0 : obj.sub1;
+								obj.sub2 = Number(obj.sub2) < 0 ? 0 : obj.sub2;
+								obj.sub3 = Number(obj.sub3) < 0 ? 0 : obj.sub3;
+								obj.sub4 = Number(obj.sub4) < 0 ? 0 : obj.sub4;
+								
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.driversData.constituteData.dataset.(@corpid != "20000000");
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var sum:Number = xml.@carNumbers;
+//							var label:String = xml.@label;	
+							if (xml.projectdata && xml.kindData.length() > 0)
+							{
+								var xml_in_designer:XMLList = xml.kindData.(@id == "NORMAL");
+								var xml_wait_construction:XMLList = xml.kindData.(@id == "IN-M1");
+								var xml_in_construction:XMLList = xml.kindData.(@id == "IN-M3");
+								var xml_finished:XMLList = xml.kindData.(@id == "EXPRIED");
+								var obj:Object = {label: xml.@label, total: sum, sub1: (xml_in_designer != null && xml_in_designer.length() > 0) ? xml_in_designer[0].@carNumbers : 0, sub2: (xml_wait_construction != null && xml_wait_construction.length() > 0) ? xml_wait_construction[0].@carNumbers : 0, sub3: (xml_in_construction != null && xml_in_construction.length() > 0) ? xml_in_construction[0].@carNumbers : 0, sub4: (xml_finished != null && xml_in_designer.length() > 0) ? xml_finished[0].@carNumbers : 0, msgFirst: "", msgLast: "", id: xml.@corpid};
+								
+								//格式化数据
+								obj.total = Number(obj.total) < 0 ? 0 : obj.total;
+								obj.sub1 = Number(obj.sub1) < 0 ? 0 : obj.sub1;
+								obj.sub2 = Number(obj.sub2) < 0 ? 0 : obj.sub2;
+								obj.sub3 = Number(obj.sub3) < 0 ? 0 : obj.sub3;
+								obj.sub4 = Number(obj.sub4) < 0 ? 0 : obj.sub4;
+								
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//按照合格承包商排序
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("total", true, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				
+				tab1_downDS_all=tmpArrayCollection;
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					if (i >= tab2_showCorpCnt)
+						break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			private var titleWindow:views.PopupTitleWinDG;
+			
+			//selCode：分类ID  selText：配置kindData   qy_id：企业ID   qy_name：企业name
+			private function popupPlateSurMX(selCode:String, selText:String, qy_id:String, qy_name:String):void
+			{
+				titleWindow = new views.PopupTitleWinDG();
+				if(ws_flag){
+					titleWindow.TitleValue = "中国石化" + qy_name + selText + "运输人员驾驶证年检情况" + "(" + dateStr + ")";
+				}else{
+					titleWindow.TitleValue = "中国石化" + qy_name + "承运商" + selText + "运输人员驾驶证年检情况" + "(" + dateStr + ")";
+				}
+				
+				titleWindow.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow);
+					});
+				titleWindow.IfShowFirstRecordBgColor = false;
+				titleWindow.DataSourceConf = new ArrayCollection([{headerText: "序号", dataField: "order",  textAlign: "center", sortable: true, draggable: true}, 
+//					{headerText: "单位名称", dataField: "vol1", width: "200", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "姓名", dataField: "vol2", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "性别", dataField: "vol3", width: "60", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "出生日期", dataField: "vol4", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "政治面貌", dataField: "vol5", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "准驾车型", dataField: "vol6", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "驾驶证号", dataField: "vol7", width: "180", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "年审日期", dataField: "vol8", textAlign: "center", sortable: true, draggable: true}]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.driversData.constituteData.dataset.(@corpid == qy_id);
+					if (tmpList.length() > 0)
+					{
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var xml2:XMLList = xml.kindData.(@id == selCode);
+							for each (var xml3:XML in xml2.carData)
+							{
+								var obj:Object = {order: order, vol1: xml3.@unitName, vol2: xml3.@name, vol3: xml3.@sex, vol4: xml3.@birthday, vol5: xml3.@politicalStatus, vol6: xml3.@canDriveCarType, vol7: xml3.@drivingLicense, vol8: xml3.@inspectionDate};
+								tmpArrayCollection.addItem(obj);
+								order++;
+							}
+						}
+					}
+					titleWindow.DataSource = tmpArrayCollection;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);
+				PopUpManager.centerPopUp(titleWindow);
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+					}
+				}
+			}
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				refreshData();
+			}
+			
+			
+			protected function tab1_down_PopupCfgClickHandler(event:PopupEvent):void
+			{
+				var item:Object = event.hitCfgItem;
+				var obj:Object = event.hitDataItem;
+				popupPlateSurMX(item.id, item.name, obj.id, obj.label);
+				//(配置id,配置类型，企业ID,企业名称)
+			}
+			
+			/* protected function tab1_top_PopupCfgClickHandler(event:PopupEvent):void
+			   {
+			   var item:Object=event.hitCfgItem;
+			   var obj:Object = event.hitDataItem;
+			   popupPlateSurMX(item.id,item.name,obj.id,obj.label);
+			 } */
+			private var titleWindow_all:views.PopupTitleWinDG;
+			protected function tab1_top_doubleClickHandler(event:MouseEvent):void
+			{
+				titleWindow_all = new views.PopupTitleWinDG();
+				if(ws_flag){
+					titleWindow_all.TitleValue = "中国石化各企业运输人员驾驶证年检情况" + "(" + dateStr + ")";
+				}else{
+					titleWindow_all.TitleValue = "中国石化各企业承运商运输人员驾驶证年检情况" + "(" + dateStr + ")";
+				}
+				
+				titleWindow_all.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow_all);
+				});
+				titleWindow_all.IfShowFirstRecordBgColor = false;
+				titleWindow_all.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order",  textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "单位名称", dataField: "label", width: "200", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "正常", dataField: "vol2", textAlign: "center", sortable: true, draggable: true,enableUrlLink: true}, 
+					{headerText: "一个月内到期", dataField: "vol3", textAlign: "center", sortable: true, draggable: true,enableUrlLink: true}, 
+					{headerText: "三个月内到期", dataField: "vol4", textAlign: "center", sortable: true, draggable: true,enableUrlLink: true}, 
+					{headerText: "超期", dataField: "vol5", textAlign: "center", sortable: true, draggable: true,enableUrlLink: true}, 
+					{headerText: "总数", dataField: "vol6", textAlign: "center", sortable: true, draggable: true}, 
+				]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					if(tab1_downDS_all.length>0){
+						var order:int = 1;
+						for(var i:int=0;i<tab1_downDS_all.length;i++)
+						{
+							var obj:Object = {order: order, label: tab1_downDS_all[i].label, 
+								vol2: tab1_downDS_all[i].sub1, vol3: tab1_downDS_all[i].sub2, 
+								vol4: tab1_downDS_all[i].sub3, vol5: tab1_downDS_all[i].sub4, 
+								vol6: tab1_downDS_all[i].total,id:tab1_downDS_all[i].id,
+								//增加排序字段,企业显示顺序
+								displayindex:Number(tab1_downDS_all[i].displayindex)
+							
+							};
+							tmpArrayCollection.addItem(obj);
+							order++;
+						}
+					}
+					
+					var sort:Sort = new Sort();
+					sort.fields = [new SortField("vol6", true, true),new SortField("displayindex", false, true)];
+					tmpArrayCollection.sort = sort;
+					tmpArrayCollection.refresh();
+					
+					titleWindow_all.DataSource = tmpArrayCollection;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				titleWindow_all.addEventListener(events.PopupEvent.PopupItemClick, popClassCorp);
+				PopUpManager.addPopUp(titleWindow_all, this, true);
+				PopUpManager.centerPopUp(titleWindow_all);
+			}
+			
+			//top表格 数据钻取
+			protected function popClassCorp(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				var str1:String;
+				var str2:String;
+				switch(obj.columnIndex){
+					case 2:
+						str1 = "NORMAL";
+						str2 = "正常";
+						break;
+					case 3:
+						str1 = "IN-M1";
+						str2 = "一个月内到期";
+						break;
+					case 4:
+						str1 = "IN-M3";
+						str2 = "三个月内到期";
+						break;
+					case 5:
+						str1 = "EXPRIED";
+						str2 = "超期";
+						break;
+				}
+				popupPlateSurMX(str1, str2, obj.id, obj.label);
+				//				NORMAL 正常
+				//				IN-M1  一个月内到期
+				//				IN-M3 三个月内到期
+				//				EXPRIED 超期
+				//(配置id,配置类型，企业ID,企业名称)
+			}
+
+			public function get ws_flag():Boolean
+			{
+				return _ws_flag;
+			}
+
+			public function set ws_flag(value:Boolean):void
+			{
+				_ws_flag = value;
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	
+	<s:HGroup width="100%"
+			  height="30" 
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<s:layout>
+				<s:HorizontalLayout horizontalAlign="right"
+									verticalAlign="middle" />
+			</s:layout>
+			<s:Label text="显示企业数" />
+			<mx:NumericStepper id="numericstepper1"
+							   value="{tab2_showCorpCnt}"
+							   minimum="0"
+							   maximum="{tab2_showCorpCntMax}"
+							   color="#000000"
+							   change="numericstepper1_changeHandler(event)" />
+			<s:Spacer width="23" />
+		</s:BorderContainer>
+		
+	</s:HGroup>
+	
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="35%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:BarSubTotalMulti id="tab1_top"
+										width="100%" height="130"
+										showTitle="true"
+										showLegend="true" ShowDataLabel="{showDataLabel}"
+										xAxisAt="top" doubleClick="tab1_top_doubleClickHandler(event)"
+										yAxisAt="left"
+										title="{tab1_topTitle}"
+										DataSourceConf="{tab1_topConfDS}"
+										DataSource="{tab1_topDS}" />
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="65%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:BarSubTotalMulti id="tab1_down"
+										width="100%"
+										showTitle="true"
+										showLegend="true"
+										xAxisAt="top"
+										yAxisAt="left"
+										title="{tab1_downTitle}"
+										DataSourceConf="{tab1_downConfDS}"
+										DataSource="{tab1_downDS}" showZoomControlBox="false" ShowDataLabel="{showDataLabel}"
+										PopupCfgClick="tab1_down_PopupCfgClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<webserviceConf>
+	<url>http://10.1.18.91:10010/Report/ReportDataWebService.asmx?wsdl</url>
+</webserviceConf>

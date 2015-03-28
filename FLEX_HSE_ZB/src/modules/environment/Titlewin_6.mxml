@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" xmlns:views="views.*" creationComplete="titlewindow1_creationCompleteHandler(event)"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="500" close="titlewindow1_closeHandler(event)" skinClass="skins.popWinStyle" styleName="tabContentBox">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			import mx.managers.PopUpManager;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var columnLineMulitDSConf1:ArrayCollection;
+			[Bindable]
+			private var columnLineMulitDS1:ArrayCollection;
+			
+			[Bindable]
+			public var cColor4:SolidColor=views.CustomColor.CSolidColor[3];
+			[Bindable]
+			private var _title_lebel:String;
+			[Bindable]
+			private var _selYear:String;
+			private var hseDataXML:XML=new XML();
+			
+			public function get title_lebel():String
+			{
+				return _title_lebel;
+			}
+
+			public function set title_lebel(value:String):void
+			{
+				_title_lebel = value;
+			}
+			public function get ColumnMulitDS1():ArrayCollection
+			{
+				return columnLineMulitDS1;
+			}
+			
+			public function set ColumnMulitDS1(value:ArrayCollection):void
+			{
+				columnLineMulitDS1 = value;
+			}
+			public function get selYear():String
+			{
+				return _selYear;
+			}			
+			public function set selYear(value:String):void
+			{
+				_selYear = value;
+			}
+			public function get HseDataXML():XML
+			{
+				return hseDataXML;
+			}			
+			public function set HseDataXML(value:XML):void
+			{
+				hseDataXML = value;
+			}
+			
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				// TODO Auto-generated method stub
+				PopUpManager.removePopUp(this);  
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+			}
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				
+				columnLineMulitDSConf1=new ArrayCollection([
+					{name:"实际",field:"vol1",type:"columnSeries",axis:"left"},
+					{name:"月均计划",field:"vol2",type:"lineSeries",axis:"left"},
+				]);
+//				columnLineMulitDS1= new ArrayCollection([
+//					{label:"1月",plan:35,act:33},
+//					{label:"2月",plan:35,act:31},
+//					{label:"3月",plan:35,act:36},
+//					{label:"4月",plan:35,act:31},
+//					{label:"5月",plan:35,act:34},
+//					{label:"6月",plan:35,act:38},
+//					{label:"7月",plan:35,act:37},
+//					{label:"8月",plan:35,act:31},
+//					{label:"9月",plan:35,act:39},
+//					{label:"10月",plan:35,act:40},
+//					{label:"11月",plan:35,act:32},
+//					{label:"12月",plan:35,act:29},
+//				]);
+			}
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupMX(selMonth:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "中国石化"+_selYear+ "年"+selMonth+"月SO2排放量完成情况 计量单位：万吨";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"板块",dataField:"label",width:"90",textAlign:"left",sortable:true,draggable:true},
+					{headerText:"排放量",dataField:"vol1",width:"40",textAlign:"center",sortable:true,draggable:true},
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.dataset.(@yearid==selYear);
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml2:XMLList=xml.monthData.(@montid==selMonth);
+							for each (var xml3:XML in xml2) {  
+								var xml4:XMLList=xml3.plateData;
+								for each (var xml5:XML in xml4) {  								
+									var obj:Object={label:xml5.@label,
+										vol1:Number(xml5.@numbers)};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this.parent, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			protected function columnmulti1_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupMX(item.montid);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:HGroup horizontalAlign="center">
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<views:ColumnLineMulti AxisLeftTiltle="万吨" ShowDataLabel="{showDataLabel}" width="800" height="100%" showTitle="true" showLegend="true"
+								   PopupDoubleClick="columnmulti1_PopupDoubleClickHandler(event)" title="中国石化{_title_lebel}各月度SO2排放量完成情况"
+								   DataSourceConf="{columnLineMulitDSConf1}" DataSource="{columnLineMulitDS1}"/>
+		</s:BorderContainer>
+	</s:HGroup>
+		
+</s:TitleWindow>

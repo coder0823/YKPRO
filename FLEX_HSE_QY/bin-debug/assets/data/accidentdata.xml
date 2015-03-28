@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 事故管理部分 xml数据 　设计：肖丰斌  Version:1.0 日期：2012-12-6  -->
+ <!--1.文件总览 -->
+ <dataOutline dataYear="2012" dataDate=""  corpid = ""  corpname="河南石油" timestamp=""/>
+ <!--2.事故趋势数据-->
+  <accidentData>
+  <!-- 
+  ******************************注意************************************************************
+  2013年6月8日修改：事故区分级别
+  增加levelGNumbers：集团公司级 levelCNumbers：企业级
+  原有的numbers=levelGNumbers+levelCNumbers 即 合计
+  弹出表格数据：
+  order：序号
+  accidentName：事故名称
+  accidentDepartment：事故发生单位 
+  accidentTime：发生时间
+  accidentKind：事故类别
+  accidentLevel：事故级别
+  levelid:级别编号：G集团级别，C企业级
+  ******************************注意************************************************************
+   -->
+     <dataset yearid="2002" label="2002年" numbers="10" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2003" label="2003年" numbers="0" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2004" label="2004年" numbers="8" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2005" label="2005年" numbers="9" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2006" label="2006年" numbers="10" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2007" label="2007年" numbers="0" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2008" label="2008年" numbers="10" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2009" label="2009年" numbers="7" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2010" label="2010年" numbers="1" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2011" label="2011年" numbers="3" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+     <dataset yearid="2012" label="2012年" numbers="4" levelGNumbers="0" levelCNumbers="0" URL="">
+	     <!-- 弹出表格数据-->
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="G" />
+	      <tabledata order="1" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+	      <tabledata order="2" accidentName="" accidentDepartment=""  accidentTime="" accidentKind="" accidentLevel="" levelid="C" />
+     </dataset>
+  </accidentData> 
+  
+   <!--3.未遂事件趋势数据-->
+  <unaccidentData>
+     <dataset monthid="2012.1" label="1月" numbers="421" URL="" >
+     	<corpData order="1" label="河南石油1" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="2" label="河南石油2" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="3" label="河南石油3" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="4" label="河南石油4" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="5" label="河南石油1" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="6" label="河南石油2" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="7" label="河南石油3" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="8" label="河南石油4" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="9" label="河南石油1" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="10" label="河南石油2" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="11" label="河南石油3" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="12" label="河南石油4" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="13" label="河南石油1" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="14" label="河南石油2" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="15" label="河南石油3" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="16" label="河南石油4" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+     </dataset>
+     <dataset monthid="2012.2" label="2月" numbers="659" URL="" >
+     	<corpData order="1" label="河南石油1" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="2" label="河南石油2" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="3" label="河南石油3" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+		<corpData order="4" label="河南石油4" unaccident="10" unsafeaction="8" unsafestate="7" unsafeelement="10" managerfault="8" workable="6" workablerate="75.05"/>
+     </dataset>
+     <dataset monthid="2012.3" label="3月" numbers="651" URL="" />
+     <dataset monthid="2012.4" label="4月" numbers="648" URL="" />
+     <dataset monthid="2012.5" label="5月" numbers="632" URL="" />
+     <dataset monthid="2012.6" label="6月" numbers="663" URL="" />  
+     <dataset monthid="2012.7" label="7月" numbers="649" URL="" />
+     <dataset monthid="2012.8" label="8月" numbers="696" URL="" />
+     <dataset monthid="2012.9" label="9月" numbers="750" URL="" />  
+     <dataset monthid="2012.10" label="10月" numbers="760" URL="" />
+     <dataset monthid="2012.11" label="11月" numbers="815" URL="" />
+  </unaccidentData> 
+</model>

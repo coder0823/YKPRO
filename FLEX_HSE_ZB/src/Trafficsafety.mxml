@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()" xmlns:trafficsafety="modules.trafficsafety.*">
+	<!--
+	/* *
+	* 名称：总部仪表盘-交通安全
+	* 参数：年（2012）
+	* 作者：孙山虎
+	* 日期：2012年12月29日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import as_class.Menu_as;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var tab1_title:String="分板块";
+			[Bindable]
+			private var tab2_title:String="分企业";
+			[Bindable]
+			private var tab3_title:String="企业内部车辆、人员";
+			[Bindable]
+			private var tab4_title:String="承运商车辆、人员";
+
+			
+			[Bindable]
+			private var DateStr:String="2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				
+				this.contextMenu = Menu_as.Instance.add_menu(this,viewStack);
+				this.styleManager.loadStyleDeclarations2("./assets/fonts/WB_SimSun.swf");
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					var obj:Object=new Object();
+					obj.name=i+"年";
+					obj.value=i;
+					dateArrCol.addItem(obj);
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				DateStr=dateEnd.selectedItem.value;
+			}
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+//				trafficSafety_byCars_tab3.callFunction = numbericStepper_refresh;
+				DateStr=dateEnd.selectedItem.value;
+			}
+			
+			protected function tab3_radio_clickHandler(flag:Boolean):void
+			{
+				if(flag){
+					view_tab3.selectedIndex = 0;
+				}else{
+					view_tab3.selectedIndex = 1;
+				}
+			}
+			
+			protected function tab4_radio_clickHandler(flag:Boolean):void
+			{
+				if(flag){
+					view_tab4.selectedIndex = 0;
+				}else{
+					view_tab4.selectedIndex = 1;
+				}
+			}
+			
+			protected function numbericStepper_refresh(str:String,str2:String):void{
+				Alert.show(str+"---"+str2);
+			}
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<s:RadioButtonGroup id="tab3_plateGrp" />
+		<s:RadioButtonGroup id="tab4_plateGrp" />
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<!--标签1-->
+		<!--<s:NavigatorContent id="tab1" width="100%" height="100%" label="{tab1_title}">
+			<trafficsafety:TrafficSafety_byPlate width="100%" height="100%" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>-->
+		<!--标签2-->
+		<!--<s:NavigatorContent id="tab2" width="100%" height="100%" label="{tab2_title}">
+			<trafficsafety:Trafficsafety_byCorp width="100%" height="100%" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>-->
+		<!--标签3-->
+		<s:NavigatorContent id="tab3"  width="100%" height="100%" label="{tab3_title}">
+			<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">
+				<!--<s:HGroup width="100%" height="30" horizontalAlign="center" gap="-1">
+				<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+						<s:layout>
+							<s:HorizontalLayout horizontalAlign="right" verticalAlign="middle"/>
+						</s:layout>
+						<mx:HBox id="tab3_hbox" borderStyle="outset" styleName="controlBox" paddingLeft="10" paddingRight="10">
+							<s:RadioButton id="radio1_tab3" groupName="tab3_plateGrp" click="tab3_radio_clickHandler(radio1_tab3.selected)" selected="true" label="运输车辆"/>
+							<s:RadioButton id="radio2_tab3" groupName="tab3_plateGrp" click="tab3_radio_clickHandler(radio1_tab3.selected)" label="运输人员"/>
+						</mx:HBox>
+					</s:BorderContainer>
+				</s:HGroup>-->
+				
+				<s:BorderContainer width="100%" height="30" styleName="tabHead2Box">
+					<s:layout>
+						<s:BasicLayout/>
+					</s:layout>
+					<s:ButtonBar id="buttonBar_view_tab3" dataProvider="{view_tab3}" height="25" styleName="tabButtonStyle2" right="5" top="2"/>
+				</s:BorderContainer>
+				
+				<mx:ViewStack id="view_tab3" width="100%" height="100%">
+					<s:NavigatorContent width="100%" height="100%" label="运输车辆">
+						<trafficsafety:TrafficSafety_byCars id="trafficSafety_byCars_tab3" ws_flag="true" width="100%" height="100%" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+					</s:NavigatorContent>
+					<s:NavigatorContent width="100%" height="100%" label="运输人员">
+						<trafficsafety:TrafficSafety_byDrivers width="100%" height="100%" ws_flag="true" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+					</s:NavigatorContent>
+				</mx:ViewStack>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<!--标签4-->
+		<s:NavigatorContent id="tab4" width="100%" height="100%" label="{tab4_title}">
+			<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">
+				<!--<s:HGroup width="100%" height="30" horizontalAlign="center" gap="-1">
+				<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+						<s:layout>
+							<s:HorizontalLayout horizontalAlign="right" verticalAlign="middle"/>
+						</s:layout>
+						<mx:HBox borderStyle="outset" styleName="controlBox" paddingLeft="10" paddingRight="10">
+							<s:RadioButton id="radio1_tab4" groupName="tab4_plateGrp" click="tab4_radio_clickHandler(radio1_tab4.selected)" selected="true" label="运输车辆"/>
+							<s:RadioButton id="radio2_tab4" groupName="tab4_plateGrp" click="tab4_radio_clickHandler(radio1_tab4.selected)" label="运输人员"/>
+						</mx:HBox>
+					</s:BorderContainer>
+				</s:HGroup>-->
+				<s:BorderContainer width="100%" height="30" styleName="tabHead2Box">
+					<s:layout>
+						<s:BasicLayout/>
+					</s:layout>
+					<s:ButtonBar id="buttonBar_view_tab4" dataProvider="{view_tab4}" height="25" styleName="tabButtonStyle2" right="5" top="2"/>
+				</s:BorderContainer>
+				<mx:ViewStack id="view_tab4" width="100%" height="100%">
+					<s:NavigatorContent width="100%" height="100%" label="运输车辆">
+						<trafficsafety:TrafficSafety_byCars width="100%" height="100%" ws_flag="false" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+					</s:NavigatorContent>
+					<s:NavigatorContent width="100%" height="100%" label="运输人员">
+						<trafficsafety:TrafficSafety_byDrivers width="100%" height="100%" ws_flag="false" DateStr="{DateStr}" ShowDataLabel="{showDataLabel}"/>
+					</s:NavigatorContent>
+				</mx:ViewStack>
+			</s:VGroup>
+			<!--<trafficsafety:TrafficSafety_byCars width="100%" height="100%" DateStr="{DateStr}"/>-->
+			<!--<trafficsafety:TrafficSafety_byDrivers width="100%" includeInLayout="false" height="100%" DateStr="{DateStr}"/>-->
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Application>

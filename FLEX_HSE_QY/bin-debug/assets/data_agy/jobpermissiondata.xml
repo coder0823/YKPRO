@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2012" dataDate="" corpid="10000002"
+		corpname="河南石油" timestamp="" />
+	<jobpermissionData>
+		<dataset date="2012-01" dateLabel="01月">
+			<typedata typeid="ALL" typeName="合计" numbers="15" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="15"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="7" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="7"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="5" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="5"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="1" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="1"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="2"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-02" dateLabel="02月">
+			<typedata typeid="ALL" typeName="合计" numbers="60" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="60"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="26"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="26"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="21"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="21"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="3" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="3"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="2" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="8"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="8"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-03" dateLabel="03月">
+			<typedata typeid="ALL" typeName="合计" numbers="67" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="67"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="24"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="24"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="23"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="23"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="6" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="6"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="5" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="5"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="9"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="9"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-04" dateLabel="04月">
+			<typedata typeid="ALL" typeName="合计" numbers="50" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="47"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="3" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="15"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="15"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="17"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="16"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="1" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="3" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="1" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="7" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="6"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="1" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="8"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="8"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-05" dateLabel="05月">
+			<typedata typeid="ALL" typeName="合计" numbers="79" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="79"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="33"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="33"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="27"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="27"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="3" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="3"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="9" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="9"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="7"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="7"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-06" dateLabel="06月">
+			<typedata typeid="ALL" typeName="合计" numbers="43" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="43"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="17"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="17"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="14"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="14"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="5" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="5"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="5" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="5"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="2"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-07" dateLabel="07月">
+			<typedata typeid="ALL" typeName="合计" numbers="115" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="112"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="3" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="43"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="41"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="2" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="46"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="46"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="15"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="15"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="9" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="8"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="1" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="2"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-08" dateLabel="08月">
+			<typedata typeid="ALL" typeName="合计" numbers="119" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="119"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="46"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="46"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="48"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="48"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="14"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="14"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="9" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="9"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="2"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-09" dateLabel="09月">
+			<typedata typeid="ALL" typeName="合计" numbers="66" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="1"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="65"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="23"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="23"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="27"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="1"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="26"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="4" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="4"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="10"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="10"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="2"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-10" dateLabel="10月">
+			<typedata typeid="ALL" typeName="合计" numbers="53" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="1"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="50"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="1"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="1" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="20"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="1"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="18"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="1"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="23"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="22"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="1" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="4" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="4"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="5" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="5"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="1"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="1"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-11" dateLabel="11月">
+			<typedata typeid="ALL" typeName="合计" numbers="61" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="58"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="3"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="20"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="19"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="1"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="19"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="19"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="9" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="8"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="1"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="7" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="6"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="1"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="6"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="6"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-12" dateLabel="12月">
+			<typedata typeid="ALL" typeName="合计" numbers="52" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="1"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="48"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="3"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="12"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="11"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="1"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="17"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="1"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="14"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="2"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="2" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="2"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="3" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="3"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="18"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="18"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+		<dataset date="2012" dateLabel="当日">
+			<typedata typeid="ALL" typeName="合计" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="用火作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="临时用电" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="破土作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="高处作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="进入受限空间" numbers="0"
+				URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+			<typedata typeid="USE-FIRE" typeName="放射作业" numbers="0" URL="">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="0"
+					URL="" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" URL="" />
+			</typedata>
+		</dataset>
+	</jobpermissionData>
+</model>

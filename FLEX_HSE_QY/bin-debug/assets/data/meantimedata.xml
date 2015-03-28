@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<model>
+<!-- xml数据 Version:3.0 日期：2013-8-8 
+allDataCollect，概况
+	order:序号 
+	prof：专业 
+	label：阶段
+	num：在此阶段项目数
+	status：此阶段项目此阶段报警状态，逗号分隔：（0：正常（进行中），不显示，1黄色报警（进行中），2红色报警（进行中），3绿色横线超期完成（完成），4绿色正常完成（完成））
+	
+allData 分专业数据
+	order：序号
+	projectName：项目名称
+	investment：项目计划投资额 
+	currentStage：1,2,3,4,5 分别为 可研批复、基础设计批复、正在施工、开始试运行、试运行6个月 
+	stagedata 阶段数据
+		sequence：序号
+		label：阶段
+		status：状态：NO-START:未启动 IN-PROCESS：进行中 FINISHED:已完成  Ignore 忽略
+		inStatus：是否经过此阶段（1表示此阶段完成或进行中，0表示还没到）
+		ifShow:是否在该阶段列表中显示
+		warning：报警（0：正常，不显示，1黄色报警，2红色报警，3绿色横线超期完成，4绿色正常完成）
+		alarmTxt：报警提示文字信息
+ -->
+
+	<dataOutline dataYear="2012" dataDate="" corpid=""
+		corpname="河南石油分公司" timestamp="" />
+
+	<allDataCollect>
+		<allDataItem order="1" prof="安全" label="设立" num="14" profid="safety" stageid="aaaaaaaaaaaaaaaaaa"
+			status="1,1,1,1,1,0,1,0,1,1,0,0,0,0"/>
+		<allDataItem order="1" prof="安全" label="设计" num="1" profid="safety" stageid="aaaaaaaaaaaaaaaaaa"
+			status="" />
+		<allDataItem order="1" prof="安全" label="试生产" num="0" profid="safety" stageid="aaaaaaaaaaaaaaaaaa"
+			status="1" />
+		<allDataItem order="1" prof="安全" label="验收" num="1" profid="safety" stageid="aaaaaaaaaaaaaaaaaa"
+			status="2" />
+		<allDataItem order="2" prof="环保" label="环境影响评价" num="15" profid="environmentalProtection" stageid="aaaaaaaaaaaaaaaaaa"
+			status="2,1,1,1,1,1,2,1,0,0,0,0,0,0,0"/>
+		<allDataItem order="2" prof="环保" label="竣工验收" num="0" profid="environmentalProtection" stageid="aaaaaaaaaaaaaaaaaa"
+			status=""/>
+		<allDataItem order="2" prof="环保" label="试生产" num="0" profid="environmentalProtection" stageid="aaaaaaaaaaaaaaaaaa"
+			status=""/>
+		<allDataItem order="3" prof="职业卫生" label="竣工验收" num="0" profid="health" stageid="aaaaaaaaaaaaaaaaaa"
+			status=""/>
+		<allDataItem order="3" prof="职业卫生" label="设计审查" num="1" profid="health" stageid="aaaaaaaaaaaaaaaaaa"
+			status="1"/>
+		<allDataItem order="3" prof="职业卫生" label="预评价" num="14" profid="health" stageid="aaaaaaaaaaaaaaaaaa"
+			status="1,1,0,1,1,0,0,0,0,0,0,0,0,0"/>
+		<allDataItem order="4" prof="消防" label="消防建审" num="15" profid="fireControl" stageid="aaaaaaaaaaaaaaaaaa"
+			status="1,1,1,0,0,0,1,1,1,0,0,0,0,0,0"/>
+		<allDataItem order="4" prof="消防" label="消防验收" num="0" profid="fireControl" stageid="aaaaaaaaaaaaaaaaaa"
+			status=""/>
+		<allDataItem order="5" prof="抗震" label="抗震安全评价" num="15" profid="anti-seismic" stageid="aaaaaaaaaaaaaaaaaa"
+			status="2,0,1,0,0,0,0,0,0,0,0,0,0,0,0"/>
+	</allDataCollect>
+
+
+	<allData dataLabel="职业卫生">
+		<dataset order="1" projectName="无棣第十二加油加气站新建" currentStage="0" corpid="10200000" corpName="企业名称" level="分公司级"
+			investment="2997" groupLeader="总部负责人" corpLeader="企业负责人" groupDirector="总部主管">
+			<stagedata sequence="1" label="设立" status="FINISHED" inStatus="1" ifShow="1" warning="绿色横线超期完成，4绿色正常完成"  alarmTxt="还有几个月到期/规定日期。。已过期。。天/超期完成/或者正常完成空"/>
+			<stagedata sequence="2" label="设计" status="IN-PROCESS" inStatus="0" ifShow="0" warning="0：正常，不显示，1：黄色报警，2：红色报警"  alarmTxt="还有几个月到期/规定日期。。已过期。。天/超期完成/或者正常完成空" />
+			<stagedata sequence="3" label="试生产" status="NO-START" inStatus="0" ifShow="0" warning="0：正常" alarmTxt=""/>
+			<stagedata sequence="4" label="验收" status="NO-START" inStatus="0" ifShow="0" warning="0：正常" alarmTxt=""/>
+		</dataset>
+		<!-- ...... -->
+	</allData>
+</model>

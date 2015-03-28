@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()" xmlns:ns="http://code.google.com/p/flex-iframe/">
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import events.PopupEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.controls.NumericStepper;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.components.RadioButton;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/trafficsafety.xml";//riskdata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String="企业交通车辆年检情况(辆)";
+			[Bindable]
+			private var tab1_topRightTitle:String="企业运输人员年检情况(人)";
+			
+			
+			[Bindable]
+			private var tab1_levelCurrSelect:String;
+			private var tab1_levelNameCurrSelect:String;
+			private var tab1_levelCurrSelect_temp:String;
+			
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			[Bindable]
+			private var sub_url:String = "";
+			private const TRAURL:String = "/Common/Report.aspx?ModelID=9DADC86CF9DEE146BAF5676ED2FB84B4&ShowReport=true";
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					var obj:Object=new Object();
+					obj.name=i+"年";
+					obj.value=i;
+					dateArrCol.addItem(obj);
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				tab1_topLeftDS=new ArrayCollection();
+				tab1_topRightDS=new ArrayCollection();
+				refreshData();
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					sub_url = XML(loader_wsdl.data).url+"";
+					sub_url = sub_url.substring(0,sub_url.indexOf('/Report'));
+					ws.loadWSDL();
+					ws.remoteMethod('14','',this.dateEnd.selectedItem.value);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				tab1_topLeftDS=getTab1_topLeftDS();		
+				tab1_topRightDS=getTab1_topRightDS();	
+				executeBindTab1Title();
+				
+			}
+			
+			
+			private function executeBindTab1Title():void{
+				var dept:String="";
+				if(hseDataXML.dataOutline){
+					dept=hseDataXML.dataOutline.@corpname;
+				}
+				tab1_topLeftTitle=dept+this.dateEnd.selectedItem.value+"年企业交通车辆年检情况(辆)";
+				tab1_topRightTitle=dept+this.dateEnd.selectedItem.value+"年企业运输人员年检情况(人)";
+			}
+			
+			private function getTab1_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.carsData.carsbyKind.kindData;
+					if(tmpList.length()>0)
+					{
+//						tab1_levelCurrSelect=tmpList[0].@riskid;//设置默认选择
+//						tab1_levelCurrSelect_temp=tmpList[0].@riskid;
+//						tab1_levelNameCurrSelect=tmpList[0].@label;
+//						tab1_levelNameCurrSelect=tab1_levelNameCurrSelect==null?"":tab1_levelNameCurrSelect;
+//						
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,
+								value:xml.@carNumbers,
+								id:xml.@id};
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_topRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					
+					var tmpList:XMLList;
+					tmpList=hseDataXML.driversData.driversbyKind.kindData;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,
+								value:xml.@driverNumbers,
+								id:xml.@id};
+							
+							//格式化数据
+							obj.vol1=Number(obj.vol1)<0?0:obj.vol1;
+							
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupTab1_left(id:String,label:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "风险情况表"+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.IfShowFrontRecordColor=false;
+				titleWindow.IfShowBackRecordColor=false;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"风险级别",dataField:"label",width:"100",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"数量",dataField:"riskNumbers",width:"100",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"状态",dataField:"description",width:"600",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.popupTableData.dataset;
+					if(tmpList.length()>0)
+					{
+						var i:int=1;
+						for each (var xml4:XML in tmpList) {  
+							var obj:Object={
+								label:xml4.@label,
+									riskNumbers:Number(xml4.@riskNumbers),
+									description:xml4.@description
+							};
+							tmpArrayCollection.addItem(obj);
+							i++;
+						}
+						
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab1_right(id:String,label:String):void{
+				var showFlag:Boolean=true;
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  label+tab1_levelNameCurrSelect+"情况表"+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.IfShowFrontRecordColor=false;
+				titleWindow.IfShowBackRecordColor=false;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"label",width:"150",textAlign:"left",sortable:true,draggable:true,showdatatips:true},
+					{headerText:"作业活动/设备",dataField:"jobActivity",width:"150",textAlign:"left",sortable:true,draggable:true,showdatatips:true},
+					{headerText:"危害",dataField:"harm",width:"160",textAlign:"left",sortable:true,draggable:true,showdatatips:true,showText:true},
+					{headerText:"主要后果",dataField:"consequence",width:"160",textAlign:"left",sortable:true,draggable:true,showdatatips:true,showText:true},
+					{headerText:"评审状态",dataField:"reviewStatus",width:"60",textAlign:"center",sortable:true,draggable:true,showdatatips:true},
+					{headerText:"落实状态",dataField:"workableStatus",width:"60",textAlign:"center",sortable:true,draggable:true,showdatatips:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					
+					var tmpList:XMLList;
+					tmpList=hseDataXML.majorRiskSolveData.(@riskid==tab1_levelCurrSelect);
+					
+					if(tmpList.length()>0)
+					{
+						tmpList=tmpList.dataset.(@solveid==id).corpData;
+						if(tmpList.length()>0)
+						{
+							showFlag=true;
+							for each (var xml4:XML in tmpList) {  
+								var obj:Object={order:xml4.@order,
+									label:xml4.@label,
+									jobActivity:xml4.@jobActivity,
+									harm:xml4.@harm,
+									consequence:xml4.@consequence,
+									reviewStatus:xml4.@reviewStatus,
+									workableStatus:xml4.@workableStatus
+								};
+								tmpArrayCollection.addItem(obj);
+							}
+							
+							//						var sort:Sort=new Sort();  
+							//						sort.fields=[new SortField("order",false,true)];  
+							//						tmpArrayCollection.sort=sort;
+							//						tmpArrayCollection.refresh();
+							var i:int=1;
+							for each (var obj2:Object in tmpArrayCollection) {  
+								obj2.order=i;
+								tmpArrayCollection2.addItem(obj2);
+								i++;
+							}
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				if(showFlag){
+					PopUpManager.addPopUp(titleWindow, this, true);    
+					PopUpManager.centerPopUp(titleWindow); 
+				}else{
+					titleWindow=null;
+				}
+			}
+			
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab1_left(item.id,item.label);
+			}
+			
+			protected function tab1_topRight_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(tab1_levelCurrSelect==tab1_levelCurrSelect_temp){
+					popupTab1_right(item.id,item.label);
+				}
+			}
+			private var titleWindow_car:views.PopupTitleWinDG;
+			protected function tab1_topLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				var item:Object=event.hitDataItem;
+				titleWindow_car = new views.PopupTitleWinDG();
+				titleWindow_car.TitleValue = "中国石化"+item.label+"交通车辆年检情况" + "(" + dateCurrYear + ")";
+				titleWindow_car.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow_car);
+				});
+				titleWindow_car.IfShowFirstRecordBgColor = false;
+				titleWindow_car.DataSourceConf = new ArrayCollection([{headerText: "序号", dataField: "order", width: "100", textAlign: "left", sortable: true, draggable: false}, {headerText: "单位名称", dataField: "vol1", width: "200", textAlign: "center", sortable: true, draggable: true}, {headerText: "车辆牌号", dataField: "vol2", textAlign: "center", sortable: true, draggable: true}, {headerText: "车辆名称", dataField: "vol3", textAlign: "center", sortable: true, draggable: true}, {headerText: "车辆型号", dataField: "vol4", textAlign: "center", sortable: true, draggable: true}, {headerText: "车辆类型", dataField: "vol5", width: "120", textAlign: "center", sortable: true, draggable: true}, {headerText: "车辆颜色", dataField: "vol6", textAlign: "center", sortable: true, draggable: true}, {headerText: "检查周期", dataField: "vol7", textAlign: "center", sortable: true, draggable: true}, {headerText: "年检日期", dataField: "vol8", textAlign: "center", sortable: true, draggable: true}
+					
+				]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.carsData.constituteData.dataset;
+					if (tmpList.length() > 0)
+					{
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var xml2:XMLList = xml.kindData.(@id == item.id);
+							for each (var xml3:XML in xml2.carData)
+							{
+								var obj:Object = {order: order, vol1: xml3.@unitName, vol2: xml3.@carNO, vol3: xml3.@carName, vol4: xml3.@carModel, vol5: xml3.@carType, vol6: xml3.@color, vol7: xml3.@inspectionCycle, vol8: xml3.@inspectionDate};
+								tmpArrayCollection.addItem(obj);
+								order++;
+							}
+						}
+					}
+					titleWindow_car.DataSource = tmpArrayCollection;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow_car, this, true);
+				PopUpManager.centerPopUp(titleWindow_car);
+			}
+			
+			private var titleWindow_driver:views.PopupTitleWinDG;
+			protected function tab1_topRight_PopupClickHandler(event:PopupEvent):void
+			{
+				var item:Object=event.hitDataItem;
+				titleWindow_driver = new views.PopupTitleWinDG();
+				titleWindow_driver.TitleValue = "中国石化"+item.label+"运输人员年检情况" + "(" + dateCurrYear + ")";
+				titleWindow_driver.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow_driver);
+				});
+				titleWindow_driver.IfShowFirstRecordBgColor = false;
+				titleWindow_driver.DataSourceConf = new ArrayCollection([{headerText: "序号", dataField: "order", width: "100", textAlign: "left", sortable: true, draggable: false}, {headerText: "姓名", dataField: "vol1", width: "200", textAlign: "center", sortable: true, draggable: true}, {headerText: "性别", dataField: "vol2", textAlign: "center", sortable: true, draggable: true}, {headerText: "出生日期", dataField: "vol3", textAlign: "center", sortable: true, draggable: true}, {headerText: "政治面貌", dataField: "vol4", textAlign: "center", sortable: true, draggable: true}, {headerText: "准驾车型", dataField: "vol5", width: "120", textAlign: "center", sortable: true, draggable: true}, {headerText: "驾驶证号", dataField: "vol6", textAlign: "center", sortable: true, draggable: true}, {headerText: "年审日期", dataField: "vol7", textAlign: "center", sortable: true, draggable: true}, {headerText: "登记部门", dataField: "vol8", textAlign: "center", sortable: true, draggable: true}
+					
+				]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.driversData.constituteData.dataset;
+					if (tmpList.length() > 0)
+					{
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var xml2:XMLList = xml.kindData.(@id == item.id);
+							for each (var xml3:XML in xml2.carData)
+							{
+								var obj:Object = {order: order, vol1: xml3.@name, vol2: xml3.@sex, vol3: xml3.@birthday, vol4: xml3.@politicalStatus, vol5: xml3.@canDriveCarType, vol6: xml3.@drivingLicense, vol7: xml3.@inspectionDate, vol8: xml3.@inspectionDate};
+								tmpArrayCollection.addItem(obj);
+								order++;
+							}
+						}
+					}
+					titleWindow_driver.DataSource = tmpArrayCollection;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow_driver, this, true);
+				PopUpManager.centerPopUp(titleWindow_driver);
+			}
+			
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+			
+			protected function navigatorcontent1_creationCompleteHandler(event:FlexEvent):void
+			{
+//				navigateToURL(new URLRequest("http://10.5.89.55:9011"+TRAURL),"_blank");
+//				iFrame.source = "http://10.5.89.55:9011"+TRAURL;
+				
+//				ExternalInterface.call("top.addModuleTab", "","数据钻取","","ModelID=9DADC86CF9DEE146BAF5676ED2FB84B4&ShowReport=true","true");
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<s:RadioButtonGroup id="tab2_levelGrp" />
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<s:NavigatorContent width="100%" height="100%" label="{tab1_title}">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:PieMultiWithEffect1 id="tab1_topLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab1_topLeftTitle}" DataSource="{tab1_topLeftDS}" PopupClick="tab1_topLeft_PopupClickHandler(event)"/>
+						<!--PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)"-->
+					</s:BorderContainer> 
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:PieMultiWithEffect1 id="tab1_topRight" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab1_topRightTitle}" DataSource="{tab1_topRightDS}" PopupClick="tab1_topRight_PopupClickHandler(event)"/>
+					<!--	<views:ColumnLineMulti id="tab1_topRight" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab1_topRightTitle}" DataSource="{tab1_topRightDS}" DataSourceConf="{tab1_topRightConfDS}"
+											   PopupDoubleClick="tab1_topRight_PopupDoubleClickHandler(event)"/>-->
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<s:NavigatorContent width="100%" height="100%" label="驾驶员监管情况表">
+			<ns:IFrame id="iFrame" width="100%" height="100%" source="{sub_url}{TRAURL}"/>
+			
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Application>
+

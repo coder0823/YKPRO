@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:DataGridItemRenderer xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			override public function set data(value:Object):void{
+				if(value.color!=null){
+					this.setStyle("color",value.color);//value.color
+//					this.setStyle("textDecoration","underline");
+				}
+				super.data=value;
+			}
+		]]>
+	</mx:Script>
+</mx:DataGridItemRenderer>

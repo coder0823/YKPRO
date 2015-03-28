@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Model>
+    <allData>
+        <datagrid_config>
+            <datagrid_head sequence="1" headLabel="安全">
+                <stage sequence="1" label="设立" /> 
+                <stage sequence="2" label="设计"/>
+                <stage sequence="3" label="试生产" />
+                <stage sequence="4" label="验收"/>
+            </datagrid_head>
+            <datagrid_head sequence="2" headLabel="环保">
+                <stage label="环境影响" sequence="5"/>
+                <stage label="试生产" sequence="6"/>
+                <stage label="验收" sequence="7" />
+            </datagrid_head>
+            <datagrid_head sequence="3" headLabel="职业卫生">
+                <stage sequence="8" label="预评价" />
+                <stage sequence="9" label="设计审查" />
+                <stage sequence="10" label="验收" />
+            </datagrid_head>
+            <datagrid_head sequence="4" headLabel="消防">
+                <stage label="消防建审" sequence="11"/>
+                <stage label="消防验收" sequence="12" />
+            </datagrid_head>
+             <datagrid_head sequence="5" headLabel="抗震">
+                <stage sequence="13" label="抗震安全评价" />
+            </datagrid_head>
+        </datagrid_config>
+        <dataset order="1" projectName="分钟寺项目" projectURL="http://www.baidu.com" currentStage="4" investment="2000"
+        warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader=""
+        corpLeader="" corpName="北京石油" level="直属单位级">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="0" />
+                <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"
+                />
+                <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"
+                />
+                <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="5" label="环境影响" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“可研批复”或“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，环评政府批复日期为空。" ifShow="0"
+                /> 
+                <stagedata sequence="6" label="试生产" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”或“试运行6个月”时，批复试生产起止日期为空" ifShow="0" />
+                <stagedata sequence="7" label="验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“试运行6个月”时，并且竣工验收阶段政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="8" label="预评价" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="或者当工程进度为 “基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，预评价阶段信息（政府批复或备案日期等字段）没有填写 "
+                ifShow="0" />
+                <stagedata sequence="9" label="设计审查" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="或者当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，设计阶段信息（政府批复或备案日期等字段）没有填写"
+                ifShow="0" />
+                <stagedata sequence="10" label="竣工验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“试运行6个月”，控制效果评价阶段信息政府批复或备案日期为空；" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="11" label="消防建审" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="或者当工程进度为“正在施工”或“开始试生产”或“开始试运行6个月”时，消防建审阶段信息政府批复日期为空。" ifShow="0"
+                />
+                <stagedata sequence="12" label="消防验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，消防验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="13" label="抗震安全评价" status="NO-START" inStatus="1"
+                warning="1" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="1" />
+            </professional_data>
+        </dataset>
+        <dataset order="2" projectName="环北京成品油管道工程" currentStage="4" investment="24000"
+        warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader=""
+        corpLeader="" corpName="北京石油" level="集团公司级">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="0" />
+                <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"
+                />
+                <stagedata sequence="3" label="试生产" status="IN-PROCESS" inStatus="1" warning="2"
+                alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"
+                />
+                <stagedata sequence="4" label="验收" status="IN-PROCESS" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="5" label="环境影响" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2005-09-27" ifShow="0" />
+                <stagedata sequence="6" label="试生产" status="IN-PROCESS" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“开始试运行”或“试运行6个月”时，批复试生产起止日期为空" ifShow="0" />
+                <stagedata sequence="7" label="验收" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2009-04-01" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="8" label="预评价" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为 “基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，预评价阶段信息（政府批复或备案日期等字段）没有填写 "
+                ifShow="0" />
+                <stagedata sequence="9" label="设计审查" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，设计阶段信息（政府批复或备案日期等字段）没有填写"
+                ifShow="0" />
+                <stagedata sequence="10" label="竣工验收" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“试运行6个月”，控制效果评价阶段信息政府批复或备案日期为空；" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="11" label="消防建审" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为“正在施工”或“开始试生产”或“开始试运行6个月”时，消防建审阶段信息政府批复日期为空。" ifShow="0"
+                />
+                <stagedata sequence="12" label="消防验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，消防验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="13" label="抗震安全评价" status="NO-START" inStatus="1"
+                warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="1" />
+            </professional_data>
+        </dataset>
+        <dataset order="3" projectName="燕山-首都机场航空煤油管道工程" currentStage="4" investment="21000"
+        warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader=""
+        corpLeader="" corpName="北京石油" level="集团公司级">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="0" />
+                <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"
+                />
+                <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"
+                />
+                <stagedata sequence="4" label="验收" status="IN-PROCESS" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="1" label="环境影响" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2005-09-27" ifShow="0" />
+                <stagedata sequence="2" label="试生产" status="IN-PROCESS" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“开始试运行”或“试运行6个月”时，批复试生产起止日期为空" ifShow="0" />
+                <stagedata sequence="3" label="验收" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2008-12-10" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="1" label="预评价" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为 “基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，预评价阶段信息（政府批复或备案日期等字段）没有填写 "
+                ifShow="0" />
+                <stagedata sequence="2" label="设计审查" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，设计阶段信息（政府批复或备案日期等字段）没有填写"
+                ifShow="0" />
+                <stagedata sequence="3" label="竣工验收" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“试运行6个月”，控制效果评价阶段信息政府批复或备案日期为空；" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="1" label="消防建审" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为“正在施工”或“开始试生产”或“开始试运行6个月”时，消防建审阶段信息政府批复日期为空。" ifShow="0"
+                />
+                <stagedata sequence="2" label="消防验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，消防验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="1" label="抗震安全评价" status="NO-START" inStatus="1"
+                warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="1" />
+            </professional_data>
+        </dataset>
+        <dataset order="4" projectName="日照至仪征原油管道及配套工程" currentStage="4" investment="431718"
+        warning="0" keyregulatory="1" regulatoryfocustype="新建" groupDirector=""
+        groupLeader="" corpLeader="" corpName="管道分公司" level="集团公司级">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2006-05-29" ifShow="0" />
+                <stagedata sequence="2" label="设计" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2009-10-19" ifShow="0" />
+                <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"
+                />
+                <stagedata sequence="4" label="验收" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2012-12-31" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="1" label="环境影响" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2009-09-10" ifShow="0" />
+                <stagedata sequence="2" label="试生产" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，试生产起止日期：2011-10-08" ifShow="0" />
+                <stagedata sequence="3" label="验收" status="IN-PROCESS" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“试运行6个月”时，并且竣工验收阶段政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="1" label="预评价" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2006-09-21" ifShow="0" />
+                <stagedata sequence="2" label="设计审查" status="IN-PROCESS" inStatus="1"
+                warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，预评价阶段信息（政府批复或备案日期等字段）没有填写，也亮红灯；"
+                ifShow="0" />
+                <stagedata sequence="3" label="竣工验收" status="IN-PROCESS" inStatus="1"
+                warning="2" alarmTxt="当工程进度为“试运行6个月”，控制效果评价阶段信息政府批复或备案日期为空；" ifShow="1"
+                />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="1" label="消防建审" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为“正在施工”或“开始试生产”或“开始试运行6个月”时，消防建审阶段信息政府批复日期为空。" ifShow="0"
+                />
+                <stagedata sequence="2" label="消防验收" status="FINISHED" inStatus="1" warning="4"
+                alarmTxt="政府信息已批复，批复日期：2011-10-17" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="1" label="抗震安全评价" status="NO-START" inStatus="1"
+                warning="2" alarmTxt="如果项目立项信息的初步设计信息已填写，地震安全性评价阶段信息（政府批复日期等字段）没有填写，则报红灯，提示已过期"
+                ifShow="1" />
+            </professional_data>
+        </dataset>
+        <dataset order="5" projectName="岚山输油站" currentStage="4" investment="100000"
+        warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader=""
+        corpLeader="" corpName="管道分公司" level="集团公司级">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="0" />
+                <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"
+                />
+                <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"
+                />
+                <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="1" label="环境影响" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“可研批复”或“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，环评政府批复日期为空。" ifShow="0"
+                />
+                <stagedata sequence="2" label="试生产" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“开始试运行”或“试运行6个月”时，批复试生产起止日期为空" ifShow="0" />
+                <stagedata sequence="3" label="验收" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“试运行6个月”时，并且竣工验收阶段政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="1" label="预评价" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为 “基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，预评价阶段信息（政府批复或备案日期等字段）没有填写 "
+                ifShow="0" />
+                <stagedata sequence="2" label="设计审查" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，设计阶段信息（政府批复或备案日期等字段）没有填写"
+                ifShow="0" />
+                <stagedata sequence="3" label="竣工验收" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“试运行6个月”，控制效果评价阶段信息政府批复或备案日期为空；" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="1" label="消防建审" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="项目立项信息中的工程动工日期之后，消防建审阶段信息政府批复日期为空；" ifShow="0" />
+                <stagedata sequence="2" label="消防验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，消防验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="1" label="抗震安全评价" status="NO-START" inStatus="1"
+                warning="2" alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="1" />
+            </professional_data>
+        </dataset>
+        <dataset order="6" projectName="镇海原油商业储备库" currentStage="4" investment="370000"
+        warning="0" keyregulatory="" regulatoryfocustype="" groupDirector="" groupLeader=""
+        corpLeader="" corpName="管道分公司" level="集团公司级">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设立阶段政府批复日期没有填写，也报红灯"
+                ifShow="0" />
+                <stagedata sequence="2" label="设计" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，如果设计阶段政府审查批复日期为空" ifShow="0"
+                />
+                <stagedata sequence="3" label="试生产" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为 “开始试运行”或“试运行6个月”时，如果试生产阶段未填写政府“批准备案日期”的，也报红灯。 " ifShow="0"
+                />
+                <stagedata sequence="4" label="验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="1" label="环境影响" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“可研批复”或“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，环评政府批复日期为空。" ifShow="0"
+                />
+                <stagedata sequence="2" label="试生产" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“开始试运行”或“试运行6个月”时，批复试生产起止日期为空" ifShow="0" />
+                <stagedata sequence="3" label="验收" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“试运行6个月”时，并且竣工验收阶段政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="1" label="预评价" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为 “基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，预评价阶段信息（政府批复或备案日期等字段）没有填写 "
+                ifShow="0" />
+                <stagedata sequence="2" label="设计审查" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="或者当工程进度为“基础设计批复”或“正在施工”或“开始试运行”或“试运行6个月”时，设计阶段信息（政府批复或备案日期等字段）没有填写"
+                ifShow="0" />
+                <stagedata sequence="3" label="竣工验收" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="当工程进度为“试运行6个月”，控制效果评价阶段信息政府批复或备案日期为空；" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="1" label="消防建审" status="NO-START" inStatus="1" warning="2"
+                alarmTxt="项目立项信息中的工程动工日期之后，消防建审阶段信息政府批复日期为空；" ifShow="0" />
+                <stagedata sequence="2" label="消防验收" status="NO-START" inStatus="1" warning="1"
+                alarmTxt="当工程进度为“开始试运行”时，消防验收阶段信息政府批复日期为空" ifShow="1" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata  />
+            </professional_data>
+        </dataset>
+    </allData>
+    <dataOutline dataYear="2006" dataStartDate="" dataEndDate="" timestamp="">
+    </dataOutline>
+</Model>

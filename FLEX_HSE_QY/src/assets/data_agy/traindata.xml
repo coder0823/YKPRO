@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+  <dataOutline dataYear="2014" dataDate="" corpid="902067" corpname="管道分公司" timestamp=""></dataOutline>
+  <overallData>
+    <byClasses planClasses="18" plansLabel="计划" finishedClasses="13" finishedLabel="完成" remainderClasses="5" remainderLabel="未完成" planBySchedule="16" finishedBySchedule="16" remainderBySchedule="0" FinishSchedule="100" FinishRadio="72" enableUrlLink="0">
+      <dataset order="1" subCorpid="109" subCorpname="管道分公司" planClasses="18" finishedClasses="13" remainderClasses="5" planBySchedule="16" finishedBySchedule="16" remainderBySchedule="0" FinishSchedule="100" FinishRadio="72" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109" />
+      <dataset order="2" subCorpid="109008" subCorpname="日照输油处" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109008" />
+      <dataset order="3" subCorpid="109010" subCorpname="荆门输油处" planClasses="2" finishedClasses="2" remainderClasses="0" planBySchedule="2" finishedBySchedule="2" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109010" />
+      <dataset order="4" subCorpid="109014" subCorpname="天津输油（管理）处" planClasses="2" finishedClasses="1" remainderClasses="1" planBySchedule="2" finishedBySchedule="2" remainderBySchedule="0" FinishSchedule="100" FinishRadio="50" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109014" />
+    </byClasses>
+    <byPersons planPersons="1342" plansLabel="计划" finishedPersons="30" finishedLabel="完成" remainderPersons="1312" remainderLabel="未完成" planBySchedule="16" finishedBySchedule="1318" remainderBySchedule="1302" FinishSchedule="1" FinishRadio="2">
+      <dataset order="1" subCorpid="109" subCorpname="管道分公司" planPersons="1342" finishedPersons="30" remainderPersons="1312" planBySchedule="16" finishedBySchedule="1318" remainderBySchedule="1302" FinishSchedule="1" FinishRadio="2" />
+      <dataset order="6" subCorpid="109008" subCorpname="日照输油处" planPersons="121" finishedPersons="2" remainderPersons="119" planBySchedule="1" finishedBySchedule="121" remainderBySchedule="120" FinishSchedule="0" FinishRadio="1" />
+      <dataset order="8" subCorpid="109010" subCorpname="荆门输油处" planPersons="53" finishedPersons="5" remainderPersons="48" planBySchedule="2" finishedBySchedule="53" remainderBySchedule="51" FinishSchedule="3" FinishRadio="9" />
+      <dataset order="12" subCorpid="109014" subCorpname="天津输油（管理）处" planPersons="805" finishedPersons="1" remainderPersons="804" planBySchedule="2" finishedBySchedule="805" remainderBySchedule="803" FinishSchedule="0" FinishRadio="0" />
+    </byPersons>
+  </overallData>
+  <byKindData>
+    <byClasses>
+      <compositionData>
+        <dataset kindid="1" label="处（厂）级" planClasses="1" finishedClasses="1" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" />
+        <dataset kindid="2" label="其他" planClasses="4" finishedClasses="4" planBySchedule="4" finishedBySchedule="4" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" />
+        <dataset kindid="3" label="站队级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="4" label="公司级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="5" label="地方政府" planClasses="5" finishedClasses="3" planBySchedule="5" finishedBySchedule="5" remainderBySchedule="0" FinishSchedule="100" FinishRadio="60" />
+        <dataset kindid="6" label="油田级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="7" label="项目部级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="8" label="公司级" planClasses="4" finishedClasses="3" planBySchedule="4" finishedBySchedule="4" remainderBySchedule="0" FinishSchedule="100" FinishRadio="75" />
+        <dataset kindid="9" label="三级单位级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="10" label="队/站/库/班组级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="11" label="集团公司级" planClasses="3" finishedClasses="1" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="33" />
+        <dataset kindid="12" label="加油站/班组级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="13" label="二级单位级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="14" label="油库/片区级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="15" label="运行部级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="16" label="厂级" planClasses="1" finishedClasses="1" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" />
+        <dataset kindid="17" label="公司级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="18" label="其他" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="19" label="车间级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="20" label="班组级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="21" label="作业队级" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+      </compositionData>
+      <detailData>
+        <dataset kindid="1" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;LEVELID=4c0ab25c-bb8c-4475-a262-0a1cefc5a0de" />
+        <dataset kindid="2" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="4" finishedClasses="4" remainderClasses="0" planBySchedule="4" finishedBySchedule="4" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;LEVELID=2375ba88-9910-4abc-8134-13d189ec1c73" />
+        <dataset kindid="2" order="12" subCorpid="109014" subCorpname="天津输油（管理）处" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109014&amp;LEVELID=2375ba88-9910-4abc-8134-13d189ec1c73" />
+        <dataset kindid="5" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="5" finishedClasses="3" remainderClasses="2" planBySchedule="5" finishedBySchedule="5" remainderBySchedule="0" FinishSchedule="100" FinishRadio="60" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;LEVELID=739ed747-1119-4054-8411-446f8442fa80" />
+        <dataset kindid="5" order="6" subCorpid="109008" subCorpname="日照输油处" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109008&amp;LEVELID=739ed747-1119-4054-8411-446f8442fa80" />
+        <dataset kindid="5" order="8" subCorpid="109010" subCorpname="荆门输油处" planClasses="2" finishedClasses="2" remainderClasses="0" planBySchedule="2" finishedBySchedule="2" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109010&amp;LEVELID=739ed747-1119-4054-8411-446f8442fa80" />
+        <dataset kindid="5" order="12" subCorpid="109014" subCorpname="天津输油（管理）处" planClasses="1" finishedClasses="0" remainderClasses="1" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="0" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109014&amp;LEVELID=739ed747-1119-4054-8411-446f8442fa80" />
+        <dataset kindid="8" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="4" finishedClasses="3" remainderClasses="1" planBySchedule="4" finishedBySchedule="4" remainderBySchedule="0" FinishSchedule="100" FinishRadio="75" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;LEVELID=a5e053c8-d6eb-4260-9bf0-715f04d42926" />
+        <dataset kindid="11" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="3" finishedClasses="1" remainderClasses="2" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="33" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;LEVELID=e45e4238-4207-4b75-8217-92498e2c3ed2" />
+        <dataset kindid="16" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;LEVELID=665cd8af-4aa6-4dc7-a0c3-aa700bfe768e" />
+      </detailData>
+    </byClasses>
+    <byPersons>
+      <kindData>
+        <dataset kindid="1" label="处（厂）级" planPersons="10" finishedPersons="4" planBySchedule="1" finishedBySchedule="10" remainderBySchedule="9" FinishSchedule="10" FinishRadio="0" />
+        <dataset kindid="2" label="其他" planPersons="150" finishedPersons="2" planBySchedule="4" finishedBySchedule="150" remainderBySchedule="146" FinishSchedule="2" FinishRadio="0" />
+        <dataset kindid="3" label="站队级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="4" label="公司级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="5" label="地方政府" planPersons="986" finishedPersons="7" planBySchedule="5" finishedBySchedule="986" remainderBySchedule="981" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="6" label="油田级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="7" label="项目部级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="8" label="公司级" planPersons="158" finishedPersons="8" planBySchedule="4" finishedBySchedule="158" remainderBySchedule="154" FinishSchedule="2" FinishRadio="0" />
+        <dataset kindid="9" label="三级单位级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="10" label="队/站/库/班组级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="11" label="集团公司级" planPersons="26" finishedPersons="3" planBySchedule="1" finishedBySchedule="2" remainderBySchedule="1" FinishSchedule="50" FinishRadio="0" />
+        <dataset kindid="12" label="加油站/班组级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="13" label="二级单位级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="14" label="油库/片区级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="15" label="运行部级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="16" label="厂级" planPersons="12" finishedPersons="6" planBySchedule="1" finishedBySchedule="12" remainderBySchedule="11" FinishSchedule="8" FinishRadio="0" />
+        <dataset kindid="17" label="公司级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="18" label="其他" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="19" label="车间级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="20" label="班组级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="21" label="作业队级" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+      </kindData>
+      <detailData>
+        <dataset kindid="1" order="1" subCorpid="109" subCorpname="管道分公司" planPersons="10" finishedPersons="4" remainderPersons="6" planBySchedule="1" finishedBySchedule="10" remainderBySchedule="9" FinishSchedule="10" FinishRadio="40" />
+        <dataset kindid="2" order="2" subCorpid="109" subCorpname="管道分公司" planPersons="150" finishedPersons="2" remainderPersons="148" planBySchedule="4" finishedBySchedule="150" remainderBySchedule="146" FinishSchedule="2" FinishRadio="1" />
+        <dataset kindid="2" order="2" subCorpid="109014" subCorpname="天津输油（管理）处" planPersons="5" finishedPersons="1" remainderPersons="4" planBySchedule="1" finishedBySchedule="5" remainderBySchedule="4" FinishSchedule="20" FinishRadio="20" />
+        <dataset kindid="5" order="5" subCorpid="109" subCorpname="管道分公司" planPersons="986" finishedPersons="7" remainderPersons="979" planBySchedule="5" finishedBySchedule="986" remainderBySchedule="981" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="5" order="5" subCorpid="109008" subCorpname="日照输油处" planPersons="121" finishedPersons="2" remainderPersons="119" planBySchedule="1" finishedBySchedule="121" remainderBySchedule="120" FinishSchedule="0" FinishRadio="1" />
+        <dataset kindid="5" order="5" subCorpid="109010" subCorpname="荆门输油处" planPersons="53" finishedPersons="5" remainderPersons="48" planBySchedule="2" finishedBySchedule="53" remainderBySchedule="51" FinishSchedule="3" FinishRadio="9" />
+        <dataset kindid="5" order="5" subCorpid="109014" subCorpname="天津输油（管理）处" planPersons="800" finishedPersons="0" remainderPersons="800" planBySchedule="1" finishedBySchedule="800" remainderBySchedule="799" FinishSchedule="0" FinishRadio="0" />
+        <dataset kindid="8" order="8" subCorpid="109" subCorpname="管道分公司" planPersons="158" finishedPersons="8" remainderPersons="150" planBySchedule="4" finishedBySchedule="158" remainderBySchedule="154" FinishSchedule="2" FinishRadio="5" />
+        <dataset kindid="11" order="11" subCorpid="109" subCorpname="管道分公司" planPersons="26" finishedPersons="3" remainderPersons="23" planBySchedule="1" finishedBySchedule="2" remainderBySchedule="1" FinishSchedule="50" FinishRadio="11" />
+        <dataset kindid="16" order="16" subCorpid="109" subCorpname="管道分公司" planPersons="12" finishedPersons="6" remainderPersons="6" planBySchedule="1" finishedBySchedule="12" remainderBySchedule="11" FinishSchedule="8" FinishRadio="50" />
+      </detailData>
+    </byPersons>
+  </byKindData>
+  <byPostData>
+    <byClasses>
+      <postData>
+        <dataset postid="60b639d8-c659-4269-8e85-041dc53aa35b" label="转岗" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset postid="fcb018c1-92cf-4662-b74e-952dac086f55" label="转岗人员" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset postid="2677d379-cd8a-4d1b-b95d-a4efb1ba5372" label="上岗" planClasses="1" finishedClasses="1" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" />
+        <dataset postid="c2a160ba-e3f8-4464-9912-c05c3d220549" label="上岗" planClasses="2" finishedClasses="1" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset postid="a87071ea-8c05-425b-b6fc-ee19dc8cf79a" label="转岗" planClasses="0" finishedClasses="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+      </postData>
+      <detailData>
+        <dataset postid="2677d379-cd8a-4d1b-b95d-a4efb1ba5372" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" FinishRadio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;OBJID=2677d379-cd8a-4d1b-b95d-a4efb1ba5372" />
+        <dataset postid="c2a160ba-e3f8-4464-9912-c05c3d220549" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="2" finishedClasses="1" remainderClasses="1" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;OBJID=c2a160ba-e3f8-4464-9912-c05c3d220549" />
+      </detailData>
+    </byClasses>
+    <byPersons>
+      <postData>
+        <dataset postid="60b639d8-c659-4269-8e85-041dc53aa35b" label="转岗" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset postid="fcb018c1-92cf-4662-b74e-952dac086f55" label="转岗人员" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset postid="2677d379-cd8a-4d1b-b95d-a4efb1ba5372" label="上岗" planPersons="10" finishedPersons="4" planBySchedule="1" finishedBySchedule="10" remainderBySchedule="9" FinishSchedule="10" FinishRadio="10" />
+        <dataset postid="c2a160ba-e3f8-4464-9912-c05c3d220549" label="上岗" planPersons="24" finishedPersons="3" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+        <dataset postid="a87071ea-8c05-425b-b6fc-ee19dc8cf79a" label="转岗" planPersons="0" finishedPersons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="0" />
+      </postData>
+      <detailData>
+        <dataset postid="2677d379-cd8a-4d1b-b95d-a4efb1ba5372" order="3" subCorpid="109" subCorpname="管道分公司" planPersons="10" finishedPersons="4" remainderPersons="6" planBySchedule="1" finishedBySchedule="10" remainderBySchedule="9" FinishSchedule="10" FinishRadio="40" />
+        <dataset postid="c2a160ba-e3f8-4464-9912-c05c3d220549" order="4" subCorpid="109" subCorpname="管道分公司" planPersons="24" finishedPersons="3" remainderPersons="21" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" FinishRadio="12" />
+      </detailData>
+    </byPersons>
+  </byPostData>
+  <byObject>
+    <byClasses>
+      <objectData objectid="09a462a1-43c1-4c48-9a45-0464c14a5bca" objectLabel="外来务工人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="de3a0567-2860-49e4-ac3f-12861bd9886f" objectLabel="特种作业人员-厂内驾驶员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="83f41072-a829-4004-b3c5-18636b0c3979" objectLabel="测试" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="d8068907-1090-4606-83cb-2c36e736f279" objectLabel="处级（厂级）领导" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="f2cfc932-3bae-489b-8959-3f28931ae4b4" objectLabel="安全环保处（科）长" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="40a44b49-c0b7-4528-90ab-43e0618c568c" objectLabel="注册安全工程师" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="b3ff821c-8c97-4872-9b83-4f2a266dc90e" objectLabel="特种作业人员-电梯工" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="ced4e1c8-70fb-4014-89fa-5aae0d922334" objectLabel="特种作业人员-焊工" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="6f850e4d-d0f0-4189-a11e-62346ca58f88" objectLabel="岗位操作人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="8e98e022-0aee-41aa-8f96-6bfaac674586" objectLabel="消防管理人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="1f055c35-ddcb-4fa2-8e52-71b3c2c79fbd" objectLabel="环境统计人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="e4d314f9-138c-4e9d-be66-7f8cbc7f35c7" objectLabel="新进厂人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="59b1ea32-53d7-4020-b9fd-819ab1efd084" objectLabel="其他管理人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="72074934-db57-440d-aa36-892cdbfcbb5b" objectLabel="其他" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" objectLabel="承包商负责人" planClasses="6" finishedClasses="4" remainderClasses="2" finishedRatio="100" averageFishedRatio="0" calendarRatio="0">
+        <dataset objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="6" finishedClasses="4" remainderClasses="2" planBySchedule="6" finishedBySchedule="6" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;OBJID=c37f7462-c2f6-4885-89e8-8c2f9d13c45d" />
+        <dataset objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" order="8" subCorpid="109010" subCorpname="荆门输油处" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109010&amp;OBJID=c37f7462-c2f6-4885-89e8-8c2f9d13c45d" />
+        <dataset objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" order="12" subCorpid="109014" subCorpname="天津输油（管理）处" planClasses="2" finishedClasses="1" remainderClasses="1" planBySchedule="2" finishedBySchedule="2" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109014&amp;OBJID=c37f7462-c2f6-4885-89e8-8c2f9d13c45d" />
+      </objectData>
+      <objectData objectid="dadff9ab-4dae-4db5-a138-9bb04841f5f0" objectLabel="HSE综合管理人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="8a73cb27-a31b-49e1-97de-b855715b6521" objectLabel="特种作业人员-其他" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="4e794e0e-733c-4a33-9988-b95c14f21d76" objectLabel="环保管理人员" planClasses="2" finishedClasses="1" remainderClasses="1" finishedRatio="100" averageFishedRatio="0" calendarRatio="0">
+        <dataset objectid="4e794e0e-733c-4a33-9988-b95c14f21d76" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="2" finishedClasses="1" remainderClasses="1" planBySchedule="2" finishedBySchedule="2" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;OBJID=4e794e0e-733c-4a33-9988-b95c14f21d76" />
+        <dataset objectid="4e794e0e-733c-4a33-9988-b95c14f21d76" order="8" subCorpid="109010" subCorpname="荆门输油处" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109010&amp;OBJID=4e794e0e-733c-4a33-9988-b95c14f21d76" />
+      </objectData>
+      <objectData objectid="91b6616c-c79a-4ea3-999f-be369e7ea045" objectLabel="特种作业人员-起重工" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="4ae0be5c-7b5e-4b33-a4d7-c34676b1e991" objectLabel="新员工" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="c941a8bb-fa2e-418b-a1cd-ce621ba0ffab" objectLabel="注册安全工程师" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="e9b4e3e2-5937-4e50-ac75-d38ccf837784" objectLabel="安全管理人员" planClasses="5" finishedClasses="4" remainderClasses="1" finishedRatio="100" averageFishedRatio="0" calendarRatio="0">
+        <dataset objectid="e9b4e3e2-5937-4e50-ac75-d38ccf837784" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="5" finishedClasses="4" remainderClasses="1" planBySchedule="5" finishedBySchedule="5" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;OBJID=e9b4e3e2-5937-4e50-ac75-d38ccf837784" />
+        <dataset objectid="e9b4e3e2-5937-4e50-ac75-d38ccf837784" order="6" subCorpid="109008" subCorpname="日照输油处" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109008&amp;OBJID=e9b4e3e2-5937-4e50-ac75-d38ccf837784" />
+      </objectData>
+      <objectData objectid="e5200cbf-de90-446c-b6fa-df47a6bf7caf" objectLabel="职业卫生管理人员" planClasses="1" finishedClasses="1" remainderClasses="0" finishedRatio="100" averageFishedRatio="0" calendarRatio="0">
+        <dataset objectid="e5200cbf-de90-446c-b6fa-df47a6bf7caf" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;OBJID=e5200cbf-de90-446c-b6fa-df47a6bf7caf" />
+      </objectData>
+      <objectData objectid="123c5871-c081-43d8-b4ae-e1b1c063c9ef" objectLabel="新员工" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="355bf364-005e-4f75-bb5f-e914ac2fe6d7" objectLabel="全员" planClasses="1" finishedClasses="1" remainderClasses="0" finishedRatio="100" averageFishedRatio="0" calendarRatio="0">
+        <dataset objectid="355bf364-005e-4f75-bb5f-e914ac2fe6d7" order="1" subCorpid="109" subCorpname="管道分公司" planClasses="1" finishedClasses="1" remainderClasses="0" planBySchedule="1" finishedBySchedule="1" remainderBySchedule="0" FinishSchedule="100" finishedRatio="100" url="/Common/ListForm.aspx?ModelID=5440E5EA097EA94DA6576DE57AD6D5DC&amp;U_YEAR=2014&amp;Report=true&amp;ORGANISEUNITCODE=109&amp;OBJID=355bf364-005e-4f75-bb5f-e914ac2fe6d7" />
+      </objectData>
+      <objectData objectid="42e7395e-1719-445b-a6c6-ee4c899dd7ee" objectLabel="特种作业人员" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="143ee74e-7fb3-4d54-9aaa-f6476b783b82" objectLabel="监护工" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="7118498a-1450-41c0-9b8f-f8cda2643622" objectLabel="公司领导" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+      <objectData objectid="2c060f32-0836-442a-8d13-fa044b7ceb3d" objectLabel="特种作业人员-进网电工" planClasses="0" finishedClasses="0" remainderClasses="0" finishedRatio="0" averageFishedRatio="0" calendarRatio="0" />
+    </byClasses>
+    <byPersons>
+      <objectData objectid="09a462a1-43c1-4c48-9a45-0464c14a5bca" objectLabel="外来务工人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="de3a0567-2860-49e4-ac3f-12861bd9886f" objectLabel="特种作业人员-厂内驾驶员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="83f41072-a829-4004-b3c5-18636b0c3979" objectLabel="测试" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="d8068907-1090-4606-83cb-2c36e736f279" objectLabel="处级（厂级）领导" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="f2cfc932-3bae-489b-8959-3f28931ae4b4" objectLabel="安全环保处（科）长" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="40a44b49-c0b7-4528-90ab-43e0618c568c" objectLabel="注册安全工程师" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="b3ff821c-8c97-4872-9b83-4f2a266dc90e" objectLabel="特种作业人员-电梯工" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="ced4e1c8-70fb-4014-89fa-5aae0d922334" objectLabel="特种作业人员-焊工" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="6f850e4d-d0f0-4189-a11e-62346ca58f88" objectLabel="岗位操作人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="8e98e022-0aee-41aa-8f96-6bfaac674586" objectLabel="消防管理人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="1f055c35-ddcb-4fa2-8e52-71b3c2c79fbd" objectLabel="环境统计人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="e4d314f9-138c-4e9d-be66-7f8cbc7f35c7" objectLabel="新进厂人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="59b1ea32-53d7-4020-b9fd-819ab1efd084" objectLabel="其他管理人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="72074934-db57-440d-aa36-892cdbfcbb5b" objectLabel="其他" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" objectLabel="承包商负责人" planPerson="859" finishedPerons="4" remainderPerons="855" planBySchedule="6" finishedBySchedule="859" remainderBySchedule="853" FinishSchedule="0" finishedRatio="0">
+        <dataset objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" order="15" subCorpid="109" subCorpname="管道分公司" planPerson="859" finishedPerons="4" remainderPerons="855" planBySchedule="6" finishedBySchedule="859" remainderBySchedule="853" FinishSchedule="0" finishedRatio="0" />
+        <dataset objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" order="15" subCorpid="109010" subCorpname="荆门输油处" planPerson="30" finishedPerons="2" remainderPerons="28" planBySchedule="1" finishedBySchedule="30" remainderBySchedule="29" FinishSchedule="3" finishedRatio="6" />
+        <dataset objectid="c37f7462-c2f6-4885-89e8-8c2f9d13c45d" order="15" subCorpid="109014" subCorpname="天津输油（管理）处" planPerson="805" finishedPerons="1" remainderPerons="804" planBySchedule="2" finishedBySchedule="805" remainderBySchedule="803" FinishSchedule="0" finishedRatio="0" />
+      </objectData>
+      <objectData objectid="dadff9ab-4dae-4db5-a138-9bb04841f5f0" objectLabel="HSE综合管理人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="8a73cb27-a31b-49e1-97de-b855715b6521" objectLabel="特种作业人员-其他" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="4e794e0e-733c-4a33-9988-b95c14f21d76" objectLabel="环保管理人员" planPerson="35" finishedPerons="3" remainderPerons="32" planBySchedule="2" finishedBySchedule="35" remainderBySchedule="33" FinishSchedule="5" finishedRatio="5">
+        <dataset objectid="4e794e0e-733c-4a33-9988-b95c14f21d76" order="18" subCorpid="109" subCorpname="管道分公司" planPerson="35" finishedPerons="3" remainderPerons="32" planBySchedule="2" finishedBySchedule="35" remainderBySchedule="33" FinishSchedule="5" finishedRatio="8" />
+        <dataset objectid="4e794e0e-733c-4a33-9988-b95c14f21d76" order="18" subCorpid="109010" subCorpname="荆门输油处" planPerson="23" finishedPerons="3" remainderPerons="20" planBySchedule="1" finishedBySchedule="23" remainderBySchedule="22" FinishSchedule="4" finishedRatio="13" />
+      </objectData>
+      <objectData objectid="91b6616c-c79a-4ea3-999f-be369e7ea045" objectLabel="特种作业人员-起重工" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="4ae0be5c-7b5e-4b33-a4d7-c34676b1e991" objectLabel="新员工" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="c941a8bb-fa2e-418b-a1cd-ce621ba0ffab" objectLabel="注册安全工程师" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="e9b4e3e2-5937-4e50-ac75-d38ccf837784" objectLabel="安全管理人员" planPerson="279" finishedPerons="15" remainderPerons="264" planBySchedule="5" finishedBySchedule="279" remainderBySchedule="274" FinishSchedule="1" finishedRatio="1">
+        <dataset objectid="e9b4e3e2-5937-4e50-ac75-d38ccf837784" order="22" subCorpid="109" subCorpname="管道分公司" planPerson="279" finishedPerons="15" remainderPerons="264" planBySchedule="5" finishedBySchedule="279" remainderBySchedule="274" FinishSchedule="1" finishedRatio="5" />
+        <dataset objectid="e9b4e3e2-5937-4e50-ac75-d38ccf837784" order="22" subCorpid="109008" subCorpname="日照输油处" planPerson="121" finishedPerons="2" remainderPerons="119" planBySchedule="1" finishedBySchedule="121" remainderBySchedule="120" FinishSchedule="0" finishedRatio="1" />
+      </objectData>
+      <objectData objectid="e5200cbf-de90-446c-b6fa-df47a6bf7caf" objectLabel="职业卫生管理人员" planPerson="12" finishedPerons="1" remainderPerons="11" planBySchedule="1" finishedBySchedule="12" remainderBySchedule="11" FinishSchedule="8" finishedRatio="8">
+        <dataset objectid="e5200cbf-de90-446c-b6fa-df47a6bf7caf" order="23" subCorpid="109" subCorpname="管道分公司" planPerson="12" finishedPerons="1" remainderPerons="11" planBySchedule="1" finishedBySchedule="12" remainderBySchedule="11" FinishSchedule="8" finishedRatio="8" />
+      </objectData>
+      <objectData objectid="123c5871-c081-43d8-b4ae-e1b1c063c9ef" objectLabel="新员工" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="355bf364-005e-4f75-bb5f-e914ac2fe6d7" objectLabel="全员" planPerson="123" finishedPerons="0" remainderPerons="123" planBySchedule="1" finishedBySchedule="123" remainderBySchedule="122" FinishSchedule="0" finishedRatio="0">
+        <dataset objectid="355bf364-005e-4f75-bb5f-e914ac2fe6d7" order="25" subCorpid="109" subCorpname="管道分公司" planPerson="123" finishedPerons="0" remainderPerons="123" planBySchedule="1" finishedBySchedule="123" remainderBySchedule="122" FinishSchedule="0" finishedRatio="0" />
+      </objectData>
+      <objectData objectid="42e7395e-1719-445b-a6c6-ee4c899dd7ee" objectLabel="特种作业人员" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="143ee74e-7fb3-4d54-9aaa-f6476b783b82" objectLabel="监护工" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="7118498a-1450-41c0-9b8f-f8cda2643622" objectLabel="公司领导" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+      <objectData objectid="2c060f32-0836-442a-8d13-fa044b7ceb3d" objectLabel="特种作业人员-进网电工" planPerson="0" finishedPerons="0" remainderPerons="0" planBySchedule="0" finishedBySchedule="0" remainderBySchedule="0" FinishSchedule="0" finishedRatio="0" />
+    </byPersons>
+  </byObject>
+</model>

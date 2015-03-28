@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" xmlns:views="views.*" creationComplete="titlewindow1_creationCompleteHandler(event)"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="600" close="titlewindow1_closeHandler(event)" skinClass="skins.popWinStyle" styleName="tabContentBox">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			import mx.managers.PopUpManager;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var columnMulitDSConf1_1:ArrayCollection;
+			[Bindable]
+			private var columnMulitDS1_1:ArrayCollection;
+			[Bindable]
+			private var columnMulitDSConf1_2:ArrayCollection;
+			[Bindable]
+			private var columnMulitDS1_2:ArrayCollection;
+			[Bindable]
+			private var columnMulitDSConf1_3:ArrayCollection;
+			[Bindable]
+			private var columnMulitDS1_3:ArrayCollection;
+			private var hseDataXML:XML=new XML();
+			
+			[Bindable]
+			public var cColor4:SolidColor=views.CustomColor.CSolidColor[3];
+			[Bindable]
+			public var cColor5:SolidColor=views.CustomColor.CSolidColor[5];
+			[Bindable]
+			public var cColor2:SolidColor=views.CustomColor.CSolidColor[2];
+			[Bindable]
+			private var _title1_lebel:String;
+			[Bindable]
+			private var _title2_lebel:String;
+			[Bindable]
+			private var _title3_lebel:String;
+			
+			public function get title1_lebel():String
+			{
+				return _title1_lebel;
+			}
+			public function set title1_lebel(value:String):void
+			{
+				_title1_lebel = value;
+			}
+			public function get title2_lebel():String
+			{
+				return _title2_lebel;
+			}
+			public function set title2_lebel(value:String):void
+			{
+				_title2_lebel = value;
+			}
+			public function get title3_lebel():String
+			{
+				return _title3_lebel;
+			}
+			public function set title3_lebel(value:String):void
+			{
+				_title3_lebel = value;
+			}
+			public function get ColumnMulitDS1_1():ArrayCollection
+			{
+				return columnMulitDS1_1;
+			}			
+			public function set ColumnMulitDS1_1(value:ArrayCollection):void
+			{
+				columnMulitDS1_1 = value;
+			}
+			public function get ColumnMulitDS1_2():ArrayCollection
+			{
+				return columnMulitDS1_2;
+			}			
+			public function set ColumnMulitDS1_2(value:ArrayCollection):void
+			{
+				columnMulitDS1_2 = value;
+			}
+			public function get ColumnMulitDS1_3():ArrayCollection
+			{
+				return columnMulitDS1_3;
+			}			
+			public function set ColumnMulitDS1_3(value:ArrayCollection):void
+			{
+				columnMulitDS1_3 = value;
+			}
+			public function get HseDataXML():XML
+			{
+				return hseDataXML;
+			}			
+			public function set HseDataXML(value:XML):void
+			{
+				hseDataXML = value;
+			}
+			
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				// TODO Auto-generated method stub
+				PopUpManager.removePopUp(this);  
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+			}
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				columnMulitDSConf1_1=new ArrayCollection([
+					{name:"万元",field:"vol1",axis:"left"}
+				]);
+//				columnMulitDS1_1=new ArrayCollection([
+//					{label:"产值",vol1:48059},
+//					{label:"利润",vol1:11898},
+//					{label:"减免税",vol1:1256},
+//				]);
+				
+				columnMulitDSConf1_2=new ArrayCollection([
+					{name:"万元",field:"vol1",color:"0x00B050"},
+				]);
+//				columnMulitDS1_2=new ArrayCollection([
+//					{label:"产值",vol1:11.07},
+//					{label:"利润",vol1:15.69},
+//					{label:"减免税",vol1:6.72},
+//				]);
+				
+				columnMulitDSConf1_3=new ArrayCollection([
+					{name:"万元",field:"vol1",color:"0xC40202"},
+				]);
+//				columnMulitDS1_3=new ArrayCollection([
+//					{label:2008,vol1:925},
+//					{label:2009,vol1:978},
+//					{label:2010,vol1:1037},
+//					{label:2011,vol1:1109},
+//					{label:2012,vol1:1256}
+//				]);
+			}
+			
+			protected function columnmulti1_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				var sel:String=String(item.label);
+				_title3_lebel=sel;
+				downChart.AxisLeftUnit="";
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList2:XMLList=hseDataXML.dataset;
+					if(tmpList2.length()>0)
+					{
+						for each (var xml22:XML in tmpList2) {  
+							var obj2:Object=new Object();
+							switch(sel){
+								case "产值":
+									obj2={label:xml22.@label,vol1:xml22.@outputValueNumber};
+									break;
+								case "利润":
+									obj2={label:xml22.@label,vol1:xml22.@profitNumber};
+									break;
+								case "减免税":
+									obj2={label:xml22.@label,vol1:xml22.@saveTaxNumber};
+									break;
+							}
+							tmpArrayCollection2.addItem(obj2);
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				columnMulitDS1_3=tmpArrayCollection2;
+			}
+			
+			protected function columnmulti2_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				var sel:String=String(item.label);
+				_title3_lebel=sel+"同比变化";
+				downChart.AxisLeftUnit="%";
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList2:XMLList=hseDataXML.dataset;
+					if(tmpList2.length()>0)
+					{
+						for each (var xml22:XML in tmpList2) {  
+							var obj2:Object=new Object();
+							switch(sel){
+								case "产值":
+									obj2={label:xml22.@label,vol1:xml22.@y2yOutputValueRatio};
+									break;
+								case "利润":
+									obj2={label:xml22.@label,vol1:xml22.@y2yProfitRatio};
+									break;
+								case "减免税":
+									obj2={label:xml22.@label,vol1:xml22.@y2ysaveTaxRatio};
+									break;
+							}
+							tmpArrayCollection2.addItem(obj2);
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				columnMulitDS1_3=tmpArrayCollection2;
+			}
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupMX(selYear:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "中国石化"+selYear+ "年资源综合利用"+_title3_lebel+"情况 计量单位：万元";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"板块",dataField:"label",width:"90",textAlign:"left",sortable:true,draggable:true},
+					{headerText:"产值",dataField:"vol1",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"利润",dataField:"vol2",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"减免税",dataField:"vol3",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"环比产值变化率",dataField:"vol4",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"环比利润变化率",dataField:"vol5",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"环比减免税变化率",dataField:"vol6",width:"40",textAlign:"center",sortable:true,draggable:true},
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.dataset.(@yearid==selYear);
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml2:XMLList=xml.plateData;
+							for each (var xml3:XML in xml2) {  
+								var obj:Object={label:xml3.@label,
+									vol1:Number(xml3.@outputValueNumber),
+									vol2:Number(xml3.@profitNumber),
+									vol3:Number(xml3.@saveTaxNumber),
+									vol4:Number(xml3.@y2yOutputValueRatio),
+									vol5:Number(xml3.@y2yProfitRatio),
+									vol6:Number(xml3.@y2ysaveTaxRatio)
+								};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this.parent, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			protected function downChart_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupMX(item.yearid);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:VGroup width="100%" height="100%" horizontalAlign="center">
+		<s:HGroup width="100%" height="350">
+			<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+				<views:ColumnMulti AxisLeftTiltle="万元" ShowDataLabel="{showDataLabel}" id="topLeftChart" width="100%" height="100%" CSolidColor="{cColor4}" 
+									title="完成情况"	showTitle="true" showLegend="false" DataSourceConf="{columnMulitDSConf1_1}" DataSource="{columnMulitDS1_1}" PopupClick="columnmulti1_PopupClickHandler(event)"/>
+			</s:BorderContainer>
+			<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+				<views:ColumnMulti AxisLeftTiltle="万元" ShowDataLabel="{showDataLabel}" id="topRightChart" width="100%" height="100%" 
+									title="同比变化情况"	showTitle="true" AxisLeftUnit="%" showLegend="false" DataSourceConf="{columnMulitDSConf1_2}" DataSource="{columnMulitDS1_2}" PopupClick="columnmulti2_PopupClickHandler(event)"/>
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<views:ColumnMulti AxisLeftTiltle="万元" ShowDataLabel="{showDataLabel}" id="downChart" width="100%" height="100%"
+								title="中石化连续五年资源综合利用{_title3_lebel}情况"	showTitle="true" showLegend="false" DataSourceConf="{columnMulitDSConf1_3}" DataSource="{columnMulitDS1_3}" PopupDoubleClick="downChart_PopupDoubleClickHandler(event)"/>
+		</s:BorderContainer>
+	</s:VGroup>
+</s:TitleWindow>

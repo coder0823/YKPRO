@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：企业仪表盘-教育培训
+	* 参数：年度（2013）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			
+			import events.PopupEvent;
+			
+			import skins.ButtonBarSkin;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data_agy/traindata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   localXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			[Bindable]
+			private var tab2_title:String="按级别完成情况";
+			[Bindable]
+			private var tab3_title:String="按上岗转岗完成情况";
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String="教育培训按班次完成情况";
+			[Bindable]
+			private var tab1_topRightTitle:String="教育培训按班次完成率";
+			[Bindable]
+			private var tab1_downLeftTitle:String="教育培训按人次完成情况";
+			[Bindable]
+			private var tab1_downRightTitle:String="教育培训按人次完成率";
+			
+			[Bindable]
+			private var tab2_topLeftTitle:String="分类培训按班次完成情况构成图";
+			[Bindable]
+			private var tab2_topRightTitle:String="地方政府培训班次完成率";
+			[Bindable]
+			private var tab2_downLeftTitle:String="分类培训按人次完成情况构成图";
+			[Bindable]
+			private var tab2_downRightTitle:String="地方政府培训人次完成率";
+			
+			[Bindable]
+			private var tab3_topLeftTitle:String="按上岗转岗按班次完成情况构成图";
+			[Bindable]
+			private var tab3_topRightTitle:String="上岗培训按班次完成率";
+			[Bindable]
+			private var tab3_downLeftTitle:String="按上岗转岗按人次完成情况构成图";
+			[Bindable]
+			private var tab3_downRightTitle:String="上岗培训按人次完成率";
+			
+			
+			[Bindable]
+			private var tab1_topLeft_plan:Number=0;
+			[Bindable]
+			private var tab1_topLeft_act:Number=0;
+			[Bindable]
+			private var tab1_topLeft_sur:Number=0;
+			[Bindable]
+			private var tab1_topLeft_rate:Number=0;
+			[Bindable]
+			private var tab1_topRight_rate:Number=0;
+			
+			[Bindable]
+			private var tab1_downLeft_plan:Number=0;
+			[Bindable]
+			private var tab1_downLeft_act:Number=0;
+			[Bindable]
+			private var tab1_downLeft_sur:Number=0;
+			[Bindable]
+			private var tab1_downLeft_rate:Number=0;
+			[Bindable]
+			private var tab1_downRight_rate:Number=0;
+			
+			
+			[Bindable]
+			private var tab2_topRight_rate:Number=0;
+			[Bindable]
+			private var tab2_downRight_rate:Number=0;
+			[Bindable]
+			private var tab2_topRight_kind:String="";
+			[Bindable]
+			private var tab2_downRight_kind:String="";
+			
+			[Bindable]
+			private var tab3_topRight_rate:Number=0;
+			[Bindable]
+			private var tab3_downRight_rate:Number=0;
+			[Bindable]
+			private var tab3_topRight_kind:String="";
+			[Bindable]
+			private var tab3_downRight_kind:String="";
+			
+			[Bindable]
+			private var tab2_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topLeftDS2:ArrayCollection;
+			[Bindable]
+			private var tab2_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab2_downLeftDS2:ArrayCollection;
+			
+			[Bindable]
+			private var tab3_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab3_topLeftDS2:ArrayCollection;
+			[Bindable]
+			private var tab3_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab3_downLeftDS2:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					var obj:Object=new Object();
+					obj.name=i+"年";
+					obj.value=i;
+					dateArrCol.addItem(obj);
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				
+				
+				
+				tab2_topLeftDS=new ArrayCollection();
+				tab2_topLeftDS2=new ArrayCollection();
+				tab2_downLeftDS=new ArrayCollection();
+				tab2_downLeftDS2=new ArrayCollection();
+				
+				tab3_topLeftDS=new ArrayCollection();
+				tab3_topLeftDS2=new ArrayCollection();
+				tab3_downLeftDS=new ArrayCollection();
+				tab3_downLeftDS2=new ArrayCollection();
+				
+				
+				refreshData();
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "localXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.remoteMethod('6','',dateEnd.selectedItem.value + "-01");
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				getTab1_topLeftRightDS();		
+				getTab1_downLeftRightDS();
+				
+				getTab2_topRightDS("");	
+				getTab2_downRightDS("");	
+				
+				getTab3_topRightDS("");	
+				getTab3_downRightDS("");	
+				
+				tab2_topLeftDS=getTab2_topLeftDS();		
+				tab2_topLeftDS2=getTab2_topLeftDS2();	
+				tab2_downLeftDS=getTab2_downLeftDS();
+				tab2_downLeftDS2=getTab2_downLeftDS2();
+				
+				tab3_topLeftDS=getTab3_topLeftDS();		
+				tab3_topLeftDS2=getTab3_topLeftDS2();	
+				tab3_downLeftDS=getTab3_downLeftDS();
+				tab3_downLeftDS2=getTab3_downLeftDS2();
+				
+				executeBindTab1Title();
+				executeBindTab2Title();
+				executeBindTab3Title();
+				
+			}
+			
+			
+			
+			
+			private function executeBindTab1Title():void{
+				tab1_topLeftTitle=this.dateEnd.selectedItem.value+"年培训按班次完成情况";
+				tab1_topRightTitle=this.dateEnd.selectedItem.value+"年培训按班次完成率";
+				tab1_downLeftTitle=this.dateEnd.selectedItem.value+"年培训按人次完成情况";
+				tab1_downRightTitle=this.dateEnd.selectedItem.value+"年按人次完成率";
+			}
+			private function executeBindTab2Title():void{
+				tab2_topLeftTitle=this.dateEnd.selectedItem.value+"年分类培训按班次完成情况构成图";
+				tab2_topRightTitle=this.dateEnd.selectedItem.value+"年"+tab2_topRight_kind+"培训班次完成率";
+				tab2_downLeftTitle=this.dateEnd.selectedItem.value+"年分类培训按人次完成情况构成图";
+				tab2_downRightTitle=this.dateEnd.selectedItem.value+"年"+tab2_downRight_kind+"培训人次完成率";
+			}
+			private function executeBindTab3Title():void{
+				tab3_topLeftTitle=this.dateEnd.selectedItem.value+"年按上岗转岗按班次完成情况构成图";
+				tab3_topRightTitle=this.dateEnd.selectedItem.value+"年"+tab3_topRight_kind+"培训按班次完成率";
+				tab3_downLeftTitle=this.dateEnd.selectedItem.value+"年按上岗转岗按人次完成情况构成图";
+				tab3_downRightTitle=this.dateEnd.selectedItem.value+"年"+tab3_downRight_kind+"培训按人次完成率";
+			}
+			
+			private function getTab1_topLeftRightDS():void{
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.overallData.byClasses;
+					if(tmpList.length()>0)
+					{
+						var xml:XML=tmpList[0];
+						var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+						tab1_topLeft_plan=xml.@planBySchedule;
+						tab1_topLeft_act=xml.@finishedBySchedule;
+						tab1_topLeft_sur=xml.@remainderBySchedule;
+						tab1_topLeft_rate=xml.@FinishSchedule;//rate;
+						tab1_topRight_rate=tab1_topLeft_rate;
+						
+						//格式化数据
+						tab1_topLeft_plan=Number(tab1_topLeft_plan)<0?0:tab1_topLeft_plan;
+						tab1_topLeft_act=Number(tab1_topLeft_act)<0?0:tab1_topLeft_act;
+						tab1_topLeft_sur=Number(tab1_topLeft_sur)<0?0:tab1_topLeft_sur;
+						tab1_topLeft_rate=Number(tab1_topLeft_rate)>100?100:tab1_topLeft_rate;
+						tab1_topRight_rate=Number(tab1_topRight_rate)>100?100:tab1_topRight_rate;
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+			}
+			
+			private function getTab1_downLeftRightDS():void{
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.overallData.byPersons;
+					if(tmpList.length()>0)
+					{
+						var xml:XML=tmpList[0];
+						var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+						tab1_downLeft_plan=xml.@planBySchedule;
+						tab1_downLeft_act=xml.@finishedBySchedule;
+						tab1_downLeft_sur=xml.@remainderBySchedule;
+						tab1_downLeft_rate=xml.@FinishSchedule;//rate;
+						tab1_downRight_rate=tab1_downLeft_rate;
+						
+						//格式化数据
+						tab1_downLeft_plan=Number(tab1_downLeft_plan)<0?0:tab1_downLeft_plan;
+						tab1_downLeft_act=Number(tab1_downLeft_act)<0?0:tab1_downLeft_act;
+						tab1_downLeft_sur=Number(tab1_downLeft_sur)<0?0:tab1_downLeft_sur;
+						tab1_downLeft_rate=Number(tab1_downLeft_rate)>100?100:tab1_downLeft_rate;
+						tab1_downRight_rate=Number(tab1_downRight_rate)>100?100:tab1_downRight_rate;
+						
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+			}
+			
+			private function getTab2_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byKindData.byClasses.compositionData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object= new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@planBySchedule;
+							obj.kindid=xml.@kindid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab2_topLeftDS2():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byKindData.byClasses.compositionData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object=new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@finishedBySchedule;
+							obj.kindid=xml.@kindid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab2_topRightDS(kindid:String):void{
+				try{
+					var tmpList:XMLList;
+					if(kindid==""){
+						tmpList=hseDataXML.byKindData.byClasses.compositionData.dataset;
+					}else{
+						tmpList=hseDataXML.byKindData.byClasses.compositionData.dataset.(@kindid==kindid);
+					}
+					if(tmpList.length()>0)
+					{
+						var xml:XML=tmpList[0];
+						var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+						tab2_topRight_rate=xml.@FinishSchedule;//rate;
+						tab2_topRight_kind=xml.@label;
+						
+						//格式化数据
+						tab2_topRight_rate=Number(tab2_topRight_rate)>100?100:tab2_topRight_rate;
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+			}
+			private function getTab2_downLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byKindData.byPersons.kindData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object=new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@planBySchedule;
+							obj.kindid=xml.@kindid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab2_downLeftDS2():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byKindData.byPersons.kindData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object=new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@finishedBySchedule;
+							obj.kindid=xml.@kindid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab2_downRightDS(kindid:String):void{
+				try{
+					var tmpList:XMLList;
+					if(kindid==""){
+						tmpList=hseDataXML.byKindData.byPersons.kindData.dataset;
+					}else{
+						tmpList=hseDataXML.byKindData.byPersons.kindData.dataset.(@kindid==kindid);
+					}
+					if(tmpList.length()>0)
+					{
+						var xml:XML=tmpList[0];
+						var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+						tab2_downRight_rate=xml.@FinishSchedule;//rate;
+						tab2_downRight_kind=xml.@label;
+						
+						//格式化数据
+						tab2_downRight_rate=Number(tab2_downRight_rate)>100?100:tab2_downRight_rate;
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+			}
+			private function getTab3_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.byPostData.byClasses.postData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object=new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@planBySchedule;
+							obj.postid=xml.@postid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab3_topLeftDS2():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.byPostData.byClasses.postData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object=new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@finishedBySchedule;
+							obj.postid=xml.@postid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab3_topRightDS(postid:String):void{
+				try{
+					var tmpList:XMLList;
+					if(postid==""){
+						tmpList=hseDataXML.byPostData.byClasses.postData.dataset;
+					}else{
+						tmpList=hseDataXML.byPostData.byClasses.postData.dataset.(@postid==postid);
+					}
+					if(tmpList.length()>0)
+					{
+						var xml:XML=tmpList[0];
+						var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+						tab3_topRight_rate=xml.@FinishSchedule;//rate;
+						tab3_topRight_kind=xml.@label;
+						
+						//格式化数据
+						tab3_topRight_rate=Number(tab3_topRight_rate)>100?100:tab3_topRight_rate;
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+			}
+			private function getTab3_downLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.byPostData.byPersons.postData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object=new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@planBySchedule;
+							obj.postid=xml.@postid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab3_downLeftDS2():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.byPostData.byPersons.postData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object=new Object();
+							obj.label=xml.@label;
+							obj.value=xml.@finishedBySchedule;
+							obj.postid=xml.@postid;
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab3_downRightDS(postid:String):void{
+				try{
+					var tmpList:XMLList;
+					if(postid==""){
+						tmpList=hseDataXML.byPostData.byPersons.postData.dataset;
+					}else{
+						tmpList=hseDataXML.byPostData.byPersons.postData.dataset.(@postid==postid);
+					}
+					if(tmpList.length()>0)
+					{
+						var xml:XML=tmpList[0];
+						var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+						tab3_downRight_rate=xml.@FinishSchedule;//rate;
+						tab3_downRight_kind=xml.@label;
+						
+						//格式化数据
+						tab3_downRight_rate=Number(tab3_downRight_rate)>100?100:tab3_downRight_rate;
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+			}
+			
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupTab1_top():void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "总体情况->按班次 "+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpname",width:"90",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"完成率(%)",dataField:"FinishSchedule",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"计划",dataField:"planBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"已完成",dataField:"finishedBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"未完成",dataField:"remainderBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.overallData.byClasses.dataset;
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpname==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							var rate_total:Number=Number(xml_total[0].@planBySchedule)==0?0:Number((Number(xml_total[0].@finishedBySchedule)*100/Number(xml_total[0].@planBySchedule)).toFixed(2));
+							var obj_total:Object={order:1,
+								subCorpname:xml_total[0].@subCorpname,
+									FinishSchedule:xml_total[0].@FinishSchedule,//rate_total,
+								planBySchedule:Number(xml_total[0].@planBySchedule),
+								finishedBySchedule:Number(xml_total[0].@finishedBySchedule),
+								remainderBySchedule:Number(xml_total[0].@remainderBySchedule),
+								index:1
+							};	
+							
+							//格式化数据
+							obj_total.planBySchedule=Number(obj_total.planBySchedule)<0?0:obj_total.planBySchedule;
+							obj_total.finishedBySchedule=Number(obj_total.finishedBySchedule)<0?0:obj_total.finishedBySchedule;
+							obj_total.remainderBySchedule=Number(obj_total.remainderBySchedule)<0?0:obj_total.remainderBySchedule;
+							obj_total.FinishSchedule=Number(obj_total.FinishSchedule)>100?100:obj_total.FinishSchedule;
+							
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						
+						
+						tmpList=tmpList.(@subCorpname!=dept);
+						var index:int=2;
+						for each (var xml:XML in tmpList) {  
+							var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+							var obj:Object={order:xml.@order,
+								subCorpname:xml.@subCorpname,
+								FinishSchedule:xml.@FinishSchedule,//rate,
+								planBySchedule:Number(xml.@planBySchedule),
+								finishedBySchedule:Number(xml.@finishedBySchedule),
+								remainderBySchedule:Number(xml.@remainderBySchedule),
+								index:index
+							};
+							
+							//格式化数据
+							obj.planBySchedule=Number(obj.planBySchedule)<0?0:obj.planBySchedule;
+							obj.finishedBySchedule=Number(obj.finishedBySchedule)<0?0:obj.finishedBySchedule;
+							obj.remainderBySchedule=Number(obj.remainderBySchedule)<0?0:obj.remainderBySchedule;
+							obj.FinishSchedule=Number(obj.FinishSchedule)>100?100:obj.FinishSchedule;
+							
+							
+							tmpArrayCollection.addItem(obj);
+							index++;
+						} 
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("FinishSchedule",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab1_down():void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "总体情况->按人次 "+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpname",width:"90",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"完成率(%)",dataField:"FinishSchedule",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"计划",dataField:"planBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"已完成",dataField:"finishedBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"未完成",dataField:"remainderBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.overallData.byPersons.dataset;
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpname==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							var rate_total:Number=Number(xml_total[0].@planBySchedule)==0?0:Number((Number(xml_total[0].@finishedBySchedule)*100/Number(xml_total[0].@planBySchedule)).toFixed(2));
+							var obj_total:Object={order:1,
+								subCorpname:xml_total[0].@subCorpname,
+									FinishSchedule:xml_total[0].@FinishSchedule,//rate_total,
+									planBySchedule:Number(xml_total[0].@planBySchedule),
+									finishedBySchedule:Number(xml_total[0].@finishedBySchedule),
+									remainderBySchedule:Number(xml_total[0].@remainderBySchedule),
+									index:1
+							};
+							
+							//格式化数据
+							obj_total.planBySchedule=Number(obj_total.planBySchedule)<0?0:obj_total.planBySchedule;
+							obj_total.finishedBySchedule=Number(obj_total.finishedBySchedule)<0?0:obj_total.finishedBySchedule;
+							obj_total.remainderBySchedule=Number(obj_total.remainderBySchedule)<0?0:obj_total.remainderBySchedule;
+							obj_total.FinishSchedule=Number(obj_total.FinishSchedule)>100?100:obj_total.FinishSchedule;
+							
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						
+						tmpList=tmpList.(@subCorpname!=dept);
+						var index:int=2;
+						for each (var xml:XML in tmpList) {  
+							var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+							var obj:Object={order:xml.@order,
+								subCorpname:xml.@subCorpname,
+								FinishSchedule:xml.@FinishSchedule,//rate,
+								planBySchedule:Number(xml.@planBySchedule),
+								finishedBySchedule:Number(xml.@finishedBySchedule),
+								remainderBySchedule:Number(xml.@remainderBySchedule),
+								index:index
+							};
+							
+							//格式化数据
+							obj.planBySchedule=Number(obj.planBySchedule)<0?0:obj.planBySchedule;
+							obj.finishedBySchedule=Number(obj.finishedBySchedule)<0?0:obj.finishedBySchedule;
+							obj.remainderBySchedule=Number(obj.remainderBySchedule)<0?0:obj.remainderBySchedule;
+							obj.FinishSchedule=Number(obj.FinishSchedule)>100?100:obj.FinishSchedule;
+							
+							tmpArrayCollection.addItem(obj);
+							index++;
+						} 
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("FinishSchedule",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab2_top(kindid:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "按级别完成情况->按班次 "+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpname",width:"90",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"完成率(%)",dataField:"FinishSchedule",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"计划",dataField:"planBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"已完成",dataField:"finishedBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"未完成",dataField:"remainderBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.byKindData.byClasses.detailData.dataset.(@kindid==kindid);
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpname==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							var rate_total:Number=Number(xml_total[0].@planBySchedule)==0?0:Number((Number(xml_total[0].@finishedBySchedule)*100/Number(xml_total[0].@planBySchedule)).toFixed(2));
+							var obj_total:Object={order:1,
+								subCorpname:xml_total[0].@subCorpname,
+									FinishSchedule:xml_total[0].@FinishSchedule,//rate_total,
+									planBySchedule:Number(xml_total[0].@planBySchedule),
+									finishedBySchedule:Number(xml_total[0].@finishedBySchedule),
+									remainderBySchedule:Number(xml_total[0].@remainderBySchedule),
+									index:1
+							};
+							
+							
+							//格式化数据
+							obj_total.planBySchedule=Number(obj_total.planBySchedule)<0?0:obj_total.planBySchedule;
+							obj_total.finishedBySchedule=Number(obj_total.finishedBySchedule)<0?0:obj_total.finishedBySchedule;
+							obj_total.remainderBySchedule=Number(obj_total.remainderBySchedule)<0?0:obj_total.remainderBySchedule;
+							obj_total.FinishSchedule=Number(obj_total.FinishSchedule)>100?100:obj_total.FinishSchedule;
+							
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						
+						tmpList=tmpList.(@subCorpname!=dept);
+						var index:int=2;
+						for each (var xml:XML in tmpList) {  
+							var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+							var obj:Object={order:xml.@order,
+								subCorpname:xml.@subCorpname,
+								FinishSchedule:xml.@FinishSchedule,//rate,
+								planBySchedule:Number(xml.@planBySchedule),
+								finishedBySchedule:Number(xml.@finishedBySchedule),
+								remainderBySchedule:Number(xml.@remainderBySchedule),
+								index:index
+							};
+							
+							//格式化数据
+							obj.planBySchedule=Number(obj.planBySchedule)<0?0:obj.planBySchedule;
+							obj.finishedBySchedule=Number(obj.finishedBySchedule)<0?0:obj.finishedBySchedule;
+							obj.remainderBySchedule=Number(obj.remainderBySchedule)<0?0:obj.remainderBySchedule;
+							obj.FinishSchedule=Number(obj.FinishSchedule)>100?100:obj.FinishSchedule;
+							
+							tmpArrayCollection.addItem(obj);
+							index++;
+						} 
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("FinishSchedule",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab2_down(kindid:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "按级别完成情况->按人次 "+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpname",width:"90",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"完成率(%)",dataField:"FinishSchedule",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"计划",dataField:"planBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"已完成",dataField:"finishedBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"未完成",dataField:"remainderBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.byKindData.byPersons.detailData.dataset.(@kindid==kindid);
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpname==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							var rate_total:Number=Number(xml_total[0].@planBySchedule)==0?0:Number((Number(xml_total[0].@finishedBySchedule)*100/Number(xml_total[0].@planBySchedule)).toFixed(2));
+							var obj_total:Object={order:1,
+								subCorpname:xml_total[0].@subCorpname,
+									FinishSchedule:xml_total[0].@FinishSchedule,//rate_total,
+									planBySchedule:Number(xml_total[0].@planBySchedule),
+									finishedBySchedule:Number(xml_total[0].@finishedBySchedule),
+									remainderBySchedule:Number(xml_total[0].@remainderBySchedule),
+									index:1
+							};
+							
+							//格式化数据
+							obj_total.planBySchedule=Number(obj_total.planBySchedule)<0?0:obj_total.planBySchedule;
+							obj_total.finishedBySchedule=Number(obj_total.finishedBySchedule)<0?0:obj_total.finishedBySchedule;
+							obj_total.remainderBySchedule=Number(obj_total.remainderBySchedule)<0?0:obj_total.remainderBySchedule;
+							obj_total.FinishSchedule=Number(obj_total.FinishSchedule)>100?100:obj_total.FinishSchedule;
+							
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						
+						tmpList=tmpList.(@subCorpname!=dept);
+						var index:int=2;
+						for each (var xml:XML in tmpList) {  
+							var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+							var obj:Object={order:xml.@order,
+								subCorpname:xml.@subCorpname,
+								FinishSchedule:xml.@FinishSchedule,//rate,
+								planBySchedule:Number(xml.@planBySchedule),
+								finishedBySchedule:Number(xml.@finishedBySchedule),
+								remainderBySchedule:Number(xml.@remainderBySchedule),
+								index:index
+							};
+							
+							//格式化数据
+							obj.planBySchedule=Number(obj.planBySchedule)<0?0:obj.planBySchedule;
+							obj.finishedBySchedule=Number(obj.finishedBySchedule)<0?0:obj.finishedBySchedule;
+							obj.remainderBySchedule=Number(obj.remainderBySchedule)<0?0:obj.remainderBySchedule;
+							obj.FinishSchedule=Number(obj.FinishSchedule)>100?100:obj.FinishSchedule;
+							
+							tmpArrayCollection.addItem(obj);
+							index++;
+						} 
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("FinishSchedule",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab3_top(postid:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "按上岗转岗完成情况->按班次 "+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpname",width:"90",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"完成率(%)",dataField:"FinishSchedule",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"计划",dataField:"planBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"已完成",dataField:"finishedBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"未完成",dataField:"remainderBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.byPostData.byClasses.detailData.dataset.(@postid==postid);
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpname==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							var rate_total:Number=Number(xml_total[0].@planBySchedule)==0?0:Number((Number(xml_total[0].@finishedBySchedule)*100/Number(xml_total[0].@planBySchedule)).toFixed(2));
+							var obj_total:Object={order:1,
+								subCorpname:xml_total[0].@subCorpname,
+									FinishSchedule:xml_total[0].@FinishSchedule,//rate_total,
+									planBySchedule:Number(xml_total[0].@planBySchedule),
+									finishedBySchedule:Number(xml_total[0].@finishedBySchedule),
+									remainderBySchedule:Number(xml_total[0].@remainderBySchedule),
+									index:1
+							};
+							
+							//格式化数据
+							obj_total.planBySchedule=Number(obj_total.planBySchedule)<0?0:obj_total.planBySchedule;
+							obj_total.finishedBySchedule=Number(obj_total.finishedBySchedule)<0?0:obj_total.finishedBySchedule;
+							obj_total.remainderBySchedule=Number(obj_total.remainderBySchedule)<0?0:obj_total.remainderBySchedule;
+							obj_total.FinishSchedule=Number(obj_total.FinishSchedule)>100?100:obj_total.FinishSchedule;
+							
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						
+						tmpList=tmpList.(@subCorpname!=dept);
+						var index:int=2;
+						for each (var xml:XML in tmpList) {  
+							var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+							var obj:Object={order:xml.@order,
+								subCorpname:xml.@subCorpname,
+								FinishSchedule:xml.@FinishSchedule,//rate,
+								planBySchedule:Number(xml.@planBySchedule),
+								finishedBySchedule:Number(xml.@finishedBySchedule),
+								remainderBySchedule:Number(xml.@remainderBySchedule),
+								index:index
+							};
+							
+							//格式化数据
+							obj.planBySchedule=Number(obj.planBySchedule)<0?0:obj.planBySchedule;
+							obj.finishedBySchedule=Number(obj.finishedBySchedule)<0?0:obj.finishedBySchedule;
+							obj.remainderBySchedule=Number(obj.remainderBySchedule)<0?0:obj.remainderBySchedule;
+							obj.FinishSchedule=Number(obj.FinishSchedule)>100?100:obj.FinishSchedule;
+							
+							tmpArrayCollection.addItem(obj);
+							index++
+						} 
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("FinishSchedule",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab3_down(postid:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "按上岗转岗完成情况->按人次 "+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpname",width:"90",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"完成率(%)",dataField:"FinishSchedule",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"计划",dataField:"planBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"已完成",dataField:"finishedBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"未完成",dataField:"remainderBySchedule",width:"40",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.byPostData.byPersons.detailData.dataset.(@postid==postid);
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpname==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							var rate_total:Number=Number(xml_total[0].@planBySchedule)==0?0:Number((Number(xml_total[0].@finishedBySchedule)*100/Number(xml_total[0].@planBySchedule)).toFixed(2));
+							var obj_total:Object={order:1,
+								subCorpname:xml_total[0].@subCorpname,
+									FinishSchedule:xml_total[0].@FinishSchedule,//rate_total,
+									planBySchedule:Number(xml_total[0].@planBySchedule),
+									finishedBySchedule:Number(xml_total[0].@finishedBySchedule),
+									remainderBySchedule:Number(xml_total[0].@remainderBySchedule),
+									index:1
+							};
+							
+							//格式化数据
+							obj_total.planBySchedule=Number(obj_total.planBySchedule)<0?0:obj_total.planBySchedule;
+							obj_total.finishedBySchedule=Number(obj_total.finishedBySchedule)<0?0:obj_total.finishedBySchedule;
+							obj_total.remainderBySchedule=Number(obj_total.remainderBySchedule)<0?0:obj_total.remainderBySchedule;
+							obj_total.FinishSchedule=Number(obj_total.FinishSchedule)>100?100:obj_total.FinishSchedule;
+							
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						
+						tmpList=tmpList.(@subCorpname!=dept);
+						var index:int=2;
+						for each (var xml:XML in tmpList) {  
+							var rate:Number=Number(xml.@planBySchedule)==0?0:Number((Number(xml.@finishedBySchedule)*100/Number(xml.@planBySchedule)).toFixed(2));
+							var obj:Object={order:xml.@order,
+								subCorpname:xml.@subCorpname,
+								FinishSchedule:xml.@FinishSchedule,//rate,
+								planBySchedule:Number(xml.@planBySchedule),
+								finishedBySchedule:Number(xml.@finishedBySchedule),
+								remainderBySchedule:Number(xml.@remainderBySchedule),
+								index:index
+							};
+							
+							//格式化数据
+							obj.planBySchedule=Number(obj.planBySchedule)<0?0:obj.planBySchedule;
+							obj.finishedBySchedule=Number(obj.finishedBySchedule)<0?0:obj.finishedBySchedule;
+							obj.remainderBySchedule=Number(obj.remainderBySchedule)<0?0:obj.remainderBySchedule;
+							obj.FinishSchedule=Number(obj.FinishSchedule)>100?100:obj.FinishSchedule;
+							
+							tmpArrayCollection.addItem(obj);
+							index++
+						} 
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("FinishSchedule",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab1_top();
+			}
+			
+			protected function tab1_downLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab1_down();
+			}
+			
+			protected function tab2_topLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				getTab2_topRightDS(item.kindid);
+				executeBindTab2Title();
+			}
+			
+			protected function tab2_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab2_top(item.kindid);
+			}
+			
+			protected function tab2_downLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				getTab2_downRightDS(item.kindid);
+				executeBindTab2Title();
+			}
+			
+			protected function tab2_downLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab2_down(item.kindid);
+			}
+			
+			protected function tab3_topLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				getTab3_topRightDS(item.postid);
+				executeBindTab3Title();
+			}
+			
+			protected function tab3_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab3_top(item.postid);
+			}
+			
+			protected function tab3_downLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				getTab3_downRightDS(item.postid);
+				executeBindTab3Title();
+			}
+			
+			protected function tab3_downLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				
+				popupTab3_down(item.postid);
+			}
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<s:NavigatorContent width="100%" height="100%" label="{tab1_title}">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnPlanActSurRate id="tab1_topLeft" ShowDataLabel="{showDataLabel}" IfSingle="true" width="100%" height="100%" showTitle="true" showLegend="true" showLegendValue="true" title="{tab1_topLeftTitle}"
+													planTxt="计划" actTxt="完成" surTxt="未完成" rateTxt="完成率" 
+													PlanVol="{tab1_topLeft_plan}"
+													ActVol="{tab1_topLeft_act}" 
+													SurVol="{tab1_topLeft_sur}"															
+													RateVol="{tab1_topLeft_rate}"
+													PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer> 
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" />
+						</s:layout>
+						<s:Label text="{tab1_topRightTitle}" width="100%" height="30" textAlign="center" styleName="titleStyle"/>
+						<views:Gauge id="tab1_topRight" value="{tab1_topRight_rate}" width="200" height="200"/>
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnPlanActSurRate id="tab1_downLeft" ShowDataLabel="{showDataLabel}" IfSingle="true" width="100%" height="100%" showTitle="true" showLegend="true" showLegendValue="true" title="{tab1_downLeftTitle}"
+													planTxt="计划" actTxt="完成" surTxt="未完成" rateTxt="完成率" 
+													PlanVol="{tab1_downLeft_plan}"
+													ActVol="{tab1_downLeft_act}" 
+													SurVol="{tab1_downLeft_sur}"															
+													RateVol="{tab1_downLeft_rate}"
+													PopupDoubleClick="tab1_downLeft_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer>
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" />
+						</s:layout>
+						<s:Label text="{tab1_downRightTitle}" width="100%" height="30" textAlign="center" styleName="titleStyle"/>
+						<views:Gauge id="tab1_downRight" value="{tab1_downRight_rate}" width="200" height="200"/>
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<!--标签2-->
+		<s:NavigatorContent id="tab2" width="100%" height="100%" label="{tab2_title}">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:PieMultiDouble id="tab2_topLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab2_topLeftTitle}" DataSourceUp="{tab2_topLeftDS}" DataSourceDown="{tab2_topLeftDS2}"
+											  PopupClick="tab2_topLeft_PopupClickHandler(event)" PopupDoubleClick="tab2_topLeft_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer> 
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" />
+						</s:layout>
+						<s:Label text="{tab2_topRightTitle}" width="100%" height="30" textAlign="center" styleName="titleStyle"/>
+						<views:Gauge id="tab2_topRight" value="{tab2_topRight_rate}" width="200" height="200"/>
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:PieMultiDouble id="tab2_downLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab2_downLeftTitle}" DataSourceUp="{tab2_downLeftDS}" DataSourceDown="{tab2_downLeftDS2}"
+											  PopupClick="tab2_downLeft_PopupClickHandler(event)" PopupDoubleClick="tab2_downLeft_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer>
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" />
+						</s:layout>
+						<s:Label text="{tab2_downRightTitle}" width="100%" height="30" textAlign="center" styleName="titleStyle"/>
+						<views:Gauge id="tab2_downRight" value="{tab2_downRight_rate}" width="200" height="200"/>
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<!--标签3-->
+		<s:NavigatorContent id="tab3" width="100%" height="100%" label="{tab3_title}">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:PieMultiDouble id="tab3_topLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab3_topLeftTitle}" DataSourceUp="{tab3_topLeftDS}" DataSourceDown="{tab3_topLeftDS2}"
+											  PopupClick="tab3_topLeft_PopupClickHandler(event)" PopupDoubleClick="tab3_topLeft_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer> 
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" />
+						</s:layout>
+						<s:Label text="{tab3_topRightTitle}" width="100%" height="30" textAlign="center" styleName="titleStyle"/>
+						<views:Gauge id="tab3_topRight" value="{tab3_topRight_rate}" width="200" height="200"/>
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:PieMultiDouble id="tab3_downLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab3_downLeftTitle}" DataSourceUp="{tab3_downLeftDS}" DataSourceDown="{tab3_downLeftDS2}"
+											  PopupClick="tab3_downLeft_PopupClickHandler(event)" PopupDoubleClick="tab3_downLeft_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer>
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" />
+						</s:layout>
+						<s:Label text="{tab3_downRightTitle}" width="100%" height="30" textAlign="center" styleName="titleStyle"/>
+						<views:Gauge id="tab3_downRight" value="{tab3_downRight_rate}" width="200" height="200"/>
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Application>

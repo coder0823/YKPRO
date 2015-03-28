@@ -1,0 +1,1962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+	/* *
+	* 名称：总部仪表盘-关键装置-总体情况
+	* 参数：年度（2012）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import as_class.SequenceItemRenderer;
+			
+			import events.ExportEvent;
+			import events.PopupEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.containers.TabNavigator;
+			import mx.controls.AdvancedDataGrid;
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+			import mx.core.FlexGlobals;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.events.IndexChangedEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.ObjectUtil;
+			
+			import renderers.MyADGILinkRenderer;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.components.Group;
+			import spark.components.NavigatorContent;
+			
+			import views.PopupTitleWin;
+			import views.PopupTitleWinDG;
+			import views.RowAdvDataGrid;
+			public const _dataPath:String = "assets/data/zb_keydevicedata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "总体情况";
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String = "";
+			[Bindable]
+			private var tab1_topRightTitle:String = "";
+			[Bindable]
+			private var tab1_downLeftTitle:String = "";
+			[Bindable]
+			private var tab1_downRightTitle:String = "";
+			
+			[Bindable]
+			private var tab1_levelCurrSelect:String;
+			private var tab1_levelNameCurrSelect:String;
+			
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightDS:ArrayCollection;
+			
+			private var itemLinkRenderer:IFactory = new ClassFactory(MyADGILinkRenderer);
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				
+				tab1_topLeftDS = new ArrayCollection();
+				tab1_topRightDS = new ArrayCollection();
+				tab1_downLeftDS = new ArrayCollection();
+				tab1_downRightDS = new ArrayCollection();
+				
+				tab1_topRightConfDS = new ArrayCollection([{name: "关键装置/要害部位分布", field: "vol1"}]);
+				tab1_downLeftConfDS = new ArrayCollection([{name: "计划", field: "plan", type: "columnSeries", axis: "left"}, {name: "实际", field: "act", type: "lineSeries", axis: "left"},]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//........
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetKeydevice(dateStr);
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab1_topLeftDS = getTab1_topLeftDS();
+				tab1_topRightDS = getTab1_topRightDS();
+				tab1_downLeftDS = getTab1_downLeftDS();
+				tab1_downRightDS = getTab1_downRightDS();
+				
+				executeBindTab1Title();
+			}
+			
+			private function executeBindTab1Title():void
+			{
+				tab1_topLeftTitle = "中国石化" + dateStr + "年" + "关键装置/要害部位构成情况";
+				tab1_topRightTitle = "中国石化" + dateStr + "年" + tab1_levelNameCurrSelect + "关键装置/要害部位分布情况";
+//				tab1_downLeftTitle = "中国石化" + dateStr + "年" + tab1_levelNameCurrSelect + "关键装置/要害部位领导活动情况";
+				tab1_downLeftTitle = "中国石化" + dateStr + "年领导活动情况";
+				tab1_downRightTitle = "中国石化" + dateStr + "年问题解决情况";
+			}
+			
+			private function getTab1_topLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid != "00");
+					if (tmpList.length() > 0)
+					{
+						tab1_levelCurrSelect = tmpList[0].@levelid; //设置默认选择
+						tab1_levelNameCurrSelect = tmpList[0].@levelLabel;
+						tab1_levelNameCurrSelect = tab1_levelNameCurrSelect == null ? "" : tab1_levelNameCurrSelect;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@levelLabel, value: xml.@deviceNumbers, levelid: xml.@levelid, plateid: "00"};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_topRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == tab1_levelCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@plateLabel, vol1: xml.@deviceNumbers, plateid: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == tab1_levelCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@plateLabel, plan: xml.@leaderInspectPlanTimes, act: xml.@leaderInspectFinishedTimes, plateid: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == tab1_levelCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@plateLabel, plan: xml.@problemNumbers, act: xml.@solvedProblemNumbers, sur: xml.@unsolvedProblemNumbers, rate: xml.@solvedRatio, plateid: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			
+
+			
+			
+			//****************************************************
+			//            板块各级别情况
+			//****************************************************
+			//弹出窗口
+			private var titleWindow1:views.PopupTitleWin;
+			private function popupPlateMX():void
+			{
+				titleWindow1 = new views.PopupTitleWin();
+				titleWindow1.TitleValue = "中国石化关键装置/要害部位分布情况" + "(" + dateStr + "年)"; //tab1_levelNameCurrSelect+
+				titleWindow1.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow1);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupPlateMXADG();
+					var advancedAc:ArrayCollection = createPopupPlateMXData();
+					advancedDataGrid.dataProvider = advancedAc;
+					
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow1.width-2;
+					borderContainer.height =titleWindow1.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow1.Content = group;
+
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow1.addEventListener(events.PopupEvent.PopupItemClick, popCorpMX);
+				titleWindow1.addEventListener(events.ExportEvent.ExportClick,DoExoprt1);
+				PopUpManager.addPopUp(titleWindow1, this, true);
+				PopUpManager.centerPopUp(titleWindow1);
+			}
+			//titleWindow1.addEventListener(events.ExportEvent.ExportClick,DoExoprt1);
+			private function DoExoprt1():Function{
+				return function (event:ExportEvent):void{
+					// TODO Auto-generated method stub
+					//adg1.displayItemsExpanded=true; //导出前展开所有节点 否则只能导出当前展示节点
+					//adg1.validateNow(); //刷新  展开后需要进行刷新   
+					//views.ExportToExcel.dataGridExporter(adg1,"重点监管项目.xls");
+					
+					var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+					titleWindow.TitleValue = "中国石化关键装置/要害部位分布情况" + "(" + dateStr + "年)";   
+					titleWindow.width=1000;
+					titleWindow.height=800;
+					//order label projectName field1 field2 field3 field4 investment finishedInvestment unfinishedInvestment finishedRation groupCharger subCorpCharger chargeDeparment
+					titleWindow.DataSourceConf=new ArrayCollection([
+						{headerText:"排序号",dataField:"order",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"板块",dataField:"plate",width1:"90",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"合计",dataField:"sum___合计___deviceNumbers",width1:"140",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"占比",dataField:"sum___合计___ratio",width1:"40",textAlign:"center",sortable:true,draggable:false}
+					]);
+					var xmllist:XMLList = hseDataXML.keydeviceData.levelData.(@levelid != "00");
+					if (xmllist != null && xmllist.length() > 0)
+					{
+						for each (var xml:XML in xmllist)
+						{
+							
+							titleWindow.DataSourceConf.addItem({headerText:xml.@levelLabel,dataField:xml.@levelid + "___" + xml.@levelLabel + "___deviceNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false});
+							titleWindow.DataSourceConf.addItem({headerText:"占级别",dataField:xml.@levelid + "___" + xml.@levelLabel + "___ratio2",width1:"40",textAlign:"center",sortable:true,draggable:false});
+							titleWindow.DataSourceConf.addItem({headerText:"占板块",dataField:xml.@levelid + "___" + xml.@levelLabel + "___ratio",width1:"40",textAlign:"left",sortable:true,draggable:false});
+						}
+					}
+					var advancedAc:ArrayCollection = createPopupPlateMXData();
+					titleWindow.DataSource= advancedAc;
+					titleWindow.exportToExcel();
+				}
+			}
+			protected function popCorpMX(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				
+				if (obj.columnIndex == 1)
+				{
+					if (obj.plateid != "00")
+					{
+						popupCorpMX(obj.plateid, obj.plate);
+					}
+				}
+				else
+				{
+					var items:String = String(obj.item);
+					var itemArr:Array = items.split("___");
+					if (itemArr.length > 0 && obj.plateid != "00")
+					{
+						//Alert.show(itemArr[0]);
+						popupCorpMX2(obj.plateid, obj.plate, itemArr[0], itemArr[1]);
+					}
+				}
+			}
+			
+			private function createPopupPlateMXADG():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					var col:AdvancedDataGridColumn;
+					column = new AdvancedDataGridColumn();
+					column.width = 40;
+					column.dataField = "order";
+					column.setStyle("textAlign", "center");
+					column.headerText = "序号";
+					column.itemRenderer=new ClassFactory(as_class.SequenceItemRenderer);
+					column.sortable=false;
+					column.width=40;					
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "plate";
+					column.showDataTips = true;
+					column.width = 80;
+					column.setStyle("textAlign", "left");
+					column.headerText = "板块";
+					column.itemRenderer = itemLinkRenderer; //添加链接					
+					column.sortable=false;
+					advancedDataArray.push(column);
+					
+					//合计，数量/占比
+					//一级，数量/占级别比例/占板块比例
+					
+					var columnGP0:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP0.headerText = "合计";
+					var advancedDataGrpArray0:Array = new Array();
+					var column1:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column1.dataField = "sum___合计___deviceNumbers";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "sum___合计___ratio";
+					column1.headerText = "占比%";
+					column1.sortable=false;
+					column1.width = 60;
+					advancedDataGrpArray0.push(column1);
+					columnGP0.children = advancedDataGrpArray0;
+					advancedDataArray.push(columnGP0);
+					
+					var xmllist:XMLList = hseDataXML.keydeviceData.levelData.(@levelid != "00");
+					if (xmllist != null && xmllist.length() > 0)
+					{
+						for each (var xml:XML in xmllist)
+						{
+							var columnGP:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+							columnGP.headerText = xml.@levelLabel;
+							var advancedDataGrpArray:Array = new Array();
+							var column2:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+							column2.dataField = xml.@levelid + "___" + xml.@levelLabel + "___deviceNumbers";
+							column2.headerText = "数量";
+							column2.width = 70;
+							column2.itemRenderer = itemLinkRenderer; //添加链接
+							advancedDataGrpArray.push(column2);
+							column2 = new AdvancedDataGridColumn();
+							column2.dataField = xml.@levelid + "___" + xml.@levelLabel + "___ratio2";
+							column2.headerText = "占级别%";
+							column2.sortable=false;
+							column2.width = 70;
+							advancedDataGrpArray.push(column2);
+							column2 = new AdvancedDataGridColumn();
+							column2.dataField = xml.@levelid + "___" + xml.@levelLabel + "___ratio";
+							column2.headerText = "占板块%";
+							column2.sortable=false;
+							column2.width = 70;
+							advancedDataGrpArray.push(column2);
+							columnGP.children = advancedDataGrpArray;
+							advancedDataArray.push(columnGP);
+						}
+					}
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function createPopupPlateMXData():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//级别
+					var levelList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid != "00");
+					//板块
+					var plateList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == "00").plateData;
+					
+					if (plateList != null && plateList.length() > 0)
+					{
+						//Start 合计行开始
+						var sum_obj:Object = new Object();
+						sum_obj['index'] = 1;
+						sum_obj['order'] = "";
+						sum_obj['plate'] = "合计";
+						sum_obj['plateid'] = "00";
+						sum_obj['sum___合计___ratio'] = "";
+						var sum_sumList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == "00");
+						if (sum_sumList != null && sum_sumList.length() > 0)
+						{
+							sum_obj['sum___合计___deviceNumbers'] = Number(sum_sumList[0].@deviceNumbers);
+						}
+						else
+						{
+							sum_obj['sum___合计___deviceNumbers'] = 0;
+						}
+						
+						if (levelList != null && levelList.length() > 0)
+						{
+							for each (var sum_xml2:XML in levelList)
+							{
+								//获取该板块级别数据
+								sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___ratio"] = "";
+								var sum_tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == String(sum_xml2.@levelid));
+								if (sum_tmpList && sum_tmpList.length() > 0)
+								{
+									for each (var sum_xml0:XML in sum_tmpList)
+									{
+										sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___deviceNumbers"] = Number(sum_xml0.@deviceNumbers);
+										sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___ratio2"] = Number(sum_xml0.@ratio2);
+									}
+								}
+								else
+								{
+									sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___deviceNumbers"] = 0;
+									sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___ratio2"] = 0;
+								}
+							}
+						}
+						sum_obj.isSumBgColor = 1;
+						sum_obj.bgcolor = 0xFFBF00;
+						sum_obj.color = 0x000000;
+						tmpArrayCollection.addItem(sum_obj);
+						//End 合计行结束
+						
+						//Start 明细数据开始
+						var order:int = 1;
+						var index:int = 1;
+						for each (var xml:XML in plateList)
+						{
+							var obj:Object = new Object();
+							obj['index'] = index;
+							obj['order'] = order;
+							obj['plate'] = xml.@plateLabel;
+							obj['plateid'] = xml.@plateid;
+							var sumList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == "00").plateData.(@plateid == String(xml.@plateid));
+							if (sumList != null && sumList.length() > 0)
+							{
+								obj['sum___合计___deviceNumbers'] = Number(sumList[0].@deviceNumbers);
+								obj['sum___合计___ratio'] = Number(sumList[0].@ratio);
+							}
+							else
+							{
+								obj['sum___合计___deviceNumbers'] = 0;
+								obj['sum___合计___ratio'] = 0;
+							}
+							
+							if (levelList != null && levelList.length() > 0)
+							{
+								for each (var xml2:XML in levelList)
+								{
+									//获取该板块级别数据
+									var tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == String(xml2.@levelid)).plateData.(@plateid == String(xml.@plateid));
+									if (tmpList && tmpList.length() > 0)
+									{
+										for each (var xml0:XML in tmpList)
+										{
+											obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___deviceNumbers"] = Number(xml0.@deviceNumbers);
+											obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio"] = Number(xml0.@ratio);
+											obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio2"] = Number(xml0.@ratio2);
+										}
+									}
+									else
+									{
+										obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___deviceNumbers"] = 0;
+										obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio"] = 0;
+										obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio2"] = 0;
+									}
+								}
+							}
+							//obj.isSumBgColor=1;
+							//obj.bgcolor=FirstRecordBgColor;
+							obj.color = 0x000000;
+							tmpArrayCollection.addItem(obj);
+							order++;
+							index++;
+						}
+						//End 明细数据结束
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			//****************************************************
+			//            企业各级别情况
+			//****************************************************
+			//弹出窗口
+			private var titleWindow2:views.PopupTitleWin;
+			private function popupCorpMX(plateid:String, platename:String):void
+			{
+				titleWindow2 = new views.PopupTitleWin();
+				titleWindow2.TitleValue = platename + "板块关键装置/要害部位分布情况" + "(" + dateStr + "年)"; //tab1_levelNameCurrSelect+
+				titleWindow2.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow2);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupCorpMXADG();
+					var advancedAc:ArrayCollection = createPopupCorpMXData(plateid, platename);
+					advancedDataGrid.dataProvider = advancedAc;
+
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow2.width-2;
+					borderContainer.height =titleWindow2.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow2.Content = group;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow2.addEventListener(events.PopupEvent.PopupItemClick, popItemMX);
+				titleWindow2.addEventListener(events.ExportEvent.ExportClick,DoExoprt2(plateid,platename));
+				PopUpManager.addPopUp(titleWindow2, this, true);
+				PopUpManager.centerPopUp(titleWindow2);
+			}
+			//titleWindow2.addEventListener(events.ExportEvent.ExportClick,DoExoprt2(plateid,platename));
+			private function DoExoprt2(plateid:String,platename:String):Function{
+				return function (event:ExportEvent):void{
+					// TODO Auto-generated method stub
+					//adg1.displayItemsExpanded=true; //导出前展开所有节点 否则只能导出当前展示节点
+					//adg1.validateNow(); //刷新  展开后需要进行刷新   
+					//views.ExportToExcel.dataGridExporter(adg1,"重点监管项目.xls");
+					
+					var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+					titleWindow.TitleValue = platename+"板块关键装置/要害部位分布情况" + "(" + dateStr + "年)";   
+					titleWindow.width=1000;
+					titleWindow.height=800;
+					//order label projectName field1 field2 field3 field4 investment finishedInvestment unfinishedInvestment finishedRation groupCharger subCorpCharger chargeDeparment
+					titleWindow.DataSourceConf=new ArrayCollection([
+						{headerText:"排序号",dataField:"order",width1:"40",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"企业",dataField:"corp",width1:"90",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"合计",dataField:"sum___合计___deviceNumbers",width1:"140",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"占比",dataField:"sum___合计___ratio",width1:"40",textAlign:"center",sortable:true,draggable:false}
+					]);
+					var xmllist:XMLList = hseDataXML.keydeviceData.levelData.(@levelid != "00");
+					if (xmllist != null && xmllist.length() > 0)
+					{
+						for each (var xml:XML in xmllist)
+						{
+							
+							titleWindow.DataSourceConf.addItem({headerText:xml.@levelLabel,dataField:xml.@levelid + "___" + xml.@levelLabel + "___deviceNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false});
+							titleWindow.DataSourceConf.addItem({headerText:"占级别",dataField:xml.@levelid + "___" + xml.@levelLabel + "___ratio2",width1:"40",textAlign:"center",sortable:true,draggable:false});
+							titleWindow.DataSourceConf.addItem({headerText:"占板块",dataField:xml.@levelid + "___" + xml.@levelLabel + "___ratio",width1:"40",textAlign:"left",sortable:true,draggable:false});
+						}
+					}
+					var advancedAc:ArrayCollection = createPopupCorpMXData(plateid, platename);
+					titleWindow.DataSource= advancedAc;
+					titleWindow.exportToExcel();
+				}
+			}
+			protected function popItemMX(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				if (obj.columnIndex == 1)
+				{
+					if (obj.plateid != "00")
+					{
+						popupLeaderMX(obj.plateid, obj.plate, obj.corpid, obj.corp, "00", "全部");
+					}
+				}
+				else if (obj.item == "deviceNumbers")
+				{
+					if (obj.corpid != "00")
+					{
+						//Alert.show(itemArr[0]);
+						popupKeyDeviceMX(obj.plateid, obj.plate, obj.levelid, obj.level, obj.corpid, obj.corp);
+					}
+				}
+				else if (obj.item == "unsolvedProblemNumbers")
+				{
+					if (obj.corpid != "00")
+					{
+						//Alert.show(itemArr[0]);
+						popupKeyDeviceMX_zq(obj);
+					}
+				}
+				else
+				{
+					var items:String = String(obj.item);
+					var itemArr:Array = items.split("___");
+					if (itemArr.length > 0 && obj.corpid != "00")
+					{
+						//Alert.show(itemArr[0]);
+						popupKeyDeviceMX(obj.plateid, obj.plate, itemArr[0], itemArr[1], obj.corpid, obj.corp);
+					}
+				}
+			}
+			
+			private var titleWindow1_zq:views.PopupTitleWinDG;
+			private var tmpList_zq:XMLList;
+			protected function popupKeyDeviceMX_zq(obj:Object):void
+			{
+//				var obj:Object = event.hitDataItem;
+				var order:int = 1;
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				var corpid:String = obj.corpid;
+				var typeid:String = obj.typeid;
+				var levelid:String = obj.levelid;
+				var leaderid:String = obj.leaderid;
+				tmpList_zq = hseDataXML.keydeviceData.levelData[0].plateData.corpData.(@subCorpid == corpid)
+				
+				if(typeid&&typeid!=""){
+					tmpList_zq = tmpList_zq.typeData.(@typeid == typeid).leaderData.(@leaderid==leaderid).noImplemented;
+				}else{
+					tmpList_zq = tmpList_zq.typeData.leaderData.noImplemented.(@level==obj.level);
+				}
+				
+				titleWindow1_zq = new views.PopupTitleWinDG();
+				titleWindow1_zq.TitleValue ="未落实问题情况表";
+				titleWindow1_zq.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow1_zq);
+				});
+				titleWindow1_zq.tw_width = FlexGlobals.topLevelApplication.stage.stageWidth-60;;
+				titleWindow1_zq.IfShowFirstRecordBgColor = false;
+				titleWindow1_zq.IfShowFrontRecordColor = false;
+				titleWindow1_zq.IfShowBackRecordColor = false;
+				titleWindow1_zq.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "center", sortable: false, draggable: false},
+					{headerText: "装置名称", dataField: "deviceName", width: "120", textAlign: "left", sortable: true, draggable: true,sortByCustomField:"displayindex"},
+					{headerText: "活动日期", dataField: "eventDate", width: "90", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:false,footLblFunType:"sum"}, 
+					{headerText: "级别", dataField: "level", width: "50", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "联系承包人", dataField: "contactContractor", width: "70", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "活动形式", dataField: "activities", width: "70", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "参加活动各级领导", dataField: "participateActivities", width: "110", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "被检单位/部门", dataField: "inspectedUnit", width: "90", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "问题描述", dataField: "problemDescription", width: "80", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "专业分类", dataField: "professionalCategory", width: "80", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "整改要求", dataField: "rectificationRequirements", width: "80", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "整改期限", dataField: "rectificationPeriod", width: "80", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+					{headerText: "整改状态", dataField: "rectificationState", width: "60", textAlign: "center", sortable: true, draggable: true,footHeakerText:""},
+				]);
+				
+				
+				for each (var xml:XML in tmpList_zq)
+				{
+					var obj1:Object = {order:order,deviceName: xml.@deviceName,eventDate:xml.@eventDate,
+						level: xml.@level,contactContractor:xml.@contactContractor,activities: xml.@activities,
+						participateActivities: xml.@participateActivities,inspectedUnit: xml.@inspectedUnit,
+						problemDescription: xml.@problemDescription,professionalCategory: xml.@professionalCategory,
+						rectificationRequirements: xml.@rectificationRequirements,
+						rectificationPeriod: xml.@rectificationPeriod,
+						rectificationState: xml.@rectificationState
+					};
+					obj1.displayindex=Number(xml.@displayindex);
+					tmpArrayCollection.addItem(obj1);
+					order++;
+				}
+				titleWindow1_zq.DataSource = tmpArrayCollection;
+				PopUpManager.addPopUp(titleWindow1_zq, this, true);
+				PopUpManager.centerPopUp(titleWindow1_zq);
+				
+			}
+			
+			private function createPopupCorpMXADG():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 40;
+					column.dataField = "order";
+					column.setStyle("textAlign", "center");
+					column.headerText = "序号";
+					column.itemRenderer=new ClassFactory(as_class.SequenceItemRenderer);
+					column.sortable=false;
+					column.width=40;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "corp";
+					column.showDataTips = true;
+					column.width = 90;
+					column.setStyle("textAlign", "left");
+					column.headerText = "企业";
+					column.sortable=false;
+					column.itemRenderer = itemLinkRenderer; //添加链接
+					advancedDataArray.push(column);
+					
+					//合计，数量/占比
+					//一级，数量/占级别比例/占板块比例
+					
+					var columnGP0:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP0.headerText = "合计";
+					var advancedDataGrpArray0:Array = new Array();
+					var column1:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column1.dataField = "sum___合计___deviceNumbers";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "sum___合计___ratio";
+					column1.headerText = "占比%";
+					column1.sortable=false;
+					column1.width = 60;
+					advancedDataGrpArray0.push(column1);
+					columnGP0.children = advancedDataGrpArray0;
+					advancedDataArray.push(columnGP0);
+					
+					var xmllist:XMLList = hseDataXML.keydeviceData.levelData.(@levelid != "00");
+					if (xmllist != null && xmllist.length() > 0)
+					{
+						for each (var xml:XML in xmllist)
+						{
+							var columnGP:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+							columnGP.headerText = xml.@levelLabel;
+							var advancedDataGrpArray:Array = new Array();
+							var column2:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+							column2.dataField = xml.@levelid + "___" + xml.@levelLabel + "___deviceNumbers";
+							column2.headerText = "数量";
+							column2.width = 60;
+							column2.itemRenderer = itemLinkRenderer; //添加链接
+							advancedDataGrpArray.push(column2);
+							column2 = new AdvancedDataGridColumn();
+							column2.dataField = xml.@levelid + "___" + xml.@levelLabel + "___ratio2";
+							column2.headerText = "占级别%";
+							column2.sortable=false;
+							column2.width = 60;
+							advancedDataGrpArray.push(column2);
+							column2 = new AdvancedDataGridColumn();
+							column2.dataField = xml.@levelid + "___" + xml.@levelLabel + "___ratio";
+							column2.headerText = "占板块%";
+							column2.sortable=false;
+							column2.width = 60;
+							advancedDataGrpArray.push(column2);
+							columnGP.children = advancedDataGrpArray;
+							advancedDataArray.push(columnGP);
+						}
+					}
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function createPopupCorpMXData(plateid:String, platename:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//级别
+					var levelList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid != "00");
+					//企业
+					var corpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == "00").plateData.(@plateid == plateid).corpData;
+					
+					if (corpList != null && corpList.length() > 0)
+					{
+						//Start 合计行开始
+						var sum_obj:Object = new Object();
+						sum_obj['index'] = "";
+						sum_obj['order'] = "";
+						sum_obj['corp'] = platename + "小计";
+						sum_obj['corpid'] = "00";
+						sum_obj['plate'] = platename;
+						sum_obj['plateid'] = plateid;
+						sum_obj['sum___合计___ratio'] = "";
+						var sum_sumList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == "00").plateData.(@plateid == plateid);
+						if (sum_sumList != null && sum_sumList.length() > 0)
+						{
+							sum_obj['sum___合计___deviceNumbers'] = Number(sum_sumList[0].@deviceNumbers);
+						}
+						else
+						{
+							sum_obj['sum___合计___deviceNumbers'] = 0;
+						}
+						
+						if (levelList != null && levelList.length() > 0)
+						{
+							for each (var sum_xml2:XML in levelList)
+							{
+								//获取该板块级别数据
+								sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___ratio"] = "";
+								var sum_tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == String(sum_xml2.@levelid)).plateData.(@plateid == plateid);
+								if (sum_tmpList && sum_tmpList.length() > 0)
+								{
+									for each (var sum_xml0:XML in sum_tmpList)
+									{
+										sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___deviceNumbers"] = Number(sum_xml0.@deviceNumbers);
+										sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___ratio2"] = Number(sum_xml0.@ratio2);
+									}
+								}
+								else
+								{
+									sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___deviceNumbers"] = 0;
+									sum_obj[String(sum_xml2.@levelid) + "___" + sum_xml2.@levelLabel + "___ratio2"] = 0;
+								}
+							}
+						}
+						sum_obj.isSumBgColor = 1;
+						sum_obj.bgcolor = 0xFFBF00;
+						sum_obj.color = 0x000000;
+						tmpArrayCollection.addItem(sum_obj);
+						//End 合计行结束
+						
+						//Start 明细数据开始
+						var norder:int = 1;
+						var nindex:int = 1;
+						for each (var xml:XML in corpList)
+						{
+							var obj:Object = new Object();
+							obj['index'] = nindex;
+							obj['order'] = norder;
+							obj['corp'] = xml.@subCorpname;
+							obj['corpid'] = xml.@subCorpid;
+							obj['plate'] = xml.parent().@plateLabel;
+							obj['plateid'] = xml.parent().@plateid;
+							var sumList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == "00").plateData.(@plateid == plateid).corpData.(@subCorpid == String(xml.@subCorpid));
+							if (sumList != null && sumList.length() > 0)
+							{
+								obj['sum___合计___deviceNumbers'] = Number(sumList[0].@deviceNumbers);
+								obj['sum___合计___ratio'] = Number(sumList[0].@ratio);
+							}
+							else
+							{
+								obj['sum___合计___deviceNumbers'] = 0;
+								obj['sum___合计___ratio'] = 0;
+							}
+							
+							if (levelList != null && levelList.length() > 0)
+							{
+								for each (var xml2:XML in levelList)
+								{
+									//获取该企业级别数据
+									var tmpList:XMLList = hseDataXML.keydeviceData.levelData.(@levelid == String(xml2.@levelid)).plateData.corpData.(@subCorpid == String(xml.@subCorpid));
+									if (tmpList && tmpList.length() > 0)
+									{
+										for each (var xml0:XML in tmpList)
+										{
+											obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___deviceNumbers"] = Number(xml0.@deviceNumbers);
+											obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio"] = Number(xml0.@ratio);
+											obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio2"] = Number(xml0.@ratio2);
+										}
+									}
+									else
+									{
+										obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___deviceNumbers"] = 0;
+										obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio"] = 0;
+										obj[String(xml2.@levelid) + "___" + xml2.@levelLabel + "___ratio2"] = 0;
+									}
+								}
+							}
+							//obj.isSumBgColor=1;
+							//obj.bgcolor=FirstRecordBgColor;
+							obj.color = 0x000000;
+							tmpArrayCollection.addItem(obj);
+							norder++;
+							nindex++;
+						}
+						//End 明细数据结束
+					}
+					/*
+					var order2:int = 0;
+					for each (var obj2:Object in tmpArrayCollection)
+					{
+						obj2.order = order2;
+						tmpArrayCollection.addItem(obj2);
+						order2++;
+					}
+					*/
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			//****************************************************
+			//            企业某级别活动情况
+			//****************************************************
+			//弹出窗口
+			private var titleWindow3:views.PopupTitleWin;
+			private var title_plateid:String = "";
+			private function popupCorpMX2(plateid:String, platename:String, levelid:String, levelname:String):void
+			{
+				title_plateid = plateid;
+				titleWindow3 = new views.PopupTitleWin();
+				titleWindow3.TitleValue = platename + "板块" + levelname + "关键装置/要害部位领导活动情况" + "(" + dateStr + "年)"; //tab1_levelNameCurrSelect+
+				titleWindow3.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow3);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupCorpMX2ADG();
+					var advancedAc:ArrayCollection = createPopupCorpMX2Data(plateid, platename, levelid, levelname);
+					advancedDataGrid.dataProvider = advancedAc;
+
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow3.width-2;
+					borderContainer.height =titleWindow3.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow3.Content = group;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow3.addEventListener(events.PopupEvent.PopupItemClick, popItemMX);
+				titleWindow3.addEventListener(events.ExportEvent.ExportClick,DoExoprt3(plateid,platename,levelid,levelname));
+				PopUpManager.addPopUp(titleWindow3, this, true);
+				PopUpManager.centerPopUp(titleWindow3);
+			}
+			//titleWindow3.addEventListener(events.ExportEvent.ExportClick,DoExoprt3(plateid,platename,levelid,levelname));
+			private function DoExoprt3(plateid:String, platename:String, levelid:String, levelname:String):Function{
+				return function (event:ExportEvent):void{
+					// TODO Auto-generated method stub
+					//adg1.displayItemsExpanded=true; //导出前展开所有节点 否则只能导出当前展示节点
+					//adg1.validateNow(); //刷新  展开后需要进行刷新   
+					//views.ExportToExcel.dataGridExporter(adg1,"重点监管项目.xls");
+					
+					var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+					titleWindow.TitleValue = platename + "板块" + levelname + "关键装置/要害部位领导活动情况" + "(" + dateStr + "年)";   
+					titleWindow.width=1000;
+					titleWindow.height=800;
+					//order label projectName field1 field2 field3 field4 investment finishedInvestment unfinishedInvestment finishedRation groupCharger subCorpCharger chargeDeparment
+					titleWindow.DataSourceConf=new ArrayCollection([
+						{headerText:"排序号",dataField:"order",width1:"40",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"企业",dataField:"corp",width1:"90",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"数量",dataField:"deviceNumbers",width1:"140",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"计划",dataField:"leaderInspectPlanTimes",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"实际",dataField:"leaderInspectFinishedTimes",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"完成率",dataField:"fishedRatio",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"提出问题",dataField:"problemNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"已落实",dataField:"solvedProblemNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"未落实",dataField:"unsolvedProblemNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"落实率",dataField:"solvedRatio",width1:"40",textAlign:"center",sortable:true,draggable:false}
+						
+					]);
+
+					var advancedAc:ArrayCollection = createPopupCorpMX2Data(plateid, platename, levelid, levelname);
+					titleWindow.DataSource= advancedAc;
+					titleWindow.exportToExcel();
+				}
+			}
+			private function createPopupCorpMX2ADG():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					
+					column = new AdvancedDataGridColumn();
+					column.width = 50;
+					column.dataField = "order";
+					column.setStyle("textAlign", "center");
+					column.headerText = "序号";
+					column.itemRenderer=new ClassFactory(as_class.SequenceItemRenderer);
+					column.sortable=false;
+					column.width=40;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "corp";
+					column.showDataTips = true;
+					column.width = 150;
+					column.setStyle("textAlign", "left");
+					column.headerText = "企业";
+					column.sortable=false;
+					column.itemRenderer = itemLinkRenderer; //添加链接
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "deviceNumbers";
+					column.width = 50;
+					column.setStyle("textAlign", "left");
+					column.headerText = "数量";
+					column.itemRenderer = itemLinkRenderer; //添加链接
+					advancedDataArray.push(column);
+					
+					var columnGP0:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP0.headerText = "领导活动情况";
+					var advancedDataGrpArray0:Array = new Array();
+					var column1:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column1.dataField = "leaderInspectPlanTimes";
+					column1.headerText = "应活动次数";
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "leaderInspectFinishedTimes";
+					column1.headerText = "实际活动次数";
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "fishedRatio";
+					column1.headerText = "完成率%";
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "problemNumbers";
+					column1.headerText = "提出问题数";
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "solvedProblemNumbers";
+					column1.headerText = "已落实";
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "unsolvedProblemNumbers";
+					column1.headerText = "未落实";
+					column1.itemRenderer = itemLinkRenderer; //添加链接
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "solvedRatio";
+					column1.headerText = "落实率%";
+					column1.width = 60;
+					column1.sortable=false;
+					advancedDataGrpArray0.push(column1);
+					columnGP0.children = advancedDataGrpArray0;
+					advancedDataArray.push(columnGP0);
+					
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function createPopupCorpMX2Data(plateid:String, platename:String, levelid:String, levelname:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var corpList:XMLList
+					if (plateid == "00")
+					{
+						corpList = hseDataXML.keydeviceData.levelData.(@levelid == levelid).plateData;
+					}
+					else
+					{
+						corpList = hseDataXML.keydeviceData.levelData.(@levelid == levelid).plateData.(@plateid == plateid);
+					}
+					if (corpList != null && corpList.length() > 0)
+					{
+						//Start 合计行开始
+						var sum_obj:Object = new Object();
+						sum_obj['index'] = "";
+						sum_obj['order'] = "";
+						sum_obj['corpid'] = "00";
+						sum_obj['corp'] = platename + "小计";
+						sum_obj['plate'] = corpList[0].@plateLabel;
+						sum_obj['plateid'] = corpList[0].@plateid;
+						sum_obj['level'] = corpList[0].parent().@levelLabel;
+						sum_obj['levelid'] = corpList[0].parent().@levelid;
+						sum_obj['deviceNumbers'] = Number(corpList[0].@deviceNumbers);
+						sum_obj['leaderInspectPlanTimes'] = Number(corpList[0].@leaderInspectPlanTimes);
+						sum_obj['leaderInspectFinishedTimes'] = Number(corpList[0].@leaderInspectFinishedTimes);
+						sum_obj['leaderInspectRemainderTimes'] = Number(corpList[0].@leaderInspectRemainderTimes);
+						sum_obj['fishedRatio'] = Number(corpList[0].@fishedRatio);
+						
+						sum_obj['problemNumbers'] = Number(corpList[0].@problemNumbers);
+						sum_obj['solvedProblemNumbers'] = Number(corpList[0].@solvedProblemNumbers);
+						sum_obj['unsolvedProblemNumbers'] = Number(corpList[0].@unsolvedProblemNumbers);
+						sum_obj['solvedRatio'] = Number(corpList[0].@solvedRatio);
+						
+						sum_obj.isSumBgColor = 1;
+						sum_obj.bgcolor = 0xFFBF00;
+						sum_obj.color = 0x000000;
+						tmpArrayCollection.addItem(sum_obj);
+						//End 合计行结束
+						
+						//Start 明细数据开始
+//						tmpList_zq = 
+						corpList = corpList.corpData;
+						if (corpList != null && corpList.length() > 0)
+						{
+							var norder:int = 1;
+							var nindex:int = 1;
+							for each (var xml:XML in corpList)
+							{
+								var obj:Object = new Object();
+								obj['index'] = nindex;
+								obj['order'] = norder;
+								obj['corpid'] = xml.@subCorpid;
+								obj['corp'] = xml.@subCorpname;
+								obj['plate'] = xml.parent().@plateLabel;
+								obj['plateid'] = xml.parent().@plateid;
+								obj['level'] = xml.parent().parent().@levelLabel;
+								obj['levelid'] = xml.parent().parent().@levelid;
+								obj['deviceNumbers'] = Number(xml.@deviceNumbers);
+								obj['leaderInspectPlanTimes'] = Number(xml.@leaderInspectPlanTimes);
+								obj['leaderInspectFinishedTimes'] = Number(xml.@leaderInspectFinishedTimes);
+								obj['leaderInspectRemainderTimes'] = Number(xml.@leaderInspectRemainderTimes);
+								obj['fishedRatio'] = Number(xml.@fishedRatio);
+								
+								obj['problemNumbers'] = Number(xml.@problemNumbers);
+								obj['solvedProblemNumbers'] = Number(xml.@solvedProblemNumbers);
+								obj['unsolvedProblemNumbers'] = Number(xml.@unsolvedProblemNumbers);
+								obj['solvedRatio'] = Number(xml.@solvedRatio);
+								
+								//obj.isSumBgColor=1;
+								//obj.bgcolor=FirstRecordBgColor;
+								obj.color = 0x000000;
+								tmpArrayCollection.addItem(obj);
+								norder++;
+								nindex++;
+							}
+						}
+						//End 明细数据结束
+					}
+					/*
+					var order2:int = 0;
+					for each (var obj2:Object in tmpArrayCollection)
+					{
+						obj2.order = order2;
+						tmpArrayCollection.addItem(obj2);
+						order2++;
+					}
+					*/
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			//****************************************************
+			//            企业某级别装置情况
+			//****************************************************
+			//弹出窗口
+			private var titleWindow4:views.PopupTitleWin;
+			private function popupKeyDeviceMX(plateid:String, platename:String, levelid:String, levelname:String, corpid:String, corpname:String):void
+			{
+				titleWindow4 = new views.PopupTitleWin();
+				titleWindow4.TitleValue = corpname + levelname + "关键装置/要害部位明细" + "(" + dateStr + "年)";
+				titleWindow4.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow4);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupKeyDeviceMXADG();
+					var advancedAc:ArrayCollection = createPopupKeyDeviceMXData(plateid, platename, levelid, levelname, corpid, corpname);
+					advancedDataGrid.dataProvider = advancedAc;
+
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow4.width-2;
+					borderContainer.height =titleWindow4.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow4.Content = group;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow4.addEventListener(events.ExportEvent.ExportClick,DoExoprt4(plateid,platename,levelid,levelname,corpid,corpname));
+				PopUpManager.addPopUp(titleWindow4, this, true);
+				PopUpManager.centerPopUp(titleWindow4);
+			}
+			//titleWindow4.addEventListener(events.ExportEvent.ExportClick,DoExoprt4(plateid,platename,levelid,levelname,corpid,corpname));
+			private function DoExoprt4(plateid:String, platename:String, levelid:String, levelname:String, corpid:String, corpname:String):Function{
+				return function (event:ExportEvent):void{
+					// TODO Auto-generated method stub
+					//adg1.displayItemsExpanded=true; //导出前展开所有节点 否则只能导出当前展示节点
+					//adg1.validateNow(); //刷新  展开后需要进行刷新   
+					//views.ExportToExcel.dataGridExporter(adg1,"重点监管项目.xls");
+					
+					var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+					titleWindow.TitleValue = corpname + levelname + "关键装置/要害部位明细" + "(" + dateStr + "年)";
+					titleWindow.width=1000;
+					titleWindow.height=800;
+					//order label projectName field1 field2 field3 field4 investment finishedInvestment unfinishedInvestment finishedRation groupCharger subCorpCharger chargeDeparment
+					titleWindow.DataSourceConf=new ArrayCollection([
+						{headerText:"排序号",dataField:"order",width1:"40",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"单位名称",dataField:"corp",width1:"90",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"关键装置/要害部位名称",dataField:"keyDeviceLabel",width1:"140",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"责任人",dataField:"manager",width1:"40",textAlign:"center",sortable:true,draggable:false}
+						
+					]);
+					
+					var advancedAc:ArrayCollection = createPopupKeyDeviceMXData(plateid, platename, levelid, levelname, corpid, corpname);
+					titleWindow.DataSource= advancedAc;
+					titleWindow.exportToExcel();
+				}
+			}
+			private function createPopupKeyDeviceMXADG():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "order";
+					column.setStyle("textAlign", "center");
+					column.headerText = "序号";
+					column.itemRenderer=new ClassFactory(as_class.SequenceItemRenderer);
+					column.sortable=false;
+					column.width=40;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "corp";
+					column.showDataTips = true;
+					column.width = 80;
+					column.setStyle("textAlign", "left");
+					column.headerText = "单位名称";
+					column.sortable=false;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "keyDeviceLabel";
+					column.width = 150;
+					column.setStyle("textAlign", "left");
+					column.headerText = "关键装置/要害部位名称";
+					column.sortable=false;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "manager";
+					column.showDataTips = true;
+					column.width = 80;
+					column.setStyle("textAlign", "left");
+					column.headerText = "责任人";
+					column.sortable=false;
+					advancedDataArray.push(column);
+					
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function createPopupKeyDeviceMXData(plateid:String, platename:String, levelid:String, levelname:String, corpid:String, corpname:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//企业
+					var corpList:XMLList = hseDataXML.keydeviceData;
+					if (levelid == "00")
+					{
+						corpList = corpList.levelData;
+					}
+					else
+					{
+						corpList = corpList.levelData.(@levelid == levelid);
+					}
+					if (plateid == "00")
+					{
+						corpList = corpList.plateData
+					}
+					else
+					{
+						corpList = corpList.plateData.(@plateid == plateid)
+					}
+					if (corpid == "00")
+					{
+						corpList = corpList.corpData.keyDeviceData;
+					}
+					else
+					{
+						corpList = corpList.corpData.(@subCorpid == corpid).keyDeviceData;
+					}
+					if (corpList != null && corpList.length() > 0)
+					{
+						var order:int = 1;
+						var index:int = 1;
+						for each (var xml:XML in corpList)
+						{
+							var obj:Object = new Object();
+							obj['index'] = index;
+							obj['order'] = order;
+							obj['corp'] = xml.parent().@subCorpname;
+							obj['keyDeviceLabel'] = xml.@keyDeviceLabel;
+							obj['manager'] = xml.@manager
+							
+							//obj.isSumBgColor=1;
+							//obj.bgcolor=FirstRecordBgColor;
+							obj.color = 0x000000;
+							tmpArrayCollection.addItem(obj);
+							order++;
+							index++;
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			//****************************************************
+			//            企业领导活动情况
+			//****************************************************
+			//弹出窗口
+			private var titleWindow5:views.PopupTitleWin;
+			private function popupLeaderMX(plateid:String, platename:String, corpid:String, corpname:String, typeid:String, typename:String):void
+			{
+				titleWindow5 = new views.PopupTitleWin();
+				titleWindow5.TitleValue = corpname + "各级关键装置/要害部位领导活动情况" + "(" + dateStr + "年)";
+				titleWindow5.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow5);
+				});
+				
+				try
+				{
+					var advancedDataGrid5_1:mx.controls.AdvancedDataGrid;
+					var advancedDataGrid5_2:mx.controls.AdvancedDataGrid;
+					advancedDataGrid5_1 = createPopupLeaderMXADG();
+					typeid="JJ";
+					typename="局级";
+					var advancedAc5_1:ArrayCollection = createPopupLeaderMXData(plateid, platename, corpid, corpname, typeid, typename);
+					advancedDataGrid5_1.dataProvider = advancedAc5_1;
+					advancedDataGrid5_2 = createPopupLeaderMXADG();
+					typeid="CJ";
+					typename="处级";
+					var advancedAc5_2:ArrayCollection = createPopupLeaderMXData(plateid, platename, corpid, corpname, typeid, typename);
+					advancedDataGrid5_2.dataProvider = advancedAc5_2;
+					var tabNavigator:TabNavigator = new TabNavigator();
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = tabNavigator.width=titleWindow5.width-2;
+					borderContainer.height = tabNavigator.height=titleWindow5.height-60;
+					borderContainer.styleName = "tabHeadBox";
+					tabNavigator.styleName = "TabNavigator_style";
+					advancedDataGrid5_1.percentWidth=100;
+					advancedDataGrid5_1.percentHeight=100;
+					advancedDataGrid5_2.percentWidth=100;
+					advancedDataGrid5_2.percentHeight=100;
+					
+					var navigatorContent_1:NavigatorContent = new NavigatorContent();
+					navigatorContent_1.label = "局级";
+					tabNavigator.addChild(navigatorContent_1);
+					navigatorContent_1.addElement(advancedDataGrid5_1);
+					
+					var navigatorContent_2:NavigatorContent = new NavigatorContent();
+					navigatorContent_2.label = "处级";
+					navigatorContent_2.width = tabNavigator.width;
+					navigatorContent_2.height = tabNavigator.height;
+					tabNavigator.addChild(navigatorContent_2);
+					navigatorContent_2.addElement(advancedDataGrid5_2);
+					borderContainer.addElement(tabNavigator);
+//					tabNavigator.addEventListener(IndexChangedEvent.CHANGE,tabNavigator_changeHandler);
+					group.addElement(borderContainer);
+					titleWindow5.Content = group;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow5.addEventListener(events.PopupEvent.PopupItemClick, popItemMX);
+				titleWindow5.addEventListener(events.ExportEvent.ExportClick,DoExoprt5(plateid,platename,corpid,corpname,"00","全部"));
+				PopUpManager.addPopUp(titleWindow5, this, true);
+				PopUpManager.centerPopUp(titleWindow5);
+			}
+			//titleWindow5.addEventListener(events.ExportEvent.ExportClick,DoExoprt5(plateid,platename,corpid,corpname,typeid,typename));
+			private function DoExoprt5(plateid:String, platename:String, corpid:String, corpname:String, typeid:String, typename:String):Function{
+				return function (event:ExportEvent):void{
+					// TODO Auto-generated method stub
+					//adg1.displayItemsExpanded=true; //导出前展开所有节点 否则只能导出当前展示节点
+					//adg1.validateNow(); //刷新  展开后需要进行刷新   
+					//views.ExportToExcel.dataGridExporter(adg1,"重点监管项目.xls");
+					
+					var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+					titleWindow.TitleValue = corpname + "各级关键装置/要害部位领导活动情况" + "(" + dateStr + "年)";
+					titleWindow.width=1000;
+					titleWindow.height=800;
+					//order label projectName field1 field2 field3 field4 investment finishedInvestment unfinishedInvestment finishedRation groupCharger subCorpCharger chargeDeparment
+					titleWindow.DataSourceConf=new ArrayCollection([
+						{headerText:"排序号",dataField:"order",width1:"40",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"领导",dataField:"leaderName",width1:"90",textAlign:"left",sortable:true,draggable:false},
+						{headerText:"级别",dataField:"leaderType",width1:"140",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"装置数量",dataField:"deviceNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"计划",dataField:"leaderInspectPlanTimes",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"实际",dataField:"leaderInspectFinishedTimes",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"完成率",dataField:"fishedRatio",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"提出问题",dataField:"problemNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"已落实",dataField:"solvedProblemNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"未落实",dataField:"unsolvedProblemNumbers",width1:"40",textAlign:"center",sortable:true,draggable:false},
+						{headerText:"落实率",dataField:"solvedRatio",width1:"40",textAlign:"center",sortable:true,draggable:false}
+						
+					]);
+					
+					var advancedAc:ArrayCollection = createPopupLeaderMXData(plateid, platename, corpid, corpname, typeid, typename);
+					titleWindow.DataSource= advancedAc;
+					titleWindow.exportToExcel();
+				}
+			}
+//			protected function tabNavigator_changeHandler(event:IndexChangedEvent):void
+//			{
+//			}
+			
+			private function createPopupLeaderMXADG():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "order";
+					column.setStyle("textAlign", "center");
+					column.headerText = "序号";
+					column.itemRenderer=new ClassFactory(as_class.SequenceItemRenderer);
+					column.sortable=false;
+					column.width=40;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "leaderName";
+					column.showDataTips = true;
+					column.width = 60;
+					column.setStyle("textAlign", "left");
+					column.headerText = "姓名";
+					column.sortable=true;
+//					column.sortCompareFunction = sortCompareFunc;
+					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "leaderType";
+					column.showDataTips = true;
+					column.width = 60;
+					column.setStyle("textAlign", "left");
+					column.headerText = "级别";
+					column.sortable=false;
+//					advancedDataArray.push(column);
+					
+					column = new AdvancedDataGridColumn();
+					column.dataField = "deviceNumbers";
+					column.width = 60;
+					column.setStyle("textAlign", "left");
+					column.headerText = "装置数量";
+//					advancedDataArray.push(column);
+					
+					//合计，数量/占比
+					//一级，数量/占级别比例/占板块比例
+					
+					var columnGP0:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP0.headerText = "活动情况";
+					var advancedDataGrpArray0:Array = new Array();
+					var column1:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column1.dataField = "leaderInspectPlanTimes";
+					column1.headerText = "应活动次数";
+					column1.width = 70;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "leaderInspectFinishedTimes";
+					column1.headerText = "实际活动次数";
+					column1.width = 70;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "fishedRatio";
+					column1.headerText = "完成率%";
+					column1.width = 70;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "problemNumbers";
+					column1.headerText = "提出问题数";
+					column1.width = 70;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "solvedProblemNumbers";
+					column1.headerText = "已落实";
+					column1.width = 70;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "unsolvedProblemNumbers";
+					column1.headerText = "未落实";
+					column1.itemRenderer = itemLinkRenderer; //添加链接
+					column1.width = 70;
+					advancedDataGrpArray0.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "solvedRatio";
+					column1.headerText = "落实率%";
+					column1.width = 70;
+					advancedDataGrpArray0.push(column1);
+					columnGP0.children = advancedDataGrpArray0;
+					advancedDataArray.push(columnGP0);
+					
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function createPopupLeaderMXData(plateid:String, platename:String, corpid:String, corpname:String, typeid:String, typename:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var corpList:XMLList;
+					if (plateid == "00")
+					{
+						corpList = hseDataXML.keydeviceData.levelData.(@levelid == "00").plateData
+					}
+					else
+					{
+						corpList = hseDataXML.keydeviceData.levelData.(@levelid == "00").plateData.(@plateid == plateid)
+					}
+					if (corpid == "00")
+					{
+						corpList = corpList.corpData;
+					}
+					else
+					{
+						corpList = corpList.corpData.(@subCorpid == corpid);
+					}
+					if (typeid == "00")
+					{
+						corpList = corpList.typeData.leaderData;
+					}
+					else
+					{
+						corpList = corpList.typeData.(@typeid == typeid).leaderData;
+					}
+					
+					if (corpList != null && corpList.length() > 0)
+					{
+						var order:int = 1;
+						var index:int = 1;
+						for each (var xml:XML in corpList)
+						{
+							var obj:Object = new Object();
+							obj['index'] = index;
+							obj['order'] = order;
+							obj['corpid'] = corpid;
+							obj['typeid'] = typeid;
+							obj['leaderid'] = xml.@leaderid;
+							obj['leaderName'] = String(xml.@leaderName);
+							obj['leaderType'] = String(xml.parent().@typeLabel);
+							obj['deviceNumbers'] = Number(xml.@deviceNumbers);
+							obj['leaderInspectPlanTimes'] = Number(xml.@leaderInspectPlanTimes);
+							obj['leaderInspectFinishedTimes'] = Number(xml.@leaderInspectFinishedTimes);
+							obj['leaderInspectRemainderTimes'] = Number(xml.@leaderInspectRemainderTimes);
+							obj['fishedRatio'] = Number(xml.@fishedRatio);
+							
+							obj['problemNumbers'] = Number(xml.@problemNumbers);
+							obj['solvedProblemNumbers'] = Number(xml.@solvedProblemNumbers);
+							obj['unsolvedProblemNumbers'] = Number(xml.@unsolvedProblemNumbers);
+							obj['solvedRatio'] = Number(xml.@solvedRatio);
+							
+							//obj.isSumBgColor=1;
+							//obj.bgcolor=FirstRecordBgColor;
+							obj.color = 0x000000;
+							tmpArrayCollection.addItem(obj);
+							order++;
+							index++;
+						}
+						
+//												var sort:Sort=new Sort();  
+//												sort.fields=[new SortField("leaderName",true,true)]; 
+//												tmpArrayCollection.sort=sort;
+//												tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+						
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection2;
+			}
+			
+			private function colorFunction(item:Object, color:uint):uint
+			{
+				if (item.order == "")
+					color = 0xFFBF00;
+				return color;
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_topLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.tab1_levelCurrSelect = event.hitDataItem.levelid;
+				this.tab1_levelNameCurrSelect = event.hitDataItem.label;
+				tab1_levelNameCurrSelect = tab1_levelNameCurrSelect == null ? "" : tab1_levelNameCurrSelect;
+				//初始化tab1_topRightDS
+				tab1_topRightDS = getTab1_topRightDS();
+				//初始化tab1_downLeftDS
+				tab1_downLeftDS = getTab1_downLeftDS();
+				//初始化tab1_downRightDS
+				tab1_downRightDS = getTab1_downRightDS();
+				executeBindTab1Title();
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				//popupPlateMX(item.plateid,"各板块");
+				popupPlateMX();
+			}
+			
+			protected function tab1_topOther_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				//popupPlateMX(item.plateid,item.label+"板块");
+				popupPlateMX()
+			}
+			
+			private function sortCompareFunc(field:String):Function{  
+				return function(obj1:Object, obj2:Object):int{  
+					return ObjectUtil.numericCompare(obj1[field],obj2[field]);
+				}  
+			}  
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+	</fx:Declarations>
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:PieMultiWithEffect1 id="tab1_topLeft"
+										   showTitle="true"
+										   showLegend="true" ShowDataLabel="{showDataLabel}"
+										   title="{tab1_topLeftTitle}"
+										   DataSource="{tab1_topLeftDS}"
+										   PopupClick="tab1_topLeft_PopupClickHandler(event)"
+										   PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)"
+										   IfShowVolInLabel="true"
+										   IfShowPerInLabel="true"
+										   IfShowVolInLegend="true"
+										   IfShowPerInLegend="true" />
+			</s:BorderContainer>
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_topRight"
+								   AxisLeftTiltle="关键装置：个"
+								   showTitle="true"
+								   showLegend="true" ShowDataLabel="{showDataLabel}"
+								   title="{tab1_topRightTitle}"
+								   DataSource="{tab1_topRightDS}"
+								   DataSourceConf="{tab1_topRightConfDS}"
+								   PopupDoubleClick="tab1_topOther_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnLineMulti id="tab1_downLeft"
+									   AxisLeftTiltle="活动：次"
+									   showTitle="true"
+									   showLegend="true" ShowDataLabel="{showDataLabel}"
+									   title="{tab1_downLeftTitle}"
+									   DataSource="{tab1_downLeftDS}"
+									   DataSourceConf="{tab1_downLeftConfDS}"/>
+									 <!--  PopupDoubleClick="tab1_topOther_PopupDoubleClickHandler(event)" />-->
+			</s:BorderContainer>
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnPlanActSurLineRate id="tab1_downRight"
+												AxisLeftTiltle="问题：个"
+												showTitle="true"
+												showLegend="true"
+												IfSingle="false"
+												planTxt="提出问题数"
+												actTxt="已落实"
+												surTxt="未落实"
+												rateTxt="落实率" ShowDataLabel="{showDataLabel}"
+												title="{tab1_downRightTitle}"
+												DataSource="{tab1_downRightDS}"/>
+												<!--PopupDoubleClick="tab1_topOther_PopupDoubleClickHandler(event)" />-->
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

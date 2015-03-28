@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				width="100%" height="100%" rollOverColor="#FFFFFF" 
+				autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Button;
+			import mx.controls.Image;
+			import mx.controls.Label;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			
+			import spark.primitives.Ellipse;
+			import spark.primitives.Path;
+			
+			import events.MeantimeOverAllStatusEvent;
+			
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				hgroup.removeAllElements();
+				if(advancedDataGridListData != null){
+					var str:String = data[advancedDataGridListData.dataField];
+					var arr:Array = str.split(",");
+					var no_start_num:int = 0;
+					var in_progress_num:int = 0;
+					var finished_num:int = 0;
+					for each(var str_:String in arr){
+						switch(str_){
+							case "0":
+								no_start_num++;
+								break;
+							case "1":
+								in_progress_num++;
+								break;
+							case "2":
+								finished_num++;
+								break;
+						}
+					}
+					
+					if(finished_num > 0){
+						var image3:Image = new Image();
+						image3.width = 20;
+						image3.height = 20;
+						image3.source = "assets/images/finished.gif";
+						image3.toolTip="已完成："+finished_num;
+						var finished_label:Label = new Label();
+						finished_label.text = "已完成("+finished_num + ") ";
+						
+						image3.addEventListener(MouseEvent.CLICK,click3);
+						finished_label.addEventListener(MouseEvent.CLICK,click3);
+						finished_label.minWidth=85;
+						finished_label.setStyle("textAlign","left");
+						//hgroup.addElement(image3);
+						hgroup.addElement(finished_label);
+					}
+	
+					if(in_progress_num > 0){
+						var image2:Image = new Image();
+						image2.width = 20;
+						image2.height = 20;
+						image2.source = "assets/images/in-progress.gif";
+						image2.toolTip="进行中："+in_progress_num;
+						var in_progress_label:Label = new Label();
+						in_progress_label.text = "进行中("+in_progress_num + ") ";
+						
+						image2.addEventListener(MouseEvent.CLICK,click2);
+						in_progress_label.addEventListener(MouseEvent.CLICK,click2);
+						in_progress_label.minWidth=85;
+						in_progress_label.setStyle("textAlign","left");
+						//hgroup.addElement(image2);
+						hgroup.addElement(in_progress_label);
+					}
+					
+					if(no_start_num > 0){
+						var image1:Image = new Image();
+						image1.width = 20;
+						image1.height = 20;
+						image1.source = "assets/images/no-start.gif";
+						image1.toolTip="未启动："+no_start_num;
+						var no_start_label:Label = new Label();
+						no_start_label.text = "未启动("+no_start_num + ") ";
+						
+						image1.addEventListener(MouseEvent.CLICK,click1);
+						no_start_label.addEventListener(MouseEvent.CLICK,click1);
+						no_start_label.minWidth=85;
+						no_start_label.setStyle("textAlign","left");
+						//hgroup.addElement(image1);
+						hgroup.addElement(no_start_label);					
+					}
+				}
+			}
+			
+			private function click1(event:MouseEvent):void{
+				//this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"NO-START"));
+			}
+			private function click2(event:MouseEvent):void{
+				//this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"IN-PROCESS"));
+			}
+			private function click3(event:MouseEvent):void{
+				//this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"FINISHED"));
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+	</fx:Declarations>
+	
+	<s:HGroup id="hgroup" width="100%" height="100%" gap="2" paddingLeft="10" verticalAlign="middle">
+	</s:HGroup>
+	
+</s:MXAdvancedDataGridItemRenderer>

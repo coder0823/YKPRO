@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-事故-分企业
+		 * 参数：年度（2012）
+		 * 作者：孙山虎
+		 * 日期：2013年5月8日
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.core.FlexGlobals;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.components.TitleWindow;
+			import spark.events.IndexChangeEvent;
+			
+			import events.PopupEvent;
+			
+			import modules.accident.components.AccidentInfo;
+			
+			import skins.popWinStyle;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/zb_accidentdata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "分企业";
+			
+//			[Bindable]
+//			private var tab1_topTitle:String="中国石化2012年1月各企业事故发生情况";
+//			[Bindable]
+//			private var tab1_downTitle:String="中国石化2012年1月各企业未遂事件情况";
+			
+			private var tab1_currentYearSelect:String = DateField.dateToString(new Date(), 'YYYY');
+			private var tab1_currentMonthSelect:String = DateField.dateToString(new Date(), 'MM');
+			
+			[Bindable]
+			private var tab1_topTitle:String = "";
+			[Bindable]
+			private var tab1_downTitle:String = "";
+			
+			[Bindable]
+			private var tab1_plateCurrSelect:String;
+			private var tab1_plateNameCurrSelect:String;
+			
+			[Bindable]
+			private var tab1_plateDS:ArrayCollection;
+			[Bindable]
+			private var tab1_dateMthDS:ArrayCollection;
+			[Bindable]
+			private var tab1_showCorpCnt:int = _showCorpCnt;
+			[Bindable]
+			private var tab1_showCorpCntMax:int = 1000;
+			
+			[Bindable]
+			private var tab1_topConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				
+				tab1_topDS = new ArrayCollection();
+				tab1_downDS = new ArrayCollection();
+				
+				tab1_topConfDS = new ArrayCollection([{name: "月度事故数", field: "vol1", type: "lineSeries", axis: "left"},
+					//{name:"年累计事故数",field:"vol2",type:"lineSeries",axis:"left"},
+					]);
+				tab1_downConfDS = new ArrayCollection([{name: "月度未遂事件数", field: "vol1", type: "lineSeries", axis: "left"},
+					//{name:"年累计未遂事件数",field:"vol2",type:"lineSeries",axis:"left"},
+					]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				tab1_plateDS = new ArrayCollection([{label: "全部", value: "ALL"}, {label: "油田", value: "YT"}, {label: "炼化", value: "LH"}, {label: "销售", value: "XS"}, {label: "工程", value: "GC"}, {label: "其他", value: "QT"}]);
+				//。。。。。。给其他图赋值，这里省略。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetAccident(dateStr);
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				
+				getTab1_dateMthDS();
+				tab1_plateDS = getTab1_plateDS();
+				//tab1_dateMthDS=getTab1_dateMthDS();
+				
+				tab1_showCorpCnt = getTab1_CorpCntDS(this.tab1_plateCurrSelect);
+				tab1_showCorpCntMax = getTab1_CorpCntMax(this.tab1_plateCurrSelect);
+				
+				tab1_topDS = getTab1_topDS();
+				tab1_downDS = getTab1_downDS();
+				
+				executeBindTab1Title();
+			
+			}
+			
+			private function executeBindTab1Title():void
+			{
+				if(tab1_plateNameCurrSelect=="全部"){
+				   tab1_topTitle = "中国石化"  + this.dateMth.selectedItem.name + "各企业事故发生情况";
+				   tab1_downTitle = "中国石化" + this.dateMth.selectedItem.name + "各企业未遂事件情况";
+				}
+				else{
+					tab1_topTitle =  tab1_plateNameCurrSelect + "板块" + this.dateMth.selectedItem.name + "各企业事故发生情况";
+					tab1_downTitle = tab1_plateNameCurrSelect + "板块" + this.dateMth.selectedItem.name + "各企业未遂事件情况";				
+				}
+			}
+			
+			private function getTab1_dateMthDS():void
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//获取当年，当月
+					var tmpList0:XMLList = hseDataXML.accidentData;
+					if (tmpList0.length() > 0)
+					{
+						tab1_currentYearSelect = tmpList0[0].@currentYearid;
+						tab1_currentMonthSelect = tmpList0[0].@currentMonthid;
+					}
+					
+					var tmpList:XMLList;
+					tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData;
+					if (tmpList.length() > 0)
+					{
+						for (var i:int = tmpList.length() - 1; i >= 0; i--)
+						{
+							var obj:Object = {name: tab1_currentYearSelect + "年" + tmpList[i].@label + "", value: tab1_currentYearSelect + "" + tmpList[i].@monthid};
+							
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				dateMth.dataProvider = tmpArrayCollection;
+				dateMth.selectedIndex = 0;
+				//return tmpArrayCollection;
+			
+			}
+			
+			private function getTab1_plateDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData.(@monthid == tab1_currentMonthSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						tab1_plateCurrSelect = tmpList[0].@plateid; //设置默认选择
+						tab1_plateNameCurrSelect = tmpList[0].@plateLabel;
+						tab1_plateNameCurrSelect = tab1_plateNameCurrSelect == null ? "" : tab1_plateNameCurrSelect;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@plateLabel, value: xml.@plateid};
+							//增加排序字段,企业显示顺序
+							//displayindex:Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				
+				
+				//添加前台计算“全部”的情况
+				tmpArrayCollection.addItemAt({label: "全部", value: "00"}, 0);
+				tab1_plateCurrSelect = "00";
+				tab1_plateNameCurrSelect = "全部";
+							
+				
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_CorpCntDS(plateid:String):int
+			{
+				var _cnt:int = getTab1_CorpCntMax(plateid);
+				if (_cnt > _showCorpCnt)
+					_cnt = _showCorpCnt;
+				return _cnt;
+			}
+			
+			private function getTab1_CorpCntMax(plateid:String):int
+			{
+				var _cnt:int = 0;
+				try
+				{
+					var tmpList:XMLList;
+					if (tab1_plateCurrSelect == "00")
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData.(@monthid == tab1_currentMonthSelect).plateData.corpData;
+					}
+					else
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData.(@monthid == tab1_currentMonthSelect).plateData.(@plateid == tab1_plateCurrSelect).corpData;
+					}
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						_cnt = tmpList.length();
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//分左右2部分显示
+				//_cnt=Math.floor((_cnt+1)/2);	
+				return _cnt;
+			}
+			
+			private function getTab1_topDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					if (tab1_plateCurrSelect == "00")
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData.(@monthid == tab1_currentMonthSelect).plateData.corpData;
+					}
+					else
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData.(@monthid == tab1_currentMonthSelect).plateData.(@plateid == tab1_plateCurrSelect).corpData;
+					}
+					
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@subCorpname, vol1: xml.@monthAccidentNumbers, vol2: xml.@yearAccidentNumbers, 
+								id: xml.@subCorpid,
+								//增加排序字段,企业显示顺序
+								displayindex:Number(xml.@displayindex)
+							};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("vol2", true, true),new SortField("displayindex", false, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					if (i >= tab1_showCorpCnt)
+						break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			private function getTab1_downDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					if (tab1_plateCurrSelect == "00")
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData.(@monthid == tab1_currentMonthSelect).plateData.corpData;
+					}
+					else
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == tab1_currentYearSelect).monthData.(@monthid == tab1_currentMonthSelect).plateData.(@plateid == tab1_plateCurrSelect).corpData;
+					}
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@subCorpname, vol1: xml.@monthUnaccidentNumbers, vol2: xml.@yearUnaccidentNumbers,
+								id: xml.@subCorpid,
+								//增加排序字段,企业显示顺序
+								displayindex:Number(xml.@displayindex)
+							};
+							
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("vol2", true, true),new SortField("displayindex", false, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					if (i >= tab1_showCorpCnt)
+						break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			//****************************************************
+			//            事故年度数据（年度，板块，企业）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow3:views.PopupTitleWinDG;
+			private function popupAccMX(yearid:String, yearname:String, monthid:String, monthname:String, plateid:String, platename:String, corpid:String, corpname:String):void
+			{
+				titleWindow3 = new views.PopupTitleWinDG();
+				titleWindow3.TitleValue = corpname + yearname + "事故明细";
+				titleWindow3.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow3);
+					});
+				titleWindow3.IfShowFirstRecordBgColor = true;
+				titleWindow3.IfShowFrontRecordColor = false;
+				titleWindow3.IfShowBackRecordColor = false;
+				titleWindow3.DataSourceConf = new ArrayCollection([{headerText: "序号", dataField: "order", width: "30", textAlign: "center", sortable: true, draggable: false}, {headerText: "事故名称", dataField: "accName", width: "200", textAlign: "left", sortable: true, draggable: true, enableUrlLink: true}, {headerText: "发生单位", dataField: "accCorp", width: "90", textAlign: "center", sortable: true, draggable: true}, {headerText: "发生时间", dataField: "accDateTime", width: "110", textAlign: "center", sortable: true, draggable: true}, {headerText: "事故类别", dataField: "accType", width: "90", textAlign: "center", sortable: true, draggable: true}, {headerText: "伤亡人数", dataField: "accCasualties", width: "60", textAlign: "center", sortable: true, draggable: true},
+					//{headerText:"登记部门",dataField:"accOrg",width:"90",textAlign:"left",sortable:true,draggable:true},
+					//{headerText:"状态",dataField:"accStats",width:"90",textAlign:"left",sortable:true,draggable:true},
+					]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList
+					if (monthid == "" || monthid == "00")
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == yearid).monthData.plateData.corpData.(@subCorpid == corpid).accident;
+					}
+					else
+					{
+						tmpList = hseDataXML.accidentData.yearData.(@yearid == yearid).monthData.(@monthid == monthid).plateData.corpData.(@subCorpid == corpid).accident;
+					}
+					
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							obj.index = index;
+							obj.order = order;
+							//obj.id = xml.@plateid;
+							obj.accName = xml.@accName;
+							obj.accCorp = xml.@accFromCorp;
+							obj.accDateTime = xml.@accFromTime;
+							obj.accType = xml.@accType;
+							obj.accOrg = xml.@accRegOrg;
+							obj.accStats = xml.@accStats;
+							obj.accCasualties = xml.@accCasualties;
+							
+							obj.accLevel = xml.@accLevel;
+							obj.accFromCorp = xml.@accFromCorp;
+							obj.accFromTime = xml.@accFromTime;
+							obj.ifOutSide = xml.@ifOutSide;
+							obj.ifBeiAn = xml.@ifBeiAn;
+							obj.accDesc = xml.@accDesc;
+							obj.accDeal = xml.@accDeal;
+							obj.accTrain = xml.@accTrain;
+							
+							tmpArrayCollection.addItem(obj);
+							order++;
+							index++;
+						}
+						
+						//var sort:Sort=new Sort();  
+						//sort.fields=[new SortField("yearAccidentNumbers",true,true)];  
+						//tmpArrayCollection.sort=sort;
+						//tmpArrayCollection.refresh();
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							tmpArrayCollection2.addItem(obj2);
+						}
+					}
+					titleWindow3.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow3.addEventListener(events.PopupEvent.PopupItemClick, popAccInfo);
+				PopUpManager.addPopUp(titleWindow3, this, true);
+				PopUpManager.centerPopUp(titleWindow3);
+			}
+			private var titleWin:TitleWindow = new TitleWindow;
+			private var accInfo:modules.accident.components.AccidentInfo;
+			
+			protected function popAccInfo(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				titleWin.removeAllElements();
+				titleWin.minWidth=900;
+				titleWin.minHeight=500;
+				titleWin.height=this.height-60;
+				titleWin.width=this.width-60;
+				
+				titleWin.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWin);
+					});
+				if (obj.item == "accName")
+				{
+					accInfo = new modules.accident.components.AccidentInfo();
+					//accName accType accLevel accFromCorp accFromTime accCasualties ifOutSide ifBeiAn accDesc accDeal accTrain
+					accInfo.ShowTitle = false;
+					accInfo.accName = obj.accName;
+					accInfo.accType = obj.accType;
+					accInfo.accLevel = obj.accLevel;
+					accInfo.accFromCorp = obj.accFromCorp;
+					accInfo.accFromTime = obj.accFromTime;
+					accInfo.accCasualties = obj.accCasualties;
+					accInfo.ifOutSide = obj.ifOutSide;
+					accInfo.ifBeiAn = obj.ifBeiAn;
+					accInfo.accDesc = obj.accDesc;
+					accInfo.accDeal = obj.accDeal;
+					accInfo.accTrain = obj.accTrain;
+					titleWin.addElement(accInfo);
+				}
+				titleWin.title = obj.accName + "详情";
+				;
+				titleWin.setStyle("skinClass", skins.popWinStyle);
+				PopUpManager.addPopUp(titleWin, this.root, true);
+				PopUpManager.centerPopUp(titleWin);
+			}
+			
+			//****************************************************
+			//            企业月度数据（板块，年度）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow4:views.PopupTitleWinDG;
+			private function popupCorpMonthMX(dataType:String, dataTypeName:String, yearid:String, yearname:String, plateid:String, platename:String):void
+			{
+				var flag:Boolean = true;
+				if(dataType=="unaccident"){
+					flag = false;
+				}
+				titleWindow4 = new views.PopupTitleWinDG();
+				titleWindow4.TitleValue = platename + "板块" + dataTypeName + "情况" + " 计量单位：起";
+				titleWindow4.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow4);
+				});
+				titleWindow4.IfShowFirstRecordBgColor = true;
+				titleWindow4.IfShowFrontRecordColor = false;
+				titleWindow4.IfShowBackRecordColor = false;
+				//var tmpHeadConf:ArrayCollection = new ArrayCollection([{headerText: "序号", dataField: "order", width: "30", textAlign: "center", sortable: false, draggable: false}, {headerText: "企业", dataField: "label", width: "90", textAlign: "left", sortable: true, draggable: true,sortByCustomField:"displayindex",footHeakerText:platename+"板块合计"},]);
+				var tmpHeadConf:ArrayCollection = new ArrayCollection([{headerText: "序号", dataField: "order", width: "30", textAlign: "center", sortable: false, draggable: false}, {headerText: "企业", dataField: "label", width: "90", textAlign: "left", sortable: true, draggable: true,footHeakerText:platename+"板块合计"},]);
+				
+				if(!flag){
+					var obj_total:Object = {headerText: "未遂事件合计", dataField: "total", width: "90", height: "10" , textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"};
+					tmpHeadConf.addItem(obj_total);
+				}
+				try
+				{
+					var tmpList0:XMLList = hseDataXML.accidentData.yearData.(@yearid == yearid).monthData;
+					if (tmpList0.length() > 0)
+					{
+						for each (var xml0:Object in tmpList0)
+						{
+							var obj0:Object = {headerText: xml0.@label, dataField: "cusField" + yearid + "" + xml0.@monthid, yearid: yearid, monthid: xml0.@monthid, width: "80", textAlign: "center", sortable: true, draggable: true, enableUrlLink: flag,footLblFunEnable:true,footLblFunType:"sum"};
+							tmpHeadConf.addItem(obj0);
+						}
+					}
+					titleWindow4.DataSourceConf = tmpHeadConf;
+					
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList
+					tmpList = hseDataXML.accidentData.yearData;
+					if (tmpList.length() > 0)
+					{
+						//合计数据
+						/*组件2自动合计，因此不需要数据计算，注释掉
+						var obj1:Object = new Object();
+						obj1.index = 1;
+						obj1.order = " ";
+						obj1.label = platename + "合计";
+						obj1.id = "00";
+						obj1.plateid = plateid;
+						obj1.platename = platename;
+						obj1.dataType = dataType;
+						obj1.dataTypeName = dataTypeName;
+						obj1.displayindex=0
+						for (var j:int = 2; j < tmpHeadConf.length; j++)
+						{ //列
+						//var tmpYearid1:String = tmpHeadConf[j].yearid;
+						var tmpMonthid1:String = tmpHeadConf[j].monthid;
+						var tmpMonth1:XMLList;
+						if (plateid == "00")
+						{
+						tmpMonth1 = tmpList.(@yearid == yearid).monthData.(@monthid == tmpMonthid1);
+						}
+						else
+						{
+						tmpMonth1 = tmpList.(@yearid == yearid).monthData.(@monthid == tmpMonthid1).plateData.(@plateid == plateid);
+						}
+						//判断是事故还是未遂
+						var showNum0:Number = 0;
+						if (dataType == "accident")
+						{
+						showNum0 = (tmpMonth1 == null || tmpMonth1.length() == 0) ? 0 : Number(tmpMonth1[0].@monthAccidentNumbers);
+						}
+						else
+						{
+						showNum0 = (tmpMonth1 == null || tmpMonth1.length() == 0) ? 0 : Number(tmpMonth1[0].@monthUnaccidentNumbers);
+						}
+						obj1[tmpHeadConf[j].dataField] = showNum0;
+						}
+						tmpArrayCollection2.addItem(obj1);
+						*/
+						
+						//明细数据
+						var index:int = 2;
+						var order:int = 1;
+						//获取企业信息，作为循环条件
+						var tmpCorp_:XMLList;
+						if (plateid == "00")
+						{
+							tmpCorp_ = tmpList.(@yearid == yearid).monthData.plateData.corpData;
+						}
+						else
+						{
+							tmpCorp_ = tmpList.(@yearid == yearid).monthData.plateData.(@plateid == plateid).corpData;
+						}
+						
+						var tmpCorp:ArrayCollection = new ArrayCollection();
+						if (tmpCorp_.length() > 0)
+						{
+							for each (var xml_:XML in tmpCorp_)
+							{
+								//判断是否已经有该企业了
+								var ifHas:Boolean = false;
+								if (tmpCorp && tmpCorp.length > 0)
+								{
+									for each (var xml1:Object in tmpCorp)
+									{
+										if (String(xml1.corpid) == String(xml_.@subCorpid))
+										{
+											ifHas = true;
+											break;
+										}
+									}
+								}
+								if (!ifHas)
+								{
+									var oo:Object = new Object();
+									oo.corpid = xml_.@subCorpid;
+									oo.corpname = xml_.@subCorpname;
+									oo.displayindex=Number(xml_.@displayindex);
+									tmpCorp.addItem(oo);
+								}
+							}
+						}
+						
+						if (tmpCorp && tmpCorp.length > 0)
+						{
+							for each (var xml:Object in tmpCorp)
+							{
+								var obj:Object = new Object();
+								var total_temp:Number = 0;
+								obj.index = index;
+								obj.order = order;
+								obj.label = xml.corpname;
+								obj.id = xml.corpid;
+								obj.plateid = plateid;
+								obj.platename = platename;
+								obj.dataType = dataType;
+								obj.dataTypeName = dataTypeName;
+								obj.displayindex=Number(xml.displayindex);
+								var k:int = 2;
+								if(!flag){
+									k = 3;
+								}
+								for (k; k < tmpHeadConf.length; k++)
+								{ //列
+									var tmpYearid:String = tmpHeadConf[k].yearid;
+									var tmpMonthid:String = tmpHeadConf[k].monthid;
+									//var tmpMonthCorp:XMLList=tmpList.(@yearid==tmpYearid).monthData.(@monthid==tmpMonthid).plateData.(@plateid==plateid).corpData.(@subCorpid==xml.corpid);
+									var tmpMonthCorp:XMLList = tmpList.(@yearid == tmpYearid).monthData.(@monthid == tmpMonthid).plateData.corpData.(@subCorpid == xml.corpid);
+									//判断是事故还是未遂
+									var showNum:Number = 0;
+									if (dataType == "accident")
+									{
+										showNum = (tmpMonthCorp == null || tmpMonthCorp.length() == 0) ? 0 : Number(tmpMonthCorp[0].@monthAccidentNumbers);
+									}
+									else
+									{
+										showNum = (tmpMonthCorp == null || tmpMonthCorp.length() == 0) ? 0 : Number(tmpMonthCorp[0].@monthUnaccidentNumbers);
+									}
+									obj[tmpHeadConf[k].dataField] = showNum;
+									total_temp += showNum;
+								}
+								obj.total = total_temp;
+								tmpArrayCollection.addItem(obj);
+								order++;
+								index++;
+							}
+							
+							var sort:Sort=new Sort();  
+							sort.fields=[new SortField("total",true,true),new SortField("displayindex",false,true)];  
+							tmpArrayCollection.sort=sort;
+							tmpArrayCollection.refresh();
+							
+							var order2:int = 1;
+							for each (var obj2:Object in tmpArrayCollection)
+							{
+								obj2.order = order2;
+								tmpArrayCollection2.addItem(obj2);
+								order2++;
+							}
+						}
+						
+					}
+					titleWindow4.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow4.addEventListener(events.PopupEvent.PopupItemClick, popMonthAccMX);
+				PopUpManager.addPopUp(titleWindow4, this, true);
+				PopUpManager.centerPopUp(titleWindow4);
+			}
+			
+			protected function popMonthAccMX(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				var currYearid:String = obj.item;
+				var currMonthid:String = currYearid.substr(12, 2);
+				currYearid = currYearid.substr(8, 4);
+				
+				if (obj.id != "00" && obj.dataType == "accident")
+				{
+					popupAccMX(currYearid, currYearid + "年", currMonthid, currMonthid + "月", obj.plateid, obj.platename, obj.id, obj.label);
+				}
+			}
+			
+			protected function radiobutton1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_plateCurrSelect = RadioButton(event.target).value.toString();
+				tab1_plateNameCurrSelect = RadioButton(event.target).label;
+				tab1_plateNameCurrSelect = tab1_plateNameCurrSelect == null ? "" : tab1_plateNameCurrSelect;
+				
+				tab1_showCorpCnt = getTab1_CorpCntDS(this.tab1_plateCurrSelect);
+				tab1_showCorpCntMax = getTab1_CorpCntMax(this.tab1_plateCurrSelect);
+				
+				tab1_topDS = getTab1_topDS();
+				tab1_downDS = getTab1_downDS();
+				
+				executeBindTab1Title();
+			
+			}
+			
+			protected function numericstepper1_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				tab1_showCorpCnt = int(NumericStepper(event.target).value);
+				tab1_topDS = getTab1_topDS();
+				tab1_downDS = getTab1_downDS();
+				
+				executeBindTab1Title();
+			}
+			
+			protected function dateMth_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				var sel:String = dateMth.selectedItem.value;
+				tab1_currentYearSelect = sel.substr(0, 4);
+				tab1_currentMonthSelect = sel.substr(4, 2);
+				
+				tab1_showCorpCnt = getTab1_CorpCntDS(this.tab1_plateCurrSelect);
+				tab1_showCorpCntMax = getTab1_CorpCntMax(this.tab1_plateCurrSelect);
+				
+				tab1_topDS = getTab1_topDS();
+				tab1_downDS = getTab1_downDS();
+				
+				executeBindTab1Title();
+			
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_top_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				//popupCorpMX(tab1_plateCurrSelect,tab1_plateNameCurrSelect);
+				popupCorpMonthMX("accident", "事故", tab1_currentYearSelect, tab1_currentYearSelect + "年", tab1_plateCurrSelect, tab1_plateNameCurrSelect);
+			}
+			
+			protected function tab1_down_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				//popupCorpMX(tab1_plateCurrSelect,tab1_plateNameCurrSelect);
+				popupCorpMonthMX("unaccident", "未遂事件", tab1_currentYearSelect, tab1_currentYearSelect + "年", tab1_plateCurrSelect, tab1_plateNameCurrSelect);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab1_plateGrp" />
+		<s:RadioButtonGroup id="tab1_levelGrp" />
+	</fx:Declarations>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	<s:HGroup width="100%"
+			  height="30"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<s:layout>
+				<s:HorizontalLayout horizontalAlign="right"
+									verticalAlign="middle" />
+			</s:layout>
+			<mx:HBox borderStyle="outset"
+					 styleName="controlBox"
+					 paddingLeft="10"
+					 paddingRight="10">
+				<mx:Repeater id="tab1_plateRep"
+							 dataProvider="{tab1_plateDS}">
+					<s:RadioButton groupName="tab1_plateGrp"
+								   label="{tab1_plateRep.currentItem.label}"
+								   value="{tab1_plateRep.currentItem.value}"
+								   selected="{tab1_plateRep.currentItem.value==tab1_plateCurrSelect}"
+								   click="radiobutton1_clickHandler(event)" />
+				</mx:Repeater>
+			</mx:HBox>
+			<s:Label text="按月筛选"
+					 color="#ffffff" />
+			<s:ComboBox right="5"
+						id="dateMth"
+						width="100"
+						fontWeight="normal"
+						labelField="name"
+						dataProvider="{tab1_dateMthDS}"
+						change="dateMth_changeHandler(event)" />
+			<s:Label text="显示企业数" />
+			<mx:NumericStepper id="numericstepper1"
+							   value="{tab1_showCorpCnt}"
+							   minimum="0"
+							   maximum="{tab1_showCorpCntMax}"
+							   color="#000000"
+							   change="numericstepper1_changeHandler(event)" />
+		</s:BorderContainer>
+	</s:HGroup>
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_top"
+								 AxisLeftTiltle="事故：起"
+								 labelRotationX="45"
+								 title="{tab1_topTitle}"
+								 DataSourceConf="{tab1_topConfDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}" 
+								 DataSource="{tab1_topDS}"
+								 PopupDoubleClick="tab1_top_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_down"
+								 AxisLeftTiltle="未遂事件：起"
+								 labelRotationX="45"
+								 title="{tab1_downTitle}"
+								 DataSourceConf="{tab1_downConfDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}" 
+								 DataSource="{tab1_downDS}"
+								 PopupDoubleClick="tab1_down_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+
+
+</s:Group>

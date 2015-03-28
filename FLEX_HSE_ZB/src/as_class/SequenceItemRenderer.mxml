@@ -1,0 +1,18 @@
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"  horizontalAlign="center">  
+	<mx:Script>  
+		<![CDATA[ 
+			import mx.controls.AdvancedDataGrid; 
+			
+			override public function set data(value:Object):void 
+			{       
+				if(value != null) 
+				{ 
+					super.data = value; 
+					LbSequence.text=((this.owner as AdvancedDataGrid).dataProvider.getItemIndex(value)+1).toString(); 
+				} 
+			}     
+		]]>  
+	</mx:Script>  
+	
+	<mx:Label  id="LbSequence" />  
+</mx:HBox>   

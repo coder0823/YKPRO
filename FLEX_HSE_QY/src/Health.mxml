@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：企业仪表盘-职业卫生
+	* 参数：年度（2013）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import events.PopupEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data_agy/healthdata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String="职业卫生健康体检情况";
+			[Bindable]
+			private var tab1_topRightTitle:String="职业病危害因素监测情况";
+			
+
+
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downCnt:int=0;
+
+			
+
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					var obj:Object=new Object();
+					obj.name=i+"年";
+					obj.value=i;
+					dateArrCol.addItem(obj);
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				
+				
+				tab1_topLeftDS=new ArrayCollection();
+				tab1_topRightDS=new ArrayCollection();
+
+				
+				tab1_topLeftConfDS=new ArrayCollection([
+					{name:"数量",field:"vol1",type:"columnSeries",axis:"left"},
+					{name:"占比",field:"vol2",type:"columnSeries",axis:"right"}
+				]);
+				tab1_topRightConfDS=new ArrayCollection([
+					{name:"数量",field:"vol1",type:"columnSeries",axis:"left"},
+					{name:"占比",field:"vol2",type:"columnSeries",axis:"right"}
+					
+				]);
+
+				
+		
+				refreshData();
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.remoteMethod('4','',this.dateEnd.selectedItem.value);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				tab1_topLeftDS=getTab1_topLeftDS();		
+				tab1_topRightDS=getTab1_topRightDS();	
+
+				
+				executeBindTab1Title();
+
+				
+			}
+
+			
+			private function executeBindTab1Title():void{
+				var dept:String="";
+				if(hseDataXML.dataOutline){
+					dept=hseDataXML.dataOutline.@corpname;
+				}
+				tab1_topLeftTitle=dept+this.dateEnd.selectedItem.value+"年职业卫生健康体检情况";
+				tab1_topRightTitle=dept+this.dateEnd.selectedItem.value+"年职业病危害因素监测情况";
+			}
+
+			
+			
+			private function getTab1_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.healthCheckupData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object;
+							if(xml.@id=="rate"){
+								obj={label:xml.@label,
+									vol1:0,
+									vol2:xml.@numbers2?xml.@numbers2:xml.@numbers,
+									id:xml.@id};
+							}else{
+								obj={label:xml.@label,
+									vol1:xml.@numbers,
+									vol2:0,
+									id:xml.@id};
+							}
+							
+							//格式化数据
+							obj.vol1=Number(obj.vol1)<0?0:obj.vol1;
+							//obj.vol2=Number(obj.vol2)>100?100:obj.vol2;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_topRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					//获取新发职业病数量
+					var tmpListZYB:XMLList=hseDataXML.monitorData;
+					if(tmpListZYB&&tmpListZYB.length()>0){
+						tab1_downCnt=tmpListZYB[0].@newOccupationalDiseases;
+					}else{
+						tab1_downCnt=0;
+					}
+					
+					
+					var tmpList:XMLList=hseDataXML.monitorData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object;
+							if(xml.@id=="rate"){
+								obj={label:xml.@label,
+									vol1:0,
+									vol2:xml.@numbers2?xml.@numbers2:xml.@numbers,
+									id:xml.@id};
+							}else{
+								obj={label:xml.@label,
+									vol1:xml.@numbers,
+									vol2:0,
+									id:xml.@id};
+							}
+							
+							//格式化数据
+							obj.vol1=Number(obj.vol1)<0?0:obj.vol1;
+							//obj.vol2=Number(obj.vol2)>100?100:obj.vol2;
+							
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+	
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupTab1_left(str:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "职业卫生健康体检情况表"+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;	
+				var subCorpname:String = "";
+				
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.healthCheckupData.detaildata;
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpName==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							subCorpname = xml_total[0].@subCorpName;
+							
+							
+//							var obj_total:Object={order:1,
+//								subCorpName:xml_total[0].@subCorpName,
+//								employeeTotalNumbers:Number(xml_total[0].@employeeTotalNumbers),
+//								employeePosionNumbsers:Number(xml_total[0].@employeePosionNumbsers),
+//								planCheckupNumbers:Number(xml_total[0].@planCheckupNumbers),
+//								actualCheckupNumbers:Number(xml_total[0].@actualCheckupNumbers),
+//								checkupRate:Number(xml_total[0].@checkupRate),
+//								index:1
+//							};				
+//							tmpArrayCollection2.addItem(obj_total);
+						}
+						
+						
+						tmpList=tmpList.(@subCorpName!=dept);
+						var index:int=2;
+						for each (var xml4:XML in tmpList) {  
+							
+							var obj:Object={order:Number(xml4.@order),
+								subCorpName:xml4.@subCorpName,
+								employeeTotalNumbers:Number(xml4.@employeeTotalNumbers),
+								employeePosionNumbsers:Number(xml4.@employeePosionNumbsers),
+								planCheckupNumbers:Number(xml4.@planCheckupNumbers),
+								actualCheckupNumbers:Number(xml4.@actualCheckupNumbers),
+								checkupRate:Number(xml4.@checkupRate),
+								
+								index:index
+							};
+							tmpArrayCollection.addItem(obj);
+							index++;
+						}
+						
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("checkupRate",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpName",width:"90",textAlign:"center",sortable:true,draggable:true,footHeakerText:subCorpname+"合计"},
+					{headerText:"职工人数",dataField:"employeeTotalNumbers",width:"50",textAlign:"center",sortable:true,draggable:true,footHeakerText:str},
+					{headerText:"接触有害因素职工人数",dataField:"employeePosionNumbsers",width:"70",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText:"应检人数",dataField:"planCheckupNumbers",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText:"实检人数",dataField:"actualCheckupNumbers",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"},
+					//{headerText:"受检率%",dataField:"checkupRate",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"avg"}
+					{headerText:"受检率%",dataField:"checkupRate",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"avg1",footLblFunCustomField:"actualCheckupNumbers,planCheckupNumbers"}
+				]);
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab1_right():void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "职业病危害因素监测情况表"+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;	
+				var subCorpname:String = "";
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.monitorData.detaildata;
+					if(tmpList.length()>0)
+					{
+						//判断是否含有汇总数据
+						var dept:String="";
+						if(hseDataXML.dataOutline){
+							dept=hseDataXML.dataOutline.@corpname;
+						}
+						var xml_total:XMLList=tmpList.(@subCorpName==dept);
+						if(xml_total!=null&&xml_total.length()>0){
+							subCorpname = xml_total[0].@subCorpName;
+							/* var obj_total:Object={order:1,
+								subCorpName:xml_total[0].@subCorpName,
+								monitorTotalNumbers:Number(xml_total[0].@monitorTotalNumbers),
+								monitorActualNumbsers:Number(xml_total[0].@monitorActualNumbsers),
+								monitorRate:Number(xml_total[0].@monitorRate),
+								qualifiedNumbers:Number(xml_total[0].@qualifiedNumbers),
+								qualifiedRate:Number(xml_total[0].@qualifiedRate),
+								index:1
+							};					
+							tmpArrayCollection2.addItem(obj_total); */
+						}
+						
+						
+						tmpList=tmpList.(@subCorpName!=dept);
+						var index:int=2;	
+						for each (var xml4:XML in tmpList) {  
+							var obj:Object={order:Number(xml4.@order),
+								subCorpName:xml4.@subCorpName,
+								monitorTotalNumbers:Number(xml4.@monitorTotalNumbers),
+								monitorActualNumbsers:Number(xml4.@monitorActualNumbsers),
+								monitorRate:Number(xml4.@monitorRate),
+								qualifiedNumbers:Number(xml4.@qualifiedNumbers),
+								qualifiedRate:Number(xml4.@qualifiedRate),
+								index:index
+							};
+							tmpArrayCollection.addItem(obj);
+							index++;
+						}
+						
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("qualifiedRate",true,true)];  
+						tmpArrayCollection.sort=sort;
+						tmpArrayCollection.refresh();
+						var i:int=tmpArrayCollection2.length+1;
+						for each (var obj2:Object in tmpArrayCollection) {  
+							obj2.order=i;
+							tmpArrayCollection2.addItem(obj2);
+							i++;
+						}
+						
+						
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"30",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"subCorpName",width:"90",textAlign:"center",sortable:true,draggable:true,footHeakerText:subCorpname+"合计"},
+					{headerText:"应测点次",dataField:"monitorTotalNumbers",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText:"实测点次",dataField:"monitorActualNumbsers",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText:"监测率%",dataField:"monitorRate",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"monitorActualNumbsers,monitorTotalNumbers"},
+					{headerText:"合格",dataField:"qualifiedNumbers",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText:"合格率%",dataField:"qualifiedRate",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"qualifiedNumbers,monitorActualNumbsers"}
+				]);
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				popupTab1_left(event.hitDataItem.vol1);
+			}
+			
+			protected function tab1_topRight_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				popupTab1_right();
+			}
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+			
+			private var titleWindow2_zyb_qy:views.PopupTitleWinDG;
+			private function popupZYB_qy():void
+			{
+				titleWindow2_zyb_qy = new views.PopupTitleWinDG();
+				titleWindow2_zyb_qy.tw_height = 500;
+				titleWindow2_zyb_qy.tw_width = 400;
+				titleWindow2_zyb_qy.TitleValue = "新发职业病统计表";
+				titleWindow2_zyb_qy.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow2_zyb_qy);
+				});
+				titleWindow2_zyb_qy.IfShowFirstRecordBgColor = true;
+				titleWindow2_zyb_qy.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "企业名称", dataField: "corpName", width: "40", textAlign: "center", sortable: true, draggable: true,enableUrlLink:true}, 
+					{headerText: "新发职业病数量", dataField: "zybNum", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+//					var tmpList:XMLList = hseDataXML.healthCheckupData.detaildata.(@subCorpName!="合计");
+					var tmpList:XMLList = hseDataXML.healthCheckupData.detaildata;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var index:Number = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {id:xml.@subCorpid,order: order, corpName: xml.@subCorpName, zybNum: xml.@newOccupationalDiseases, index: index};
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+					titleWindow2_zyb_qy.DataSource = tmpArrayCollection;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow2_zyb_qy.addEventListener(events.PopupEvent.PopupItemClick, popupZYB_qy_zyb);
+				PopUpManager.addPopUp(titleWindow2_zyb_qy, this, true);
+				PopUpManager.centerPopUp(titleWindow2_zyb_qy);
+			}
+			private var titleWindow2_zyb:views.PopupTitleWinDG;
+			private function popupZYB_qy_zyb(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				titleWindow2_zyb = new views.PopupTitleWinDG();
+				titleWindow2_zyb.TitleValue = "新发职业病情况明细";
+				titleWindow2_zyb.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow2_zyb);
+				});
+				titleWindow2_zyb.tw_height = 500;
+				titleWindow2_zyb.tw_width = 450;
+				titleWindow2_zyb.IfShowFirstRecordBgColor = true;
+				titleWindow2_zyb.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "center", sortable: false, draggable: false}, 
+					//{headerText: "单位", dataField: "corpName", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "姓名", dataField: "personName", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "职业病名称", dataField: "zybName", width: "60", textAlign: "center", sortable: true, draggable: true}
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					//					var tmpList:XMLList = hseDataXML.healthData.newOccupationalDiseases.data;
+					var tmpList:XMLList = hseDataXML.healthCheckupData.detaildata.(@subCorpid == obj.id).data;
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var index:Number = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {order: order, corpName: xml.@corpName, personName: xml.@personName, zybName: xml.@zybName=="职业病"?"未填写职业病具体名称":xml.@zybName, index: index};
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+					titleWindow2_zyb.DataSource = tmpArrayCollection;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow2_zyb, this, true);
+				PopUpManager.centerPopUp(titleWindow2_zyb);
+			} 
+			
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<s:NavigatorContent width="100%" height="100%" label="总体情况">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnMulti id="tab1_topLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="false" title="{tab1_topLeftTitle}" DataSource="{tab1_topLeftDS}" DataSourceConf="{tab1_topLeftConfDS}"
+										   PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer> 
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_topRight" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="false" title="{tab1_topRightTitle}" DataSource="{tab1_topRightDS}" DataSourceConf="{tab1_topRightConfDS}"
+											   PopupDoubleClick="tab1_topRight_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%" height="40" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<s:HGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+							<s:Image source="assets/images/newIconHelthy.gif" width="20" height="20"/>
+							<s:Label fontSize="18" text="新发职业病数量" textAlign="center" verticalAlign="middle"/>
+							<s:Label id="newMsg" text="{tab1_downCnt}" fontSize="18" textAlign="center" verticalAlign="middle" color="0xEEC503"  
+									 click="popupZYB_qy()"
+									 buttonMode="true"/>
+							<s:Label fontSize="18" text="例" textAlign="center" verticalAlign="middle"/>
+						</s:HGroup>
+					</s:BorderContainer> 
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Application>

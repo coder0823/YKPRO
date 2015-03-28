@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-应急管理-总体情况
+		 * 参数：年度（2012）
+		 * 作者：孙山虎
+		 * 日期：2013年5月8日
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/zb_emergencydata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "总体情况";
+			
+			private var tab1_topLeftBoxStatus:String = "bylevel";
+			private var tab1_topRightBoxStatus:String = "bylevel";
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String = "";
+			[Bindable]
+			private var tab1_topMiddleTitle:String = "";
+			[Bindable]
+			private var tab1_topRightTitle:String = "";
+			[Bindable]
+			private var tab1_downTitle:String = "";
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topMiddleConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topMiddleDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				
+				tab1_topLeftDS = new ArrayCollection();
+				tab1_topMiddleDS = new ArrayCollection();
+				tab1_topRightDS = new ArrayCollection();
+				tab1_downDS = new ArrayCollection();
+				
+				tab1_topMiddleConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "columnSeries", axis: "left"},]);
+				tab1_topRightConfDS = new ArrayCollection([
+					{name: "计划", field: "vol1", type: "columnSeries", axis: "left"},
+					{name: "实际", field: "vol2", type: "columnSeries", axis: "left"}, 
+					{name: "规定", field: "vol3", type: "columnSeries", axis: "left"},
+				]);
+				tab1_downConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "columnSeries", axis: "left"},]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。给其他图赋值，这里省略。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetEmergency(dateStr);
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab1_topLeftDS = getTab1_topLeftDS(tab1_topLeftBoxStatus);
+				tab1_topMiddleDS = getTab1_topMiddleDS();
+				tab1_topRightDS = getTab1_topRightDS(tab1_topRightBoxStatus);
+				tab1_downDS = getTab1_downDS();
+				
+				executeBindTab1Title();
+			}
+			
+			private function executeBindTab1Title():void
+			{
+				tab1_topLeftTitle = "中国石化应急预案分级构成情况(点击空白切换)";
+				tab1_topMiddleTitle = "中国石化应急队伍构成情况";
+				tab1_topRightTitle = "中国石化应急演练" + dateStr + "年完成情况(点击空白切换)";
+				tab1_downTitle = "中国石化应急物资分类别构成情况";
+			}
+			
+			private function getTab1_topLeftDS(by:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					
+					if (by.toLowerCase() != "bylevel")
+					{
+						var tmpList:XMLList = hseDataXML.overallData.emergencyPlanData.byKind.kindData.(@id != "00");
+						if (tmpList.length() > 0)
+						{
+							for each (var xml:XML in tmpList)
+							{
+								var obj:Object = {label: xml.@label, value: xml.@number, id: xml.@id};
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+					else
+					{
+						var tmpList2:XMLList = hseDataXML.overallData.emergencyPlanData.byLevel.levelData.(@id != "00");
+						if (tmpList2.length() > 0)
+						{
+							for each (var xml2:XML in tmpList2)
+							{
+								var obj2:Object = {label: xml2.@label, value: xml2.@number, id: xml2.@id};
+								tmpArrayCollection.addItem(obj2);
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_topMiddleDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.overallData.emergencyKindData;
+					if (tmpList.length() > 0)
+					{
+						var xml:XML = tmpList[0];
+						var obj:Object = {label: "消防队", vol1: xml.@fireBrigadeNumber, id: "fireBrigadeNumber"};
+						tmpArrayCollection.addItem(obj);
+						obj = {label: "消防车", vol1: xml.@fireEngineNumber, id: "fireEngineNumber"};
+						tmpArrayCollection.addItem(obj);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//排序
+//				var sort:Sort=new Sort();  
+//				sort.fields=[new SortField("vol1",true,true)];  
+//				tmpArrayCollection.sort=sort;
+//				tmpArrayCollection.refresh();
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			private function getTab1_topRightDS(by:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					if (by.toLowerCase() != "bylevel")
+					{
+						var tmpList:XMLList = hseDataXML.overallData.emergencyDrillsData.byKind.kindData
+						if (tmpList.length() > 0)
+						{
+							for each (var xml:XML in tmpList)
+							{
+								var obj:Object = {label: xml.@label, vol1: xml.@planNumber, vol2: xml.@finishedNumber, vol3: xml.@standardNumber,id: xml.@id};
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+					else
+					{
+						var tmpList2:XMLList = hseDataXML.overallData.emergencyDrillsData.byLevel.levelData
+						if (tmpList2.length() > 0)
+						{
+							for each (var xml2:XML in tmpList2)
+							{
+								var obj2:Object = {label: xml2.@label, vol1: xml2.@planNumber, vol2: xml2.@finishedNumber,vol3: xml2.@standardNumber, id: xml2.@id};
+								tmpArrayCollection.addItem(obj2);
+							}
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//排序
+//				var sort:Sort=new Sort();  
+//				sort.fields=[new SortField("vol1",true,true)];  
+//				tmpArrayCollection.sort=sort;
+//				tmpArrayCollection.refresh();
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			private function getTab1_downDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.overallData.emergencySuppliesData.plateData.(@plateid == "00").suppliesData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, vol1: xml.@numbers, id: xml.@id};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//排序
+				var sort:Sort = new Sort();
+				sort.fields = [new SortField("vol1", true, true)];
+				tmpArrayCollection.sort = sort;
+				tmpArrayCollection.refresh();
+				
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpCnt:int = 0;
+				for (var i:int = 0; i < tmpArrayCollection.length; i++)
+				{
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			
+			//****************************************************
+			//            
+			//****************************************************
+			//弹出窗口
+			private var titleWindow:views.PopupTitleWinDG;
+			private function popupTab1_down(id:String, label:String):void
+			{
+				titleWindow = new views.PopupTitleWinDG();
+				titleWindow.TitleValue = "中国石化应急物资分类构成情况-" + label + " 计量单位：个";
+				titleWindow.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow);
+					});
+				titleWindow.IfShowFirstRecordBgColor = true;
+				titleWindow.IfShowFrontRecordColor = false;
+				titleWindow.IfShowBackRecordColor = false;
+				titleWindow.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "板块", dataField: "label", width: "100", textAlign: "center", sortable: true, draggable: true,footHeakerText:"合计"}, 
+					{headerText: label + "数量", dataField: "number", width: "80", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}
+				]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.overallData.emergencySuppliesData.plateData;
+					if (tmpList.length() > 0)
+					{
+						//合计数据
+						/*组件2自动合计，因此不需要数据计算，注释掉
+						var tmpList2:XMLList = tmpList.(@plateid == "00").suppliesData.(@id == id);
+						if (tmpList2 != null && tmpList2.length() > 0)
+						{
+							var obj_total:Object = {order: "", label: "合计", number: Number(tmpList2[0].@numbers), index: 1};
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						*/
+						var tmpList3:XMLList = tmpList.(@plateid != "00"); //.suppliesData.(@id==id);
+						if (tmpList3 != null && tmpList3.length() > 0)
+						{
+							var index:int = 2;
+							var order:int = 1;
+							for each (var xml0:XML in tmpList3)
+							{
+								var tmpList4:XMLList = xml0.suppliesData.(@id == id);
+								if (tmpList4 != null && tmpList4.length() > 0)
+								{
+									var obj:Object = {order: order, label: xml0.@label, number: Number(tmpList4[0].@numbers), index: index};
+									tmpArrayCollection.addItem(obj);
+									index++;
+									order++;
+								}
+							}
+						}
+						
+//						var sort:Sort=new Sort();  
+//						sort.fields=[new SortField("number",true,true)];  
+//						tmpArrayCollection.sort=sort;
+//						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+					}
+					titleWindow.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);
+				PopUpManager.centerPopUp(titleWindow);
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_down_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				popupTab1_down(item.id, item.label);
+			}
+			
+			protected function tab1_topLeftBox_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (tab1_topLeftBoxStatus.toLowerCase() == "bylevel")
+				{
+					tab1_topLeftBoxStatus = "bykind";
+				}
+				else
+				{
+					tab1_topLeftBoxStatus = "bylevel";
+				}
+				tab1_topLeftDS = getTab1_topLeftDS(tab1_topLeftBoxStatus);
+			}
+			
+			protected function tab1_downBox_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (tab1_topRightBoxStatus.toLowerCase() == "bylevel")
+				{
+					tab1_topRightBoxStatus = "bykind";
+				}
+				else
+				{
+					tab1_topRightBoxStatus = "bylevel";
+				}
+				tab1_topRightDS = getTab1_topRightDS(tab1_topRightBoxStatus);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+	</fx:Declarations>
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="40%"
+							   height="100%"
+							   styleName="contentBox" click="tab1_topLeftBox_clickHandler(event)">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:PieMultiWithEffect2 id="tab1_topLeft"
+										   DataSource="{tab1_topLeftDS}"
+										   width="100%"
+										   height="100%"
+										   showLegend="false" ShowDataLabel="{showDataLabel}"
+										   title="{tab1_topLeftTitle}" />
+			</s:BorderContainer>
+			<s:BorderContainer width="30%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_topMiddle"
+								   AxisLeftTiltle="支/辆"
+								   width="100%"
+								   height="100%"
+								   title="{tab1_topMiddleTitle}"
+								   showTitle="true"
+								   showLegend="false" ShowDataLabel="{showDataLabel}"
+								   DataSourceConf="{tab1_topMiddleConfDS}"
+								   DataSource="{tab1_topMiddleDS}" />
+			</s:BorderContainer>
+			<s:BorderContainer width="40%"
+							   height="100%"
+							   styleName="contentBox" click="tab1_downBox_clickHandler(event)">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_topRight"
+								   AxisLeftTiltle="演练：次"
+								   width="100%"
+								   height="100%"
+								   title="{tab1_topRightTitle}"
+								   showTitle="true"
+								   showLegend="true" ShowDataLabel="{showDataLabel}"
+								   DataSourceConf="{tab1_topRightConfDS}"
+								   DataSource="{tab1_topRightDS}" />
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_down"
+								   AxisLeftTiltle="应急物资：个"
+								   labelRotationX="45"
+								   width="100%"
+								   height="100%"
+								   title="{tab1_downTitle}"
+								   PopupDoubleClick="tab1_down_PopupDoubleClickHandler(event)"
+								   showTitle="true"
+								   showLegend="false" ShowDataLabel="{showDataLabel}"
+								   DataSourceConf="{tab1_downConfDS}"
+								   DataSource="{tab1_downDS}" />
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

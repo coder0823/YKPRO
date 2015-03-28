@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-职业卫生-总体情况
+		 * 参数：查询条件修改成 年份（2012）
+		 * 作者：孙山虎
+		 * 日期：2013年5月8日
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/zb_healthdata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "总体情况";
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String = "";
+			[Bindable]
+			private var tab1_topRightTitle:String = "";
+			[Bindable]
+			private var tab1_downTitle:String = "";
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downDS:ArrayCollection;
+			[Bindable]
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				tab1_topLeftDS = new ArrayCollection();
+				tab1_topRightDS = new ArrayCollection();
+				tab1_downTitle = "";
+				tab1_topLeftConfDS = new ArrayCollection([{name: "数量", field: "vol1", axis: "left"}, {name: "体检率", field: "vol2", axis: "right"}]);
+				tab1_topRightConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "columnSeries", axis: "left"}, {name: "监测率", field: "vol2", type: "lineSeries", axis: "right"}]);
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。。。。
+			
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					//					ws.GetHealth(this.dateStart.selectedItem.value,this.dateEnd.selectedItem.value);
+					ws.GetHealth(dateStr);
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab1_topLeftDS = getTab1_topLeftDS();
+				tab1_topRightDS = getTab1_topRightDS();
+				executeBindTab1Title();
+			}
+			
+			private function executeBindTab1Title():void
+			{
+				tab1_topLeftTitle = "中国石化" + dateStr + "年职业卫生健康体检情况";
+				tab1_topRightTitle = "中国石化" + dateStr + "年职业病危害因素监测情况";
+				
+				tab1_downTitle = getTab1_downTitle();
+			}
+			
+			private function getTab1_topLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.healthData.plateData.(@plateid == "00");
+					if (tmpList.length() > 0)
+					{
+						var obj:Object = new Object();
+						obj = {label: "职工总数", vol1: tmpList[0].@employeeTotal, vol2: ""};
+						tmpArrayCollection.addItem(obj);
+						obj = {label: "接害人数", vol1: tmpList[0].@employeePerson, vol2: ""};//接触有毒有害因素职工数
+						tmpArrayCollection.addItem(obj);
+						obj = {label: "应检人数", vol1: tmpList[0].@planCheckup, vol2: ""};
+						tmpArrayCollection.addItem(obj);
+						obj = {label: "实检人数", vol1: tmpList[0].@actualCheckup, vol2: ""};
+						tmpArrayCollection.addItem(obj);
+						obj = {label: "体检率", vol1: "", vol2: tmpList[0].@healthCheckupRatio};
+						tmpArrayCollection.addItem(obj);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_topRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.healthData.plateData.(@plateid == "00");
+					if (tmpList.length() > 0)
+					{
+						var obj:Object = new Object();
+						obj = {label: "应测点次", vol1: tmpList[0].@monitorTotal, vol2: ""};
+						tmpArrayCollection.addItem(obj);
+						obj = {label: "实测点次", vol1: tmpList[0].@monitorActual, vol2: ""};
+						tmpArrayCollection.addItem(obj);
+						obj = {label: "监测率", vol1: "", vol2: tmpList[0].@monitorRatio};
+						tmpArrayCollection.addItem(obj);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downTitle():String
+			{
+				var tmpArrayCollection:String = new String();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.healthData.newOccupationalDiseases;
+					if (tmpList.length() > 0)
+					{
+						tmpArrayCollection = "新发职业病数量：" + tmpList[0].@numbers + "例";
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			//****************************************************
+			//            板块信息
+			//****************************************************
+			//弹出窗口
+			private var titleWindow1:views.PopupTitleWinDG;
+			private function popupPlateMX():void
+			{
+				titleWindow1 = new views.PopupTitleWinDG();
+				titleWindow1.TitleValue = "中国石化" + "职业卫生健康体检及职业病危害因素监测情况" + "(" + dateStr + "年)";
+				titleWindow1.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow1);
+					});
+				titleWindow1.IfShowFirstRecordBgColor = true;
+				titleWindow1.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "30", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "板块", dataField: "label", width: "60", textAlign: "left", sortable: true, draggable: true,enableUrlLink:true,footHeakerText:"合计"}, 
+					{headerText: "职工总数", dataField: "vol1", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "接触有毒有害因素职工数", dataField: "vol2", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "应检人数", dataField: "vol3", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "实检人数", dataField: "vol4", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "体检率(%)", dataField: "vol5", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"vol4,vol3"},
+					{headerText: "应测点次", dataField: "vol6", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "实测点次", dataField: "vol7", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "监测率(%)", dataField: "vol8", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"vol7,vol6"}
+					]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.healthData.plateData.(@plateid!='00');
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@plateLabel, vol1: Number(xml.@employeeTotal), vol2: Number(xml.@employeePerson), vol3: Number(xml.@planCheckup), vol4: Number(xml.@actualCheckup), vol5: Number(xml.@healthCheckupRatio), vol6: Number(xml.@monitorTotal), vol7: Number(xml.@monitorActual), vol8: Number(xml.@monitorRatio), index: index, order: order == 0 ? "" : String(order), id: xml.@plateid};
+							//obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+					
+					
+					
+					titleWindow1.DataSource = tmpArrayCollection;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//titleWindow1.addEventListener(events.PopupEvent.PopupDoubleClick, popCorpList);
+				titleWindow1.addEventListener(events.PopupEvent.PopupItemClick, popCorpList);
+				PopUpManager.addPopUp(titleWindow1, this, true);
+				PopUpManager.centerPopUp(titleWindow1);
+			}
+			
+			//在板块列表中双击弹出 企业列表
+			//titleWindow1.addEventListener(events.PopupEvent.PopupDoubleClick,popClassCorp);
+			protected function popCorpList(event:events.PopupEvent):void
+			{
+				var obj:Object = event.hitDataItem;
+				if (obj.item == "label")
+				{
+					if (obj.id != "00")
+					{
+						popupCorpMX(obj.id, obj.label);
+					}
+				}
+				if (obj.item == "plateName")
+				{
+					if (obj.id != "00")
+					{
+						popupZYB_qy(obj.id, obj.plateName);
+					}
+				}
+				if (obj.item == "corpName")
+				{
+					if (obj.id != "00")
+					{
+						popupZYB_qy_zyb(obj.id, obj.corpName,obj.plateid);
+					}
+				}
+			}
+			
+			//****************************************************
+			//            企业信息（板块）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow3:views.PopupTitleWinDG;
+			
+			private function popupCorpMX(plateid:String, platename:String):void
+			{
+				titleWindow3 = new views.PopupTitleWinDG();
+				titleWindow3.TitleValue = "中国石化" + platename + "板块" + "职业卫生健康体检及职业病危害因素监测情况" + "(" + dateStr + "年)";
+				titleWindow3.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow3);
+					});
+				titleWindow3.IfShowFirstRecordBgColor = true;
+				titleWindow3.IfShowFrontRecordColor = true;
+				titleWindow3.IfShowBackRecordColor = true;
+				titleWindow3.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "30", textAlign: "center", sortable: false, draggable: false}, 
+					//{headerText: "企业", dataField: "label", width: "90", textAlign: "left", sortable: true, draggable: true,sortByCustomField:"displayindex",footHeakerText:"合计"}, 
+					{headerText: "企业", dataField: "label", width: "90", textAlign: "left", sortable: true, draggable: true,footHeakerText:"合计"}, 
+					{headerText: "职工总数", dataField: "vol1", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "接触有毒有害因素职工数", dataField: "vol2", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "应检人数", dataField: "vol3", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "实检人数", dataField: "vol4", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "体检率(%)", dataField: "vol5", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"vol4,vol3"}, 
+					{headerText: "应测点次", dataField: "vol6", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "实测点次", dataField: "vol7", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "监测率(%)", dataField: "vol8", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"vol7,vol6"}
+				]);
+				
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				
+				var tmpList:XMLList = hseDataXML.healthData.plateData.(@plateid != "00");
+				if (tmpList.length() > 0)
+				{
+					
+					if (plateid == "00")
+					{
+						titleWindow3.IfShowFirstRecordBgColor = false;
+					}
+					else
+					{
+						tmpList = tmpList.(@plateid == plateid);
+						//合计数据
+						/*组件2自动合计，因此不需要数据计算，注释掉
+						if (tmpList.length() > 0)
+						{
+							var obj_total:Object = {label: platename + "小计", vol1: Number(tmpList[0].@employeeTotal), vol2: Number(tmpList[0].@employeePerson), vol3: Number(tmpList[0].@planCheckup), vol4: Number(tmpList[0].@actualCheckup), vol5: Number(tmpList[0].@healthCheckupRatio), vol6: Number(tmpList[0].@monitorTotal), vol7: Number(tmpList[0].@monitorActual), vol8: Number(tmpList[0].@monitorRatio), index: 1, order: ""};
+							tmpArrayCollection2.addItem(obj_total);
+						}
+						*/
+					}
+					
+					tmpList = tmpList.corpData;
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@subCorpname, vol1: Number(xml.@employeeTotal), vol2: Number(xml.@employeePerson), vol3: Number(xml.@planCheckup), vol4: Number(xml.@actualCheckup), vol5: Number(xml.@healthCheckupRatio), vol6: Number(xml.@monitorTotal), vol7: Number(xml.@monitorActual), vol8: Number(xml.@monitorRatio), index: index, order: order};
+							obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+					
+					var sort:Sort = new Sort();
+					sort.fields = [new SortField("vol8", true, true),new SortField("displayindex", false, true)];
+					tmpArrayCollection.sort = sort;
+					tmpArrayCollection.refresh();
+					var order2:int = 1;
+					for each (var obj2:Object in tmpArrayCollection)
+					{
+						obj2.order = order2;
+						tmpArrayCollection2.addItem(obj2);
+						order2++;
+					}
+					
+				}
+				
+				titleWindow3.DataSource = tmpArrayCollection2;
+				
+				PopUpManager.addPopUp(titleWindow3, this, true);
+				PopUpManager.centerPopUp(titleWindow3);
+			}
+			
+			//****************************************************
+			//            职业病
+			//****************************************************
+			//弹出窗口
+			private var titleWindow2:views.PopupTitleWinDG;
+			
+			private function popupZYB_bk():void
+			{
+				titleWindow2 = new views.PopupTitleWinDG();
+				titleWindow2.TitleValue = "中国石化新发职业病统计表" + "(" + dateStr + "年)";
+				titleWindow2.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow2);
+				});
+				titleWindow2.IfShowFirstRecordBgColor = true;
+				titleWindow2.tw_height = 500;
+				titleWindow2.tw_width = 400;
+				titleWindow2.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "板块名称", dataField: "plateName", width: "40", textAlign: "center", sortable: true, draggable: true,enableUrlLink:true}, 
+					{headerText: "新发职业病数量", dataField: "zybNum", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.healthData.plateData.(@plateid != "00");
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var index:Number = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {id: xml.@plateid,sorder: order, plateName: xml.@plateLabel, zybNum: xml.@newOccupationalDiseases, index: index};
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+					titleWindow2.DataSource = tmpArrayCollection;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow2.addEventListener(events.PopupEvent.PopupItemClick, popCorpList);
+				PopUpManager.addPopUp(titleWindow2, this, true);
+				PopUpManager.centerPopUp(titleWindow2);
+			}
+			private var titleWindow2_zyb_qy:views.PopupTitleWinDG;
+			private function popupZYB_qy(plateid:String, platename:String):void
+			{
+				titleWindow2_zyb_qy = new views.PopupTitleWinDG();
+				titleWindow2_zyb_qy.tw_height = 500;
+				titleWindow2_zyb_qy.tw_width = 400;
+				titleWindow2_zyb_qy.TitleValue = "中国石化" + platename + "板块新发职业病统计表" + "(" + dateStr + "年)";
+				titleWindow2_zyb_qy.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow2_zyb_qy);
+				});
+				titleWindow2_zyb_qy.IfShowFirstRecordBgColor = true;
+				titleWindow2_zyb_qy.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "企业名称", dataField: "corpName", width: "40", textAlign: "center", sortable: true, draggable: true,enableUrlLink:true}, 
+					{headerText: "新发职业病数量", dataField: "zybNum", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.healthData.plateData.(@plateid == plateid).corpData;
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var index:Number = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {plateid:plateid,id:xml.@subCorpid,order: order, corpName: xml.@subCorpname, zybNum: xml.@newOccupationalDiseases, index: index};
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+					titleWindow2_zyb_qy.DataSource = tmpArrayCollection;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				titleWindow2_zyb_qy.addEventListener(events.PopupEvent.PopupItemClick, popCorpList);
+				PopUpManager.addPopUp(titleWindow2_zyb_qy, this, true);
+				PopUpManager.centerPopUp(titleWindow2_zyb_qy);
+			}
+			private var titleWindow2_zyb:views.PopupTitleWinDG;
+			private function popupZYB_qy_zyb(corpid:String, corpName:String,plateid:String):void
+			{
+				titleWindow2_zyb = new views.PopupTitleWinDG();
+				titleWindow2_zyb.TitleValue = "中国石化"+corpName+"企业新发职业病情况明细" + "(" + dateStr + "年)";
+				titleWindow2_zyb.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow2_zyb);
+					});
+				titleWindow2_zyb.tw_height = 500;
+				titleWindow2_zyb.tw_width = 450;
+				titleWindow2_zyb.IfShowFirstRecordBgColor = true;
+				titleWindow2_zyb.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "center", sortable: false, draggable: false}, 
+					//{headerText: "单位", dataField: "corpName", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "姓名", dataField: "personName", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "职业病名称", dataField: "zybName", width: "60", textAlign: "center", sortable: true, draggable: true}
+					]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+//					var tmpList:XMLList = hseDataXML.healthData.newOccupationalDiseases.data;
+					var tmpList:XMLList = hseDataXML.healthData..plateData.(@plateid == plateid).corpData.(@subCorpid == corpid).data;
+					
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						var index:Number = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {order: order, corpName: xml.@corpName, personName: xml.@personName, zybName: xml.@zybName=="职业病"?"未填写职业病具体名称":xml.@zybName, index: index};
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+					titleWindow2_zyb.DataSource = tmpArrayCollection;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow2_zyb, this, true);
+				PopUpManager.centerPopUp(titleWindow2_zyb);
+			} 
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				popupPlateMX();
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab3_plateGrp" />
+	</fx:Declarations>
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="60%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_topLeft"
+								   AxisLeftTiltle="职工：人"
+								   showTitle="true"
+								   showLegend="false" ShowDataLabel="{showDataLabel}"
+								   title="{tab1_topLeftTitle}"
+								   DataSource="{tab1_topLeftDS}"
+								   DataSourceConf="{tab1_topLeftConfDS}"
+								   PopupDoubleClick="tab1_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+			<s:BorderContainer width="40%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_topRight"
+								   AxisLeftTiltle="监测点：个"
+								   showTitle="true"
+								   showLegend="false" ShowDataLabel="{showDataLabel}"
+								   title="{tab1_topRightTitle}"
+								   DataSource="{tab1_topRightDS}"
+								   DataSourceConf="{tab1_topRightConfDS}"
+								   PopupDoubleClick="tab1_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="30"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="center" />
+				</s:layout>
+				<s:Label id="tab1_down" fontSize="18"   textDecoration="underline"
+						 text="{tab1_downTitle}" color="0xD14724"  
+						 buttonMode="true"  click="popupZYB_bk()"
+						 />
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

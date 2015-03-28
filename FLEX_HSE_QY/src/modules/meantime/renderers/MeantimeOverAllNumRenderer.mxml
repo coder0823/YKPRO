@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  width="100%" height="100%" rollOverColor="#FFFFFF" 
+								  autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			[Bindable]
+			private var txt:String = "";
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					if(data.prof=="项目立项"){
+						lblData.toolTip="项目无阶段信息，工程进度为空";
+					}else{
+						lblData.toolTip="";
+					}
+					txt = data[advancedDataGridListData.dataField];
+				}else{
+					txt = "";
+				}
+			}
+			protected function lblData_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				//this.dispatchEvent(new MeantimeOverAllNumEvent(MeantimeOverAllNumEvent.NUM_CLICK,data['profid'],data['stageid']));
+				this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"project_num"));
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Label id="lblData" text="{txt}" toolTip="" color="#0000FF" buttonMode="true" textDecoration="underline" textAlign="center" width="100%" verticalCenter="0" click="lblData_clickHandler(event)"/>
+</s:MXAdvancedDataGridItemRenderer>

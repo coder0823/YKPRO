@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘〔HSE检查部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-10 
+   id:检查类型(3种) label:检查显示名称或月份的显示标签 numbers:问题数  problemNumbers：检查发现的问题数
+  dealedProblemNumbers：检查问题的处理数　order:序号　　subCorpName:分/子公司名称　 month:月度
+  correctProblemNumbers：检查问题的整改数 uncorrectProblemNumbers：检查问题的未整改数-->
+  
+  <!--*************************一、字段说明如下*************************************************************************************
+       id:检查类型(2种)                                           label:检查显示名称或月份、板块、企业的的显示标签
+       planNumbers:计划检查次数                                         finishedNumbers：完成检查次数
+       remainderNumbers:未完成检查次数                                 finishedRatio：检查完成比例
+       plateid:板块id                                            problemNumbers：问题数
+       dealedProblemNumbers:整改的问题数                               undealedProblemNumbers:未整改问题数
+       dealedRation:整改率                                              averageDealedRation:平均整改率
+       calendarRatio:日历进度                                           order:按问题数或整改率降序排列的序号
+       subCorpid：企业ID                                           subCorpname：企业名称
+       URL:某条对应企业记录的URL
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，某个计算合计项的数据
+        2.WebService处理明细的企业，带有order字段时，应严格按照其完成率降序排列数据,且所有字段值一律不准写null值   
+  -->
+  
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+ 
+ <!--二.总体情况 -->
+ <overallData>
+   <!--2.1检查数据-->
+   <checkData>
+      <dataset   id="LEVEL-A" label="集团公司级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" > 
+         <monthData   month="2012.1" label="1月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>
+         <monthData   month="2012.2" label="2月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>
+         <monthData   month="2012.3" label="3月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>
+         <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+         <monthData   month="2012.12" label="12月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>
+      </dataset>   
+      <dataset   id="LEVEL-C" label="企业级"    planNumbers="" finishedNumbers="44" remainderNumbers="" finishedRatio="">
+        <monthData   month="2012.1" label="1月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>
+         <monthData   month="2012.2" label="2月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>
+         <monthData   month="2012.3" label="3月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>
+         <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+         <monthData   month="2012.12" label="12月"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+           <plateData   plateid="00" label="小计"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio=""/>
+         </monthData>  
+      </dataset>        
+   </checkData>
+   
+   <!--2.2问题数据-->
+   <problemData>
+     <dataset   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+       <levelData   id="LEVEL-A" label="集团公司级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="YT" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+      <levelData   id="LEVEL-C" label="企业级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="YT" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+     </dataset>
+     <dataset   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+       <levelData   id="LEVEL-A" label="集团公司级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="YT" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+      <levelData   id="LEVEL-C" label="企业级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="YT" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+     </dataset>
+     <dataset   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+       <levelData   id="LEVEL-A" label="集团公司级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="YT" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+      <levelData   id="LEVEL-C" label="企业级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="YT" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+     </dataset>
+     <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+     <dataset   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+       <levelData   id="LEVEL-A" label="集团公司级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+      <levelData   id="LEVEL-C" label="企业级"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+         <plateData   plateid="" label="油田" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="炼化" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="销售" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="工程" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="" label="其它" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+         <plateData   plateid="00" label="小计" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio=""/>
+      </levelData>
+     </dataset>
+   </problemData>
+ </overallData> 
+ 
+ 
+  <!--三、分板块数据-->
+  <byPlate>
+     <!-- 3.1检查数据-->
+     <checkData>
+        <plateData   plateid="YT" label="油田"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset>  
+          <dataset   id="LEVEL-C" label="企业级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset> 
+        </plateData>
+        
+        <plateData   plateid="LH" label="炼化"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset>  
+          <dataset   id="LEVEL-C" label="企业级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+           <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset> 
+        </plateData>
+        
+        <plateData   plateid="XS" label="销售"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset>  
+          <dataset   id="LEVEL-C" label="企业级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset> 
+        </plateData>
+        
+        <plateData   plateid="GC" label="工程"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset>  
+          <dataset   id="LEVEL-C" label="企业级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset> 
+        </plateData>
+        
+        <plateData   plateid="QT" label="其它"  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset>  
+          <dataset   id="LEVEL-C" label="企业级" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+            <monthData   month="2012.1" label="1月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.2" label="2月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <monthData   month="2012.3" label="3月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+            <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+            <monthData   month="2012.12" label="12月" planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="">
+               <corpData  order="1" subCorpid="" subCorpname=""  planNumbers="" finishedNumbers="33" remainderNumbers="" finishedRatio="" URL=""/>
+            </monthData>
+          </dataset> 
+        </plateData>
+     </checkData>
+     
+     <!-- 3.2问题数据-->
+     <problemData>
+        <plateData   plateid="YT" label="油田"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="001" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL="">
+	               
+                </corpData>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset> 
+          
+          <dataset   id="LEVEL-C" label="企业级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset>   
+        </plateData>
+        
+        <plateData   plateid="LH" label="炼化"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset> 
+          
+          <dataset   id="LEVEL-C" label="企业级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset>   
+        </plateData>
+        
+        <plateData   plateid="XS" label="销售"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset> 
+          
+          <dataset   id="LEVEL-C" label="企业级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset>   
+        </plateData>
+        
+        <plateData   plateid="GC" label="工程"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset> 
+          
+          <dataset   id="LEVEL-C" label="企业级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset>   
+        </plateData>
+        
+        <plateData   plateid="QT" label="其它"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+          <dataset   id="LEVEL-A" label="集团公司级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset> 
+          
+          <dataset   id="LEVEL-C" label="企业级" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+             <monthData   month="2012.1" label="1月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.2" label="2月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <monthData   month="2012.3" label="3月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+             <!--本处列出4个月为示意性，实际数据应该为选定月度后倒推12月的数据-->
+             <monthData   month="2012.12" label="12月" problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+                <corpData  order="1" subCorpid="" subCorpname=""  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+             </monthData>
+          </dataset>   
+        </plateData>
+     </problemData>       
+     <problemOverAllData>
+     	<plateData   plateid="YT" label="油田"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+     		<corpData  order="1" subCorpid="" subCorpname="燕山"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="2" subCorpid="" subCorpname="齐鲁"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="3" subCorpid="" subCorpname="茂名"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="4" subCorpid="001" subCorpname="镇海"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     	</plateData>
+     	<plateData   plateid="LH" label="炼化"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+     		<corpData  order="1" subCorpid="" subCorpname="燕山"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="2" subCorpid="" subCorpname="齐鲁"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="3" subCorpid="" subCorpname="茂名"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="4" subCorpid="" subCorpname="镇海"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     	</plateData>
+     	<plateData   plateid="XS" label="销售"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+     		<corpData  order="1" subCorpid="" subCorpname="燕山"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="2" subCorpid="" subCorpname="齐鲁"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="3" subCorpid="" subCorpname="茂名"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="4" subCorpid="" subCorpname="镇海"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     	</plateData>
+     	<plateData   plateid="GC" label="工程"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+     		<corpData  order="1" subCorpid="" subCorpname="燕山"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="2" subCorpid="" subCorpname="齐鲁"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="3" subCorpid="" subCorpname="茂名"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="4" subCorpid="" subCorpname="镇海"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     	</plateData>
+     	<plateData   plateid="QT" label="其他"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="">
+     		<corpData  order="1" subCorpid="" subCorpname="燕山"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="2" subCorpid="" subCorpname="齐鲁"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="3" subCorpid="" subCorpname="茂名"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     		<corpData  order="4" subCorpid="" subCorpname="镇海"  problemNumbers="100" dealedProblemNumbers="90" undealedProblemNumbers="10"  dealedRation="90" averageDealedRation="85" calendarRatio="" URL=""/>
+     	</plateData>
+     </problemOverAllData> 
+  </byPlate>
+  
+</model>

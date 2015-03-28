@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!--一、文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+  <!--
+  *******************************************************************
+  2013年10月21日 孙山虎 
+  根据三期总部提出钻取要求进行修改：期中"......"的地方表示有扩展，请开发人员按实际输出
+  文档结构如下：
+  keydeviceData 					关键装置数据：
+  	|_levelData 					级别数据：	levelid板块代码，levelLabel级别名称
+  		|_plateData					板块数据：	plateid板块代码，plateLabel板块名称
+  			|_corpData 				企业数据：	order序号，subCorpid企业编码，subCorpname企业名称
+  				|_leaderData 		领导数据：	order序号，type类型（局级，处级），leaderid编码，leaderName姓名
+
+公共属性：
+deviceNumbers				="关键装置数量"   
+ratio						="占比"  
+leaderInspectPlanTimes		="应活动次数" 
+leaderInspectFinishedTimes	="实际活动次数" 
+leaderInspectRemainderTimes	="未活动次数" 
+fishedRatio					="活动完成率"
+averageFishedRatio			="平均活动完成率"
+problemNumbers				="发现问题数" 
+solvedProblemNumbers		="已落实问题数" 
+unsolvedProblemNumbers		="未落实问题数" 
+solvedRatio					="问题落实率" 
+averageSolvedRatio			="平均落实率"
+URL							="链接地址"(预留)
+
+  注意：levelData中levelid="00"的为汇总数据,只到plateData，不用到企业
+  *******************************************************************
+  -->
+ <keydeviceData>
+	<levelData levelid="00" levelLabel="全部" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+		<plateData   plateid="YT" plateLabel="油田" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio=""> 
+        	<corpData  order="1" subCorpid="YTA" subCorpname="油田企业A" deviceNumbers="76"  ratio="87"  leaderInspectPlanTimes="35" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78" 
+	                     problemNumbers="56" solvedProblemNumbers="63" unsolvedProblemNumbers="62" solvedRatio="63" averageSolvedRatio="" URL=""> 
+	             <typeData typeLabel="局级" typeid="JJ">
+		             <leaderData order="1" leaderid="001" leaderName="张三"  deviceNumbers="76" ratio="87" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+		                   	 problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85" URL="">
+  						<!-- </未落实问题> -->
+						<noImplemented id="id" order="序号" deviceName="装置名称" eventDate="活动日期" level="级别"
+		  			contactContractor="联系承包人" activities="活动形式" participateActivities="参加活动各级领导" inspectedUnit="被检单位/部门" problemDescription="问题描述"
+		  			professionalCategory="专业分类" rectificationRequirements="整改要求" rectificationPeriod="整改期限" rectificationState="整改状态"/>
+						<!-- </未落实问题> -->
+					</leaderData>
+		                   	 problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85" URL=""/>
+  						<未落实问题 id="" />
+  						<!-- ...... -->
+		             <leaderData order="2" leaderid="002" leaderName="李四" deviceNumbers="76" ratio="87" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+		                   	 problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85" URL=""/>
+		             <leaderData order="3" leaderid="003" leaderName="王五" deviceNumbers="76" ratio="87" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+		                   	 problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85" URL=""/>
+			         <!-- ...... -->
+	             </typeData>
+	             <typeData typeLabel="处级" typeid="CJ">
+ 					<leaderData order="1" leaderid="001" leaderName="张三"  deviceNumbers="76" ratio="87" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+	                   	 problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85" URL=""/>
+	             	<leaderData order="2" leaderid="002" leaderName="李四" deviceNumbers="76" ratio="87" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+	                   	 problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85" URL=""/>
+	             	<leaderData order="3" leaderid="003" leaderName="王五" deviceNumbers="76" ratio="87" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+	                   	 problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85" URL=""/>
+		         	<!-- ...... -->
+	             </typeData>
+	        </corpData>
+            <!-- ...... -->
+        </plateData>
+    	<plateData   plateid="LH" plateLabel="炼化" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio=""/>
+        <plateData   plateid="XS" plateLabel="销售" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio=""/>  
+        <plateData   plateid="GC" plateLabel="工程" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio=""/>  
+        <plateData   plateid="QT" plateLabel="其他" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio=""/>  
+    </levelData>
+    <levelData levelid="LEVEL-A" levelLabel="一级" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+		<plateData   plateid="YT" plateLabel="油田" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio=""> 
+			<corpData  order="1" subCorpid="YTA" subCorpname="油田企业A" deviceNumbers="76"  ratio="87"  leaderInspectPlanTimes="35" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" fishedRatio="90" averageFishedRatio="78" 
+	                     problemNumbers="56" solvedProblemNumbers="63" unsolvedProblemNumbers="62" solvedRatio="63" averageSolvedRatio="" URL="">
+	             <keyDeviceData keyDeviceid="装置编号" keyDeviceLabel="装置名称" manager="责任人"/>
+	             <!-- ...... -->
+	       	</corpData> 
+	       	<!-- ...... -->
+        </plateData>      
+        <!-- ...... -->
+    </levelData>
+    <!-- ...... -->
+ </keydeviceData>
+ 
+ 
+
+ 
+ 
+ 
+ 
+ <!-- 已下是旧版本，备份--> 
+  <!-- 总部HSE仪表盘〔关键装置要害部位部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-8 -->  
+ <!--*************************一、字段说明如下******************************
+   levelid：关键装置要害部位的级别，取值采用下列枚举值    label：关键装置要害部位级别的显示标签或领导活动的类型的显示标签
+   ratio  :对应的比例                                   deviceNumbers：关键装置要害部位的数量
+   leaderInspectPlanTimes:领导计划活动次数            leaderInspectFinishedTimes:领导活动完成次数
+   leaderInspectRemainderTimes：领导活动未完成次数    averageFishedRatio：平均完成比例
+   calendarRatio：日历进度比例                          order:排序序号
+   plateid:板块id                                  plateLabel：板块的显示标签
+   subCorpid：企业ID                                subCorpname：企业名称
+   problemNumbers：活动发现的问题数                      solvedProblemNumbers：已落实的问题数
+   unsolvedProblemNumbers：未落实的问题数               solvedRatio：问题落实比例
+   averageSolvedRatio：问题平均落实比例                  URL:某个企业记录对应的业务系统URL
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，如分板块的“全部”选项
+        2.装置的级别和板块等应该是活的
+        3.WebService处理明细的企业，带有order字段时，应严格按照其比率降序排列数据,且所有字段值一律不准写null值   
+  *********************二、其它说明*************************************************************************
+  版本1.1说明：    本部分依据2013-1-18与朱红对接要求，按企业要增加按领导活动完成率排名            日期：2013-1-22
+  新增标签：  无      
+ -->
+  <!--二、总体情况 -->
+ <overallData>
+    <!--2.1构成数据-->
+    <compositionData levelid="LEVEL-A" label = "一级" deviceNumbers="102"  ratio=""/>
+    <compositionData levelid="LEVEL-B" label = "二级" deviceNumbers="262"  ratio=""/>
+    <compositionData levelid="LEVEL-C" label = "三级" deviceNumbers="565"  ratio=""/>
+ </overallData> 
+  <!--2.2分板块-->
+ <byPlate>
+ 	<!-- 添加 板块合计 deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="" -->
+      <plateData plateid="YT" plateLabel="油田" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+        <compositionData levelid="LEVEL-A" label = "一级" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="76"  ratio="87"  leaderInspectPlanTimes="35" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="63" unsolvedProblemNumbers="62" solvedRatio="63" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="67"  ratio="87"  leaderInspectPlanTimes="55" leaderInspectFinishedTimes="53" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="24" unsolvedProblemNumbers="25" solvedRatio="64" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="63"  ratio="87"  leaderInspectPlanTimes="86" leaderInspectFinishedTimes="57" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="35" solvedProblemNumbers="52" unsolvedProblemNumbers="42" solvedRatio="23" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="57"  ratio="87"  leaderInspectPlanTimes="34" leaderInspectFinishedTimes="65" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="68" solvedProblemNumbers="26" unsolvedProblemNumbers="23" solvedRatio="54" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="35"  ratio="87"  leaderInspectPlanTimes="75" leaderInspectFinishedTimes="65" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="43" solvedProblemNumbers="23" unsolvedProblemNumbers="34" solvedRatio="56" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="76"  ratio="87"  leaderInspectPlanTimes="46" leaderInspectFinishedTimes="56" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="34" solvedProblemNumbers="54" unsolvedProblemNumbers="45" solvedRatio="54" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="56"  ratio="87"  leaderInspectPlanTimes="86" leaderInspectFinishedTimes="23" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="67" solvedProblemNumbers="23" unsolvedProblemNumbers="75" solvedRatio="43" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-B" label = "二级" deviceNumbers="32"   ratio="87"  leaderInspectPlanTimes="12" leaderInspectFinishedTimes="43" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="99" solvedProblemNumbers="88" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-C" label = "三级" deviceNumbers="23"   ratio="87"  leaderInspectPlanTimes="34" leaderInspectFinishedTimes="15" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="77" solvedProblemNumbers="66" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+      </plateData>
+      <plateData plateid="LH" plateLabel="炼化" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+        <compositionData levelid="LEVEL-A" label = "一级" deviceNumbers="41"   ratio="87"  leaderInspectPlanTimes="87" leaderInspectFinishedTimes="45" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="66" solvedProblemNumbers="55" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-B" label = "二级" deviceNumbers="65"   ratio="87"  leaderInspectPlanTimes="56" leaderInspectFinishedTimes="45" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="88" solvedProblemNumbers="77" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-C" label = "三级" deviceNumbers="83"   ratio="87"  leaderInspectPlanTimes="34" leaderInspectFinishedTimes="23" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="99" solvedProblemNumbers="88" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+      </plateData>
+      <plateData plateid="XS" plateLabel="销售" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+        <compositionData levelid="LEVEL-A" label = "一级" deviceNumbers="26"   ratio="87"  leaderInspectPlanTimes="67" leaderInspectFinishedTimes="56" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-B" label = "二级" deviceNumbers="23"   ratio="87"  leaderInspectPlanTimes="45" leaderInspectFinishedTimes="34" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="77" solvedProblemNumbers="66" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-C" label = "三级" deviceNumbers="29"   ratio="87"  leaderInspectPlanTimes="67" leaderInspectFinishedTimes="56" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="44" solvedProblemNumbers="33" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+      </plateData>
+      <plateData plateid="GC" plateLabel="工程" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+        <compositionData levelid="LEVEL-A" label = "一级" deviceNumbers="7"   ratio="87"  leaderInspectPlanTimes="74" leaderInspectFinishedTimes="64" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="44" solvedProblemNumbers="33" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-B" label = "二级" deviceNumbers="23"   ratio="87"  leaderInspectPlanTimes="84" leaderInspectFinishedTimes="86" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="66" solvedProblemNumbers="55" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-C" label = "三级" deviceNumbers="43"   ratio="87"  leaderInspectPlanTimes="58" leaderInspectFinishedTimes="56" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+      </plateData>
+      <plateData plateid="QT" plateLabel="其它" deviceNumbers="19"   ratio="87"  leaderInspectPlanTimes="32" leaderInspectFinishedTimes="54" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="55" solvedProblemNumbers="44" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+        <compositionData levelid="LEVEL-A" label = "一级" deviceNumbers="9"   ratio="87"  leaderInspectPlanTimes="87" leaderInspectFinishedTimes="34" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="33" solvedProblemNumbers="22" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-B" label = "二级" deviceNumbers="66"   ratio="87"  leaderInspectPlanTimes="78" leaderInspectFinishedTimes="45" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="88" solvedProblemNumbers="77" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+        <compositionData levelid="LEVEL-C" label = "三级" deviceNumbers="32"   ratio="87"  leaderInspectPlanTimes="34" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" averageFishedRatio="78" calendarRatio="10"
+                         problemNumbers="66" solvedProblemNumbers="55" unsolvedProblemNumbers="11" solvedRatio="80" averageSolvedRatio="">
+          <dataset  order="1" subCorpid="" subCorpname="广州"  deviceNumbers="32"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="23" solvedProblemNumbers="45" unsolvedProblemNumbers="34" solvedRatio="36" averageSolvedRatio="" URL=""/> 
+          <dataset  order="2" subCorpid="" subCorpname="茂名"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="89" unsolvedProblemNumbers="23" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="3" subCorpid="" subCorpname="石家庄"  deviceNumbers="65"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="44" solvedProblemNumbers="67" unsolvedProblemNumbers="25" solvedRatio="65" averageSolvedRatio="" URL=""/> 
+          <dataset  order="4" subCorpid="" subCorpname="燕山"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="56" solvedProblemNumbers="34" unsolvedProblemNumbers="26" solvedRatio="87" averageSolvedRatio="" URL=""/>      
+          <dataset  order="5" subCorpid="" subCorpname="洛阳"  deviceNumbers="43"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="69" solvedProblemNumbers="76" unsolvedProblemNumbers="27" solvedRatio="70" averageSolvedRatio="" URL=""/>   
+          <dataset  order="6" subCorpid="" subCorpname="镇海"  deviceNumbers="87"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="70" unsolvedProblemNumbers="25" solvedRatio="80" averageSolvedRatio="" URL=""/>   
+          <dataset  order="7" subCorpid="" subCorpname="杨子"  deviceNumbers="98"  ratio="87"  leaderInspectPlanTimes="33" leaderInspectFinishedTimes="22" leaderInspectRemainderTimes="77" 
+                         averageFishedRatio="78" calendarRatio="10" problemNumbers="45" solvedProblemNumbers="80" unsolvedProblemNumbers="25" solvedRatio="90" averageSolvedRatio="" URL=""/>          
+        </compositionData>
+      </plateData>
+    </byPlate>
+  <!--三.分企业数据-->
+  <!--本部分直接使用上述 〔2.2分板块〕部分的数据即可-->
+    <!--2013-1-22 Version:1.0 修改：肖丰斌 原因：增加企业排名-->
+  <corpOrderData>
+    <plateData plateid="00" plateLabel="全部" >
+      <!--全集团公司范围内排名-->
+      <!-- 添加级别汇总   leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" -->
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                             
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "一级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                          
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "二级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                             
+      </compositionData>
+      <compositionData levelid="LEVEL-C" label = "三级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                                
+      </compositionData>
+    </plateData>  
+    <plateData plateid="YT" plateLabel="油田" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "一级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "二级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-C" label = "三级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+    </plateData> 
+    <plateData plateid="LH" plateLabel="炼化" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "一级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "二级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-C" label = "三级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+    </plateData> 
+    <plateData plateid="XS" plateLabel="销售" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                               
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "一级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                             
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "二级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                            
+      </compositionData>
+      <compositionData levelid="LEVEL-C" label = "三级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                            
+      </compositionData>
+    </plateData> 
+    <plateData plateid="GC" plateLabel="工程" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "一级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                               
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "二级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+      <compositionData levelid="LEVEL-C" label = "三级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                             
+      </compositionData>
+    </plateData> 
+    <plateData plateid="QT" plateLabel="其它" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                               
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "一级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                            
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "二级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                            
+      </compositionData>
+      <compositionData levelid="LEVEL-C" label = "三级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />  
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" />                              
+      </compositionData>
+    </plateData> 
+  </corpOrderData>  
+
+    <!--2013-5-16 Version:1.0 修改：增加领导，局级处级 活动情况
+    
+    leaderInspectPlanTimes 计划活动次数
+    leaderInspectFinishedTimes 设计活动次数
+    leaderInspectRemainderTimes 未活动次数
+    ratio 活动率
+    averageFishedRatio 平均活动率
+    calendarRatio 日历进度
+    
+    problemNumbers：活动发现的问题数
+    solvedProblemNumbers：已落实的问题数
+   	unsolvedProblemNumbers：未落实的问题数
+	solvedRatio：问题落实比例
+   	averageSolvedRatio：问题平均落实比例
+    
+    
+    
+    -->
+  <leaderOrderData>
+    <plateData plateid="00" plateLabel="全部" >
+      <!--全集团公司范围内排名-->
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                       
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "局级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                     
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "处级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                             
+      </compositionData>
+    </plateData>  
+    <plateData plateid="YT" plateLabel="油田" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                       
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "局级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                     
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "处级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                             
+      </compositionData>
+    </plateData>  
+    <plateData plateid="LH" plateLabel="炼化" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                       
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "局级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                     
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "处级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                             
+      </compositionData>
+    </plateData>  
+    <plateData plateid="XS" plateLabel="销售" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                       
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "局级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                     
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "处级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                             
+      </compositionData>
+    </plateData>  
+    <plateData plateid="GC" plateLabel="工程" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                       
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "局级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                     
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "处级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                             
+      </compositionData>
+    </plateData>  
+    <plateData plateid="QT" plateLabel="其它" >
+      <compositionData levelid="LEVEL-0" label = "全部" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <!--本处数据要求降序排列，示意性类出4家-->
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                       
+      </compositionData>
+      <compositionData levelid="LEVEL-A" label = "局级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                     
+      </compositionData>
+      <compositionData levelid="LEVEL-B" label = "处级" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10" problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85">
+        <corpData  order="1" subCorpid="" subCorpname="茂名" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="2" subCorpid="" subCorpname="石家庄" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="3" subCorpid="" subCorpname="镇海" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>  
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+        <corpData  order="4" subCorpid="" subCorpname="河南" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>      
+                   <leaderData order="1" leaderid="001" leaderName="张三" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="002" leaderName="李四" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>
+                   <leaderData order="1" leaderid="003" leaderName="王五" leaderInspectPlanTimes="33"  leaderInspectFinishedTimes="44" leaderInspectRemainderTimes="77"
+                   ratio="87"  averageFishedRatio="78"  calendarRatio="10"  problemNumbers="10" solvedProblemNumbers="9" unsolvedProblemNumbers="1" solvedRatio="90" averageSolvedRatio="85"/>                             
+      </compositionData>
+    </plateData>  
+  </leaderOrderData>  
+
+</model>
+

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   skinClass="skins.popWinStyle" mouseEnabled="true"
+			   width="1050" creationComplete="titlewindow1_creationCompleteHandler(event)"
+			   height="400"
+			   close="titlewindow1_closeHandler(event)">
+	<s:layout>
+		<s:BasicLayout />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			import modules.meantime.events.MeantimeOverFilterEvent;
+			import modules.meantime.renderers.AdvancedDataGridWarningRenderer;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer_corpName;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer_projectURL;
+			
+			import mx.collections.ArrayCollection;
+			import mx.containers.DividedBox;
+			import mx.controls.AdvancedDataGrid;
+			import mx.controls.Alert;
+			import mx.controls.PopUpButton;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+			import mx.core.FlexGlobals;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.printing.FlexPrintJob;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import views.RowAdvDataGrid;
+			
+			private var loader:URLLoader = new URLLoader();
+			private var stateArr:Array = ['可研批复', '基础设计批复', '施工期间', '开始试运行', '试运行期满'];
+			private var advancedDataGridWarningRenderer:IFactory = new ClassFactory(AdvancedDataGridWarningRenderer);
+			private var meantimeOneStatusRenderer:IFactory = new ClassFactory(MeantimeOneStatusRenderer);
+			private var meantimeOneStatusRenderer_corpName:IFactory = new ClassFactory(MeantimeOneStatusRenderer_corpName);
+			private var meantimeOneStatusRenderer_projectURL:IFactory = new ClassFactory(MeantimeOneStatusRenderer_projectURL);
+			
+			private var hseDataXML:XML;
+			
+			private var plateid:String = "";
+			private var corpid:String = "";
+			private var levelid:String = "";
+			private var profid:String = "";
+			private var stageid:String = "";
+			
+			private var plateName:String = "";
+			private var corpName:String = "";
+			private var levelName:String = "";
+			private var profName:String = "";
+			private var stageName:String = "";
+			private var field_num:int = 1;
+			[Bindable]
+			private var ac_dataProvider:ArrayCollection = new ArrayCollection();
+			[Bindable]
+			private var ac_dataProvider_temp:ArrayCollection = new ArrayCollection();
+			
+			[Bindable]
+			private var contextmenu:ContextMenu;
+			
+			public function setData(wsdlUrl:String, dateStr:String, obj:Object,statusStr:String):void
+			{
+				this.plateName = obj.plate;
+				this.corpName = obj.corp;
+				this.levelName = obj.level;
+				this.profName = obj.prof;
+				this.stageName = obj.stage;
+				
+				this.plateid = obj.plateid;
+				this.corpid = obj.corpid;
+				this.levelid = obj.levelid;
+				this.profid = obj.profid;
+				this.stageid = obj.stageid;
+//				if(statusStr=="project"){
+//					profid="overapprovalAll";
+//				}
+				ws.wsdl = wsdlUrl;
+				ws.loadWSDL();
+//				loadDataByURLLoader();
+				/** stageidid改为statusStr 新加入的状态
+				 * 
+				 * 	loadDataByWs(dateStr, plateid, corpid, levelid, profid, stageid, "");
+				*/
+				loadDataByWs(dateStr, plateid, corpid, levelid, profid, statusStr, "");
+//				loadDataByWs("2013", "00", "", "00", "safety", "9993518AD2054247AFD27695E4999B61", "");
+			}
+			
+			private function loadDataByURLLoader():void
+			{
+				loader.load(new URLRequest("assets/data/zb_meantimeOverAllProjListdata.xml"));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataByWs(dateStr:String, plateid:String, corpid:String, levelid:String, profid:String, stageid:String, statusid:String):void
+			{
+				ws.GetMeantime("overapprovalAll", dateStr, plateid, corpid, levelid, "", "", statusid,"","");
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				this.removeAllElements();
+				var advancedDataGrid:AdvancedDataGrid = createAdvancedDataGrid();
+//				ac_dataProvider = createAdvancedDataGridAc(this.stageName);
+				for(var i:int=0;i<ac_dataProvider.length;i++){
+					ac_dataProvider_temp.addItem(ac_dataProvider[i]);
+				}
+				advancedDataGrid.dataProvider = ac_dataProvider;
+				this.addElement(advancedDataGrid);
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				this.removeAllElements();
+				var advancedDataGrid:AdvancedDataGrid = createAdvancedDataGrid();
+				ac_dataProvider = createAdvancedDataGridAc(this.stageName);
+				for(var i:int=0;i<ac_dataProvider.length;i++){
+					ac_dataProvider_temp.addItem(ac_dataProvider[i]);
+				}
+				advancedDataGrid.dataProvider = ac_dataProvider;
+				this.addElement(advancedDataGrid);
+			}
+			
+			private function createAdvancedDataGrid():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				advancedDataGrid.percentWidth = 100;
+				advancedDataGrid.percentHeight = 100;
+				advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+				advancedDataGrid.setStyle("color", "#000000");
+				advancedDataGrid.setStyle("rollOverColor","haloBlue");
+				advancedDataGrid.sortExpertMode = true;
+				advancedDataGrid.sortableColumns = false;
+				advancedDataGrid.variableRowHeight = true;
+				advancedDataGrid.setStyle("textAlign","center");
+				
+				var groupColumn:Array = new Array();
+				var column:AdvancedDataGridColumn;
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "order";
+				column.headerText = "序号";
+				
+				column.width = 50;
+				groupColumn.push(column);
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "corpName";
+				column.headerText = "企业名称";
+				column.itemRenderer = meantimeOneStatusRenderer_corpName;
+				column.width = 100;
+				groupColumn.push(column);
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "projectName";
+				column.headerText = "项目名称";
+				column.setStyle("textAlign","left");
+				column.width = 200;
+//				column.showDataTips = true;
+				column.itemRenderer = meantimeOneStatusRenderer_projectURL;
+				column.dataTipField = "projectName";
+				groupColumn.push(column);
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "currentStage";
+				column.headerText = "项目进度";
+				column.width = 85;
+				groupColumn.push(column);
+				
+				advancedDataGrid.groupedColumns = groupColumn;
+				advancedDataGrid.rowColorFunction = colorFunction;
+				return advancedDataGrid;
+			}
+			
+			private function createAdvancedDataGridAc(stageName:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var xmllist:XMLList = hseDataXML.allDataItem.dataset;
+					if (xmllist != null && xmllist.length() > 0)
+					{
+						var index:int = 1;
+						for each (var xml:XML in xmllist){
+							var obj:Object = new Object();
+							obj['order'] = index;
+							obj['isSum'] = "0";
+							obj['corpName'] = xml.@corpName + "";
+							obj['level'] = xml.@level + "";
+							obj['projectName'] = xml.@projectName + "";
+							obj['projectURL'] = xml.@projectURL + "";
+							obj['investment'] = xml.@investment + "";
+							index++;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			
+			}
+			
+			private function handlerStateStr(str:String):String
+			{
+				var str_:String = "";
+				if (str == "FINISHED")
+				{
+					str_ = "已完成";
+				}
+				else if (str == "IN-PROCESS")
+				{
+					str_ = "进行中";
+				}
+				else if (str == "NO-START")
+				{
+					str_ = "未启动";
+				}
+				else if (str == "Ignore" || str == "")
+				{
+					str_ = "";
+				}
+				return str_;
+			}
+			
+			private function colorFunction(item:Object, color:uint):uint
+			{
+				if (item.order == "")
+					color = 0xFFBF00;
+				return color;
+			}
+			
+			private function handlerCurrState(index:int):String
+			{
+				if (index == 0)
+				{
+					return "";
+				}
+				return stateArr[index - 1];
+			}
+			
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				cursorManager.removeAllCursors();
+			}
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:WebService id="ws"
+					  result="ws_resultHandler(event)"
+					  fault="ws_faultHandler(event)"
+					  showBusyCursor="true" />
+	</fx:Declarations>
+</s:TitleWindow>

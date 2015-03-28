@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  focusEnabled="true" dataChange="item_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			protected function item_dataChangeHandler(event:FlexEvent):void
+			{
+				if (advancedDataGridListData != null) {
+					var vol:Number = Number(data[advancedDataGridListData.dataField]);
+					if(vol<=0){
+						currentState = "blank";
+					}else if(vol<=10){
+						currentState = "red";
+					}else if(vol<=20){
+						currentState = "yellow";
+					}else if(vol<=30){
+						currentState = "green";
+					}else{
+						currentState = "blank";
+					}
+				}else{
+					currentState = "blank";
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="blank"/>
+		<s:State name="red"/>
+		<s:State name="yellow"/>
+		<s:State name="green"/>
+	</s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle" paddingBottom="2" paddingLeft="2" paddingRight="2" paddingTop="2"/>
+	</s:layout>
+	<s:Rect width="20" height="20" horizontalCenter="0" verticalCenter="0">
+		<s:fill>
+			<s:SolidColor alpha.blank="0" color.blank="#FFFFFF" color.red="#FF0000" color.yellow="#E2AE00" color.green="#00FF00"/>
+		</s:fill>
+	</s:Rect>
+</s:MXAdvancedDataGridItemRenderer>

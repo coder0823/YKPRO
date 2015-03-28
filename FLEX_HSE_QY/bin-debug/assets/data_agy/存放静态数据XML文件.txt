@@ -1,0 +1,10 @@
+ok教育培训	盈科修改byPost2-〉byPost  仪表盘修改
+ok事故  盈科修改leabel-〉label   仪表盘修改
+隐患  安工院修改  <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="省公司级"  级别应该是2
+观察  安工院修改lable->label
+
+
+
+发布 Dashboard下所有（除了assets/webserviceConf.xml）
+
+先要把各个企业Dashboard下原有东西清除（仅保留assets/webserviceConf.xml）

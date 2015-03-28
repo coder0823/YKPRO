@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model>
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+   <!--
+  *******************************************************************
+  2013年10月21日 孙山虎 
+  根据三期总部提出钻取要求进行修改：期中"......"的地方表示有扩展，请开发人员按实际输出
+  文档结构如下：
+  healthData 					职业卫生数据：
+  	|_plateData 				板块数据：	plateid板块代码，plateLabel板块名称
+  		|_corpData 				企业数据：	order序号，subCorpid企业编码，subCorpname企业名称，URL链接（预留）
+  	|_newOccupationalDiseases	职业病数据：	numbers：职业病数量，label：标签名称
+  		|_data					具体人员信息	order序号，corpName单位，personName姓名，zybName职业病名称（预留）
+ 
+ employeeTotal="职工总数" 
+ employeePerson="接触有毒有害因素职工数" 
+ planCheckup="应检人数" 
+ actualCheckup="实检人数" 
+ healthCheckupRatio="体检率" 
+ averageHealthCheckupRatio="平均体检率"
+ 
+ monitorTotal="总监测点数" 
+ monitorActual="实际监测点数" 
+ monitorRatio="监测率" 
+ averageMonitorRatio="平均监测率" 
+ qualifiedMonitorNumbers="合格监测点数" 
+ qualifiedMonitorRatio="监测点合格率" 
+ averageQualifiedMonitorRatio="监测点平均合格率"
+ 
+ newOccupationalDiseases="新增职业病人数"（预留）
+ 
+ 注意：plateData中plateid="00"的为汇总数据，不用到企业
+  *******************************************************************
+  -->
+<healthData>
+ 		<plateData   plateid="00" plateLabel="全部"  
+ 		 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 newOccupationalDiseases="44"/>
+ 		<plateData   plateid="YT" plateLabel="油田"  
+ 		 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 newOccupationalDiseases="44">
+ 			<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+ 			<corpData  order="2" subCorpid="SD" subCorpname="山东"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+		 	 <!-- ...... -->
+ 		</plateData>
+ 		<plateData   plateid="LH" plateLabel="炼化"  
+ 		 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 newOccupationalDiseases="44">
+ 			<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+ 			<corpData  order="2" subCorpid="SD" subCorpname="山东"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+		 	 <!-- ...... -->
+ 		</plateData>
+ 		<plateData   plateid="XS" plateLabel="销售"  
+ 		 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 newOccupationalDiseases="44">
+ 			<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+ 			<corpData  order="2" subCorpid="SD" subCorpname="山东"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+		 	 <!-- ...... -->
+ 		</plateData>
+ 		<plateData   plateid="GC" plateLabel="工程"  
+ 		 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 newOccupationalDiseases="44">
+ 			<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+ 			<corpData  order="2" subCorpid="SD" subCorpname="山东"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+		 	 <!-- ...... -->
+ 		</plateData>
+ 		<plateData   plateid="QT" plateLabel="其他"  
+ 		 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 newOccupationalDiseases="44">
+ 			<corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+ 			<corpData  order="2" subCorpid="SD" subCorpname="山东"  URL=""  
+ 		 	 employeeTotal="33" employeePerson="33" planCheckup="33" actualCheckup="33" healthCheckupRatio="33" averageHealthCheckupRatio="33"
+		 	 monitorTotal="44" monitorActual="44" monitorRatio="44" averageMonitorRatio="44" qualifiedMonitorNumbers="44" qualifiedMonitorRatio="44" averageQualifiedMonitorRatio="44"
+		 	 newOccupationalDiseases="44"/>
+		 	 <!-- ...... -->
+ 		</plateData>
+ 		
+ 		<newOccupationalDiseases   numbers= "1" label="新增职业病人数">
+			<data order="1" corpName="单位" personName="姓名" zybName="职业病名称"/>
+			<data order="2" corpName="单位" personName="姓名" zybName="职业病名称"/>
+			<data order="3" corpName="单位" personName="姓名" zybName="职业病名称"/>
+			<data order="4" corpName="单位" personName="姓名" zybName="职业病名称"/>
+			<data order="5" corpName="单位" personName="姓名" zybName="职业病名称"/>
+			<!-- ...... -->
+   </newOccupationalDiseases>
+</healthData>
+ 
+ 
+ 
+ 
+ 
+  <!-- 已下是旧版本，备份--> 
+  
+  <!-- 总部HSE仪表盘〔职业卫生部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-9 --> 
+ <!--*************************一、字段说明如下******************************
+ d:体检的类型id或监测的类型id，取值采用本文件中的枚举值                    label:体检的类型显示名称或监测的类型显示名称　　　
+ numbers:体检项目的人数或监测的点数                                       ratio:所占比例
+ subCorpid：企业ID                                               subCorpname：企业名称
+ plateid:板块id                                                  plateLabel：板块的显示标签
+ subCorpName：表格中用到的分/子公司名称                                   order:企业降序排序的序号
+ URL:某个企业记录对应的业务系统URL
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，如分板块的“全部”选项
+        2.WebService处理明细的企业，带有order字段时，应严格按照其完成率降序排列数据,且所有字段值一律不准写null值   
+ -->
+ <!--二.总体情况 -->
+ <overallData>
+   <!-- 2.1体检数据 -->
+   <healthCheckupData>
+     <dataset   id="employeeTotal" label="职工总数" numbers="44"> 
+       <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>    
+     <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"> 
+        <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>    
+     <dataset   id="planCheckup" label="应检人数" numbers="44"> 
+      <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>    
+     <dataset   id="actualCheckup" label="实检人数" numbers="44"> 
+        <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>    
+     <dataset   id="healthCheckupRatio" label="体检率" numbers="44">
+       <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>     
+   </healthCheckupData>
+   <!--2.2.监测数据数据 newOccupationalDiseases为新增职业病数-->
+   <!-- ！！！！！！！！！！！！！这里新删除，newOccupationalDiseases属性，放在下面单独标签了 -->
+   <monitorData ><!-- newOccupationalDiseases = "1" -->
+     <dataset id="monitorTotal" label="总监测点数" numbers="44" >  
+       <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>           
+     <dataset id="monitorActual" label="实际监测点数" numbers="44" >  
+       <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>        
+     <dataset id="monitorRatio" label="监测率" numbers="44" >  
+       <!--用作弹出表格数据-->
+       <plateData   plateid="00" label="小计" numbers="44" />    
+       <plateData   plateid="YT" label="油田" numbers="44"  ratio=""/> 
+       <plateData   plateid="LH" label="炼化" numbers="44"  ratio=""/>    
+       <plateData   plateid="XS" label="销售" numbers="44"  ratio=""/> 
+       <plateData   plateid="GC" label="工程" numbers="44"  ratio=""/> 
+       <plateData   plateid="QT" label="其它" numbers="44"  ratio=""/> 
+     </dataset>       
+   </monitorData> 
+   
+   <!-- ！！！！！！！！！！！！！这里新添加，职业病情况 -->
+   <newOccupationalDiseases   numbers= "1">
+		<data order="1" corpName="单位" personName="姓名" zybName="职业病名称"/>
+		<data order="2" corpName="单位" personName="姓名" zybName="职业病名称"/>
+		<data order="3" corpName="单位" personName="姓名" zybName="职业病名称"/>
+		<data order="4" corpName="单位" personName="姓名" zybName="职业病名称"/>
+		<data order="5" corpName="单位" personName="姓名" zybName="职业病名称"/>
+   </newOccupationalDiseases>
+ </overallData>
+  
+  <!--三.板块间对比分析，企业间对比分析也使用本部分数据-->
+  <byPlate>
+    <!-- 3.1体检数据 -->
+    <healthCheckupData>
+        <plateData   plateid="YT" label="油田"  >
+          <!--3.1.1板块的总体数据-->
+          <totalData>
+            <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+            <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+            <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+            <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+            <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+            <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+          </totalData>   
+          <!--3.1.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="2" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="YZ" subCorpname="扬子"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+          </byCorp>
+        </plateData>
+        
+        <plateData   plateid="LH" label="炼化"  >
+          <!--3.1.1板块的总体数据-->
+          <totalData>
+            <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+            <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+            <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+            <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+            <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+            <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+          </totalData>   
+          <!--3.1.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="2" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="YZ" subCorpname="扬子"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+          </byCorp>
+        </plateData>
+        
+        <plateData   plateid="XS" label="销售"  >
+          <!--3.1.1板块的总体数据-->
+          <totalData>
+            <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+            <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+            <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+            <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+            <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+            <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+          </totalData>   
+          <!--3.1.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="2" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="YZ" subCorpname="扬子"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+          </byCorp>
+        </plateData>
+        
+        <plateData   plateid="GC" label="工程"  >
+          <!--3.1.1板块的总体数据-->
+          <totalData>
+            <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+            <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+            <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+            <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+            <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+            <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+          </totalData>   
+          <!--3.1.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="2" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="YZ" subCorpname="扬子"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+          </byCorp>
+        </plateData>
+        
+        <plateData   plateid="QT" label="其它"  >
+          <!--3.1.1板块的总体数据-->
+          <totalData>
+            <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+            <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+            <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+            <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+            <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+            <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+          </totalData>   
+          <!--3.1.2分企业的总体数据-->
+          <byCorp>
+              <corpData  order="1" subCorpid="YS" subCorpname="燕山"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="2" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="YZ" subCorpname="扬子"  URL="">
+              <dataset   id="employeeTotal" label="职工总数" numbers="44"/> 
+              <dataset   id="employeePerson" label="接触有毒有害因素职工数" numbers="44"/> 
+              <dataset   id="planCheckup" label="应检人数" numbers="44"/> 
+              <dataset   id="actualCheckup" label="实检人数" numbers="44"/> 
+              <dataset   id="healthCheckupRatio" label="体检率" numbers="44"/>
+              <dataset   id="averageHealthCheckupRatio" label="平均体检率" numbers="44"/>
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            </corpData>
+          </byCorp>
+        </plateData>
+    </healthCheckupData>    
+    
+    <!--3.2.监测数据数据 newOccupationalDiseases为新增职业病数-->
+   <monitorData  newOccupationalDiseases = "1">
+      <plateData   plateid="YT" label="油田" >
+          <!--3.2.1板块的总体数据-->
+          <totalData>
+            <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+            <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+            <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+            <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+            <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+            <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+            <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+          </totalData> 
+          <!--3.2.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="GZ" subCorpname="广州"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="ZH" subCorpname="镇海"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+          </byCorp>
+       </plateData>     
+       
+       <plateData   plateid="LH" label="炼化" >
+          <!--3.2.1板块的总体数据-->
+          <totalData>
+            <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+            <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+            <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+            <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+            <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+          </totalData> 
+          <!--3.2.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="GZ" subCorpname="广州"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="ZH" subCorpname="镇海"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+          </byCorp>
+       </plateData>
+       
+       <plateData   plateid="XS" label="销售" >
+          <!--3.2.1板块的总体数据-->
+          <totalData>
+            <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+            <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+            <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+            <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+            <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+          </totalData> 
+          <!--3.2.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="GZ" subCorpname="广州"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="ZH" subCorpname="镇海"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+          </byCorp>
+       </plateData>
+       
+       <plateData   plateid="GC" label="工程" >
+          <!--3.2.1板块的总体数据-->
+          <totalData>
+            <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+            <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+            <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+            <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+            <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+          </totalData> 
+          <!--3.2.2分企业的总体数据-->
+          <byCorp>
+            <corpData  order="1" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="GZ" subCorpname="广州"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="ZH" subCorpname="镇海"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+          </byCorp>
+       </plateData>
+       
+       <plateData   plateid="QT" label="其它" >
+          <!--3.2.1板块的总体数据-->
+          <totalData>
+            <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+            <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+            <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+            <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+            <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+            <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+            <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+          </totalData> 
+          <!--3.2.2分企业的总体数据-->
+          <byCorp>
+             <corpData  order="1" subCorpid="MM" subCorpname="茂名"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="LY" subCorpname="洛阳"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="3" subCorpid="GZ" subCorpname="广州"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+            <corpData  order="4" subCorpid="ZH" subCorpname="镇海"  URL="">
+              <dataset   id="monitorTotal" label="总监测点数" numbers="44"/> 
+              <dataset   id="monitorActual" label="实际监测点数" numbers="44"/> 
+              <dataset   id="monitorRatio" label="监测率" numbers="44"/> 
+              <dataset   id="averageMonitorRatio" label="平均监测率" numbers="44"/> 
+              <dataset   id="calendarRatio" label="日历进度" numbers="44"/>
+              <dataset   id="newOccupationalDiseases" label="新增职业病人数" numbers="44"/>
+              <dataset   id="qualifiedMonitorNumbers" label="合格监测点数" numbers="44"/>
+              <dataset   id="qualifiedMonitorRatio" label="监测点合格率" numbers="44"/>
+              <dataset   id="averageQualifiedMonitorRatio" label="监测点平均合格率" numbers="44"/>
+            </corpData>
+          </byCorp>
+       </plateData>
+   </monitorData>
+  </byPlate>
+ 
+</model>
+

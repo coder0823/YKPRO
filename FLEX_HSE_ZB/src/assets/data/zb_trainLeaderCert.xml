@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<model>
+  <!--[CDATA[领导取证情况
+
+  1.条件：
+  GetCardManage("2014",type,level,certType,leaderLevel)
+  type（数据类别）：全部00，新取证01，复审02，换证03
+  level（培训级别）：全部00，地方政府01，集团公司02，企业级03
+  certType（证书类别）：全部00，xxxx，yyyy
+  leaderLevel（领导级别）：全部00，局级01，处级02
+  2.结构
+  byLeaderCertData	
+	|_plateData				板块：plateid="板块id" plateLabel="板块" planNumbers="计划数量" finishedNumbers="完成数量" remainderNumbers="未完成数量" finishedRatio="完成率" averageFinishedRatio="平均完成率" comparedRatio="比平均完成率"
+						certNum="应持证人数" realityCertNum="实际持证" effectiveCertNum="有效持证" certRation="持证率" realityRation="有效率" beover="过期" remainderCert="未持证"
+						effectiveCert12="有效证12月内到期" effectiveCert6 effectiveCert3
+		|_corpData			企业：subCorpid="企业id" subCorpname="企业" order="排序" planNumbers="计划数量" finishedNumbers="完成数量" remainderNumbers="未完成数量" finishedRatio="完成率" averageFinishedRatio="平均完成率" comparedRatio="比平均完成率"
+			|_leaderData	领导：leaderid="领导id" leadername="领导" leaderLevel="级别" order="排序" planFinishedDate="计划完成日期" actFinishedDate="实际完成日期"  remainderDays="剩余天数" outnumberDays="超期天数" 
+			className="培训班名称" score="成绩" certName="证书名称" certID="证书编号" certExpirationDate="证书有效期" certReexamine="复审"
+  3.说明：
+	剩余天数（正整数）=计划完成日期-当日，如果已经完成则显示空 ""，如果已超期则也显示空 "".
+	超期天数（正整数）=当日-计划完成日期，如果为超期则空"",如果已完成则空"".
+	领导排序依次按照，局级/处级，姓名拼音a-z
+	
+	新增  certNum1="证书数量"   企业的“合计”超链接=totalCorpURL   在板块标签里 
+  ]]-->
+  <byLeaderCertData>
+	  <config>
+		<certTypeData>
+			<certType typeid="00" typename="全部类别" currSelect="true"/>
+			<certType typeid="01" typename="特种作业">
+				<nodeType typeid="001" typename="全部"/>
+				<nodeType typeid="002" typename="电工作业"/>
+				<nodeType typeid="003" typename="焊接与热切割作业"/>
+				<nodeType typeid="004" typename="制冷与空调作业"/>
+				<nodeType typeid="005" typename="危化品从业人员证"/>
+				<nodeType typeid="006" typename="硫化氢证"/>
+				<nodeType typeid="007" typename="井控证"/>
+				<nodeType typeid="008" typename="境外公共安全证"/>
+				
+			</certType>
+			<certType typeid="02" typename="注册安全工程师"/>
+			<certType typeid="03" typename="检验检测"/>
+			<certType typeid="04" typename="特种设备作业">
+				<nodeType typeid="001" typename="全部"/>
+				<nodeType typeid="002" typename="锅炉作业"/>
+				<nodeType typeid="003" typename="压力管道作业"/>
+				<nodeType typeid="004" typename="电梯作业"/>
+				<nodeType typeid="005" typename="起重机作业"/>
+				<nodeType typeid="006" typename="厂内机动车辆作业"/>
+				<nodeType typeid="007" typename="xxx"/>
+				<nodeType typeid="008" typename="xxx"/>
+			</certType>
+			<!--[CDATA[......]]-->
+		</certTypeData>
+	  </config>
+	  <plateSum certNum="11" realityCertNum="11" plateSumURL="http://www.163.com" certNum1="9999" effectiveCertNum="5" certRation="50" realityRation="50" effectiveCert12="8000" effectiveCert6="4000" effectiveCert3="2000" beover="200" remainderCert="50"
+	  effectiveCert12URL="http://www.baidu.com" effectiveCert6URL="http://www.youku.com" effectiveCert3URL="http://www.baidu.com" beoverURL="http://www.baidu.com">
+	  
+	  </plateSum>
+	  <plateData plateid="YT" plateLabel="油田" certNum1="8888" planNumbers="1111" finishedNumbers="2222" remainderNumbers="1000" finishedRatio="110" averageFinishedRatio="120" comparedRatio="10" totalCorpURL="http://www.sina.com"
+	  certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="50" effectiveCert12="8000" effectiveCert12URL="http://www.baidu.com" effectiveCert6="4000" effectiveCert6URL="http://www.youku.com" effectiveCert3="2000" effectiveCert3URL="http://www.baidu.com" beover="200" beoverURL="http://www.baidu.com" remainderCert="50">
+		<corpData subCorpid="0000" subCorpname="扬子石化" certNum1="9999" order="1" corpURL="http://www.baidu.com"
+			planNumbers="3333" finishedNumbers="2222" remainderNumbers="1111"
+			finishedRatio="30" averageFinishedRatio="0" comparedRatio="30"
+			certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="50"
+			realityRation="50">
+			<effectiveCert12 num="666" effectiveCert12URL="http://www.baidu.com">
+			</effectiveCert12>
+			<effectiveCert6 num="666" effectiveCert6URL="http://www.youku.com">
+			</effectiveCert6>
+			<effectiveCert3 num="666" effectiveCert3URL="http://www.baidu.com">
+			</effectiveCert3>
+			<beover num="666" beoverURL="http://www.youku.com">
+			</beover>
+			<remainderCert num="666">
+			</remainderCert>
+		</corpData>
+		<corpData subCorpid="0001" certNum1="9999" subCorpname="高桥石化" order="2" corpURL="http://www.youku.com"
+			planNumbers="3331" finishedNumbers="2221" remainderNumbers="1110"
+			finishedRatio="30" averageFinishedRatio="30" comparedRatio="0"
+			certNum="21" realityCertNum="11" effectiveCertNum="5" certRation="50"
+			realityRation="10" />
+		<corpData subCorpid="0003" subCorpname="镇海炼化" order="4"
+			planNumbers="3333" finishedNumbers="2223" remainderNumbers="1110"
+			finishedRatio="30" averageFinishedRatio="42" comparedRatio="-12"
+			certNum="10" realityCertNum="11" effectiveCertNum="5" certRation="20"
+			realityRation="40">
+			<effectiveCert12 num="666">
+				<!-- 弹框数据去掉 -->
+				<!-- <leaderData leaderid="00001" leadername="张三" leaderLevel="局级" order="1" 
+					planFinishedDate="2013-11-20" actFinishedDate="2013-11-19" remainderDays="" 
+					outnumberDays="" className="培训班一" score="99" certName="证书一" certID="100001" 
+					certExpirationDate="2018-12-12" certReexamine="2018-12-12"/> -->
+				<!-- <leaderData leaderid="00001" leadername="张三" leaderLevel="局级" order="2" 
+					planFinishedDate="2013-11-20" actFinishedDate="" remainderDays="" outnumberDays="4" 
+					className="培训班二" score="" certName="" certID="" certExpirationDate="" /> -->
+				<!-- <leaderData leaderid="00001" leadername="张三" leaderLevel="局级" order="3" 
+					planFinishedDate="2014-1-20" actFinishedDate="" remainderDays="31" outnumberDays="" 
+					className="培训班三" score="" certName="" certID="" certExpirationDate="" /> -->
+	
+			</effectiveCert12>
+			<effectiveCert6 num="666">
+			</effectiveCert6>
+			<effectiveCert3 num="666">
+			</effectiveCert3>
+			<beover num="666">
+			</beover>
+			<remainderCert num="666">
+			</remainderCert>
+	</corpData>
+	<corpData subCorpid="0004" subCorpname="齐鲁石化" order="5"
+		planNumbers="3334" finishedNumbers="2224" remainderNumbers="1110"
+		finishedRatio="30" averageFinishedRatio="52" comparedRatio="-22"
+		certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="40"
+		realityRation="70" />
+	<corpData subCorpid="0005" subCorpname="燕山石化" order="6"
+		planNumbers="3335" finishedNumbers="2225" remainderNumbers="1110"
+		finishedRatio="30" averageFinishedRatio="62" comparedRatio="-32"
+		certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="30"
+		realityRation="60" />
+	  </plateData>
+	  <plateData plateid="LH" plateLabel="炼化" certNum1="9999" planNumbers="1111" finishedNumbers="2222" remainderNumbers="1000" finishedRatio="110" averageFinishedRatio="120" comparedRatio="10"
+	   certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="50" effectiveCert12="8000" effectiveCert6="4000" effectiveCert3="2000" beover="200" remainderCert="50">
+	  	 <corpData subCorpid="0000" subCorpname="扬子石化" order="1" planNumbers="3333" finishedNumbers="2222" remainderNumbers="1111" finishedRatio="30" averageFinishedRatio="0" comparedRatio="30"
+	  	  certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="50">
+	  	 	<effectiveCert12 num="666" url="http://www.youku.com">
+	  	 	</effectiveCert12>
+	  	 	<effectiveCert6 num="666">
+	  	 	</effectiveCert6>
+	  	 	<effectiveCert3 num="666">
+	  	 	</effectiveCert3>
+	  	 	<beover num="666">
+	  	 	</beover>
+	  	 	<remainderCert num="666">
+	  	 	</remainderCert>
+		  </corpData>
+		  <corpData subCorpid="0001" subCorpname="高桥石化" order="2" planNumbers="3331" finishedNumbers="2221" remainderNumbers="1110" finishedRatio="30" averageFinishedRatio="30" comparedRatio="0"
+ certNum="21" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="10"/>
+		  <corpData subCorpid="0002" subCorpname="南化公司" order="3" planNumbers="3332" finishedNumbers="2222" remainderNumbers="1110" finishedRatio="30" averageFinishedRatio="32" comparedRatio="-2"
+		   certNum="31" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="30"/>
+		  <corpData subCorpid="0003" subCorpname="镇海炼化" order="4" planNumbers="3333" finishedNumbers="2223" remainderNumbers="1110" finishedRatio="30" averageFinishedRatio="42" comparedRatio="-12"
+ certNum="10" realityCertNum="11" effectiveCertNum="5" certRation="20" realityRation="40">
+		  	<effectiveCert12 num="666">
+	  	 	</effectiveCert12>
+	  	 	<effectiveCert6 num="666">
+	  	 	</effectiveCert6>
+	  	 	<effectiveCert3 num="666">
+	  	 	</effectiveCert3>
+	  	 	<beover num="666">
+	  	 	</beover>
+	  	 	<remainderCert num="666">
+	  	 	</remainderCert>
+		  </corpData>
+		  <corpData subCorpid="0004" subCorpname="齐鲁石化" order="5" planNumbers="3334" finishedNumbers="2224" remainderNumbers="1110" finishedRatio="30" averageFinishedRatio="52" comparedRatio="-22"
+ certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="40" realityRation="70"/>
+		  <corpData subCorpid="0005" subCorpname="燕山石化" order="6" planNumbers="3335" finishedNumbers="2225" remainderNumbers="1110" finishedRatio="30" averageFinishedRatio="62" comparedRatio="-32"
+ certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="30" realityRation="60"/>
+	  </plateData>
+	  <plateData plateid="XS" plateLabel="销售" planNumbers="1111" finishedNumbers="2222" remainderNumbers="1000" finishedRatio="110" averageFinishedRatio="120" comparedRatio="10" certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="30" effectiveCert12="8000" effectiveCert6="4000" effectiveCert3="2000" beover="200" remainderCert="50"/>
+	  <plateData plateid="GC" plateLabel="工程" planNumbers="1111" finishedNumbers="2222" remainderNumbers="1000" finishedRatio="110" averageFinishedRatio="120" comparedRatio="10" certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="30" effectiveCert12="8000" effectiveCert6="4000" effectiveCert3="2000" beover="200" remainderCert="50"/>
+	  <plateData plateid="QT" plateLabel="其他" planNumbers="1111" finishedNumbers="2222" remainderNumbers="1000" finishedRatio="110" averageFinishedRatio="120" comparedRatio="10" certNum="11" realityCertNum="11" effectiveCertNum="5" certRation="50" realityRation="30" effectiveCert12="8000" effectiveCert6="4000" effectiveCert3="2000" beover="200" remainderCert="50"/>
+  </byLeaderCertData>
+</model>

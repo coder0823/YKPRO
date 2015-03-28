@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  focusEnabled="true" dataChange="mxadvanceddatagriditemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			
+			protected function mxadvanceddatagriditemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					if(data[advancedDataGridListData.dataField] == "0"){
+						currentState = "state0";
+					}else if(data[advancedDataGridListData.dataField] == "1"){
+						currentState = "state1";
+					}else if(data[advancedDataGridListData.dataField] == "2"){
+						currentState = "state2";
+					}else{
+						currentState = "state_1";
+					}
+				}else{
+					currentState = "state_1";
+				}
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state_1" stateGroups="group1"/>
+		<s:State name="state0" stateGroups="group1"/>
+		<s:State name="state1"/>
+		<s:State name="state2" stateGroups="group1"/>
+	</s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<s:Group includeIn="group1" width="100%" height="100%">
+		<s:layout>
+			<s:HorizontalLayout gap="5" verticalAlign="middle" horizontalAlign="center"/>
+		</s:layout>
+		<mx:Image width="20" height="20" alpha.state_1="0" source.state0="assets/images/no-start.gif" source.state2="assets/images/finished.gif"
+				  toolTip.state_1="" toolTip.state0="未启动" toolTip.state2="已完成"/>
+	</s:Group>
+	<s:Group includeIn="state1" width="100%" height="100%">
+		<s:layout>
+			<s:HorizontalLayout gap="5" verticalAlign="middle" horizontalAlign="center"/>
+		</s:layout>
+		<mx:Image width="20" height="20" source="assets/images/in-progress.gif" toolTip="进行中"/>
+	</s:Group>
+	
+	
+</s:MXAdvancedDataGridItemRenderer>

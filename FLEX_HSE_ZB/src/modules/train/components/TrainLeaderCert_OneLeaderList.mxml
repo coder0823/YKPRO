@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%"
+		 height="100%">
+	<fx:Declarations>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			[Bindable]
+			public var DataSource:mx.collections.ArrayCollection;
+			[Bindable]
+			public var PlateName:String = "";
+			[Bindable]
+			public var CorpName:String = "";
+			[Bindable]
+			public var LeaderName:String = "";
+			[Bindable]
+			public var LevelName:String = "";
+			[Bindable]
+			public var CertTypeName:String = "";
+			[Bindable]
+			public var TypeName:String = "";
+			[Bindable]
+			public var LeaderLevelName:String = "";
+			[Bindable]
+			public var DateStr:String = "";
+			[Bindable]
+			public var ShowTitle:Boolean = true;
+		]]>
+	</fx:Script>
+	<s:Rect alpha="0.5"
+			x="0"
+			y="0"
+			width="100%"
+			height="100%">
+		<s:fill>
+			<s:SolidColor color="#010832" />
+		</s:fill>
+	</s:Rect>
+	<s:VGroup horizontalAlign="center"
+			  verticalAlign="middle"
+			  gap="0"
+			  width="100%"
+			  height="100%">
+		<mx:Label width="100%"
+				  height="30"
+				  text="{LeaderName}{DateStr}{LevelName}{CertTypeName}{TypeName}培训完成情况"
+				  styleName="titleStyle"
+				  visible="{ShowTitle}"
+				  includeInLayout="{ShowTitle}" />
+		<mx:AdvancedDataGrid id="adg"
+							 styleName="CusAdvancedDataGrid"
+							 width="100%"
+							 height="100%"
+							 sortExpertMode="true"
+							 sortableColumns="false"
+							 selectionMode="none"
+							 horizontalGridLines="false"
+							 dataProvider="{DataSource}"
+							 textAlign="center"
+							 borderVisible="false">
+			<mx:groupedColumns>
+				<mx:AdvancedDataGridColumn width="60"
+										   dataField="order"
+										   headerText="序号" />
+				<mx:AdvancedDataGridColumn dataField="leadername"
+										   headerText="姓名" />
+				<mx:AdvancedDataGridColumnGroup headerText="培训情况">
+					<mx:AdvancedDataGridColumn dataField="planFinishedDate"
+											   headerText="规定日期" />
+					<mx:AdvancedDataGridColumn dataField="actFinishedDate"
+											   headerText="实际完成日期" />
+					<mx:AdvancedDataGridColumn dataField="remainderDays"
+											   itemRenderer="modules.train.renderers.TrainAlertTextByRemainRenderer"
+											   headerText="剩余天数" />
+					<mx:AdvancedDataGridColumn dataField="remainderDays"
+											   itemRenderer="modules.train.renderers.TrainAlertByRemainRenderer"
+											   width="38"
+											   headerText="状态" />
+					<mx:AdvancedDataGridColumn dataField="outnumberDays"
+											   itemRenderer="modules.train.renderers.TrainAlertTextByOutRenderer"
+											   headerText="超期天数" />
+					<mx:AdvancedDataGridColumn dataField="className"
+											   headerText="培训班名称" />
+					<mx:AdvancedDataGridColumn dataField="score"
+											   headerText="成绩" />
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="证书情况">
+					<mx:AdvancedDataGridColumn dataField="certName"
+											   headerText="名称" />
+					<mx:AdvancedDataGridColumn dataField="certID"
+											   headerText="编号" />
+					<mx:AdvancedDataGridColumn dataField="certExpirationDate"
+											   headerText="有效期" />
+				</mx:AdvancedDataGridColumnGroup>
+			</mx:groupedColumns>
+		</mx:AdvancedDataGrid>
+	</s:VGroup>
+</s:Group>

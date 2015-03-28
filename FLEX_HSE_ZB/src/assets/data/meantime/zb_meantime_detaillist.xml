@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘 三同时 总体情况，分板块的状态标志点击弹出的二级页面  日期：2012-2-19  -->
+ <!--*************************一、字段说明如下******************************
+  order:项目显示序号                                         typeid：类型id，取值为5种
+  projectNumber:项目数                                      sequence：项目阶段的序号
+  label：某个id对应的标签                                     nostartNumber:未启动项目数
+  inprocessNumber:正在进行的项目数                           finishedNumber:已完成的项目数
+  plateid：板块ID                                       subCorpid：企业ID
+  corpid:企业id                                         status：状态，其取值:　NO-START:未启动  IN-PROCESS：进行中 FINISHED:已完成
+  currentStageSequence：项目当前所处阶段的序号                URL:某个具体企业项目对应系统url
+  projectName：项目名称
+ 
+ -->
+ 
+ <!--一.文件总览 -->
+<dataOutline dataYear="2012-2013"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+<projects>
+  <dataset order="1"  projectName="安全类项目1" corpName="河南石油1" level="集团公司级" investment="200.12" currentStage="当前阶段1">
+    <stagedata  sequence="1"  label = "设立"  status="FINISHED" />
+    <stagedata  sequence="2"  label = "设计"  status="FINISHED" />
+    <stagedata  sequence="3"  label = "试生产"  status="FINISHED" />
+    <stagedata  sequence="4"  label = "验收"  status="FINISHED" />
+  </dataset>
+  <dataset order="2"  projectName="安全类项目2" corpName="河南石油2" level="集团公司级" investment="300" currentStage="当前阶段2">
+    <stagedata  sequence="1"  label = "设立"  status="FINISHED" />
+    <stagedata  sequence="2"  label = "设计"  status="IN-PROCESS" />
+    <stagedata  sequence="3"  label = "试生产"  status="" />
+    <stagedata  sequence="4"  label = "验收"  status="" />
+  </dataset>
+  <dataset order="3"  projectName="安全类项目1" corpName="河南石油3" level="企业级" investment="50" currentStage="当前阶段3">
+    <stagedata  sequence="1"  label = "设立"  status="NO-START" />
+    <stagedata  sequence="2"  label = "设计"  status="" />
+    <stagedata  sequence="3"  label = "试生产"  status="" />
+    <stagedata  sequence="4"  label = "验收"  status="" />
+  </dataset>
+</projects>
+</model>

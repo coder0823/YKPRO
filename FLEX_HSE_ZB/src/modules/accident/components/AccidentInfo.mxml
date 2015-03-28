@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%"
+		 height="100%">
+	<fx:Declarations>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			//accName accType accLevel accFromCorp accFromTime accCasualties ifOutSide ifBeiAn accDesc accDeal accTrain
+			[Bindable]
+			public var accName:String = "";
+			[Bindable]
+			public var accType:String = "";
+			[Bindable]
+			public var accLevel:String = "";
+			[Bindable]
+			public var accFromCorp:String = "";
+			[Bindable]
+			public var accFromTime:String = "";
+			[Bindable]
+			public var accCasualties:String = "";
+			[Bindable]
+			public var ifOutSide:String = "";
+			[Bindable]
+			public var ifBeiAn:String = "";
+			[Bindable]
+			public var accDesc:String = "";
+			[Bindable]
+			public var accDeal:String = "";
+			[Bindable]
+			public var accTrain:String = "";
+			[Bindable]
+			public var ShowTitle:Boolean = true;
+		]]>
+	</fx:Script>
+	<s:Rect alpha="0.5"
+			x="0"
+			y="0"
+			width="100%"
+			height="100%">
+		<s:fill>
+			<s:SolidColor color="#010832" />
+		</s:fill>
+	</s:Rect>
+	<s:VGroup horizontalAlign="center"
+			  verticalAlign="middle"
+			  gap="0"
+			  width="100%"
+			  height="100%">
+		<mx:Label width="100%"
+				  height="30"
+				  text="{accName}详情"
+				  styleName="titleStyle"
+				  visible="{ShowTitle}"
+				  includeInLayout="{ShowTitle}" />
+		<s:Panel width="100%" height="100%" fontSize="12" backgroundColor="0xF2F2F2"
+				 borderVisible="false" color="blue" dropShadowVisible="false" title="事故基本信息">
+			<s:Scroller width="100%" height="100%">
+				<s:VGroup width="100%" 
+						  height="100%" paddingTop="5"
+						  paddingLeft="10"
+						 >
+					<s:Label text="事故名称：    {accName}"
+							 styleName="txt" />
+					<s:Label text="事故类别：    {accType}"
+							 styleName="txt" />
+					<s:Label text="事故级别：    {accLevel}"
+							 styleName="txt" />
+					<s:Label text="发生单位：    {accFromCorp}"
+							 styleName="txt" />
+					<s:Label text="发生时间：    {accFromTime}"
+							 styleName="txt" />
+					<s:Label text="伤亡人数：    {accCasualties}"
+							 styleName="txt" />
+					<s:Label text="是否境外：    {ifOutSide}"
+							 styleName="txt" />
+					<s:Label text="是否备案：    {ifBeiAn}"
+							 styleName="txt" />
+				</s:VGroup>
+			</s:Scroller>
+			
+		</s:Panel>
+		<s:Panel title="事故经过" borderVisible="false" color="blue" dropShadowVisible="false"
+				 width="100%" styleName="panel"
+				 height="80">
+				<s:TextArea text="{accDesc}" paddingTop="5" paddingBottom="10" paddingLeft="10"
+							width="100%" borderVisible="false"
+							contentBackgroundColor="0xF2F2F2" contentBackgroundAlpha="1"
+							height="100%"
+							styleName="txt" />
+		</s:Panel>
+		<s:Panel title="事故原因" borderVisible="false" color="blue" dropShadowVisible="false"
+				 width="100%" styleName="panel"
+				 height="80">
+				<s:TextArea text="{accDeal}"
+							paddingTop="5" paddingBottom="10" paddingLeft="10"
+							width="100%" borderVisible="false"
+							contentBackgroundColor="0xF2F2F2" contentBackgroundAlpha="1"
+							height="100%"
+							styleName="txt" />
+		</s:Panel>
+		<s:Panel title="事故教育情况" borderVisible="false" color="blue" dropShadowVisible="false"
+				 width="100%" styleName="panel"
+				 height="80">
+				<s:TextArea text="{accTrain}"
+							paddingTop="5" paddingBottom="10" paddingLeft="10"
+							width="100%" borderVisible="false"
+							contentBackgroundColor="0xF2F2F2" contentBackgroundAlpha="1"
+							height="100%"
+							styleName="txt" />
+		</s:Panel>
+
+	</s:VGroup>
+</s:Group>

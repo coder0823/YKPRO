@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  focusEnabled="true" dataChange="mxadvanceddatagriditemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Bindable]
+			protected var showRect:Boolean=true;
+			[Bindable]
+			private var isSum:Boolean=false;
+			[Bindable]
+			private var txt:String="";
+			protected function mxadvanceddatagriditemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					isSum=data['isSum']=="1"?true:false;
+					if(isSum){
+						showRect=false;
+						//this.setStyle("backgroundColor",0xFFBF00);
+						var obj2:Object=data['project'][advancedDataGridListData.dataField];
+						if(obj2!=null){
+							txt=String(obj2);
+						}
+						
+					}else{
+						if(data['project'][advancedDataGridListData.dataField] == "NOSTART"){
+							currentState = "state0";
+							showRect=false;
+						}else if(data['project'][advancedDataGridListData.dataField] == "DONING"){
+							currentState = "state1";
+							showRect=true;
+						}else if(data['project'][advancedDataGridListData.dataField] == "FINISHED"){
+							currentState = "state2";
+							showRect=false;
+						}else{
+							currentState = "state_1";
+							showRect=false;
+						}
+						
+					}
+				}
+				
+
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state_1"/>
+		<s:State name="state0"/>
+		<s:State name="state1"/>
+		<s:State name="state2"/>
+	</s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<s:Group width="100%" height="100%" visible="{showRect}" includeInLayout="{showRect}">
+		<s:layout>
+			<s:HorizontalLayout gap="5" verticalAlign="middle" horizontalAlign="center"/>
+		</s:layout>
+		<mx:Image width="20" height="20" alpha.state_1="0" 
+				  source.state0="assets/images/no-start.gif" source.state1="assets/images/in-progress.gif" source.state2="assets/images/finished.gif"/>
+		<!--<s:Label text.state_1="" 
+				 text.state0="未启动" color.state0="#FF0000" text.state1="进行中" color.state1="#E2AE00" text.state2="已完成" color.state2="#00FF00"/>-->
+	</s:Group>
+	<s:Group id="hgroup2" width="100%" height="100%" visible="{isSum}">
+		<s:Label text="{txt}" horizontalCenter="0" verticalCenter="0"/>
+	</s:Group>
+</s:MXAdvancedDataGridItemRenderer>

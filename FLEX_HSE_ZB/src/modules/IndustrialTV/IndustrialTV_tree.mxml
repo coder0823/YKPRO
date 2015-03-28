@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" xmlns:views="views.*" creationComplete="init()" xmlns:ns="http://code.google.com/p/flex-iframe/">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			public const _dataPath:String = "assets/data/zb_industralTVdata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			[Bindable]
+			public var TvType:String="1";//1:关键装置，2:领导检查，3:公共安全
+			[Bindable]
+			private var tab1_title:String="工业电视";
+			
+			[Bindable]
+			private var treeDS:ArrayCollection;	
+			[Bindable]
+			private var treeData:XMLList = new XMLList();
+			[Bindable]
+			private var str_tvService:String = new String();
+			[Bindable]
+			private var str_tvCode:String = new String();
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//........
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					//ws.wsdl=XML(loader_wsdl.data).url;
+					//ws.loadWSDL();
+					//ws.GetVideoLink(TvType);
+					ws.wsdl="http://10.1.18.91:12345/ws.asmx?WSDL";
+					ws.loadWSDL();
+					ws.GetTVXMLStr(TvType);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+//				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void{
+				treeData = hseDataXML.IndustrialData.rootNode;
+				tree.callLater(tree_creationCompleteHandler);
+				str_tvService = hseDataXML.serviceInterface;
+			}
+			
+			protected function tree_itemClickHandler(event:ListEvent):void
+			{
+				if(tree.selectedItem.attribute('cid')) 
+				{ 
+					str_tvCode = tree.selectedItem.attribute('cid');
+					if(str_tvCode!=""&&str_tvCode!=null){
+						var url:String=str_tvService+"?cid="+str_tvCode;
+						//iFrame.source = url;
+						//var u:URLRequest = new URLRequest("javascript:window.open('"+url+"','newwindow','height=423,width=859,top=48,left=216,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');"); 
+						//navigateToURL(u,"_blank"); 
+						//ExternalInterface.call("function(){window.open('"+url+"','newwindow','height=423,width=859,top=48,left=216,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');}"); 	
+						ExternalInterface.call("function(){var Result=window.showModalDialog('"+url+"','','dialogHeight:423px;dialogWidth:859px;center:yes;help:no;resizable:no;status:no;scroll:no;');}"); 
+					}
+				}
+			}
+			protected function tree_creationCompleteHandler():void
+			{
+				tree.openItems =treeData;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="200" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<mx:Tree id="tree" width="100%" height="100%" dataProvider="{treeData}"
+						 labelField="@label" showRoot="true" openDuration="250" contentBackgroundAlpha="0" itemClick="tree_itemClickHandler(event)"
+						 />
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<ns:IFrame id="iFrame" width="100%" height="100%"/>
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

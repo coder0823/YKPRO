@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Model>
+ <carriersData>
+  <plateData plateid="00" plateLabel="总数" byCorpLabel="总数合计" contractorNumbers="240" qualifiedNumbers="240" unqualifiedNumbers="0" /> 
+ <plateData plateid="YT" plateLabel="油田" byCorpLabel="油田合计" contractorNumbers="15" qualifiedNumbers="15" unqualifiedNumbers="0">
+  <corpData order="0" subCorpid="200530" subCorpname="河南油田" contractorNumbers="15" qualifiedNumbers="15" unqualifiedNumbers="0" URL="" displayindex="9" >
+  	<carriersData URL="" contractorName="南阳四维石油设备工程有限公司" contractorid="FCDE2D8605EFDB28B02CA6D92E807180" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="唐河县天昱建筑工程有限公司" contractorid="4B4275A30ED6D0BCC89401E926BD60D8" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="安徽省建安防腐工程公司" contractorid="84E8E4C51AAAA8DE354EB238EBB752C3" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省福鑫防腐安装有限公司" contractorid="8C1EBCD61F133FD91620FE543584B711" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="武汉科瑞德电力科技有限公司" contractorid="35326D4467DCD90C209F8E6D91B17340" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳市绿城建筑安装有限公司" contractorid="62512BEA979D1857283605740571D00B" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省兴科防腐防水工程有限公司" contractorid="5F81DA55194F6AD998D893F6C0AC8EF4" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳市劳动建业有限公司" contractorid="B433B750394E06D0D8CA9EC5E06A7D13" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳市中原建设有限公司" contractorid="21CA51869519DEA3D41810E777455095" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳市安运石油钻采设备有限公司" contractorid="C5C3F6ADE713AE15B810F12EF9C6C0DF" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳大正科美树脂涂料有限公司" contractorid="B88E05623DA9E3BF890C10994E7CF199" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省建筑安装工程有限公司" contractorid="985E633953FE91AA9C6D39C1373415D2" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="唐河县宛东建筑安装工程有限公司" contractorid="E60ADB058198988039A3E084701CC6B5" order="13" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳南油电子工程限公司" contractorid="DA56C66E3F0885CB9927666385338F74" order="14" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳大正石化实业有限公司" contractorid="4BCB874CADBCE1F25F61A9BFD667F5B6" order="15" type="qualified" /> 
+  	
+  </corpData>
+   
+  <corpData order="1" subCorpid="200100" subCorpname="江苏油田" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="15" /> 
+  </plateData>
+  <plateData plateid="LH" plateLabel="炼化" byCorpLabel="炼化合计" contractorNumbers="161" qualifiedNumbers="161" unqualifiedNumbers="0">
+  
+   <corpData order="0" subCorpid="200130" subCorpname="燕山石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="45" /> 
+  <corpData order="1" subCorpid="200335" subCorpname="齐鲁石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="47" /> 
+  <corpData order="2" subCorpid="200450" subCorpname="上海石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="50" /> 
+  <corpData order="3" subCorpid="200315" subCorpname="上海高桥" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="53" /> 
+  <corpData order="4" subCorpid="200320" subCorpname="金陵石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="55" /> 
+ <corpData order="5" subCorpid="200325" subCorpname="扬子石化" contractorNumbers="21" qualifiedNumbers="21" unqualifiedNumbers="0" URL="" displayindex="57">
+  <carriersData URL="" contractorName="南京南化建设有限公司" contractorid="4E8EC7379669EA3B740A0A3EC70E1BF8" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="扬州市江都防腐保温公司" contractorid="3C74890F2D6D6D424E087BE627742BA5" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏永进建设有限公司" contractorid="1CCDE4ABF169190798A0C3BD521207A7" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="南京工程有限公司" contractorid="97A9B2F19EFD8524A6C69EEFF0DA1F49" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏通迅建设工程有限公司" contractorid="8AEE5E3E045198E26E3CE40B37D71974" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="泰州市海陵区中发运输队" contractorid="6976D335ECFA64F34D624A9B3796A2B0" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏江都建设集团有限公司" contractorid="B69A3E36189B0E0F75D0005AD10148E0" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="中国化学工程第十三建设有限公司江苏工程项目经理部" contractorid="F870CCCA3134E4C82578EFF42CC64627" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="南京扬子检修安装有限责任公司" contractorid="5A3FBC53DB2978AC8A5330F9FB0F8FD9" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省四方防腐有限公司" contractorid="CF636FBA1E1E4994ECFCA10B2FCC5AB1" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="南京保胜建设工程有限公司" contractorid="3136D02D0C4942998D3123FF188B0343" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="泰州市第七建筑安装工程有限公司" contractorid="07452FA4638404EDE08D35E1C3B95B36" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="扬州市安装防腐工程有限公司" contractorid="731A6418161AA3F75132FFDF4FF1377C" order="13" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省四方防腐公司南京工程处" contractorid="3654D90C43B0452C945E32149626EF0C" order="14" type="qualified" /> 
+  <carriersData URL="" contractorName="南京保胜建筑安装工程有限公司江北分公司" contractorid="ABCB743C407D89B532CB9EC297AD2D8C" order="15" type="qualified" /> 
+  <carriersData URL="" contractorName="泰州市腾发起重工程有限公司" contractorid="2450DC340E2C69D08FAE4A41E8DE7863" order="16" type="qualified" /> 
+  <carriersData URL="" contractorName="淮安市振洋建设工程有限公司" contractorid="42B988E0AD4975F9B962A76624522B43" order="17" type="qualified" /> 
+  <carriersData URL="" contractorName="中国化学工程第十四建设有限公司" contractorid="A34B326829D93C0083D628321777E1C2" order="18" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏天成建设工程有限公司" contractorid="E282C46080D0F23EC970AFB6F0348B18" order="19" type="qualified" /> 
+  <carriersData URL="" contractorName="泰州市建筑工程有限公司" contractorid="A7CF4C1F563C546903CB28E35032AC8B" order="20" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏金工防腐安装有限公司第三分公司" contractorid="C600EC26663256751AC866EC4A054AD3" order="21" type="qualified" /> 
+  </corpData>
+ <corpData order="6" subCorpid="200111" subCorpname="茂名石化" contractorNumbers="45" qualifiedNumbers="45" unqualifiedNumbers="0" URL="" displayindex="59">
+  <carriersData URL="" contractorName="广东辐联仪表工程有限公司" contractorid="8C506B7DAE22254892FD8E4D63258ADC" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市雷迪通防雷弱电工程有限公司" contractorid="329151B3BBC0B24E9FCE1CB73054119E" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="同方环境股份有限公司" contractorid="41F169D07AB21C4A94DBADEC7CC6433F" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市茂南建安集团有限公司" contractorid="DFD4B33F6E4D5E4CBF24E181C39B77DE" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名华粤建筑安装工程有限公司" contractorid="5CEEDBD3233ED746BBE44D86BC30D251" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="广东长盈信息科技有限公司" contractorid="A8EB77CDF86C0542920133BCE86628F6" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="北京东方新星石化工程股份有限公司" contractorid="55367B268830184DA97A7608AA414ADC" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="北京金海湾工程建设监理公司" contractorid="054818A95085604F97801A21AA1606BA" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市星河电梯起重机有限公司" contractorid="00F967DEF5E3E4439404B769A72885DF" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="广东省特种设备检测院茂名分院" contractorid="BCBB07B731F9C546B1133169D64F1556" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="广东茂化建集团有限公司" contractorid="AEC7F729C4799447A58723C5E9245597" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市长安检测技术有限公司" contractorid="B32E4E5CEC2BDE48A0D32D0B678DA948" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="安徽万纬工程管理有限责任公司" contractorid="3A4561A8BE839B418ED6B6F8D59F3FEE" order="13" type="qualified" /> 
+  <carriersData URL="" contractorName="广东华泰检测科技有限公司" contractorid="A1F8309F170D4A4698AE8A899AFBF741" order="14" type="qualified" /> 
+  <carriersData URL="" contractorName="湛江粤西地质工程勘察院" contractorid="818D04BBC53E77488E9F207F630199B1" order="15" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名威特检测技术有限公司" contractorid="F16F19CF81373847879AD29E16EEE55E" order="16" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名华粤园林建筑工程有限公司" contractorid="2141C660A8BD854580BCAFF8BF2C6563" order="17" type="qualified" /> 
+  <carriersData URL="" contractorName="天津市宏迪工程检测发展有限公司" contractorid="27EB59EA3036CC46A41111F2FDCB4776" order="18" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名石化动力工程有限公司" contractorid="863E2297858AF24BAF56697296F28E8F" order="19" type="qualified" /> 
+  <carriersData URL="" contractorName="广州中煤江南基础工程公司" contractorid="F1EE7F816F73F646B3A29E8E612C7C0A" order="20" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名瑞派石化工程有限公司" contractorid="801E4BC280673343866063111D58B515" order="21" type="qualified" /> 
+  <carriersData URL="" contractorName="河南豫中起重集团有限公司茂名分公司" contractorid="0F3D0A93A972DE4B9E5F98EC169C937B" order="22" type="qualified" /> 
+  <carriersData URL="" contractorName="广东茂名中南消防工程公司" contractorid="DFF25D847DD6C94CAEFFFC918D22C7CE" order="23" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名先达防腐工程有限公司" contractorid="C36CECC64E31B744903305E61BEF1463" order="24" type="qualified" /> 
+  <carriersData URL="" contractorName="中石化第四建设有限公司" contractorid="B8A77E2A39A9B04598E1A80EDACD94DC" order="25" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名广视新防盗门业工程有限公司" contractorid="22BE89CAE8F8504F8D7F7759620C0830" order="26" type="qualified" /> 
+  <carriersData URL="" contractorName="山东泰思特检测有限公司" contractorid="0891E45DD2019F45AB243A8D070E7463" order="27" type="qualified" /> 
+  <carriersData URL="" contractorName="哈尔滨博实自动化股份有限公司" contractorid="697315404B45B244AD998847EF6A102F" order="28" type="qualified" /> 
+  <carriersData URL="" contractorName="中国化学工程第四建设有限公司" contractorid="A60615C272FB36449EA7FAD664B5CD10" order="29" type="qualified" /> 
+  <carriersData URL="" contractorName="广州市普利达消防工程有限公司" contractorid="B809A5897DBABD469300FCD5030B9817" order="30" type="qualified" /> 
+  <carriersData URL="" contractorName="广东中海电力建设有限公司" contractorid="A72C1674F53997469AB3DFC5B636774A" order="31" type="qualified" /> 
+  <carriersData URL="" contractorName="北京达斯特炉衬工程技术有限责任公司" contractorid="5D1E31FA3A618C4EBD2D78AACA1E5D0A" order="32" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市华泰信息网络工程有限公司" contractorid="648350B7C523034F96A622986101DB8E" order="33" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市消防工程有限公司" contractorid="0681256792EBF446B7F6B2FD18F9054F" order="34" type="qualified" /> 
+  <carriersData URL="" contractorName="广东国信工程监理有限公司" contractorid="0DFF4EBB8BE923439D68CDEC9A60FDAB" order="35" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名石化电梯安装维修有限公司" contractorid="DF6A63892FD62A4B9A69321D124A130F" order="36" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市恒孚石化工程有限公司" contractorid="AF86321E709ADE4CB801A6BCCF0DBE5E" order="37" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名油城建筑工程有限公司" contractorid="38F06B02D8B1274E92B013302286F833" order="38" type="qualified" /> 
+  <carriersData URL="" contractorName="北京华夏石化工程监理有限公司" contractorid="DA487D2B2BE6C34F9CC70A93B4230356" order="39" type="qualified" /> 
+  <carriersData URL="" contractorName="宜兴市宜刚炉窑工程有限公司" contractorid="3B677861474684448805CE86AF34255C" order="40" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名众和化塑利顺德建筑安装工程有限公司" contractorid="A29E4C1A37963245B2163D466C71739D" order="41" type="qualified" /> 
+  <carriersData URL="" contractorName="保定实华工程测试有限公司" contractorid="C6D1B97BC054A04F833608CBEED32298" order="42" type="qualified" /> 
+  <carriersData URL="" contractorName="南京英派克检测有限责任公司" contractorid="1690AB552C7C624BB31167E36D036DC6" order="43" type="qualified" /> 
+  <carriersData URL="" contractorName="中国石化集团第五建设公司" contractorid="9C37585409AFB545A0CF1316E9271C18" order="44" type="qualified" /> 
+  <carriersData URL="" contractorName="中石化第十建设有限公司" contractorid="06D8680F151BBD4DACC98EC9B90FC731" order="45" type="qualified" /> 
+  </corpData>
+  <corpData order="7" subCorpid="200223" subCorpname="镇海炼化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="61" /> 
+  <corpData order="8" subCorpid="200310" subCorpname="天津石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="63" /> 
+  <corpData order="9" subCorpid="200340" subCorpname="巴陵石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="65" /> 
+  <corpData order="10" subCorpid="200345" subCorpname="长岭石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="67" /> 
+  <corpData order="11" subCorpid="200460" subCorpname="仪化公司" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="69" /> 
+  <corpData order="12" subCorpid="200330" subCorpname="南化公司" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="75" /> 
+ <corpData order="13" subCorpid="200107" subCorpname="广州石化" contractorNumbers="9" qualifiedNumbers="9" unqualifiedNumbers="0" URL="" displayindex="77">
+  <carriersData URL="" contractorName="广州中冠安泰石油化工有限公司、广州开发区中穗燃气有限公司" contractorid="F74BACC1EE94444198BCDFDFFF9F6D71" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="广州惠利民有害生物防制工程有限公司" contractorid="966EE27981D5470FBFD56418F42584CA" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="上海凯特阀门制造有限公司" contractorid="D1EF66CDBF70324C8DBBE0C6724990BE" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="汕头市建安（集团）公司" contractorid="B65B75621C1146039F3D14FC6AF61534" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="中石化第四建设有限公司" contractorid="9CC1C3BB8A7641C49A4D21FF8E05A8C9" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="广州元盛建设工程有限公司" contractorid="B7981BCE2AC04B28A258DFCB193DBC3A" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="新余飞虎管道技术设备有限责任公司" contractorid="2EB23074A03F4DC59F2F0678F6D15042" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="上海阿自倍尔控制仪表有限公司" contractorid="6F315E378D1F47AAA8E90679103B6564" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="广东景安消防工程有限公司" contractorid="AF6D70008C7C4AEB9F71987B1DF75F0E" order="9" type="qualified" /> 
+  </corpData>
+  <corpData order="14" subCorpid="200355" subCorpname="安庆石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="79" /> 
+ <corpData order="15" subCorpid="200108" subCorpname="洛阳分公司" contractorNumbers="1" qualifiedNumbers="1" unqualifiedNumbers="0" URL="" displayindex="81">
+  <carriersData URL="" contractorName="洛阳金达防腐清洗有限公司" contractorid="4A8318C10A71B248916C5E890E81B4AD" order="1" type="qualified" /> 
+  </corpData>
+  <corpData order="16" subCorpid="200365" subCorpname="荆门石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="83" /> 
+  <corpData order="17" subCorpid="200370" subCorpname="四川维尼纶厂" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="85" /> 
+  <corpData order="18" subCorpid="200380" subCorpname="九江石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="87" /> 
+  <corpData order="19" subCorpid="200400" subCorpname="湖北化肥" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="89" /> 
+ <corpData order="20" subCorpid="200112" subCorpname="石家庄炼化" contractorNumbers="1" qualifiedNumbers="1" unqualifiedNumbers="0" URL="" displayindex="91">
+  <carriersData URL="" contractorName="河北中瑞建设集团有限公司" contractorid="6DDEA7FFBD0B9742A338F66EA0B991A5" order="1" type="qualified" /> 
+  </corpData>
+ <corpData order="21" subCorpid="200390" subCorpname="济南炼油" contractorNumbers="1" qualifiedNumbers="1" unqualifiedNumbers="0" URL="" displayindex="93">
+  <carriersData URL="" contractorName="山东联友石化工程有限公司" contractorid="8EE649630585B648A1270B232F25EC8F" order="1" type="qualified" /> 
+  </corpData>
+  <corpData order="22" subCorpid="200395" subCorpname="武汉石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="114" /> 
+  <corpData order="23" subCorpid="200415" subCorpname="中原石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="117" /> 
+  <corpData order="24" subCorpid="200425" subCorpname="青岛石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="119" /> 
+  <corpData order="25" subCorpid="200405" subCorpname="沧州石化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="120" /> 
+ <corpData order="26" subCorpid="200435" subCorpname="北海分公司" contractorNumbers="21" qualifiedNumbers="21" unqualifiedNumbers="0" URL="" displayindex="125">
+  <carriersData URL="" contractorName="河南省四方防腐有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539119" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名威特检测技术有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539121" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="广西壮族自治区特种设备监督检验院" contractorid="F6AFB83D5DB2B846B8335D867F539136" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="上海开维喜阀门集团有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539130" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="岳阳长岭设备研究所有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539137" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="江西恒大声学技术工程有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539135" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="北海市特种设备监督检验所" contractorid="F6AFB83D5DB2B846B8335D867F539132" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="北京美航自控系统工程有限责任公司" contractorid="F6AFB83D5DB2B846B8335D867F539123" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名华粤建筑安装工程有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539122" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="四川日机密封件股份有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539129" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="魏德曼电力技术服务（上海）有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539131" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="成都成高阀门有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539128" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="北海市计量测试研究所" contractorid="F6AFB83D5DB2B846B8335D867F539125" order="13" type="qualified" /> 
+  <carriersData URL="" contractorName="广东湛海仪表有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539126" order="14" type="qualified" /> 
+  <carriersData URL="" contractorName="上海锦宏建设工程有限责任公司" contractorid="F6AFB83D5DB2B846B8335D867F539133" order="15" type="qualified" /> 
+  <carriersData URL="" contractorName="北海市防雷中心" contractorid="F6AFB83D5DB2B846B8335D867F539124" order="16" type="qualified" /> 
+  <carriersData URL="" contractorName="安徽省皖北安装防腐工程公司" contractorid="F6AFB83D5DB2B846B8335D867F539138" order="17" type="qualified" /> 
+  <carriersData URL="" contractorName="茂名市长安检测技术有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539120" order="18" type="qualified" /> 
+  <carriersData URL="" contractorName="广州四通电子技术有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539134" order="19" type="qualified" /> 
+  <carriersData URL="" contractorName="南京金炼科技有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539139" order="20" type="qualified" /> 
+  <carriersData URL="" contractorName="广西君和自动化科技发展有限公司" contractorid="F6AFB83D5DB2B846B8335D867F539127" order="21" type="qualified" /> 
+  </corpData>
+  <corpData order="27" subCorpid="200440" subCorpname="西安分公司" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="127" /> 
+  <corpData order="28" subCorpid="200445" subCorpname="塔河分公司" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="129" /> 
+  <corpData order="29" subCorpid="200480" subCorpname="海南炼化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="131" /> 
+  <corpData order="30" subCorpid="200485" subCorpname="青岛炼化" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="134" /> 
+  <corpData order="31" subCorpid="200465" subCorpname="湛江东兴" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="139" /> 
+ <corpData order="32" subCorpid="200105" subCorpname="管道分公司" contractorNumbers="49" qualifiedNumbers="49" unqualifiedNumbers="0" URL="" displayindex="142">
+  <carriersData URL="" contractorName="山东华滨建工有限公司" contractorid="361278DDF66B344F85723C36B2EED345" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省特种防腐有限公司" contractorid="E06509FDEF639B43A9CC33D44F4B3537" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳市炳阳建筑有限责任公司" contractorid="22904ADAFA84764CA7648B0702B6CC8E" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="山东泰丰清洗科技有限公司" contractorid="37BF3FCA99E3EB4D8D26625F7E3798C4" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="中交第二公路勘察设计研究院有限公司" contractorid="D94866659C253849B2F0892CB574B160" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="济南市长清计算机应用公司" contractorid="884BC398274D5D4D922FBDE7C245548F" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="徐州龙鑫起重机械有限公司" contractorid="34C564773D582642BB29AF48FECF581A" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="山东益通安装有限公司" contractorid="B9084768131B844BB50BF1CA15E649A7" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏华东工业设备安装股份有限公司" contractorid="5668DC83113D284B9D91BFF4B92D7628" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="淄博沃克无损检测有限公司" contractorid="DA74AC6EDD633341AB2CB59BDB9A573F" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="徐州光大电梯工程有限公司" contractorid="01D327570CC7A9428009308C12FB3DD2" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏文信建设工程有限公司" contractorid="0D3CFAF1D266EF41A4CC437F45A7F93D" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="濮阳市双星防腐安装公司" contractorid="6263728DE9B112489F03F5D15A8BFEDF" order="13" type="qualified" /> 
+  <carriersData URL="" contractorName="中京化工建设有限责任公司" contractorid="9700F05385A9954693BEBE49EE8E3F7E" order="14" type="qualified" /> 
+  <carriersData URL="" contractorName="山东方正工程有限公司" contractorid="4E2FEF4D405F734B94814E6851D832F4" order="15" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏省金星防腐安装工程有限公司" contractorid="8149104A7317064A83E7C33DEA5C57E8" order="16" type="qualified" /> 
+  <carriersData URL="" contractorName="湛江经济技术开发区耀华建筑装饰工程公司" contractorid="198E190F3B5197448B226E50A0FD6008" order="17" type="qualified" /> 
+  <carriersData URL="" contractorName="潍坊凯特工业控制系统工程有限公司" contractorid="CC1C83FF5D5BBE40BB74E3D18F8FEE45" order="18" type="qualified" /> 
+  <carriersData URL="" contractorName="河南宏岳建设有限公司" contractorid="5A27CA6D915F31409DE09D5EE6F71734" order="19" type="qualified" /> 
+  <carriersData URL="" contractorName="滨州市康华基础工程处" contractorid="6F763BA694747D4B992907B5391EE4A2" order="20" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏源丰管道工程有限公司" contractorid="BD00C4FAA160E84D9042E931637CB657" order="21" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省中惠防腐安装有限公司" contractorid="19DE4AC0E2543C429121B2DFEA55EF9F" order="22" type="qualified" /> 
+  <carriersData URL="" contractorName="济南蓝信电子设备有限公司" contractorid="A65BD77E5BB14E4DA02834AB3396334B" order="23" type="qualified" /> 
+  <carriersData URL="" contractorName="山东显通安装有限公司" contractorid="9FD248ECE19D8D4997C99C080311F0F0" order="24" type="qualified" /> 
+  <carriersData URL="" contractorName="安徽同利防腐安装总公司" contractorid="74271E977FB11F41AA54B356A58AB373" order="25" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏文信建设工程有限公司" contractorid="A4667F5C1D875341963A97ACF4058E22" order="26" type="qualified" /> 
+  <carriersData URL="" contractorName="山东金鼎防腐工程有限公司" contractorid="35B686087A3C8548BD36B91048847AA4" order="27" type="qualified" /> 
+  <carriersData URL="" contractorName="沛县防腐保温工程总公司" contractorid="64E76B12662ACF468168E0182444D5E4" order="28" type="qualified" /> 
+  <carriersData URL="" contractorName="中石化工建设有限公司" contractorid="D26CC6F678684EC8ADBCDA26A5CC26B2" order="29" type="qualified" /> 
+  <carriersData URL="" contractorName="新乡市成祥建筑有限责任公司" contractorid="DE20F7894429924095BF16C1E27BDDAC" order="30" type="qualified" /> 
+  <carriersData URL="" contractorName="徐州市中宇建设工程有限公司" contractorid="DD7801EE84315747A5593D9F972974B5" order="31" type="qualified" /> 
+  <carriersData URL="" contractorName="铜山县三堡镇高家营装卸队" contractorid="E91B7D7AF081F14893956012C6EF0A93" order="32" type="qualified" /> 
+  <carriersData URL="" contractorName="中石化管道储运公司徐州管道技术作业分公司" contractorid="4A91B5A9B0526344A09CA221B7D3EB83" order="33" type="qualified" /> 
+  <carriersData URL="" contractorName="山东省显通安装有限公司" contractorid="370F6BB58011FD44894672862E70CD2F" order="34" type="qualified" /> 
+  <carriersData URL="" contractorName="东营市辛达建筑安装有限公司" contractorid="64CD7CC006709A4B91DB12F594665810" order="35" type="qualified" /> 
+  <carriersData URL="" contractorName="江苏省防腐安装工程公司" contractorid="63EC7FC770746446842A38FF0A418EEE" order="36" type="qualified" /> 
+  <carriersData URL="" contractorName="南京市江宁区东山城南建筑工程公司" contractorid="B716F0330DA4054A95F1CF9ABAE89341" order="37" type="qualified" /> 
+  <carriersData URL="" contractorName="青岛胶东建设集团有限公司" contractorid="5700E3A3DD6781469E8AAEF14E45B203" order="38" type="qualified" /> 
+  <carriersData URL="" contractorName="湖北晟泰安物业管理有限公司" contractorid="476AED5C3D7E5C458B8C9A1C4DA549AE" order="39" type="qualified" /> 
+  <carriersData URL="" contractorName="江汉石油管理局江汉检测公司" contractorid="608560A86E344AE8BA9272521279AD24" order="40" type="qualified" /> 
+  <carriersData URL="" contractorName="胜利油田胜利石油化工建设有限责任公司" contractorid="C48FD7271B034B4A94DCD4F67317A2C6" order="41" type="qualified" /> 
+  <carriersData URL="" contractorName="徐州大彭建设工程有限公司" contractorid="1D462AD1D823EF4E9EBBBD074B76348A" order="42" type="qualified" /> 
+  <carriersData URL="" contractorName="襄阳市创冠智能网络技术有限公司" contractorid="CCA15B56061FEC4887AD657EDCFF54DD" order="43" type="qualified" /> 
+  <carriersData URL="" contractorName="湖北金秋建筑安装工程有限公司" contractorid="20DE7065D8A6184297E62F93EDB08866" order="44" type="qualified" /> 
+  <carriersData URL="" contractorName="山东国宏消防安全工程有限公司(襄阳分公司)" contractorid="9E4443AF87FB7D4C93C1BBC8BC73F32C" order="45" type="qualified" /> 
+  <carriersData URL="" contractorName="南京宏宝建筑安装工程有限责任公司" contractorid="04B9C3F4C5FA1C4C9B5D7FFB3DEA249D" order="46" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省防腐企业集团有限公司" contractorid="42B1844633C11942AA8ECCC453701CEA" order="47" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省防腐保温开发有限公司" contractorid="E12E120BD5CB32498CE0BA848EE6B8AD" order="48" type="qualified" /> 
+  <carriersData URL="" contractorName="湖北金亮装饰工程有限公司" contractorid="5A17F546A88CDD448E0074DD3A9EE1C1" order="49" type="qualified" /> 
+  </corpData>
+ <corpData order="33" subCorpid="200470" subCorpname="东方石化" contractorNumbers="13" qualifiedNumbers="13" unqualifiedNumbers="0" URL="" displayindex="155">
+  <carriersData URL="" contractorName="北京东光安装工程公司" contractorid="12DA101AE1D3884DA9B87BBCDB2B48FF" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="北京燕山翔宇环保工程技术有限公司" contractorid="EBCD11E73708F74FA7FA1B6D77F09E70" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="中国化学工程第三建设公司" contractorid="52EA0E444BAC3A42B2F39191C8BBDF09" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="蓝星环境工程有限公司" contractorid="91245B9735C00E478DCB77E50E1346E1" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="中国化学工程第六建设公司" contractorid="54B0DD65AB04CD43B570F32829FBAC92" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="新蒲建设集团有限公司" contractorid="E9E19E61D3D6B94CA438DF53EF6F21E3" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="中石化工建设有限公司" contractorid="570B76E9866E36439C37986CA78BE4A1" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="北京龙建集团有限公司" contractorid="3915163F240B344781FCCEEF6FFDD2A1" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="中国石化集团第十建设公司" contractorid="45795BA7F1994543825E711DE580F90D" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="北京房山城建集团有限公司" contractorid="8DA77E4E63DB1B40B963C54019161D39" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="北京燕化正邦设备检修有限公司" contractorid="B4625F2C51929A428F9CFA1658E30738" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="北京燕山前进工程技术有限责任公司" contractorid="7EF37CBC0B477543A3BE2E4A4F22C989" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="中玺清洗（北京）有限公司" contractorid="3130B7E59734494D84D4A338A5CA4BB8" order="13" type="qualified" /> 
+  </corpData>
+  </plateData>
+
+ <plateData plateid="XS" plateLabel="销售" byCorpLabel="销售合计" contractorNumbers="64" qualifiedNumbers="64" unqualifiedNumbers="0">
+   <corpData order="0" subCorpid="200101" subCorpname="北京石油" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="165" /> 
+ <corpData order="1" subCorpid="200535" subCorpname="浙江石油" contractorNumbers="19" qualifiedNumbers="19" unqualifiedNumbers="0" URL="" displayindex="183">
+  <carriersData URL="" contractorName="衢州市第六建筑工程有限公司" contractorid="FAD56624A2254F3794D5708A72554068" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="安吉巨峰箭镞有限公司" contractorid="C558C910C77E4293B76F513793B4B5A9" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="中设建工集团有限公司" contractorid="BDC7F9EC94F74760A79BB0CC554DDAD6" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="杭州地杰化工设备服务有限公司" contractorid="168D77F5346F43BBAC1D53444EEA1AAA" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="浙江鸿翔钢结构有限公司" contractorid="189A1988603B444EA564DF2D72FB46E3" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="浙江中海建设集团有限公司" contractorid="8E923254E6A24C389EED669E82E7F849" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="嘉善县恒基工程勘察有限公司" contractorid="88F834B79A2E4F6083127F621830DE16" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省防腐保温有限公司" contractorid="9083A0EA3DCB419D919BDBF75C1A5E9F" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省特种防腐有限公司" contractorid="F0E534EA2F0D40C7A6B234AF7579744F" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="金华市川泰石化设备安装有限公司" contractorid="AEBC56E05729453096BB8A98C8261859" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="中设建工集团有限公司" contractorid="A1FD3E3CBC2347FA96DB879E782455AE" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="缙云县鑫达建设工程有限责任有限公司" contractorid="A7AE2F79A6DB7AF2DECC41539BA4FA71" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="嘉兴市方舟装饰工程有限公司" contractorid="92BE6D7072B6435B8CE1F1FF510780DC" order="13" type="qualified" /> 
+  <carriersData URL="" contractorName="浙江省工业设备安装集团有限公司" contractorid="4E034D6DDF57428680F8B78A3A643866" order="14" type="qualified" /> 
+  <carriersData URL="" contractorName="绍兴市城乡建筑工程有限公司" contractorid="CA23556063ED92F29FFE928773D6E18E" order="15" type="qualified" /> 
+  <carriersData URL="" contractorName="浙江华汇机电设备安装有限公司" contractorid="9C882D47A840FB3DA9B62F953317D191" order="16" type="qualified" /> 
+  <carriersData URL="" contractorName="浙江建艺建工有限公司" contractorid="F5FDEF857B8A3996A67BB6C31321B007" order="17" type="qualified" /> 
+  <carriersData URL="" contractorName="中设建工集团有限公司" contractorid="EF5AC0875479C88BE2063D82047190AF" order="18" type="qualified" /> 
+  <carriersData URL="" contractorName="绍兴建禾建设有限公司" contractorid="CC8B71B653372E220D3B66D41A26A088" order="19" type="qualified" /> 
+  </corpData>
+ <corpData order="2" subCorpid="200109" subCorpname="山东石油" contractorNumbers="10" qualifiedNumbers="10" unqualifiedNumbers="0" URL="" displayindex="195">
+  <carriersData URL="" contractorName="江西建工机械施工有限责任公司" contractorid="F635FF7A81A642189C82EB2E7421ABB3" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="山东四方安装工程有限公司" contractorid="E1E1E9A68881462FB931E33B5C5C065F" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="山东省显通安装有限公司" contractorid="0E62CD25DA17464BAC2DF05359B83BBB" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="阳谷智诚网络科技有限公司" contractorid="A4171D222BC241908416AA697221E494" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="山东宇兴建设有限公司" contractorid="85DDC29ACDE64554BC7B6879389E02E4" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="沛县防腐保温工程总公司" contractorid="83CF47FAD78B4885AF382EB4B4147B53" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="山东宇兴建设公司" contractorid="B5860D52DD5844C580F23F8BF7CD899F" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="莱芜长城石化公司" contractorid="A044C764FB2B4480B1E33824D4ABC325" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="山东盛发科工贸有限公司" contractorid="DC1C1A84DFD84A71A1ACB15C73E1AD18" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="临朐县永泰建筑安装有限公司" contractorid="22AD19AC853F4AF6AB3C1F1844A3F310" order="10" type="qualified" /> 
+  </corpData>
+ <corpData order="3" subCorpid="200525" subCorpname="河南石油" contractorNumbers="34" qualifiedNumbers="34" unqualifiedNumbers="0" URL="" displayindex="198">
+  <carriersData URL="" contractorName="河南宝石花电子科技有限公司" contractorid="D27252148B88A625C40300774DEBC94F" order="1" type="qualified" /> 
+  <carriersData URL="" contractorName="河南宏宇建筑工程有限公司" contractorid="D01A921BA96E628CE3810A5F495FF7B6" order="2" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省合立建筑工程有限公司" contractorid="CF7E94E5ACC249689A242463BAB87CF0" order="3" type="qualified" /> 
+  <carriersData URL="" contractorName="河南乾方建筑安装工程有限公司" contractorid="EA3BDC3578C69F28063E2F4A563E3A6F" order="4" type="qualified" /> 
+  <carriersData URL="" contractorName="河南瑞祥建筑工程有限公司" contractorid="59564B0C79ECFF9EA69C6DC5C972C340" order="5" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省豫新科技发展有限公司" contractorid="813A2B7D4D45E5E36B8CDA8260189A59" order="6" type="qualified" /> 
+  <carriersData URL="" contractorName="洛阳隆惠石化工程有限公司" contractorid="FC64D12DA451D9CEB1D277FB40EEFDE0" order="7" type="qualified" /> 
+  <carriersData URL="" contractorName="河南贤坤实业有限公司" contractorid="12CF631F2BEB03102DCF941530034075" order="8" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省恒源石油有限公司" contractorid="E38484FB5DCBA97A5578F9867ECC9DC3" order="9" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省医药设计院有限 公司" contractorid="BA0D6565661CE1A87C6511630304006A" order="10" type="qualified" /> 
+  <carriersData URL="" contractorName="天津中德工程设计有限公司" contractorid="F8B480316E1C9C6C9663CF3FAA5A4DDC" order="11" type="qualified" /> 
+  <carriersData URL="" contractorName="河南东亚建筑工程有限公司" contractorid="962DE9C954134AE1857039EA92D8AB95" order="12" type="qualified" /> 
+  <carriersData URL="" contractorName="洛阳神龙园林装饰工程有限公司" contractorid="ED83353C0D74D3C77C65626CA2162A74" order="13" type="qualified" /> 
+  <carriersData URL="" contractorName="河南瀚昱建设工程有限公司" contractorid="7D190C8A3242FD2F0089DD0666BB366F" order="14" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省恒源石油分公司" contractorid="C5F750E6EDC44044A7CD0B80D726E5C8" order="15" type="qualified" /> 
+  <carriersData URL="" contractorName="濮阳市中房建筑工程有限公司" contractorid="02644EFD046442EF351241B09ED1D936" order="16" type="qualified" /> 
+  <carriersData URL="" contractorName="济源大禹建筑装饰工程有限公司" contractorid="A2D262D6E29C0DF813E3566E7848819A" order="17" type="qualified" /> 
+  <carriersData URL="" contractorName="南阳市新宏大建筑工程有限公司" contractorid="591DAB38F9631801706965170FCBC0F9" order="18" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省豫建工程管理有限公司" contractorid="C5447C5ADF384E829505C067CF8A2A31" order="19" type="qualified" /> 
+  <carriersData URL="" contractorName="濮阳市博大建筑安装工程有限公司" contractorid="06772FDC6E70E408005F719883D70CC2" order="20" type="qualified" /> 
+  <carriersData URL="" contractorName="海南日先商业零售策划服务有限公司" contractorid="9F17E6F1BC7F4559A5A737A55B0ACC27" order="21" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省恒源石油有限公司" contractorid="2D69C0BB977B15C0A0630D43B84FE73B" order="22" type="qualified" /> 
+  <carriersData URL="" contractorName="三门峡市建设工程有限公司" contractorid="A1805B44F6481324475093E4A18FB92D" order="23" type="qualified" /> 
+  <carriersData URL="" contractorName="河南东方建安防腐保温工程有限公司" contractorid="B32660C41160D8ED1C3964F3BF769C34" order="24" type="qualified" /> 
+  <carriersData URL="" contractorName="三门峡石油建筑安装有限责任公司" contractorid="DD07775EB316CB7ED763B46BDF9182FB" order="25" type="qualified" /> 
+  <carriersData URL="" contractorName="郑州圣光装饰工程有限公司" contractorid="3314711E7D2ACCA1389DB77EA2A1F574" order="26" type="qualified" /> 
+  <carriersData URL="" contractorName="河南田川实业有限公司" contractorid="F4F173F34C5032F4A79001CAF3A7CB5E" order="27" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省惠浦建设发展有限公司" contractorid="442347CF0626EDA3EFFA986B51B33916" order="28" type="qualified" /> 
+  <carriersData URL="" contractorName="河南零点建设有限公司" contractorid="404C3E700CB223DECDAADFD14B6DFEC3" order="29" type="qualified" /> 
+  <carriersData URL="" contractorName="河南宝石花电子科技有限公司" contractorid="BB343AB6A45D27A9EC7D6944E3226F33" order="30" type="qualified" /> 
+  <carriersData URL="" contractorName="河南省恒源石油设备有限公司" contractorid="2F6907C2A6F49564BC457DFF5A9AEF49" order="31" type="qualified" /> 
+  <carriersData URL="" contractorName="河南国基建设集团有限公司" contractorid="8622786F26BFB79A78C1EF40654AD768" order="32" type="qualified" /> 
+  <carriersData URL="" contractorName="河南红旗渠建设集团有限公司" contractorid="FBE0C015DF964BE2A299EF3E8A0F7414" order="33" type="qualified" /> 
+  <carriersData URL="" contractorName="河南石油安装工程有限公司" contractorid="846DB00089AF4B0BA614ABB470AAC9EB" order="34" type="qualified" /> 
+  </corpData>
+<corpData order="4" subCorpid="200106" subCorpname="广东石油" contractorNumbers="1" qualifiedNumbers="1" unqualifiedNumbers="0" URL="" displayindex="207">
+  <carriersData URL="" contractorName="广州市和润机电设备工程有限公司" contractorid="686F972264C84B2CA495D1344191E38A" order="1" type="qualified" /> 
+  </corpData>
+  </plateData>
+
+ <plateData plateid="GC" plateLabel="工程" byCorpLabel="工程合计" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0">
+  <corpData order="0" subCorpid="200110" subCorpname="宁波工程公司" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" URL="" displayindex="276" /> 
+  </plateData>
+  <plateData plateid="QT" plateLabel="其他" byCorpLabel="其他合计" contractorNumbers="0" qualifiedNumbers="0" unqualifiedNumbers="0" /> 
+  </carriersData>
+  <dataOutline dataYear="2014" dataStartDate="2014" dataEndDate="2014" timestamp="" /> 
+  </Model>

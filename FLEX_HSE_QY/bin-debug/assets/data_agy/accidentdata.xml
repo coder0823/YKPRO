@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2014" dataDate="" corpid=""
+		corpname="济南炼化" timestamp=""></dataOutline>
+	<accidentData>
+		<dataset yearid="2004" label="04 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2005" label="05 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2006" label="06 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2007" label="07 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2008" label="08 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2009" label="09 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2010" label="10 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2011" label="11 年" numbers="0" levelGNumbers="1"
+			levelCNumbers="0" URL="#">
+			<tabledata order="1" accidentName="“9.26”桩基测试架坍塌事故"
+				accidentDepartment="供排水车间" accidentTime="2011-09-26" accidentKind="人身事故"
+				accidentID="C" accidentLevel="集团公司级 一般事故" />
+		</dataset>
+		<dataset yearid="2012" label="12 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+		<dataset yearid="2013" label="13 年" numbers="0" levelGNumbers="1"
+			levelCNumbers="0" URL="#">
+			<tabledata order="1" accidentName="“7.25”承包商事故"
+				accidentDepartment="供排水车间" accidentTime="2013-07-25" accidentKind="人身事故"
+				accidentID="C" accidentLevel="集团公司级 一般事故" />
+			 <tabledata order="2" accidentName="安庆分公司&quot;3.12&quot;中毒事故" accidentDepartment="炼油二部" accidentTime="2014-03-12" accidentKind="人身事故" accidentID="G" accidentLevel="集团公司级 一般事故" /> 	
+				
+		</dataset>
+		<dataset yearid="2014" label="14 年" numbers="0" levelGNumbers="0"
+			levelCNumbers="0" URL="#" />
+	</accidentData>
+	<unaccidentData>
+		<dataset monthid="2014.01" label="01月" numbers="13" URL="#">
+			<corpData label="硫磺回收车间" unaccident="3" unsafeaction=""
+				unsafestate="3" unsafeelement="" managerfault="" workable="3"
+				workablerate="100.00" order="1"></corpData>
+			<corpData label="聚丙烯车间" unaccident="2" unsafeaction="1"
+				unsafestate="1" unsafeelement="" managerfault="" workable="2"
+				workablerate="100.00" order="2"></corpData>
+			<corpData label="二催化车间" unaccident="2" unsafeaction=""
+				unsafestate="2" unsafeelement="" managerfault="" workable="2"
+				workablerate="100.00" order="3"></corpData>
+			<corpData label="油品车间" unaccident="2" unsafeaction=""
+				unsafestate="2" unsafeelement="" managerfault="" workable=""
+				workablerate="0.00" order="4"></corpData>
+			<corpData label="济南炼化" unaccident="13" unsafeaction="1"
+				unsafestate="12" unsafeelement="" managerfault="" workable="11"
+				workablerate="84.62" order="5"></corpData>
+			<corpData label="加氢重整车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="6"></corpData>
+			<corpData label="润滑油车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="7"></corpData>
+			<corpData label="二加氢车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="8"></corpData>
+			<corpData label="仪表车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="9"></corpData>
+			<corpData label="预结算中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="10"></corpData>
+			<corpData label="原料办" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="11"></corpData>
+			<corpData label="运销部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="12"></corpData>
+			<corpData label="质量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="13"></corpData>
+			<corpData label="装运车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="14"></corpData>
+			<corpData label="综合管理部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="15"></corpData>
+			<corpData label="组织部/统战部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="16"></corpData>
+			<corpData label="工程处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="17"></corpData>
+			<corpData label="工会委员会" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="18"></corpData>
+			<corpData label="公司领导" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="19"></corpData>
+			<corpData label="供排水车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="20"></corpData>
+			<corpData label="供应部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="21"></corpData>
+			<corpData label="机动处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="22"></corpData>
+			<corpData label="计划处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="23"></corpData>
+			<corpData label="计量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="24"></corpData>
+			<corpData label="纪委/监察处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="25"></corpData>
+			<corpData label="技术处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="26"></corpData>
+			<corpData label="安全环保处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="27"></corpData>
+			<corpData label="安全环保处监测站" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="28"></corpData>
+			<corpData label="保卫处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="29"></corpData>
+			<corpData label="财务处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="30"></corpData>
+			<corpData label="常减压车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="31"></corpData>
+			<corpData label="档案室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="32"></corpData>
+			<corpData label="电工车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="33"></corpData>
+			<corpData label="动力车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="34"></corpData>
+			<corpData label="审计处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="35"></corpData>
+			<corpData label="生产调度处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="36"></corpData>
+			<corpData label="团委" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="37"></corpData>
+			<corpData label="托管管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="38"></corpData>
+			<corpData label="维修车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="39"></corpData>
+			<corpData label="消防队" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="40"></corpData>
+			<corpData label="信息中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="41"></corpData>
+			<corpData label="宣传部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="42"></corpData>
+			<corpData label="一催化车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="43"></corpData>
+			<corpData label="经理办公室/党委办公室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="44"></corpData>
+			<corpData label="离退休管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="45"></corpData>
+			<corpData label="沥青车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="46"></corpData>
+			<corpData label="企业管理处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="47"></corpData>
+			<corpData label="气分车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="48"></corpData>
+			<corpData label="人力资源处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="49"></corpData>
+		</dataset>
+		<dataset monthid="2014.02" label="02月" numbers="16" URL="#">
+			<corpData label="硫磺回收车间" unaccident="5" unsafeaction=""
+				unsafestate="5" unsafeelement="" managerfault="" workable="4"
+				workablerate="80.00" order="1"></corpData>
+			<corpData label="二加氢车间" unaccident="4" unsafeaction=""
+				unsafestate="4" unsafeelement="" managerfault="" workable="4"
+				workablerate="100.00" order="2"></corpData>
+			<corpData label="二催化车间" unaccident="2" unsafeaction=""
+				unsafestate="2" unsafeelement="" managerfault="" workable="1"
+				workablerate="50.00" order="3"></corpData>
+			<corpData label="济南炼化" unaccident="16" unsafeaction=""
+				unsafestate="16" unsafeelement="" managerfault="" workable="14"
+				workablerate="87.50" order="4"></corpData>
+			<corpData label="加氢重整车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="5"></corpData>
+			<corpData label="润滑油车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="6"></corpData>
+			<corpData label="维修车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="7"></corpData>
+			<corpData label="沥青车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="8"></corpData>
+			<corpData label="油品车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="9"></corpData>
+			<corpData label="预结算中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="10"></corpData>
+			<corpData label="原料办" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="11"></corpData>
+			<corpData label="运销部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="12"></corpData>
+			<corpData label="质量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="13"></corpData>
+			<corpData label="装运车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="14"></corpData>
+			<corpData label="综合管理部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="15"></corpData>
+			<corpData label="组织部/统战部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="16"></corpData>
+			<corpData label="消防队" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="17"></corpData>
+			<corpData label="信息中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="18"></corpData>
+			<corpData label="宣传部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="19"></corpData>
+			<corpData label="一催化车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="20"></corpData>
+			<corpData label="仪表车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="21"></corpData>
+			<corpData label="审计处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="22"></corpData>
+			<corpData label="生产调度处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="23"></corpData>
+			<corpData label="团委" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="24"></corpData>
+			<corpData label="托管管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="25"></corpData>
+			<corpData label="经理办公室/党委办公室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="26"></corpData>
+			<corpData label="聚丙烯车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="27"></corpData>
+			<corpData label="离退休管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="28"></corpData>
+			<corpData label="企业管理处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="29"></corpData>
+			<corpData label="气分车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="30"></corpData>
+			<corpData label="人力资源处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="31"></corpData>
+			<corpData label="工程处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="32"></corpData>
+			<corpData label="工会委员会" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="33"></corpData>
+			<corpData label="公司领导" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="34"></corpData>
+			<corpData label="供排水车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="35"></corpData>
+			<corpData label="供应部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="36"></corpData>
+			<corpData label="机动处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="37"></corpData>
+			<corpData label="计划处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="38"></corpData>
+			<corpData label="计量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="39"></corpData>
+			<corpData label="纪委/监察处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="40"></corpData>
+			<corpData label="技术处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="41"></corpData>
+			<corpData label="安全环保处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="42"></corpData>
+			<corpData label="安全环保处监测站" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="43"></corpData>
+			<corpData label="保卫处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="44"></corpData>
+			<corpData label="财务处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="45"></corpData>
+			<corpData label="常减压车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="46"></corpData>
+			<corpData label="档案室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="47"></corpData>
+			<corpData label="电工车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="48"></corpData>
+			<corpData label="动力车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="49"></corpData>
+		</dataset>
+		<dataset monthid="2014.03" label="03月" numbers="14" URL="#">
+			<corpData label="硫磺回收车间" unaccident="8" unsafeaction=""
+				unsafestate="8" unsafeelement="" managerfault="" workable="7"
+				workablerate="87.50" order="1"></corpData>
+			<corpData label="二加氢车间" unaccident="3" unsafeaction=""
+				unsafestate="3" unsafeelement="" managerfault="" workable="2"
+				workablerate="66.67" order="2"></corpData>
+			<corpData label="济南炼化" unaccident="14" unsafeaction=""
+				unsafestate="14" unsafeelement="" managerfault="" workable="12"
+				workablerate="85.71" order="3"></corpData>
+			<corpData label="加氢重整车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="4"></corpData>
+			<corpData label="沥青车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="5"></corpData>
+			<corpData label="油品车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="6"></corpData>
+			<corpData label="预结算中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="7"></corpData>
+			<corpData label="原料办" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="8"></corpData>
+			<corpData label="运销部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="9"></corpData>
+			<corpData label="质量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="10"></corpData>
+			<corpData label="装运车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="11"></corpData>
+			<corpData label="综合管理部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="12"></corpData>
+			<corpData label="组织部/统战部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="13"></corpData>
+			<corpData label="企业管理处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="14"></corpData>
+			<corpData label="气分车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="15"></corpData>
+			<corpData label="人力资源处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="16"></corpData>
+			<corpData label="润滑油车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="17"></corpData>
+			<corpData label="审计处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="18"></corpData>
+			<corpData label="生产调度处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="19"></corpData>
+			<corpData label="团委" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="20"></corpData>
+			<corpData label="托管管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="21"></corpData>
+			<corpData label="维修车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="22"></corpData>
+			<corpData label="消防队" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="23"></corpData>
+			<corpData label="信息中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="24"></corpData>
+			<corpData label="宣传部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="25"></corpData>
+			<corpData label="一催化车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="26"></corpData>
+			<corpData label="仪表车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="27"></corpData>
+			<corpData label="工程处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="28"></corpData>
+			<corpData label="工会委员会" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="29"></corpData>
+			<corpData label="公司领导" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="30"></corpData>
+			<corpData label="供排水车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="31"></corpData>
+			<corpData label="供应部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="32"></corpData>
+			<corpData label="机动处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="33"></corpData>
+			<corpData label="计划处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="34"></corpData>
+			<corpData label="计量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="35"></corpData>
+			<corpData label="纪委/监察处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="36"></corpData>
+			<corpData label="技术处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="37"></corpData>
+			<corpData label="安全环保处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="38"></corpData>
+			<corpData label="安全环保处监测站" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="39"></corpData>
+			<corpData label="保卫处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="40"></corpData>
+			<corpData label="财务处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="41"></corpData>
+			<corpData label="常减压车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="42"></corpData>
+			<corpData label="档案室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="43"></corpData>
+			<corpData label="电工车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="44"></corpData>
+			<corpData label="动力车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="45"></corpData>
+			<corpData label="二催化车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="46"></corpData>
+			<corpData label="经理办公室/党委办公室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="47"></corpData>
+			<corpData label="聚丙烯车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="48"></corpData>
+			<corpData label="离退休管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="49"></corpData>
+		</dataset>
+		<dataset monthid="2014.04" label="04月" numbers="5" URL="#">
+			<corpData label="济南炼化" unaccident="5" unsafeaction=""
+				unsafestate="5" unsafeelement="" managerfault="" workable="3"
+				workablerate="60.00" order="1"></corpData>
+			<corpData label="加氢重整车间" unaccident="2" unsafeaction=""
+				unsafestate="2" unsafeelement="" managerfault="" workable="2"
+				workablerate="100.00" order="2"></corpData>
+			<corpData label="气分车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable=""
+				workablerate="0.00" order="3"></corpData>
+			<corpData label="一催化车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable="1"
+				workablerate="100.00" order="4"></corpData>
+			<corpData label="供排水车间" unaccident="1" unsafeaction=""
+				unsafestate="1" unsafeelement="" managerfault="" workable=""
+				workablerate="0.00" order="5"></corpData>
+			<corpData label="供应部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="6"></corpData>
+			<corpData label="机动处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="7"></corpData>
+			<corpData label="计划处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="8"></corpData>
+			<corpData label="计量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="9"></corpData>
+			<corpData label="纪委/监察处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="10"></corpData>
+			<corpData label="技术处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="11"></corpData>
+			<corpData label="仪表车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="12"></corpData>
+			<corpData label="油品车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="13"></corpData>
+			<corpData label="预结算中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="14"></corpData>
+			<corpData label="原料办" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="15"></corpData>
+			<corpData label="运销部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="16"></corpData>
+			<corpData label="质量中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="17"></corpData>
+			<corpData label="装运车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="18"></corpData>
+			<corpData label="综合管理部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="19"></corpData>
+			<corpData label="组织部/统战部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="20"></corpData>
+			<corpData label="人力资源处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="21"></corpData>
+			<corpData label="润滑油车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="22"></corpData>
+			<corpData label="审计处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="23"></corpData>
+			<corpData label="生产调度处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="24"></corpData>
+			<corpData label="团委" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="25"></corpData>
+			<corpData label="托管管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="26"></corpData>
+			<corpData label="维修车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="27"></corpData>
+			<corpData label="消防队" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="28"></corpData>
+			<corpData label="信息中心" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="29"></corpData>
+			<corpData label="宣传部" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="30"></corpData>
+			<corpData label="经理办公室/党委办公室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="31"></corpData>
+			<corpData label="聚丙烯车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="32"></corpData>
+			<corpData label="离退休管理" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="33"></corpData>
+			<corpData label="沥青车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="34"></corpData>
+			<corpData label="硫磺回收车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="35"></corpData>
+			<corpData label="企业管理处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="36"></corpData>
+			<corpData label="安全环保处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="37"></corpData>
+			<corpData label="安全环保处监测站" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="38"></corpData>
+			<corpData label="保卫处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="39"></corpData>
+			<corpData label="财务处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="40"></corpData>
+			<corpData label="常减压车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="41"></corpData>
+			<corpData label="档案室" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="42"></corpData>
+			<corpData label="电工车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="43"></corpData>
+			<corpData label="动力车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="44"></corpData>
+			<corpData label="二催化车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="45"></corpData>
+			<corpData label="二加氢车间" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="46"></corpData>
+			<corpData label="工程处" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="47"></corpData>
+			<corpData label="工会委员会" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="48"></corpData>
+			<corpData label="公司领导" unaccident="" unsafeaction=""
+				unsafestate="" unsafeelement="" managerfault="" workable=""
+				workablerate="0" order="49"></corpData>
+		</dataset>
+	</unaccidentData>
+</model>

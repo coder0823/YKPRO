@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<fx:Script>
+		<![CDATA[
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.events.IndexChangeEvent;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data_agy/traindata_byObject.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			public const _loadAllXMLOneTime:Boolean = true;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "按班次";
+			[Bindable]
+			private var tab2_title:String = "按人次";
+			[Bindable]
+			private var tab1_2_title:String = "按培训对象完成情况";
+			[Bindable]
+			private var tab2_1_title:String = "板块间对比分析";
+			[Bindable]
+			private var tab2_2_title:String = "按培训对象完成情况";
+			[Bindable]
+			private var tab2_3_title:String = "企业间对比分析";
+			
+			[Bindable]
+			private var tab1_2_Title:String = "";
+			
+			[Bindable]
+			private var tab2_2_Title:String = "";
+			
+			[Bindable]
+			private var tab1_2_DS:ArrayCollection;
+			
+			[Bindable]
+			private var tab2_2_DS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				tab1_2_DS = new ArrayCollection();
+				
+				tab2_2_DS = new ArrayCollection();
+				
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。给其他图赋值，这里省略。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					if (_loadAllXMLOneTime)
+					{
+						ws.wsdl = XML(loader_wsdl.data).url;
+						ws.loadWSDL();
+//						ws.GetTrain(dateStr, "overallData");
+						ws.remoteMethod('6','',dateStr);
+					}
+					else
+					{
+						ws12.wsdl = XML(loader_wsdl.data).url;
+						ws22.wsdl = XML(loader_wsdl.data).url;
+						ws12.loadWSDL();
+						ws22.loadWSDL();
+						
+						ws12.GetTrain(dateStr, dateStr, "overallData_byClasses_byObject");
+						ws22.GetTrain(dateStr, dateStr, "overallData_byPersons_byObject");
+					}
+					
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws12_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML12 = XML(event.result);
+				executeBind12();
+			}
+			
+			protected function ws22_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML22 = XML(event.result);
+				executeBind22();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				
+				executeBind12();
+				executeBind22();
+			}
+			
+			private function executeBind12():void
+			{
+				tab1_2_DS = getTab1_2_DS();
+				executeBindTab1_2_Title();
+			}
+			
+			private function executeBind22():void
+			{
+				tab2_2_DS = getTab2_2_DS();
+				executeBindTab2_2_Title();
+			}
+			
+			private function executeBindTab1_2_Title():void
+			{
+				tab1_2_Title = "中国石化" + dateStr + "年按培训对象教育培训完成情况对比-按班次";
+			}
+			
+			
+			private function executeBindTab2_2_Title():void
+			{
+				tab2_2_Title = "中国石化" + dateStr + "年块培训对象教育培训按人次完成情况";
+			}
+			
+			private function getTab1_2_DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					if (_loadAllXMLOneTime)
+					{
+						tmpList = hseDataXML.byObject.byClasses.objectData;
+					}
+					else
+					{
+						tmpList = hseDataXML12.byObject.byClasses.objectData;
+					}
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@objectLabel, plan: xml.@planClasses, act: xml.@finishedClasses, sur: xml.@remainderClasses, rate: xml.@finishedRatio, objectid: xml.@objectid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab2_2_DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					if (_loadAllXMLOneTime)
+					{
+						tmpList = hseDataXML.byObject.byPersons.objectData;
+					}
+					else
+					{
+						tmpList = hseDataXML22.byObject.byPersons.objectData;
+					}
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@objectLabel, plan: xml.@planPerson, act: xml.@finishedPerons, sur: xml.@remainderPerons, act2: xml.@certifiedPersons, sur2: xml.@uncertifiedPersons, rate: xml.@finishedRatio, rate2: xml.@certifiedRatio, objectid: xml.@objectid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			//****************************************************
+			//            总体情况-按班次-企业信息（培训对象）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow3:views.PopupTitleWinDG;
+			
+			protected function showCorpMXbyClassesbyObject(objectid:String):void
+			{
+				titleWindow3 = new views.PopupTitleWinDG();
+				titleWindow3.TitleValue = "中国石化教育培训按班次完成情况(" + dateStr + "年) 计量单位：班次";
+				titleWindow3.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow3);
+					});
+				titleWindow3.IfShowFirstRecordBgColor = true;
+				titleWindow3.IfShowFrontRecordColor = true;
+				titleWindow3.IfShowBackRecordColor = true;
+				titleWindow3.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "单位", dataField: "label", width: "40", textAlign: "center", sortable: true, draggable: true,sortByCustomField:"displayindex",footHeakerText:"合计"},
+					{headerText: "计划", dataField: "plan", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "完成", dataField: "act", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "未完成",enableUrlLink: true, dataField: "sur", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "完成率%", dataField: "rate", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"act,plan"},
+					//{headerText: "平均完成率%", dataField: "averageFishedRatio", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"act,plan"}
+					//{headerText:"日历进度%",dataField:"calendarRatio",width:"40",textAlign:"center",sortable:true,draggable:true}
+					]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList;
+					if (_loadAllXMLOneTime)
+					{
+						tmpList = hseDataXML.byObject.byClasses.objectData.(@objectid == objectid);
+					}
+					else
+					{
+						tmpList = hseDataXML12.byObject.byClasses.objectData.(@objectid == objectid);
+					}
+					if (tmpList.length() > 0)
+					{
+						
+						//合计数据
+						/*组件2自动合计，因此不需要数据计算，注释掉
+						var obj_sum:Object = {label: tmpList[0].@plateLabel + "合计", plan: Number(tmpList[0].@planClasses), act: Number(tmpList[0].@finishedClasses), sur: Number(tmpList[0].@remainderClasses), rate: Number(tmpList[0].@finishedRatio), index: 1, id: "00", order: ""};
+						tmpArrayCollection2.addItem(obj_sum);
+						*/
+						tmpList = tmpList.dataset;
+						if (tmpList.length() > 0)
+						{
+							var order:int = 1;
+							var index:int = 2;
+							for each (var xml:XML in tmpList)
+							{
+								var obj:Object = {label: xml.@subCorpname, plan: Number(xml.@planClasses), act: Number(xml.@finishedClasses), sur: Number(xml.@remainderClasses),surURL: xml.@url, rate: Number(xml.@finishedRatio), averageFishedRatio: Number(xml.@averageFishedRatio), index: index, order: order};
+								obj.displayindex=Number(xml.@displayindex);
+								tmpArrayCollection.addItem(obj);
+								index++;
+								order++
+							}
+						}
+						
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("rate", true, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+					}
+					titleWindow3.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				PopUpManager.addPopUp(titleWindow3, this, true);
+				PopUpManager.centerPopUp(titleWindow3);
+			}
+			//****************************************************
+			//            总体情况-按人次-企业信息（对象）
+			//****************************************************
+			//弹出窗口
+			private var titleWindow7:views.PopupTitleWinDG;
+			
+			protected function showCorpMXbyPersonsbyObject(objectid:String):void
+			{
+				titleWindow7 = new views.PopupTitleWinDG();
+				titleWindow7.TitleValue = "中国石化教育培训按人次完成情况(" + dateStr + "年) 计量单位：人次";
+				titleWindow7.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow7);
+					});
+				titleWindow7.IfShowFirstRecordBgColor = true;
+				titleWindow7.IfShowFrontRecordColor = true;
+				titleWindow7.IfShowBackRecordColor = true;
+				titleWindow7.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "单位", dataField: "label", width: "40", textAlign: "center", sortable: true, draggable: true,sortByCustomField:"displayindex",footHeakerText:"合计"}, 
+					{headerText: "计划", dataField: "plan", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+					{headerText: "完成", dataField: "act", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "未完成", dataField: "sur", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "完成率%", dataField: "rate", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"act,plan"}, 
+//					{headerText: "已取证", dataField: "act2", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+//					{headerText: "未取证", dataField: "sur2", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}, 
+//					{headerText: "取证率%", dataField: "rate2", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"act2,act"}
+					//{headerText:"日历进度%",dataField:"calendarRatio",width:"40",textAlign:"center",sortable:true,draggable:true}
+					]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList;
+					if (_loadAllXMLOneTime)
+					{
+						tmpList = hseDataXML.byObject.byPersons.objectData.(@objectid == objectid);
+					}
+					else
+					{
+						tmpList = hseDataXML22.byObject.byPersons.objectData.(@objectid == objectid);
+					}
+					if (tmpList.length() > 0)
+					{
+						//合计数据
+						/*组件2自动合计，因此不需要数据计算，注释掉
+						var obj_sum:Object = {label: tmpList[0].@plateLabel + "合计", plan: Number(tmpList[0].@planPerson), act: Number(tmpList[0].@finishedPerons), sur: Number(tmpList[0].@remainderPerons), rate: Number(tmpList[0].@finishedRatio), act2: Number(tmpList[0].@certifiedPersons), sur2: Number(tmpList[0].@uncertifiedPersons), rate2: Number(tmpList[0].@certifiedRatio), 
+							//certifiedRatio_avg:xml.@calendarRatio,
+								index: 1, order: "", id: "00"};
+						tmpArrayCollection2.addItem(obj_sum);
+						*/
+						tmpList = tmpList.dataset;
+						if (tmpList.length() > 0)
+						{
+							var index:int = 2;
+							var order:int = 1;
+							for each (var xml:XML in tmpList)
+							{
+								var obj:Object = {label: xml.@subCorpname, plan: Number(xml.@planPerson), act: Number(xml.@finishedPerons), sur: Number(xml.@remainderPerons),surURL: xml.@url, rate: Number(xml.@finishedRatio), act2: Number(xml.@certifiedPersons), sur2: Number(xml.@uncertifiedPersons), rate2: Number(xml.@certifiedRatio), 
+									//certifiedRatio_avg:xml.@calendarRatio,
+										index: index, order: order};
+								obj.displayindex=Number(xml.@displayindex);
+								tmpArrayCollection.addItem(obj);
+								index++;
+								order++;
+							}
+						}
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("rate", true, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+					}
+					titleWindow7.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				PopUpManager.addPopUp(titleWindow7, this, true);
+				PopUpManager.centerPopUp(titleWindow7);
+			
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_2_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				showCorpMXbyClassesbyObject(item.objectid);
+			}
+			
+			protected function tab2_2_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				showCorpMXbyPersonsbyObject(item.objectid);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+
+		<fx:XML id="hseDataXML12" />
+		<fx:XML id="hseDataXML22" />
+		<mx:WebService id="ws12"
+					   showBusyCursor="true"
+					   result="ws12_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<mx:WebService id="ws22"
+					   showBusyCursor="true"
+					   result="ws22_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab1_3_plateGrp" />
+		<s:RadioButtonGroup id="tab1_3_levelGrp" />
+		<s:RadioButtonGroup id="tab2_3_plateGrp" />
+		<s:RadioButtonGroup id="tab2_3_levelGrp" />
+	</fx:Declarations>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+		<s:layout>
+			<s:BasicLayout />
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="25" styleName="tabButtonStyle2" right="5" top="5"/>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack"
+				  width="100%"
+				  height="100%"
+				  styleName="tabContentBox"
+				  borderStyle="inset">
+		<!--按班次-->
+		<s:NavigatorContent width="100%"
+							height="100%"
+							label="{tab1_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left"
+								  verticalAlign="middle"
+								  gap="0" />
+			</s:layout>
+			<mx:ViewStack id="viewStackA"
+						  width="100%"
+						  height="100%"
+						  styleName="tabContentBox"
+						  borderStyle="inset">
+				<!--按培训对象完成情况-->
+				<s:NavigatorContent width="100%"
+									height="100%"
+									label="{tab1_2_title}">
+					<s:VGroup width="100%"
+							  height="100%"
+							  horizontalAlign="center"
+							  gap="-1">
+						<s:HGroup width="100%"
+								  height="100%"
+								  horizontalAlign="center"
+								  verticalAlign="top"
+								  gap="-1">
+							<s:BorderContainer width="100%"
+											   height="100%"
+											   styleName="contentBox">
+								<s:layout>
+									<s:VerticalLayout paddingLeft="5"
+													  paddingTop="5"
+													  paddingBottom="5"
+													  paddingRight="5"
+													  horizontalAlign="justify" />
+								</s:layout>
+								<views:ColumnPlanActSurLineRate id="tab1_2"
+																IfSingle="false"
+																width="100%"
+																height="100%"
+																showTitle="true"
+																showLegend="true"
+																title="{tab1_2_Title}"
+																planTxt="计划"
+																actTxt="完成"
+																surTxt="未完成"
+																rateTxt="完成率" ShowDataLabel="{showDataLabel}"
+																DataSource="{tab1_2_DS}"
+																AxisLeftTiltle="班次"
+																PopupDoubleClick="tab1_2_PopupDoubleClickHandler(event)" />
+							</s:BorderContainer>
+						</s:HGroup>
+					</s:VGroup>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+		<!--按人次-->
+		<s:NavigatorContent width="100%"
+							height="100%"
+							label="{tab2_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left"
+								  verticalAlign="middle"
+								  gap="0" />
+			</s:layout>
+			<mx:ViewStack id="viewStackB"
+						  width="100%"
+						  height="100%"
+						  styleName="tabContentBox"
+						  borderStyle="inset">
+				<!--按培训对象完成情况-->
+				<s:NavigatorContent width="100%"
+									height="100%"
+									label="{tab2_2_title}">
+					<s:VGroup width="100%"
+							  height="100%"
+							  horizontalAlign="center"
+							  gap="-1">
+						<s:HGroup width="100%"
+								  height="100%"
+								  horizontalAlign="center"
+								  verticalAlign="top"
+								  gap="-1">
+							<s:BorderContainer width="100%"
+											   height="100%"
+											   styleName="contentBox">
+								<s:layout>
+									<s:VerticalLayout paddingLeft="5"
+													  paddingTop="5"
+													  paddingBottom="5"
+													  paddingRight="5"
+													  horizontalAlign="justify" />
+								</s:layout>
+								<views:ColumnPlanAct2Sur2LineRate2 id="tab2_2"
+																   IfSingle="false"
+																   width="100%"
+																   height="100%"
+																   showTitle="true"
+																   showLegend="true"
+																   title="{tab2_2_Title}"
+																   planTxt="计划"
+																   actTxt="完成"
+																   surTxt="未完成"
+																   rateTxt="完成率"
+																   act2Txt="已取证"
+																   sur2Txt="未取证"
+																   rate2Txt="取证率" ShowDataLabel="{showDataLabel}"
+																   DataSource="{tab2_2_DS}"
+																   AxisLeftTiltle="人次"
+																   PopupDoubleClick="tab2_2_PopupDoubleClickHandler(event)" />
+							</s:BorderContainer>
+						</s:HGroup>
+					</s:VGroup>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+
+</s:Group>

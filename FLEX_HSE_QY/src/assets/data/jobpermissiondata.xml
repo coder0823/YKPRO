@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="GBK" ?>
+<model>
+	<dataOutline dataYear="2012" dataDate="" corpid=""
+		corpname="公司" timestamp="" />
+	<jobpermissionData>
+		<dataset date="2012-01" dateLabel="1月">
+			<typedata typeid="ALL" typeName="合计" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="用火作业" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="    一级" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="    二级" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="    三级" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="临时用电" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="破土作业" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="高处作业" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="进入受限空间" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+			<typedata typeid="ALL" typeName="放射作业" numbers="258" URL="http://点击数量的链接地址">
+				<statusdata statusid="NOTICED" label="已通知" numbers="0"
+					URL="http://点击已通知的链接地址" />
+				<statusdata statusid="EXECUTED" label="已执行" numbers="0"
+					URL="http://点击已执行的链接地址" />
+				<statusdata statusid="ACCEPTED" label="已验收" numbers="258"
+					URL="http://点击已验收的链接地址" />
+				<statusdata statusid="CANCELED" label="作废" numbers="0"
+					URL="http://点击作废的链接地址" />
+				<statusdata statusid="UNDOED" label="撤销" numbers="0" 
+					URL="http://点击撤销的链接地址" />
+			</typedata>
+		</dataset>
+		<dataset date="2012-02" dateLabel="2月"/>
+		<dataset date="2012-03" dateLabel="3月"/>
+		<dataset date="2012-04" dateLabel="4月"/>
+		<dataset date="2012-05" dateLabel="5月"/>
+		<dataset date="2012-06" dateLabel="6月"/>
+		<dataset date="2012-07" dateLabel="7月"/>
+		<dataset date="2012-08" dateLabel="8月"/>
+		<dataset date="2012-09" dateLabel="9月"/>
+		<dataset date="2012-10" dateLabel="10月"/>
+		<dataset date="2012-11" dateLabel="11月"/>
+		<dataset date="2012-12" dateLabel="12月"/>
+	</jobpermissionData>
+</model>

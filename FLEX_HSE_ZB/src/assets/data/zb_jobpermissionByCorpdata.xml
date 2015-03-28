@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="GBK"?>
+<model>
+	<dataOutline dataYear="2013" dataStartDate="" dataEndDate=""
+		timestamp="" />
+	<byCorpData>
+	<!-- !!!!!!!!!!!!!!!!!!!!!!!!!sumData这个节点修改！！！！！！！！！！！！！！ -->
+		<sumData label="合计">
+			<statusData numbers="9999">
+				<dataset label="已通知" numbers="2039" />
+				<dataset label="执行中" numbers="1542" />
+				<dataset label="已验收" numbers="28778" />
+				<dataset label="撤销" numbers="197" />
+				<dataset label="作废" numbers="192" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="6810"
+					averageNumbers="6127.00" />
+				<dataset date="2013.02" label="02月" numbers="2626"
+					averageNumbers="6127.00" />
+				<dataset date="2013.03" label="03月" numbers="6774"
+					averageNumbers="6127.00" />
+				<dataset date="2013.04" label="04月" numbers="6694"
+					averageNumbers="6127.00" />
+				<dataset date="2013.05" label="05月" numbers="7731"
+					averageNumbers="6127.00" />
+				<dataset date="2013.06" label="06月" numbers="2113"
+					averageNumbers="2113" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="94" averageNumbers="94" />
+			</dateData>
+		</sumData>
+	<!-- !!!!!!!!!!!!!!!!!!!!!!!!!corpData这个节点添加numbers！！！！！！！！！！！！！！ -->
+		<corpData label="镇海炼化" id="aa">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="174" />
+				<dataset label="执行中" numbers="303" />
+				<dataset label="已验收" numbers="16688" />
+				<dataset label="撤销" numbers="90" />
+				<dataset label="作废" numbers="19" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="3839"
+					averageNumbers="3185.80" />
+				<dataset date="2013.02" label="02月" numbers="1271"
+					averageNumbers="3185.80" />
+				<dataset date="2013.03" label="03月" numbers="3709"
+					averageNumbers="3185.80" />
+				<dataset date="2013.04" label="04月" numbers="3222"
+					averageNumbers="3185.80" />
+				<dataset date="2013.05" label="05月" numbers="3888"
+					averageNumbers="3185.80" />
+				<dataset date="2013.06" label="06月" numbers="1345"
+					averageNumbers="1345" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="91" averageNumbers="91" />
+			</dateData>
+		</corpData>
+		<corpData label="洛阳分公司" id="ab">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="30" />
+				<dataset label="执行中" numbers="39" />
+				<dataset label="已验收" numbers="1410" />
+				<dataset label="撤销" numbers="6" />
+				<dataset label="作废" numbers="10" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="360"
+					averageNumbers="290.80" />
+				<dataset date="2013.02" label="02月" numbers="174"
+					averageNumbers="290.80" />
+				<dataset date="2013.03" label="03月" numbers="365"
+					averageNumbers="290.80" />
+				<dataset date="2013.04" label="04月" numbers="283"
+					averageNumbers="290.80" />
+				<dataset date="2013.05" label="05月" numbers="272"
+					averageNumbers="290.80" />
+				<dataset date="2013.06" label="06月" numbers="41"
+					averageNumbers="41" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="0" averageNumbers="0" />
+			</dateData>
+		</corpData>
+		<corpData label="管道分公司" id="ac">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="24" />
+				<dataset label="执行中" numbers="188" />
+				<dataset label="已验收" numbers="1293" />
+				<dataset label="撤销" numbers="2" />
+				<dataset label="作废" numbers="17" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="82"
+					averageNumbers="275.00" />
+				<dataset date="2013.02" label="02月" numbers="49"
+					averageNumbers="275.00" />
+				<dataset date="2013.03" label="03月" numbers="260"
+					averageNumbers="275.00" />
+				<dataset date="2013.04" label="04月" numbers="450"
+					averageNumbers="275.00" />
+				<dataset date="2013.05" label="05月" numbers="534"
+					averageNumbers="275.00" />
+				<dataset date="2013.06" label="06月" numbers="149"
+					averageNumbers="149" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="0" averageNumbers="0" />
+			</dateData>
+		</corpData>
+		<corpData label="石家庄炼化" id="ad">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="3" />
+				<dataset label="执行中" numbers="14" />
+				<dataset label="已验收" numbers="836" />
+				<dataset label="撤销" numbers="8" />
+				<dataset label="作废" numbers="23" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="124"
+					averageNumbers="157.00" />
+				<dataset date="2013.02" label="02月" numbers="52"
+					averageNumbers="157.00" />
+				<dataset date="2013.03" label="03月" numbers="182"
+					averageNumbers="157.00" />
+				<dataset date="2013.04" label="04月" numbers="212"
+					averageNumbers="157.00" />
+				<dataset date="2013.05" label="05月" numbers="215"
+					averageNumbers="157.00" />
+				<dataset date="2013.06" label="06月" numbers="99"
+					averageNumbers="99" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="0" averageNumbers="0" />
+			</dateData>
+		</corpData>
+		<corpData label="茂名石化" id="ae">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="1111" />
+				<dataset label="执行中" numbers="632" />
+				<dataset label="已验收" numbers="5662" />
+				<dataset label="撤销" numbers="60" />
+				<dataset label="作废" numbers="71" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="1982"
+					averageNumbers="1449.60" />
+				<dataset date="2013.02" label="02月" numbers="886"
+					averageNumbers="1449.60" />
+				<dataset date="2013.03" label="03月" numbers="1546"
+					averageNumbers="1449.60" />
+				<dataset date="2013.04" label="04月" numbers="1389"
+					averageNumbers="1449.60" />
+				<dataset date="2013.05" label="05月" numbers="1445"
+					averageNumbers="1449.60" />
+				<dataset date="2013.06" label="06月" numbers="288"
+					averageNumbers="288" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="0" averageNumbers="0" />
+			</dateData>
+		</corpData>
+		<corpData label="山东石油" id="af">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="83" />
+				<dataset label="执行中" numbers="118" />
+				<dataset label="已验收" numbers="376" />
+				<dataset label="撤销" numbers="15" />
+				<dataset label="作废" numbers="19" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="38"
+					averageNumbers="115.00" />
+				<dataset date="2013.02" label="02月" numbers="19"
+					averageNumbers="115.00" />
+				<dataset date="2013.03" label="03月" numbers="104"
+					averageNumbers="115.00" />
+				<dataset date="2013.04" label="04月" numbers="220"
+					averageNumbers="115.00" />
+				<dataset date="2013.05" label="05月" numbers="194"
+					averageNumbers="115.00" />
+				<dataset date="2013.06" label="06月" numbers="36"
+					averageNumbers="36" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="0" averageNumbers="0" />
+			</dateData>
+		</corpData>
+		<corpData label="浙江石油" id="ag">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="28" />
+				<dataset label="执行中" numbers="40" />
+				<dataset label="已验收" numbers="808" />
+				<dataset label="撤销" numbers="3" />
+				<dataset label="作废" numbers="17" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="190"
+					averageNumbers="169.60" />
+				<dataset date="2013.02" label="02月" numbers="41"
+					averageNumbers="169.60" />
+				<dataset date="2013.03" label="03月" numbers="208"
+					averageNumbers="169.60" />
+				<dataset date="2013.04" label="04月" numbers="255"
+					averageNumbers="169.60" />
+				<dataset date="2013.05" label="05月" numbers="154"
+					averageNumbers="169.60" />
+				<dataset date="2013.06" label="06月" numbers="48"
+					averageNumbers="48" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="0" averageNumbers="0" />
+			</dateData>
+		</corpData>
+		<corpData label="河南石油" id="ah">
+			<statusData numbers="17274">
+				<dataset label="已通知" numbers="48" />
+				<dataset label="执行中" numbers="54" />
+				<dataset label="已验收" numbers="262" />
+				<dataset label="撤销" numbers="7" />
+				<dataset label="作废" numbers="6" />
+			</statusData>
+			<dateData>
+				<dataset date="2013.01" label="01月" numbers="6"
+					averageNumbers="68.20" />
+				<dataset date="2013.02" label="02月" numbers="5"
+					averageNumbers="68.20" />
+				<dataset date="2013.03" label="03月" numbers="61"
+					averageNumbers="68.20" />
+				<dataset date="2013.04" label="04月" numbers="179"
+					averageNumbers="68.20" />
+				<dataset date="2013.05" label="05月" numbers="90"
+					averageNumbers="68.20" />
+				<dataset date="2013.06" label="06月" numbers="36"
+					averageNumbers="36" />
+				<dataset date="2013.07" label="07月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.08" label="08月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.09" label="09月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.10" label="10月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.11" label="11月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="2013.12" label="12月" numbers="0"
+					averageNumbers="0" />
+				<dataset date="当日" label="当日" numbers="2" averageNumbers="2" />
+			</dateData>
+		</corpData>
+	</byCorpData>
+</model>

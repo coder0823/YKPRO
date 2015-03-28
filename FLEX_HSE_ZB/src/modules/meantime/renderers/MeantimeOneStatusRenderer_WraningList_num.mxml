@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  width="100%" height="100%" rollOverColor="haloBlue" 
+								  autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var txt:String="";
+			[Bindable]
+			private var color:uint=0xffffff;
+			[Bindable]
+			private var boolean_red:Boolean=true;
+			[Bindable]
+			private var boolean_yellow:Boolean=true;
+			[Bindable]
+			private var boolean_green:Boolean=true;
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					txt = data[advancedDataGridListData.dataField];
+					switch(data[advancedDataGridListData.dataField+"_mark"]){
+						case "meantimeGreen":
+//							color = 0x4BB648;
+							boolean_green = true;
+							boolean_yellow = false;
+							boolean_red = false;
+							break;
+						case "meantimeYellow":
+//							color = 0xFACF0C;
+							boolean_green = false;
+							boolean_yellow = true;
+							boolean_red = false;
+							break;
+						case "meantimeRed":
+//							color = 0xE6413A;
+							boolean_green = false;
+							boolean_yellow = false;
+							boolean_red = true;
+							break;
+//						case "projectNum":
+//							bc.setStyle("borderVisible",false);
+//							bc.visible = false;
+//							this.currentState = "lb_state";
+//							break;
+					}
+				}else{
+					txt = "";
+				}
+			}
+			
+			protected function red_clickHandler(event:MouseEvent):void
+			{
+				//				this.dispatchEvent(new MeantimeOverFilterEvent(MeantimeOverFilterEvent.FILTER_CLICK,"2",return_fieldNumber(advancedDataGridListData.dataField)));
+			}
+			
+			protected function yellow_clickHandler(event:MouseEvent):void
+			{
+				//				this.dispatchEvent(new MeantimeOverFilterEvent(MeantimeOverFilterEvent.FILTER_CLICK,"1",return_fieldNumber(advancedDataGridListData.dataField)));
+			}
+			
+			protected function green_clickHandler(event:MouseEvent):void
+			{
+				//				this.dispatchEvent(new MeantimeOverFilterEvent(MeantimeOverFilterEvent.FILTER_CLICK,"green",return_fieldNumber(advancedDataGridListData.dataField)));
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state5" stateGroups="group2"/>
+    </s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center">
+			
+		</s:HorizontalLayout>
+	</s:layout>
+	
+	<s:Group id="hgroup2" includeIn="group2" width="100%" height="100%" visible="true">
+		<s:HGroup width="100%" height="100%" verticalAlign="bottom" horizontalAlign="center">
+			<s:Image width="20" click="green_clickHandler(event)" id="image_green"
+					 height="20" includeInLayout="{boolean_green}" visible="{boolean_green}"
+					 horizontalCenter="0"
+					 verticalCenter="0"
+					 source="assets/images/icoFinished.png" />
+			<s:Label id="label_green" fontWeight="bold" color="0x0000FF" text="{txt}" includeInLayout="{boolean_green}" visible="{boolean_green}"
+					 horizontalCenter="0" verticalCenter="0" click="green_clickHandler(event)"/>
+			<s:Image width="20" click="yellow_clickHandler(event)" id="image_yellow"
+					 height="20" includeInLayout="{boolean_yellow}" visible="{boolean_yellow}"
+					 horizontalCenter="0"
+					 verticalCenter="0"
+					 source="assets/images/icoWarning.png" />
+			<s:Label id="label_yellow" fontWeight="bold" color="0x0000FF" text="{txt}" includeInLayout="{boolean_yellow}" visible="{boolean_yellow}"
+					 horizontalCenter="0" verticalCenter="0" click="yellow_clickHandler(event)"/>
+			<s:Image width="20" click="red_clickHandler(event)" id="image_red"
+					 height="20" includeInLayout="{boolean_red}" visible="{boolean_red}"
+					 horizontalCenter="0"
+					 verticalCenter="0"
+					 source="assets/images/icoAlarm.png" />
+			<s:Label id="label_red" fontWeight="bold" color="0x0000FF" text="{txt}" includeInLayout="{boolean_red}" visible="{boolean_red}"
+					 horizontalCenter="0" verticalCenter="0" click="red_clickHandler(event)"/>
+		</s:HGroup>
+		
+	</s:Group>
+	
+	
+	
+	<!--<s:BorderContainer id="bc" cornerRadius="30" width="10%" height="10%"> 
+		<s:backgroundFill> 
+			<s:SolidColor 
+				color="{color}" 
+				alpha="1"/> 
+		</s:backgroundFill> 
+		<s:Label id="lblData" color="0xffffff" fontWeight="bold" text="{txt}" textAlign="center" width="100%" verticalCenter="0"/>
+	</s:BorderContainer>-->
+	<!--<s:Label id="lblData2" text="{txt}" textAlign="center" width="100%" verticalCenter="0" includeIn="lb_state"/>-->
+</s:MXAdvancedDataGridItemRenderer>

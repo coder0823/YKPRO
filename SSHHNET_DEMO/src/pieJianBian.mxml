@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	
+	<mx:Script>
+
+		<![CDATA[
+			
+			import mx.collections.ArrayCollection;         
+			
+			import mx.charts.HitData;
+			
+			import mx.effects.easing.*;
+			
+			[Bindable]
+			
+			public var chengjiPie:ArrayCollection = new ArrayCollection( [
+				
+				{ classs: "60分以下", num: 5 },
+				
+				{ classs: "60~70分", num: 4 },
+				
+				{ classs: "70~80分", num:5},
+				
+				{ classs: "80~90分", num: 4},
+				
+				{ classs: "90分以上", num: 3}]);
+			
+			
+			
+			private function displayGold(data:Object, field:String, index:Number, percentValue:Number):String {
+				
+				var temp:String= (" " + percentValue).substr(0,6);
+				
+				return data.classs + ": " +  '\n' + temp + "%";
+				
+			}
+			
+			
+			
+			private var _selectedRegion:Object;
+			
+			
+			
+			public function get selectedRegion():Object
+				
+			{
+				
+				return _selectedRegion;
+				
+			}
+			
+			
+			
+			public function set selectedRegion(item:Object):void
+				
+			{
+				
+				_selectedRegion = item;
+				
+				
+				
+				var index:int = -1;
+				
+				for (var i:int=0; i < chengjiPie.length && index == -1; i++)
+					
+				{
+					
+					if (chengjiPie[i].classs == item.classs)
+						
+						index = i;
+					
+				}
+				
+				
+				
+				var explodeData:Array = [];
+				
+				explodeData[index] = 0.15;
+				
+				chart.series[0].perWedgeExplodeRadius = explodeData;
+				
+			}
+			
+			
+			
+			private function regionChange(item:Object):void
+				
+			{
+				
+				selectedRegion = item;
+				
+				dispatchEvent(new Event("regionChange"));
+				
+			}
+			
+			
+			
+			private function formatDataTip(hitData:HitData):String
+				
+			{
+				
+				var classs:String = hitData.item.classs;
+				
+				var num:Number = hitData.item.num;
+				
+				return classs;
+				
+			}
+			
+			
+			
+		]]>
+		
+		
+		
+	</mx:Script>
+	
+	
+	
+	<mx:SolidColor id="sc1" color="0xE46899" alpha=".6"/>
+	
+	<mx:SolidColor id="sc2" color="0xAAD71A" alpha=".6"/>
+	
+	<mx:SolidColor id="sc3" color="0xFFE30E" alpha=".6"/>
+	
+	<mx:SolidColor id="sc4" color="0xFDB500" alpha=".6"/>
+	
+	<mx:SolidColor id="sc5" color="0x4CD0EF" alpha=".6"/>
+	
+	
+	
+	
+	
+	<mx:Stroke id="callouts" weight="2" color="0x999999" alpha=".8" caps="square"/>
+	
+	<mx:Stroke id="radial" weight="1" color="0xFFFFCC" alpha=".3"/>
+	
+	<mx:Stroke id="pieborder" color="0x000000" weight="2" alpha=".5"/>
+	
+	
+	
+	
+	
+	<mx:Panel  height="100%" width="100%" layout="absolute" fontSize="12">
+		
+		
+		
+		<mx:PieChart id="chart"  showDataTips="true" width="100%" height="100%"
+					 
+					 itemClick="regionChange(event.hitData.item)"  dataProvider="{chengjiPie}"  horizontalCenter="0" verticalCenter="0">
+			
+			
+			
+			<mx:series>
+				
+				<mx:Array>
+					
+					<mx:PieSeries nameField="classs" labelPosition="callout"  field="num"
+								  
+								  labelFunction="displayGold" >
+						
+						<mx:showDataEffect>
+							
+							<mx:SeriesInterpolate duration="1500" easingFunction="{Elastic.easeOut}" />
+							
+						</mx:showDataEffect>
+						
+						
+						
+						<mx:fills>
+							
+							<mx:Array>
+								
+								<mx:RadialGradient>
+									
+									<mx:entries>
+										
+										<mx:Array>
+											
+											<mx:GradientEntry color="#EF7651" ratio="0"/>
+											
+											<mx:GradientEntry color="#994C34" ratio="1"/>
+											
+										</mx:Array>
+										
+									</mx:entries>
+									
+								</mx:RadialGradient>
+								
+								<mx:RadialGradient>
+									
+									<mx:entries>
+										
+										<mx:Array>
+											
+											<mx:GradientEntry color="#E9C836" ratio="0"/>
+											
+											<mx:GradientEntry color="#AA9127" ratio="1"/>
+											
+										</mx:Array>
+										
+									</mx:entries>
+									
+								</mx:RadialGradient>
+								
+								<mx:RadialGradient>
+									
+									<mx:entries>
+										
+										<mx:Array>
+											
+											<mx:GradientEntry color="#6FB35F" ratio="0"/>
+											
+											<mx:GradientEntry color="#497B54" ratio="1"/>
+											
+										</mx:Array>
+										
+									</mx:entries>
+									
+								</mx:RadialGradient>
+								
+								<mx:RadialGradient>
+									
+									<mx:entries>
+										
+										<mx:Array>
+											
+											<mx:GradientEntry color="#A1AECF" ratio="0"/>
+											
+											<mx:GradientEntry color="#47447A" ratio="1"/>
+											
+										</mx:Array>
+										
+									</mx:entries>
+									
+								</mx:RadialGradient>
+								
+								<mx:RadialGradient>
+									
+									<mx:entries>
+										
+										<mx:Array>
+											
+											<mx:GradientEntry color="#BA9886" ratio="0"/>
+											
+											<mx:GradientEntry color="#AE775B" ratio="1"/>
+											
+										</mx:Array>
+										
+									</mx:entries>
+									
+								</mx:RadialGradient>
+								
+							</mx:Array>
+							
+						</mx:fills>
+						
+					</mx:PieSeries>
+					
+				</mx:Array>
+				
+			</mx:series>
+			
+			
+			
+		</mx:PieChart>
+		
+		<mx:Legend dataProvider="{chart}" right="0" bottom="0"/>
+		
+	</mx:Panel>
+	
+	
+	
+</mx:Application>

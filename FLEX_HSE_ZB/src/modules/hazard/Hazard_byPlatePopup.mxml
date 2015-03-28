@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-隐患管理-分板块
+		 * 参数：年月（2012-01）
+		 * 作者：孙山虎
+		 * 日期：2013年5月8日
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/zb_hazarddata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			private var plateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2013-05";
+			private var dateStrName:String = "2013年05月";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var plateStr:String = "YT";
+			private var plateStrName:String = "油田";
+			
+			[Bindable]
+			private var tab1_title:String = "分板块";
+			[Bindable]
+			private var tab1_topLeftTitle:String = "";
+			[Bindable]
+			private var tab1_topRightTitle:String = "";
+			[Bindable]
+			private var tab1_downLeftTitle:String = "";
+			[Bindable]
+			private var tab1_downRightTitle:String = "";
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightDS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				tab1_topLeftDS = new ArrayCollection();
+				tab1_topRightDS = new ArrayCollection();
+				tab1_downLeftDS = new ArrayCollection();
+				tab1_downRightDS = new ArrayCollection();
+				
+				tab1_topLeftConfDS = new ArrayCollection([{name: "正在设计", field: "sub1"}, {name: "等待施工", field: "sub2"}, {name: "正在施工", field: "sub3"}, {name: "已完成", field: "sub4"}]);
+				tab1_downLeftConfDS = new ArrayCollection([{name: "正在设计", field: "sub1"}, {name: "等待施工", field: "sub2"}, {name: "正在施工", field: "sub3"}, {name: "已完成", field: "sub4"}]);
+				tab1_topRightConfDS = new ArrayCollection([{name: "完成投资", field: "sub1"}, {name: "未完成投资", field: "sub2"}]);
+				tab1_downRightConfDS = new ArrayCollection([{name: "完成投资", field: "sub1"}, {name: "未完成投资", field: "sub2"}]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetHazard(dateStr, 'all', '', '', '');
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab1_topLeftDS = gettab1_topLeftDS();
+				tab1_topRightDS = gettab1_topRightDS();
+				tab1_downLeftDS = gettab1_downLeftDS();
+				tab1_downRightDS = gettab1_downRightDS();
+				
+				executeBindTab22Title();
+			}
+			
+			private function executeBindTab22Title():void
+			{
+				tab1_topLeftTitle = plateStrName + "板块" + dateStrName + "隐患项目进度情况(个)";
+				tab1_topRightTitle = plateStrName + "板块" + dateStrName + "隐患项目投资完成情况(万元)";
+				tab1_downLeftTitle = "";
+				tab1_downRightTitle = "";
+			}
+			
+			private function gettab1_topLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.hazardData.dataset.(@typeid == "GROUP-LEVEL").plateData.(@plateid == plateStr);
+					if (tmpList.length() > 0)
+					{
+						var sum_all:Number = 0;
+						var sum_in_designer:Number = 0;
+						var sum_wait_construction:Number = 0;
+						var sum_in_construction:Number = 0;
+						var sum_finished:Number = 0;
+						for each (var xml:XML in tmpList)
+						{
+							var xml_in_designer:XMLList = xml.projectdata.(@id == "in-designer");
+							var xml_wait_construction:XMLList = xml.projectdata.(@id == "wait-construction");
+							var xml_in_construction:XMLList = xml.projectdata.(@id == "in-construction");
+							var xml_finished:XMLList = xml.projectdata.(@id == "finished");
+							
+							if (xml_in_designer && xml_in_designer.length() > 0)
+							{
+								for each (var xml_1:XML in xml_in_designer)
+								{
+									sum_all += Number(xml_1.@numbers);
+									sum_in_designer += Number(xml_1.@numbers)
+								}
+							}
+							if (xml_wait_construction && xml_wait_construction.length() > 0)
+							{
+								for each (var xml_2:XML in xml_wait_construction)
+								{
+									sum_all += Number(xml_2.@numbers);
+									sum_wait_construction += Number(xml_2.@numbers)
+								}
+							}
+							if (xml_in_construction && xml_in_construction.length() > 0)
+							{
+								for each (var xml_3:XML in xml_in_construction)
+								{
+									sum_all += Number(xml_3.@numbers);
+									sum_in_construction += Number(xml_3.@numbers)
+								}
+							}
+							if (xml_finished && xml_finished.length() > 0)
+							{
+								for each (var xml_4:XML in xml_finished)
+								{
+									sum_all += Number(xml_4.@numbers);
+									sum_finished += Number(xml_4.@numbers)
+								}
+							}
+						}
+						var obj:Object = {label: "合计", total: sum_all, sub1: sum_in_designer, sub2: sum_wait_construction, sub3: sum_in_construction, sub4: sum_finished, msgFirst: "", msgLast: "", id: xml.@typeid};
+						
+						//格式化数据
+						obj.total = Number(obj.total) < 0 ? 0 : obj.total;
+						obj.sub1 = Number(obj.sub1) < 0 ? 0 : obj.sub1;
+						obj.sub2 = Number(obj.sub2) < 0 ? 0 : obj.sub2;
+						obj.sub3 = Number(obj.sub3) < 0 ? 0 : obj.sub3;
+						obj.sub4 = Number(obj.sub4) < 0 ? 0 : obj.sub4;
+						
+						tmpArrayCollection.addItem(obj);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function gettab1_topRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.hazardData.dataset.(@typeid == "GROUP-LEVEL").plateData.(@plateid == plateStr);
+					if (tmpList.length() > 0)
+					{
+						var sum_investment:Number = 0;
+						var sum_finishedInvestment:Number = 0;
+						var sum_unfinishedInvestment:Number = 0;
+						
+						for each (var xml:XML in tmpList)
+						{
+							sum_finishedInvestment += Number(xml.@finishedInvestment);
+							sum_unfinishedInvestment += Number(xml.@unfinishedInvestment);
+							sum_investment += Number(xml.@investment);
+						}
+						var obj:Object = {label: "合计", total: sum_investment, sub1: sum_finishedInvestment, sub2: sum_unfinishedInvestment, msgFirst: "", msgLast: "", id: xml.@typeid};
+						
+						//格式化数据
+						obj.total = Number(obj.total) < 0 ? 0 : obj.total;
+						obj.sub1 = Number(obj.sub1) < 0 ? 0 : obj.sub1;
+						obj.sub2 = Number(obj.sub2) < 0 ? 0 : obj.sub2;
+						
+						tmpArrayCollection.addItem(obj);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function gettab1_downLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.hazardData.dataset.(@typeid == "GROUP-LEVEL");
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var tmpList2:XMLList = xml.plateData.(@plateid == plateStr)
+							if (tmpList2 != null && tmpList2.length() > 0)
+							{
+								var sum_all:Number = 0;
+								var sum_in_designer:Number = 0;
+								var sum_wait_construction:Number = 0;
+								var sum_in_construction:Number = 0;
+								var sum_finished:Number = 0;
+								for each (var xml2:XML in tmpList2)
+								{
+									var xml_in_designer:XMLList = xml2.projectdata.(@id == "in-designer");
+									var xml_wait_construction:XMLList = xml2.projectdata.(@id == "wait-construction");
+									var xml_in_construction:XMLList = xml2.projectdata.(@id == "in-construction");
+									var xml_finished:XMLList = xml2.projectdata.(@id == "finished");
+									
+									if (xml_in_designer && xml_in_designer.length() > 0)
+									{
+										for each (var xml_1:XML in xml_in_designer)
+										{
+											sum_all += Number(xml_1.@numbers);
+											sum_in_designer += Number(xml_1.@numbers)
+										}
+									}
+									if (xml_wait_construction && xml_wait_construction.length() > 0)
+									{
+										for each (var xml_2:XML in xml_wait_construction)
+										{
+											sum_all += Number(xml_2.@numbers);
+											sum_wait_construction += Number(xml_2.@numbers)
+										}
+									}
+									if (xml_in_construction && xml_in_construction.length() > 0)
+									{
+										for each (var xml_3:XML in xml_in_construction)
+										{
+											sum_all += Number(xml_3.@numbers);
+											sum_in_construction += Number(xml_3.@numbers)
+										}
+									}
+									if (xml_finished && xml_finished.length() > 0)
+									{
+										for each (var xml_4:XML in xml_finished)
+										{
+											sum_all += Number(xml_4.@numbers);
+											sum_finished += Number(xml_4.@numbers)
+										}
+									}
+									
+								}
+								var obj:Object = {label: xml.@label, total: sum_all, sub1: (xml_in_designer != null && xml_in_designer.length() > 0) ? xml_in_designer[0].@numbers : 0, sub2: (xml_wait_construction != null && xml_wait_construction.length() > 0) ? xml_wait_construction[0].@numbers : 0, sub3: (xml_in_construction != null && xml_in_construction.length() > 0) ? xml_in_construction[0].@numbers : 0, sub4: (xml_finished != null && xml_finished.length() > 0) ? xml_finished[0].@numbers : 0, msgFirst: "", msgLast: "", id: xml.@typeid};
+								
+								//格式化数据
+								obj.total = Number(obj.total) < 0 ? 0 : obj.total;
+								obj.sub1 = Number(obj.sub1) < 0 ? 0 : obj.sub1;
+								obj.sub2 = Number(obj.sub2) < 0 ? 0 : obj.sub2;
+								obj.sub3 = Number(obj.sub3) < 0 ? 0 : obj.sub3;
+								obj.sub4 = Number(obj.sub4) < 0 ? 0 : obj.sub4;
+								
+								tmpArrayCollection.addItem(obj);
+							}
+							
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function gettab1_downRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.hazardData.dataset.(@typeid == "GROUP-LEVEL")
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var tmpList2:XMLList = xml.plateData.(@plateid == plateStr);
+							if (tmpList2 != null && tmpList2.length() > 0)
+							{
+								var sum_investment:Number = 0;
+								var sum_finishedInvestment:Number = 0;
+								var sum_unfinishedInvestment:Number = 0;
+								for each (var xml2:XML in tmpList2)
+								{
+									sum_finishedInvestment += Number(xml2.@finishedInvestment);
+									sum_unfinishedInvestment += Number(xml2.@unfinishedInvestment);
+									sum_investment += Number(xml2.@investment);
+								}
+								var obj:Object = {label: xml.@label, total: sum_investment, sub1: sum_finishedInvestment, sub2: sum_unfinishedInvestment, msgFirst: "", msgLast: "", id: xml.@typeid};
+								
+								//格式化数据
+								obj.total = Number(obj.total) < 0 ? 0 : obj.total;
+								obj.sub1 = Number(obj.sub1) < 0 ? 0 : obj.sub1;
+								obj.sub2 = Number(obj.sub2) < 0 ? 0 : obj.sub2;
+								
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private var titleWindow:views.PopupTitleWinDG;
+			
+			private function popupMX():void
+			{
+				titleWindow = new views.PopupTitleWinDG();
+				titleWindow.TitleValue = plateStrName + "板块" + "隐患治理情况" + "(" + dateStrName + ")";
+				titleWindow.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow);
+					});
+				titleWindow.IfShowFirstRecordBgColor = true;
+				titleWindow.IfShowFrontRecordColor = false;
+				titleWindow.IfShowBackRecordColor = false;
+				titleWindow.DataSourceConf = new ArrayCollection([{headerText: "隐患级别", dataField: "label", width: "100", textAlign: "left", sortable: true, draggable: true}, {headerText: "项目数", dataField: "vol1", width: "50", textAlign: "center", sortable: true, draggable: true}, {headerText: "总投资(万元)", dataField: "vol2", width: "90", textAlign: "center", sortable: true, draggable: true}, {headerText: "完成投资(万元)", dataField: "vol3", width: "90", textAlign: "center", sortable: true, draggable: true}, {headerText: "投资完成率(%)", dataField: "vol4", width: "80", textAlign: "center", sortable: true, draggable: true}, {headerText: "正在设计", dataField: "vol5", width: "50", textAlign: "center", sortable: true, draggable: true}, {headerText: "等待施工", dataField: "vol6", width: "50", textAlign: "center", sortable: true, draggable: true}, {headerText: "正在施工", dataField: "vol7", width: "50", textAlign: "center", sortable: true, draggable: true}, {headerText: "完成", dataField: "vol8", width: "50", textAlign: "center", sortable: true, draggable: true},]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.hazardData.dataset;
+					
+					var xml_total:XMLList = tmpList.(@typeid == 'GROUP-LEVEL').plateData.(@plateid == plateStr);
+					var xml_group:XMLList = tmpList.(@typeid == 'GROUP-LEVEL');
+					
+					var xml_total_sum:XML = new XML();
+					xml_total_sum.projectdata = new XMLList();
+					var xml_total_projectdata_sum:XML = new XML();
+					var sum_numbers:Number = 0;
+					var sum_investment:Number = 0;
+					var sum_finishedInvestment:Number = 0;
+					var sum_unfinishedInvestment:Number = 0;
+					var sum_finishedRation:Number = 0;
+					
+					var sum_in_designer:Number = 0;
+					var sum_wait_construction:Number = 0;
+					var sum_in_construction:Number = 0;
+					var sum_finished:Number = 0;
+					
+					//按板块合并	
+					if (xml_total != null && xml_total.length() > 0)
+					{
+						for each (var xml0:XML in xml_total)
+						{
+							sum_numbers += Number(xml0.@numbers);
+							sum_investment += Number(xml0.@investment);
+							sum_finishedInvestment += Number(xml0.@finishedInvestment);
+							sum_unfinishedInvestment += Number(xml0.@unfinishedInvestment);
+							
+							var xml_in_designer:XMLList = xml0.projectdata.(@id == "in-designer");
+							var xml_wait_construction:XMLList = xml0.projectdata.(@id == "wait-construction");
+							var xml_in_construction:XMLList = xml0.projectdata.(@id == "in-construction");
+							var xml_finished:XMLList = xml0.projectdata.(@id == "finished");
+							
+							sum_in_designer += (xml_in_designer != null && xml_in_designer.length() > 0) ? Number(xml_in_designer[0].@numbers) : 0;
+							sum_wait_construction += (xml_wait_construction != null && xml_wait_construction.length() > 0) ? Number(xml_wait_construction[0].@numbers) : 0;
+							sum_in_construction += (xml_in_construction != null && xml_in_construction.length() > 0) ? Number(xml_in_construction[0].@numbers) : 0;
+							sum_finished += (xml_finished != null && xml_finished.length() > 0) ? Number(xml_finished[0].@numbers) : 0;
+						}
+						sum_finishedRation = sum_investment == 0 ? 0 : sum_finishedInvestment * 100 / sum_investment;
+						sum_finishedRation = Number(sum_finishedRation.toFixed(2));
+						
+						var obj:Object = {label: plateStrName + "小计", index: 1, vol1: sum_numbers, vol2: sum_investment, vol3: sum_finishedInvestment, vol4: sum_finishedRation, vol5: sum_in_designer, vol6: sum_wait_construction, vol7: sum_in_construction, vol8: sum_finished}
+						tmpArrayCollection.addItem(obj);
+					}
+					
+					var index:int = 2;
+					var ac:ArrayCollection;
+					if (xml_group != null && xml_group.length() > 0)
+					{
+						for each (var xml:XML in xml_group)
+						{
+							var tmp_xml_group:XMLList = xml.plateData.(@plateid == plateStr);
+							ac = getWinACItem(tmp_xml_group, xml.@label);
+							if (ac != null && ac.length > 0)
+							{
+								for each (var obj_2:Object in ac)
+								{
+									obj_2.index = index;
+									index++;
+									tmpArrayCollection.addItem(obj_2);
+								}
+							}
+						}
+					}
+					
+					titleWindow.DataSource = tmpArrayCollection;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);
+				PopUpManager.centerPopUp(titleWindow);
+			}
+			
+			protected function getWinACItem(xml_total:XMLList, label:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					if (xml_total.length() > 0)
+					{
+						for each (var xml:XML in xml_total)
+						{
+							
+							if (xml.projectdata && xml.projectdata.length() > 0)
+							{
+								var sum:Number = 0;
+								for each (var xml_sum:XML in xml.projectdata)
+								{
+									sum += Number(xml_sum.@numbers);
+								}
+								var sum_tz:Number = Number(xml.@finishedInvestment) + Number(xml.@unfinishedInvestment);
+								var ratio_tz:Number = sum_tz == 0 ? 0 : Number(xml.@finishedInvestment) * 100 / sum_tz;
+								sum_tz = Number(sum_tz.toFixed(2));
+								ratio_tz = Number(ratio_tz.toFixed(2));
+								
+								var xml_in_designer:XMLList = xml.projectdata.(@id == "in-designer");
+								var xml_wait_construction:XMLList = xml.projectdata.(@id == "wait-construction");
+								var xml_in_construction:XMLList = xml.projectdata.(@id == "in-construction");
+								var xml_finished:XMLList = xml.projectdata.(@id == "finished");
+								
+								//								var blank:String="";
+								//								for(var i:int=1;i<Number(xml.@level);i++){
+								//									blank+="   "
+								//								}
+								
+								var obj:Object = {label: label, vol1: sum, vol2: sum_tz, vol3: Number(xml.@finishedInvestment), vol4: ratio_tz, vol5: (xml_in_designer != null && xml_in_designer.length() > 0) ? Number(xml_in_designer[0].@numbers) : 0, vol6: (xml_wait_construction != null && xml_wait_construction.length() > 0) ? Number(xml_wait_construction[0].@numbers) : 0, vol7: (xml_in_construction != null && xml_in_construction.length() > 0) ? Number(xml_in_construction[0].@numbers) : 0, vol8: (xml_finished != null && xml_in_designer.length() > 0) ? Number(xml_finished[0].@numbers) : 0};
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					dateStrName = dateStr.substr(0, 4) + "年" + dateStr.substr(5, 2) + "月";
+					invalidateProperties();
+				}
+			}
+			
+			public function get PlateStr():String
+			{
+				return plateStr;
+			}
+			
+			public function set PlateStr(value:String):void
+			{
+				if (value != plateStr)
+				{
+					plateStrChanged = true;
+					plateStr = value;
+					switch (plateStr)
+					{
+						case "YT": 
+							plateStrName = "油田";
+							break;
+						case "LH": 
+							plateStrName = "炼化";
+							break;
+						case "XS": 
+							plateStrName = "销售";
+							break;
+						case "GC": 
+							plateStrName = "工程";
+							break;
+						case "QT": 
+							plateStrName = "其他";
+							break;
+						default: 
+							plateStrName = "未知";
+							break;
+					}
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged || plateStrChanged)
+					{
+						dateStrChanged = false;
+						plateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				popupMX();
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab1_plateGrp" />
+	</fx:Declarations>
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="30%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:BarSubTotalMulti id="tab1_topLeft"
+										width="100%"
+										height="100%"
+										showTitle="true"
+										showLegend="false"
+										xAxisAt="top"
+										yAxisAt="left" ShowDataLabel="{showDataLabel}"
+										title="{tab1_topLeftTitle}"
+										DataSourceConf="{tab1_topLeftConfDS}"
+										DataSource="{tab1_topLeftDS}"
+										PopupDoubleClick="tab1_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:BarSubTotalMulti id="tab1_topRight"
+										width="100%"
+										height="100%"
+										showTitle="true"
+										showLegend="false"
+										xAxisAt="top"
+										yAxisAt="left" ShowDataLabel="{showDataLabel}"
+										title="{tab1_topRightTitle}"
+										DataSourceConf="{tab1_topRightConfDS}"
+										DataSource="{tab1_topRightDS}"
+										PopupDoubleClick="tab1_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="70%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:BarSubTotalMulti id="tab1_downLeft"
+										width="100%"
+										height="100%"
+										showTitle="false"
+										showLegend="true"
+										xAxisAt="top"
+										yAxisAt="left" ShowDataLabel="{showDataLabel}"
+										DataSourceConf="{tab1_downLeftConfDS}"
+										DataSource="{tab1_downLeftDS}"
+										PopupDoubleClick="tab1_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:BarSubTotalMulti id="tab1_downRight"
+										width="100%"
+										height="100%"
+										showTitle="false"
+										showLegend="true"
+										xAxisAt="top"
+										yAxisAt="left" ShowDataLabel="{showDataLabel}"
+										DataSourceConf="{tab1_downRightConfDS}"
+										DataSource="{tab1_downRightDS}"
+										PopupDoubleClick="tab1_PopupDoubleClickHandler(event)" />
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

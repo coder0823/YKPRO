@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  width="100%" height="100%" rollOverColor="#FFFFFF" 
+								  autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			
+			import mx.controls.Alert;
+			import mx.controls.Label;
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var txt:String = "";
+//			private var linkBoolean:Boolean = true;
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+//					if(data.linkBoolean=="false"){
+//						this.currentState = 'link_false';
+//						var label1:Label = new Label();
+//						label1.enabled = false;
+//						label1.text = data[advancedDataGridListData.dataField];
+//						label1.setStyle("textAlign","center");
+//					}else{
+//						this.currentState = 'normal';
+//						var label2:Label = new Label();
+//						label2.text = data[advancedDataGridListData.dataField];
+//						label2.setStyle("textAlign","center");
+//						label2.setStyle("color","#0000FF");
+//						label2.setStyle("textDecoration","#underline");
+//						label2.buttonMode = true;
+//						label2.addEventListener(MouseEvent.CLICK,lblData_clickHandler);
+//					}
+					txt = data[advancedDataGridListData.dataField];
+				}else{
+					txt = "";
+				}
+			}
+			protected function lblData_clickHandler(event:MouseEvent):void
+			{
+				//this.dispatchEvent(new MeantimeOverAllNumEvent(MeantimeOverAllNumEvent.NUM_CLICK,data['profid'],data['stageid']));
+//				if(data.linkBoolean!="false"){
+					this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,"project_label"));
+//				}
+			}
+			
+		]]>
+	</fx:Script>
+	<!--<s:states>
+		<s:State name="normal"/>
+		<s:State name="link_false"/>
+	</s:states>
+	<s:Label id="lblData1" includeIn="normal" text="{txt}" toolTip="" color="#0000FF" buttonMode="true" textDecoration="underline" textAlign="center" width="100%" verticalCenter="0" click="lblData_clickHandler(event)"/>-->
+	<s:Label id="lblData2" enabled="false" text="{txt}" color="#000000" textAlign="center" width="100%" verticalCenter="0"/>
+</s:MXAdvancedDataGridItemRenderer>

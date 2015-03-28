@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" xmlns:views="views.*" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：总部仪表盘-环保
+	* 参数：单一年（2012）
+	* 作者：孙山虎
+	* 日期：2012年12月29日
+	* */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			
+			public const _dataPath:String = "assets/data/zb_environmentalprotectiondata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "loccalXMLFile";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			private var isFirstLoad:Boolean=true;
+			private var dateStrChanged:Boolean=false;
+			[Bindable]
+			private var dateStr:String="2013";
+			private var dateStrName:String="2013年";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String="在线监测";
+			
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topRightTitle:String="";
+			[Bindable]
+			private var tab1_downRightTitle:String="";
+			
+			[Bindable]
+			private var treeDS:ArrayCollection;	
+			[Bindable]
+			private var treeData:XMLList = new XMLList();
+			
+			[Bindable]
+			private var tab1_corpCurrSelect:String="";
+			private var tab1_corpNameCurrSelect:String="";
+			[Bindable]
+			private var tab1_pointCurrSelect:String="";
+			private var tab1_pointNameCurrSelect:String="";
+			
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			
+			protected function init():void{
+				tab1_topRightDS=new ArrayCollection();
+				tab1_downRightDS=new ArrayCollection();
+				tab1_downRightConfDS=new ArrayCollection([
+					{name:"国标",field:"vol1"},
+					{name:"地标",field:"vol2"},
+					{name:"监测值",field:"vol3"}
+				]);
+				
+				
+				refreshData();
+				isFirstLoad=false;
+			}
+			
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//........
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+//					ws.GetTrafficsafety(dateStr);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				gettab1_topLeftDS();
+				
+				tab1_topRightDS=gettab1_topRightDS();
+				tab1_downRightDS=gettab1_downRightDS(null);
+				
+				executeBindTab1Title();				
+			}
+			
+			private function executeBindTab1Title():void{
+				tab1_topRightTitle="";
+				tab1_downRightTitle=tab1_corpNameCurrSelect+tab1_pointNameCurrSelect+"监测动态趋势图";
+			}
+			
+			
+			private function gettab1_topLeftDS():void{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.onlineMonitor.corpListData;
+					if(tmpList.length()>0)
+					{
+						treeData=tmpList;
+						tree.callLater(tree_creationCompleteHandler);
+						if(tmpList.corpList!=null&&tmpList.corpList.length()>0){
+							tab1_corpCurrSelect=tmpList[0].corpList[0].@corpid;
+							tab1_corpNameCurrSelect=tmpList[0].corpList[0].@label;
+						}
+						
+						
+					}
+				}catch(e:Event){ 
+					trace(e);
+				}
+
+				
+			}
+			
+			
+			private function gettab1_topRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					if(tab1_corpCurrSelect==null||tab1_corpCurrSelect=="00"||tab1_corpCurrSelect==""){
+						tmpList=hseDataXML.onlineMonitor.monitorData.dataset;
+					}else{
+						tmpList=hseDataXML.onlineMonitor.monitorData.dataset.(@corpid==tab1_corpCurrSelect);
+					}
+						
+					if(tmpList.length()>0)
+					{
+						tab1_pointCurrSelect=tmpList[0].@tagDescription+""+tmpList[0].@monitorProjectName;//设置默认选择
+						tab1_pointNameCurrSelect=tmpList[0].@tagDescription+""+tmpList[0].@monitorProjectName;
+						tab1_pointNameCurrSelect=tab1_pointNameCurrSelect==null?"":tab1_pointNameCurrSelect;
+						var index:int=1;
+						for each (var xml:XML  in tmpList) {  
+							var obj:Object=new Object();		
+							obj.order=index;
+							obj.tagDescription=xml.@tagDescription;
+							obj.monitorProjectName=xml.@monitorProjectName;
+							obj.value=xml.@value;
+							obj.unit=xml.@unit;
+							var obj_gsInfo:Object = new Object();
+							obj_gsInfo.GSvalue=xml.@GSvalue;
+							obj_gsInfo.GSstatus=xml.@GSstatus;
+							obj['gsInfo'] = obj_gsInfo;
+							var obj_psInfo:Object = new Object();
+							obj_psInfo.PSvalue=xml.@PSvalue;
+							obj_psInfo.PSstatus=xml.@PSstatus;
+							obj['psInfo'] = obj_psInfo;
+							
+							obj.GSvalue=xml.@GSvalue;
+							obj.GSstatus=xml.@GSstatus;
+							obj.PSvalue=xml.@PSvalue;
+							obj.PSstatus=xml.@PSstatus;
+							
+							obj.tagType=xml.@tagType;
+							obj.trendData=xml.trendData;
+							tmpArrayCollection.addItem(obj);
+							index++;
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function gettab1_downRightDS(tmpList:XMLList):ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					if(tmpList==null){
+						tmpList=hseDataXML.onlineMonitor.monitorData.dataset.(@corpid==tab1_corpCurrSelect);
+						if(tmpList!=null&&tmpList.length()>0)
+						{
+							tmpList=tmpList[0].trendData;
+						}
+					}
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML  in tmpList) {  
+							var obj:Object=new Object();	
+							obj.label=xml.@time;
+							obj.vol1=xml.@GSvalue;
+							obj.vol2=xml.@PSvalue;
+							obj.vol3=xml.@value;
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			public function set DateStr(value:String):void
+			{
+				if(value!=dateStr){
+					dateStrChanged=true;
+					dateStr = value;
+					dateStrName=dateStr.substr(0,4)+"年";
+					invalidateProperties();
+				}
+			}
+			
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if(!isFirstLoad){
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tree_itemClickHandler(event:ListEvent):void
+			{
+				var item:Object=tree.selectedItem;
+				
+				tab1_corpCurrSelect=item.@corpid;//设置默认选择
+				tab1_corpNameCurrSelect=item.@label;
+				tab1_corpNameCurrSelect=tab1_corpNameCurrSelect==null?"":tab1_corpNameCurrSelect;
+				
+				tab1_topRightDS=gettab1_topRightDS();
+				tab1_downRightDS=gettab1_downRightDS(null);
+				
+				executeBindTab1Title();	
+			}
+			protected function tree_creationCompleteHandler():void
+			{
+				tree.openItems =treeData;
+			}
+			
+			protected function tab1_topRight_itemClickHandler(event:ListEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=tab1_topRight.selectedItem;
+				
+				tab1_pointCurrSelect=item.tagDescription+""+item.monitorProjectName;//设置默认选择
+				tab1_pointNameCurrSelect=item.tagDescription+""+item.monitorProjectName;
+				tab1_pointNameCurrSelect=tab1_pointNameCurrSelect==null?"":tab1_pointNameCurrSelect;
+				
+				if (item!=null){
+					var tmpList:XMLList=XMLList(item.trendData);
+					if(tmpList!=null&&tmpList.length()>0){
+						
+						tab1_downRightDS=gettab1_downRightDS(tmpList);
+						executeBindTab1Title();
+					}
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="25%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<mx:Tree id="tree" width="100%" height="100%" dataProvider="{treeData}"
+						 labelField="@label" showRoot="true" openDuration="250" contentBackgroundAlpha="0" itemClick="tree_itemClickHandler(event)"
+						 />
+			</s:BorderContainer> 
+			<s:BorderContainer width="75%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<mx:AdvancedDataGrid id="tab1_topRight" dataProvider="{tab1_topRightDS}" 
+									 alternatingItemColors="[#FFFFFF,#FFFFFF]" fontSize="14" color="#000000"
+									 width="100%" height="100%" sortExpertMode="true" sortableColumns="false" 
+									 horizontalGridLines="true" textAlign="center" borderVisible="false"
+									 itemClick="tab1_topRight_itemClickHandler(event)">
+					<mx:groupedColumns>
+						<mx:AdvancedDataGridColumn dataField="order" headerText="序号" width="50"/>
+						<mx:AdvancedDataGridColumn dataField="tagDescription" headerText="位号描述" width="180" textAlign="left"/>
+						<mx:AdvancedDataGridColumn dataField="monitorProjectName" headerText="监测项目" width="100" textAlign="center"/>
+						<mx:AdvancedDataGridColumn dataField="value" headerText="监测值" width="110" textAlign="right"/>
+						<mx:AdvancedDataGridColumn dataField="unit" headerText="工程单位" width="110" textAlign="right"/>
+						<mx:AdvancedDataGridColumnGroup dataField="gsInfo" headerText="国标" width="200">
+							<mx:AdvancedDataGridColumn dataField="GSvalue" headerText = "值"/>
+							<mx:AdvancedDataGridColumn dataField="GSstatus" headerText="状态" itemRenderer="modules.environment.renderers.AdvancedDataGridWarningRenderer"/>
+						</mx:AdvancedDataGridColumnGroup>
+						<mx:AdvancedDataGridColumnGroup dataField="psInfo" headerText="地标" width="200">
+							<mx:AdvancedDataGridColumn dataField="PSvalue" headerText = "值"/>
+							<mx:AdvancedDataGridColumn dataField="PSstatus" headerText="状态" itemRenderer="modules.environment.renderers.AdvancedDataGridWarningRenderer"/>
+						</mx:AdvancedDataGridColumnGroup>
+						<mx:AdvancedDataGridColumn dataField="tagType" headerText="污染物类型" width="120"/>
+					</mx:groupedColumns>
+				</mx:AdvancedDataGrid>
+				<views:LineMulti id="tab1_downRight" IfTrend="true" title="{tab1_downRightTitle}" DataSourceConf="{tab1_downRightConfDS}" DataSource="{tab1_downRightDS}"/>
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

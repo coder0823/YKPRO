@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  focusEnabled="true" dataChange="mxadvanceddatagriditemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function mxadvanceddatagriditemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					if(data['stage'][advancedDataGridListData.dataField] == "NO-START"){
+						currentState = "state0";
+					}else if(data['stage'][advancedDataGridListData.dataField] == "IN-PROCESS"){
+						currentState = "state1";
+					}else if(data['stage'][advancedDataGridListData.dataField] == "FINISHED"){
+						currentState = "state2";
+					}else{
+						currentState = "state_1";
+					}
+				}else{
+					currentState = "state_1";
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state_1"/>
+		<s:State name="state0"/>
+		<s:State name="state1"/>
+		<s:State name="state2"/>
+	</s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<s:Group width="100%" height="100%">
+		<s:layout>
+			<s:HorizontalLayout gap="5" verticalAlign="middle" horizontalAlign="center"/>
+		</s:layout>
+		<mx:Image width="20" height="20" alpha.state_1="0" 
+				  source.state0="assets/images/meantime/no-start.gif" source.state1="assets/images/meantime/in-progress.gif" source.state2="assets/images/meantime/finished.gif"
+				  toolTip.state0="未启动" toolTip.state1="进行中" toolTip.state2="已完成" toolTip.state_1=""/>
+		<!--
+		<s:Label text.state_1="" 
+				 text.state0="未启动" color.state0="#FF0000" text.state1="进行中" color.state1="#E2AE00" text.state2="已完成" color.state2="#00FF00"/>
+		-->
+	</s:Group>
+</s:MXAdvancedDataGridItemRenderer>

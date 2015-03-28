@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Model>
+    <allData>
+        <datagrid_config>
+            <datagrid_head sequence="1" headLabel="安全">
+                <stage sequence="1" label="设立" /> 
+                <stage sequence="2" label="设计"/>
+                <stage sequence="3" label="试生产" />
+                <stage sequence="4" label="验收"/>
+            </datagrid_head>
+            <datagrid_head sequence="2" headLabel="环保">
+                <stage sequence="5" label="环境影响"/>
+                <stage sequence="6" label="试生产"/>
+                <stage sequence="7" label="验收"/>
+            </datagrid_head>
+            <datagrid_head sequence="3" headLabel="职业卫生">
+                <stage sequence="8" label="预评价" />
+                <stage sequence="9" label="设计审查" />
+                <stage sequence="10" label="验收" />
+            </datagrid_head>
+            <datagrid_head sequence="4" headLabel="消防">
+                <stage sequence="11" label="消防建审"/>
+                <stage sequence="12" label="消防验收"/>
+            </datagrid_head>
+             <datagrid_head sequence="5" headLabel="抗震">
+                <stage sequence="13" label="抗震安全评价" />
+            </datagrid_head>
+        </datagrid_config>
+        <dataset order="1" corpName="合计" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="2" label="设计" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="3" label="试生产" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="4" label="验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="5" label="环境影响" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/> 
+                <stagedata sequence="6" label="试生产" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="7" label="验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="8" label="预评价" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="9" label="设计审查" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="10" label="竣工验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="11" label="消防建审" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="12" label="消防验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="13" label="抗震安全评价" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            </professional_data>
+        </dataset>
+        
+         <dataset order="1" corpName="河南油田" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="2" label="设计" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="3" label="试生产" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="4" label="验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="5" label="环境影响" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/> 
+                <stagedata sequence="6" label="试生产" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="7" label="验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="8" label="预评价" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="9" label="设计审查" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="10" label="竣工验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="11" label="消防建审" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="12" label="消防验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="13" label="抗震安全评价" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            </professional_data>
+        </dataset>
+        
+         <dataset order="1" corpName="江苏油田" projectNum="6" meantimeGreen="13" meantimeYellow="1" meantimeRed="5">
+            <professional_data professional_label="安全" profid="safety">
+                <stagedata sequence="1" label="设立" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="2" label="设计" meantimeGreen="22" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="3" label="试生产" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="4" label="验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="环保" profid="environmentalProtection">
+                <stagedata sequence="5" label="环境影响" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/> 
+                <stagedata sequence="6" label="试生产" meantimeGreen="0" meantimeYellow="13" meantimeRed="5" />
+                <stagedata sequence="7" label="验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            </professional_data>
+            <professional_data professional_label="职业卫生" profid="health">
+                <stagedata sequence="8" label="预评价" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="9" label="设计审查" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+                <stagedata sequence="10" label="竣工验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="消防" profid="fireControl">
+                <stagedata sequence="11" label="消防建审" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+                <stagedata sequence="12" label="消防验收" meantimeGreen="0" meantimeYellow="1" meantimeRed="5" />
+            </professional_data>
+            <professional_data professional_label="抗震" profid="anti-seismic">
+                <stagedata sequence="13" label="抗震安全评价" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            </professional_data>
+        </dataset>
+    </allData>
+    <dataOutline dataYear="2006" dataStartDate="" dataEndDate="" timestamp="">
+    </dataOutline>
+</Model>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  focusEnabled="true" 
+								  dataChange="mxadvanceddatagriditemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			//R:红色报警  Y：黄色预警  G:正常
+			protected function mxadvanceddatagriditemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+				if(data[advancedDataGridListData.dataField] == "R"){
+					currentState = "state1";
+				}else if(data[advancedDataGridListData.dataField] == "G"){
+					currentState = "state2";
+				}else if(data[advancedDataGridListData.dataField] == "Y"){
+					currentState = "state3";
+				}else{
+					currentState = "state0";
+				}
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state0"/>
+		<s:State name="state1"/>
+		<s:State name="state2"/>
+		<s:State name="state3"/>
+	</s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<s:Ellipse width="20" height="20" horizontalCenter="0" verticalCenter="0">
+		<s:fill>
+			<s:SolidColor alpha.state0="0" color.state0="#FFFFFF" color.state1="#FF0000" color.state2="#00FF00" color.state3="#FFFF00"/>
+		</s:fill>
+	</s:Ellipse>
+</s:MXAdvancedDataGridItemRenderer>

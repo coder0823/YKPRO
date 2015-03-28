@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<carsData>
+	<!-- 1.1暂时不用 -->
+		<selectableCorpData>
+			<dataset plateid="" corpid="" label="管道分公司" />
+			<dataset plateid="" corpid="" label="广东石油" />
+			<dataset plateid="" corpid="" label="广州石化" />
+			<dataset plateid="" corpid="" label="河南石油" />
+			<dataset plateid="" corpid="" label="河南油田" />
+			<dataset plateid="" corpid="" label="镇海炼化" />
+			<dataset plateid="" corpid="" label="燕山石化" />
+			<dataset plateid="" corpid="" label="茂名石化" />
+			<dataset plateid="" corpid="" label="江苏油田" />
+		</selectableCorpData>
+		<carsbyKind corpid="20000000" label="中国石化" carNumbers="3422" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="2334" URL=""
+					ratio="" />
+				<!-- 本处是合计数据，因此每个分类构成下面不带具体的车辆明细数据，只有具体企业的数据才带明细数据 -->
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="958" URL=""
+					ratio="" />
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="309" URL=""
+					ratio="" />
+				<kindData id="EXPRIED" label="过期" carNumbers="721" URL=""
+					ratio="" />
+		</carsbyKind>
+		<!-- 1.2构成数据 -->
+		<constituteData>
+			<dataset corpid="10" label="管道分公司" carNumbers="278" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="122" URL=""
+					ratio="">
+					<!-- 每一种类型需要以列表的方式显示具体的车辆信息，本处举出4条记录为例，下同 -->
+					<carData order="1" unitName="公司机关-机关小车队" carNO="苏RB0016"
+						carName="小轿车1" carModel="奥迪A6" carType="小型普通客车" color="黑"
+						inspectionCycle="两年" inspectionDate="2013-8-21" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="46" URL=""
+					ratio="">
+					<carData order="1" unitName="公司机关-机关小车队" carNO="苏RB0016"
+						carName="小轿车2" carModel="奥迪A6" carType="小型普通客车" color="黑"
+						inspectionCycle="两年" inspectionDate="2013-8-21" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="78" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="32" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+			<dataset corpid="20" label="河南油田" carNumbers="463" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="409" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="32" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="11" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="11" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+			<dataset corpid="30" label="河南石油" carNumbers="291" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="193" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="29" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="39" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="30" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+			<dataset corpid="40" label="镇海炼化" carNumbers="492" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="381" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="34" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="67" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="10" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+		</constituteData>
+	</carsData>
+	<driversData>
+		<driversbyKind corpid="20000000" label="中国石化" driverNumbers="3422" URL="">
+				<kindData id="NORMAL" label="正常" driverNumbers="334" URL=""
+					ratio="" />
+				<!-- 本处是合计数据，因此每个分类构成下面不带具体的车辆明细数据，只有具体企业的数据才带明细数据 -->
+				<kindData id="IN-M1" label="一个月内到期" driverNumbers="958" URL=""
+					ratio="" />
+				<kindData id="IN-M3" label="三个月内到期" driverNumbers="1309" URL=""
+					ratio="" />
+				<kindData id="EXPRIED" label="过期" driverNumbers="2721" URL=""
+					ratio="" />
+		</driversbyKind>
+		<constituteData>
+			<dataset corpid="10" label="管道分公司" carNumbers="278" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="122" URL=""
+					ratio="">
+					<!-- 每一种类型需要以列表的方式显示具体的车辆信息，本处举出4条记录为例，下同 -->
+					<carData order="1" unitName="公司机关-机关小车队" carNO="苏RB0016"
+						carName="小轿车1" carModel="奥迪A6" carType="小型普通客车" color="黑"
+						inspectionCycle="两年" inspectionDate="2013-8-21" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="46" URL=""
+					ratio="">
+					<carData order="1" unitName="公司机关-机关小车队" carNO="苏RB0016"
+						carName="小轿车2" carModel="奥迪A6" carType="小型普通客车" color="黑"
+						inspectionCycle="两年" inspectionDate="2013-8-21" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="78" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="32" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+			<dataset corpid="20" label="河南油田" carNumbers="463" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="409" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="32" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="11" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="11" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+			<dataset corpid="30" label="河南石油" carNumbers="291" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="193" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="29" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="39" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="30" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+			<dataset corpid="40" label="镇海炼化" carNumbers="492" URL="">
+				<kindData id="NORMAL" label="正常" carNumbers="381" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M1" label="一个月内到期" carNumbers="34" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="IN-M3" label="三个月内到期" carNumbers="67" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+				<kindData id="EXPRIED" label="过期" carNumbers="10" URL=""
+					ratio="">
+					<carData order="1" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="2" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="3" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+					<carData order="4" unitName="" carNO="" carName="" carModel=""
+						carType="" color="" inspectionCycle="" inspectionDate="" />
+				</kindData>
+			</dataset>
+		</constituteData>
+	</driversData>
+</model>

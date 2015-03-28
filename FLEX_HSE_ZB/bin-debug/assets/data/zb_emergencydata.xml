@@ -1,0 +1,1530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2013" dataStartDate="" dataEndDate=""
+		timestamp=""></dataOutline>
+	<overallData>
+		<emergencyPlanData>
+			<byLevel>
+				<levelData id="00" label="全部" number="4171" ratio="0">
+					<plateData plateid="YT" label="油田" number="316" ratio="7.58">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="316" ratio="100.00" url="" >
+							<planInfo order="1" planName="预案名称" planTranslation="预案定义" 
+							planClassification="预案分类" planType="预案类型" planCompany="单位" planRecord="备案"
+							planGroupRecord="是否已集团公司备案" planLocalRecord="是否已地方政府备案" url=""/>
+								<planInfo order="1" planName="预案名称" planTranslation="预案定义" 
+							planClassification="预案分类" planType="预案类型" planCompany="单位" planRecord="备案"
+							planGroupRecord="是否已集团公司备案" planLocalRecord="是否已地方政府备案"/>
+								<planInfo order="1" planName="预案名称" planTranslation="预案定义" 
+							planClassification="预案分类" planType="预案类型" planCompany="单位" planRecord="备案"
+							planGroupRecord="是否已集团公司备案" planLocalRecord="是否已地方政府备案"/>
+						</dataset>
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="2024" ratio="48.53">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="554" ratio="27.37" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="649" ratio="32.07" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="194" ratio="9.58" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="64" ratio="3.16" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="132" ratio="6.52" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="431" ratio="21.29" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="1805" ratio="43.27">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="49" ratio="2.71" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="241" ratio="13.35" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="1515" ratio="83.93" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="26" ratio="0.62">
+						<dataset order="1" subCorpid="201049" subCorpname="宁波工程公司"
+							number="26" ratio="100.00" />
+					</plateData>
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+				</levelData>
+				<levelData id="LEVEL-1" label="综合预案" number="324" ratio="7.77">
+					<plateData plateid="YT" label="油田" number="32" ratio="9.88">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="32" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="134" ratio="41.36">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="30" ratio="22.39" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="66" ratio="49.25" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="2" ratio="1.49" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="13" ratio="9.70" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="13" ratio="9.70" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="10" ratio="7.46" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="155" ratio="47.84">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="1" ratio="0.65" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="84" ratio="54.19" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="70" ratio="45.16" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="3" ratio="0.93">
+						<dataset order="1" subCorpid="201049" subCorpname="宁波工程公司"
+							number="3" ratio="100.00" />
+					</plateData>
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="324">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="1" ratio="0.31" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="30" ratio="9.26" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="84" ratio="25.93" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="66" ratio="20.37" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="32" ratio="9.88" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="2" ratio="0.62" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="13" ratio="4.01" />
+						<dataset order="8" subCorpid="201049" subCorpname="宁波工程公司"
+							number="3" ratio="0.93" />
+						<dataset order="9" subCorpid="302073" subCorpname="山东石油"
+							number="70" ratio="21.60" />
+						<dataset order="10" subCorpid="502066" subCorpname="石家庄炼化"
+							number="13" ratio="4.01" />
+						<dataset order="11" subCorpid="101006" subCorpname="燕山石化"
+							number="10" ratio="3.09" />
+					</plateData>
+				</levelData>
+				<levelData id="LEVEL-2" label="专项预案" number="1185" ratio="28.41">
+					<plateData plateid="YT" label="油田" number="120" ratio="10.13">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="120" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="654" ratio="55.19">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="190" ratio="29.05" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="212" ratio="32.42" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="39" ratio="5.96" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="41" ratio="6.27" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="32" ratio="4.89" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="140" ratio="21.41" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="388" ratio="32.74">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="34" ratio="8.76" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="38" ratio="9.79" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="316" ratio="81.44" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="23" ratio="1.94">
+						<dataset order="1" subCorpid="201049" subCorpname="宁波工程公司"
+							number="23" ratio="100.00" />
+					</plateData>
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="1185">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="34" ratio="2.87" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="190" ratio="16.03" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="38" ratio="3.21" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="212" ratio="17.89" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="120" ratio="10.13" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="39" ratio="3.29" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="41" ratio="3.46" />
+						<dataset order="8" subCorpid="201049" subCorpname="宁波工程公司"
+							number="23" ratio="1.94" />
+						<dataset order="9" subCorpid="302073" subCorpname="山东石油"
+							number="316" ratio="26.67" />
+						<dataset order="10" subCorpid="502066" subCorpname="石家庄炼化"
+							number="32" ratio="2.70" />
+						<dataset order="11" subCorpid="101006" subCorpname="燕山石化"
+							number="140" ratio="11.81" />
+					</plateData>
+				</levelData>
+				<levelData id="LEVEL-3" label="现场预案" number="2658" ratio="63.73">
+					<plateData plateid="YT" label="油田" number="164" ratio="6.17">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="164" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="1232" ratio="46.35">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="334" ratio="27.11" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="371" ratio="30.11" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="149" ratio="12.09" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="10" ratio="0.81" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="87" ratio="7.06" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="281" ratio="22.81" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="1262" ratio="47.48">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="14" ratio="1.11" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="119" ratio="9.43" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="1129" ratio="89.46" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="0" ratio="0.00" />
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="2658">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="14" ratio="0.53" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="334" ratio="12.57" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="119" ratio="4.48" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="371" ratio="13.96" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="164" ratio="6.17" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="149" ratio="5.61" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="10" ratio="0.38" />
+						<dataset order="8" subCorpid="302073" subCorpname="山东石油"
+							number="1129" ratio="42.48" />
+						<dataset order="9" subCorpid="502066" subCorpname="石家庄炼化"
+							number="87" ratio="3.27" />
+						<dataset order="10" subCorpid="101006" subCorpname="燕山石化"
+							number="281" ratio="10.57" />
+					</plateData>
+				</levelData>
+				<levelData id="LEVEL-4" label="灭火预案" number="4" ratio="0.10">
+					<plateData plateid="YT" label="油田" number="0" ratio="0.00" />
+					<plateData plateid="LH" label="炼化" number="4" ratio="100.00">
+						<dataset order="1" subCorpid="402072" subCorpname="洛阳分公司"
+							number="4" ratio="100.00" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="0" ratio="0.00" />
+					<plateData plateid="GC" label="工程" number="0" ratio="0.00" />
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="4">
+						<dataset order="1" subCorpid="402072" subCorpname="洛阳分公司"
+							number="4" ratio="100.00" />
+					</plateData>
+				</levelData>
+			</byLevel>
+			<byKind>
+				<kindData id="00" label="全部" number="3293" ratio="0">
+					<plateData plateid="YT" label="油田" number="261" ratio="7.93">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="261" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="1658" ratio="50.35">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="458" ratio="27.62" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="482" ratio="29.07" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="185" ratio="11.16" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="50" ratio="3.02" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="89" ratio="5.37" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="394" ratio="23.76" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="1362" ratio="41.36">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="49" ratio="3.60" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="159" ratio="11.67" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="1154" ratio="84.73" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="12" ratio="0.36">
+						<dataset order="1" subCorpid="201049" subCorpname="宁波工程公司"
+							number="12" ratio="100.00" />
+					</plateData>
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="3293">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="49" ratio="1.49" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="458" ratio="13.91" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="159" ratio="4.83" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="482" ratio="14.64" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="261" ratio="7.93" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="185" ratio="5.62" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="50" ratio="1.52" />
+						<dataset order="8" subCorpid="201049" subCorpname="宁波工程公司"
+							number="12" ratio="0.36" />
+						<dataset order="9" subCorpid="302073" subCorpname="山东石油"
+							number="1154" ratio="35.04" />
+						<dataset order="10" subCorpid="502066" subCorpname="石家庄炼化"
+							number="89" ratio="2.70" />
+						<dataset order="11" subCorpid="101006" subCorpname="燕山石化"
+							number="394" ratio="11.96" />
+					</plateData>
+				</kindData>
+				<kindData id="KIND-A" label="工业生产类" number="2183" ratio="66.29">
+					<plateData plateid="YT" label="油田" number="175" ratio="8.02">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="175" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="1311" ratio="60.05">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="316" ratio="24.10" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="439" ratio="33.49" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="165" ratio="12.59" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="34" ratio="2.59" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="73" ratio="5.57" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="284" ratio="21.66" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="688" ratio="31.52">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="38" ratio="5.52" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="141" ratio="20.49" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="509" ratio="73.98" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="9" ratio="0.41">
+						<dataset order="1" subCorpid="201049" subCorpname="宁波工程公司"
+							number="9" ratio="100.00" />
+					</plateData>
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="2183">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="38" ratio="1.74" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="316" ratio="14.48" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="141" ratio="6.46" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="439" ratio="20.11" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="175" ratio="8.02" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="165" ratio="7.56" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="34" ratio="1.56" />
+						<dataset order="8" subCorpid="201049" subCorpname="宁波工程公司"
+							number="9" ratio="0.41" />
+						<dataset order="9" subCorpid="302073" subCorpname="山东石油"
+							number="509" ratio="23.32" />
+						<dataset order="10" subCorpid="502066" subCorpname="石家庄炼化"
+							number="73" ratio="3.34" />
+						<dataset order="11" subCorpid="101006" subCorpname="燕山石化"
+							number="284" ratio="13.01" />
+					</plateData>
+				</kindData>
+				<kindData id="KIND-B" label="公共卫生类" number="147" ratio="4.46">
+					<plateData plateid="YT" label="油田" number="14" ratio="9.52">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="14" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="64" ratio="43.54">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="20" ratio="31.25" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="5" ratio="7.81" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="4" ratio="6.25" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="2" ratio="3.13" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="1" ratio="1.56" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="32" ratio="50.00" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="69" ratio="46.94">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="1" ratio="1.45" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="2" ratio="2.90" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="66" ratio="95.65" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="0" ratio="0.00" />
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="147">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="1" ratio="0.68" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="20" ratio="13.61" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="2" ratio="1.36" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="5" ratio="3.40" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="14" ratio="9.52" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="4" ratio="2.72" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="2" ratio="1.36" />
+						<dataset order="8" subCorpid="302073" subCorpname="山东石油"
+							number="66" ratio="44.90" />
+						<dataset order="9" subCorpid="502066" subCorpname="石家庄炼化"
+							number="1" ratio="0.68" />
+						<dataset order="10" subCorpid="101006" subCorpname="燕山石化"
+							number="32" ratio="21.77" />
+					</plateData>
+				</kindData>
+				<kindData id="KIND-C" label="社会安全类" number="500" ratio="15.18">
+					<plateData plateid="YT" label="油田" number="26" ratio="5.20">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="26" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="92" ratio="18.40">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="51" ratio="55.43" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="5" ratio="5.43" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="8" ratio="8.70" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="5" ratio="5.43" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="5" ratio="5.43" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="18" ratio="19.57" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="381" ratio="76.20">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="5" ratio="1.31" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="6" ratio="1.57" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="370" ratio="97.11" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="1" ratio="0.20">
+						<dataset order="1" subCorpid="201049" subCorpname="宁波工程公司"
+							number="1" ratio="100.00" />
+					</plateData>
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="500">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="5" ratio="1.00" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="51" ratio="10.20" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="6" ratio="1.20" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="5" ratio="1.00" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="26" ratio="5.20" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="8" ratio="1.60" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="5" ratio="1.00" />
+						<dataset order="8" subCorpid="201049" subCorpname="宁波工程公司"
+							number="1" ratio="0.20" />
+						<dataset order="9" subCorpid="302073" subCorpname="山东石油"
+							number="370" ratio="74.00" />
+						<dataset order="10" subCorpid="502066" subCorpname="石家庄炼化"
+							number="5" ratio="1.00" />
+						<dataset order="11" subCorpid="101006" subCorpname="燕山石化"
+							number="18" ratio="3.60" />
+					</plateData>
+				</kindData>
+				<kindData id="KIND-D" label="自然灾害类" number="463" ratio="14.06">
+					<plateData plateid="YT" label="油田" number="46" ratio="9.94">
+						<dataset order="1" subCorpid="600001" subCorpname="江苏油田"
+							number="46" ratio="100.00" />
+					</plateData>
+					<plateData plateid="LH" label="炼化" number="191" ratio="41.25">
+						<dataset order="1" subCorpid="902067" subCorpname="管道分公司"
+							number="71" ratio="37.17" />
+						<dataset order="2" subCorpid="702069" subCorpname="广州石化"
+							number="33" ratio="17.28" />
+						<dataset order="3" subCorpid="402072" subCorpname="洛阳分公司"
+							number="8" ratio="4.19" />
+						<dataset order="4" subCorpid="1002065" subCorpname="茂名石化"
+							number="9" ratio="4.71" />
+						<dataset order="5" subCorpid="502066" subCorpname="石家庄炼化"
+							number="10" ratio="5.24" />
+						<dataset order="6" subCorpid="101006" subCorpname="燕山石化"
+							number="60" ratio="31.41" />
+					</plateData>
+					<plateData plateid="XS" label="销售" number="224" ratio="48.38">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="5" ratio="2.23" />
+						<dataset order="2" subCorpid="802068" subCorpname="广东石油"
+							number="10" ratio="4.46" />
+						<dataset order="3" subCorpid="302073" subCorpname="山东石油"
+							number="209" ratio="93.30" />
+					</plateData>
+					<plateData plateid="GC" label="工程" number="2" ratio="0.43">
+						<dataset order="1" subCorpid="201049" subCorpname="宁波工程公司"
+							number="2" ratio="100.00" />
+					</plateData>
+					<plateData plateid="QT" label="其它" number="0" ratio="0.00" />
+					<plateData plateid="00" label="小计" number="463">
+						<dataset order="1" subCorpid="1022" subCorpname="北京石油"
+							number="5" ratio="1.08" />
+						<dataset order="2" subCorpid="902067" subCorpname="管道分公司"
+							number="71" ratio="15.33" />
+						<dataset order="3" subCorpid="802068" subCorpname="广东石油"
+							number="10" ratio="2.16" />
+						<dataset order="4" subCorpid="702069" subCorpname="广州石化"
+							number="33" ratio="7.13" />
+						<dataset order="5" subCorpid="600001" subCorpname="江苏油田"
+							number="46" ratio="9.94" />
+						<dataset order="6" subCorpid="402072" subCorpname="洛阳分公司"
+							number="8" ratio="1.73" />
+						<dataset order="7" subCorpid="1002065" subCorpname="茂名石化"
+							number="9" ratio="1.94" />
+						<dataset order="8" subCorpid="201049" subCorpname="宁波工程公司"
+							number="2" ratio="0.43" />
+						<dataset order="9" subCorpid="302073" subCorpname="山东石油"
+							number="209" ratio="45.14" />
+						<dataset order="10" subCorpid="502066" subCorpname="石家庄炼化"
+							number="10" ratio="2.16" />
+						<dataset order="11" subCorpid="101006" subCorpname="燕山石化"
+							number="60" ratio="12.96" />
+					</plateData>
+				</kindData>
+			</byKind>
+		</emergencyPlanData>
+		<emergencyKindData fireBrigadeNumber="182"
+			fireEngineNumber="192">
+			<plateData fireBrigadeNumber="21" fireEngineNumber="12"
+				plateid="YT" label="油田">
+				<dataset fireBrigadeNumber="2" fireEngineNumber="0" order="1"
+					subCorpid="245" subCorpname="普光油田" />
+				<dataset fireBrigadeNumber="9" fireEngineNumber="12" order="2"
+					subCorpid="600001" subCorpname="江苏油田" />
+				<dataset fireBrigadeNumber="8" fireEngineNumber="0" order="3"
+					subCorpid="230" subCorpname="河南油田" />
+				<dataset fireBrigadeNumber="2" fireEngineNumber="0" order="4"
+					subCorpid="250" subCorpname="胜利油田" />
+			</plateData>
+			<plateData fireBrigadeNumber="39" fireEngineNumber="154"
+				plateid="LH" label="炼化">
+				<dataset fireBrigadeNumber="2" fireEngineNumber="13" order="1"
+					subCorpid="502066" subCorpname="石家庄炼化" />
+				<dataset fireBrigadeNumber="13" fireEngineNumber="24" order="2"
+					subCorpid="902067" subCorpname="管道分公司" />
+				<dataset fireBrigadeNumber="8" fireEngineNumber="0" order="3"
+					subCorpid="25" subCorpname="扬子石化" />
+				<dataset fireBrigadeNumber="6" fireEngineNumber="29" order="4"
+					subCorpid="702069" subCorpname="广州石化" />
+				<dataset fireBrigadeNumber="5" fireEngineNumber="15" order="5"
+					subCorpid="402072" subCorpname="洛阳分公司" />
+				<dataset fireBrigadeNumber="4" fireEngineNumber="36" order="6"
+					subCorpid="1002065" subCorpname="茂名石化" />
+				<dataset fireBrigadeNumber="1" fireEngineNumber="0" order="7"
+					subCorpid="1124" subCorpname="镇海炼化" />
+				<dataset fireBrigadeNumber="0" fireEngineNumber="37" order="8"
+					subCorpid="101006" subCorpname="燕山石化" />
+			</plateData>
+			<plateData fireBrigadeNumber="119" fireEngineNumber="22"
+				plateid="XS" label="销售">
+				<dataset fireBrigadeNumber="27" fireEngineNumber="0" order="1"
+					subCorpid="225" subCorpname="河南石油" />
+				<dataset fireBrigadeNumber="3" fireEngineNumber="4" order="2"
+					subCorpid="1022" subCorpname="北京石油" />
+				<dataset fireBrigadeNumber="11" fireEngineNumber="0" order="3"
+					subCorpid="235" subCorpname="浙江石油" />
+				<dataset fireBrigadeNumber="24" fireEngineNumber="12" order="4"
+					subCorpid="802068" subCorpname="广东石油" />
+				<dataset fireBrigadeNumber="54" fireEngineNumber="6" order="5"
+					subCorpid="302073" subCorpname="山东石油" />
+			</plateData>
+			<plateData fireBrigadeNumber="3" fireEngineNumber="4"
+				plateid="GC" label="工程">
+				<dataset fireBrigadeNumber="3" fireEngineNumber="4" order="1"
+					subCorpid="201049" subCorpname="宁波工程公司" />
+			</plateData>
+			<plateData fireBrigadeNumber="0" fireEngineNumber="0"
+				plateid="QT" label="其它" />
+			<plateData fireBrigadeNumber="182" fireEngineNumber="192"
+				plateid="00" label="小计">
+				<dataset fireBrigadeNumber="2" fireEngineNumber="0" order="1"
+					subCorpid="245" subCorpname="普光油田" />
+				<dataset fireBrigadeNumber="9" fireEngineNumber="12" order="2"
+					subCorpid="600001" subCorpname="江苏油田" />
+				<dataset fireBrigadeNumber="27" fireEngineNumber="0" order="3"
+					subCorpid="225" subCorpname="河南石油" />
+				<dataset fireBrigadeNumber="2" fireEngineNumber="13" order="4"
+					subCorpid="502066" subCorpname="石家庄炼化" />
+				<dataset fireBrigadeNumber="13" fireEngineNumber="24" order="5"
+					subCorpid="902067" subCorpname="管道分公司" />
+				<dataset fireBrigadeNumber="8" fireEngineNumber="0" order="6"
+					subCorpid="25" subCorpname="扬子石化" />
+				<dataset fireBrigadeNumber="3" fireEngineNumber="4" order="7"
+					subCorpid="1022" subCorpname="北京石油" />
+				<dataset fireBrigadeNumber="6" fireEngineNumber="29" order="8"
+					subCorpid="702069" subCorpname="广州石化" />
+				<dataset fireBrigadeNumber="8" fireEngineNumber="0" order="9"
+					subCorpid="230" subCorpname="河南油田" />
+				<dataset fireBrigadeNumber="11" fireEngineNumber="0" order="10"
+					subCorpid="235" subCorpname="浙江石油" />
+				<dataset fireBrigadeNumber="24" fireEngineNumber="12" order="11"
+					subCorpid="802068" subCorpname="广东石油" />
+				<dataset fireBrigadeNumber="3" fireEngineNumber="4" order="12"
+					subCorpid="201049" subCorpname="宁波工程公司" />
+				<dataset fireBrigadeNumber="5" fireEngineNumber="15" order="13"
+					subCorpid="402072" subCorpname="洛阳分公司" />
+				<dataset fireBrigadeNumber="4" fireEngineNumber="36" order="14"
+					subCorpid="1002065" subCorpname="茂名石化" />
+				<dataset fireBrigadeNumber="54" fireEngineNumber="6" order="15"
+					subCorpid="302073" subCorpname="山东石油" />
+				<dataset fireBrigadeNumber="1" fireEngineNumber="0" order="16"
+					subCorpid="1124" subCorpname="镇海炼化" />
+				<dataset fireBrigadeNumber="2" fireEngineNumber="0" order="17"
+					subCorpid="250" subCorpname="胜利油田" />
+				<dataset fireBrigadeNumber="0" fireEngineNumber="37" order="18"
+					subCorpid="101006" subCorpname="燕山石化" />
+			</plateData>
+		</emergencyKindData>
+		<emergencyDrillsData>
+			<byLevel>
+				<levelData planNumber="1652" finishedNumber="786" standardNumber="333"
+					remainderNumber="866" finishedRatio="47.58" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="LEVEL-1" label="企业级">
+					<plateData planNumber="93" finishedNumber="43" standardNumber="333"
+						remainderNumber="50" finishedRatio="46.24" averageFishedRatio="47.58"
+						calendarRatio="100.00" plateid="YT" label="油田">
+						<dataset planNumber="93" finishedNumber="43" planRatio="33"
+							remainderNumber="50" finishedRatio="46.24" averageFishedRatio="46.24"
+							calendarRatio="0" order="1" subCorpid="600001" subCorpname="江苏油田" >
+							<planInfo order="1" planName="演练计划名称" planTime="计划演练时间" 
+							planCompany="演练单位" planLevel="演练级别" planType="演练类型" />
+							<planInfo order="1" planName="演练计划名称" planTime="计划演练时间" 
+							planCompany="演练单位" planLevel="演练级别" planType="演练类型" />
+							<planInfo order="1" planName="演练计划名称" planTime="计划演练时间" 
+							planCompany="演练单位" planLevel="演练级别" planType="演练类型" />
+							
+						</dataset>	
+					</plateData>
+					<plateData planNumber="53" finishedNumber="17" standardNumber="333"
+						remainderNumber="36" finishedRatio="32.08" averageFishedRatio="47.58"
+						calendarRatio="100.00" plateid="LH" label="炼化">
+						<dataset planNumber="2" finishedNumber="2" planRatio="33"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="32.08"
+							calendarRatio="0" order="1" subCorpid="402072" subCorpname="洛阳分公司" />
+						<dataset planNumber="1" finishedNumber="0" planRatio="33"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="32.08"
+							calendarRatio="0" order="2" subCorpid="502066" subCorpname="石家庄炼化" />
+						<dataset planNumber="50" finishedNumber="15" planRatio="33"
+							remainderNumber="35" finishedRatio="30.00" averageFishedRatio="32.08"
+							calendarRatio="0" order="3" subCorpid="902067" subCorpname="管道分公司" />
+					</plateData>
+					<plateData planNumber="1505" finishedNumber="726" standardNumber="333"
+						remainderNumber="779" finishedRatio="48.24" averageFishedRatio="47.58"
+						calendarRatio="100.00" plateid="XS" label="销售">
+						<dataset planNumber="8" finishedNumber="8" planRatio="33"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="48.24"
+							calendarRatio="0" order="1" subCorpid="1022" subCorpname="北京石油" />
+						<dataset planNumber="1497" finishedNumber="718" planRatio="33"
+							remainderNumber="779" finishedRatio="47.96" averageFishedRatio="48.24"
+							calendarRatio="0" order="2" subCorpid="302073" subCorpname="山东石油" />
+					</plateData>
+					<plateData planNumber="1" finishedNumber="0" standardNumber="333"
+						remainderNumber="1" finishedRatio="0.00" averageFishedRatio="47.58"
+						calendarRatio="100.00" plateid="GC" label="工程">
+						<dataset planNumber="1" finishedNumber="0" planRatio="33"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="0.00"
+							calendarRatio="0" order="1" subCorpid="201049" subCorpname="宁波工程公司" />
+					</plateData>
+					<plateData planNumber="0" finishedNumber="0" standardNumber="333"
+						remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="QT" label="其它" />
+					<plateData planNumber="1652" finishedNumber="786" standardNumber="333"
+						remainderNumber="866" finishedRatio="47.58" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="00" label="小计">
+						<dataset planNumber="1" finishedNumber="0" planRatio="33"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="47.58"
+							calendarRatio="100.00" order="1" subCorpid="201049" subCorpname="宁波工程公司" />
+						<dataset planNumber="2" finishedNumber="2" planRatio="33"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="47.58"
+							calendarRatio="100.00" order="2" subCorpid="402072" subCorpname="洛阳分公司" />
+						<dataset planNumber="1" finishedNumber="0" planRatio="33"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="47.58"
+							calendarRatio="100.00" order="3" subCorpid="502066" subCorpname="石家庄炼化" />
+						<dataset planNumber="50" finishedNumber="15" planRatio="33"
+							remainderNumber="35" finishedRatio="30.00" averageFishedRatio="47.58"
+							calendarRatio="100.00" order="4" subCorpid="902067" subCorpname="管道分公司" />
+						<dataset planNumber="8" finishedNumber="8" planRatio="33"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="47.58"
+							calendarRatio="100.00" order="5" subCorpid="1022" subCorpname="北京石油" />
+						<dataset planNumber="1497" finishedNumber="718" planRatio="33"
+							remainderNumber="779" finishedRatio="47.96" averageFishedRatio="47.58"
+							calendarRatio="100.00" order="6" subCorpid="302073" subCorpname="山东石油" />
+						<dataset planNumber="93" finishedNumber="43" planRatio="33"
+							remainderNumber="50" finishedRatio="46.24" averageFishedRatio="47.58"
+							calendarRatio="100.00" order="7" subCorpid="600001" subCorpname="江苏油田" />
+					</plateData>
+				</levelData>
+			</byLevel>
+			<byKind>
+				<kindData planNumber="1546" finishedNumber="741" standardNumber="333"
+					remainderNumber="805" finishedRatio="47.93" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-A" label="桌面演练">
+					<plateData planNumber="79" finishedNumber="37"
+						remainderNumber="42" finishedRatio="46.84" averageFishedRatio="47.93"
+						calendarRatio="100.00" plateid="YT" label="油田">
+						<dataset planNumber="79" finishedNumber="37"
+							remainderNumber="42" finishedRatio="46.84" averageFishedRatio="46.84"
+							calendarRatio="0" order="1" subCorpid="600001" subCorpname="江苏油田" />
+					</plateData>
+					<plateData planNumber="16" finishedNumber="7" standardNumber="333"
+						remainderNumber="9" finishedRatio="43.75" averageFishedRatio="47.93"
+						calendarRatio="100.00" plateid="LH" label="炼化">
+						<dataset planNumber="2" finishedNumber="2"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="43.75"
+							calendarRatio="0" order="1" subCorpid="402072" subCorpname="洛阳分公司" />
+						<dataset planNumber="1" finishedNumber="0"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="43.75"
+							calendarRatio="0" order="2" subCorpid="502066" subCorpname="石家庄炼化" />
+						<dataset planNumber="13" finishedNumber="5"
+							remainderNumber="8" finishedRatio="38.46" averageFishedRatio="43.75"
+							calendarRatio="0" order="3" subCorpid="902067" subCorpname="管道分公司" />
+					</plateData>
+					<plateData planNumber="1450" finishedNumber="697" standardNumber="333"
+						remainderNumber="753" finishedRatio="48.07" averageFishedRatio="47.93"
+						calendarRatio="100.00" plateid="XS" label="销售">
+						<dataset planNumber="4" finishedNumber="4"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="48.07"
+							calendarRatio="0" order="1" subCorpid="1022" subCorpname="北京石油" />
+						<dataset planNumber="1446" finishedNumber="693"
+							remainderNumber="753" finishedRatio="47.93" averageFishedRatio="48.07"
+							calendarRatio="0" order="2" subCorpid="302073" subCorpname="山东石油" />
+					</plateData>
+					<plateData planNumber="1" finishedNumber="0" standardNumber="333"
+						remainderNumber="1" finishedRatio="0.00" averageFishedRatio="47.93"
+						calendarRatio="100.00" plateid="GC" label="工程">
+						<dataset planNumber="1" finishedNumber="0"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="0.00"
+							calendarRatio="0" order="1" subCorpid="201049" subCorpname="宁波工程公司" />
+					</plateData>
+					<plateData planNumber="0" finishedNumber="0" standardNumber="333"
+						remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="QT" label="其它" />
+					<plateData planNumber="1546" finishedNumber="741" standardNumber="333"
+						remainderNumber="805" finishedRatio="47.93" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="00" label="小计">
+						<dataset planNumber="1" finishedNumber="0"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="47.93"
+							calendarRatio="100.00" order="1" subCorpid="201049" subCorpname="宁波工程公司" />
+						<dataset planNumber="2" finishedNumber="2"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="47.93"
+							calendarRatio="100.00" order="2" subCorpid="402072" subCorpname="洛阳分公司" />
+						<dataset planNumber="1" finishedNumber="0"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="47.93"
+							calendarRatio="100.00" order="3" subCorpid="502066" subCorpname="石家庄炼化" />
+						<dataset planNumber="13" finishedNumber="5"
+							remainderNumber="8" finishedRatio="38.46" averageFishedRatio="47.93"
+							calendarRatio="100.00" order="4" subCorpid="902067" subCorpname="管道分公司" />
+						<dataset planNumber="4" finishedNumber="4"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="47.93"
+							calendarRatio="100.00" order="5" subCorpid="1022" subCorpname="北京石油" />
+						<dataset planNumber="1446" finishedNumber="693"
+							remainderNumber="753" finishedRatio="47.93" averageFishedRatio="47.93"
+							calendarRatio="100.00" order="6" subCorpid="302073" subCorpname="山东石油" />
+						<dataset planNumber="79" finishedNumber="37"
+							remainderNumber="42" finishedRatio="46.84" averageFishedRatio="47.93"
+							calendarRatio="100.00" order="7" subCorpid="600001" subCorpname="江苏油田" />
+					</plateData>
+				</kindData>
+				<kindData planNumber="82" finishedNumber="41"
+					remainderNumber="41" finishedRatio="50.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-B" label="现场演练">
+					<plateData planNumber="11" finishedNumber="6" standardNumber="333"
+						remainderNumber="5" finishedRatio="54.55" averageFishedRatio="50.00"
+						calendarRatio="100.00" plateid="YT" label="油田">
+						<dataset planNumber="11" finishedNumber="6"
+							remainderNumber="5" finishedRatio="54.55" averageFishedRatio="54.55"
+							calendarRatio="0" order="1" subCorpid="600001" subCorpname="江苏油田" />
+					</plateData>
+					<plateData planNumber="17" finishedNumber="6" standardNumber="333"
+						remainderNumber="11" finishedRatio="35.29" averageFishedRatio="50.00"
+						calendarRatio="100.00" plateid="LH" label="炼化">
+						<dataset planNumber="17" finishedNumber="6"
+							remainderNumber="11" finishedRatio="35.29" averageFishedRatio="35.29"
+							calendarRatio="0" order="1" subCorpid="902067" subCorpname="管道分公司" />
+					</plateData>
+					<plateData planNumber="54" finishedNumber="29" standardNumber="333"
+						remainderNumber="25" finishedRatio="53.70" averageFishedRatio="50.00"
+						calendarRatio="100.00" plateid="XS" label="销售">
+						<dataset planNumber="4" finishedNumber="4"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="53.70"
+							calendarRatio="0" order="1" subCorpid="1022" subCorpname="北京石油" />
+						<dataset planNumber="50" finishedNumber="25"
+							remainderNumber="25" finishedRatio="50.00" averageFishedRatio="53.70"
+							calendarRatio="0" order="2" subCorpid="302073" subCorpname="山东石油" />
+					</plateData>
+					<plateData planNumber="0" finishedNumber="0" standardNumber="333"
+						remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="GC" label="工程" />
+					<plateData planNumber="0" finishedNumber="0" standardNumber="333"
+						remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="QT" label="其它" />
+					<plateData planNumber="82" finishedNumber="41" standardNumber="333"
+						remainderNumber="41" finishedRatio="50.00" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="00" label="小计">
+						<dataset planNumber="17" finishedNumber="6"
+							remainderNumber="11" finishedRatio="35.29" averageFishedRatio="50.00"
+							calendarRatio="100.00" order="1" subCorpid="902067" subCorpname="管道分公司" />
+						<dataset planNumber="4" finishedNumber="4"
+							remainderNumber="0" finishedRatio="100.00" averageFishedRatio="50.00"
+							calendarRatio="100.00" order="2" subCorpid="1022" subCorpname="北京石油" />
+						<dataset planNumber="50" finishedNumber="25"
+							remainderNumber="25" finishedRatio="50.00" averageFishedRatio="50.00"
+							calendarRatio="100.00" order="3" subCorpid="302073" subCorpname="山东石油" />
+						<dataset planNumber="11" finishedNumber="6"
+							remainderNumber="5" finishedRatio="54.55" averageFishedRatio="50.00"
+							calendarRatio="100.00" order="4" subCorpid="600001" subCorpname="江苏油田" />
+					</plateData>
+				</kindData>
+				<kindData planNumber="24" finishedNumber="4"
+					remainderNumber="20" finishedRatio="16.67" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-C" label="联合演练与地方、其他协议单位">
+					<plateData planNumber="3" finishedNumber="0" standardNumber="333"
+						remainderNumber="3" finishedRatio="0.00" averageFishedRatio="16.67"
+						calendarRatio="100.00" plateid="YT" label="油田">
+						<dataset planNumber="3" finishedNumber="0"
+							remainderNumber="3" finishedRatio="0.00" averageFishedRatio="0.00"
+							calendarRatio="0" order="1" subCorpid="600001" subCorpname="江苏油田" />
+					</plateData>
+					<plateData planNumber="20" finishedNumber="4" standardNumber="333"
+						remainderNumber="16" finishedRatio="20.00" averageFishedRatio="16.67"
+						calendarRatio="100.00" plateid="LH" label="炼化">
+						<dataset planNumber="20" finishedNumber="4"
+							remainderNumber="16" finishedRatio="20.00" averageFishedRatio="20.00"
+							calendarRatio="0" order="1" subCorpid="902067" subCorpname="管道分公司" />
+					</plateData>
+					<plateData planNumber="1" finishedNumber="0" standardNumber="333"
+						remainderNumber="1" finishedRatio="0.00" averageFishedRatio="16.67"
+						calendarRatio="100.00" plateid="XS" label="销售">
+						<dataset planNumber="1" finishedNumber="0"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="0.00"
+							calendarRatio="0" order="1" subCorpid="302073" subCorpname="山东石油" />
+					</plateData>
+					<plateData planNumber="0" finishedNumber="0" standardNumber="333"
+						remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="GC" label="工程" />
+					<plateData planNumber="0" finishedNumber="0" standardNumber="333"
+						remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="QT" label="其它" />
+					<plateData planNumber="24" finishedNumber="4" standardNumber="333"
+						remainderNumber="20" finishedRatio="16.67" averageFishedRatio="0.00"
+						calendarRatio="100.00" plateid="00" label="小计">
+						<dataset planNumber="20" finishedNumber="4"
+							remainderNumber="16" finishedRatio="20.00" averageFishedRatio="16.67"
+							calendarRatio="100.00" order="1" subCorpid="902067" subCorpname="管道分公司" />
+						<dataset planNumber="1" finishedNumber="0"
+							remainderNumber="1" finishedRatio="0.00" averageFishedRatio="16.67"
+							calendarRatio="100.00" order="2" subCorpid="302073" subCorpname="山东石油" />
+						<dataset planNumber="3" finishedNumber="0"
+							remainderNumber="3" finishedRatio="0.00" averageFishedRatio="16.67"
+							calendarRatio="100.00" order="3" subCorpid="600001" subCorpname="江苏油田" />
+					</plateData>
+				</kindData>
+			</byKind>
+		</emergencyDrillsData>
+		<emergencySuppliesData>
+			<plateData plateid="00" label="全部">
+				<suppliesData numbers="201" id="SUPPLY-A" label="个体防护">
+					<dataset numbers="14" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="2" order="2" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+					<dataset numbers="45" order="3" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="33" order="4" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="31" order="5" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="6" order="6" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="40" order="7" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="25" order="8" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="5" order="9" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="203" id="SUPPLY-B" label="救护车辆">
+					<dataset numbers="3" order="1" subCorpid="250" subCorpname="胜利油田" />
+					<dataset numbers="5" order="2" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="8" order="3" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+					<dataset numbers="129" order="4" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="11" order="5" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="23" order="6" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="3" order="7" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="13" order="8" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="7" order="9" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="10" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="135" id="SUPPLY-C" label="带压堵漏">
+					<dataset numbers="26" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="10" order="2" subCorpid="101006"
+						subCorpname="燕山石化" />
+					<dataset numbers="68" order="3" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="22" order="4" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="9" order="5" subCorpid="902067"
+						subCorpname="管道分公司" />
+				</suppliesData>
+				<suppliesData numbers="1986" id="SUPPLY-D" label="消防">
+					<dataset numbers="1" order="1" subCorpid="250" subCorpname="胜利油田" />
+					<dataset numbers="9" order="2" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="2" order="3" subCorpid="101006"
+						subCorpname="燕山石化" />
+					<dataset numbers="8" order="4" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+					<dataset numbers="1681" order="5" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="43" order="6" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="61" order="7" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="18" order="8" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="114" order="9" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="48" order="10" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="11" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="53" id="SUPPLY-E" label="警戒物资">
+					<dataset numbers="3" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="2" order="2" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+					<dataset numbers="40" order="3" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="4" order="4" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="2" order="5" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="2" order="6" subCorpid="902067"
+						subCorpname="管道分公司" />
+				</suppliesData>
+				<suppliesData numbers="1472" id="SUPPLY-F" label="应急工具和材料">
+					<dataset numbers="15" order="1" subCorpid="250"
+						subCorpname="胜利油田" />
+					<dataset numbers="55" order="2" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="11" order="3" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+					<dataset numbers="603" order="4" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="5" order="5" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="46" order="6" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="18" order="7" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="339" order="8" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="368" order="9" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="12" order="10" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="67" id="SUPPLY-G" label="检测仪器">
+					<dataset numbers="3" order="1" subCorpid="250" subCorpname="胜利油田" />
+					<dataset numbers="1" order="2" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="29" order="3" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="16" order="4" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="10" order="5" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="1" order="6" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="6" order="7" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="8" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="42" id="SUPPLY-H" label="通讯器材">
+					<dataset numbers="1" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+					<dataset numbers="10" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="5" order="3" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="10" order="4" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="7" order="5" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="1" order="6" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="7" order="7" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="8" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="11" id="SUPPLY-I" label="运输车辆">
+					<dataset numbers="5" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+					<dataset numbers="1" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="2" order="3" subCorpid="802068"
+						subCorpname="广东石油" />
+					<dataset numbers="3" order="4" subCorpid="902067"
+						subCorpname="管道分公司" />
+				</suppliesData>
+				<suppliesData numbers="17" id="SUPPLY-J" label="水上溢油处理设备">
+					<dataset numbers="17" order="1" subCorpid="250"
+						subCorpname="胜利油田" />
+				</suppliesData>
+				<suppliesData numbers="1" id="SUPPLY-K" label="防洪抗震">
+					<dataset numbers="1" order="1" subCorpid="250" subCorpname="胜利油田" />
+				</suppliesData>
+			</plateData>
+			<plateData plateid="YT" label="油田">
+				<suppliesData numbers="0" id="SUPPLY-A" label="个体防护" />
+				<suppliesData numbers="3" id="SUPPLY-B" label="救护车辆">
+					<dataset numbers="3" order="1" subCorpid="250" subCorpname="胜利油田" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-C" label="带压堵漏" />
+				<suppliesData numbers="1" id="SUPPLY-D" label="消防">
+					<dataset numbers="1" order="1" subCorpid="250" subCorpname="胜利油田" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-E" label="警戒物资" />
+				<suppliesData numbers="15" id="SUPPLY-F" label="应急工具和材料">
+					<dataset numbers="15" order="1" subCorpid="250"
+						subCorpname="胜利油田" />
+				</suppliesData>
+				<suppliesData numbers="3" id="SUPPLY-G" label="检测仪器">
+					<dataset numbers="3" order="1" subCorpid="250" subCorpname="胜利油田" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-H" label="通讯器材" />
+				<suppliesData numbers="0" id="SUPPLY-I" label="运输车辆" />
+				<suppliesData numbers="17" id="SUPPLY-J" label="水上溢油处理设备">
+					<dataset numbers="17" order="1" subCorpid="250"
+						subCorpname="胜利油田" />
+				</suppliesData>
+				<suppliesData numbers="1" id="SUPPLY-K" label="防洪抗震">
+					<dataset numbers="1" order="1" subCorpid="250" subCorpname="胜利油田" />
+				</suppliesData>
+			</plateData>
+			<plateData plateid="LH" label="炼化">
+				<suppliesData numbers="100" id="SUPPLY-A" label="个体防护">
+					<dataset numbers="33" order="1" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="31" order="2" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="6" order="3" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="25" order="4" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="5" order="5" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="45" id="SUPPLY-B" label="救护车辆">
+					<dataset numbers="11" order="1" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="23" order="2" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="3" order="3" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="7" order="4" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="5" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="19" id="SUPPLY-C" label="带压堵漏">
+					<dataset numbers="10" order="1" subCorpid="101006"
+						subCorpname="燕山石化" />
+					<dataset numbers="9" order="2" subCorpid="902067"
+						subCorpname="管道分公司" />
+				</suppliesData>
+				<suppliesData numbers="173" id="SUPPLY-D" label="消防">
+					<dataset numbers="2" order="1" subCorpid="101006"
+						subCorpname="燕山石化" />
+					<dataset numbers="43" order="2" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="61" order="3" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="18" order="4" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="48" order="5" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="6" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="6" id="SUPPLY-E" label="警戒物资">
+					<dataset numbers="4" order="1" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="2" order="2" subCorpid="902067"
+						subCorpname="管道分公司" />
+				</suppliesData>
+				<suppliesData numbers="449" id="SUPPLY-F" label="应急工具和材料">
+					<dataset numbers="5" order="1" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="46" order="2" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="18" order="3" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="368" order="4" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="12" order="5" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="34" id="SUPPLY-G" label="检测仪器">
+					<dataset numbers="16" order="1" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="10" order="2" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="1" order="3" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="6" order="4" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="5" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="30" id="SUPPLY-H" label="通讯器材">
+					<dataset numbers="5" order="1" subCorpid="402072"
+						subCorpname="洛阳分公司" />
+					<dataset numbers="10" order="2" subCorpid="502066"
+						subCorpname="石家庄炼化" />
+					<dataset numbers="7" order="3" subCorpid="702069"
+						subCorpname="广州石化" />
+					<dataset numbers="7" order="4" subCorpid="902067"
+						subCorpname="管道分公司" />
+					<dataset numbers="1" order="5" subCorpid="1002065"
+						subCorpname="茂名石化" />
+				</suppliesData>
+				<suppliesData numbers="3" id="SUPPLY-I" label="运输车辆">
+					<dataset numbers="3" order="1" subCorpid="902067"
+						subCorpname="管道分公司" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-J" label="水上溢油处理设备" />
+				<suppliesData numbers="0" id="SUPPLY-K" label="防洪抗震" />
+			</plateData>
+			<plateData plateid="XS" label="销售">
+				<suppliesData numbers="99" id="SUPPLY-A" label="个体防护">
+					<dataset numbers="14" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="45" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="40" order="3" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="147" id="SUPPLY-B" label="救护车辆">
+					<dataset numbers="5" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="129" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="13" order="3" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="116" id="SUPPLY-C" label="带压堵漏">
+					<dataset numbers="26" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="68" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="22" order="3" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="1804" id="SUPPLY-D" label="消防">
+					<dataset numbers="9" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="1681" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="114" order="3" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="45" id="SUPPLY-E" label="警戒物资">
+					<dataset numbers="3" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="40" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="2" order="3" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="997" id="SUPPLY-F" label="应急工具和材料">
+					<dataset numbers="55" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="603" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="339" order="3" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="30" id="SUPPLY-G" label="检测仪器">
+					<dataset numbers="1" order="1" subCorpid="1022"
+						subCorpname="北京石油" />
+					<dataset numbers="29" order="2" subCorpid="302073"
+						subCorpname="山东石油" />
+				</suppliesData>
+				<suppliesData numbers="11" id="SUPPLY-H" label="通讯器材">
+					<dataset numbers="10" order="1" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="1" order="2" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="3" id="SUPPLY-I" label="运输车辆">
+					<dataset numbers="1" order="1" subCorpid="302073"
+						subCorpname="山东石油" />
+					<dataset numbers="2" order="2" subCorpid="802068"
+						subCorpname="广东石油" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-J" label="水上溢油处理设备" />
+				<suppliesData numbers="0" id="SUPPLY-K" label="防洪抗震" />
+			</plateData>
+			<plateData plateid="GC" label="工程">
+				<suppliesData numbers="2" id="SUPPLY-A" label="个体防护">
+					<dataset numbers="2" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+				</suppliesData>
+				<suppliesData numbers="8" id="SUPPLY-B" label="救护车辆">
+					<dataset numbers="8" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-C" label="带压堵漏" />
+				<suppliesData numbers="8" id="SUPPLY-D" label="消防">
+					<dataset numbers="8" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+				</suppliesData>
+				<suppliesData numbers="2" id="SUPPLY-E" label="警戒物资">
+					<dataset numbers="2" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+				</suppliesData>
+				<suppliesData numbers="11" id="SUPPLY-F" label="应急工具和材料">
+					<dataset numbers="11" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-G" label="检测仪器" />
+				<suppliesData numbers="1" id="SUPPLY-H" label="通讯器材">
+					<dataset numbers="1" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+				</suppliesData>
+				<suppliesData numbers="5" id="SUPPLY-I" label="运输车辆">
+					<dataset numbers="5" order="1" subCorpid="201049"
+						subCorpname="宁波工程公司" />
+				</suppliesData>
+				<suppliesData numbers="0" id="SUPPLY-J" label="水上溢油处理设备" />
+				<suppliesData numbers="0" id="SUPPLY-K" label="防洪抗震" />
+			</plateData>
+			<plateData plateid="QT" label="其它">
+				<suppliesData numbers="0" id="SUPPLY-A" label="个体防护" />
+				<suppliesData numbers="0" id="SUPPLY-B" label="救护车辆" />
+				<suppliesData numbers="0" id="SUPPLY-C" label="带压堵漏" />
+				<suppliesData numbers="0" id="SUPPLY-D" label="消防" />
+				<suppliesData numbers="0" id="SUPPLY-E" label="警戒物资" />
+				<suppliesData numbers="0" id="SUPPLY-F" label="应急工具和材料" />
+				<suppliesData numbers="0" id="SUPPLY-G" label="检测仪器" />
+				<suppliesData numbers="0" id="SUPPLY-H" label="通讯器材" />
+				<suppliesData numbers="0" id="SUPPLY-I" label="运输车辆" />
+				<suppliesData numbers="0" id="SUPPLY-J" label="水上溢油处理设备" />
+				<suppliesData numbers="0" id="SUPPLY-K" label="防洪抗震" />
+			</plateData>
+		</emergencySuppliesData>
+	</overallData>
+	<byCorp>
+		<byLevel>
+			<plateData planNumber="1652" finishedNumber="786"
+				remainderNumber="866" finishedRatio="47.58" averageFishedRatio="47.58"
+				calendarRatio="100.00" plateid="00" label="全部">
+				<kindData planNumber="1652" finishedNumber="786"
+					remainderNumber="866" finishedRatio="47.58" averageFishedRatio="47.58"
+					calendarRatio="100.00" id="LEVEL-1" label="企业级">
+					<dataset planNumber="1497" finishedNumber="718"
+						remainderNumber="779" finishedRatio="47.96" averageFishedRatio="47.58"
+						calendarRatio="100.00" order="1" subCorpid="302073" subCorpname="山东石油" />
+					<dataset planNumber="93" finishedNumber="43"
+						remainderNumber="50" finishedRatio="46.24" averageFishedRatio="47.58"
+						calendarRatio="100.00" order="2" subCorpid="600001" subCorpname="江苏油田" />
+					<dataset planNumber="50" finishedNumber="15"
+						remainderNumber="35" finishedRatio="30.00" averageFishedRatio="47.58"
+						calendarRatio="100.00" order="3" subCorpid="902067" subCorpname="管道分公司" />
+					<dataset planNumber="8" finishedNumber="8" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="47.58" calendarRatio="100.00"
+						order="4" subCorpid="1022" subCorpname="北京石油" />
+					<dataset planNumber="2" finishedNumber="2" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="47.58" calendarRatio="100.00"
+						order="5" subCorpid="402072" subCorpname="洛阳分公司" />
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="47.58" calendarRatio="100.00"
+						order="6" subCorpid="502066" subCorpname="石家庄炼化" />
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="47.58" calendarRatio="100.00"
+						order="7" subCorpid="201049" subCorpname="宁波工程公司" />
+				</kindData>
+			</plateData>
+			<plateData planNumber="93" finishedNumber="43"
+				remainderNumber="50" finishedRatio="46.24" averageFishedRatio="46.24"
+				calendarRatio="100.00" plateid="YT" label="油田">
+				<levelData planNumber="93" finishedNumber="43"
+					remainderNumber="50" finishedRatio="46.24" averageFishedRatio="46.24"
+					calendarRatio="100.00" id="LEVEL-1" label="企业级">
+					<dataset planNumber="93" finishedNumber="43"
+						remainderNumber="50" finishedRatio="46.24" averageFishedRatio="46.24"
+						calendarRatio="100.00" order="1" subCorpid="600001" subCorpname="江苏油田" />
+				</levelData>
+			</plateData>
+			<plateData planNumber="53" finishedNumber="17"
+				remainderNumber="36" finishedRatio="32.08" averageFishedRatio="32.08"
+				calendarRatio="100.00" plateid="LH" label="炼化">
+				<levelData planNumber="53" finishedNumber="17"
+					remainderNumber="36" finishedRatio="32.08" averageFishedRatio="32.08"
+					calendarRatio="100.00" id="LEVEL-1" label="企业级">
+					<dataset planNumber="50" finishedNumber="15"
+						remainderNumber="35" finishedRatio="30.00" averageFishedRatio="32.08"
+						calendarRatio="100.00" order="1" subCorpid="902067" subCorpname="管道分公司" />
+					<dataset planNumber="2" finishedNumber="2" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="32.08" calendarRatio="100.00"
+						order="2" subCorpid="402072" subCorpname="洛阳分公司" />
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="32.08" calendarRatio="100.00"
+						order="3" subCorpid="502066" subCorpname="石家庄炼化" />
+				</levelData>
+			</plateData>
+			<plateData planNumber="1505" finishedNumber="726"
+				remainderNumber="779" finishedRatio="48.24" averageFishedRatio="48.24"
+				calendarRatio="100.00" plateid="XS" label="销售">
+				<levelData planNumber="1505" finishedNumber="726"
+					remainderNumber="779" finishedRatio="48.24" averageFishedRatio="48.24"
+					calendarRatio="100.00" id="LEVEL-1" label="企业级">
+					<dataset planNumber="1497" finishedNumber="718"
+						remainderNumber="779" finishedRatio="47.96" averageFishedRatio="48.24"
+						calendarRatio="100.00" order="1" subCorpid="302073" subCorpname="山东石油" />
+					<dataset planNumber="8" finishedNumber="8" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="48.24" calendarRatio="100.00"
+						order="2" subCorpid="1022" subCorpname="北京石油" />
+				</levelData>
+			</plateData>
+			<plateData planNumber="1" finishedNumber="0"
+				remainderNumber="1" finishedRatio="0.00" averageFishedRatio="0.00"
+				calendarRatio="100.00" plateid="GC" label="工程">
+				<levelData planNumber="1" finishedNumber="0"
+					remainderNumber="1" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="LEVEL-1" label="企业级">
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="0.00" calendarRatio="100.00"
+						order="1" subCorpid="201049" subCorpname="宁波工程公司" />
+				</levelData>
+			</plateData>
+			<plateData planNumber="0" finishedNumber="0"
+				remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+				calendarRatio="100.00" plateid="QT" label="其它">
+				<levelData planNumber="0" finishedNumber="0"
+					remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="LEVEL-1" label="企业级" />
+			</plateData>
+		</byLevel>
+		<byKind>
+			<plateData planNumber="1652" finishedNumber="786"
+				remainderNumber="866" finishedRatio="47.58" averageFishedRatio="47.58"
+				calendarRatio="100.00" plateid="00" label="全部">
+				<kindData planNumber="82" finishedNumber="41"
+					remainderNumber="41" finishedRatio="50.00" averageFishedRatio="47.58"
+					calendarRatio="100.00" id="KIND-A" label="现场演练">
+					<dataset planNumber="50" finishedNumber="25"
+						remainderNumber="25" finishedRatio="50.00" averageFishedRatio="50.00"
+						calendarRatio="100.00" order="1" subCorpid="302073" subCorpname="山东石油" />
+					<dataset planNumber="11" finishedNumber="6"
+						remainderNumber="5" finishedRatio="54.55" averageFishedRatio="50.00"
+						calendarRatio="100.00" order="2" subCorpid="600001" subCorpname="江苏油田" />
+					<dataset planNumber="17" finishedNumber="6"
+						remainderNumber="11" finishedRatio="35.29" averageFishedRatio="50.00"
+						calendarRatio="100.00" order="3" subCorpid="902067" subCorpname="管道分公司" />
+					<dataset planNumber="4" finishedNumber="4" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="50.00" calendarRatio="100.00"
+						order="4" subCorpid="1022" subCorpname="北京石油" />
+				</kindData>
+				<kindData planNumber="1546" finishedNumber="741"
+					remainderNumber="805" finishedRatio="47.93" averageFishedRatio="47.58"
+					calendarRatio="100.00" id="KIND-B" label="桌面演练">
+					<dataset planNumber="1446" finishedNumber="693"
+						remainderNumber="753" finishedRatio="47.93" averageFishedRatio="47.93"
+						calendarRatio="100.00" order="1" subCorpid="302073" subCorpname="山东石油" />
+					<dataset planNumber="79" finishedNumber="37"
+						remainderNumber="42" finishedRatio="46.84" averageFishedRatio="47.93"
+						calendarRatio="100.00" order="2" subCorpid="600001" subCorpname="江苏油田" />
+					<dataset planNumber="13" finishedNumber="5"
+						remainderNumber="8" finishedRatio="38.46" averageFishedRatio="47.93"
+						calendarRatio="100.00" order="3" subCorpid="902067" subCorpname="管道分公司" />
+					<dataset planNumber="4" finishedNumber="4" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="47.93" calendarRatio="100.00"
+						order="4" subCorpid="1022" subCorpname="北京石油" />
+					<dataset planNumber="2" finishedNumber="2" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="47.93" calendarRatio="100.00"
+						order="5" subCorpid="402072" subCorpname="洛阳分公司" />
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="47.93" calendarRatio="100.00"
+						order="6" subCorpid="502066" subCorpname="石家庄炼化" />
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="47.93" calendarRatio="100.00"
+						order="7" subCorpid="201049" subCorpname="宁波工程公司" />
+				</kindData>
+				<kindData planNumber="24" finishedNumber="4"
+					remainderNumber="20" finishedRatio="16.67" averageFishedRatio="47.58"
+					calendarRatio="100.00" id="KIND-C" label="联合演练与地方、其他协议单位">
+					<dataset planNumber="20" finishedNumber="4"
+						remainderNumber="16" finishedRatio="20.00" averageFishedRatio="16.67"
+						calendarRatio="100.00" order="1" subCorpid="902067" subCorpname="管道分公司" />
+					<dataset planNumber="3" finishedNumber="0" remainderNumber="3"
+						finishedRatio="0.00" averageFishedRatio="16.67" calendarRatio="100.00"
+						order="2" subCorpid="600001" subCorpname="江苏油田" />
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="16.67" calendarRatio="100.00"
+						order="3" subCorpid="302073" subCorpname="山东石油" />
+				</kindData>
+			</plateData>
+			<plateData planNumber="93" finishedNumber="43"
+				remainderNumber="50" finishedRatio="46.24" averageFishedRatio="46.24"
+				calendarRatio="100.00" plateid="YT" label="油田">
+				<kindData planNumber="11" finishedNumber="6"
+					remainderNumber="5" finishedRatio="54.55" averageFishedRatio="46.24"
+					calendarRatio="100.00" id="KIND-A" label="现场演练">
+					<dataset planNumber="11" finishedNumber="6"
+						remainderNumber="5" finishedRatio="54.55" averageFishedRatio="54.55"
+						calendarRatio="100.00" order="1" subCorpid="600001" subCorpname="江苏油田" />
+				</kindData>
+				<kindData planNumber="79" finishedNumber="37"
+					remainderNumber="42" finishedRatio="46.84" averageFishedRatio="46.24"
+					calendarRatio="100.00" id="KIND-B" label="桌面演练">
+					<dataset planNumber="79" finishedNumber="37"
+						remainderNumber="42" finishedRatio="46.84" averageFishedRatio="46.84"
+						calendarRatio="100.00" order="1" subCorpid="600001" subCorpname="江苏油田" />
+				</kindData>
+				<kindData planNumber="3" finishedNumber="0"
+					remainderNumber="3" finishedRatio="0.00" averageFishedRatio="46.24"
+					calendarRatio="100.00" id="KIND-C" label="联合演练与地方、其他协议单位">
+					<dataset planNumber="3" finishedNumber="0" remainderNumber="3"
+						finishedRatio="0.00" averageFishedRatio="0.00" calendarRatio="100.00"
+						order="1" subCorpid="600001" subCorpname="江苏油田" />
+				</kindData>
+			</plateData>
+			<plateData planNumber="53" finishedNumber="17"
+				remainderNumber="36" finishedRatio="32.08" averageFishedRatio="32.08"
+				calendarRatio="100.00" plateid="LH" label="炼化">
+				<kindData planNumber="17" finishedNumber="6"
+					remainderNumber="11" finishedRatio="35.29" averageFishedRatio="32.08"
+					calendarRatio="100.00" id="KIND-A" label="现场演练">
+					<dataset planNumber="17" finishedNumber="6"
+						remainderNumber="11" finishedRatio="35.29" averageFishedRatio="35.29"
+						calendarRatio="100.00" order="1" subCorpid="902067" subCorpname="管道分公司" />
+				</kindData>
+				<kindData planNumber="16" finishedNumber="7"
+					remainderNumber="9" finishedRatio="43.75" averageFishedRatio="32.08"
+					calendarRatio="100.00" id="KIND-B" label="桌面演练">
+					<dataset planNumber="13" finishedNumber="5"
+						remainderNumber="8" finishedRatio="38.46" averageFishedRatio="43.75"
+						calendarRatio="100.00" order="1" subCorpid="902067" subCorpname="管道分公司" />
+					<dataset planNumber="2" finishedNumber="2" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="43.75" calendarRatio="100.00"
+						order="2" subCorpid="402072" subCorpname="洛阳分公司" />
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="43.75" calendarRatio="100.00"
+						order="3" subCorpid="502066" subCorpname="石家庄炼化" />
+				</kindData>
+				<kindData planNumber="20" finishedNumber="4"
+					remainderNumber="16" finishedRatio="20.00" averageFishedRatio="32.08"
+					calendarRatio="100.00" id="KIND-C" label="联合演练与地方、其他协议单位">
+					<dataset planNumber="20" finishedNumber="4"
+						remainderNumber="16" finishedRatio="20.00" averageFishedRatio="20.00"
+						calendarRatio="100.00" order="1" subCorpid="902067" subCorpname="管道分公司" />
+				</kindData>
+			</plateData>
+			<plateData planNumber="1505" finishedNumber="726"
+				remainderNumber="779" finishedRatio="48.24" averageFishedRatio="48.24"
+				calendarRatio="100.00" plateid="XS" label="销售">
+				<kindData planNumber="54" finishedNumber="29"
+					remainderNumber="25" finishedRatio="53.70" averageFishedRatio="48.24"
+					calendarRatio="100.00" id="KIND-A" label="现场演练">
+					<dataset planNumber="50" finishedNumber="25"
+						remainderNumber="25" finishedRatio="50.00" averageFishedRatio="53.70"
+						calendarRatio="100.00" order="1" subCorpid="302073" subCorpname="山东石油" />
+					<dataset planNumber="4" finishedNumber="4" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="53.70" calendarRatio="100.00"
+						order="2" subCorpid="1022" subCorpname="北京石油" />
+				</kindData>
+				<kindData planNumber="1450" finishedNumber="697"
+					remainderNumber="753" finishedRatio="48.07" averageFishedRatio="48.24"
+					calendarRatio="100.00" id="KIND-B" label="桌面演练">
+					<dataset planNumber="1446" finishedNumber="693"
+						remainderNumber="753" finishedRatio="47.93" averageFishedRatio="48.07"
+						calendarRatio="100.00" order="1" subCorpid="302073" subCorpname="山东石油" />
+					<dataset planNumber="4" finishedNumber="4" remainderNumber="0"
+						finishedRatio="100.00" averageFishedRatio="48.07" calendarRatio="100.00"
+						order="2" subCorpid="1022" subCorpname="北京石油" />
+				</kindData>
+				<kindData planNumber="1" finishedNumber="0"
+					remainderNumber="1" finishedRatio="0.00" averageFishedRatio="48.24"
+					calendarRatio="100.00" id="KIND-C" label="联合演练与地方、其他协议单位">
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="0.00" calendarRatio="100.00"
+						order="1" subCorpid="302073" subCorpname="山东石油" />
+				</kindData>
+			</plateData>
+			<plateData planNumber="1" finishedNumber="0"
+				remainderNumber="1" finishedRatio="0.00" averageFishedRatio="0.00"
+				calendarRatio="100.00" plateid="GC" label="工程">
+				<kindData planNumber="0" finishedNumber="0"
+					remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-A" label="现场演练" />
+				<kindData planNumber="1" finishedNumber="0"
+					remainderNumber="1" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-B" label="桌面演练">
+					<dataset planNumber="1" finishedNumber="0" remainderNumber="1"
+						finishedRatio="0.00" averageFishedRatio="0.00" calendarRatio="100.00"
+						order="1" subCorpid="201049" subCorpname="宁波工程公司" />
+				</kindData>
+				<kindData planNumber="0" finishedNumber="0"
+					remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-C" label="联合演练与地方、其他协议单位" />
+			</plateData>
+			<plateData planNumber="0" finishedNumber="0"
+				remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+				calendarRatio="100.00" plateid="QT" label="其它">
+				<kindData planNumber="0" finishedNumber="0"
+					remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-A" label="现场演练" />
+				<kindData planNumber="0" finishedNumber="0"
+					remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-B" label="桌面演练" />
+				<kindData planNumber="0" finishedNumber="0"
+					remainderNumber="0" finishedRatio="0.00" averageFishedRatio="0.00"
+					calendarRatio="100.00" id="KIND-C" label="联合演练与地方、其他协议单位" />
+			</plateData>
+		</byKind>
+	</byCorp>
+</model>

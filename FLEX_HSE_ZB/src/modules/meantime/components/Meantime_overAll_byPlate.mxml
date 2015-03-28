@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   skinClass="skins.popWinStyle_noExport" mouseEnabled="true"
+			   xmlns:views="views.*"
+			   xmlns:AdvancedDataGrid="modules.meantime.AdvancedDataGrid.*"
+			   xmlns:SubClasses="modules.meantime.AdvancedDataGrid.SubClasses.*"
+			   creationComplete="init()"
+			   close="titlewindow1_closeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import modules.meantime.components.MeantimeStatusDetail;
+			import modules.meantime.components.MeantimeStatusDetail_lixiang;
+			import modules.meantime.components.MeantimeStatusDetail_temp;
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			public var _dataPath:String = "assets/data/zb_meantimeOverAlldata_init_byPlate.xml";//assets/data/zb_meantimeOverAlldata_new2.xml
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 12;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			
+			[Bindable]
+			public var ShowControlPad:Boolean = false;
+			
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "总部领导重点监管项目";
+			
+//			[Bindable]
+//			public var title:String = "中国石化‘三同时’项目总体进度情况";
+			
+			[Bindable]
+			private var tab1_plateCurrSelect:String = "00";
+			[Bindable]
+			private var tab1_plateCurrSelect_corp:String = "00";
+			private var tab1_plateNameCurrSelect:String = "全部";
+			[Bindable]
+			private var tab1_levelCurrSelect:String = "00";
+			private var tab1_levelNameCurrSelect:String = "全部级别";
+			
+			[Bindable]
+			private var tab1_plateDS:ArrayCollection = new ArrayCollection([{label: "全部", value: "00"}, {label: "油田", value: "YT"}, {label: "炼化", value: "LH"}, {label: "销售", value: "XS"}, {label: "工程", value: "GC"}, {label: "其他", value: "QT"},]);
+			[Bindable]
+			private var tab1_levelDS:ArrayCollection = new ArrayCollection([{label: "全部级别", value: "00"}, {label: "集团公司级", value: "LEVEL-0"}, {label: "事业部级", value: "LEVEL-1"}, {label: "企业级", value: "LEVEL-2"},]);
+			
+			[Bindable]
+			private var tab1__DS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			private var meantimeOneStatusRenderer:IFactory = new ClassFactory(modules.meantime.renderers.MeantimeOneStatusRenderer);
+			private var stateArr:Array = ['可研批复', '基础设计批复', '施工期间', '开始试运行', '试运行期满'];
+			protected function init():void
+			{
+				this.addEventListener(MeantimeOverAllStatusEvent.STATUS_CLICK, meantime_overall_status_click_handler);
+				tab1__DS = new ArrayCollection();
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					if(this.currentState == 'link_false'){
+						ws.GetMeantime("overAll_byCorp", dateStr, tab1_plateCurrSelect_corp, "", tab1_levelCurrSelect, profid_corp, "", "");
+					}else{
+						ws.GetMeantime("overAll_byPlate", dateStr, tab1_plateCurrSelect, "", tab1_levelCurrSelect, profid, "", "");
+					}
+					
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				//				if(hseDataXML.allDataCollect.allDataItem[0].hasOwnProperty('@label')){
+				//					this.currentState = "show";
+				//				}else{
+				//					this.currentState = "hide";
+				//				}
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				//				ws.wsdl = "http://10.1.18.91:10010/Report/ReportDataWebService.asmx?wsdl";
+//				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				//				if(hseDataXML.allDataCollect.allDataItem[0].hasOwnProperty('@label')){
+				//					this.currentState = "show";
+				//				}else{
+				//					this.currentState = "hide";
+				//				}
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab1__DS = gettab1__DS();
+				createTitle();
+			}
+			
+			private function createTitle():void
+			{
+//				title = "中国石化" + tab1_plateNameCurrSelect + "板块‘三同时’项目"+profName+"进度情况";
+				if(this.currentState == 'link_false'){
+					title = "中国石化企业‘三同时’项目进度情况";
+				}else{
+					title = "中国石化" + tab1_plateNameCurrSelect + "板块‘三同时’项目进度情况";
+				}
+				
+			}
+			
+			private function gettab1__DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList;
+					tmpList = hseDataXML.allDataCollect.allDataItem;
+					
+					if (tmpList.length() > 0)
+					{
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = new Object();
+							//							obj['order'] = int(xml.@order);
+							obj['projectNumber'] = int(xml.@num);
+							obj['status'] = xml.@status + "";
+							
+//							obj['plate'] = this.tab1_plateNameCurrSelect;
+							obj['corp'] = "所有企业";
+							obj['level'] = this.tab1_levelNameCurrSelect;
+							obj['plate'] = xml.@plate + "";
+							obj['prof'] = xml.@dataLabel + "";
+							obj['stage'] = "";
+//							obj['linkBoolean'] = xml.@linkBoolean;
+							
+//							obj['plateid'] = this.tab1_plateCurrSelect;
+							obj['plateid'] = xml.@plateid + "";
+							obj['corpid'] = xml.@corpid + "";
+							obj['levelid'] = this.levelid;
+							obj['profid'] = xml.@profid + "";
+							obj['stageid'] = xml.@stageid + "";
+							obj['order'] = order;
+							order++;
+							tmpArrayCollection.addItem(obj);
+							for each(var x:XML in xml.professional_data){
+								var obj_dataItem:Object = new Object();
+								obj_dataItem.prof = x.@dataLabel+'';
+								obj_dataItem.order = '';
+								obj_dataItem.plate = '';
+								obj_dataItem['profid'] = x.@profid + "";
+								obj_dataItem['plateid'] = xml.@plateid + "";
+								obj_dataItem['corpid'] = xml.@corpid + "";
+								obj_dataItem['levelid'] = this.levelid;
+								obj_dataItem['stage'] = "";
+//								obj_dataItem.linkBoolean = xml.@linkBoolean;
+								obj_dataItem.projectNumber = int(x.@num);
+								obj_dataItem.status = x.@status + "";
+								tmpArrayCollection.addItem(obj_dataItem);
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private var plateid:String = "";
+			private var corpid:String = "";
+			private var levelid:String = "";
+			[Bindable]
+			private var profid_corp:String = "";
+			private var profid:String = "";
+			private var stageid:String = "";
+			private var stageidBefore:String = "";
+			
+			private var plateName:String = "";
+			private var corpName:String = "";
+			private var levelName:String = "";
+			private var profName:String = "";
+			private var stageName:String = "";
+			private var field_num:int = 1;
+			public function setData(wsdlUrl:String, dateStr:String, obj:Object,statusStr:String):void
+			{
+//				this.plateName = obj.plate;
+//				this.corpName = obj.corp;
+//				this.levelName = obj.level;
+				this.profName = obj.prof;
+				this.stageName = obj.stage;
+				
+				this.plateid = obj.plateid;
+				this.corpid = obj.corpid;
+				this.levelid = obj.levelid;
+				this.profid = obj.profid;
+				this.stageid = obj.stageid;
+//				this.stageidBefore = obj.stageidBefore;
+				this.dateStr = dateStr;
+				ws.wsdl = wsdlUrl;
+				if(corpid==""){
+					corpid="00"
+				}
+				
+			}
+			
+			[Bindable]
+			private var plate_corp:String = "板块";
+			private var meantimeStatusDetail:MeantimeStatusDetail;
+			private var meantimeStatusDetail_temp:MeantimeStatusDetail_temp;
+			private var meantimeStatusDetail_lixiang:MeantimeStatusDetail_lixiang;
+			
+			private function meantime_overall_status_click_handler(event:MeantimeOverAllStatusEvent):void
+			{
+				var obj:Object = event.data;
+				meantimeStatusDetail = new MeantimeStatusDetail();
+				if(event.statusStr=="project_label"){
+					tab1_plateCurrSelect_corp = obj.plateid;
+					profid_corp = obj.profid;
+//					_dataPath = "assets/data/zb_meantimeOverAlldata_init_byCorp.xml";
+//					ws.GetMeantime("overAll_byCorp", dateStr, obj.plate, "", tab1_levelCurrSelect, profid, "", "");
+					plate_corp = "企业";
+					back_but.includeInLayout = true;
+					back_but.visible = true;
+					this.currentState = 'link_false';
+					refreshData();
+					tab1_plateNameCurrSelect =  obj.plate;
+				}else{
+					if(obj.profid=="total"){
+						meantimeStatusDetail_temp = new MeantimeStatusDetail_temp();
+						meantimeStatusDetail_temp.width = this.width;
+						meantimeStatusDetail_temp.setData(ws.wsdl, dateStr, obj,event.statusStr);
+						meantimeStatusDetail_temp.title = obj.prof + "" + obj.stage + "" + "三同时项目进度情况";
+						PopUpManager.addPopUp(meantimeStatusDetail_temp, this, true);
+						PopUpManager.centerPopUp(meantimeStatusDetail_temp);
+					}else{
+						meantimeStatusDetail = new MeantimeStatusDetail();
+						meantimeStatusDetail.setData(ws.wsdl, dateStr, obj,event.statusStr,"");
+						meantimeStatusDetail.title = obj.prof + "专业" + obj.stage + "阶段" + "三同时项目进度情况";
+						PopUpManager.addPopUp(meantimeStatusDetail, this, true);
+						PopUpManager.centerPopUp(meantimeStatusDetail);
+					}
+				}
+				
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+			
+			protected function back_but_clickHandler(event:MouseEvent):void
+			{
+//				_dataPath = "assets/data/zb_meantimeOverAlldata_init_byPlate.xml";
+//				ws.GetMeantime("overAll_byPlate", dateStr, tab1_plateCurrSelect, "", tab1_levelCurrSelect, profid, "", "");
+				refreshData();
+				back_but.includeInLayout = false;
+				back_but.visible = false;
+				this.currentState = "normal";
+				plate_corp = "板块";
+				tab1_plateNameCurrSelect = "全部";
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab1_plateGrp" />
+		<s:RadioButtonGroup id="tab1_levelGrp" />
+		<s:Parallel id="par">
+			<s:Fade alphaFrom="0.0" alphaTo="1.0" duration="2000"/>
+		</s:Parallel>
+	</fx:Declarations>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="link_false"/>
+	</s:states>
+	<s:layout>
+		<s:BasicLayout />
+	</s:layout>
+	<s:Spacer height="10" />
+	<s:Label id="label"
+			 text="{title}"
+			 styleName="titleStyle"
+			 width="100%" />
+	<s:Spacer height="10" />
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="90%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<!--alternatingItemColors="['#EDF5F9', '#FFFFFF']"-->
+				<AdvancedDataGrid:AdvancedDataGrid id="advancedDataGrid"
+												   styleName="CusAdvancedDataGrid"
+												   width="100%" height="100%"
+												   sortableColumns="false"
+												   selectionMode="none" 
+												   horizontalGridLines="true"
+												   dataProvider="{tab1__DS}"
+												   textAlign="center"
+												   borderVisible="false">
+					<AdvancedDataGrid:groupedColumns>
+						<SubClasses:AdvancedDataGridColumn width="60"
+														   dataField="order"
+														   headerText="序号" />
+						<SubClasses:AdvancedDataGridColumn dataField="plate" width="200"
+														   headerText="{plate_corp}名称" />
+						<SubClasses:AdvancedDataGridColumn dataField="prof" width="200" includeIn="normal"
+														   headerText="专业" 
+														   itemRenderer="modules.meantime.renderers.MeantimeOverAllLabelRenderer"/>
+						<SubClasses:AdvancedDataGridColumn dataField="prof" width="200" includeIn="link_false"
+														   headerText="专业" 
+														   itemRenderer="modules.meantime.renderers.MeantimeOverAllLabelRenderer_byPlateState"/>
+						<SubClasses:AdvancedDataGridColumn dataField="projectNumber"
+														   headerText="项目数"
+														   itemRenderer="modules.meantime.renderers.MeantimeOverAllNumRenderer" />
+						<SubClasses:AdvancedDataGridColumn dataField="status"
+														   headerText="预警情况"
+														   itemRenderer="modules.meantime.renderers.MeantimeAllStatusRenderer" />
+					</AdvancedDataGrid:groupedColumns>
+				</AdvancedDataGrid:AdvancedDataGrid>
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="30"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:HorizontalLayout paddingLeft="5"
+										paddingTop="5"
+										paddingBottom="5"
+										paddingRight="5"
+										horizontalAlign="right" />
+				</s:layout>
+				<s:Image width="20"
+						 height="20"
+						 horizontalCenter="0"
+						 verticalCenter="0"
+						 source="assets/images/icoWarning.png" />
+				<s:Label text="预警" />
+				<s:Image width="20"
+						 height="20"
+						 horizontalCenter="0"
+						 verticalCenter="0"
+						 source="assets/images/icoAlarm.png" />
+				<s:Label text="超期" />
+				<s:Image width="20"
+						 height="20"
+						 horizontalCenter="0"
+						 verticalCenter="0"
+						 source="assets/images/icoFinished.png" />
+				<s:Label text="已完成" />
+				<!--<s:Image width="20"
+				height="20"
+				horizontalCenter="0"
+				verticalCenter="0"
+				source="assets/images/icoFinishedAlarm.png" />
+				<s:Label text="超期完成" />-->
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+	<s:Image id="back_but" source="assets/images/back.png" toolTip="返回总数据"  showEffect="{par}"
+			 includeInLayout="false" visible="false" x="{this.width-75}" y="-28" click="back_but_clickHandler(event)"/>
+</s:TitleWindow>

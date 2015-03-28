@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()" xmlns:jobpermission="modules.jobpermission.*">
+	<!--
+	/* *
+	* 名称：总部仪表盘-作业许可
+	* 参数：查询条件修改成 年月（2012-12） 分企业是 年（2013)
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.DateField;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var DateStrYearMth:String="2012-12";
+			[Bindable]
+			private var DateStrYear:String="2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrColYearMth:ArrayCollection=new ArrayCollection();
+			private var dateArrColYear:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				this.styleManager.loadStyleDeclarations2("./assets/fonts/WB_SimSun.swf");
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					for(var j:int=12;j>0;j--)
+					{
+						if(!(i==dateCurrYear&&j>dateCurrMth)){
+							var obj:Object=new Object();
+							obj.name=i+"年"+j+"月";
+							obj.value=i+"-"+(j<10?"0"+j.toString():j.toString());
+							dateArrColYearMth.addItem(obj);
+						}
+					}
+					var obj2:Object=new Object();
+					obj2.name=i+"年";
+					obj2.value=i;
+					dateArrColYear.addItem(obj2);
+				}
+				
+				dateYearMth.dataProvider=dateArrColYearMth;
+				dateYearMth.selectedIndex = 0;
+				DateStrYearMth=dateYearMth.selectedItem.value;
+			}
+			
+			
+			protected function btnSearchYearMth_clickHandler(event:MouseEvent):void
+			{
+				DateStrYearMth=dateYearMth.selectedItem.value;
+			}
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="1" paddingBottom="5" paddingTop="5" paddingLeft="5" paddingRight="5"/>
+	</s:layout>
+	<s:HGroup width="100%" verticalAlign="middle" horizontalAlign="right" top="5" right="5">
+		<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+		<s:Label text="年月" />
+		<s:ComboBox right="5" id="dateYearMth" width="100" fontWeight="normal" labelField="name"/>
+		<s:Button id="btnSearchYearMth" label="查询" click="btnSearchYearMth_clickHandler(event)"/>
+	</s:HGroup>
+	<jobpermission:Jobpermission_overAll width="100%" height="100%" id="overAll" DateStr="{DateStrYearMth}" ShowDataLabel="{showDataLabel}"/>
+	
+</s:Application>
+

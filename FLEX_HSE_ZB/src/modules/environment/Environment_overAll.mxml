@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" xmlns:views="views.*" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：总部仪表盘-环保
+	* 参数：单一年（2012）
+	* 作者：孙山虎
+	* 日期：2012年12月29日
+	* */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.graphics.SolidColor;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import events.PopupEvent;
+			
+			public const _dataPath:String = "assets/data/zb_environmentalprotectiondata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			private var isFirstLoad:Boolean=true;
+			private var dateStrChanged:Boolean=false;
+			[Bindable]
+			private var dateStr:String="2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			
+			[Bindable]
+			private var ColumnMulitDSConf1:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf2:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf3:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf4:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf5:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf6:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf7:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDSConf8:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS1:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS2:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS3:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS4:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS5:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS6:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS7:ArrayCollection;
+			[Bindable]
+			private var ColumnMulitDS8:ArrayCollection;
+			
+			[Bindable]
+			public var cColor1:SolidColor=views.CustomColor.CSolidColor[0];
+			[Bindable]
+			public var cColor2:SolidColor=views.CustomColor.CSolidColor[1];
+			[Bindable]
+			public var cColor3:SolidColor=views.CustomColor.CSolidColor[2];
+			[Bindable]
+			public var cColor4:SolidColor=views.CustomColor.CSolidColor[3];
+			[Bindable]
+			public var cColor5:SolidColor=views.CustomColor.CSolidColor[5];
+			
+			
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void{
+				ColumnMulitDS1=new ArrayCollection();
+				ColumnMulitDS2=new ArrayCollection();
+				ColumnMulitDS3=new ArrayCollection();
+				ColumnMulitDS4=new ArrayCollection();
+				ColumnMulitDS5=new ArrayCollection();
+				ColumnMulitDS6=new ArrayCollection();
+				ColumnMulitDS7=new ArrayCollection();
+				ColumnMulitDS8=new ArrayCollection();
+				
+				ColumnMulitDSConf1=new ArrayCollection([
+					{name:"万吨",field:"vol1",color:"0x00B050"},
+				]);
+				ColumnMulitDSConf2=new ArrayCollection([
+					{name:"亿标立",field:"vol1",color:"0x7030A0"},
+				]);
+				ColumnMulitDSConf3=new ArrayCollection([
+					{name:"百分比",field:"vol1",color:"0xD39D0C"},
+				]);
+				ColumnMulitDSConf4=new ArrayCollection([
+					{name:"亿吨",field:"vol1",color:"0xC40202"},
+				]);
+				ColumnMulitDSConf5=new ArrayCollection([
+					{name:"万吨",field:"vol1",color:"0x01369F"},
+				]);
+				ColumnMulitDSConf6=new ArrayCollection([
+					{name:"万吨",field:"vol1",color:"0x00B050"},
+				]);
+				ColumnMulitDSConf7=new ArrayCollection([
+					{name:"万吨",field:"vol1",color:"0xD39D0C"},
+				]);
+				ColumnMulitDSConf8=new ArrayCollection([
+					{name:"万元",field:"vol1",color:"0x7030A0"},
+				]);
+				
+				refreshData();
+				isFirstLoad=false;
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			
+			
+			protected function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				ColumnMulitDS1=new ArrayCollection([
+					{label:2008,vol1:1311},
+					{label:2009,vol1:1301},
+					{label:2010,vol1:1283},
+					{label:2011,vol1:1268},
+					{label:2012,vol1:1257}
+				]);
+				ColumnMulitDS2=new ArrayCollection([
+					{label:2008,vol1:5491},
+					{label:2009,vol1:5463},
+					{label:2010,vol1:5412},
+					{label:2011,vol1:5377},
+					{label:2012,vol1:5304}
+				]);
+				ColumnMulitDS3=new ArrayCollection([
+					{label:2008,vol1:93.18},
+					{label:2009,vol1:94.11},
+					{label:2010,vol1:94.73},
+					{label:2011,vol1:95.51},
+					{label:2012,vol1:96.23}
+				]);
+				ColumnMulitDS4=new ArrayCollection([
+					{label:2008,vol1:5.19},
+					{label:2009,vol1:5.12},
+					{label:2010,vol1:5.05},
+					{label:2011,vol1:4.98},
+					{label:2012,vol1:4.81}
+				]);
+				ColumnMulitDS5=new ArrayCollection([
+					{label:2008,vol1:11.54},
+					{label:2009,vol1:11.37},
+					{label:2010,vol1:11.04},
+					{label:2011,vol1:10.8},
+					{label:2012,vol1:10.23}
+				]);
+				ColumnMulitDS6=new ArrayCollection([
+					{label:2008,vol1:45.82},
+					{label:2009,vol1:43.78},
+					{label:2010,vol1:42.26},
+					{label:2011,vol1:40.23},
+					{label:2012,vol1:37.8}
+				]);
+				ColumnMulitDS7=new ArrayCollection([
+					{label:2008,vol1:4.45},
+					{label:2009,vol1:4.02},
+					{label:2010,vol1:3.77},
+					{label:2011,vol1:3.42},
+					{label:2012,vol1:3.13}
+				]);
+				ColumnMulitDS8=new ArrayCollection([
+					{label:2008,vol1:8717},
+					{label:2009,vol1:9932},
+					{label:2010,vol1:10945},
+					{label:2011,vol1:11898},
+					{label:2012,vol1:12037}
+				]);
+				
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetEnvironmentalprotection(dateStr);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				//初始化DS
+				ColumnMulitDS1=getColumnMulitDS1();		
+				ColumnMulitDS2=getColumnMulitDS2();		
+				ColumnMulitDS3=getColumnMulitDS3();		
+				ColumnMulitDS4=getColumnMulitDS4();		
+				ColumnMulitDS5=getColumnMulitDS5();		
+				ColumnMulitDS6=getColumnMulitDS6();		
+				ColumnMulitDS7=getColumnMulitDS7();		
+				ColumnMulitDS8=getColumnMulitDS8();		
+				
+				executeBindTab1Title();
+			}
+			private function executeBindTab1Title():void{
+				
+			}
+			private function getColumnMulitDS1():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-A");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@dealNumbers,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getColumnMulitDS2():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-B");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@numbers,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getColumnMulitDS3():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-C");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@numbers,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getColumnMulitDS4():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-D");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@numbers,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getColumnMulitDS5():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-E");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@numbers,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getColumnMulitDS6():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-F");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@numbers,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getColumnMulitDS7():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-G");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@numbers,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getColumnMulitDS8():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-H");
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset;
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:xml2.@label,vol1:xml2.@profitNumber,yearid:xml2.@yearid};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			
+			private var title_1:Titlewin_1;
+			private var title_2:Titlewin_2;
+			private var title_3:Titlewin_3;
+			private var title_4:Titlewin_4;
+			private var title_5:Titlewin_5;
+			private var title_6:Titlewin_6;
+			private var title_7:Titlewin_7;
+			private var title_8:Titlewin_8;
+			
+			protected function columnmulti21_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				//trace(item.label);
+				
+				if(title_1)
+				{
+					PopUpManager.removePopUp(title_1); 
+				}					
+				title_1 = new Titlewin_1();
+				title_1.ShowDataLabel=showDataLabel;
+				title_1.title1_lebel = item.label;
+				title_1.title2_lebel="固废处理量";
+				title_1.title = "固废处理情况"+"("+item.label+") 计量单位：万吨";
+				
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-A");
+					if(tmpList.length()>0)
+					{
+						title_1.HseDataXML=tmpList[0];
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset.(@yearid==item.yearid);
+							for each (var xml2:XML in xml1) {  
+								var obj:Object={label:"固废处理量",vol1:xml2.@dealNumbers,vol2:0};
+								tmpArrayCollection.addItem(obj);
+								obj={label:"妥善处理量",vol1:xml2.@properlyDealNumbers,vol2:0};
+								tmpArrayCollection.addItem(obj);
+								obj={label:"综合利用量",vol1:xml2.@comprehensiveUtilizationNumbers,vol2:0};
+								tmpArrayCollection.addItem(obj);
+								obj={label:"妥善处理率",vol2:xml2.@properlyDealRation,vol1:0};
+								tmpArrayCollection.addItem(obj);
+								obj={label:"综合利用率",vol2:xml2.@comprehensiveUtilizationRation,vol1:0};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_1.ColumnMulitDS1=tmpArrayCollection;
+				
+				
+				
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList2:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-A");
+					if(tmpList2.length()>0)
+					{
+						for each (var xml20:XML in tmpList2) {  
+							var xml21:XMLList=xml20.dataset;
+							for each (var xml22:XML in xml21) {  
+								var obj2:Object={label:xml22.@label,vol1:xml22.@dealNumbers,yearid:xml22.@yearid};
+								tmpArrayCollection2.addItem(obj2);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_1.ColumnMulitDS2=tmpArrayCollection2;
+				PopUpManager.addPopUp(title_1,this,true);
+				PopUpManager.centerPopUp(title_1); 
+			}
+			protected function columnmulti22_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(title_2)
+				{
+					PopUpManager.removePopUp(title_2); 
+				}					
+				
+				title_2 = new Titlewin_2();
+				title_2.ShowDataLabel=showDataLabel;
+				title_2.title1_lebel = item.label;
+				title_2.title2_lebel="";
+				title_2.title = "废气排放情况"+"("+item.label+") 计量单位：亿标立";
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-B");
+					if(tmpList.length()>0)
+					{
+						title_2.HseDataXML=tmpList[0];
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset.(@yearid==item.yearid);
+							for each (var xml2:XML in xml1) {  
+								var xml3:XMLList=xml2.constituteData;
+								for each (var xml4:XML in xml3) {  
+									var obj:Object={label:xml4.@label,value:xml4.@numbers};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_2.ColumnMulitDS1=tmpArrayCollection;
+				
+				
+				
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList2:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-B");
+					if(tmpList2.length()>0)
+					{
+						for each (var xml20:XML in tmpList2) {  
+							var xml21:XMLList=xml20.dataset;
+							for each (var xml22:XML in xml21) {  
+								var xml23:XMLList=xml22.constituteData;
+								if(xml23!=null&&xml23.length()>0){
+									title_2.title2_lebel=xml23[0].@label;
+									var obj2:Object={label:xml22[0].@label,vol1:xml23[0].@numbers,yearid:xml22.@yearid};
+									tmpArrayCollection2.addItem(obj2);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_2.ColumnMulitDS2=tmpArrayCollection2;
+				
+				PopUpManager.addPopUp(title_2,this,true);
+				PopUpManager.centerPopUp(title_2); 
+			}
+			protected function columnmulti23_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(title_3)
+				{
+					PopUpManager.removePopUp(title_3); 
+				}					
+				
+				title_3 = new Titlewin_3();
+				title_3.ShowDataLabel=showDataLabel;
+				title_3.title_lebel = item.label;
+				title_3.title = "废水达标完成率排放情况"+"("+item.label+") 计量单位：%";
+				title_3.selYear=item.yearid;
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-C");
+					if(tmpList.length()>0)
+					{
+						title_3.HseDataXML=tmpList[0];
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset.(@yearid==item.yearid);
+							for each (var xml2:XML in xml1) {  
+								var xml3:XMLList=xml2.monthData;
+								for each (var xml4:XML in xml3) {  
+									var obj:Object={label:xml4.@label,vol1:xml4.@numbers,vol2:xml4.@monthAveragePlanNumbers,montid:xml4.@montid};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_3.ColumnMulitDS1=tmpArrayCollection;
+				
+				
+				PopUpManager.addPopUp(title_3,this,true);
+				PopUpManager.centerPopUp(title_3); 
+			}
+			protected function columnmulti24_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(title_4)
+				{
+					PopUpManager.removePopUp(title_4); 
+				}					
+				
+				title_4 = new Titlewin_4();
+				title_4.ShowDataLabel=showDataLabel;
+				title_4.title_lebel = item.label;
+				title_4.title = "废水排放量完成情况"+"("+item.label+") 计量单位：亿吨";
+				title_4.selYear=item.yearid;
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-D");
+					if(tmpList.length()>0)
+					{
+						title_4.HseDataXML=tmpList[0];
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset.(@yearid==item.yearid);
+							for each (var xml2:XML in xml1) {  
+								var xml3:XMLList=xml2.monthData;
+								for each (var xml4:XML in xml3) {  
+									var obj:Object={label:xml4.@label,vol1:xml4.@numbers,vol2:xml4.@monthAveragePlanNumbers,montid:xml4.@montid};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_4.ColumnMulitDS1=tmpArrayCollection;
+				
+				PopUpManager.addPopUp(title_4,this,true);
+				PopUpManager.centerPopUp(title_4); 
+			}
+			protected function columnmulti25_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(title_5)
+				{
+					PopUpManager.removePopUp(title_5); 
+				}					
+				
+				title_5 = new Titlewin_5();
+				title_5.ShowDataLabel=showDataLabel;
+				title_5.title_lebel = item.label;
+				title_5.title = "工业取水量完成情况"+"("+item.label+") 计量单位：万吨";
+				title_5.selYear=item.yearid;
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-E");
+					if(tmpList.length()>0)
+					{
+						title_5.HseDataXML=tmpList[0];
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset.(@yearid==item.yearid);
+							for each (var xml2:XML in xml1) {  
+								var xml3:XMLList=xml2.monthData;
+								for each (var xml4:XML in xml3) {  
+									var obj:Object={label:xml4.@label,vol1:xml4.@numbers,vol2:xml4.@monthAveragePlanNumbers,montid:xml4.@montid};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_5.ColumnMulitDS1=tmpArrayCollection;
+				
+				
+				PopUpManager.addPopUp(title_5,this,true);
+				PopUpManager.centerPopUp(title_5); 
+			}
+			protected function columnmulti26_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(title_6)
+				{
+					PopUpManager.removePopUp(title_6); 
+				}					
+				
+				title_6 = new Titlewin_6();
+				title_6.ShowDataLabel=showDataLabel;
+				title_6.title_lebel = item.label;
+				title_6.title = "年SO2排放完成情况"+"("+item.label+") 计量单位：万吨";
+				title_6.selYear=item.yearid;
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-F");
+					if(tmpList.length()>0)
+					{
+						title_6.HseDataXML=tmpList[0];
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset.(@yearid==item.yearid);
+							for each (var xml2:XML in xml1) {  
+								var xml3:XMLList=xml2.monthData;
+								for each (var xml4:XML in xml3) {  
+									var obj:Object={label:xml4.@label,vol1:xml4.@numbers,vol2:xml4.@monthAveragePlanNumbers,montid:xml4.@montid};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_6.ColumnMulitDS1=tmpArrayCollection;
+				
+				PopUpManager.addPopUp(title_6,this,true);
+				PopUpManager.centerPopUp(title_6); 
+			}
+			protected function columnmulti27_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(title_7)
+				{
+					PopUpManager.removePopUp(title_7); 
+				}					
+				
+				title_7 = new Titlewin_7();
+				title_7.ShowDataLabel=showDataLabel;
+				title_7.title_lebel = item.label;
+				title_7.title = "COD排放完成情况"+"("+item.label+") 计量单位：万吨";
+				title_7.selYear=item.yearid;
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-G");
+					if(tmpList.length()>0)
+					{
+						title_7.HseDataXML=tmpList[0];
+						for each (var xml:XML in tmpList) {  
+							var xml1:XMLList=xml.dataset.(@yearid==item.yearid);
+							for each (var xml2:XML in xml1) {  
+								var xml3:XMLList=xml2.monthData;
+								for each (var xml4:XML in xml3) {  
+									var obj:Object={label:xml4.@label,vol1:xml4.@numbers,vol2:xml4.@monthAveragePlanNumbers,montid:xml4.@montid};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_7.ColumnMulitDS1=tmpArrayCollection;
+				
+				PopUpManager.addPopUp(title_7,this,true);
+				PopUpManager.centerPopUp(title_7); 
+			}
+			protected function columnmulti28_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(title_8)
+				{
+					PopUpManager.removePopUp(title_8); 
+				}					
+				
+				title_8 = new Titlewin_8();
+				title_8.ShowDataLabel=showDataLabel;
+				title_8.title1_lebel = item.label;
+				title_8.title2_lebel = item.label;
+				title_8.title3_lebel = "产值";
+				title_8.title = "综合利用经济效益完成情况"+"("+item.label+") 计量单位：万元";
+				
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList1:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-H");
+					if(tmpList1.length()>0)
+					{
+						title_8.HseDataXML=tmpList1[0];
+						for each (var xml1:XML in tmpList1) {  
+							var xml11:XMLList=xml1.dataset.(@yearid==item.yearid);
+							for each (var xml12:XML in xml11) {  
+								var obj:Object;
+								obj={label:"产值",vol1:xml12.@outputValueNumber};
+								tmpArrayCollection.addItem(obj);
+								obj={label:"利润",vol1:xml12.@profitNumber};
+								tmpArrayCollection.addItem(obj);
+								obj={label:"减免税",vol1:xml12.@saveTaxNumber};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_8.ColumnMulitDS1_1=tmpArrayCollection;
+				
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList2:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-H");
+					if(tmpList2.length()>0)
+					{
+						for each (var xml2:XML in tmpList2) {  
+							var xml21:XMLList=xml2.dataset.(@yearid==item.yearid);
+							for each (var xml22:XML in xml21) {  
+								var obj2:Object;
+								obj2={label:"产值",vol1:xml22.@y2yOutputValueRatio};
+								tmpArrayCollection2.addItem(obj2);
+								obj2={label:"利润",vol1:xml22.@y2yProfitRatio};
+								tmpArrayCollection2.addItem(obj2);
+								obj2={label:"减免税",vol1:xml22.@y2ysaveTaxRatio};
+								tmpArrayCollection2.addItem(obj2);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_8.ColumnMulitDS1_2=tmpArrayCollection2;
+				
+				
+				var tmpArrayCollection3:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList3:XMLList=hseDataXML.overallData.environmentalIndicatorData.(@id=="INDICATOR-H");
+					if(tmpList3.length()>0)
+					{
+						for each (var xml3:XML in tmpList3) {  
+							var xml31:XMLList=xml3.dataset;
+							for each (var xml32:XML in xml31) {  
+								var obj3:Object={label:xml32.@label,vol1:xml32.@outputValueNumber,yearid:xml32.@yearid};
+								tmpArrayCollection3.addItem(obj3);
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				title_8.ColumnMulitDS1_3=tmpArrayCollection3;
+				
+				PopUpManager.addPopUp(title_8, this, true);    
+				PopUpManager.centerPopUp(title_8); 
+			}
+			
+			
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			public function set DateStr(value:String):void
+			{
+				if(value!=dateStr){
+					dateStrChanged=true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if(!isFirstLoad){
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+		<s:Spacer height="5"/>
+		<s:Label text="中国石化主要环保指标连续五年同期完成对比情况" styleName="titleStyle"/>
+		<s:Spacer height="5"/>
+		
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti AxisLeftTiltle="万吨" ShowDataLabel="{showDataLabel}" width="100%" height="100%" title="固废处理量" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf1}" DataSource="{ColumnMulitDS1}"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti AxisLeftTiltle="亿标立" ShowDataLabel="{showDataLabel}" width="100%" height="100%" title="废气排放量" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf2}" DataSource="{ColumnMulitDS2}"/>
+			</s:BorderContainer>
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti width="100%" ShowDataLabel="{showDataLabel}" height="100%" AxisLeftUnit="%" title="废水达标排放率" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf3}" DataSource="{ColumnMulitDS3}"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti AxisLeftTiltle="亿吨" ShowDataLabel="{showDataLabel}" width="100%" height="100%" title="废水排放量" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf4}" DataSource="{ColumnMulitDS4}"/>
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti AxisLeftTiltle="万吨" ShowDataLabel="{showDataLabel}" width="100%" height="100%" title="工业取水量" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf5}" DataSource="{ColumnMulitDS5}"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti AxisLeftTiltle="万吨" ShowDataLabel="{showDataLabel}" width="100%" height="100%" title="SO2排放量" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf6}" DataSource="{ColumnMulitDS6}"/>
+			</s:BorderContainer>
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti AxisLeftTiltle="万吨" ShowDataLabel="{showDataLabel}" width="100%" height="100%" title="COD排放量" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf7}" DataSource="{ColumnMulitDS7}"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti AxisLeftTiltle="万元" ShowDataLabel="{showDataLabel}" width="100%" height="100%" title="综合经济效益利润" showTitle="true" showLegend="false" DataSourceConf="{ColumnMulitDSConf8}" DataSource="{ColumnMulitDS8}"/>
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

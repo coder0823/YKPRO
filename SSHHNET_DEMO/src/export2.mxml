@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" creationComplete="application1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.as3xls.xls.ExcelFile;
+			import com.as3xls.xls.Sheet;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.HierarchicalData;
+			import mx.controls.Alert;
+			import mx.controls.DataGrid;
+			import mx.events.FlexEvent;
+			
+			
+			
+			[Bindable] private var resourceCollection:ArrayCollection;
+			private var myData:XML;
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				myData = <root>
+				  <node>
+								  <id>01</id>
+					 <name>汽车分类</name>
+					 <type>汽车</type>
+					 <children>
+								   <id>01-1</id>
+					  <name>宝马</name>
+					  <type>汽车</type>
+								  </children>
+								</node>
+								<node>
+								  <id>02</id>
+					 <name>书籍分类</name>
+					 <type>书籍</type>
+					 <children>
+								   <id>02-1</id>
+					  <name>数学</name>
+					  <type>书籍</type>
+								  </children>
+									 <children>
+								   <id>03-1</id>
+					  <name>语文</name>
+					  <type>书籍</type>
+								  </children>
+								</node>
+				</root>
+				
+				resourceCollection = new ArrayCollection();
+				for(var i:int=0;i<myData.node.length();i++) {//遍历一级节点
+					var obj:Object = new Object();
+					obj.id = myData.node[i].id;
+					obj.name = myData.node[i].name;
+					obj.type = myData.node[i].type;
+					var arr:Array = new Array();
+					for(var j:int=0;j<myData.node[i].children.length();j++) {//遍历二级节点
+						var obj2:Object = new Object();
+						obj2.id = myData.node[i].children[j].id;
+						obj2.name = myData.node[i].children[j].name;
+						obj2.type = myData.node[i].children[j].type;
+						arr.push(obj2);
+					}
+					obj.children = arr;
+					resourceCollection.addItem(obj);
+				}
+				adg.dataProvider = new HierarchicalData(resourceCollection);
+				adg1.dataProvider = new HierarchicalData(resourceCollection);
+				//adg.displayItemsExpanded=true;
+			} 
+			
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				adg1.displayItemsExpanded=true; //导出前展开所有节点 否则只能导出当前展示节点
+				adg1.validateNow(); //刷新  展开后需要进行刷新   
+				ExportToExcel.dataGridExporter(adg1,"test.xls");
+				
+				
+			}
+			
+			
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<mx:Button label="导出"  click="button1_clickHandler(event)"/>
+	<mx:AdvancedDataGrid id="adg">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="id"/>
+			<mx:AdvancedDataGridColumn dataField="name" headerText="名称"/>
+			<mx:AdvancedDataGridColumn dataField="type" headerText="类型"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+	
+	
+	<mx:AdvancedDataGrid id="adg1">
+		<mx:groupedColumns>
+			<mx:AdvancedDataGridColumn dataField="id"
+									   headerText="序号"
+									   width="60" />
+			<mx:AdvancedDataGridColumn dataField="name"
+									   headerText="企业"
+									   width="110"
+									   textAlign="left" />
+			<mx:AdvancedDataGridColumn dataField="type"
+									   headerText="项目名称"
+									   width="200"
+									   textAlign="left" />
+			<mx:AdvancedDataGridColumnGroup dataField="project"
+											headerText="进度完成情况">
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="正在设计" />
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="等待施工" />
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="正在施工"/>
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="完成" />
+			</mx:AdvancedDataGridColumnGroup>
+			<mx:AdvancedDataGridColumnGroup dataField="project2"
+											headerText="进度完成情况2">
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="正在设计" />
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="等待施工" />
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="正在施工"/>
+				<mx:AdvancedDataGridColumn dataField="name"
+										   headerText="完成" />
+			</mx:AdvancedDataGridColumnGroup>
+			<mx:AdvancedDataGridColumn dataField="name"
+									   headerText="总部负责人" />
+			<mx:AdvancedDataGridColumn dataField="name"
+									   headerText="企业负责人" />
+			<mx:AdvancedDataGridColumn dataField="name"
+									   headerText="总部主管部门" />
+		</mx:groupedColumns>
+	</mx:AdvancedDataGrid>
+	
+</s:Application>

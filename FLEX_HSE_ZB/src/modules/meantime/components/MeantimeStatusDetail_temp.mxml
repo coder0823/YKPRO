@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   skinClass="skins.popWinStyle" mouseEnabled="true"
+			   creationComplete="titlewindow1_creationCompleteHandler(event)"
+			   height="500"
+			   close="titlewindow1_closeHandler(event)">
+	<s:layout>
+		<s:BasicLayout />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import events.ExportEvent;
+			
+			import flashx.textLayout.elements.BreakElement;
+			
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			import modules.meantime.events.MeantimeOverFilterEvent;
+			import modules.meantime.renderers.AdvancedDataGridWarningRenderer;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer_ProjectSchedule;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer_corpName;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer_new;
+			import modules.meantime.renderers.MeantimeOneStatusRenderer_projectURL;
+			import modules.meantime.renderers.serialItemRender;
+			
+			import mx.collections.ArrayCollection;
+			import mx.containers.DividedBox;
+			import mx.controls.AdvancedDataGrid;
+			import mx.controls.Alert;
+			import mx.controls.PopUpButton;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.printing.FlexPrintJob;
+			import mx.printing.FlexPrintJobScaleType;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.components.Group;
+			
+			import views.RowAdvDataGrid;
+			
+			private var seriaItem:IFactory = new ClassFactory(serialItemRender);
+			private var loader:URLLoader = new URLLoader();
+			private var stateArr:Array = ['可研批复', '基础设计批复', '施工期间', '开始试运行', '试运行期满'];
+			private var advancedDataGridWarningRenderer:IFactory = new ClassFactory(AdvancedDataGridWarningRenderer);
+			private var meantimeOneStatusRenderer:IFactory = new ClassFactory(MeantimeOneStatusRenderer_new);
+//			private var meantimeOneStatusRenderer_ProjectSchedule:IFactory = new ClassFactory(MeantimeOneStatusRenderer_ProjectSchedule);
+			private var meantimeOneStatusRenderer_corpName:IFactory = new ClassFactory(MeantimeOneStatusRenderer_corpName);
+			private var meantimeOneStatusRenderer_projectURL:IFactory = new ClassFactory(MeantimeOneStatusRenderer_projectURL);
+			private var hseDataXML:XML;
+			
+			private var plateid:String = "";
+			private var corpid:String = "";
+			private var levelid:String = "";
+			private var profid:String = "";
+			private var stageid:String = "";
+			
+			private var plateName:String = "";
+			private var corpName:String = "";
+			private var levelName:String = "";
+			private var profName:String = "";
+			private var stageName:String = "";
+			private var field_num:int = 1;
+			[Bindable]
+			private var ac_dataProvider:ArrayCollection = new ArrayCollection();
+			[Bindable]
+			private var ac_dataProvider_temp:ArrayCollection = new ArrayCollection();
+			[Bindable]
+			private var contextmenu:ContextMenu;
+//			private var sumObjCurrentStage:Object = new Object; 
+//			private var sumObjCurrentStage_temp:Object = new Object; 
+			
+			public function setData(wsdlUrl:String, dateStr:String, obj:Object,statusStr:String):void
+			{
+				this.plateName = obj.plate;
+				this.corpName = obj.corp;
+				this.levelName = obj.level;
+				this.profName = obj.prof;
+				this.stageName = obj.stage;
+				
+				this.plateid = obj.plateid;
+				this.corpid = obj.corpid;
+				this.levelid = obj.levelid;
+				this.profid = obj.profid;
+				this.stageid = obj.stageid;
+				if(statusStr=="1"){
+					statusStr = "yellow";
+				}
+				if(statusStr=="2"){
+					statusStr = "red";
+				}
+				if(statusStr=="4"){
+					statusStr = "green";
+				}
+				if(statusStr=="project_num"){
+					statusStr="";
+				}
+				
+//				statusStr="";
+				ws.wsdl = wsdlUrl;
+				ws.loadWSDL();
+//				loadDataByURLLoader();
+				
+				/** Contrastback接口
+				 * 
+				 * 	loadDataByWs(dateStr, plateid, corpid, levelid, profid, stageid, "");
+				 */
+				loadDataByWs(dateStr, plateid, corpid, levelid, profid, statusStr, "");
+//				loadDataByWs(dateStr, plateid, corpid, levelid, profid, stageid, "");
+			}
+			
+			private function loadDataByURLLoader():void
+			{
+//				loader.load(new URLRequest("assets/data/zb_meantimeOverAllProjListdata.xml"));
+				loader.load(new URLRequest("assets/data/zb_meantimeOverAlldata_total.xml"));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataByWs(dateStr:String, plateid:String, corpid:String, levelid:String, profid:String, statusStr:String, statusid:String):void
+			{
+//				obj.Create("2013", "00", "200525", "00", "","", "overAllDetails");
+				if(statusStr!=""){
+					ws.GetMeantime("overAllDetails", dateStr, plateid, corpid, levelid, profid,"",statusStr, statusid);
+				}else{
+					ws.GetMeantime("overAllProject", dateStr, plateid, corpid, levelid, profid,"",statusStr, statusid);
+				}
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				this.removeAllElements();
+				var advancedDataGrid:AdvancedDataGrid = createAdvancedDataGrid();
+				ac_dataProvider = createAdvancedDataGridAc(this.stageName);
+				for(var i:int=0;i<ac_dataProvider.length;i++){
+					ac_dataProvider_temp.addItem(ac_dataProvider[i]);
+				}
+				
+//				var cmi:ContextMenuItem = new ContextMenuItem("View out", true);
+//				
+//				contextmenu = new ContextMenu();
+//				contextmenu.hideBuiltInItems();
+//				contextmenu.customItems = [cmi];
+//				advancedDataGrid.contextMenu = contextmenu;
+//				cmi.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, function(event : ContextMenuEvent) : void{
+//					Image_as.Instance.exportChart(advancedDataGrid);
+					
+//					var printJob:FlexPrintJob = new FlexPrintJob();  
+//					printJob.printAsBitmap = false;  
+//					
+//					
+//					
+//					if (printJob.start()){  
+//						//					view.height=printJob.pageHeight;  
+//						//					view.width=printJob.pageWidth;  
+//						printJob.addObject(advancedDataGrid,FlexPrintJobScaleType.SHOW_ALL);  
+//						printJob.send();  
+//					}
+//				});
+				advancedDataGrid.dataProvider = ac_dataProvider;
+				
+				this.addElement(advancedDataGrid);
+				this.addElement(back_but); 
+			}
+			
+			private function createAdvancedDataGrid():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				advancedDataGrid.percentWidth = 100;
+				advancedDataGrid.percentHeight = 100;
+				advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+				advancedDataGrid.setStyle("color", "#000000");
+				advancedDataGrid.setStyle("rollOverColor","haloBlue");
+				advancedDataGrid.sortExpertMode = true;
+				advancedDataGrid.sortableColumns = false;
+				advancedDataGrid.variableRowHeight = true;
+				advancedDataGrid.horizontalScrollPolicy = "on";
+				
+				var groupColumn:Array = new Array();
+				var column:AdvancedDataGridColumn;
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "order";
+				column.headerText = "序号";
+				column.itemRenderer=seriaItem;
+				column.setStyle("textAlign","center");
+				column.width = 50;
+				groupColumn.push(column);
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "corpName";
+				column.headerText = "企业名称";
+				column.itemRenderer = meantimeOneStatusRenderer_corpName;
+				column.width = 100;
+				groupColumn.push(column);
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "projectName";
+				column.headerText = "项目名称";
+				column.width = 200;
+//				column.showDataTips = true;
+				column.itemRenderer = meantimeOneStatusRenderer_projectURL;
+				column.dataTipField = "projectName";
+				groupColumn.push(column);
+				
+				column = new AdvancedDataGridColumn();
+				column.dataField = "currentStage";
+				column.headerText = "项目进度";
+//				column.itemRenderer = meantimeOneStatusRenderer_ProjectSchedule;
+				column.width = 150;
+				groupColumn.push(column);
+				
+				var i:int = 1;
+				var tmpList_head:XMLList;
+				tmpList_head = hseDataXML.allData.datagrid_config;
+				if (tmpList_head != null && tmpList_head.length() > 0){
+					for each(var xml_head:XML in tmpList_head.datagrid_head){
+						var columngroup:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+						columngroup.dataField = "stage";
+						columngroup.headerText = xml_head.@headLabel;
+						var columngroupArr:Array = new Array();
+//						var i:int = 1;
+						var tmpList:XMLList;
+						tmpList = xml_head.stage;
+						if (tmpList != null && tmpList.length() > 0)
+						{
+							var stageColumn:AdvancedDataGridColumn;
+							for each (var xml:XML in tmpList)
+							{
+								stageColumn = new AdvancedDataGridColumn();
+								stageColumn.dataField = "field" + i;
+								stageColumn.headerText = xml.@label + "";
+								stageColumn.width = 150;
+								stageColumn.itemRenderer = meantimeOneStatusRenderer;
+								columngroupArr.push(stageColumn);
+								i++;
+							}
+						}
+						columngroup.children = columngroupArr;
+						groupColumn.push(columngroup);
+					}
+				}
+				field_num = i;
+				advancedDataGrid.groupedColumns = groupColumn;
+				advancedDataGrid.rowColorFunction = colorFunction;
+				return advancedDataGrid;
+			}
+			
+			private function createAdvancedDataGridAc(stageName:String):ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var xmllist:XMLList = hseDataXML.allData.dataset;
+					if (xmllist != null && xmllist.length() > 0)
+					{
+						var sum_obj:Object = new Object();
+						var sum_investment:Number = 0;
+						var sum_objPro:Object = new Object();
+						var index:int = 1;
+						for each (var xml:XML in xmllist)
+						{
+								var obj:Object = new Object();
+								obj['order'] = index;
+								obj['isSum'] = "0";
+								obj['projectName'] = xml.@projectName + "";
+								obj['projectURL'] = xml.@projectURL + "";
+								obj['corpName'] = xml.@corpName + "";
+								var currentStage:int = int(xml.@currentStage);
+								obj['currentStage'] = handlerCurrState(currentStage);
+								var xmllist2:XMLList = xml.professional_data.stagedata;
+								if (xmllist2 != null && xmllist2.length() > 0){
+									var i:int = 1;
+									for(i;i<14;i++){
+										var objStage:Object = new Object;
+										objStage.status = "";
+										objStage.warning = "";
+										objStage.alarmTxt = "";
+										for each (var xml2:XML in xmllist2){
+											if(xml2.@sequence==i.toString()){
+												objStage.status = xml2.@status;
+												objStage.warning = xml2.@warning;
+												objStage.alarmTxt = xml2.@alarmTxt;
+												break;
+											}
+										}
+										obj['field' + i] = objStage;
+										
+										if(objStage.warning=="1"){
+											obj['exfield' + i]="预警";
+										}
+										if(objStage.warning=="2"){
+											obj['exfield' + i]="超期";
+										}
+										if(objStage.warning=="3"||objStage.warning=="4"){
+											obj['exfield' + i]="已完成";
+										}
+//										obj['exfield' + i]=objStage.warning+"";
+										//										i++;
+									}
+								}
+								index++;
+								tmpArrayCollection.addItem(obj);
+						}
+						sum_obj['order'] = "";
+						sum_obj['isSum'] = "1";
+						sum_obj['investment'] = sum_investment
+						sum_obj['corpName'] = "合计";
+						sum_obj['projectName'] = tmpArrayCollection.length+"个项目";
+						sum_obj['isShow'] = "1";
+					/* 
+						----------------
+						---------------- */
+						for(var j:int=1;j<i;j++){
+							var sum_red:Number = 0;
+							var sum_yellow:Number = 0;
+							var sum_green:Number = 0;
+							for(var k:int=0;k<tmpArrayCollection.length;k++){
+								if(tmpArrayCollection[k]['field'+j]){
+									if(tmpArrayCollection[k]['field'+j].status == "IN-PROCESS"||tmpArrayCollection[k]['field'+j].status == "NO-START"){
+										if(tmpArrayCollection[k]['field'+j].warning=="1"){
+											sum_yellow= sum_yellow+1;
+										}else if(tmpArrayCollection[k]['field'+j].warning=="2"){
+											sum_red= sum_red+1;
+										}
+									}
+									if(tmpArrayCollection[k]['field'+j].status == "FINISHED"){
+										sum_green= sum_green+1;
+									}  
+								}
+							}
+							var sumObjStage:Object = new Object;
+							sumObjStage['sum_red'] = sum_red;
+							sumObjStage['sum_yellow'] = sum_yellow;
+							sumObjStage['sum_green'] = sum_green;
+							sum_obj['field' + j] = sumObjStage;
+							sum_obj['exfield' + j]="超期："+sum_red+"  "+"预警："+sum_yellow+"  "+"已完成"+sum_green;
+						}
+						sum_obj['currentStage'] = "";
+						tmpArrayCollection.addItemAt(sum_obj, 0);
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			
+			}
+			
+		/* 	private function filter_CurrentStage(i:int,tmpArrayCollection:ArrayCollection):Object{
+				var sum_redCurrentStage:Number = 0;
+				var sum_yellowCurrentStage:Number = 0;
+				var sum_greenCurrentStage:Number = 0;
+				var sum_redCurrentStage_temp:Number = 0;
+				var sum_yellowCurrentStage_temp:Number = 0;
+				var sum_greenCurrentStage_temp:Number = 0;
+				for(var k_CurrentStage:int=0;k_CurrentStage<tmpArrayCollection.length;k_CurrentStage++){
+					for(var j_CurrentStage:int=1;j_CurrentStage<i;j_CurrentStage++){
+						if(tmpArrayCollection[k_CurrentStage]['field'+j_CurrentStage]){
+							if(tmpArrayCollection[k_CurrentStage]['field'+j_CurrentStage].status == "IN-PROCESS"||tmpArrayCollection[k_CurrentStage]['field'+j_CurrentStage].status == "NO-START"){
+								if(tmpArrayCollection[k_CurrentStage]['field'+j_CurrentStage].warning=="1"){
+									sum_yellowCurrentStage_temp++;
+								}else if(tmpArrayCollection[k_CurrentStage]['field'+j_CurrentStage].warning=="2"){
+									sum_redCurrentStage_temp++;
+								}
+							}else if(tmpArrayCollection[k_CurrentStage]['field'+j_CurrentStage].status == "FINISHED"){
+								sum_greenCurrentStage_temp++;
+							}  
+						}
+					}
+					if(sum_redCurrentStage_temp>0){
+						sum_redCurrentStage++;
+					}else if(sum_yellowCurrentStage_temp>0){
+						sum_yellowCurrentStage++;
+					}else if(sum_greenCurrentStage_temp>0){
+						sum_greenCurrentStage++;
+					}
+					
+				}
+				var sumObjCurrentStage_temp:Object = new Object; 
+				sumObjCurrentStage_temp['sum_red']= sum_redCurrentStage;
+				sumObjCurrentStage_temp['sum_yellow'] = sum_yellowCurrentStage;
+				sumObjCurrentStage_temp['sum_green'] = sum_greenCurrentStage;
+				return sumObjCurrentStage_temp;
+			} */
+			
+			
+			private function handlerStateStr(str:String):String
+			{
+				var str_:String = "";
+				if (str == "FINISHED")
+				{
+					str_ = "已完成";
+				}
+				else if (str == "IN-PROCESS")
+				{
+					str_ = "进行中";
+				}
+				else if (str == "NO-START")
+				{
+					str_ = "未启动";
+				}
+				else if (str == "Ignore" || str == "")
+				{
+					str_ = "";
+				}
+				return str_;
+			}
+			
+			private function colorFunction(item:Object, color:uint):uint
+			{
+				if (item.order == "")
+					color = 0xFFBF00;
+				return color;
+			}
+			
+			private function handlerCurrState(index:int):String
+			{
+				if (index == 0)
+				{
+					return "";
+				}
+				return stateArr[index - 1];
+			}
+			
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				this.removeAllElements();
+				var advancedDataGrid:AdvancedDataGrid = createAdvancedDataGrid();
+//				advancedDataGrid.dataProvider = createAdvancedDataGridAc(this.stageName);
+				
+				ac_dataProvider = createAdvancedDataGridAc(this.stageName);
+				for(var i:int=0;i<ac_dataProvider.length;i++){
+					ac_dataProvider_temp.addItem(ac_dataProvider[i]);
+				}
+				
+				advancedDataGrid.dataProvider = ac_dataProvider;
+				this.addElement(advancedDataGrid);
+//				this.setElementIndex(advancedDataGrid,0);
+				this.addElement(back_but);
+//				this.addElement(btnExoprt);
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				cursorManager.removeAllCursors();
+			}
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				this.addEventListener(events.ExportEvent.ExportClick,exportFun);
+//				this.skin.mouseEnabled=true;
+				this.addEventListener(MeantimeOverAllStatusEvent.STATUS_CLICK, corpName_clickHandler);
+				this.addEventListener(MeantimeOverFilterEvent.FILTER_CLICK,filter_clickHandler);
+			}
+			
+			protected function corpName_clickHandler(event:MeantimeOverAllStatusEvent):void
+			{
+				var obj:Object = event.data;
+				var sum_obj:Object = new Object();
+				back_but.includeInLayout = true;
+				back_but.visible = true;
+				ac_dataProvider.removeAll();
+				for(var i:int=1;i<ac_dataProvider_temp.length;i++){
+					if(ac_dataProvider_temp[i].corpName == obj.corpName){
+						ac_dataProvider.addItem(ac_dataProvider_temp[i]);
+					}
+				}
+				
+				for(var j:int=1;j<field_num;j++){
+					var sum_red:Number = 0;
+					var sum_yellow:Number = 0;
+					var sum_green:Number = 0;
+					for(var k:int=0;k<ac_dataProvider.length;k++){
+						if(ac_dataProvider[k]['field'+j]){
+							if(ac_dataProvider[k]['field'+j].status == "IN-PROCESS"||ac_dataProvider[k]['field'+j].status == "NO-START"){
+								if(ac_dataProvider[k]['field'+j].warning=="1"){
+									sum_yellow= sum_yellow+1;
+								}else if(ac_dataProvider[k]['field'+j].warning=="2"){
+									sum_red= sum_red+1;
+								}
+							}
+							if(ac_dataProvider[k]['field'+j].status == "FINISHED"){
+								sum_green= sum_green+1;
+							}  
+						}
+					}
+					
+					var sumObjStage:Object = new Object;
+					
+					sumObjStage['sum_red'] = sum_red;
+					sumObjStage['sum_yellow'] = sum_yellow;
+					sumObjStage['sum_green'] = sum_green;
+					sum_obj['field' + j] = sumObjStage;
+					sum_obj['exfield' + j]="超期："+sum_red+"  "+"预警："+sum_yellow+"  "+"已完成"+sum_green;
+				}
+				sum_obj['order'] = "";
+				sum_obj['isSum'] = "1";
+				sum_obj['corpName'] = "合计";
+				sum_obj['projectName'] = ac_dataProvider.length+"个项目";
+				sum_obj['isShow'] = "0";
+				sum_obj['currentStage'] = "";//filter_CurrentStage(field_num,ac_dataProvider);
+				ac_dataProvider.addItemAt(sum_obj,0);
+			}
+			
+			protected function filter_clickHandler(event:MeantimeOverFilterEvent):void
+			{
+//				this.setElementIndex(back_but,this.numChildren-1);
+				var sum_obj:Object = new Object();
+				var sum_investment:Number = 0;
+				if(event.state_filter!=""){
+					back_but.includeInLayout = true;
+					back_but.visible = true;
+					ac_dataProvider.removeAll();
+					if(event.state_filter=="green"){
+						for(var i:int=1;i<ac_dataProvider_temp.length;i++){
+							if(ac_dataProvider_temp[i]['field'+event.state_field]){
+								if(ac_dataProvider_temp[i]['field'+event.state_field].warning=="3"||ac_dataProvider_temp[i]['field'+event.state_field].warning=="4"){
+									ac_dataProvider.addItem(ac_dataProvider_temp[i]);
+									sum_investment += Number(ac_dataProvider_temp[i].investment);
+								}
+							}
+						}
+					}else{
+						for(var i1:int=1;i1<ac_dataProvider_temp.length;i1++){
+							if(ac_dataProvider_temp[i1]['field'+event.state_field]){
+								if(ac_dataProvider_temp[i1]['field'+event.state_field].warning==event.state_filter){
+									ac_dataProvider.addItem(ac_dataProvider_temp[i1]);
+									sum_investment += Number(ac_dataProvider_temp[i1].investment);
+								}
+							}
+						}
+					}
+					
+					for(var j:int=1;j<field_num;j++){
+						var sum_red:Number = 0;
+						var sum_yellow:Number = 0;
+						var sum_green:Number = 0;
+						for(var k:int=0;k<ac_dataProvider.length;k++){
+							if(ac_dataProvider[k]['field'+j]){
+								if(ac_dataProvider[k]['field'+j].status == "IN-PROCESS"||ac_dataProvider[k]['field'+j].status == "NO-START"){
+									if(ac_dataProvider[k]['field'+j].warning=="1"){
+										sum_yellow= sum_yellow+1;
+									}else if(ac_dataProvider[k]['field'+j].warning=="2"){
+										sum_red= sum_red+1;
+									}
+								}
+								if(ac_dataProvider[k]['field'+j].status == "FINISHED"){
+									sum_green= sum_green+1;
+								}  
+							}
+						}
+						
+						var sumObjStage:Object = new Object;
+						
+						sumObjStage['sum_red'] = sum_red;
+						sumObjStage['sum_yellow'] = sum_yellow;
+						sumObjStage['sum_green'] = sum_green;
+						sum_obj['field' + j] = sumObjStage;
+						sum_obj['exfield' + j]="超期："+sum_red+"  "+"预警："+sum_yellow+"  "+"已完成"+sum_green;
+					}
+					sum_obj['order'] = "";
+					sum_obj['isSum'] = "1";
+					sum_obj['investment'] = sum_investment
+					sum_obj['currentStage'] = "";//filter_CurrentStage(field_num,ac_dataProvider);
+					sum_obj['corpName'] = "合计";
+					sum_obj['projectName'] = ac_dataProvider.length+"个项目";
+					sum_obj['isShow'] = "0";
+					ac_dataProvider.addItemAt(sum_obj,0);
+//					ac_dataProvider.addItemAt(ac_dataProvider_temp[0],0);
+				}
+			}
+			
+			protected function back_but_clickHandler(event:MouseEvent):void
+			{
+				ac_dataProvider.removeAll();
+				for(var i:int=0;i<ac_dataProvider_temp.length;i++){
+					ac_dataProvider.addItem(ac_dataProvider_temp[i]);
+				}
+				back_but.includeInLayout = false;
+				back_but.visible = false;
+			}
+			
+			
+			protected function exportFun(event:ExportEvent):void
+			{
+				var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+				titleWindow.title = "三同时信息";   
+				titleWindow.width=1000;
+				titleWindow.height=800;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"排序号",dataField:"order",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"企业",dataField:"corpName",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"项目名称",dataField:"projectName",width1:"140",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"安全-设立",dataField:"exfield1",width1:"100",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"安全-设计",dataField:"exfield2",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"安全-试生产",dataField:"exfield3",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"安全-验收",dataField:"exfield4",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"环保-环境影响",dataField:"exfield5",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"环保-试生产",dataField:"exfield6",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"环保-验收",dataField:"exfield7",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"职业卫生-预评价",dataField:"exfield8",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"职业卫生-设计审查",dataField:"exfield9",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"职业卫生-验收",dataField:"exfield10",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"消防-消防监审",dataField:"exfield11",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"消防-消防验收",dataField:"exfield12",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"抗震-抗震安全评价",dataField:"exfield13",width1:"90",textAlign:"center",sortable:true,draggable:false} 
+					
+				]);
+				titleWindow.DataSource= ac_dataProvider;
+				titleWindow.exportToExcel();
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:WebService id="ws"
+					  result="ws_resultHandler(event)"
+					  fault="ws_faultHandler(event)"
+					  showBusyCursor="true" />
+		<s:Parallel id="par">
+			<s:Fade alphaFrom="0.0" alphaTo="1.0" duration="2000"/>
+		</s:Parallel>
+	</fx:Declarations>
+	<s:Image id="back_but" source="assets/images/back.png" toolTip="返回总数据"  showEffect="{par}"
+			 includeInLayout="false" visible="false" x="{this.width-105}" y="-28" click="back_but_clickHandler(event)"/>
+	<!--<mx:Button label="导出" id="btnExoprt" click="btnExoprt_clickHandler(event)" includeInLayout="true" visible="true" x="{this.width-203}" y="-25"/>-->
+</s:TitleWindow>

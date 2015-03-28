@@ -1,0 +1,266 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+global {
+	modalTransparencyBlur: 0;
+	modalTransparency: 0.4; 
+	modalTransparencyColor: black;
+	modalTransparencyDuration: 0;
+	fontFamily: 宋体;
+	color:#000000;
+	fontSize:12;
+	fontWeight:normal;
+}
+s|Application{
+	backgroundColor:#E7E1D3;
+	fontFamily: 宋体;
+	color:#000000;
+	fontSize:12;
+	fontWeight:normal;
+}
+mx|Alert{
+	color:#000000;	
+}
+s|Label,s|CheckBox,s|ComboBox,s|DropDownList,s|Grid,s|TabBar,s|ButtonBar,s|TitleWindow,mx|DataGrid,mx|AdvancedDataGrid,mx|Accordion,mx|Label,mx|DataTip,mx|ToolTip{
+	fontFamily: 宋体;
+}
+.dataGridItemLabel{
+	fontFamily: 宋体;
+	color:#000000;	
+}
+.pageTitle{
+	fontFamily: 宋体;
+	fontSize:18;
+	fontWeight:bold;
+	textAlign:center;
+}
+.titleStyle{
+	fontFamily: 宋体;
+	fontSize:14;
+	fontWeight:bold;
+	textAlign:center;
+}
+.contentBox{
+	fontFamily: 宋体;
+	backgroundColor:#E7E1D3;
+	borderColor:#333333;
+	cornerRadius:0;
+}
+.controlBox{
+	fontFamily: 宋体;
+	borderColor:#333333;
+	borderAlpha:0;
+	borderThicknessLeft:0;
+	borderThicknessTop:0;
+	borderThicknessBottom:0;
+	borderThicknessRight:1;
+}
+.tabButtonStyle1{
+	fontFamily: 宋体;
+	skinClass:ClassReference("skins.ButtonBarSkinA1");
+}
+.tabButtonStyle2{
+	fontFamily: 宋体;
+	skinClass:ClassReference("skins.ButtonBarSkinA2");
+}
+.tabButtonStyle3{
+	fontFamily: 宋体;
+	skinClass:ClassReference("skins.ButtonBarSkinA3");
+}
+.tabHeadBox{
+	fontFamily: 宋体;
+	backgroundColor:#999999;
+	borderWeight:0;
+	borderAlpha:0;
+	borderWeight:0;
+	backgroundImage:Embed(source="assets/images/common/tabHeadBgA1.jpg");
+}
+.tabHead2Box{
+	fontFamily: 宋体;
+	backgroundColor:#999999;
+	borderWeight:0;
+	borderAlpha:0;
+	borderWeight:0;
+	backgroundImage:Embed(source="assets/images/common/tabHeadBgA2.jpg");
+}
+.tabHead3Box{
+	fontFamily: 宋体;
+	backgroundColor:#999999;
+	borderWeight:0;
+	borderAlpha:0;
+	borderWeight:0;
+	backgroundImage:Embed(source="assets/images/common/tabHeadBgA3.jpg");
+}
+.legendBox{
+	fontFamily: 宋体;
+	backgroundColor:#EEEEEE;
+	borderColor:#333333;
+}
+
+.tabContentBox{
+	fontFamily: 宋体;
+	backgroundColor:#DDDDDD;
+	borderColor:#333333;
+	borderWeight:0;
+	borderAlpha:0;
+	borderWeight:0;
+	backgroundAlpha:0;
+}
+
+.customAccordionHeadStyles {
+	fontFamily: 宋体;
+	skin: ClassReference("skins.CustomAccordionHeaderSkin");
+	textRollOverColor: white;
+	textSelectedColor: white;
+	color:#ffffff;
+}
+
+
+
+.chart{
+	fontFamily: 宋体;
+	fontSize:14;	
+}
+s|Button{
+	color:#333333;
+}
+
+mx|ColumnSeries,mx|LineSeries,mx|BarSeries,mx|PieSeries{
+	fontSize:14;
+}
+mx|AxisRenderer
+{
+	fontSize:14;
+}
+mx|Legend{
+	fontSize:14;
+	fontWeight:normal;
+}
+mx|LegendItem
+{
+	fontSize:12;
+	horizontalGap: 1;
+	fontWeight:normal;
+	markerWidth:10;
+	markerHeight:10;
+}
+mx|DataGrid{
+	headerBackgroundSkin:ClassReference("skins.CustomDataGridHeaderBackgroundSkin");
+	headerSeparatorSkin:ClassReference("skins.CustomDataGridHeaderSeparatorSkin");
+	headerStyleName:"headerStyle";
+	verticalGridLineColor:#708CB1;
+	horizontalGridLineColor:#708CB1;
+	alternatingItemColors:#FFFFFF,#FFFFFF;
+	borderColor:#708CB1;
+	color:#000000;
+	fontSize:14;
+	fontWeight:normal;
+}
+mx|AdvancedDataGrid  {
+	headerBackgroundSkin:ClassReference("skins.CustomDataGridHeaderBackgroundSkin");
+	headerSeparatorSkin:ClassReference("skins.CustomDataGridHeaderSeparatorSkin");
+	headerStyleName:"headerStyle";
+	verticalGridLineColor:#708CB1;
+	horizontalGridLineColor:#708CB1;
+	alternatingItemColors:#FFFFFF,#C6D0DF;
+	borderColor:#708CB1;
+	color:#000000;
+	fontSize:14;
+	fontWeight:normal;
+} 
+.headerStyle{
+	color:#FFFFFF;
+	textAlign:center;
+}
+.datagridFooter{
+	backgroundColor:#999999;
+	color:#000000;
+	backgroundAlpha:1;
+	textAlign:center;
+}
+
+mx|ToolTip{
+	fontSize:12;
+	backgroundAlpha:0.8;
+	color:#000000;
+	backgroundColor:#ffffff;/*33CC99*/
+	cornerRadius:0;
+	borderColor:#33CC99;
+	borderVisible:true;
+	borderAlpha:1;
+	borderStyle:solid;
+}
+mx|DataTip{
+	fontSize:12;
+	backgroundAlpha:0.8;
+	color:#000000;
+	backgroundColor:#ffffff;/*33CC99*/
+	cornerRadius:0;
+	borderColor:#33CC99;
+	borderVisible:true;
+	borderAlpha:1;
+	borderStyle:solid;
+}
+
+
+
+
+s|List{
+	contentBackgroundColor:#E7E1D3;
+	borderColor:#333333;
+	selectionColor:#CCCCCC;
+	rollOverColor:#DDDDDD;
+}
+.panel{
+	headerColors:#FFFFFF;
+	borderStyle:none;
+	headerHeight:25;
+	color:#000000;
+}
+.txt{
+	color:#000000;
+	padding:5;
+}
+
+
+.TabNavigator_style {
+	tabStyleName: "myTabs";
+	firstTabStyleName: "myTabs";
+	lastTabStyleName: "myTabs";
+	selectedTabTextStyleName: "mySelectedTabs";
+	paddingTop:0;
+	borderColor:#656464;
+	tabHeight:23;
+}
+
+.myTabs {
+	fontFamily :Microsoft YaHei;
+	fontWeight:bold;
+	color:#1B181B;
+	textSelectedColor:#FFF505;
+	textRollOverColor:#FFF505;
+	up-skin:ClassReference("skins.TabNavigatorTabSkin");
+	down-skin:ClassReference("skins.TabNavigatorTabSkin");
+	over-skin:ClassReference("skins.TabNavigatorTabSkin");
+	disabled-skin:ClassReference("skins.TabNavigatorTabSkin");
+	selected-up-skin:ClassReference("skins.TabNavigatorTabSelectedSkin");
+	selected-down-skin:ClassReference("skins.TabNavigatorTabSelectedSkin");
+	selected-over-skin:ClassReference("skins.TabNavigatorTabSelectedSkin");
+	selected-disabled-skin:ClassReference("skins.TabNavigatorTabSelectedSkin");
+}
+
+.mySelectedTabs {
+}
+
+
+s|HScrollBar {
+	cornerRadius: 10;
+	highlightAlphas: 0.44, 0.44;
+	fillAlphas: 0.45, 0.73, 0.63, 0.65;
+	fillColors: #cc3300, #6666cc, #ccff00, #ffff00;
+	trackColors: #00cc66, #cc00cc;
+	/*themeColor: #cc9900;*/
+	borderColor: #00ff00;
+	iconColor: #330000;
+	thumbOffset: 1;
+}

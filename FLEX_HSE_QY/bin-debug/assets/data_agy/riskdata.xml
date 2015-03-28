@@ -1,0 +1,1444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2013" dataDate="" corpid="10000003"
+		corpname="扬子石化" timestamp="" />
+	<riskData>
+		<dataset riskid="LEVEL-A" label="重大风险" riskNumbers="115" />
+		<dataset riskid="LEVEL-B" label="中等风险" riskNumbers="354" />
+		<dataset riskid="LEVEL-C" label="一般风险" riskNumbers="5830" />
+	</riskData>
+	<majorRiskSolveData riskid="LEVEL-A">
+		<dataset riskid="LEVEL-A" solveid="UNREVIEWED" label="未评审"
+			numbers="0"></dataset>
+		<dataset riskid="LEVEL-A" solveid="UNSOLVED" label="已评审措施未落实"
+			numbers="13">
+			<corpData order="1" label="水厂-净一装置" jobActivity="污水池检修"
+				harm="有毒气体、液体；通风不良、缺氧；防护不当；监护失误" consequence="人员中毒、窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="2" label="水厂-净一装置" jobActivity="预处理离心脱水系统开车"
+				harm="硫化氢超标、可燃气超标" consequence="人员中毒、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="3" label="水厂-净一装置" jobActivity="污泥脱水开车"
+				harm="硫化氢泄漏、可燃气超标" consequence="人员中毒、伤亡、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="4" label="水厂-净一装置" jobActivity="纯氧曝气池开车"
+				harm="可燃气超标" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="5" label="化工厂-PTA一/二装置" jobActivity="进入受限空间作业"
+				harm="1、施工方案内容方法要求不清楚；2、施工未交底、人员未进行安全教育；3、工艺未进行处理或处理不彻底；4、盲板未加、漏加或盲板不合格。"
+				consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="6" label="化工厂-PTA一/二装置" jobActivity="进入受限空间作业"
+				harm="1、消、气防器材不到位；2、无监护人；3、工器具不防爆；4、未按规定穿戴劳动防护用品；5、未进行工艺处理，处理不干净；6、未加盲板隔离；7、空间内分析不合格。"
+				consequence="人身伤害、火灾爆炸事故" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="7" label="化工厂-PTA一/二装置" jobActivity="进入受限空间作业"
+				harm="1、未按规定4小时分析一次；2、内部登高无防坠落措施；3、双方监护人和作业人员未约定信号。" consequence="人身伤害、火灾爆炸事故"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="8" label="化工厂-PTA一/二装置" jobActivity="进入受限空间作业"
+				harm="未按规定办理或票证不合格" consequence="人身伤害、火灾爆炸事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="9" label="化工厂-PTA一/二装置" jobActivity="进入受限空间作业"
+				harm="人员、工器具、架子和杂物未清点和清理；2、未按规定确认验收。" consequence="人身伤害、设备事故"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="10" label="烯烃厂-循环水车间" jobActivity="高处作业"
+				harm="未按要求偑戴或正确使用安全带，未设安全网、绳等措施" consequence="高处坠落，人身伤亡"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="11" label="烯烃厂-循环水车间" jobActivity="受限空间作业"
+				harm="未经作业危害识别并制定安全措施及受限空间取样分析" consequence="安全措施落实不到位，可能发生中毒等事故"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="12" label="烯烃厂-循环水车间" jobActivity="受限空间作业"
+				harm="安全措施未逐项确认落实（照明不用安全电压、未用盲板有效隔离、未设进出安全通道等）" consequence="可能发生中毒、窒息、触电等安全事故"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="13" label="烯烃厂-循环水车间" jobActivity="高处作业"
+				harm="未设作业危险区" consequence="坠物伤人" reviewStatus="已评审" workableStatus="未落实" />
+		</dataset>
+		<dataset riskid="LEVEL-A" solveid="SOLVED" label="已评审措施已落实"
+			numbers="102">
+			<corpData order="1" label="芳烃厂-重整车间" jobActivity="预加氢采样器S02/06、S02/09"
+				harm="人员中毒" consequence="人员中毒" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="2" label="芳烃厂-合成气车间" jobActivity="压缩机厂房"
+				harm="通风不畅或无强制通风措施" consequence="可燃、有毒气体泄漏积聚" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="3" label="芳烃厂-合成气车间" jobActivity="含硫化氢介质管线"
+				harm="腐蚀物料泄漏" consequence="穿孔、泄漏、中毒" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="4" label="芳烃厂-二甲苯车间" jobActivity="燃料气管线腐蚀减薄泄漏"
+				harm="未切断泄漏源，或切断不及时" consequence="增加事故处理难度，引发火灾爆炸事故" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="5" label="芳烃厂-贮运车间" jobActivity="常压贮罐容检"
+				harm="设备打开时FeS自燃" consequence="着火,损坏设备" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="6" label="芳烃厂-合成气车间" jobActivity="一氧化碳管线"
+				harm="腐蚀物料泄漏" consequence="穿孔、泄漏、中毒" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="7" label="芳烃厂-合成气车间" jobActivity="氢气管线"
+				harm="腐蚀" consequence="穿孔、泄漏" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="8" label="芳烃厂-合成气车间" jobActivity="含硫化氢介质管线"
+				harm="管线破裂、物料泄漏" consequence="火灾爆炸、中毒" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="9" label="芳烃厂-合成气车间" jobActivity="管廊" harm="脱落"
+				consequence="火灾时保护失效，事故扩大" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="10" label="芳烃厂-合成气车间" jobActivity="压缩机厂房"
+				harm="通风不畅或无强制通风措施" consequence="可燃、有毒气体泄漏积聚" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="11" label="芳烃厂-合成气车间" jobActivity="一氧化碳管线"
+				harm="管线破裂、物料泄漏" consequence="火灾爆炸、中毒" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="12" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA15201"
+				harm="局部应力集中，热补偿性能下降" consequence="炉管破裂，三通焊缝开裂" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="13" label="芳烃厂-二甲苯车间" jobActivity="DC701-1/2，DC-7501，DC-5501"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="14" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA15201"
+				harm="红管、花斑，炉管弯曲" consequence="炉管破裂" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="15" label="芳烃厂-制苯车间" jobActivity="反应器进出料换热器EA-502"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="16" label="芳烃厂-制苯车间" jobActivity="反应器进出料换热器EA-502"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="17" label="芳烃厂-制苯车间" jobActivity="反应器进出料换热器EA-502"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="18" label="炼油厂-油品车间" jobActivity="油品车间8单元"
+				harm="石脑油中硫及硫化物含量较高." consequence="切水作业易引发硫化氢中毒事故和环保事故"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="19" label="芳烃厂-制苯车间" jobActivity="反应器DC-501A/B"
+				harm="物料泄漏，着火" consequence="物料泄漏，着火" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="20" label="芳烃厂-制苯车间" jobActivity="反应器DC-501A/B"
+				harm="物料泄漏，着火" consequence="物料泄漏，着火" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="21" label="芳烃厂-制苯车间" jobActivity="反应器DC-501A/B"
+				harm="超压，物料泄漏，着火" consequence="超压，物料泄漏，着火" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="22" label="芳烃厂-制苯车间" jobActivity="打开检修设备DA407"
+				harm="打开设备后发现温度高未进行处理" consequence="FeS自燃引发火灾、人员伤亡、设备损坏"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="23" label="芳烃厂-制苯车间" jobActivity="液化气气液分离罐FA2115"
+				harm="FG泄漏，火灾爆炸" consequence="FG泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="24" label="芳烃厂-制苯车间" jobActivity="液化气气液分离罐FA2115"
+				harm="FG泄漏，火灾爆炸" consequence="FG泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="25" label="芳烃厂-制苯车间" jobActivity="液化气气液分离罐FA2115"
+				harm="FG泄漏，火灾爆炸" consequence="FG泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="26" label="芳烃厂-制苯车间" jobActivity="液化气气液分离罐FA2115"
+				harm="FG泄漏，火灾爆炸" consequence="FG泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="27" label="芳烃厂-制苯车间" jobActivity="液化气气液分离罐FA2115"
+				harm="超压；FG泄漏，火灾爆炸" consequence="超压；FG泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="28" label="芳烃厂-制苯车间" jobActivity="液化气气液分离罐FA2115"
+				harm="FG泄漏，火灾爆炸" consequence="FG泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="29" label="芳烃厂-制苯车间" jobActivity="高温油泵GA512A/B"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="30" label="芳烃厂-制苯车间" jobActivity="高温油泵GA504A/B"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="31" label="芳烃厂-制苯车间" jobActivity="H2系统管线 "
+				harm="火灾爆炸" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="32" label="芳烃厂-制苯车间" jobActivity="H2系统管线 "
+				harm="火灾爆炸" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="33" label="芳烃厂-制苯车间" jobActivity="H2系统管线 "
+				harm="火灾爆炸" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="34" label="芳烃厂-制苯车间" jobActivity="H2系统管线 "
+				harm="火灾爆炸" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="35" label="芳烃厂-制苯车间" jobActivity="液化气泵GA-505"
+				harm="物料泄漏，火灾爆炸" consequence="物料泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="36" label="芳烃厂-制苯车间" jobActivity="液化气泵GA-505"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="37" label="芳烃厂-制苯车间" jobActivity="DC501A/B检修"
+				harm="FeS自燃着火" consequence="设备损坏、人员伤亡" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="38" label="芳烃厂-制苯车间" jobActivity="DC501A/B检修"
+				harm="反应器飞温" consequence="损坏催化剂、火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="39" label="芳烃厂-制苯车间" jobActivity="GB-501压缩机"
+				harm="H2泄漏、火灾爆炸" consequence="H2泄漏、火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="40" label="芳烃厂-制苯车间" jobActivity="反应系统气液分离罐FA-505/FA-505B"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="41" label="芳烃厂-制苯车间" jobActivity="反应系统气液分离罐FA-505/FA-505B"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="42" label="芳烃厂-制苯车间" jobActivity="反应系统气液分离罐FA-505/FA-505B"
+				harm="超压；物料泄漏，着火爆炸" consequence="超压；物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="43" label="芳烃厂-制苯车间" jobActivity="反应系统气液分离罐FA-505/FA-505B"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="44" label="芳烃厂-制苯车间" jobActivity="反应系统气液分离罐FA-505/FA-505B"
+				harm="超压；物料泄漏，着火爆炸" consequence="超压；物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="45" label="芳烃厂-制苯车间" jobActivity="反应系统气液分离罐FA-505/FA-505B"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="46" label="芳烃厂-制苯车间" jobActivity="反应系统气液分离罐FA-505/FA-505B"
+				harm="物料泄漏，着火爆炸" consequence="物料泄漏，着火爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="47" label="炼油厂-水汽车间" jobActivity="硫化氢泄漏"
+				harm="未及时疏散" consequence="发生硫化氢中毒事故" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="48" label="炼油厂-水汽车间" jobActivity="硫化氢泄漏"
+				harm="未安排2人巡检，人员未携带便携式硫化氢报警仪" consequence="发生硫化氢中毒时不及时发现并抢救，不能及时发现硫化氢泄漏"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="49" label="炼油厂-水汽车间" jobActivity="3#排口运行"
+				harm="不合格雨水排放" consequence="水体污染" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="50" label="塑料厂-聚乙烯车间"
+				jobActivity="离心机(M301/2301/3301)更换转鼓及清理下料管线作业" harm="系统物料未放彻底，系统未去活水解彻底，系统未吹扫置换彻底"
+				consequence="物料泄漏，火灾爆炸，人员伤亡" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="51" label="炼油厂-催化裂化车间" jobActivity="催化装置突发事件应急处理"
+				harm="设备基础松动，设备、管线静密封点开裂。" consequence="建筑、设备倒塌，人员伤亡，物料泄漏，火灾、爆炸。"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="52" label="炼油厂-催化裂化车间" jobActivity="催化装置突发事件应急处理"
+				harm="危险化学品泄漏" consequence="污染大气、土壤、水质以及人员伤害。" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="53" label="炼油厂-催化裂化车间" jobActivity="催化装置突发事件应急处理"
+				harm="可燃性有毒气体泄漏到大气中，发生火灾爆炸事故。" consequence="装置非计划停车，火灾爆炸，人身中毒、伤亡。"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="54" label="炼油厂-催化裂化车间" jobActivity="催化装置突发事件应急处理"
+				harm="无法监控装置安全生产" consequence="装置紧急停工" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="55" label="炼油厂-催化裂化车间" jobActivity="催化装置突发事件应急处理"
+				harm="可燃性剧毒气体泄漏到大气中。" consequence="装置非计划停车，火灾爆炸，人身中毒、伤亡。"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="56" label="水厂-净二装置" jobActivity="临时用电"
+				harm="作业安全得不到保护，用电安全得不到保证，安全系统存在隐患，可能引发触电、设备及人员伤害事故，现场混乱，导致人员受伤"
+				consequence="火灾，人身伤害，设备损坏" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="57" label="水厂-净二装置" jobActivity="临时用电"
+				harm="管理混乱，引发事故，导致设备损毁及人身伤害，不能对临时用电作业实施有效控制，" consequence="人身伤害，设备损毁，"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="58" label="水厂-净二装置" jobActivity="临时用电"
+				harm="可能引发火灾，不能及时发现存在的事故隐患，" consequence="火灾，人身伤害，设备损毁"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="59" label="水厂-净二装置" jobActivity="临时用电"
+				harm="违反临时用电管理制度，导致人身伤害事故" consequence="人身伤害，设备损坏" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="60" label="水厂-电仪分部" jobActivity="现场临时用电作业"
+				harm="工具绝缘破损" consequence="人员触电" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="61" label="水厂-净二装置" jobActivity="高处作业"
+				harm="损坏工、器具，砸伤人员，导致人员中毒、导致脚手架倒塌、引发高处坠落事故，引发火灾及人身伤害" consequence="高处坠落、人身伤害、损坏工、器具、设备损害、火灾、"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="62" label="水厂-净二装置" jobActivity="进入受限空间作业"
+				harm="导致窒息死亡，引发火灾，发生事故时不能进行正确处理，" consequence="窒息死亡，火灾"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="63" label="水厂-净二装置" jobActivity="进入受限空间作业"
+				harm="导致触电及火灾事故，事故扩大，进设备作业安全得不到爆炸，引发中毒、窒息、死亡事故" consequence="火灾、爆炸、中毒、窒息、人身伤害，设备损害"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="64" label="水厂-净一装置" jobActivity="净一装置臭氧配置"
+				harm="臭氧泄漏" consequence="人员中毒、伤亡、火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="65" label="水厂-净二装置" jobActivity="高处作业"
+				harm="引发事故、发生事故不能及时处理、可能导致高处坠落" consequence="人身伤害、高处坠落"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="66" label="水厂-电仪分部" jobActivity="系统倒闸停电操作"
+				harm="母线失压造成停电" consequence="设备损坏，影响生产" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="67" label="水厂-电仪分部" jobActivity="灯塔照明检修"
+				harm="没停电、挂标示牌" consequence="触电" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="68" label="水厂-电仪分部" jobActivity="取水总降35KV开关检查"
+				harm="开关误动作造成系统停电" consequence="设备损坏、影响生产" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="69" label="水厂-电仪分部" jobActivity="灯塔照明检修"
+				harm="未戴安全带" consequence="高处坠落" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="70" label="物装部-化工仓储车间" jobActivity="叉车作业"
+				harm="叉车作业中误操作" consequence="导致发生泄漏、火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="71" label="物装部-化工仓储车间" jobActivity="配送车辆"
+				harm="危险品运输发生泄漏、火灾爆炸" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="72" label="物装部-化工仓储车间" jobActivity="危险品押运"
+				harm="危险化学品运输发生泄漏、火灾爆炸" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="73" label="物装部-化工仓储车间" jobActivity="收发货"
+				harm="危险品发生泄漏、火灾爆炸" consequence="人身伤害、火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="74" label="化工厂-PTA一/二装置" jobActivity="高处作业"
+				harm="1、架子搭设不规范；2、未按规定挂防护网、设置防护栏；3、安全带未准备；4、用火作业未开《用火作业许可证》；5、地沟未覆盖或易燃物未清除；6、消防器材未到位。"
+				consequence="人身伤害事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="75" label="化工厂-PTA一/二装置" jobActivity="高处作业"
+				harm="1、附近有超标排放有毒有害气体、粉尘；2、有大风、大雨、大雪等天气恶劣；3、附近有高压电线。" consequence="人身伤害事故"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="76" label="化工厂-PTA一/二装置" jobActivity="高处作业"
+				harm="1、工具未放入工具袋内，没有防止坠落措施；2、作业中上下抛掷物品；3、监护人不到位；4、高处人员未系安全带或安全带系不规范。"
+				consequence="人身伤害事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="77" label="化工厂-包装工区" jobActivity="三线1#/2#包装机包料叉车作业"
+				harm="1.液化气钢瓶出气阀门不关闭，系统泄漏2.不按序停放、不拉手闸、不熄火" consequence="1.发生火灾爆炸、中毒事故
+2.产生设备事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="78" label="化工厂-包装工区" jobActivity="三线1#/2#包装机包料叉车作业"
+				harm="1. 叉车超速行驶，地面光滑叉车制动打滑撞人。 2.防尘口罩等防护用品未戴好。3.叉车运行过程中制动系统突然失灵4. 不按规定的行驶路线行驶，交叉作业。5.叉车油系统泄漏遇高温着火、电路系统短路着火6.叉车过人行通道未减速、机头工、扎袋工未离开包装袋就匆忙叉料7.叉料过程中让机头工协助把袋耳放入叉棒中8.叉车工技术不熟练、无证驾驶"
+				consequence="1.导致设备，人员伤亡。
+ 2.产生人身伤害事故
+3.设备撞坏,人员伤亡
+4. 设备撞坏,人员伤亡
+5.火灾爆炸
+6.人身伤害事故
+7.人身伤害事故
+8.设备事故、人身伤害事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="79" label="化工厂-包装工区" jobActivity="三线1#/2#包装机包料叉车作业"
+				harm=" 液化气系统泄漏或钢瓶支架固定不牢、钢瓶附件存在隐患" consequence=" 发生火灾爆炸、人员伤害事故"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="80" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、监护人不到位；2、消、气防器材不到位；3、未穿戴劳保用品；4、登高未系好安全带；5、测氧测爆不合格；6、地沟等部位未用石棉布覆盖。"
+				consequence="人身伤害事故、火灾爆炸事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="81" label="化工厂-包装工区" jobActivity="一线1#/2#包装机包料叉车作业"
+				harm="1.液化气钢瓶出气阀门不关闭，系统泄漏2.不按序停放、不拉手闸、不熄火" consequence="1.发生火灾爆炸、中毒事故
+2.产生设备事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="82" label="化工厂-包装工区" jobActivity="一线1#/2#包装机包料叉车作业"
+				harm="1. 叉车超速行驶，地面光滑叉车制动打滑撞人。 2.防尘口罩等防护用品未戴好。3.叉车运行过程中制动系统突然失灵4. 不按规定的行驶路线行驶，交叉作业。5.叉车油系统泄漏遇高温着火、电路系统短路着火6.叉车过人行通道未减速、机头工、扎袋工未离开包装袋就匆忙叉料7.叉料过程中让机头工协助把袋耳放入叉棒中8.叉车工技术不熟练、无证驾驶"
+				consequence="1.导致设备，人员伤亡。
+ 2.产生人身伤害事故
+3.设备撞坏,人员伤亡
+4. 设备撞坏,人员伤亡
+5.火灾爆炸
+6.人身伤害事故
+7.人身伤害事故
+8.设备事故、人身伤害事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="83" label="化工厂-包装工区" jobActivity="小包装一线1#/2#/3#机头、扎袋作业"
+				harm="PTA粉尘泄漏" consequence="危害健康、粉尘火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="84" label="化工厂-包装工区" jobActivity="2线1#/2#/3#包装机包料叉车作业"
+				harm="1.液化气钢瓶出气阀门不关闭，系统泄漏2.不按序停放、不拉手闸、不熄火" consequence="1.发生火灾爆炸、中毒事故
+2.产生设备事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="85" label="化工厂-包装工区" jobActivity="2线1#/2#/3#包装机包料叉车作业"
+				harm="1. 叉车超速行驶，地面光滑叉车制动打滑撞人。 2.防尘口罩等防护用品未戴好。3.叉车运行过程中制动系统突然失灵 4.不按规定的行驶路线行驶，交叉作业。5.叉车油系统泄漏遇高温着火、电路系统短路着火6.叉车过人行通道未减速、机头工、扎袋工未离开包装袋就匆忙叉料7.叉料过程中让机头工协助把袋耳放入叉棒中8.叉车工技术不熟练、无证驾驶"
+				consequence="1.导致设备，人员伤亡。
+ 2.产生人身伤害事故
+设备撞坏,人员伤亡
+ 3..设备撞坏,人员伤亡
+4.火灾爆炸
+5.人身伤害事故
+6.人身伤害事故
+7.设备事故、人身伤害事故"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="86" label="化工厂-包装工区" jobActivity="2线1#/2#/3#包装机包料叉车作业"
+				harm="液化气系统泄漏或钢瓶支架固定不牢、钢瓶附件存在隐患" consequence="发生火灾爆炸、人员伤害事故"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="87" label="化工厂-PTA一/二装置" jobActivity="高处作业"
+				harm="未按规定办理或票证不合格" consequence="人身伤害事故" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="88" label="化工厂-PTA一/二装置" jobActivity="高处作业"
+				harm="1、施工未交底或交底不清；2、人员未培训；3、人员健康检查差；4、检查工器具不防爆或不适用；5、安全着装不规范。"
+				consequence="人身伤害事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="89" label="化工厂-包装工区" jobActivity="小包装三线1#/2#/3#机头、扎袋作业"
+				harm="PTA粉尘泄漏" consequence="危害健康、粉尘火灾爆炸" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="90" label="化工厂-包装工区" jobActivity="二线1#/2#/3#包装机包料叉车作业"
+				harm=" 液化气系统泄漏或钢瓶支架固定不牢、钢瓶附件存在隐患" consequence=" 发生火灾爆炸、人员伤害事故"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="91" label="化工厂-包装工区" jobActivity="二线1#/2#/3#包装机包料叉车作业"
+				harm="1. 叉车超速行驶，地面光滑叉车制动打滑撞人。 2.防尘口罩等防护用品未戴好。3.叉车运行过程中制动系统突然失灵4. 不按规定的行驶路线行驶，交叉作业。5.叉车油系统泄漏遇高温着火、电路系统短路着火6.叉车过人行通道未减速、机头工、扎袋工未离开包装袋就匆忙叉料7.叉料过程中让机头工协助把袋耳放入叉棒中8.叉车工技术不熟练、无证驾驶"
+				consequence="1.导致设备，人员伤亡。
+ 2.产生人身伤害事故
+3.设备撞坏,人员伤亡
+4. 设备撞坏,人员伤亡
+5.火灾爆炸
+6.人身伤害事故
+7.人身伤害事故
+8.设备事故、人身伤害事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="92" label="化工厂-包装工区" jobActivity="二线1#/2#/3#包装机包料叉车作业"
+				harm="1.液化气钢瓶出气阀门不关闭，系统泄漏2.不按序停放、不拉手闸、不熄火" consequence="1.发生火灾爆炸、中毒事故
+2.产生设备事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="93" label="化工厂-包装工区" jobActivity="一线1#/2#包装机包料叉车作业"
+				harm=" 液化气系统泄漏或钢瓶支架固定不牢、钢瓶附件存在隐患" consequence=" 发生火灾爆炸、人员伤害事故"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="94" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、未编制施工方案、无安全技术方案；2、施工队无资质；3、施工人员无上岗证；4、施工人员未进行安全教育；5、施工未交底或交底不清；6、工器具不能满足施工要求。"
+				consequence="人身伤害事故、火灾爆炸事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="95" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、电源线连接处有裸露；2、电焊机回路线未接在焊件上；3、氧气瓶和乙炔瓶安全距离不够；4、雨天作业无防雨措施；5、高处作业火化飞溅。"
+				consequence="人身伤害事故、火灾爆炸事故、触电事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="96" label="化工厂-包装工区" jobActivity="高处作业"
+				harm="1.作业人劳保着装、工器具不符要求.作业人不按规定佩戴安全带3.投掷工、器具及杂物" consequence="1.易引发事故，导致人员伤亡
+2.可能导致人员高处坠落事故
+3.损坏工、器具，砸伤人员
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="97" label="化工厂-包装工区" jobActivity="包装机包料"
+				harm=" PTA粉尘泄漏" consequence="危害健康、粉尘火灾爆炸
+" reviewStatus="已评审"
+				workableStatus="已落实" />
+			<corpData order="98" label="化工厂-包装工区" jobActivity="动火作业 "
+				harm="1.未按用火票要求作业2.劳保着装不符要求3.作业器具安全等级不够4.作业器具摆放不符规定" consequence="1.用火安全得不到保证，引发事故
+2.用火安全不能得到保证
+3.用火安全不能得到保证
+4.引发火灾、爆炸事故
+"
+				reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="99" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、监护人不到位；2、消、气防器材不到位；3、未穿戴劳保用品；4、登高未系好安全带；5、测氧测爆不合格；6、地沟等部位未用石棉布覆盖。"
+				consequence="人身伤害事故、火灾爆炸事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="100" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、未编制施工方案、无安全技术方案；2、施工队无资质；3、施工人员无上岗证；4、施工人员未进行安全教育；5、施工未交底或交底不清；6、工器具不能满足施工要求。"
+				consequence="人身伤害事故、火灾爆炸事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="101" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、电源线连接处有裸露；2、电焊机回路线未接在焊件上；3、氧气瓶和乙炔瓶安全距离不够；4、雨天作业无防雨措施；5、高处作业火化飞溅。"
+				consequence="人身伤害事故、火灾爆炸事故、触电事故" reviewStatus="已评审" workableStatus="已落实" />
+			<corpData order="102" label="塑料厂-聚乙烯车间" jobActivity="袋式过滤器(M402、M2402、M3402)更换作业"
+				harm="加装盲板，系统未隔离、阀门未关死，系统蒸汽去活不彻底，物料未排尽、置换不合格" consequence="火灾爆炸、人身伤害、环境污染"
+				reviewStatus="已评审" workableStatus="已落实" />
+		</dataset>
+	</majorRiskSolveData>
+	<majorRiskSolveData riskid="LEVEL-B">
+		<dataset riskid="LEVEL-B" solveid="UNREVIEWED" label="未评审"
+			numbers="0"></dataset>
+		<dataset riskid="LEVEL-B" solveid="UNSOLVED" label="已评审措施未落实"
+			numbers="354">
+			<corpData order="1" label="芳烃厂-合成气车间" jobActivity="氢气管线"
+				harm="管线变形、损坏" consequence="管线断裂、物料泄漏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="2" label="芳烃厂-合成气车间" jobActivity="氢气管线"
+				harm="管线破裂、物料泄漏" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="3" label="芳烃厂-合成气车间" jobActivity="氢气管线"
+				harm="泄漏" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="4" label="物装部-化工仓储车间" jobActivity="配送车辆"
+				harm="意外、违反交通管理规定" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="5" label="物装部-化工仓储车间" jobActivity="叉车作业"
+				harm="意外、违反交通管理规定" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="6" label="炼油厂-焦化车间" jobActivity="加氢反应"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="7" label="炼油厂-焦化车间" jobActivity="加氢反应"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="8" label="炼油厂-焦化车间" jobActivity="6100#焚烧炉检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="9" label="炼油厂-焦化车间" jobActivity="6100#焚烧炉检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="10" label="炼油厂-焦化车间" jobActivity="急冷塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="11" label="炼油厂-焦化车间" jobActivity="急冷塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="12" label="炼油厂-加氢车间" jobActivity="反应流出物／低分油换热器"
+				harm="泄漏，火灾爆炸" consequence="泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="13" label="炼油厂-焦化车间" jobActivity="硫回收装置"
+				harm="环境污染" consequence="环境污染" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="14" label="炼油厂-焦化车间" jobActivity="6100#燃烧炉检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="15" label="炼油厂-焦化车间" jobActivity="6100#燃烧炉检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="16" label="炼油厂-焦化车间" jobActivity="氨压机检查"
+				harm="气缸损坏、设备事故" consequence="气缸损坏、设备事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="17" label="炼油厂-焦化车间" jobActivity="氨压机检查"
+				harm="设备事故" consequence="设备事故" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="18" label="炼油厂-焦化车间" jobActivity="吸收塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="19" label="炼油厂-焦化车间" jobActivity="汽提塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="20" label="炼油厂-焦化车间" jobActivity="汽提塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="21" label="炼油厂-焦化车间" jobActivity="吸收塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="22" label="炼油厂-焦化车间" jobActivity="再生塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="23" label="炼油厂-焦化车间" jobActivity="再生塔检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="24" label="塑料厂-聚乙烯车间"
+				jobActivity="离心机(M301/2301/3301)更换转鼓及清理下料管线作业" harm="工器具不符合施工安全要求，清理工器具不防爆，检修作业不规范"
+				consequence="设备损坏，火灾爆炸，人员伤亡" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="25" label="炼油厂-加氢车间" jobActivity="柴油汽提塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="26" label="炼油厂-加氢车间" jobActivity="柴油汽提塔"
+				harm="物料泄漏、着火" consequence="物料泄漏、着火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="27" label="炼油厂-加氢车间" jobActivity="高压分离器"
+				harm="无法进行工艺调节" consequence="无法进行工艺调节" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="28" label="炼油厂-加氢车间" jobActivity="高压分离器"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="29" label="炼油厂-加氢车间" jobActivity="低压换热器"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="30" label="炼油厂-加氢车间" jobActivity="低压换热器"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="31" label="炼油厂-加氢车间" jobActivity="反应流出物／混合进料换热器"
+				harm="油、氢气泄漏、着火爆炸、人身伤亡" consequence="油、氢气泄漏、着火爆炸、人身伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="32" label="炼油厂-加氢车间" jobActivity="反应流出物／混合进料换热器"
+				harm="泄漏，火灾爆炸" consequence="泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="33" label="炼油厂-加氢车间" jobActivity="分馏进料加热炉"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="34" label="炼油厂-焦化车间" jobActivity="急冷空冷器检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="35" label="炼油厂-加氢车间" jobActivity="产品分馏塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="36" label="炼油厂-加氢车间" jobActivity="产品分馏塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="37" label="炼油厂-加氢车间" jobActivity="循环氢压缩机"
+				harm="造成振动，损伤设备" consequence="造成振动，损伤设备" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="38" label="炼油厂-加氢车间" jobActivity="反应器进料加热炉"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="39" label="炼油厂-加氢车间" jobActivity="硫化氢汽提塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="40" label="炼油厂-加氢车间" jobActivity="循环氢压缩机"
+				harm="设备损坏" consequence="设备损坏" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="41" label="炼油厂-加氢车间" jobActivity="硫化氢汽提塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="42" label="炼油厂-加氢车间" jobActivity="加氢精制反应器"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="43" label="炼油厂-焦化车间" jobActivity="急冷空冷器检查"
+				harm="物料泄漏、着火" consequence="物料泄漏、着火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="44" label="炼油厂-焦化车间" jobActivity="急冷空冷器检查"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="45" label="炼油厂-焦化车间" jobActivity="再生空冷器检查"
+				harm="物料泄漏、着火" consequence="物料泄漏、着火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="46" label="炼油厂-焦化车间" jobActivity="再生空冷器检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="47" label="炼油厂-焦化车间" jobActivity="再生空冷器检查"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="48" label="炼油厂-加氢车间" jobActivity="新氢压缩机入口分液罐"
+				harm="氢气泄漏、着火爆炸" consequence="氢气泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="49" label="炼油厂-加氢车间" jobActivity="干气脱硫塔"
+				harm="泄漏、着火爆炸、人员中毒" consequence="泄漏、着火爆炸、人员中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="50" label="炼油厂-加氢车间" jobActivity="干气脱硫塔"
+				harm="胺液泄漏、人员硫化氢中毒" consequence="胺液泄漏、人员硫化氢中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="51" label="炼油厂-加氢车间" jobActivity="干气脱硫塔"
+				harm="泄漏、着火、造成质量或设备事故。" consequence="泄漏、着火、造成质量或设备事故。" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="52" label="炼油厂-加氢车间" jobActivity="重石脑油汽提塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="53" label="炼油厂-加氢车间" jobActivity="重石脑油汽提塔"
+				harm="物料泄漏、着火" consequence="物料泄漏、着火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="54" label="炼油厂-加氢车间" jobActivity="凝聚器"
+				harm="高压窜低压、泄漏、着火爆炸、" consequence="高压窜低压、泄漏、着火爆炸、" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="55" label="炼油厂-加氢车间" jobActivity="注水罐"
+				harm="无法判断液位" consequence="无法判断液位" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="56" label="炼油厂-加氢车间" jobActivity="加氢精制反应器"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="57" label="炼油厂-加氢车间" jobActivity="胺液再生塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="58" label="炼油厂-加氢车间" jobActivity="加氢精制反应器"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="59" label="炼油厂-加氢车间" jobActivity="反应流出物空冷器（高压）"
+				harm="泄漏，火灾爆炸" consequence="泄漏，火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="60" label="炼油厂-加氢车间" jobActivity="反应流出物空冷器（高压）"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="61" label="炼油厂-加氢车间" jobActivity="胺液再生塔"
+				harm="胺液泄漏、人员硫化氢中毒" consequence="胺液泄漏、人员硫化氢中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="62" label="炼油厂-加氢车间" jobActivity="反应流出物空冷器（高压）"
+				harm="油、氢气泄漏、着火爆炸、人身伤亡" consequence="油、氢气泄漏、着火爆炸、人身伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="63" label="炼油厂-加氢车间" jobActivity="新氢压缩机"
+				harm="设备事故" consequence="设备事故" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="64" label="炼油厂-加氢车间" jobActivity="循环氢脱硫塔"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="65" label="炼油厂-加氢车间" jobActivity="新氢压缩机"
+				harm="气缸损坏、设备事故" consequence="气缸损坏、设备事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="66" label="炼油厂-焦化车间" jobActivity="6100#在线炉检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="67" label="炼油厂-加氢车间" jobActivity="循环氢脱硫塔"
+				harm="胺液泄漏、硫化氢中毒" consequence="胺液泄漏、硫化氢中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="68" label="炼油厂-焦化车间" jobActivity="6100#在线炉检查"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="69" label="炼油厂-加氢车间" jobActivity="热油泵（离心式）"
+				harm="泄漏着火" consequence="泄漏着火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="70" label="炼油厂-加氢车间" jobActivity="热油泵（离心式）"
+				harm="不能及时处理事故" consequence="不能及时处理事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="71" label="炼油厂-加氢车间" jobActivity="热油泵（离心式）"
+				harm="大盖漏油着火" consequence="大盖漏油着火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="72" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、未执行一点一票或用火部位错误；
+2、用火级别不对；
+3、相关人员未确认签字或代签；
+4、工艺处理不彻底或未处理；
+5、盲板未加或未加到位或盲板不符合要求。"
+				consequence="人身伤害事故、火灾爆炸事故" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="73" label="化工厂-包装工区" jobActivity="小包装三线套袋作业"
+				harm="1.料袋、薄膜堆放的太高超过2.5米，取外袋、薄膜时手够不着
+
+2.取外袋、内膜方法不当，不按序进行，从中间抽取包装物
+"
+				consequence="1.发生人高处坠落或物料从高处坠落伤人事件 
+2.跺放好的包装物坍塌，发生人身伤害事故
+"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="74" label="化工厂-PTA一/二装置" jobActivity="用火作业"
+				harm="1、未执行一点一票或用火部位错误；
+2、用火级别不对；
+3、相关人员未确认签字或代签；
+4、工艺处理不彻底或未处理；
+5、盲板未加或未加到位或盲板不符合要求。"
+				consequence="人身伤害事故、火灾爆炸事故" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="75" label="化工厂-包装工区" jobActivity="小包装一线套袋作业"
+				harm="1.料袋、薄膜堆放的太高超过2.5米，取外袋、薄膜时手够不着
+
+2.取外袋、内膜方法不当，不按序进行，从中间抽取包装物
+"
+				consequence="1.发生人高处坠落或物料从高处坠落伤人事件 
+2.跺放好的包装物坍塌，发生人身伤害事故
+"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="76" label="物流部-液体码头作业区" jobActivity="物料金属软管离线试压工艺配合"
+				harm="引发事故" consequence="人身伤害、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="77" label="物流部-液体码头作业区" jobActivity="物料金属软管离线试压工艺配合"
+				harm="引发事故" consequence="人身伤害、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="78" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="防火网不符合要求
+" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="79" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="装卸船前未做气密试验，作业过程中输油臂接头泄漏。" consequence="火灾爆炸、污染水体
+"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="80" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="消器防设施不完好
+" consequence="发生事故，难于处理
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="81" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="静电接地不合格
+" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="82" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="超装泄漏
+" consequence="污染水体
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="83" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="甲板无人巡检
+" consequence="泄漏引发各类事故
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="84" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="船岸检查表落实不到位
+" consequence="产生各类事故
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="85" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="流程不通
+" consequence="憋压泄漏
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="86" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="舱门舱盖未关
+" consequence="污染环境、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="87" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="手机、火种未按要求执行
+" consequence="火灾爆炸、污染水体
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="88" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="金属软管爆裂" consequence="污染水体、火灾爆炸
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="89" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="中控室气缸阀误操作
+" consequence="火灾爆炸、污染水体
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="90" label="物流部-液体码头作业区" jobActivity="10-2#码头装97#汽油"
+				harm="岗位人员脱岗、离岗
+" consequence="扩大事故损失
+" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="91" label="水厂-净二装置" jobActivity="高处作业"
+				harm="作业部位的危险性不清楚，高处作业得不到有效控制，引发事故，引发人身伤害。" consequence="高处坠落、人身伤害、"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="92" label="物流部-液体装卸作业区" jobActivity="醋酸收、付料作业/灌装"
+				harm="未穿防静电服
+未戴防护面罩
+劳保服不防酸" consequence="火灾爆炸事故，
+毁容，烧伤眼睛
+烧伤
+"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="93" label="化工厂-包装工区" jobActivity="小包装二线套袋作业"
+				harm="1.料袋、薄膜堆放的太高超过2.5米，取外袋、薄膜时手够不着
+
+2.取外袋、内膜方法不当，不按序进行，从中间抽取包装物
+"
+				consequence="1.发生人高处坠落或物料从高处坠落伤人事件 
+2.跺放好的包装物坍塌，发生人身伤害事故
+"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="94" label="芳烃厂-二甲苯车间" jobActivity="循环泵启动切换"
+				harm="机封泄漏" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="95" label="芳烃厂-二甲苯车间" jobActivity="过滤器滤芯清理更换"
+				harm="机封泄漏" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="96" label="芳烃厂-二甲苯车间" jobActivity="气嘴清理/点火过程"
+				harm="气嘴添炉管" consequence="炉管破裂" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="97" label="芳烃厂-二甲苯车间" jobActivity="气嘴清理/点火过程"
+				harm="法兰未把紧" consequence="着火爆炸，人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="98" label="水厂-电仪分部" jobActivity="现场临时用电作业"
+				harm="未实现一机一闸一保护" consequence="漏电" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="99" label="物装部-化工仓储车间" jobActivity="危险品押运"
+				harm="意外、违反交通管理规定" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="100" label="物装部-化工仓储车间" jobActivity="收发货"
+				harm="意外、违反交通管理规定" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="101" label="炼油厂-焦化车间" jobActivity="低压给水泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="102" label="炼油厂-焦化车间" jobActivity="冷进料泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="103" label="炼油厂-焦化车间" jobActivity="高速泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="104" label="炼油厂-焦化车间" jobActivity="富液泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="105" label="烯烃厂-循环水车间" jobActivity="高处作业"
+				harm="承包商及相关人员未经HSE教育" consequence="安全意识差，违章作业、发生异常不会应急处理"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="106" label="炼油厂-焦化车间" jobActivity="热进料泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="107" label="烯烃厂-循环水车间" jobActivity="高处作业"
+				harm="脚手架不规范或未经验收使用" consequence="坍塌伤人、设备损坏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="108" label="炼油厂-焦化车间" jobActivity="贫液泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="109" label="炼油厂-焦化车间" jobActivity="空冷管道泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="110" label="炼油厂-焦化车间" jobActivity="急冷水泵开停"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="111" label="烯烃厂-循环水车间" jobActivity="受限空间作业"
+				harm="未按要求穿戴防护用品" consequence="可能发生人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="112" label="烯烃厂-循环水车间" jobActivity="受限空间作业"
+				harm="受限空间设备、作业时间不明确" consequence="对进入设备危险性不了解，风险评估不到位"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="113" label="烯烃厂-循环水车间" jobActivity="受限空间作业"
+				harm="承包商及相关人员未经HSE教育" consequence="缺安全意识，违章作业、发生异常不会应急处理"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="114" label="烯烃厂-循环水车间" jobActivity="受限空间作业"
+				harm="不按规定监护" consequence="发生异常得不到及时处理" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="115" label="芳烃厂-合成气车间" jobActivity="汽包、废锅排污操作"
+				harm="排污阀开度过小" consequence="排污效果差，结垢" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="116" label="芳烃厂-合成气车间" jobActivity="汽包、废锅排污操作"
+				harm="通讯不畅" consequence="违反规定，造成事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="117" label="炼油厂-加氢车间" jobActivity="蒸汽胶管使用"
+				harm="胶管出口端部未固定" consequence="甩动、人员烫伤" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="118" label="炼油厂-加氢车间" jobActivity="空冷器切出检修"
+				harm="出入口阀未关严" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="119" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA1001/1051"
+				harm="泄漏" consequence="火灾爆炸、烫伤" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="120" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA1001/1051"
+				harm="阻值超标，过期未检定，锈蚀断裂" consequence="火灾爆炸、泄漏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="121" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA1001/1051"
+				harm="局部应力集中，热补偿性能下降" consequence="炉管破裂" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="122" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA1001/1051"
+				harm="红管、花斑，炉管弯曲" consequence="炉管破裂" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="123" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA1001/1051"
+				harm="炉膛灰暗，温度分布不均" consequence="设备损坏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="124" label="炼油厂-加氢车间" jobActivity="原料油换罐"
+				harm="原料油罐未切水" consequence="影响操作" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="125" label="炼油厂-加氢车间" jobActivity="用火作业"
+				harm="重大危险用火作业无应急措施" consequence="着火爆炸、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="126" label="炼油厂-加氢车间" jobActivity="高处作业"
+				harm="高处作业人员未系安全带" consequence="高处坠落，人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="127" label="炼油厂-加氢车间" jobActivity="用火作业"
+				harm="用火管道设备未隔离" consequence="着火爆炸、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="128" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="设备人员未对交出受限空间进行确认" consequence="机械伤害、中毒窒息火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="129" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="监护人不具备资质或无监护能力" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="130" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="监护人监护不到位" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="131" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA1001/1051"
+				harm="考克阀卡色，偏烧、添管" consequence="不完全燃烧、损坏炉管" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="132" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA1001/1051"
+				harm="缺损" consequence="违反规定造成事故" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="133" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="相关人员未对作业证安全措施进行确认" consequence="违反规定" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="134" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="电缆破损、开关不防爆" consequence="触电、火灾爆炸事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="135" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="未切断临时电源" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="136" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="工器具不满足安全要求。" consequence="火灾爆炸、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="137" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="未穿工作服" consequence="火灾、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="138" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="未穿工作鞋" consequence="火灾、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="139" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="消、气防器材落实不到位" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="140" label="炼油厂-加氢车间" jobActivity="起重作业"
+				harm="未制定方案或方案缺乏HSE控制措施" consequence="设备事故、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="141" label="炼油厂-加氢车间" jobActivity="高处作业"
+				harm="安全带系挂不合要求" consequence="高处坠落，人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="142" label="炼油厂-加氢车间" jobActivity="新氢压缩机切出检修"
+				harm="出入口阀未关严" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="143" label="炼油厂-加氢车间" jobActivity="凝聚器切液 "
+				harm="液位空" consequence="高压窜低压" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="144" label="炼油厂-加氢车间" jobActivity="凝聚器切液 "
+				harm="角阀、前后截止阀内漏" consequence="高压窜低压、火灾爆炸、人员伤亡。" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="145" label="芳烃厂-合成气车间" jobActivity="消防设施、器材"
+				harm="压力低，附件损坏，超期使用，未定期检查维护" consequence="延误灭火时机，扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="146" label="芳烃厂-合成气车间" jobActivity="BA1001/1051点火操作"
+				harm="未置换或置换不合格" consequence="爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="147" label="芳烃厂-合成气车间" jobActivity="BA1001/1051点火操作"
+				harm="未严格遵循操作程序" consequence="点火失败或人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="148" label="芳烃厂-合成气车间" jobActivity="BA1001/1051点火操作"
+				harm="汽包液位未建立，液位过高或过低" consequence="干锅，损坏设备" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="149" label="芳烃厂-合成气车间" jobActivity="BA1001/1051点火操作"
+				harm="未测爆或测爆不合格" consequence="爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="150" label="芳烃厂-合成气车间" jobActivity="BA1001/1051点火操作"
+				harm="操作人员正对点火孔" consequence="回火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="151" label="芳烃厂-合成气车间" jobActivity="FA1071/1074排液操作"
+				harm="未及时关闭倒淋阀" consequence="中毒、火灾、液位低联锁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="152" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="未按施工方案落实措施" consequence="中毒窒息火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="153" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="未戴安全帽" consequence="人员伤亡" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="154" label="炼油厂-加氢车间" jobActivity="一般作业"
+				harm="转动设备检修未断电" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="155" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="作业人员不清楚受限空间的危害因素和未执行安全防护规定" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="156" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="受限空间出入口堵塞" consequence="扩大事故损失" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="157" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="工器具使用不符合施工安全要求" consequence="火灾爆炸、高处坠落" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="158" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="未落实安全应急预案" consequence="扩大事故损失" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="159" label="炼油厂-加氢车间" jobActivity="进入受限空间作业"
+				harm="工艺人员未对交出受限空间进行确认" consequence="中毒窒息　" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="160" label="芳烃厂-合成气车间" jobActivity="职业卫生防护设施"
+				harm="不隔音，通风效果差" consequence="听力损伤、损害呼吸系统" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="161" label="芳烃厂-合成气车间" jobActivity="消防设施、器材"
+				harm="压力低，附件损坏，超期使用，未定期检查维护" consequence="延误灭火时机，扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="162" label="芳烃厂-合成气车间" jobActivity="消防设施、器材"
+				harm="压力低，附件损坏，超期使用，未定期检查维护" consequence="延误灭火时机，扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="163" label="芳烃厂-合成气车间" jobActivity="消防设施、器材"
+				harm="压力低，附件损坏，超期使用，未定期检查维护" consequence="延误灭火时机，扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="164" label="芳烃厂-合成气车间" jobActivity="消防设施、器材"
+				harm="占用、堵塞" consequence="延误灭火最佳时机，扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="165" label="芳烃厂-合成气车间" jobActivity="职业卫生防护设施"
+				harm="转动故障，缠绕、损坏" consequence="无法起到指示风向作用" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="166" label="炼油厂-加氢车间" jobActivity="启动/切换加氢进料泵"
+				harm="辅油泵未按规程开、停" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="167" label="炼油厂-加氢车间" jobActivity="含油污水池清池"
+				harm="防护用品不合格" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="168" label="芳烃厂-合成气车间" jobActivity="固定式一氧化碳报警仪"
+				harm="故障无报警" consequence="中毒" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="169" label="芳烃厂-合成气车间" jobActivity="固定式一氧化碳报警仪"
+				harm="长期未校验，过期使用" consequence="中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="170" label="芳烃厂-合成气车间" jobActivity="固定式一氧化碳报警仪"
+				harm="误报、漏报" consequence="中毒" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="171" label="芳烃厂-合成气车间" jobActivity="固定式一氧化碳报警仪"
+				harm="位置不合理，存在检测盲点" consequence="中毒、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="172" label="芳烃厂-合成气车间" jobActivity="固定式一氧化碳报警仪"
+				harm="超过车间最高允许浓度" consequence="中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="173" label="芳烃厂-合成气车间" jobActivity="固定式一氧化碳报警仪"
+				harm="接线松动、脱落，信号回路不通" consequence="中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="174" label="芳烃厂-合成气车间" jobActivity="平台、护栏、爬梯"
+				harm="位置不合适，操作不便" consequence="高空坠落、伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="175" label="芳烃厂-合成气车间" jobActivity="平台、护栏、爬梯"
+				harm="排放有毒有害介质" consequence="中毒窒息、火灾" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="176" label="芳烃厂-合成气车间" jobActivity="平台、护栏、爬梯"
+				harm="缺损、逃生通道不合理，距地面2米以上无护笼，爬梯口无活动横杆" consequence="高空坠落、伤亡"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="177" label="芳烃厂-合成气车间" jobActivity="燃料气管线"
+				harm="管线变形、损坏" consequence="管线断裂、物料泄漏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="178" label="芳烃厂-合成气车间" jobActivity="燃料气管线"
+				harm="泄漏" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="179" label="芳烃厂-合成气车间" jobActivity="燃料气管线"
+				harm="腐蚀" consequence="穿孔、泄漏" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="180" label="芳烃厂-合成气车间" jobActivity="燃料气管线"
+				harm="管线破裂、物料泄漏" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="181" label="芳烃厂-合成气车间" jobActivity="固定式硫化氢报警仪"
+				harm="故障无报警" consequence="中毒" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="182" label="芳烃厂-合成气车间" jobActivity="固定式硫化氢报警仪"
+				harm="长期未校验，过期使用" consequence="中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="183" label="芳烃厂-合成气车间" jobActivity="固定式硫化氢报警仪"
+				harm="误报、漏报" consequence="中毒" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="184" label="芳烃厂-合成气车间" jobActivity="固定式硫化氢报警仪"
+				harm="位置不合理，存在检测盲点" consequence="中毒、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="185" label="芳烃厂-合成气车间" jobActivity="固定式硫化氢报警仪"
+				harm="超过车间最高允许浓度" consequence="中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="186" label="芳烃厂-合成气车间" jobActivity="固定式硫化氢报警仪"
+				harm="接线松动、脱落，信号回路不通" consequence="中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="187" label="芳烃厂-合成气车间" jobActivity="开工炉BA1002"
+				harm="泄漏" consequence="火灾爆炸、烫伤" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="188" label="芳烃厂-合成气车间" jobActivity="天然气管线"
+				harm="管线变形、损坏" consequence="管线断裂、物料泄漏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="189" label="芳烃厂-合成气车间" jobActivity="天然气管线"
+				harm="泄漏" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="190" label="芳烃厂-合成气车间" jobActivity="天然气管线"
+				harm="腐蚀" consequence="穿孔、泄漏" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="191" label="芳烃厂-合成气车间" jobActivity="天然气管线"
+				harm="管线破裂、物料泄漏" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="192" label="炼油厂-加氢车间" jobActivity="启动/切换高温热重油泵"
+				harm="机封泄漏" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="193" label="炼油厂-加氢车间" jobActivity="启动/切换贫胺液升压泵"
+				harm="冷却水管线堵塞或不通" consequence="轴承泵体温度高，损毁机泵" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="194" label="炼油厂-加氢车间" jobActivity="启动/切换循环氢压机润滑油泵（主泵为透平）"
+				harm="备用泵安全阀付线未开或未开到位" consequence="润滑油压波动，循环机联锁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="195" label="芳烃厂-合成气车间" jobActivity="地沟、地井"
+				harm="堵塞" consequence="可燃气积聚" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="196" label="炼油厂-加氢车间" jobActivity="油罐检尺切水"
+				harm="硫化氢报警仪坏" consequence="人员中毒" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="197" label="芳烃厂-合成气车间" jobActivity="地沟、地井"
+				harm="缺损，大小不合适" consequence="高空坠落、淹溺、物体打击" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="198" label="炼油厂-加氢车间" jobActivity="启动/切换高压注水泵"
+				harm="未手动摇压润滑油或未及时停辅油泵" consequence="润滑油泵或电机烧毁" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="199" label="芳烃厂-合成气车间" jobActivity="开工炉BA1002"
+				harm="阻值超标，过期未检定，锈蚀断裂" consequence="火灾爆炸、泄漏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="200" label="芳烃厂-合成气车间" jobActivity="固定式可燃气体报警仪"
+				harm="故障无报警" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="201" label="芳烃厂-合成气车间" jobActivity="固定式可燃气体报警仪"
+				harm="长期未校验，过期使用" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="202" label="芳烃厂-合成气车间" jobActivity="开工炉BA1002"
+				harm="炉膛灰暗，温度分布不均" consequence="设备损坏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="203" label="芳烃厂-合成气车间" jobActivity="固定式可燃气体报警仪"
+				harm="位置不合理，存在检测盲点" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="204" label="芳烃厂-合成气车间" jobActivity="固定式可燃气体报警仪"
+				harm="误报、漏报" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="205" label="芳烃厂-合成气车间" jobActivity="固定式可燃气体报警仪"
+				harm="超过车间最高允许浓度" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="206" label="芳烃厂-合成气车间" jobActivity="固定式可燃气体报警仪"
+				harm="接线松动、脱落，信号回路不通" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="207" label="芳烃厂-合成气车间" jobActivity="开工炉BA1002"
+				harm="考克阀卡色，偏烧、添管" consequence="不完全燃烧、损坏炉管" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="208" label="芳烃厂-合成气车间" jobActivity="BA15201点火操作"
+				harm="未测试或测试不合格" consequence="爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="209" label="芳烃厂-合成气车间" jobActivity="压缩机厂房"
+				harm="阻值超标，过期未检定，锈蚀断裂" consequence="雷击、触电" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="210" label="芳烃厂-合成气车间" jobActivity="BA15201点火操作"
+				harm="未严格遵循操作程序" consequence="点火失败或人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="211" label="芳烃厂-合成气车间" jobActivity="压缩机厂房"
+				harm="材料不阻燃、缺损严重" consequence="扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="212" label="芳烃厂-合成气车间" jobActivity="BA15201点火操作"
+				harm="汽包液位未建立，液位过高或过低" consequence="干锅，损坏设备" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="213" label="芳烃厂-合成气车间" jobActivity="BA15201点火操作"
+				harm="未测爆或测爆不合格" consequence="爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="214" label="芳烃厂-合成气车间" jobActivity="BA15201点火操作"
+				harm="操作人员正对点火孔" consequence="回火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="215" label="芳烃厂-合成气车间" jobActivity="火灾报警手动按钮"
+				harm="接线松动、脱落，信号不通" consequence="延误报警，扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="216" label="芳烃厂-合成气车间" jobActivity="火灾报警手动按钮"
+				harm="超期使用，检查维护不到位" consequence="延误报警，扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="217" label="芳烃厂-合成气车间" jobActivity="气防设施、器材"
+				harm="铅封损坏，标识不清，柜前障碍物阻挡" consequence="延误救援时机，伤亡扩大" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="218" label="芳烃厂-合成气车间" jobActivity="气防设施、器材"
+				harm="压力低、密封面破损或报警哨故障" consequence="窒息中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="219" label="芳烃厂-合成气车间" jobActivity="气防设施、器材"
+				harm="密封面破损，接管连接不牢" consequence="窒息中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="220" label="芳烃厂-合成气车间" jobActivity="气防设施、器材"
+				harm="数量不足，超期使用" consequence="窒息中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="221" label="芳烃厂-合成气车间" jobActivity="气防设施、器材"
+				harm="压力低、密封面破损或报警哨故障" consequence="窒息中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="222" label="芳烃厂-合成气车间" jobActivity="气防设施、器材"
+				harm="铅封损坏或无铅封，未定期检查维护" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="223" label="芳烃厂-合成气车间" jobActivity="气防设施、器材"
+				harm="密封面损坏，连接不牢固、滤毒罐选型错误" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="224" label="炼油厂-焦化车间" jobActivity="探伤作业"
+				harm="未通知相关各方人员" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="225" label="炼油厂-加氢车间" jobActivity="烃类介质大量泄漏"
+				harm="见各局部切出检修危害识别" consequence="引发火灾爆炸事故，造成人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="226" label="炼油厂-焦化车间" jobActivity="探伤作业"
+				harm="现场警戒措施不到位" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="227" label="炼油厂-焦化车间" jobActivity="空气呼吸器使用"
+				harm="连接处松动、脱落" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="228" label="炼油厂-焦化车间" jobActivity="空气呼吸器使用"
+				harm="空气瓶压力低" consequence="人身伤害 " reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="229" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="未戴安全帽" consequence="人员伤亡" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="230" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="消、气防器材落实不到位" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="231" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="监护人不具备资质或监护不到位" consequence="违反规定" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="232" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="防护用品不合格" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="233" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="未穿工作服" consequence="火灾、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="234" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="未穿工作鞋" consequence="火灾、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="235" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="电缆破损、开关不防爆" consequence="触电、火灾爆炸事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="236" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="工器具不满足清罐安全要求" consequence="火灾爆炸、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="237" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="夏季清罐无降温措施" consequence="火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="238" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="未切断临时电源" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="239" label="炼油厂-焦化车间" jobActivity="起重作业"
+				harm="未制定方案或方案缺乏HSE控制措施" consequence="设备事故、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="240" label="炼油厂-加氢车间" jobActivity="爆炸事故的应急处理"
+				harm="未切断或切断不及时" consequence="增加灭火难度，扩大事故损失" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="241" label="炼油厂-焦化车间" jobActivity="DCS系统故障"
+				harm="未合理安排好现场一次表的监控和操作" consequence="造成生产波动，引发火灾、爆炸、人身伤害等事故"
+				reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="242" label="炼油厂-焦化车间" jobActivity="化学过滤式防毒面具使用"
+				harm="未连接滤毒罐" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="243" label="炼油厂-焦化车间" jobActivity="进车作业"
+				harm="作业超时间" consequence="火灾、人身伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="244" label="炼油厂-焦化车间" jobActivity="消防竖管使用"
+				harm="水带破损" consequence="延误灭火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="245" label="炼油厂-焦化车间" jobActivity="进车作业"
+				harm="不按程序审批" consequence="火灾、人身伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="246" label="炼油厂-焦化车间" jobActivity="化学过滤式防毒面具使用"
+				harm="泄漏" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="247" label="炼油厂-焦化车间" jobActivity="空气呼吸器使用"
+				harm="呼吸不畅" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="248" label="炼油厂-焦化车间" jobActivity="空气呼吸器使用"
+				harm="泄漏" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="249" label="炼油厂-焦化车间" jobActivity="油罐消防泡沫、喷淋系统使用"
+				harm="启动泡沫系统、消防水升压不及时" consequence="延误灭火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="250" label="炼油厂-焦化车间" jobActivity="油罐消防泡沫、喷淋系统使用"
+				harm="联系不及时" consequence="延误灭火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="251" label="炼油厂-焦化车间" jobActivity="长管式空气呼吸器使用"
+				harm="无人监护" consequence="人身伤害 " reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="252" label="炼油厂-焦化车间" jobActivity="油罐清罐"
+				harm="相关人员未对作业证安全措施进行确认" consequence="违反规定" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="253" label="炼油厂-焦化车间" jobActivity="长管式空气呼吸器使用"
+				harm="泄漏" consequence="人身伤害 " reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="254" label="炼油厂-焦化车间" jobActivity="长管式空气呼吸器使用"
+				harm="长管弯曲、不通畅" consequence="人身伤害 " reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="255" label="炼油厂-焦化车间" jobActivity="介质大量泄漏"
+				harm="见各局部切出检修危害识别" consequence="引发火灾爆炸事故，造成人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="256" label="芳烃厂-制苯车间" jobActivity="DC501A/B检修"
+				harm="排水时将H2排出" consequence="火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="257" label="芳烃厂-制苯车间" jobActivity="高温油泵GA504A/B"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="258" label="芳烃厂-制苯车间" jobActivity="高温油泵GA504A/B"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="259" label="芳烃厂-制苯车间" jobActivity="高温油泵GA512A/B"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="260" label="芳烃厂-制苯车间" jobActivity="高温油泵GA512A/B"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="261" label="炼油厂-焦化车间" jobActivity="高处作业"
+				harm="高处作业人员未系安全带" consequence="高处坠落，人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="262" label="炼油厂-焦化车间" jobActivity="手提式灭火器使用"
+				harm="压力表指示在红线区域" consequence="着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="263" label="炼油厂-焦化车间" jobActivity="高处作业"
+				harm="安全带系挂不合要求" consequence="高处坠落，人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="264" label="炼油厂-焦化车间" jobActivity="手提式灭火器使用"
+				harm="未拿掉铅封" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="265" label="炼油厂-焦化车间" jobActivity="高处作业"
+				harm="脚手架不符合安全规程" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="266" label="炼油厂-焦化车间" jobActivity="工艺参数指标变更"
+				harm="超出或未达到设计范围" consequence="影响产品质量，损坏设备，影响催化剂使用寿命" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="267" label="炼油厂-焦化车间" jobActivity="手提式灭火器使用"
+				harm="火势过大" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="268" label="炼油厂-加氢车间" jobActivity="空气呼吸器使用"
+				harm="空气瓶压力低" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="269" label="炼油厂-加氢车间" jobActivity="空气呼吸器使用"
+				harm="忘开阀门" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="270" label="炼油厂-加氢车间" jobActivity="控制仪表切出检修"
+				harm="外操长时间未监控" consequence="超温、超压、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="271" label="炼油厂-加氢车间" jobActivity="控制仪表切出检修"
+				harm="一次表指示不准" consequence="超温、超压、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="272" label="炼油厂-加氢车间" jobActivity="油罐消防泡沫、喷淋系统使用"
+				harm="联系不及时" consequence="延误灭火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="273" label="炼油厂-加氢车间" jobActivity="油罐消防泡沫、喷淋系统使用"
+				harm="启动泡沫系统、消防水升压不及时" consequence="延误灭火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="274" label="炼油厂-加氢车间" jobActivity="油罐清罐"
+				harm="防护用品不合格" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="275" label="炼油厂-加氢车间" jobActivity="油罐清罐"
+				harm="电缆破损、开关不防爆、" consequence="触电、火灾爆炸事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="276" label="炼油厂-加氢车间" jobActivity="油罐清罐"
+				harm="未切断临时电源" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="277" label="炼油厂-加氢车间" jobActivity="油罐清罐"
+				harm="相关人员未对作业证安全措施进行确认" consequence="违反规定" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="278" label="炼油厂-加氢车间" jobActivity="油罐清罐"
+				harm="未戴安全帽" consequence="人员伤亡" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="279" label="炼油厂-加氢车间" jobActivity="油罐清罐"
+				harm="未穿工作服" consequence="火灾、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="280" label="炼油厂-加氢车间" jobActivity="油罐清罐"
+				harm="未穿工作鞋" consequence="火灾、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="281" label="炼油厂-加氢车间" jobActivity="消防蒸汽使用"
+				harm="蒸汽软管破损、固定不牢" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="282" label="炼油厂-加氢车间" jobActivity="探伤作业"
+				harm="未通知相关各方人员" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="283" label="炼油厂-加氢车间" jobActivity="探伤作业"
+				harm="现场警戒措施不到位" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="284" label="炼油厂-加氢车间" jobActivity="进车作业"
+				harm="不按程序审批" consequence="火灾、人身伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="285" label="炼油厂-加氢车间" jobActivity="进车作业"
+				harm="作业超时间" consequence="火灾、人身伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="286" label="炼油厂-加氢车间" jobActivity="消防竖管使用"
+				harm="水带破损" consequence="延误灭火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="287" label="炼油厂-加氢车间" jobActivity="长管式空气呼吸器使用"
+				harm="泄漏" consequence="人身伤害 " reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="288" label="炼油厂-加氢车间" jobActivity="长管式空气呼吸器使用"
+				harm="无人监护" consequence="人身伤害 " reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="289" label="炼油厂-加氢车间" jobActivity="长管式空气呼吸器使用"
+				harm="长管弯曲、不通畅" consequence="人身伤害 " reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="290" label="炼油厂-加氢车间" jobActivity="推车式灭火器使用"
+				harm="火势过大" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="291" label="炼油厂-加氢车间" jobActivity="推车式灭火器使用"
+				harm="压力表指示在红线区域" consequence="着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="292" label="炼油厂-加氢车间" jobActivity="推车式灭火器使用"
+				harm="未拿掉铅封" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="293" label="炼油厂-加氢车间" jobActivity="化学过滤式防毒面具使用"
+				harm="未连接滤毒罐" consequence="人身伤害 " reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="294" label="炼油厂-加氢车间" jobActivity="化学过滤式防毒面具使用"
+				harm="泄漏" consequence="人身伤害 " reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="295" label="炼油厂-加氢车间" jobActivity="空气呼吸器使用"
+				harm="泄漏" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="296" label="炼油厂-加氢车间" jobActivity="空气呼吸器使用"
+				harm="连接处松动、脱落" consequence="人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="297" label="炼油厂-加氢车间" jobActivity="空气呼吸器使用"
+				harm="呼吸不畅" consequence="人身伤害" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="298" label="炼油厂-焦化车间" jobActivity="消防栓使用"
+				harm="水带破损" consequence="延误灭火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="299" label="炼油厂-焦化车间" jobActivity="一般作业"
+				harm="转动设备检修未断电" consequence="人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="300" label="炼油厂-焦化车间" jobActivity=" 装置火灾初期扑救"
+				harm="见各局部切出检修危害识别" consequence="引发火灾爆炸事故，造成人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="301" label="炼油厂-加氢车间" jobActivity="手提式灭火器使用"
+				harm="未拿掉铅封" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="302" label="炼油厂-加氢车间" jobActivity="手提式灭火器使用"
+				harm="压力表指示在红线区域" consequence="着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="303" label="炼油厂-加氢车间" jobActivity="手提式灭火器使用"
+				harm="火势过大" consequence="着火爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="304" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="监护人不具备资质或无监护能力" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="305" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="监护人监护不到位" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="306" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="工器具使用不符合施工安全要求" consequence="火灾爆炸、高处坠落" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="307" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="设备人员未对交出受限空间进行确认" consequence="机械伤害、中毒窒息火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="308" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="作业人员不清楚受限空间的危害因素和未执行安全防护规定" consequence="中毒窒息" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="309" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="工艺人员未对交出受限空间进行确认" consequence="中毒窒息　" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="310" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="受限空间出入口堵塞" consequence="扩大事故损失" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="311" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="未按施工方案落实措施" consequence="中毒窒息火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="312" label="炼油厂-焦化车间" jobActivity="进入受限空间作业"
+				harm="受限空间出入口堵塞" consequence="扩大事故损失" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="313" label="炼油厂-加氢车间" jobActivity="消防栓使用"
+				harm="水带破损" consequence="延误灭火" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="314" label="炼油厂-焦化车间" jobActivity="蒸汽胶管使用"
+				harm="胶管出口端部未固定" consequence="甩动、人员烫伤" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="315" label="炼油厂-焦化车间" jobActivity="过滤器清洗"
+				harm="污油未回收" consequence="污染环境" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="316" label="炼油厂-焦化车间" jobActivity=" 空冷切出检修"
+				harm="出入口阀未关严" consequence="火灾爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="317" label="炼油厂-焦化车间" jobActivity="用火作业"
+				harm="未进行危害辨识和风险评价" consequence="发生事故不能及时处理" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="318" label="炼油厂-焦化车间" jobActivity=" 控制仪表切出检修"
+				harm="一次表指示不准" consequence="超温、超压、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="319" label="炼油厂-焦化车间" jobActivity="用火作业"
+				harm="重大危险用火作业无应急措施" consequence="着火爆炸、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="320" label="炼油厂-焦化车间" jobActivity="scot检修"
+				harm="置换不彻底" consequence="人员伤亡" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="321" label="炼油厂-焦化车间" jobActivity=" 控制仪表切出检修"
+				harm="外操长时间未监控" consequence="超温、超压、火灾爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="322" label="炼油厂-焦化车间" jobActivity="用火作业"
+				harm="用火管道设备未隔离" consequence="着火爆炸、人员伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="323" label="炼油厂-焦化车间" jobActivity="用火作业"
+				harm="占用消防通道或防碍消防设施投用" consequence="延误事故时处理时间" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="324" label="芳烃厂-制苯车间" jobActivity="液化气泵GA-505"
+				harm="物料泄漏，火灾" consequence="物料泄漏，火灾" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="325" label="芳烃厂-合成气车间" jobActivity="含硫化氢介质管线"
+				harm="管线变形、损坏" consequence="管线断裂、物料泄漏、中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="326" label="芳烃厂-合成气车间" jobActivity="含硫化氢介质管线"
+				harm="泄漏" consequence="火灾爆炸、中毒" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="327" label="炼油厂-加氢车间" jobActivity="富含硫化氢管道"
+				harm="中毒、人身伤害" consequence="中毒、人身伤害" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="328" label="炼油厂-加氢车间" jobActivity="原料油过滤器"
+				harm="物料泄漏" consequence="物料泄漏" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="329" label="炼油厂-加氢车间" jobActivity="高温热重油管道"
+				harm="火灾、爆炸" consequence="火灾、爆炸" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="330" label="炼油厂-加氢车间" jobActivity="装置污水、清净下水系统"
+				harm="环境污染" consequence="环境污染" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="331" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA15201"
+				harm="泄漏" consequence="火灾爆炸、烫伤" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="332" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA15201"
+				harm="阻值超标，过期未检定，锈蚀断裂" consequence="火灾爆炸、泄漏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="333" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA15201"
+				harm="炉膛灰暗，温度分布不均" consequence="设备损坏" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="334" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA15201"
+				harm="考克阀卡色，偏烧、添管" consequence="不完全燃烧、损坏炉管" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="335" label="芳烃厂-合成气车间" jobActivity="蒸汽转化炉BA15201"
+				harm="缺损" consequence="违反规定造成事故" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="336" label="芳烃厂-二甲苯车间" jobActivity="燃料气管线腐蚀减薄泄漏"
+				harm="未报告或报告不及时" consequence="延误处理时机，扩大事故损失" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="337" label="炼油厂-加氢车间" jobActivity="加氢裂化反应器"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="338" label="炼油厂-加氢车间" jobActivity="加氢裂化反应器"
+				harm="超温、泄漏、着火、人身伤亡" consequence="超温、泄漏、着火、人身伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="339" label="炼油厂-加氢车间" jobActivity="一般空冷器"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="340" label="炼油厂-加氢车间" jobActivity="一般空冷器"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="341" label="炼油厂-加氢车间" jobActivity="蒸发式空冷器"
+				harm="泄漏、着火爆炸" consequence="泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="342" label="炼油厂-加氢车间" jobActivity="蒸发式空冷器"
+				harm="物料泄漏、着火" consequence="物料泄漏、着火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="343" label="炼油厂-加氢车间" jobActivity="蒸发式空冷器"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="344" label="芳烃厂-合成气车间" jobActivity="管廊"
+				harm="松动、基础风化；缺螺栓；螺栓锈蚀" consequence="坍塌" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="345" label="芳烃厂-合成气车间" jobActivity="管廊"
+				harm="锈蚀、高空坠物" consequence="高空坠落、伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="346" label="芳烃厂-合成气车间" jobActivity="管廊"
+				harm="断裂、高空坠物" consequence="高空坠落、伤亡" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="347" label="炼油厂-加氢车间" jobActivity="焦化汽油缓冲罐"
+				harm="油、气泄漏、着火爆炸" consequence="油、气泄漏、着火爆炸" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="348" label="芳烃厂-合成气车间" jobActivity="压缩机厂房"
+				harm="阻值超标，过期未检定，锈蚀断裂" consequence="雷击、触电" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="349" label="芳烃厂-合成气车间" jobActivity="压缩机厂房"
+				harm="材料不阻燃、缺损严重" consequence="扩大事故" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="350" label="芳烃厂-合成气车间" jobActivity="一氧化碳管线"
+				harm="管线变形、损坏" consequence="管线断裂、物料泄漏、中毒" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="351" label="芳烃厂-合成气车间" jobActivity="一氧化碳管线"
+				harm="泄漏" consequence="火灾爆炸、中毒" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="352" label="炼油厂-加氢车间" jobActivity="一般空冷器"
+				harm="物料泄漏、着火" consequence="物料泄漏、着火" reviewStatus="已评审"
+				workableStatus="未落实" />
+			<corpData order="353" label="炼油厂-焦化车间" jobActivity="原料水净化水换热器检查"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+			<corpData order="354" label="炼油厂-焦化车间" jobActivity="原料水净化水换热器检查"
+				harm="泄漏，火灾" consequence="泄漏，火灾" reviewStatus="已评审" workableStatus="未落实" />
+		</dataset>
+		<dataset riskid="LEVEL-B" solveid="SOLVED" label="已评审措施已落实"
+			numbers="0"></dataset>
+	</majorRiskSolveData>
+	<popupTableData>
+		<dataset order="1" riskid="LEVEL-A" label="重大风险" riskNumbers="115"
+			description="重大风险"></dataset>
+		<dataset order="2" riskid="LEVEL-B" label="中等风险" riskNumbers="354"
+			description="中等风险"></dataset>
+		<dataset order="3" riskid="LEVEL-C" label="一般风险" riskNumbers="5830"
+			description="一般风险"></dataset>
+	</popupTableData>
+</model>

@@ -1,0 +1,1923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘〔隐患管理部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-9-->
+ <!-- 文件修改日志：2013-03-14 尹鲁明 添加corpCompare节点内容 为分企业 企业间对比的数据 -->         
+  <!--*************************一、字段说明如下******************************
+   typeid：隐患投资类型(3种，取值参考下面枚举)                  typeName:隐患投资类型的显示标签
+   label：相关项目对应的显示名称                                  numbers：项目阶段对应的项目数
+   investment：总的投资额                                        finishedInvestment：已完成的投资额
+   unfinishedInvestment：未完成的投资额                         finishedRation：投资完成的比例
+   id：项目的阶段id，取值为4种，取值为下面的枚举值                  batchid:批次名称
+   plateid:板块id                                          plateLabel：板块的显示标签
+   order:对于除了总部监管项目外，一律要求按照项目总数倒序排列，order为排序序号；总部监管项目order参考该部分说明
+   subCorpid：企业ID                                       subCorpname：企业名称
+   projectName：项目名称                                         byPlateLabel：分板块时显示的合计项的板块的名字
+   subCorpCharger：企业负责人                                    chargeDeparment：总部负责人
+   corpChargeDepartment：企业负责部门                           groupChargeDepartment：总部集团公司负责人
+   departmentCharger：部门负责人                                groupSupervisionDeparment：总部监管部门
+   URL:某个企业记录对应的业务系统URL
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，如分板块的“全部”选项
+        2.装置的级别和板块等应该是活的
+        3.WebService处理明细的企业，带有order字段时，应严格按照其比率降序排列数据,且所有字段值一律不准写null值（总部重点监管项目中的相关合计行中无需显示的数据除外）
+ -->
+ <!-- 
+ 测试数据：
+ 有数据的板块：油田、炼化
+ 油田下有数据的企业：石家庄、燕山、齐鲁、广州
+ 炼化下有数据的企业：洛阳、镇海、茂名、扬子
+ 
+  -->
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+  
+    <!--二.隐患构成数据，总体情况、分板块、分企业均使用本部分数据-->
+  <hazardData>
+    <!--2.1总计部分-->
+    <dataset typeid="ALL-LEVEL" typeName = "总计" label= "总计" numbers = "480" investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedRation="65%">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "64" />
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "64" />
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "112" />
+       <projectdata  id = "finished" label = "已完成" numbers = "240" />   
+     </dataset>      
+     <!--2.2集团公司级-->
+     <dataset typeid="GROUP-LEVEL" typeName = "集团公司" label= "集团公司" numbers = "360" investment="18000"  finishedInvestment="11700"  
+             unfinishedInvestment="6300" finishedRation="65%">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "48" />
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "48" />
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "84" />
+       <projectdata  id = "finished" label = "已完成" numbers = "180" />    
+     </dataset> 
+     <!--2.3集团公司 第1批-->
+     <dataset typeid="GROUP-LEVEL" typeName = "集团公司" batchid="1" label="第一批" numbers = "120" investment="6000"  finishedInvestment="3900"  
+             unfinishedInvestment="2100" finishedRation="65%">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "16"/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "16" />
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "28" />
+       <projectdata  id = "finished" label = "已完成" numbers = "60" />
+       <!--2.3.1分板块 -->
+        <plateData   plateid="1" label="油田" byPlateLabel="合    计"  numbers = "40" investment="4000"  finishedInvestment="2400"  
+             unfinishedInvestment="1600" finishedRation="60%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "4" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "8" />
+             <projectdata  id = "finished" label = "已完成" numbers = "20" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="1" subCorpname="石家庄"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="1" subCorpname="燕山"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="3" subCorpname="齐鲁"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="4" subCorpname="广州"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="2" label="炼化" byPlateLabel="合    计"  numbers = "80" investment="2000"  finishedInvestment="1500"  
+             unfinishedInvestment="500" finishedRation="75%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "12" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "20" />
+             <projectdata  id = "finished" label = "已完成" numbers = "40" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="5" subCorpname="洛阳"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="6" subCorpname="镇海"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>
+             <corpData  order="3" subCorpid="7" subCorpname="茂名"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="8" subCorpname="扬子"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="3" label="销售" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="4" label="工程" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="5" label="其它" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+     </dataset> 
+     
+     <!--2.4集团公司 第2批-->
+     <dataset typeid="GROUP-LEVEL" typeName = "集团公司" batchid="2" label="第二批" numbers = "120" investment="6000"  finishedInvestment="3900"  
+             unfinishedInvestment="2100" finishedRation="65%">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "16"/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "16" />
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "28" />
+       <projectdata  id = "finished" label = "已完成" numbers = "60" />
+       <!--2.3.1分板块 -->
+        <plateData   plateid="1" label="油田" byPlateLabel="合    计"  numbers = "40" investment="4000"  finishedInvestment="2400"  
+             unfinishedInvestment="1600" finishedRation="60%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "4" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "8" />
+             <projectdata  id = "finished" label = "已完成" numbers = "20" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="1" subCorpname="石家庄"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="1" subCorpname="燕山"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="3" subCorpname="齐鲁"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="4" subCorpname="广州"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="2" label="炼化" byPlateLabel="合    计"  numbers = "80" investment="2000"  finishedInvestment="1500"  
+             unfinishedInvestment="500" finishedRation="75%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "12" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "20" />
+             <projectdata  id = "finished" label = "已完成" numbers = "40" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="5" subCorpname="洛阳"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="6" subCorpname="镇海"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>
+             <corpData  order="3" subCorpid="7" subCorpname="茂名"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="8" subCorpname="扬子"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="3" label="销售" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="4" label="工程" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="5" label="其它" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+     </dataset> 
+     
+     <!--2.5集团公司 第3批-->
+     <dataset typeid="GROUP-LEVEL" typeName = "集团公司" batchid="3" label="第三批" numbers = "120" investment="6000"  finishedInvestment="3900"  
+             unfinishedInvestment="2100" finishedRation="65%">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "16"/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "16" />
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "28" />
+       <projectdata  id = "finished" label = "已完成" numbers = "60" />
+       <!--2.3.1分板块 -->
+        <plateData   plateid="1" label="油田" byPlateLabel="合    计"  numbers = "40" investment="4000"  finishedInvestment="2400"  
+             unfinishedInvestment="1600" finishedRation="60%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "4" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "8" />
+             <projectdata  id = "finished" label = "已完成" numbers = "20" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="1" subCorpname="石家庄"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="1" subCorpname="燕山"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="3" subCorpname="齐鲁"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="4" subCorpname="广州"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="2" label="炼化" byPlateLabel="合    计"  numbers = "80" investment="2000"  finishedInvestment="1500"  
+             unfinishedInvestment="500" finishedRation="75%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "12" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "20" />
+             <projectdata  id = "finished" label = "已完成" numbers = "40" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="5" subCorpname="洛阳"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="6" subCorpname="镇海"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>
+             <corpData  order="3" subCorpid="7" subCorpname="茂名"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="8" subCorpname="扬子"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="3" label="销售" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="4" label="工程" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="5" label="其它" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+     </dataset> 
+     
+     <!--2.6企业级，不分批-->
+     <dataset typeid="CORP-LEVEL" typeName = "企业级"  label="企业级" numbers = "120" investment="6000"  finishedInvestment="3900"  
+             unfinishedInvestment="2100" finishedRation="65%">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "16"/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "16" />
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "28" />
+       <projectdata  id = "finished" label = "已完成" numbers = "60" />
+       <!--2.3.1分板块 -->
+        <plateData   plateid="1" label="油田" byPlateLabel="合    计"  numbers = "40" investment="4000"  finishedInvestment="2400"  
+             unfinishedInvestment="1600" finishedRation="60%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "4" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "8" />
+             <projectdata  id = "finished" label = "已完成" numbers = "20" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="1" subCorpname="石家庄"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="1" subCorpname="燕山"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="3" subCorpname="齐鲁"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="4" subCorpname="广州"  numbers = "10" investment="1000"  finishedInvestment="600"  
+                        unfinishedInvestment="400" finishedRation="60%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "1" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "2" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="2" label="炼化" byPlateLabel="合    计"  numbers = "80" investment="2000"  finishedInvestment="1500"  
+             unfinishedInvestment="500" finishedRation="75%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "12" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "8" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "20" />
+             <projectdata  id = "finished" label = "已完成" numbers = "40" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="5" subCorpname="洛阳"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="6" subCorpname="镇海"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>
+             <corpData  order="3" subCorpid="7" subCorpname="茂名"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="8" subCorpname="扬子"  numbers = "20" investment="500"  finishedInvestment="375"  
+                        unfinishedInvestment="125" finishedRation="75%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "3" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "2" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "5" />
+                <projectdata  id = "finished" label = "已完成" numbers = "10" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="3" label="销售" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="4" label="工程" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+        
+        <plateData   plateid="5" label="其它" byPlateLabel="合    计"  numbers = "" investment=""  finishedInvestment=""  
+             unfinishedInvestment="" finishedRation="%">
+             <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+             <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+             <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+             <projectdata  id = "finished" label = "已完成" numbers = "5" />
+             <!--分企业-->
+             <corpData  order="1" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData> 
+             <corpData  order="2" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>
+             <corpData  order="3" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>    
+             <corpData  order="4" subCorpid="" subCorpname=""  numbers = "" investment=""  finishedInvestment=""  
+                        unfinishedInvestment="" finishedRation="%" URL="">
+                <projectdata  id = "in-designer" label = "正在设计" numbers = "0" />
+                <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" />
+                <projectdata  id = "in-construction" label = "正在施工" numbers = "0" />
+                <projectdata  id = "finished" label = "已完成" numbers = "5" />        
+             </corpData>         
+        </plateData>
+     </dataset>
+  </hazardData>
+  
+  <!-- 分企业：企业间对比情况 -->
+  <corpCompare>
+  	<dataset typeid="ALL-LEVEL">
+  		<plateData plateid="YT" label="油田">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄1" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="LH" label="炼化">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳1" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="XS" label="销售">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="GC" label="工程">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="QT" label="其它">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  	</dataset>
+  	<dataset typeid="GROUP-LEVEL">
+  		<plateData plateid="YT" label="油田">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州1" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="LH" label="炼化">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子1" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="XS" label="销售">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="GC" label="工程">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="QT" label="其它">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  	</dataset>
+  	<dataset typeid="CORP-LEVEL">
+  		<plateData plateid="YT" label="油田">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="LH" label="炼化">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="XS" label="销售">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="GC" label="工程">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>  			
+  		</plateData>
+  		<plateData plateid="QT" label="其它">
+  			<projectdata>
+	  			<corpData order="1" subCorpname="石家庄" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="2" subCorpname="洛阳" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="3" subCorpname="广州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="4" subCorpname="扬子" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="5" subCorpname="燕山" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="6" subCorpname="长岭" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="7" subCorpname="沧州" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="8" subCorpname="齐鲁" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="9" subCorpname="九江" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+	  			<corpData order="10" subCorpname="镇海" progressRate="60" averageProgressRate="80" numbers="4" 
+	  					inDesigner="0" waitConstruction="0" inConstruction="0" finished="4"/>
+  			</projectdata>
+  			<investmentdata>
+  				<corpData order="1" subCorpname="石家庄" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="2" subCorpname="金陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="3" subCorpname="茂名" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="4" subCorpname="安庆" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="5" subCorpname="天津" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="6" subCorpname="巴陵" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="7" subCorpname="高桥" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="8" subCorpname="南化" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="9" subCorpname="仪征" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+	  			<corpData order="10" subCorpname="沧州" finishedRation="60" averageFinishedRation="80" 
+	  					investment="37" finishedInvestment="31.3" unfinishedInvestment="5.7"/>
+  			</investmentdata>
+  		</plateData>
+  	</dataset>
+  </corpCompare> 
+ 
+  <!--三、重点监管项目数据-->
+  <majorSupervisionData>
+   <!--下述status取值：FINISHED－已完成 DONING-正在进行 NOSTART-未启动 NULL-该列值不显示-->
+    <!--3.1总部领导监管项目数据-->
+    <goupLeaderSupervisionData  order="0" subCorpid="" subCorpname="总计"  projectName="" plateid="" plateLabel=""  investment=""  finishedInvestment=""  
+                     unfinishedInvestment="" finishedRation="%" groupCharger="" subCorpCharger="" chargeDeparment="" >
+       <stageData id = "in-designer" label = "正在设计" status="NULL" />
+       <stageData id = "wait-construction" label = "等待施工" status="NULL" />
+       <stageData id = "in-construction" label = "正在施工" status="NULL" />
+       <stageData id = "finished" label = "已完成" status="NULL" />
+       <projectdata  order="1" subCorpid="" subCorpname="胜利油田分公司"  projectName="海洋应急中心海上溢油拦截设备" plateid="" plateLabel="油田"  investment=""  finishedInvestment=""  
+                     unfinishedInvestment="" finishedRation="%" groupCharger="王天普" subCorpCharger="孙焕全" chargeDeparment="油田勘探事业部" URL="" >
+         <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+         <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+         <stageData id = "in-construction" label = "正在施工" status="DONING" />
+         <stageData id = "finished" label = "已完成" status="NOSTART" />
+       </projectdata>
+       <projectdata  order="2" subCorpid="" subCorpname=""  projectName="" plateid="" plateLabel=""  investment=""  finishedInvestment=""  
+                     unfinishedInvestment="" finishedRation="%" groupCharger="" subCorpCharger="" chargeDeparment="" URL="" >
+         <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+         <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+         <stageData id = "in-construction" label = "正在施工" status="DONING" />
+         <stageData id = "finished" label = "已完成" status="NOSTART" />
+       </projectdata>
+       <projectdata  order="3" subCorpid="" subCorpname=""  projectName="" plateid="" plateLabel=""  investment=""  finishedInvestment=""  
+                     unfinishedInvestment="" finishedRation="%" groupCharger="" subCorpCharger="" chargeDeparment="" URL="" >
+         <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+         <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+         <stageData id = "in-construction" label = "正在施工" status="DONING" />
+         <stageData id = "finished" label = "已完成" status="NOSTART" />
+       </projectdata>
+       <projectdata  order="4" subCorpid="" subCorpname=""  projectName="" plateid="" plateLabel=""  investment=""  finishedInvestment=""  
+                     unfinishedInvestment="" finishedRation="%" groupCharger="" subCorpCharger="" chargeDeparment="" URL="" >
+         <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+         <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+         <stageData id = "in-construction" label = "正在施工" status="DONING" />
+         <stageData id = "finished" label = "已完成" status="NOSTART" />
+       </projectdata>
+    </goupLeaderSupervisionData>
+    <!--3.2总部部门领导监管项目数据-->
+    <!--本部分由于要显示合计行，请注意order的取值开始字符-->
+    <departmentManagerSupervisionData order="A" subCorpid="" subCorpname="总计"  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment=""  >
+           <stageData id = "in-designer" label = "正在设计" status="NULL" />
+           <stageData id = "wait-construction" label = "等待施工" status="NULL" />
+           <stageData id = "in-construction" label = "正在施工" status="NULL" />
+           <stageData id = "finished" label = "已完成" status="NULL" />
+      <byPlate order="B0" subCorpid="" subCorpname="油田板块小计"  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment=""  >
+           <stageData id = "in-designer" label = "正在设计" status="NULL" />
+           <stageData id = "wait-construction" label = "等待施工" status="NULL" />
+           <stageData id = "in-construction" label = "正在施工" status="NULL" />
+           <stageData id = "finished" label = "已完成" status="NULL" />
+        <projectdata  order="B1" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+        <projectdata  order="B2" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+        <projectdata  order="B3" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+         <projectdata  order="B4" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+      </byPlate>   
+      
+      <byPlate order="C0" subCorpid="" subCorpname="炼化板块小计"  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment=""  >
+           <stageData id = "in-designer" label = "正在设计" status="NULL" />
+           <stageData id = "wait-construction" label = "等待施工" status="NULL" />
+           <stageData id = "in-construction" label = "正在施工" status="NULL" />
+           <stageData id = "finished" label = "已完成" status="NULL" />
+        <projectdata  order="C1" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+        <projectdata  order="C2" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+        <projectdata  order="C3" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+         <projectdata  order="C4" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+      </byPlate>   
+      
+      <byPlate order="D0" subCorpid="" subCorpname="销售板块小计"  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment=""  >
+           <stageData id = "in-designer" label = "正在设计" status="NULL" />
+           <stageData id = "wait-construction" label = "等待施工" status="NULL" />
+           <stageData id = "in-construction" label = "正在施工" status="NULL" />
+           <stageData id = "finished" label = "已完成" status="NULL" />
+        <projectdata  order="D1" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+        <projectdata  order="D2" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+        <projectdata  order="D3" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+         <projectdata  order="D4" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+      </byPlate>   
+      
+      <byPlate order="E0" subCorpid="" subCorpname="工程板块小计"  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment=""  >
+           <stageData id = "in-designer" label = "正在设计" status="NULL" />
+           <stageData id = "wait-construction" label = "等待施工" status="NULL" />
+           <stageData id = "in-construction" label = "正在施工" status="NULL" />
+           <stageData id = "finished" label = "已完成" status="NULL" />
+        <projectdata  order="E1" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+        <projectdata  order="E2" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+        <projectdata  order="E3" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+         <projectdata  order="E4" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+      </byPlate>   
+      
+      <byPlate order="F0" subCorpid="" subCorpname="其它板块小计"  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment=""  >
+           <stageData id = "in-designer" label = "正在设计" status="NULL" />
+           <stageData id = "wait-construction" label = "等待施工" status="NULL" />
+           <stageData id = "in-construction" label = "正在施工" status="NULL" />
+           <stageData id = "finished" label = "已完成" status="NULL" />
+        <projectdata  order="F1" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+        <projectdata  order="F2" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+        <projectdata  order="F3" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata> 
+         <projectdata  order="F4" subCorpid="" subCorpname=""  projectName=""  investment=""  finishedInvestment=""  
+                       unfinishedInvestment="" finishedRation="%"  subCorpCharger="" corpChargeDepartment="" groupChargeDepartment=""
+                       departmentCharger="" groupSupervisionDeparment="" URL="" >
+           <stageData id = "in-designer" label = "正在设计" status="FINISHED" />
+           <stageData id = "wait-construction" label = "等待施工" status="FINISHED" />
+           <stageData id = "in-construction" label = "正在施工" status="DONING" />
+           <stageData id = "finished" label = "已完成" status="NOSTART" />
+         </projectdata>
+      </byPlate>   
+    </departmentManagerSupervisionData>
+  </majorSupervisionData>
+  
+  
+  	
+	<!-- 
+	2013年5月8日新增，
+	1.企业级隐患项目数
+	2.企业级隐患项目投资完成情况
+	
+	projNumbers="29812" 项目数
+	designingNumbers="200" 正在设计
+	waitBuildNumbers="333" 等待施工
+	buildingNumbers="444" 正在施工
+	finishedNumbers="15600"  已完成
+    unfinishedNumbers="8400" 未完成
+    finishedRation="65"  完成率
+    investment="24000"  计划投资
+    finishedInvestment="15600" 已完成投资 
+    unfinishedInvestment="8400" 未完成投资
+    finishedInvestmentRation="65" 投资完成率
+	
+	 -->
+	<byCorpProj>
+		<byPlate>
+			<plateData  plateid="" plateLabel="油田"  projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65">    
+	            <dataset  order="1" subCorpid="" subCorpname="上海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="2" subCorpid="" subCorpname="金陵" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="3" subCorpid="" subCorpname="镇海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="4" subCorpid="" subCorpname="茂名" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	             <dataset  order="5" subCorpid="" subCorpname="济南" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="6" subCorpid="" subCorpname="扬子" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="7" subCorpid="" subCorpname="石家庄" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="8" subCorpid="" subCorpname="燕山" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="9" subCorpid="" subCorpname="武汉" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="10" subCorpid="" subCorpname="湖北" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+			</plateData>  
+         <plateData   plateid="" plateLabel="炼化"  projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65">    
+	            <dataset  order="1" subCorpid="" subCorpname="上海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="2" subCorpid="" subCorpname="金陵" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="3" subCorpid="" subCorpname="镇海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="4" subCorpid="" subCorpname="茂名" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	             <dataset  order="5" subCorpid="" subCorpname="济南" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="6" subCorpid="" subCorpname="扬子" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="7" subCorpid="" subCorpname="石家庄" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="8" subCorpid="" subCorpname="燕山" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="9" subCorpid="" subCorpname="武汉" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="10" subCorpid="" subCorpname="湖北" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+			</plateData>  
+          <plateData   plateid="" plateLabel="销售"  projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65">    
+	            <dataset  order="1" subCorpid="" subCorpname="上海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="2" subCorpid="" subCorpname="金陵" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="3" subCorpid="" subCorpname="镇海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="4" subCorpid="" subCorpname="茂名" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	             <dataset  order="5" subCorpid="" subCorpname="济南" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="6" subCorpid="" subCorpname="扬子" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="7" subCorpid="" subCorpname="石家庄" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="8" subCorpid="" subCorpname="燕山" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="9" subCorpid="" subCorpname="武汉" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="10" subCorpid="" subCorpname="湖北" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+			</plateData>  
+          <plateData   plateid="" plateLabel="工程"  projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65">    
+	            <dataset  order="1" subCorpid="" subCorpname="上海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="2" subCorpid="" subCorpname="金陵" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="3" subCorpid="" subCorpname="镇海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="4" subCorpid="" subCorpname="茂名" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	             <dataset  order="5" subCorpid="" subCorpname="济南" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="6" subCorpid="" subCorpname="扬子" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="7" subCorpid="" subCorpname="石家庄" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="8" subCorpid="" subCorpname="燕山" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="9" subCorpid="" subCorpname="武汉" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="10" subCorpid="" subCorpname="湖北" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+			</plateData>  
+          <plateData   plateid="" plateLabel="其它"  projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65">    
+	            <dataset  order="1" subCorpid="" subCorpname="上海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="2" subCorpid="" subCorpname="金陵" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="3" subCorpid="" subCorpname="镇海" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="4" subCorpid="" subCorpname="茂名" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	             <dataset  order="5" subCorpid="" subCorpname="济南" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="6" subCorpid="" subCorpname="扬子" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="7" subCorpid="" subCorpname="石家庄" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="8" subCorpid="" subCorpname="燕山" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="9" subCorpid="" subCorpname="武汉" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+	            <dataset  order="10" subCorpid="" subCorpname="湖北" projNumbers="29812" designingNumbers="200" waitBuildNumbers="333" buildingNumbers="444" finishedNumbers="15600" unfinishedNumbers="8400" finishedRation="65" 
+	             				investment="24000"  finishedInvestment="15600" unfinishedInvestment="8400" finishedInvestmentRation="65"/>    
+			</plateData>  
+		</byPlate>
+	</byCorpProj>
+  
+</model>

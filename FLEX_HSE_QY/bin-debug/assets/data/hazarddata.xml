@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 河南石油HSE仪表盘〔隐患管理部分〕xml数据 　设计：肖丰斌  Version:1.1 日期：2012-12-3  
+  typeid：隐患投资类型(两种，取值参考下面枚举)  typeName:隐患投资类型的显示标签　　batchid：批次id
+  batchid:批次名称                            finishedInvestment：已完成的投资额
+  unfinishedInvestment：未完成的投资额       id：项目的阶段id，取值为4种，取值为下面的枚举值
+  numbers：项目阶段对应的项目数                 URL：某个项目阶段的项目对应的业务系统URL
+  label：项目的阶段id对应的显示名称-->
+ <!--1.文件总览 -->
+ <dataOutline dataYear="2012" dataDate=""  corpid = ""  corpname="洛阳石化" timestamp=""/>
+  
+    <!--2.隐患构成数据-->
+  <hazardData>
+	 <!--河南公司合计-->
+     <dataset typeid="ALL-LEVEL" level="1" projectLabel="总计" finishedInvestment="2202" unfinishedInvestment="690.8">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "10" URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "9" URL=""/>
+     </dataset>
+     
+      <!--集团公司级 合计-->
+     <dataset typeid="GROUP-LEVEL" level="2" projectLabel="集团公司级" finishedInvestment="2202" unfinishedInvestment="490">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "1" URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "9" URL=""/>
+     </dataset>
+     
+     <!--集团公司 第1批-->
+     <dataset typeid="GROUP-LEVEL" level="3" projectLabel="第一批" finishedInvestment="1285" unfinishedInvestment="0">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0" URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "7" URL=""/>
+     </dataset> 
+     <!--集团公司 第2批-->
+     <dataset typeid="GROUP-LEVEL" level="3" projectLabel="第二批" finishedInvestment="917" unfinishedInvestment="0">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0" URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "2" URL=""/>
+     </dataset>  
+     <!--集团公司 第3批-->
+     <dataset typeid="GROUP-LEVEL" level="3" projectLabel="第三批" finishedInvestment="0" unfinishedInvestment="490">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "1" URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "0" URL=""/>
+     </dataset>
+     
+     <!--企业级-->
+     <dataset typeid="CORP-LEVEL" level="2" projectLabel="企业级" finishedInvestment="0" unfinishedInvestment="200.8">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "9"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "0" URL=""/>
+     </dataset>
+
+     <!--企业级-->
+     <dataset typeid="CORP-LEVEL-2" level="2" projectLabel="省公司级" finishedInvestment="0" unfinishedInvestment="0">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "0" URL=""/>
+     </dataset>
+
+     
+     <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="郑州分公司" finishedInvestment="2.503" unfinishedInvestment="0">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "2" URL=""/>
+     </dataset>
+
+     
+     <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="鹤壁分公司" finishedInvestment="18.0125" unfinishedInvestment="1.0025">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "14" URL=""/>
+     </dataset>     
+
+     <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="濮阳分公司" finishedInvestment="2.88" unfinishedInvestment="0.2">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "2" URL=""/>
+     </dataset>    
+   
+      <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="许昌分公司" finishedInvestment="20.37" unfinishedInvestment="22.8">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "24" URL=""/>
+     </dataset>     
+      <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="平顶山分公司" finishedInvestment="0" unfinishedInvestment="169.8000">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "3"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "0" URL=""/>
+     </dataset>     
+      <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="南阳分公司" finishedInvestment="1" unfinishedInvestment="0">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "1" URL=""/>
+     </dataset>     
+      <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="信阳分公司" finishedInvestment="2" unfinishedInvestment="0.3">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "1" URL=""/>
+     </dataset>     
+      <!-- 企业级下面的二级 -->
+     <dataset typeid="CORP-LEVEL-2" level="3" projectLabel="驻马店分公司" finishedInvestment="68.9" unfinishedInvestment="0">
+       <projectdata  id = "in-designer" label = "正在设计" numbers = "0"  URL=""/>
+       <projectdata  id = "wait-construction" label = "等待施工" numbers = "0" URL=""/>
+       <projectdata  id = "in-construction" label = "正在施工" numbers = "0" URL=""/>
+       <projectdata  id = "finished" label = "已完成" numbers = "4" URL=""/>
+     </dataset>     
+
+  </hazardData> 
+ 
+</model>

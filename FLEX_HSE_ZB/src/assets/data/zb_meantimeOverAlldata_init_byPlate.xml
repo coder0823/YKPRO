@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+
+<!--  xml数据 2014-9-26
+allDataCollect，总体概况
+	order:序号 
+	prof：专业 
+	num：在此阶段项目数
+	status：此阶段项目此阶段报警状态，逗号分隔：（0：正常，不显示，1黄色报警，2红色报警，(3绿色横线超期完成-已去，不显示)，4绿色正常完成）
+	profid（*）：专业编码：total(合计)/safety（安全）/environmentalProtection（环保）/health（职业卫生）/fireControl（消防）/anti-seismic（抗震）
+	stageid（*）：阶段编码,点击钻取的时候需此参数
+	|_
+	dataset 项目立项的企业数据
+		order：序号
+		projectName：项目名称
+		projectURL：项目名称超链接地址
+		currentStage：1,2,3,4,5 分别为 可研批复、基础设计批复、正在施工、开始试运行、试运行6个月
+		investment：项目计划投资额 
+		warning：报警（0：正常，不显示，1黄色报警，2红色报警，3绿色横线超期完成（已取消），4绿色正常完成）（这个页面暂时不用，可去掉）
+		keyregulatory：是否总部重点监管项目(1:是，0否)（这个页面暂时不用，可去掉）
+		regulatoryfocustype：总部重点监管项目类型（这个页面暂时不用，可去掉）
+		groupLeader：总部负责人（这个页面暂时不用， 可去掉）
+		corpLeader：	企业负责人（这个页面暂时不用，可去掉）
+		groupDirector：总部主管（这个页面暂时不用，可去掉）
+		corpName（*）：所属企业
+		corpid：企业编码
+		level（*）：项目级别
+		linkBoolean:是否开放此条记录的钻取功能
+ -->
+  <allDataCollect>
+    <allDataItem order="1" plateid="00" plate="中国石化总计" linkBoolean="true" dataLabel="合计" profid="total" stageid="" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2" >
+      	<professional_data dataLabel="安全" profid="safety" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    	<professional_data dataLabel="职业卫生" profid="health" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="消防" profid="fireControl" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="抗震" profid="anti-seismic" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    </allDataItem>
+    <allDataItem order="2" plateid="YT" plate="油田" linkBoolean="true" dataLabel="合计" profid="total" stageid="" num="428" status="1,2,2,2,2,2,1,2,1,1,2,1,1,1,1,1,1,1,1,2,2,2,2,2,1,4,1,1,2,1,1,4,1,1,2,1,4,2,2,1,2,1,1,1,4,2,4,2,2,1,2,2,1,2,1,2,2,1,1,4,4,2,1,2,2,1,1,1,1,4,1,1,1,2,1,1,4,2,2,2,4,4,1,1,2,4,1,4,4,4,4,1,4,1,2,4,2,1,1,1,4,4,4,2,2,2,2,2,2,2,2,2,4,2,2,2,2,2,2,2,1,2,2,1,2,2,2,2,2,1,2,2,2,2,2,2,1,2,1,1,2,2,1,1,2,2,2,1,1,2,2,2,2,2,1,2,4,2,2,2,4,2,4,4,2,2,2,2,2,2,2,2,1,2,1,2,1,1,1,2,1,4,2,2,2,1,1,1,1,1,1,1,1,2,1,1,4,2,2,2,1,2,2,1,2,2,2,2,1,2,2,2,2,2,1,2,1,1,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,4,1,4,2,1,2,2,2,2,4,2,2,2,2,2,4,2,2,2,2,4,4,4,2,2,1,1,4,4,4,2,4,4,2,1,1,2,2,2,2,2,2,4,4,2,2,4,4,4,4,2,1,1,2,2,1,1,2,2,1,4,4,2,2,2,2,1,2,1">
+    	<professional_data dataLabel="安全" profid="safety" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    	<professional_data dataLabel="职业卫生" profid="health" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="消防" profid="fireControl" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="抗震" profid="anti-seismic" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    </allDataItem>
+    
+    <allDataItem order="3" plateid="LH" plate="炼化" linkBoolean="true" dataLabel="合计" profid="total" stageid="" num="345" status="2,2,2,2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,1,1,1,1,2,2,1,1,2,4,4,1,1,1,2,1,4,1,1,2,2,2,2,2,1,1,1,1,1,2,2,2,2,2,1,2,2,1,2,2,2,2,1,1,2,2,1,1,2,1,2,1,1,2,1,1,1,1,2,1,1,2,2,2,1,2,1,2,2,1,2,1,1,2,2,1,1,2,2,2,2,1,4,1,1,1,4,1,1,1,2,1,1,1,2,1,2,1,2,2,1,1,2,1,1,2,2,1,1,2,1,2,2,2,1,2,1,2,2,1,1,1,1,4,2,4,4,1,2,2,2,1,4,1,2,2,2,2,2,4,2,1,2,4,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,1,2,2,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,2,2,4,1,4,1,2,1,1,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2,2,1,1,1,1,1,2,2,2,4,2,4,1,1,2,2,2,2,4,2,2,2,2,2,4,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,1,2,2,2,2,2,2,2,2,4,4,1,1,1,4,2,1,2,1,1,1,1,2,4">
+    	<professional_data dataLabel="安全" profid="safety" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    	<professional_data dataLabel="职业卫生" profid="health" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="消防" profid="fireControl" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="抗震" profid="anti-seismic" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    </allDataItem>
+    <allDataItem order="4" plateid="XS" plate="销售" linkBoolean="true" dataLabel="合计" profid="total" stageid="" num="258" status="2,2,1,2,1,2,1,2,2,1,1,2,2,2,4,4,1,4,1,1,2,1,1,4,1,4,1,1,4,2,2,1,2,1,1,1,2,2,2,2,2,1,2,2,1,2,1,2,2,1,1,2,2,2,1,2,2,1,1,1,2,2,2,1,2,2,2,1,2,2,2,1,2,1,2,2,1,2,1,2,2,1,1,2,2,2,2,2,2,2,2,1,1,1,1,2,2,1,4,2,1,4,2,2,2,2,2,2,2,1,2,2,2,2,2,2,1,2,1,1,2,2,1,4,1,2,4,4,4,2,2,2,2,2,2,4,2,2,2,4,2,4,4,2,1,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,2,1,1,4,2,4,2,1,2,2,2,2,2,2,4,1,2,2,2,2,2,1,2,2,1,2,1,1,4,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,4,2,2,2,2,2,4,4,4,2,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+    	<professional_data dataLabel="安全" profid="safety" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    	<professional_data dataLabel="职业卫生" profid="health" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="消防" profid="fireControl" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="抗震" profid="anti-seismic" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    </allDataItem>
+    <allDataItem order="5" plateid="GC" plate="工程" linkBoolean="true" dataLabel="合计" profid="total" stageid="" num="245" status="2,2,2,2,2,2,,,,,,,,,,,2,4,4,1,4,1,1,1,1,1,2,1,1,1,4,1,2,4,1,1,1,4,4,4,4,4,4,2,1,4,2,1,4,2,1,2,2,2,1,1,1,2,2,4,1,1,1,2,1,2,1,4,4,4,4,4,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,4,4,4,2,4,2,1,1,1,2,1,2,2,2,4,4,2,2,2,1,1,1,1,1,1,1,1,1,1,2,1,1,4,2,2,2,2,4,1,4,2,4,4,2,1,4,2,1,2,1,2,2,2,2,4,2,2,4,2,1,4,2,2,4,4,4,2,1,2,1,2,2,2,2,2,2,2,4,2,2,2,2,4,2,2,2,2,2,4,2,4,1,4,2,2,2,2,2,2,4,2,2,2,4,2,2,1,2,2,2,2,2,4,2,2,2,4,4,2,2,4,1,2,2,2,2,4,4,2,4,1,2,4,2,4,2,2,4,2,2,2,2,2,2,2,1,2,2,2,2,2,1,2,2,2">
+    	<professional_data dataLabel="安全" profid="safety" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    	<professional_data dataLabel="职业卫生" profid="health" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="消防" profid="fireControl" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="抗震" profid="anti-seismic" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    </allDataItem>
+    <allDataItem order="6" plateid="QT" plate="其他" linkBoolean="true" dataLabel="合计" profid="total" stageid="" num="167" status="4,2,2,1,2,1,1,1,2,2,2,2,2,1,2,2,1,2,1,2,2,1,1,2,2,2,1,2,4,4,4,1,4,4,2,4,1,4,4,4,1,1,4,4,4,2,2,4,4,4,4,4,2,4,2,4,4,4,4,4,4,4,2,2,2,2,4,4,4,4,4,2,1,2,2,2,2,2,2,2,2,2,4,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,4,2,1,1,4,2,1,1,2,2,1,2,2,2,2,2,2,2,2,4,4,4,4,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1,2,4,2,4">
+    	<professional_data dataLabel="安全" profid="safety" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    	<professional_data dataLabel="职业卫生" profid="health" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="消防" profid="fireControl" num="466" status="2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+      	<professional_data dataLabel="抗震" profid="anti-seismic" num="466" status="2,4,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+      	</professional_data>
+    </allDataItem>
+  </allDataCollect>
+  <dataOutline dataYear="2014" dataStartDate="" dataEndDate="" timestamp="">
+  </dataOutline>
+</Model>

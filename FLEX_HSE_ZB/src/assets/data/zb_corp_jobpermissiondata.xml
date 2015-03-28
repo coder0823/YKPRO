@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+<!-- 
+
+接口的参数：
+月份  eg： 1月，2月，当日
+ 板块名称 eg：油田，炼化，销售，工程，其他
+ 作业类型  eg：ALL，USE-FIRE，USE-ELECTRIC，USE-SOIL
+
+ -->
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+ 
+ <!--二.总体情况 -->
+ <overallData>
+ 	<overCorpData>
+ 		<dataset label="石家庄" numbers="6"/>
+ 		<dataset label="燕山" numbers="6"/>
+ 		<dataset label="扬子" numbers="6"/>
+ 		<dataset label="洛阳" numbers="9"/>
+ 		<dataset label="广州" numbers="8"/>
+ 		<dataset label="茂名" numbers="9"/>
+ 		<dataset label="镇海" numbers="8"/>
+ 	</overCorpData>
+ 	<overStatusData>
+ 		<dataset label="已通知" numbers="0"/>
+ 		<dataset label="执行中" numbers="0"/>
+ 		<dataset label="已验收" numbers="7"/>
+ 		<dataset label="作废" numbers="1"/>
+ 		<dataset label="撤销" numbers="0"/>
+ 	</overStatusData>
+ 	<overDateData>
+ 		<dataset date="2012.1" label="1月" numbers="15" averageNumbers="10"/>
+ 		<dataset date="2012.2" label="2月" numbers="9" averageNumbers="10"/>
+ 		<dataset date="2012.3" label="3月" numbers="3" averageNumbers="10"/>
+ 		<dataset date="2012.4" label="4月" numbers="6" averageNumbers="10"/>
+ 		<dataset date="2012.5" label="5月" numbers="12" averageNumbers="10"/>
+ 		<dataset date="2012.6" label="6月" numbers="6" averageNumbers="10"/>
+ 		<dataset date="2012.7" label="7月" numbers="4" averageNumbers="10"/>
+ 		<dataset date="2012.8" label="8月" numbers="18" averageNumbers="10"/>
+ 		<dataset date="2012.9" label="9月" numbers="11" averageNumbers="10"/>
+ 		<dataset date="2012.10" label="10月" numbers="8" averageNumbers="10"/>
+ 		<dataset date="2012.11" label="11月" numbers="13" averageNumbers="10"/>
+ 		<dataset date="2012.12" label="12月" numbers="19" averageNumbers="10"/>
+ 		<dataset date="2012.12.31" label="当日" numbers="2" averageNumbers="10"/>
+ 	</overDateData>
+ </overallData>
+ 
+  <!--三.分企业的作业状态以及12月份作业情况 -->
+ <byCorpData>
+ 	<corpData label="石家庄">
+ 		<statusData>
+	 		<dataset label="已通知" numbers="0"/>
+	 		<dataset label="执行中" numbers="0"/>
+	 		<dataset label="已验收" numbers="7"/>
+	 		<dataset label="作废" numbers="1"/>
+	 		<dataset label="撤销" numbers="0"/>
+	 	</statusData>
+	 	<dateData>
+	 		<dataset label="1月" numbers="15" averageNumbers="10"/>
+	 		<dataset label="2月" numbers="9" averageNumbers="10"/>
+	 		<dataset label="3月" numbers="3" averageNumbers="10"/>
+	 		<dataset label="4月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="5月" numbers="12" averageNumbers="10"/>
+	 		<dataset label="6月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="7月" numbers="4" averageNumbers="10"/>
+	 		<dataset label="8月" numbers="18" averageNumbers="10"/>
+	 		<dataset label="9月" numbers="11" averageNumbers="10"/>
+	 		<dataset label="10月" numbers="8" averageNumbers="10"/>
+	 		<dataset label="11月" numbers="13" averageNumbers="10"/>
+	 		<dataset label="12月" numbers="19" averageNumbers="10"/>
+	 		<dataset label="当日" numbers="2" averageNumbers="10"/>
+	 	</dateData>
+ 	</corpData>
+ 	<corpData label="燕山">
+ 		<statusData>
+	 		<dataset label="已通知" numbers="0"/>
+	 		<dataset label="执行中" numbers="0"/>
+	 		<dataset label="已验收" numbers="7"/>
+	 		<dataset label="作废" numbers="1"/>
+	 		<dataset label="撤销" numbers="0"/>
+	 	</statusData>
+	 	<dateData>
+	 		<dataset label="1月" numbers="15" averageNumbers="10"/>
+	 		<dataset label="2月" numbers="9" averageNumbers="10"/>
+	 		<dataset label="3月" numbers="3" averageNumbers="10"/>
+	 		<dataset label="4月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="5月" numbers="12" averageNumbers="10"/>
+	 		<dataset label="6月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="7月" numbers="4" averageNumbers="10"/>
+	 		<dataset label="8月" numbers="18" averageNumbers="10"/>
+	 		<dataset label="9月" numbers="11" averageNumbers="10"/>
+	 		<dataset label="10月" numbers="8" averageNumbers="10"/>
+	 		<dataset label="11月" numbers="13" averageNumbers="10"/>
+	 		<dataset label="12月" numbers="19" averageNumbers="10"/>
+	 		<dataset label="当日" numbers="2" averageNumbers="10"/>
+	 	</dateData>
+ 	</corpData>
+ 	<corpData label="扬子">
+ 		<statusData>
+	 		<dataset label="已通知" numbers="0"/>
+	 		<dataset label="执行中" numbers="0"/>
+	 		<dataset label="已验收" numbers="7"/>
+	 		<dataset label="作废" numbers="1"/>
+	 		<dataset label="撤销" numbers="0"/>
+	 	</statusData>
+	 	<dateData>
+	 		<dataset label="1月" numbers="15" averageNumbers="10"/>
+	 		<dataset label="2月" numbers="9" averageNumbers="10"/>
+	 		<dataset label="3月" numbers="3" averageNumbers="10"/>
+	 		<dataset label="4月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="5月" numbers="12" averageNumbers="10"/>
+	 		<dataset label="6月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="7月" numbers="4" averageNumbers="10"/>
+	 		<dataset label="8月" numbers="18" averageNumbers="10"/>
+	 		<dataset label="9月" numbers="11" averageNumbers="10"/>
+	 		<dataset label="10月" numbers="8" averageNumbers="10"/>
+	 		<dataset label="11月" numbers="13" averageNumbers="10"/>
+	 		<dataset label="12月" numbers="19" averageNumbers="10"/>
+	 		<dataset label="当日" numbers="2" averageNumbers="10"/>
+	 	</dateData>
+ 	</corpData>
+ 	<corpData label="洛阳">
+ 		<statusData>
+	 		<dataset label="已通知" numbers="0"/>
+	 		<dataset label="执行中" numbers="0"/>
+	 		<dataset label="已验收" numbers="7"/>
+	 		<dataset label="作废" numbers="1"/>
+	 		<dataset label="撤销" numbers="0"/>
+	 	</statusData>
+	 	<dateData>
+	 		<dataset label="1月" numbers="15" averageNumbers="10"/>
+	 		<dataset label="2月" numbers="9" averageNumbers="10"/>
+	 		<dataset label="3月" numbers="3" averageNumbers="10"/>
+	 		<dataset label="4月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="5月" numbers="12" averageNumbers="10"/>
+	 		<dataset label="6月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="7月" numbers="4" averageNumbers="10"/>
+	 		<dataset label="8月" numbers="18" averageNumbers="10"/>
+	 		<dataset label="9月" numbers="11" averageNumbers="10"/>
+	 		<dataset label="10月" numbers="8" averageNumbers="10"/>
+	 		<dataset label="11月" numbers="13" averageNumbers="10"/>
+	 		<dataset label="12月" numbers="19" averageNumbers="10"/>
+	 		<dataset label="当日" numbers="2" averageNumbers="10"/>
+	 	</dateData>
+ 	</corpData>
+ 	<corpData label="广州">
+ 		<statusData>
+	 		<dataset label="已通知" numbers="0"/>
+	 		<dataset label="执行中" numbers="0"/>
+	 		<dataset label="已验收" numbers="7"/>
+	 		<dataset label="作废" numbers="1"/>
+	 		<dataset label="撤销" numbers="0"/>
+	 	</statusData>
+	 	<dateData>
+	 		<dataset label="1月" numbers="15" averageNumbers="10"/>
+	 		<dataset label="2月" numbers="9" averageNumbers="10"/>
+	 		<dataset label="3月" numbers="3" averageNumbers="10"/>
+	 		<dataset label="4月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="5月" numbers="12" averageNumbers="10"/>
+	 		<dataset label="6月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="7月" numbers="4" averageNumbers="10"/>
+	 		<dataset label="8月" numbers="18" averageNumbers="10"/>
+	 		<dataset label="9月" numbers="11" averageNumbers="10"/>
+	 		<dataset label="10月" numbers="8" averageNumbers="10"/>
+	 		<dataset label="11月" numbers="13" averageNumbers="10"/>
+	 		<dataset label="12月" numbers="19" averageNumbers="10"/>
+	 		<dataset label="当日" numbers="2" averageNumbers="10"/>
+	 	</dateData>
+ 	</corpData>
+ 	<corpData label="茂名">
+ 		<statusData>
+	 		<dataset label="已通知" numbers="0"/>
+	 		<dataset label="执行中" numbers="0"/>
+	 		<dataset label="已验收" numbers="7"/>
+	 		<dataset label="作废" numbers="1"/>
+	 		<dataset label="撤销" numbers="0"/>
+	 	</statusData>
+	 	<dateData>
+	 		<dataset label="1月" numbers="15" averageNumbers="10"/>
+	 		<dataset label="2月" numbers="9" averageNumbers="10"/>
+	 		<dataset label="3月" numbers="3" averageNumbers="10"/>
+	 		<dataset label="4月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="5月" numbers="12" averageNumbers="10"/>
+	 		<dataset label="6月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="7月" numbers="4" averageNumbers="10"/>
+	 		<dataset label="8月" numbers="18" averageNumbers="10"/>
+	 		<dataset label="9月" numbers="11" averageNumbers="10"/>
+	 		<dataset label="10月" numbers="8" averageNumbers="10"/>
+	 		<dataset label="11月" numbers="13" averageNumbers="10"/>
+	 		<dataset label="12月" numbers="19" averageNumbers="10"/>
+	 		<dataset label="当日" numbers="2" averageNumbers="10"/>
+	 	</dateData>
+ 	</corpData>
+ 	<corpData label="镇海">
+ 		<statusData>
+	 		<dataset label="已通知" numbers="0"/>
+	 		<dataset label="执行中" numbers="0"/>
+	 		<dataset label="已验收" numbers="7"/>
+	 		<dataset label="作废" numbers="1"/>
+	 		<dataset label="撤销" numbers="0"/>
+	 	</statusData>
+	 	<dateData>
+	 		<dataset label="1月" numbers="15" averageNumbers="10"/>
+	 		<dataset label="2月" numbers="9" averageNumbers="10"/>
+	 		<dataset label="3月" numbers="3" averageNumbers="10"/>
+	 		<dataset label="4月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="5月" numbers="12" averageNumbers="10"/>
+	 		<dataset label="6月" numbers="6" averageNumbers="10"/>
+	 		<dataset label="7月" numbers="4" averageNumbers="10"/>
+	 		<dataset label="8月" numbers="18" averageNumbers="10"/>
+	 		<dataset label="9月" numbers="11" averageNumbers="10"/>
+	 		<dataset label="10月" numbers="8" averageNumbers="10"/>
+	 		<dataset label="11月" numbers="13" averageNumbers="10"/>
+	 		<dataset label="12月" numbers="19" averageNumbers="10"/>
+	 		<dataset label="当日" numbers="2" averageNumbers="10"/>
+	 	</dateData>
+ 	</corpData>
+ </byCorpData>
+ 
+</model>

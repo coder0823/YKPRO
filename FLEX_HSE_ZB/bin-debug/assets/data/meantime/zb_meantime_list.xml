@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘 三同时 总体情况，分板块的一级页面  日期：2013-2-19  -->
+ <!--*************************一、字段说明如下******************************
+  order:项目显示序号                                         typeid：类型id，取值为5种
+  projectNumber:项目数                                      sequence：项目阶段的序号
+  label：某个id对应的标签                                     nostartNumber:未启动项目数
+  inprocessNumber:正在进行的项目数                           finishedNumber:已完成的项目数
+  plateid：板块ID                                       subCorpid：企业ID
+  corpid:企业id                                         status：状态，其取值:　NO-START:未启动  IN-PROCESS：进行中 FINISHED:已完成
+  currentStageSequence：项目当前所处阶段的序号                URL:某个具体企业项目对应系统url
+  projectName：项目名称
+ 
+ -->
+ 
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012-2013"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+ 
+ <!--二.总体情况-->
+ <overallData>
+   <dataset order="1"  typeid="safety" label="安全" projectNumber="" nostartNumber="" inprocessNumber="" finishedNumber="">
+       <stagedata  sequence="1"  label = "设立"   projectNumber="75" nostartNumber="6" inprocessNumber="57" finishedNumber="12">
+         <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="21" ratio="">
+           <statusData status="NO-START" number="1" ratio=""/>
+           <statusData status="IN-PROCESS" number="16" ratio=""/>
+           <statusData status="FINISHED" number="4" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="15" ratio="">
+           <statusData status="NO-START" number="0" ratio=""/>
+           <statusData status="IN-PROCESS" number="15" ratio=""/>
+           <statusData status="FINISHED" number="0" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="19" ratio="">
+           <statusData status="NO-START" number="3" ratio=""/>
+           <statusData status="IN-PROCESS" number="11" ratio=""/>
+           <statusData status="FINISHED" number="5" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="8" ratio="">
+           <statusData status="NO-START" number="1" ratio=""/>
+           <statusData status="IN-PROCESS" number="7" ratio=""/>
+           <statusData status="FINISHED" number="0" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="12" ratio="">
+           <statusData status="NO-START" number="1" ratio=""/>
+           <statusData status="IN-PROCESS" number="8" ratio=""/>
+           <statusData status="FINISHED" number="3" ratio=""/>
+         </plateData>
+       </stagedata>
+       <stagedata  sequence="2"  label = "设计"   projectNumber="21" nostartNumber="0" inprocessNumber="15" finishedNumber="6">
+          <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+       <stagedata  sequence="3"  label = "试生产"   projectNumber="13" nostartNumber="5" inprocessNumber="8" finishedNumber="0">
+          <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+       
+       <stagedata  sequence="4"  label = "验收"   projectNumber="2" nostartNumber="0" inprocessNumber="0" finishedNumber="2">
+          <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+   </dataset>
+   
+   <dataset order="2"  typeid="environmentalProtection" label="环保" projectNumber="" nostartNumber="" inprocessNumber="" finishedNumber="">
+        <!--板块数据用作弹出的表格图形-->
+       <stagedata  sequence="5"  label = "环境影响评价"   projectNumber="51" nostartNumber="5" inprocessNumber="46" finishedNumber="0">
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+       <stagedata  sequence="6"  label = "试生产"   projectNumber="24" nostartNumber="20" inprocessNumber="0" finishedNumber="4">
+         <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+       
+       <stagedata  sequence="7"  label = "验收"   projectNumber="3" nostartNumber="0" inprocessNumber="2" finishedNumber="1">
+          <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+   </dataset>
+   
+   <dataset order="3"  typeid="health" label="职业卫生" projectNumber="" nostartNumber="" inprocessNumber="" finishedNumber="">
+        <!--板块数据用作弹出的表格图形-->
+       <stagedata  sequence="1"  label = "职业病危害预评价"   projectNumber="13" nostartNumber="7" inprocessNumber="6" finishedNumber="0">
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+       <stagedata  sequence="1"  label = "验收"   projectNumber="7" nostartNumber="1" inprocessNumber="5" finishedNumber="1">
+          <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+   </dataset>
+   
+   <dataset order="4"  typeid="fireControl" label="消防" projectNumber="" nostartNumber="" inprocessNumber="" finishedNumber="">
+        <!--板块数据用作弹出的表格图形-->
+       <stagedata  sequence="1"  label = "消防建审"   projectNumber="36" nostartNumber="16" inprocessNumber="4" finishedNumber="15">
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+       <stagedata  sequence="1"  label = "验收"   projectNumber="0" nostartNumber="0" inprocessNumber="0" finishedNumber="0">
+          <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+   </dataset>
+   <dataset order="5"  typeid="anti-seismic" label="抗震" projectNumber="" nostartNumber="" inprocessNumber="" finishedNumber="">
+       <stagedata  sequence="1"  label = "验收"   projectNumber="25" nostartNumber="7" inprocessNumber="13" finishedNumber="5">
+          <!--板块数据用作弹出的表格图形-->
+         <plateData  order="1" plateid="" plateLabel="油田"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData  order="2" plateid="" plateLabel="炼化"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="3"  plateid="" plateLabel="销售"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="4"  plateid="" plateLabel="工程"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+         <plateData order="5"  plateid="" plateLabel="其它"  projectNumber="" ratio="">
+           <statusData status="NO-START" number="" ratio=""/>
+           <statusData status="IN-PROCESS" number="" ratio=""/>
+           <statusData status="FINISHED" number="" ratio=""/>
+         </plateData>
+       </stagedata>
+   </dataset>
+ </overallData>
+</model>

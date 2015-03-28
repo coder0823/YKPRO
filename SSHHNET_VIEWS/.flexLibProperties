@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="views.BarSubTotalMulti"/>
+    <classEntry path="renderers.MyDGIMoreRenderers"/>
+    <classEntry path="events.SetAxisComplateEvent"/>
+    <classEntry path="views.PopupTitleWinIframe"/>
+    <classEntry path="BarChartItemByLeft"/>
+    <classEntry path="views.CommFunction"/>
+    <classEntry path="manager.StringManager"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

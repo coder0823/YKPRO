@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<model>
+	<dataOutline dataYear="2013" dataDate="" corpid="10000004"
+		corpname="河南油田" timestamp="" />
+	<allDataCollect>
+		<allDataItem order="1" prof="安全" label="设立" num="0"
+			status="" />
+		<allDataItem order="1" prof="安全" label="设计" num="0"
+			status="" />
+		<allDataItem order="1" prof="安全" label="试生产" num="1"
+			status="2" />
+		<allDataItem order="1" prof="安全" label="竣工验收" num="1"
+			status="2" />
+		<allDataItem order="2" prof="环保" label="环境影响评价" num="2"
+			status="0,0" />
+		<allDataItem order="2" prof="环保" label="试生产" num="0"
+			status="" />
+		<allDataItem order="2" prof="环保" label="竣工验收" num="0"
+			status="" />
+		<allDataItem order="3" prof="职业卫生" label="预评价" num="2"
+			status="0,0" />
+		<allDataItem order="3" prof="职业卫生" label="设计审查" num="0"
+			status="" />
+		<allDataItem order="3" prof="职业卫生" label="竣工验收" num="0"
+			status="" />
+		<allDataItem order="4" prof="消防" label="消防建审" num="1"
+			status="0" />
+		<allDataItem order="4" prof="消防" label="消防验收" num="0"
+			status="" />
+		<allDataItem order="5" prof="抗震" label="抗震安全评价" num="1"
+			status="0" />
+	</allDataCollect>
+	<allData dataLabel="安全">
+		<dataset order="1" projectName="No1" investment="1123"
+			currentStage="5" wrongdoing="0" warning="2">
+			<stagedata sequence="1" label="设立" status="FINISHED"
+				inStatus="1" />
+			<stagedata sequence="2" label="设计" status="FINISHED"
+				inStatus="1" />
+			<stagedata sequence="3" label="试生产" status="FINISHED"
+				inStatus="1" />
+			<stagedata sequence="4" label="竣工验收" status="FINISHED"
+				inStatus="1" />
+		</dataset>
+		<dataset order="2" projectName="No2" investment="123"
+			currentStage="4" wrongdoing="0" warning="3">
+			<stagedata sequence="1" label="设立" status="FINISHED"
+				inStatus="1" />
+			<stagedata sequence="2" label="设计" status="FINISHED"
+				inStatus="1" />
+			<stagedata sequence="3" label="试生产" status="FINISHED"
+				inStatus="1" />
+			<stagedata sequence="4" label="竣工验收" status="NO-START"
+				inStatus="0" />
+		</dataset>
+	</allData>
+	<allData dataLabel="环保">
+		<dataset order="1" projectName="No1" investment="1123"
+			currentStage="5" wrongdoing="0" warning="1">
+			<stagedata sequence="1" label="环境影响评价" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="2" label="试生产" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="3" label="竣工验收" status="NO-START"
+				inStatus="0" />
+		</dataset>
+		<dataset order="2" projectName="No2" investment="123"
+			currentStage="4" wrongdoing="0" warning="1">
+			<stagedata sequence="1" label="环境影响评价" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="2" label="试生产" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="3" label="竣工验收" status="NO-START"
+				inStatus="0" />
+		</dataset>
+	</allData>
+	<allData dataLabel="职业卫生">
+		<dataset order="1" projectName="No1" investment="1123"
+			currentStage="5" wrongdoing="0" warning="1">
+			<stagedata sequence="1" label="预评价" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="2" label="设计审查" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="3" label="竣工验收" status="NO-START"
+				inStatus="0" />
+		</dataset>
+		<dataset order="2" projectName="No2" investment="123"
+			currentStage="4" wrongdoing="0" warning="1">
+			<stagedata sequence="1" label="预评价" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="2" label="设计审查" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="3" label="竣工验收" status="NO-START"
+				inStatus="0" />
+		</dataset>
+	</allData>
+	<allData dataLabel="消防">
+		<dataset order="1" projectName="No1" investment="1123"
+			currentStage="5" wrongdoing="0" warning="1">
+			<stagedata sequence="1" label="消防建审" status="NO-START"
+				inStatus="0" />
+			<stagedata sequence="2" label="消防验收" status="NO-START"
+				inStatus="0" />
+		</dataset>
+	</allData>
+	<allData dataLabel="抗震">
+		<dataset order="1" projectName="No1" investment="1123"
+			currentStage="5" wrongdoing="0" warning="1">
+			<stagedata sequence="1" label="抗震安全评价" status="NO-START"
+				inStatus="0" />
+		</dataset>
+	</allData>
+</model>

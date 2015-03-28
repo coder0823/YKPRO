@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" xmlns:views="views.*" creationComplete="titlewindow1_creationCompleteHandler(event)"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="1000" height="400" close="titlewindow1_closeHandler(event)" skinClass="skins.popWinStyle" styleName="tabContentBox">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			import mx.managers.PopUpManager;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			
+			
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var columnMulitDS1:ArrayCollection;
+			[Bindable]
+			private var columnMulitDSConf2:ArrayCollection;
+			[Bindable]
+			private var columnMulitDS2:ArrayCollection;
+			private var hseDataXML:XML=new XML();
+			[Bindable]
+			private var _title1_lebel:String;
+			[Bindable]
+			private var _title2_lebel:String;
+			
+			
+			[Bindable]
+			public var cColor4:SolidColor=views.CustomColor.CSolidColor[3];
+
+			
+			public function get title1_lebel():String
+			{
+				return _title1_lebel;
+			}
+			
+			public function set title1_lebel(value:String):void
+			{
+				_title1_lebel = value;
+			}
+			public function get title2_lebel():String
+			{
+				return _title2_lebel;
+			}
+			
+			public function set title2_lebel(value:String):void
+			{
+				_title2_lebel = value;
+			}
+			public function get ColumnMulitDS1():ArrayCollection
+			{
+				return columnMulitDS1;
+			}
+			
+			public function set ColumnMulitDS1(value:ArrayCollection):void
+			{
+				columnMulitDS1 = value;
+			}
+			public function get ColumnMulitDS2():ArrayCollection
+			{
+				return columnMulitDS2;
+			}
+			
+			public function set ColumnMulitDS2(value:ArrayCollection):void
+			{
+				columnMulitDS2 = value;
+			}
+			public function get HseDataXML():XML
+			{
+				return hseDataXML;
+			}
+			
+			public function set HseDataXML(value:XML):void
+			{
+				hseDataXML = value;
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+			}
+			
+
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				// TODO Auto-generated method stub
+				PopUpManager.removePopUp(this);  
+			}
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+//				columnMulitDS1=new ArrayCollection([
+//					{label:"氨氦",id:"1",value:1125},
+//					{label:"其它",id:"1",value:164},
+//					{label:"SO2",id:"1",value:1020},
+//					{label:"COD",id:"1",value:892},
+//					{label:"氦氧化物",id:"1",value:2130}					
+//				]);
+				// TODO Auto-generated method stub
+				columnMulitDSConf2=new ArrayCollection([
+					{name:"趋势",field:"vol1",color:"0x00B050"},
+				]);
+//				ColumnMulitDS2=new ArrayCollection([
+//					{label:2008,vol1:2411},
+//					{label:2009,vol1:2377},
+//					{label:2010,vol1:2319},
+//					{label:2011,vol1:2274},
+//					{label:2012,vol1:2103}
+//				]);
+
+			}
+			
+			protected function piemultiwitheffect21_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				_title2_lebel=item.label;
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList2:XMLList=hseDataXML.dataset;
+					if(tmpList2.length()>0)
+					{
+						for each(var xml20:XML in tmpList2){
+							var xml21:XMLList=xml20.constituteData.(@label==item.label)
+							for each (var xml22:XML in xml21) {  
+								var obj2:Object={label:xml20.@label,vol1:xml22.@numbers,yearid:xml20.@yearid};
+								tmpArrayCollection2.addItem(obj2);
+							}
+						}
+						
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				columnMulitDS2=tmpArrayCollection2;
+			}
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupMX(selYear:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "中国石化"+selYear+ "年"+_title2_lebel+"排放量 计量单位:亿标立";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+ 				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"板块",dataField:"label",width:"90",textAlign:"left",sortable:true,draggable:true},
+					{headerText:"排放量",dataField:"vol1",width:"40",textAlign:"center",sortable:true,draggable:true},
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.dataset.(@yearid==selYear);
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml2:XMLList=xml.constituteData.(@label==_title2_lebel);
+							for each (var xml3:XML in xml2) {  
+								var xml4:XMLList=xml3.plateData;
+								for each (var xml5:XML in xml4) {  								
+									var obj:Object={label:xml5.@label,
+										vol1:Number(xml5.@numbers)};
+									tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this.parent, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			protected function columnmulti1_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupMX(item.yearid);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:HGroup width="100%" height="100%" verticalAlign="top">
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<views:PieMultiWithEffect2 showLegend="false" ShowDataLabel="{showDataLabel}" PopupClick="piemultiwitheffect21_PopupClickHandler(event)"
+									   DataSource="{columnMulitDS1}" title="中国石化{_title1_lebel}年废气排放构成情况"/>
+		</s:BorderContainer>
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<views:ColumnMulti AxisLeftTiltle="亿标立" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="false" 
+							   DataSourceConf="{columnMulitDSConf2}" DataSource="{columnMulitDS2}"
+							   PopupDoubleClick="columnmulti1_PopupDoubleClickHandler(event)" title="中石化连续五年{_title2_lebel}趋势"/>
+		</s:BorderContainer>
+	</s:HGroup>
+</s:TitleWindow>

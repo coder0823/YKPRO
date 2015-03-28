@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()">
+	<!--
+	/* *
+	* 名称：企业仪表盘-作业许可
+	* 参数：年度（2013）
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			//import spark.collections.Sort;
+			//import spark.collections.SortField;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data_agy/jobpermissiondata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String="作业许可执行情况";
+			[Bindable]
+			private var tab1_topRightTitle:String="当日作业许可执行情况";
+			
+			[Bindable]
+			private var tab1_levelCurrSelect:String;
+			private var tab1_levelNameCurrSelect:String;
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			
+			
+			
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					var obj:Object=new Object();
+					obj.name=i+"年";
+					obj.value=i;
+					dateArrCol.addItem(obj);
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				
+				
+				tab1_topLeftDS=new ArrayCollection();
+				tab1_topRightDS=new ArrayCollection();
+				
+				tab1_topLeftConfDS=new ArrayCollection([
+					{name:"数量",field:"vol1",type:"columnSeries",axis:"left"},
+					{name:"平均",field:"vol2",type:"lineSeries",axis:"left",showLabel:"0"},
+					
+				]);
+				
+				tab1_topRightConfDS=new ArrayCollection([
+					{name:"数量",field:"vol1",type:"columnSeries",axis:"left"},
+					
+				]);
+				
+				
+				
+				refreshData();
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.remoteMethod('7','',this.dateEnd.selectedItem.value);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				tab1_topLeftDS=getTab1_topLeftDS();		
+				tab1_topRightDS=getTab1_topRightDS();	
+				
+				
+				executeBindTab1Title();
+				
+				
+			}
+			
+			
+			private function executeBindTab1Title():void{
+				var dept:String="";
+				if(hseDataXML.dataOutline){
+					dept=hseDataXML.dataOutline.@corpname;
+				}
+				tab1_topLeftTitle=this.dateEnd.selectedItem.value+"年作业许可执行情况";
+				tab1_topRightTitle=dept+this.dateEnd.selectedItem.value+"年"+tab1_levelNameCurrSelect+"作业许可执行情况";
+			}
+			
+			private function getTab1_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.jobpermissionData.dataset;
+					if(tmpList.length()>0)
+					{
+						//设置默认值
+						tab1_levelCurrSelect=tmpList[tmpList.length()-1].@date;
+						tab1_levelNameCurrSelect=tmpList[tmpList.length()-1].@dateLabel;
+						var avg:Number=0;
+						var cnt:int=0;
+						for each (var xml_sum:XML in tmpList.(@dateLabel!="当日")) {  
+							var tmpList2_sum:XMLList=xml_sum.typedata.(@typeid=="ALL");
+							if(tmpList2_sum.length()>0)
+							{
+								avg+=Number(tmpList2_sum[0].@numbers);
+								cnt++;
+							}
+						}
+						avg=cnt>0?(avg/cnt):0;
+						
+						for each (var xml:XML in tmpList) {  
+							var tmpList2:XMLList=xml.typedata.(@typeid=="ALL");
+							if(tmpList2.length()>0)
+							{
+								var obj:Object=new Object();
+								obj.label=xml.@dateLabel;
+								obj.vol1=tmpList2[0].@numbers;
+								//if(xml.@dateLabel!="当日"){
+									obj.vol2=avg.toFixed(2);
+								//}
+								obj.id=xml.@date;
+								
+								//格式化数据
+								obj.vol1=Number(obj.vol1)<0?0:obj.vol1;
+								obj.vol2=Number(obj.vol2)<0?0:obj.vol2;
+								
+								tmpArrayCollection.addItem(obj);
+							}
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_topRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.jobpermissionData.dataset.(@date==tab1_levelCurrSelect);
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var tmpList2:XMLList=xml.typedata.(@typeid=="ALL").statusdata;
+							if(tmpList2.length()>0)
+							{
+								for each (var xml2:XML in tmpList2) {  
+									var obj:Object={label:xml2.@label,
+										vol1:xml2.@numbers,
+										id:xml2.@statusid};
+									
+									//格式化数据
+									obj.vol1=Number(obj.vol1)<0?0:obj.vol1;
+									
+									tmpArrayCollection.addItem(obj);
+								}
+								
+							}
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupTab1_left(id:String,label:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "作业许可执行情况表"+"("+this.dateEnd.selectedItem.name+tab1_levelNameCurrSelect+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=false;
+				titleWindow.IfShowBackRecordColor=false;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"类型",dataField:"typeName",width:"90",textAlign:"left",sortable:false,draggable:false},
+					{headerText:"数量",dataField:"NUM",width:"50",textAlign:"center",sortable:false,draggable:true,enableUrlLink:true},
+					{headerText:"已通知",dataField:"NOTICED",width:"50",textAlign:"center",sortable:false,draggable:true,enableUrlLink:true},
+					{headerText:"执行中",dataField:"EXECUTED",width:"50",textAlign:"center",sortable:false,draggable:true,enableUrlLink:true},
+					{headerText:"已验收",dataField:"ACCEPTED",width:"50",textAlign:"center",sortable:false,draggable:true,enableUrlLink:true},
+					{headerText:"作废",dataField:"CANCELED",width:"50",textAlign:"center",sortable:false,draggable:true,enableUrlLink:true},
+					{headerText:"撤销",dataField:"UNDOED",width:"50",textAlign:"center",sortable:false,draggable:true,enableUrlLink:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.jobpermissionData.dataset.(@date==tab1_levelCurrSelect).typedata;
+					if(tmpList.length()>0)
+					{
+						var i:int=1;
+						for each (var xml4:XML in tmpList) {
+							var NOTICED:XMLList=xml4.statusdata.(@statusid=="NOTICED");
+							var EXECUTED:XMLList=xml4.statusdata.(@statusid=="EXECUTED");
+							var ACCEPTED:XMLList=xml4.statusdata.(@statusid=="ACCEPTED");
+							var CANCELED:XMLList=xml4.statusdata.(@statusid=="CANCELED");
+							var UNDOED:XMLList=xml4.statusdata.(@statusid=="UNDOED");
+
+							var obj:Object={order:i,
+								typeName:xml4.@typeName,
+									NUM:Number(xml4.@numbers),
+									NOTICED:(NOTICED!=null&&NOTICED.length()>0)?Number(NOTICED[0].@numbers):0,
+									EXECUTED:(EXECUTED!=null&&EXECUTED.length()>0)?Number(EXECUTED[0].@numbers):0,
+									ACCEPTED:(ACCEPTED!=null&&ACCEPTED.length()>0)?Number(ACCEPTED[0].@numbers):0,
+									CANCELED:(CANCELED!=null&&CANCELED.length()>0)?Number(CANCELED[0].@numbers):0,
+									UNDOED:(UNDOED!=null&&UNDOED.length()>0)?Number(UNDOED[0].@numbers):0,
+									
+									NUMURL:xml4.@URL,
+									NOTICEDURL:(NOTICED!=null&&NOTICED.length()>0)?NOTICED[0].@URL:"",
+									EXECUTEDURL:(EXECUTED!=null&&EXECUTED.length()>0)?EXECUTED[0].@URL:"",
+									ACCEPTEDURL:(ACCEPTED!=null&&ACCEPTED.length()>0)?ACCEPTED[0].@URL:"",
+									CANCELEDURL:(CANCELED!=null&&CANCELED.length()>0)?CANCELED[0].@URL:"",
+									UNDOEDURL:(UNDOED!=null&&UNDOED.length()>0)?UNDOED[0].@URL:""
+							};
+							tmpArrayCollection.addItem(obj);
+							i++;
+						}
+						
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+	
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab1_left(item.id,item.label);
+			}
+			
+			protected function tab1_topRight_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab1_left(item.id,item.label);
+			}
+			
+			protected function tab1_topLeft_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				tab1_levelCurrSelect=item.id;
+				tab1_levelNameCurrSelect=item.label;
+
+				tab1_topRightDS=getTab1_topRightDS();	
+				executeBindTab1Title();
+			}
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<s:NavigatorContent width="100%" height="100%" label="{tab1_title}">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_topLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" AxisRightUnit="" title="{tab1_topLeftTitle}" DataSource="{tab1_topLeftDS}" DataSourceConf="{tab1_topLeftConfDS}"
+											   PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)" PopupClick="tab1_topLeft_PopupClickHandler(event)"/>
+					</s:BorderContainer> 
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_topRight" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" AxisRightUnit="" title="{tab1_topRightTitle}" DataSource="{tab1_topRightDS}" DataSourceConf="{tab1_topRightConfDS}"
+											   PopupDoubleClick="tab1_topRight_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Application>

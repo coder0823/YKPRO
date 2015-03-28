@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx"
+								  focusEnabled="true" dataChange="mxadvanceddatagriditemrenderer1_dataChangeHandler(event)">
+	
+	<!--<s:states>
+		<s:State name="red_state"/>
+		<s:State name="yellow_state"/>
+		<s:State name="green_state"/>
+	</s:states>
+	-->
+	<fx:Script>
+		<![CDATA[
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			import modules.meantime.events.MeantimeOverFilterEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var isSum:Boolean=false;
+			[Bindable]
+			private var isShow:Boolean=false;
+			
+			[Bindable]
+			private var boolean_currentStage:Boolean=false;
+			[Bindable]
+			private var boolean_red:Boolean=false;
+			[Bindable]
+			private var boolean_yellow:Boolean=false;
+			[Bindable]
+			private var boolean_green:Boolean=false;
+			
+			[Bindable]
+			private var txt_currentStage:String="";
+			[Bindable]
+			private var txt_sum_red:String="";
+			[Bindable]
+			private var txt_sum_yellow:String="";
+			[Bindable]
+			private var txt_sum_green:String="";
+			protected function mxadvanceddatagriditemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				currentState = "state_1";
+				if(advancedDataGridListData != null){
+					isSum=data['isSum']=="1"?true:false;
+//					isShow=data['isShow']=="1"?true:false;
+						currentState = "state5";
+					if(isSum){
+						//this.setStyle("backgroundColor",0xFFBF00);
+						var obj2:Object=data[advancedDataGridListData.dataField];
+						if(obj2!=null){
+							txt_sum_red=obj2['sum_red'];
+							txt_sum_yellow=obj2['sum_yellow'];
+							txt_sum_green=obj2['sum_green'];
+							boolean_currentStage=false;
+							boolean_red=boolean_yellow=boolean_green=true;
+						}
+					}else{
+						if(advancedDataGridListData.dataField=="currentStage"){
+							txt_currentStage=data['currentStage'];
+							boolean_currentStage=true;
+							boolean_red=boolean_yellow=boolean_green=false;
+						}
+					}
+				}
+			}
+			
+			protected function return_fieldNumber(dataField:String):int{
+				var fieldNumber:int = 0;
+				switch(dataField){
+					case "field1":
+						fieldNumber = 1;
+						break;
+					case "field2":
+						fieldNumber = 2;
+						break;
+					case "field3":
+						fieldNumber = 3;
+						break;
+					case "field4":
+						fieldNumber = 4;
+						break;
+					case "field5":
+						fieldNumber = 5;
+						break;
+					case "field6":
+						fieldNumber = 6;
+						break;
+					case "field7":
+						fieldNumber = 7;
+						break;
+					case "field8":
+						fieldNumber = 8;
+						break;
+					case "field9":
+						fieldNumber = 9;
+						break;
+					case "field10":
+						fieldNumber = 10;
+						break;
+					case "field11":
+						fieldNumber = 11;
+						break;
+					case "field12":
+						fieldNumber = 12;
+						break;
+					case "field13":
+						fieldNumber = 13;
+						break;
+				}
+				return fieldNumber;
+			}
+			
+			
+			protected function red_clickHandler(event:MouseEvent):void
+			{
+//				this.dispatchEvent(new MeantimeOverFilterEvent(MeantimeOverFilterEvent.FILTER_CLICK,"2",return_fieldNumber(advancedDataGridListData.dataField)));
+			}
+			
+			protected function yellow_clickHandler(event:MouseEvent):void
+			{
+//				this.dispatchEvent(new MeantimeOverFilterEvent(MeantimeOverFilterEvent.FILTER_CLICK,"1",return_fieldNumber(advancedDataGridListData.dataField)));
+			}
+			
+			protected function green_clickHandler(event:MouseEvent):void
+			{
+//				this.dispatchEvent(new MeantimeOverFilterEvent(MeantimeOverFilterEvent.FILTER_CLICK,"green",return_fieldNumber(advancedDataGridListData.dataField)));
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state_1" stateGroups="group1"/>
+		<s:State name="state0" stateGroups="group1"/>
+		<s:State name="state1" stateGroups="group1"/>
+		<s:State name="state2" stateGroups="group1"/>
+		<s:State name="state3" stateGroups="group1"/>
+		<s:State name="state4" stateGroups="group1"/>
+		<s:State name="state5" stateGroups="group2"/>
+	</s:states>
+	<s:Group id="hgroup" includeIn="group1" width="100%" height="100%" visible="{!isSum}">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:Image width="20" height="20" horizontalCenter="0" verticalCenter="0"
+				 source.state0="assets/images/icoGood.png"
+				 source.state1="assets/images/icoWarning.png"
+				 source.state2="assets/images/icoAlarm.png"
+				 source.state3="assets/images/icoFinishedAlarm.png"
+				 source.state4="assets/images/icoFinished.png"/>
+	</s:Group>
+	<s:Group id="hgroup2" includeIn="group2" width="100%" height="100%" visible="true">
+		<s:HGroup width="100%" height="100%" verticalAlign="bottom" horizontalAlign="center">
+			<s:Label id="label_currentStage" text="{txt_currentStage}" includeInLayout="{boolean_currentStage}" visible="{boolean_currentStage}" enabled="false"
+					 horizontalCenter="0" verticalCenter="0"/>
+			<s:Image width="20" click="red_clickHandler(event)" id="image_red" enabled="{isShow}"
+					 height="20" includeInLayout="{boolean_red}" visible="{boolean_red}"
+					 horizontalCenter="0"
+					 verticalCenter="0"
+					 source="assets/images/icoAlarm.png" />
+			<s:Label id="label_red" text="{txt_sum_red}" includeInLayout="{boolean_red}" visible="{boolean_red}" enabled="{isShow}"
+					 horizontalCenter="0" verticalCenter="0" click="red_clickHandler(event)"/>
+			<s:Image width="20" click="yellow_clickHandler(event)" id="image_yellow" enabled="{isShow}"
+					 height="20" includeInLayout="{boolean_yellow}" visible="{boolean_yellow}"
+					 horizontalCenter="0"
+					 verticalCenter="0"
+					 source="assets/images/icoWarning.png" />
+			<s:Label id="label_yellow" text="{txt_sum_yellow}" includeInLayout="{boolean_yellow}" visible="{boolean_yellow}" enabled="{isShow}"
+					 horizontalCenter="0" verticalCenter="0" click="yellow_clickHandler(event)"/>
+			<s:Image width="20" click="green_clickHandler(event)" id="image_green" enabled="{isShow}"
+					 height="20" includeInLayout="{boolean_green}" visible="{boolean_green}"
+					 horizontalCenter="0"
+					 verticalCenter="0"
+					 source="assets/images/icoFinished.png" />
+			<s:Label id="label_green" text="{txt_sum_green}" includeInLayout="{boolean_green}" visible="{boolean_green}" enabled="{isShow}"
+					 horizontalCenter="0" verticalCenter="0" click="green_clickHandler(event)"/>
+		</s:HGroup>
+		
+	</s:Group>
+</s:MXAdvancedDataGridItemRenderer>

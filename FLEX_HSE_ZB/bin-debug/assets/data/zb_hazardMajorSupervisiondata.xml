@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2012-12" dataStartDate="2012-10"
+		dataEndDate="2012-12" timestamp="2013/7/1 16:41:22"></dataOutline>
+
+
+  <!--*************************一、字段说明如下************************************************************************************
+   investment：总的投资额                                        finishedInvestment：已完成的投资额
+   unfinishedInvestment：未完成的投资额                         finishedRation：投资完成的比例
+   order:对于除了总部监管项目外，一律要求按照项目总数倒序排列，order为排序序号；总部监管项目order参考该部分说明
+   subCorpid：企业ID                                           subCorpname：企业名称
+   projectName：项目名称                                        
+   subCorpCharger：企业负责人                                    chargeDeparment：总部负责人
+   corpChargeDepartment：企业负责部门                           groupChargeDepartment：总部集团公司负责人
+   departmentCharger：部门负责人                                groupSupervisionDeparment：总部监管部门
+   URL:某个企业记录对应的业务系统URL
+  *********************二、其它说明*************************************************************************************************
+
+
+可定义一个公共接口
+条件
+参数1：goupLeaderSupervisionData/departmentManagerSupervisionData/profCorpSupervisionData
+参数2：年月
+参数3：板块
+参数4：单位性质
+参数5：小类
+
+
+一、总部监管
+function(年月，板块，单位性质，小类）
+①	年月：2013-06
+②	板块：00，YT，LH，XS，GC，QT
+③  单位性质：00，CX，GF
+④  小类：00（默认全部）
+          01（炼化-存续-炼化）
+          02（炼化-存续-施工）
+          11（炼化-股份-炼油）
+          12（炼化-股份-化工）
+
+炼化：中类分“全部”、“存续”和“股份”
+存续：小类分“全部”、“炼化”和“施工”
+股份：小类分“全部”、“炼油”和“化工”
+majorSupervisionData（根节点）
+	|-goupLeaderSupervisionData（总部重点监管）
+		|-stageData（阶段信息）
+		|-...
+		|-projectdata（项目）
+			|-stageData（项目阶段信息）
+			|-...
+		|-projectdata（项目）...
+
+
+二、企业监管
+function(年月，板块，单位性质，小类）
+①	年月：2013-06
+②	板块：00，YT，LH，XS，GC，QT
+③  单位性质：00，CX，GF
+④  小类：00（默认全部）
+          01（炼化-存续-炼化）
+          02（炼化-存续-施工）
+          11（炼化-股份-炼油）
+          12（炼化-股份-化工）
+majorSupervisionData（根节点）
+	|-departmentManagerSupervisionData（企业重点监管）
+		|-stageData（阶段信息）
+		|-...
+		|-projectdata（项目）
+			|-stageData（项目阶段信息）
+			|-...
+		|-projectdata（项目）...
+
+三、专业公司重点监管
+function(年月，板块，单位性质）
+①	年月：2013-06
+②	板块：00，YT，LH，XS，GC，QT
+③  单位性质：00，CX，GF
+majorSupervisionData（根节点）
+	|-profCorpSupervisionData（专业公司重点监管）
+		|-stageData（阶段信息）
+		|-...
+		|-projectdata（项目）
+			|-stageData（项目阶段信息）
+			|-...
+		|-projectdata（项目）...
+	 -->
+	 
+	 
+
+		<!-- 公共输出部分：当前查询条件 -->
+	<currectSelect typeid="goupLeaderSupervisionData/departmentManagerSupervisionData/profCorpSupervisionData" typeName="总部监管项目/企业监管项目/专业公司监管项目" plateid="" plateName="" corpTypeid="" corpTypeName="" corpSmallTypeid="" corpSmallTypeName="">
+	
+		<!-- 总部重点监管项目示例 -->
+		<goupLeaderSupervisionData subCorpid="00" subCorpname="总计" projectName="总计" investment="9999999999"
+			finishedInvestment="9999999999" unfinishedInvestment="9999999999" finishedRation="9999999999">
+			<stageData id="in-designer" label="正在设计" inStatus="9999999999" />
+			<stageData id="wait-construction" label="等待施工" inStatus="9999999999" />
+			<stageData id="in-construction" label="正在施工" inStatus="9999999999" />
+			<stageData id="finished" label="完成" inStatus="9999999999" />
+				<projectdata order="1" subCorpid="10200000" subCorpname="胜利石油管理局"
+					projectName="职工培训中心井控模拟器购置" plateid="" plateLabel="油田" investment="700.00"
+					finishedInvestment="580.00" unfinishedInvestment="120.00"
+					finishedRation="82.86" groupCharger="" subCorpCharger=""
+					chargeDeparment="" URL="">
+					<stageData id="in-designer" label="正在设计" status="FINISHED" />
+					<stageData id="wait-construction" label="等待施工" status="FINISHED" />
+					<stageData id="in-construction" label="正在施工" status="DONING" />
+					<stageData id="finished" label="完成" status="NOSTART" />
+				</projectdata>
+				<projectdata order="2" subCorpid="10350000" subCorpname="江汉石油管理局"
+					projectName="井控车间井控设备压力测试系统升级改造" plateid="" plateLabel="油田"
+					investment="700.00" finishedInvestment="460.00"
+					unfinishedInvestment="240.00" finishedRation="65.71" groupCharger=""
+					subCorpCharger="" chargeDeparment="" URL="">
+					<stageData id="in-designer" label="正在设计" status="FINISHED" />
+					<stageData id="wait-construction" label="等待施工" status="FINISHED" />
+					<stageData id="in-construction" label="正在施工" status="DONING" />
+					<stageData id="finished" label="完成" status="NOSTART" />
+				</projectdata>
+		</goupLeaderSupervisionData>
+		
+		
+		
+		<!-- 企业重点监管项目示例 -->
+		<departmentManagerSupervisionData subCorpid="00" subCorpname="总计" projectName="总计" investment="9999999999"
+			finishedInvestment="9999999999" unfinishedInvestment="9999999999" finishedRation="9999999999">
+			<stageData id="in-designer" label="正在设计" inStatus="9999999999" />
+			<stageData id="wait-construction" label="等待施工" inStatus="9999999999" />
+			<stageData id="in-construction" label="正在施工" inStatus="9999999999" />
+			<stageData id="finished" label="完成" inStatus="9999999999" />
+				<projectdata order="1" subCorpid="10200000" subCorpname="胜利石油管理局"
+					projectName="可移动民用爆炸物品库更新" investment="300.00" finishedInvestment="300.00"
+					unfinishedInvestment="0.00" finishedRation="100.00" subCorpCharger=""
+					corpChargeDepartment="" groupChargeDepartment="" departmentCharger=""
+					groupSupervisionDeparment="" URL="">
+					<stageData id="in-designer" label="正在设计" status="FINISHED" />
+					<stageData id="wait-construction" label="等待施工" status="FINISHED" />
+					<stageData id="in-construction" label="正在施工" status="FINISHED" />
+					<stageData id="finished" label="完成" status="DONING" />
+				</projectdata>
+				<projectdata order="2" subCorpid="10250000" subCorpname="中原石油勘探局"
+					projectName="无线液面报警仪配备" investment="388.00" finishedInvestment="388.00"
+					unfinishedInvestment="0.00" finishedRation="100.00" subCorpCharger=""
+					corpChargeDepartment="" groupChargeDepartment="" departmentCharger=""
+					groupSupervisionDeparment="" URL="">
+					<stageData id="in-designer" label="正在设计" status="FINISHED" />
+					<stageData id="wait-construction" label="等待施工" status="FINISHED" />
+					<stageData id="in-construction" label="正在施工" status="FINISHED" />
+					<stageData id="finished" label="完成" status="DONING" />
+				</projectdata>
+		</departmentManagerSupervisionData>
+		
+		<!-- 专业公司重点监管项目示例 -->
+		<profCorpSupervisionData subCorpid="00" subCorpname="总计" projectName="总计" investment="9999999999"
+			finishedInvestment="9999999999" unfinishedInvestment="9999999999" finishedRation="9999999999">
+			<stageData id="in-designer" label="正在设计" inStatus="9999999999" />
+			<stageData id="wait-construction" label="等待施工" inStatus="9999999999" />
+			<stageData id="in-construction" label="正在施工" inStatus="9999999999" />
+			<stageData id="finished" label="完成" inStatus="9999999999" />
+				<projectdata order="1" subCorpid="10200000" subCorpname="胜利石油管理局"
+					projectName="可移动民用爆炸物品库更新" investment="300.00" finishedInvestment="300.00"
+					unfinishedInvestment="0.00" finishedRation="100.00" subCorpCharger=""
+					corpChargeDepartment="" groupChargeDepartment="" departmentCharger=""
+					groupSupervisionDeparment="" URL="">
+					<stageData id="in-designer" label="正在设计" status="FINISHED" />
+					<stageData id="wait-construction" label="等待施工" status="FINISHED" />
+					<stageData id="in-construction" label="正在施工" status="FINISHED" />
+					<stageData id="finished" label="完成" status="DONING" />
+				</projectdata>
+				<projectdata order="2" subCorpid="10250000" subCorpname="中原石油勘探局"
+					projectName="无线液面报警仪配备" investment="388.00" finishedInvestment="388.00"
+					unfinishedInvestment="0.00" finishedRation="100.00" subCorpCharger=""
+					corpChargeDepartment="" groupChargeDepartment="" departmentCharger=""
+					groupSupervisionDeparment="" URL="">
+					<stageData id="in-designer" label="正在设计" status="FINISHED" />
+					<stageData id="wait-construction" label="等待施工" status="FINISHED" />
+					<stageData id="in-construction" label="正在施工" status="FINISHED" />
+					<stageData id="finished" label="完成" status="DONING" />
+				</projectdata>
+		</profCorpSupervisionData>
+		
+		
+	</currectSelect>>
+	<!-- </majorSupervisionData> -->
+	
+</model>

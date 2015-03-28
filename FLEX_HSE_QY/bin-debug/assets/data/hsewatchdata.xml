@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="GBK" ?>
+<model>
+	<dataOutline dataYear="2012" dataDate="" corpid=""
+		corpname="null" timestamp="" />
+	<watchData>
+		<dataset month="2012.1" label="1月" watchTimes="993"
+			unsafeStatusNumbers="254" unsafeActionNumbers="609"
+			recommendSafeActionNumbers="44" />
+		<dataset month="2012.2" label="2月" watchTimes="1364"
+			unsafeStatusNumbers="372" unsafeActionNumbers="793"
+			recommendSafeActionNumbers="75" />
+		<dataset month="2012.3" label="3月" watchTimes="1311"
+			unsafeStatusNumbers="369" unsafeActionNumbers="727"
+			recommendSafeActionNumbers="88" />
+		<dataset month="2012.4" label="4月" watchTimes="1377"
+			unsafeStatusNumbers="400" unsafeActionNumbers="758"
+			recommendSafeActionNumbers="66" />
+		<dataset month="2012.5" label="5月" watchTimes="1286"
+			unsafeStatusNumbers="372" unsafeActionNumbers="727"
+			recommendSafeActionNumbers="63" />
+		<dataset month="2012.6" label="6月" watchTimes="1316" 
+			unsafeStatusNumbers="382" unsafeActionNumbers="747"
+			recommendSafeActionNumbers="67" />
+		<dataset month="2012.7" label="7月" watchTimes="1227"
+			unsafeStatusNumbers="375" unsafeActionNumbers="750"
+			recommendSafeActionNumbers="78" />
+		<dataset month="2012.8" label="8月" watchTimes="1319"
+			unsafeStatusNumbers="421" unsafeActionNumbers="798"
+			recommendSafeActionNumbers="96" />
+		<dataset month="2012.9" label="9月" watchTimes="1442"
+			unsafeStatusNumbers="439" unsafeActionNumbers="902"
+			recommendSafeActionNumbers="100" />
+		<dataset month="2012.10" label="10月" watchTimes="1366"
+			unsafeStatusNumbers="444" unsafeActionNumbers="820"
+			recommendSafeActionNumbers="102" />
+		<dataset month="2012.11" label="11月" watchTimes="1622"
+			unsafeStatusNumbers="557" unsafeActionNumbers="922"
+			recommendSafeActionNumbers="143" />
+		<dataset month="2012.12" label="12月" watchTimes="128"
+			unsafeStatusNumbers="48" unsafeActionNumbers="67"
+			recommendSafeActionNumbers="13" />
+			
+		<!-- 2013年8月22日新增，用于显示年初到当日的累计，如果去年以前的则显示全年累计 -->
+		<sumdata  month="2012" label="2012年累计" watchTimes="128"
+			unsafeStatusNumbers="48" unsafeActionNumbers="67"
+			recommendSafeActionNumbers="13"/>
+			
+	</watchData>
+	<problemData>
+		<dataset month="2012.1" label="1月" problemNumbers="646"
+			dealedProblemNumbers="636" />
+		<dataset month="2012.2" label="2月" problemNumbers="794"
+			dealedProblemNumbers="784" />
+		<dataset month="2012.3" label="3月" problemNumbers="789"
+			dealedProblemNumbers="777" />
+		<dataset month="2012.4" label="4月" problemNumbers="772"
+			dealedProblemNumbers="756" />
+		<dataset month="2012.5" label="5月" problemNumbers="751"
+			dealedProblemNumbers="744" />
+		<dataset month="2012.6" label="6月" problemNumbers="793"
+			dealedProblemNumbers="770" />
+		<dataset month="2012.7" label="7月" problemNumbers="693"
+			dealedProblemNumbers="657" />
+		<dataset month="2012.8" label="8月" problemNumbers="655"
+			dealedProblemNumbers="629" />
+		<dataset month="2012.9" label="9月" problemNumbers="836"
+			dealedProblemNumbers="797" />
+		<dataset month="2012.10" label="10月" problemNumbers="717"
+			dealedProblemNumbers="691" />
+		<dataset month="2012.11" label="11月" problemNumbers="777"
+			dealedProblemNumbers="726" />
+		<dataset month="2012.12" label="12月" problemNumbers="55"
+			dealedProblemNumbers="32" />
+			
+		<!-- 2013年8月22日新增，用于显示年初到当日的累计，如果去年以前的则显示全年累计 -->
+		<sumdata  month="2012" label="2012年累计" problemNumbers="55"
+			dealedProblemNumbers="32" />
+			
+	</problemData>
+	<popupTableData month="2012.1">
+		<tabledata order="1" subCorpName="合计" watchTimes="65" personWatchTimes="33"
+			unsafeStatusNumbers="11" unsafeActionNumbers="45"
+			recommendSafeActionNumbers="0" problemNumbers="65"
+			dealedProblemNumbers="57" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="65" personWatchTimes="33"
+			unsafeStatusNumbers="11" unsafeActionNumbers="45"
+			recommendSafeActionNumbers="0" problemNumbers="37"
+			dealedProblemNumbers="57" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="0" personWatchTimes="33"
+			unsafeStatusNumbers="0" unsafeActionNumbers="0"
+			recommendSafeActionNumbers="0" problemNumbers="null"
+			dealedProblemNumbers="0" />
+	</popupTableData>
+	<popupTableData month="2012.2">
+		<tabledata order="1" subCorpName="合计" watchTimes="62" personWatchTimes="33"
+			unsafeStatusNumbers="15" unsafeActionNumbers="36"
+			recommendSafeActionNumbers="0" problemNumbers="62"
+			dealedProblemNumbers="53" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="62" personWatchTimes="33"
+			unsafeStatusNumbers="15" unsafeActionNumbers="36"
+			recommendSafeActionNumbers="0" problemNumbers="28"
+			dealedProblemNumbers="53" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="0" personWatchTimes="33"
+			unsafeStatusNumbers="0" unsafeActionNumbers="0"
+			recommendSafeActionNumbers="0" problemNumbers="null"
+			dealedProblemNumbers="0" />
+	</popupTableData>
+	<popupTableData month="2012.3">
+		<tabledata order="1" subCorpName="合计" watchTimes="62" personWatchTimes="33"
+			unsafeStatusNumbers="12" unsafeActionNumbers="37"
+			recommendSafeActionNumbers="0" problemNumbers="62"
+			dealedProblemNumbers="53" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="62" personWatchTimes="33"
+			unsafeStatusNumbers="12" unsafeActionNumbers="37"
+			recommendSafeActionNumbers="0" problemNumbers="29"
+			dealedProblemNumbers="53" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="0" personWatchTimes="33"
+			unsafeStatusNumbers="0" unsafeActionNumbers="0"
+			recommendSafeActionNumbers="0" problemNumbers="null"
+			dealedProblemNumbers="0" />
+	</popupTableData>
+	<popupTableData month="2012.4">
+		<tabledata order="1" subCorpName="合计" watchTimes="64" personWatchTimes="33"
+			unsafeStatusNumbers="18" unsafeActionNumbers="31"
+			recommendSafeActionNumbers="0" problemNumbers="64"
+			dealedProblemNumbers="55" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="64" personWatchTimes="33"
+			unsafeStatusNumbers="18" unsafeActionNumbers="31"
+			recommendSafeActionNumbers="0" problemNumbers="38"
+			dealedProblemNumbers="55" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="0" personWatchTimes="33"
+			unsafeStatusNumbers="0" unsafeActionNumbers="0"
+			recommendSafeActionNumbers="0" problemNumbers="null"
+			dealedProblemNumbers="0" />
+	</popupTableData>
+	<popupTableData month="2012.5">
+		<tabledata order="1" subCorpName="合计" watchTimes="65" personWatchTimes="33"
+			unsafeStatusNumbers="20" unsafeActionNumbers="33"
+			recommendSafeActionNumbers="0" problemNumbers="65"
+			dealedProblemNumbers="54" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="65" personWatchTimes="33"
+			unsafeStatusNumbers="20" unsafeActionNumbers="33"
+			recommendSafeActionNumbers="0" problemNumbers="35"
+			dealedProblemNumbers="54" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="0" personWatchTimes="33"
+			unsafeStatusNumbers="0" unsafeActionNumbers="0"
+			recommendSafeActionNumbers="0" problemNumbers="null"
+			dealedProblemNumbers="0" />
+	</popupTableData>
+	<popupTableData month="2012.6">
+		<tabledata order="1" subCorpName="合计" watchTimes="66" personWatchTimes="33"
+			unsafeStatusNumbers="27" unsafeActionNumbers="33"
+			recommendSafeActionNumbers="0" problemNumbers="66"
+			dealedProblemNumbers="57" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="64" personWatchTimes="33"
+			unsafeStatusNumbers="25" unsafeActionNumbers="32"
+			recommendSafeActionNumbers="0" problemNumbers="37"
+			dealedProblemNumbers="55" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="2" personWatchTimes="33"
+			unsafeStatusNumbers="2" unsafeActionNumbers="1"
+			recommendSafeActionNumbers="0" problemNumbers="2"
+			dealedProblemNumbers="2" />
+	</popupTableData>
+	<popupTableData month="2012.7">
+		<tabledata order="1" subCorpName="合计" watchTimes="138" personWatchTimes="33"
+			unsafeStatusNumbers="65" unsafeActionNumbers="85"
+			recommendSafeActionNumbers="0" problemNumbers="138"
+			dealedProblemNumbers="125" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="126" personWatchTimes="33"
+			unsafeStatusNumbers="60" unsafeActionNumbers="80"
+			recommendSafeActionNumbers="0" problemNumbers="79"
+			dealedProblemNumbers="115" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="12" personWatchTimes="33"
+			unsafeStatusNumbers="5" unsafeActionNumbers="5"
+			recommendSafeActionNumbers="0" problemNumbers="7"
+			dealedProblemNumbers="10" />
+	</popupTableData>
+	<popupTableData month="2012.8">
+		<tabledata order="1" subCorpName="合计" watchTimes="198" personWatchTimes="33"
+			unsafeStatusNumbers="92" unsafeActionNumbers="122"
+			recommendSafeActionNumbers="0" problemNumbers="198"
+			dealedProblemNumbers="179" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="175" personWatchTimes="33"
+			unsafeStatusNumbers="83" unsafeActionNumbers="112"
+			recommendSafeActionNumbers="0" problemNumbers="88"
+			dealedProblemNumbers="161" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="23" personWatchTimes="33"
+			unsafeStatusNumbers="9" unsafeActionNumbers="10"
+			recommendSafeActionNumbers="0" problemNumbers="10"
+			dealedProblemNumbers="18" />
+	</popupTableData>
+	<popupTableData month="2012.9">
+		<tabledata order="1" subCorpName="合计" watchTimes="232" personWatchTimes="33"
+			unsafeStatusNumbers="84" unsafeActionNumbers="129"
+			recommendSafeActionNumbers="0" problemNumbers="232"
+			dealedProblemNumbers="190" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="220" personWatchTimes="33"
+			unsafeStatusNumbers="81" unsafeActionNumbers="123"
+			recommendSafeActionNumbers="0" problemNumbers="120"
+			dealedProblemNumbers="180" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="12" personWatchTimes="33"
+			unsafeStatusNumbers="3" unsafeActionNumbers="6"
+			recommendSafeActionNumbers="0" problemNumbers="8"
+			dealedProblemNumbers="10" />
+	</popupTableData>
+	<popupTableData month="2012.10">
+		<tabledata order="1" subCorpName="合计" watchTimes="178" personWatchTimes="33"
+			unsafeStatusNumbers="75" unsafeActionNumbers="120"
+			recommendSafeActionNumbers="0" problemNumbers="178"
+			dealedProblemNumbers="144" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="166" personWatchTimes="33"
+			unsafeStatusNumbers="74" unsafeActionNumbers="112"
+			recommendSafeActionNumbers="0" problemNumbers="83"
+			dealedProblemNumbers="135" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="12" personWatchTimes="33"
+			unsafeStatusNumbers="1" unsafeActionNumbers="8"
+			recommendSafeActionNumbers="0" problemNumbers="8"
+			dealedProblemNumbers="9" />
+	</popupTableData>
+	<popupTableData month="2012.11">
+		<tabledata order="1" subCorpName="合计" watchTimes="220" personWatchTimes="33"
+			unsafeStatusNumbers="86" unsafeActionNumbers="108"
+			recommendSafeActionNumbers="0" problemNumbers="220"
+			dealedProblemNumbers="147" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="209" personWatchTimes="33"
+			unsafeStatusNumbers="82" unsafeActionNumbers="107"
+			recommendSafeActionNumbers="0" problemNumbers="85"
+			dealedProblemNumbers="142" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="11" personWatchTimes="33"
+			unsafeStatusNumbers="4" unsafeActionNumbers="1"
+			recommendSafeActionNumbers="0" problemNumbers="4"
+			dealedProblemNumbers="5" />
+	</popupTableData>
+	<popupTableData month="2012.12">
+		<tabledata order="1" subCorpName="合计" watchTimes="43" personWatchTimes="33"
+			unsafeStatusNumbers="2" unsafeActionNumbers="5"
+			recommendSafeActionNumbers="0" problemNumbers="43"
+			dealedProblemNumbers="7" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="42" personWatchTimes="33"
+			unsafeStatusNumbers="2" unsafeActionNumbers="5"
+			recommendSafeActionNumbers="0" problemNumbers="17"
+			dealedProblemNumbers="7" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="1" personWatchTimes="33"
+			unsafeStatusNumbers="0" unsafeActionNumbers="0"
+			recommendSafeActionNumbers="0" problemNumbers="0"
+			dealedProblemNumbers="0" />
+	</popupTableData>
+	
+	<!-- 2013年8月22日新增，用于显示年初到当日的累计，如果去年以前的则显示全年累计 -->
+	<popupTableData month="2012">
+		<tabledata order="1" subCorpName="合计" watchTimes="43" personWatchTimes="33"
+			unsafeStatusNumbers="2" unsafeActionNumbers="5"
+			recommendSafeActionNumbers="0" problemNumbers="43"
+			dealedProblemNumbers="7" />
+		<tabledata order="1" subCorpName="郑州石油分公司" watchTimes="42" personWatchTimes="33"
+			unsafeStatusNumbers="2" unsafeActionNumbers="5"
+			recommendSafeActionNumbers="0" problemNumbers="17"
+			dealedProblemNumbers="7" />
+		<tabledata order="1" subCorpName="洛阳石油分公司" watchTimes="1" personWatchTimes="33"
+			unsafeStatusNumbers="0" unsafeActionNumbers="0"
+			recommendSafeActionNumbers="0" problemNumbers="0"
+			dealedProblemNumbers="0" />
+	</popupTableData>
+</model>

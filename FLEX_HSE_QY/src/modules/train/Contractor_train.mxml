@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%"
+		 height="100%"
+		 creationComplete="init()" xmlns:views="views.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/contractordata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			[Bindable]
+			private var dateEnd:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			private var dateStrChanged:Boolean = false;
+			private var isFirstLoad:Boolean = true;
+			[Bindable]
+			private var tab1_topTitle:String="承包商构成情况";
+			[Bindable]
+			private var tab2_topTitle:String="承包商教育培训情况";
+
+
+			[Bindable]
+			private var tab1_topDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topDS:ArrayCollection;
+
+
+
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+//				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+//					var obj:Object=new Object();
+//					obj.name=i+"年";
+//					obj.value=i;
+//					dateArrCol.addItem(obj);
+//				}
+//				dateEnd.dataProvider=dateArrCol;
+//				dateEnd.selectedIndex = 0;
+				
+				
+				tab1_topDS=new ArrayCollection();
+				tab2_topDS=new ArrayCollection();
+
+
+				refreshData();
+				isFirstLoad = false;
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.remoteMethod('10','',this.dateEnd);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				tab1_topDS=getTab1_topDS();		
+				tab2_topDS=getTab2_topDS();
+				
+				
+				executeBindTab1Title();
+
+				
+			}
+			private function executeBindTab1Title():void{
+				var dept:String="";
+				if(hseDataXML.dataOutline){
+					dept=hseDataXML.dataOutline.@corpname;
+				}
+				tab1_topTitle=dept+this.dateEnd+"年承包商构成情况";
+				tab2_topTitle=dept+this.dateEnd+"年承包商教育培训情况";
+			}
+
+			
+			
+			private function getTab1_topDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.contractorData.dataset;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML  in tmpList) {  
+							var obj:Object={label:xml.@label,
+								plan:xml.@contractorNumbers,
+								act:xml.@goodNumbers,
+								sur:xml.@badNumbers,
+								msgFirst:"承包商：",
+								msgLast:"",
+								id:xml.@contractorid};
+							
+							//格式化数据
+							obj.plan=Number(obj.plan)<0?0:obj.plan;
+							obj.act=Number(obj.act)<0?0:obj.act;
+							obj.sur=Number(obj.sur)<0?0:obj.sur;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+						
+						tmpArrayCollection2=tmpArrayCollection;
+						//按照合格承包商排序
+						var sort:Sort=new Sort();  
+						sort.fields=[new SortField("plan",true,true)];  
+						tmpArrayCollection2.sort=sort;
+						tmpArrayCollection2.refresh();
+						
+//						for(var i:int=tmpArrayCollection.length-1;i>=0;i--){
+//							tmpArrayCollection2.addItem(tmpArrayCollection[i]);
+//						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection2;
+			}
+
+			private function getTab2_topDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.contractorTrainData.kindData;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML  in tmpList) {
+							var obj:Object={label:xml.@label,
+								plan:xml.@personNumbers,
+								act:xml.@qualifiedNumber,
+								sur:xml.@unqualifiedNumbers,
+								rate:xml.@qualifiedRatio,
+								id:xml.@kindid};
+							
+							//格式化数据
+							obj.plan=Number(obj.plan)<0?0:obj.plan;
+							obj.act=Number(obj.act)<0?0:obj.act;
+							obj.sur=Number(obj.sur)<0?0:obj.sur;
+							obj.rate=Number(obj.sur)>100?100:obj.rate;
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+	
+
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupTab1():void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  ""+ "承包商构成情况"+"("+this.dateEnd+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.IfShowFrontRecordColor=false;
+				titleWindow.IfShowBackRecordColor=false;	
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"级别",dataField:"label",width:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"合格",dataField:"act",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"不合格",dataField:"sur",width:"50",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"小计",dataField:"plan",width:"50",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.contractorData.dataset;
+					if(tmpList.length()>0)
+					{
+						var index:int=2;	
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,
+								plan:Number(xml.@contractorNumbers),
+								act:Number(xml.@goodNumbers),
+								sur:Number(xml.@badNumbers),
+								contractorid:xml.@contractorid,
+							index:index};
+							index++;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupSurMX(selCode:String,selText:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  ""+ "不合格承包商明细"+"("+this.dateEnd+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"label",width:"100",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"承包商",dataField:"vol1",width:"600",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.contractorData.dataset.(@contractorid==selCode).badData;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:Number(xml.@order),vol1:xml.@corpName};
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab2(kindid:String,kindName:String,showFlag:int=0,showFlagName:String="培训人员"):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  ""+ "承包商教育培训"+kindName+showFlagName+"情况("+this.dateEnd+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.IfShowFrontRecordColor=false;
+				titleWindow.IfShowBackRecordColor=false;	
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"承包商",dataField:"contractorName",width:"120",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"姓名",dataField:"personName",width:"80",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"培训时间",dataField:"trainDate",width:"80",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"登记单位",dataField:"inputCorpName",width:"120",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList;
+					if(showFlag<0){
+						tmpList=hseDataXML.contractorTrainData.kindData.(@kindid==kindid).contractorData;
+					}else{
+						tmpList=hseDataXML.contractorTrainData.kindData.(@kindid==kindid).contractorData.(@qualifiedFlag==showFlag);
+					}
+					if(tmpList.length()>0)
+					{
+						var index:int=2;	
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={contractorName:xml.@contractorName,
+								order:index-1,
+								personName:xml.@personName,
+								trainDate:xml.@trainDate,
+								inputCorpName:xml.@inputCorpName,
+								index:index};
+							index++;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+			protected function tab1_top_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				popupTab1();
+			}
+			protected function tab2_top_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				var item:Object=event.hitDataItem;
+				// TODO Auto-generated method stub
+				var displayName:String=event.hitDataItem.displayName;
+				var seriesType:String=event.hitDataItem.seriesType;
+				switch(displayName){
+					case "总人数":
+						popupTab2(item.id,item.label,-1,"培训人员");
+						break;
+					case "合格":
+						popupTab2(item.id,item.label,1,"合格人员");
+						break;
+					case "不合格":
+						popupTab2(item.id,item.label,0,"不合格人员");
+						break;
+				}
+			}
+			
+			protected function tab1_top_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupSurMX(item.id,item.label);
+			}
+//			protected function chkShowVol_changeHandler(event:Event):void
+//			{
+//				// TODO Auto-generated method stub
+//				showDataLabel=chkShowVol.selected;
+//			}
+			
+			public function get DateStr():String
+			{
+				return dateEnd;
+			}
+			public function set DateStr(value:String):void
+			{
+				if (value != dateEnd)
+				{
+					dateStrChanged = true;
+					dateEnd = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="0" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<!--<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>-->
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<s:NavigatorContent width="100%" height="100%" label="{tab1_title}">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:BarPlanActSur id="tab1_top" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" planTxt="总数" actTxt="合格" surTxt="不合格" title="{tab1_topTitle}" DataSource="{tab1_topDS}" 
+											 PopupDoubleClick="tab1_top_PopupDoubleClickHandler(event)"
+											 PopupClick="tab1_top_PopupClickHandler(event)"/>
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnPlanActSurLineRate id="tab2_top" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab2_topTitle}" DataSource="{tab2_topDS}" 
+														planTxt="总人数" actTxt="合格" surTxt="不合格" rateTxt="合格率"
+														PopupDoubleClick="tab2_top_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Group>

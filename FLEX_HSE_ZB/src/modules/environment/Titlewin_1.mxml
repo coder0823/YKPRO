@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" xmlns:views="views.*" creationComplete="titlewindow1_creationCompleteHandler(event)"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="600" height="450" close="titlewindow1_closeHandler(event)" skinClass="skins.popWinStyle">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			import mx.managers.PopUpManager;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var columnMulitDSConf1:ArrayCollection;
+			[Bindable]
+			private var columnMulitDS1:ArrayCollection;
+			[Bindable]
+			private var columnMulitDSConf2:ArrayCollection;
+			[Bindable]
+			private var columnMulitDS2:ArrayCollection;
+			private var hseDataXML:XML=new XML();
+			
+			[Bindable]
+			public var cColor4:SolidColor=views.CustomColor.CSolidColor[3];
+			[Bindable]
+			private var _title1_lebel:String;
+			[Bindable]
+			private var _title2_lebel:String;
+			
+			public function get title1_lebel():String
+			{
+				return _title1_lebel;
+			}
+
+			public function set title1_lebel(value:String):void
+			{
+				_title1_lebel = value;
+			}
+			public function get title2_lebel():String
+			{
+				return _title2_lebel;
+			}
+			
+			public function set title2_lebel(value:String):void
+			{
+				_title2_lebel = value;
+			}
+			public function get ColumnMulitDS1():ArrayCollection
+			{
+				return columnMulitDS1;
+			}
+			
+			public function set ColumnMulitDS1(value:ArrayCollection):void
+			{
+				columnMulitDS1 = value;
+			}
+			public function get ColumnMulitDS2():ArrayCollection
+			{
+				return columnMulitDS2;
+			}
+			
+			public function set ColumnMulitDS2(value:ArrayCollection):void
+			{
+				columnMulitDS2 = value;
+			}
+			public function get HseDataXML():XML
+			{
+				return hseDataXML;
+			}
+			
+			public function set HseDataXML(value:XML):void
+			{
+				hseDataXML = value;
+			}
+
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				// TODO Auto-generated method stub
+				PopUpManager.removePopUp(this);  
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+			}
+
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				columnMulitDSConf1=new ArrayCollection([
+					{name:"数量",field:"vol1",color:"0x00B050"},
+					{name:"百分比",field:"vol2",color:"0x00B050"},
+				]);
+				columnMulitDSConf2=new ArrayCollection([
+					{name:"数量",field:"vol1",axis:"left",color:"0x00B050"},
+					//{name:"百分比",field:"vol2",axis:"right",color:"0x00B050"},
+				]);
+			}
+
+			protected function columnmulti1_PopupClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				var sel:String=String(item.label);
+				if(sel=="妥善处理率" || sel=="综合利用率"){
+					columnMulitDSConf2=new ArrayCollection([						
+						{name:"百分比",field:"vol2",axis:"right",color:"0x00B050"},
+					]);
+				}else{
+					columnMulitDSConf2=new ArrayCollection([
+						{name:"数量",field:"vol1",axis:"left",color:"0x00B050"},
+					]);
+				}
+				
+				
+				
+				_title2_lebel=sel;
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList2:XMLList=hseDataXML.dataset;
+					if(tmpList2.length()>0)
+					{
+							for each (var xml22:XML in tmpList2) {  
+								var obj2:Object=new Object();
+								switch(sel){
+									case "固废处理量":
+										obj2={label:xml22.@label,vol1:xml22.@dealNumbers,vol2:0,yearid:xml22.@yearid};
+										break;
+									case "妥善处理量":
+										obj2={label:xml22.@label,vol1:xml22.@properlyDealNumbers,vol2:0,yearid:xml22.@yearid};
+										break;
+									case "综合利用量":
+										obj2={label:xml22.@label,vol1:xml22.@comprehensiveUtilizationNumbers,vol2:0,yearid:xml22.@yearid};
+										break;
+									case "妥善处理率":
+										obj2={label:xml22.@label,vol2:xml22.@properlyDealRation,vol1:0,yearid:xml22.@yearid};
+										break;
+									case "综合利用率":
+										obj2={label:xml22.@label,vol2:xml22.@comprehensiveUtilizationRation,vol1:0,yearid:xml22.@yearid};
+										break;
+								}
+								tmpArrayCollection2.addItem(obj2);
+							}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				columnMulitDS2=tmpArrayCollection2;
+			}
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupMX(selYear:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "中国石化"+selYear+ "年"+_title2_lebel+"情况 计量单位：万吨";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"板块",dataField:"label",width:"90",textAlign:"left",sortable:true,draggable:true},
+					{headerText:"固废处理量",dataField:"vol1",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"妥善处理量",dataField:"vol2",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"综合利用量",dataField:"vol3",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"妥善处理率%",dataField:"vol4",width:"40",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"综合利用率%",dataField:"vol5",width:"40",textAlign:"center",sortable:true,draggable:true},
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.dataset.(@yearid==selYear);
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var xml2:XMLList=xml.plateData;
+							for each (var xml3:XML in xml2) {  
+								var obj:Object={label:xml3.@label,
+									vol1:Number(xml3.@dealNumbers),
+									vol2:Number(xml3.@properlyDealNumbers),
+									vol3:Number(xml3.@comprehensiveUtilizationNumbers),
+									vol4:Number(xml3.@properlyDealRation),
+									vol5:Number(xml3.@comprehensiveUtilizationRation)
+									};
+								tmpArrayCollection.addItem(obj);
+							}
+						} 
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this.parent, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			protected function columnmulti2_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupMX(item.yearid);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:VGroup width="100%" height="100%" horizontalAlign="center">
+		<s:BorderContainer width="100%" height="80%">
+			<views:ColumnMulti id="chart1" AxisLeftTiltle="万吨" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="false" PopupClick="columnmulti1_PopupClickHandler(event)"
+							   DataSourceConf="{columnMulitDSConf1}" DataSource="{columnMulitDS1}" title="中国石化{_title1_lebel}年固废处理情况"/>
+		</s:BorderContainer>
+		<s:BorderContainer width="100%" height="80%">
+			<views:ColumnMulti id="chart2" AxisLeftTiltle="万吨" ShowDataLabel="{showDataLabel}" width="100%" height="100%" showTitle="true" showLegend="false"
+							   DataSourceConf="{columnMulitDSConf2}" DataSource="{columnMulitDS2}"
+							   PopupDoubleClick="columnmulti2_PopupDoubleClickHandler(event)" title="中石化连续五年{_title2_lebel}趋势"/>
+		</s:BorderContainer>
+	</s:VGroup>
+</s:TitleWindow>

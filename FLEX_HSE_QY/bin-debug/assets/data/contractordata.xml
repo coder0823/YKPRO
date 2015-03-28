@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 河南石油HSE仪表盘〔承包商部分〕xml数据 　设计：肖丰斌  Version:1.1 日期：2012-12-2  
+ contractorid：承包商id取值按采用下面部分数据 
+ label：承包商类型的显示名称或者合格不合格的显示名称
+ contractorNumbers：承包商数量 
+ id：合格或不合格的承包商id，取值采用下面约定数据 
+ numbers：合格或不合格的承包商数量 
+ URL：合格或不合格承包商对应的业务系统的URL-->
+ <!--1.文件总览 -->
+ <dataOutline dataYear="2012" dataDate=""  corpid = ""  corpname="河南石油" timestamp=""/>
+  
+  <!--2.承包商数据-->
+  <!--<contractorData >
+  　　<dataset contractorid="LEVEL-A" label = "总数" contractorNumbers="400"   />
+       <qualifyData label = "合格" id = "qualified" numbers="390" URL="" />
+       <qualifyData label = "不合格" id = "unqualified" numbers="10" URL="" />
+     <dataset contractorid="LEVEL-B" label = "省级" contractorNumbers="100"   />
+     　　<qualifyData label = "合格" id = "qualified" numbers="100" URL="" />
+       　<qualifyData label = "不合格" id = "unqualified" numbers="0" URL="" />
+     <dataset contractorid="LEVEL-C" label = "地市级" contractorNumbers="300"   />
+     　　<qualifyData label = "合格" id = "qualified" numbers="290" URL="" />
+     <qualifyData label = "不合格" id = "unqualified" numbers="10" URL="" />
+  </contractorData > 
+  -->
+  	<!--2.承包商数据-->
+    <contractorData goodLabel="合格" badLabel="不合格">
+	  　<dataset contractorid="LEVEL-A" label = "总数" contractorNumbers="400" goodNumbers="380" badNumbers="20">
+<!-- 
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+2013年6月4日新修改，
+注意：在dataset下添加badData节点，显示不合格承包商列表，如果没有可不输出
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+ -->
+	  		<badData order="1" corpName="不合格承包商的名字1"/>
+	  		<badData order="2" corpName="不合格承包商的名字2"/>
+	  		<badData order="3" corpName="不合格承包商的名字3"/>	  	
+	  		<badData order="1" corpName="不合格承包商的名字4"/>
+	  		<badData order="2" corpName="不合格承包商的名字5"/>
+	  		<badData order="3" corpName="不合格承包商的名字6"/>	  	
+	  	</dataset>
+	    <dataset contractorid="LEVEL-B" label = "省级" contractorNumbers="100" goodNumbers="100" badNumbers="0">
+	  		<badData order="1" corpName="不合格承包商的名字1"/>
+	  		<badData order="2" corpName="不合格承包商的名字2"/>
+	  		<badData order="3" corpName="不合格承包商的名字3"/>	  		
+	  	</dataset>
+	    <dataset contractorid="LEVEL-C" label = "地市级" contractorNumbers="300" goodNumbers="290" badNumbers="10" >
+	  		<badData order="1" corpName="不合格承包商的名字4"/>
+	  		<badData order="2" corpName="不合格承包商的名字5"/>
+	  		<badData order="3" corpName="不合格承包商的名字6"/>	  		
+	  	</dataset>
+  	</contractorData > 
+  
+  
+ <!--一!!!!!!!!!!!!!!!!!!!!!!!!!!!!!新添加，承包商培训，
+
+ kindid=""    分类编号
+ personNumbers="100"     人数
+ qualifiedNumber="90"     合格
+ unqualifiedNumbers="10"  不合格
+ qualifiedRatio="90"   合格率
+ qualifiedFlag="1"  0    1表示合格，0表示不合格
+  -->
+  <contractorTrainData>
+  	<kindData kindid="type1" label="培训分类1" personNumbers="100" qualifiedNumber="90" unqualifiedNumbers="10" qualifiedRatio="90">
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  	</kindData>
+  	<kindData kindid="type2" label="培训分类2" personNumbers="100" qualifiedNumber="90" unqualifiedNumbers="10" qualifiedRatio="90">
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  	</kindData>
+  	<kindData kindid="type3" label="培训分类3" personNumbers="100" qualifiedNumber="90" unqualifiedNumbers="10" qualifiedRatio="90">
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  	</kindData>
+  	<kindData kindid="type4" label="培训分类4" personNumbers="100" qualifiedNumber="90" unqualifiedNumbers="10" qualifiedRatio="90">
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  	</kindData>
+  	<kindData kindid="type5" label="培训分类5" personNumbers="100" qualifiedNumber="90" unqualifiedNumbers="10" qualifiedRatio="90">
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="1"/>
+  		<contractorData contractorName="承包商名称" className="培训班名称" personName="人员名称" trainDate="培训时间" inputCorpName="登记单位" qualifiedFlag="0"/>
+  	</kindData>
+  </contractorTrainData>
+  
+</model>

@@ -1,0 +1,1654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘〔变更管理部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-5-29  -->
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+ 
+ <!--*************************一、字段说明如下*************************************************************************************
+        id:变更的级别，类别，阶段，板块，企业等对应代码id               label:变更的级别，类别，阶段，板块，企业等对应的显示标签
+        ration：数量或投资对应的比例                                     number：变更项目数
+        ratioOfKind:占同类别的比例                                      ratioOfLevel：占同级别的比例
+        cost：变更费用                                                   plateid:板块id
+        plateName：板块名称                                             ratioOfNumber：按数量计算所占的比例
+        ratioOfCost：按成本计算所占的比例                               levelid：某个变更级别的id
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，某个计算合计项的数据
+        2.WebService处理明细的企业，带有order字段时，应严格按照其完成率降序排列数据,且所有字段值一律不准写null值   
+  -->
+ 
+ <!--二.总体情况 -->
+ <overallData>
+    <!--2.1变更数量对应的两张图-->
+    <alterationNumberData>
+        <kinddata id="guanli" label="管理变更" number="700" ratio="">
+          <!--下面对该类变更对应的各级别的变更数据，目前原则上只有两个级别-->
+          <levelData id ="" label="一般变更" number="300" ratioOfKind="45" ratioOfLevel="30" />
+          <levelData id ="" label="重大变更" number="400" ratioOfKind="55" ratioOfLevel="33" />
+        </kinddata>
+        <kinddata id="shebei" label="设备变更" number="702" ratio="">
+          <levelData id ="" label="一般变更" number="300" ratioOfKind="65.70" ratioOfLevel="30" />
+          <levelData id ="" label="重大变更" number="402" ratioOfKind="34.30" ratioOfLevel="33" />
+        </kinddata>
+        <kinddata id="zhongda" label="工艺变更" number="704" ratio="">
+          <levelData id ="" label="一般变更" number="300" ratioOfKind="75.53" ratioOfLevel="30" />
+          <levelData id ="" label="重大变更" number="404" ratioOfKind="24.47" ratioOfLevel="33" />
+        </kinddata>
+    </alterationNumberData>
+    
+    <!--2.2变更费用对应的两张图-->
+    <alterationCostData>
+      <kinddata id="guanli" label="管理变更" cost="400" ratio="">
+          <!--下面对该类变更对应的各级别的变更数据，目前原则上只有两个级别-->
+          <levelData id ="yiban" label="一般变更" number="190" ratio="">
+            <!--下面是每个级别的变更对应的具体阶段的项目数 -->
+            <stageData id="yidengji" label="已登记" number="20"  ratio=""/>
+            <stageData id="shenpizhong" label="审批中" number="40" ratio=""/>
+            <stageData id="daiyanshou" label="待验收" number="100" ratio=""/>
+            <stageData id="yiyanshou" label="已验收" number="30" ratio=""/>
+          </levelData>
+          <levelData id ="zhongda" label="重大变更" number="220" ratio="">
+            <stageData id="yidengji" label="已登记" number="30"  ratio=""/>
+            <stageData id="shenpizhong" label="审批中" number="30" ratio=""/>
+            <stageData id="daiyanshou" label="待验收" number="100" ratio=""/>
+            <stageData id="yiyanshou" label="已验收" number="60" ratio=""/>
+          </levelData>
+       </kinddata>
+       <kinddata id="shebei" label="设备变更" cost="500" ratio="">
+          <levelData id ="yiban" label="一般变更" number="190" ratio="">
+            <!--下面是每个级别的变更对应的具体阶段的项目数 -->
+            <stageData id="yidengji" label="已登记" number="20"  ratio=""/>
+            <stageData id="shenpizhong" label="审批中" number="40" ratio=""/>
+            <stageData id="daiyanshou" label="待验收" number="100" ratio=""/>
+            <stageData id="yiyanshou" label="已验收" number="30" ratio=""/>
+          </levelData>
+          <levelData id ="zhongda" label="重大变更" number="220" ratio="">
+            <stageData id="yidengji" label="已登记" number="30"  ratio=""/>
+            <stageData id="shenpizhong" label="审批中" number="30" ratio=""/>
+            <stageData id="daiyanshou" label="待验收" number="100" ratio=""/>
+            <stageData id="yiyanshou" label="已验收" number="60" ratio=""/>
+          </levelData>
+       </kinddata>
+       <kinddata id="gongyi" label="工艺变更" cost="600" ratio="">
+           <levelData id ="yiban" label="一般变更" number="190" ratio="">
+            <!--下面是每个级别的变更对应的具体阶段的项目数 -->
+            <stageData id="yidengji" label="已登记" number="20"  ratio=""/>
+            <stageData id="shenpizhong" label="审批中" number="40" ratio=""/>
+            <stageData id="daiyanshou" label="待验收" number="100" ratio=""/>
+            <stageData id="yiyanshou" label="已验收" number="30" ratio=""/>
+          </levelData>
+          <levelData id ="zhongda" label="重大变更" number="220" ratio="">
+            <stageData id="yidengji" label="已登记" number="30"  ratio=""/>
+            <stageData id="shenpizhong" label="审批中" number="30" ratio=""/>
+            <stageData id="daiyanshou" label="待验收" number="100" ratio=""/>
+            <stageData id="yiyanshou" label="已验收" number="60" ratio=""/>
+          </levelData>
+       </kinddata>
+    </alterationCostData>
+    
+    <!--2.3左侧图形对应的表格数据 --> 
+      <leftChartTableData>
+      	<kinddata id="ALL" label="小计" number="102" ratioOfNumber="24.23%" cost="602" rationOfCost="26.12%" >
+      		<plateData order="1" plateid="YT" plateName="油田" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="LH" plateName="炼化" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="XS" plateName="销售" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="GC" plateName="工程" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="QT" plateName="其它" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      	</kinddata>
+      	<kinddata id="GY" label="工艺变更" number="102" ratioOfNumber="24.23%" cost="602" rationOfCost="26.12%" >
+      		<plateData order="1" plateid="YT" plateName="油田" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="LH" plateName="炼化" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="XS" plateName="销售" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="GC" plateName="工程" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="QT" plateName="其它" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      	</kinddata>
+      	<kinddata id="SB" label="设备变更" number="102" ratioOfNumber="24.23%" cost="602" rationOfCost="26.12%" >
+      		<plateData order="1" plateid="YT" plateName="油田" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="LH" plateName="炼化" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="XS" plateName="销售" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="GC" plateName="工程" number="330" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="QT" plateName="其它" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      	</kinddata>
+      	<kinddata id="GL" label="管理变更" number="102" ratioOfNumber="24.23%" cost="602" rationOfCost="26.12%" >
+      		<plateData order="1" plateid="YT" plateName="油田" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="LH" plateName="炼化" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="XS" plateName="销售" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="GC" plateName="工程" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      		<plateData order="1" plateid="QT" plateName="其它" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%"/>
+      	</kinddata>
+      
+      
+      <!-- 
+        <plateData order="1" plateid="" plateName="油田" number="310" ratioOfNumber="21.50%" cost="1993" rationOfCost="24.02%">
+          <kinddata id="" label="设备变更" number="102" ratioOfNumber="24.23%" cost="602" rationOfCost="26.12%" />
+          <kinddata id="" label="管理变更" number="89" ratioOfNumber="28.80%" cost="979" rationOfCost="21.752%" />
+          <kinddata id="" label="工艺变更" number="119" ratioOfNumber="16.71%" cost="412" rationOfCost="27.63%" />
+        </plateData>
+        <plateData order="2" plateid="" plateName="炼化" number="" ratioOfNumber="" cost="" rationOfCost="">
+          <kinddata id="" label="设备变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="管理变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="工艺变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+        </plateData>
+        <plateData order="3" plateid="" plateName="销售" number="" ratioOfNumber="" cost="" rationOfCost="">
+          <kinddata id="" label="设备变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="管理变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="工艺变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+        </plateData>
+        <plateData order="4" plateid="" plateName="工程" number="" ratioOfNumber="" cost="" rationOfCost="">
+          <kinddata id="" label="设备变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="管理变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="工艺变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+        </plateData>
+        <plateData order="5" plateid="" plateName="其它" number="" ratioOfNumber="" cost="" rationOfCost="">
+          <kinddata id="" label="设备变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="管理变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="工艺变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+        </plateData>
+        <plateData order="6" plateid="00000000" plateName="合计" number="" ratioOfNumber="" cost="" rationOfCost="">
+          <kinddata id="" label="设备变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="管理变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+          <kinddata id="" label="工艺变更" number="" ratioOfNumber="" cost="" rationOfCost="" />
+        </plateData>
+         -->
+      </leftChartTableData>
+      
+      <!--2.4右侧图形对应的表格数据 --> 
+      <rightChartTableData>
+       	  <levelData id="YB"  label="一般变更" number="500" ratio="50">
+            <stageData  id="" label="已登记" number="100"  ratio="20"/>
+            <stageData  id="" label="审批中" number="200"  ratio="40"/>
+            <stageData  id="" label="待验收" number="100"  ratio="20"/>
+            <stageData  id="" label="已验收" number="100"  ratio="20"/>
+            <plateData order="1" plateid="YT" plateName="油田" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="LH" plateName="炼化" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="XS" plateName="销售" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="GC" plateName="工程" number="110" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="50"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="QT" plateName="其他" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+          </levelData>
+          
+          <levelData id="ZD"  label="重大变更" number="500" ratio="50">
+            <stageData  id="" label="已登记" number="100"  ratio="20"/>
+            <stageData  id="" label="审批中" number="200"  ratio="40"/>
+            <stageData  id="" label="待验收" number="100"  ratio="20"/>
+            <stageData  id="" label="已验收" number="100"  ratio="20"/>
+            <plateData order="1" plateid="YT" plateName="油田" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="LH" plateName="炼化" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="XS" plateName="销售" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="GC" plateName="工程" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+            <plateData order="1" plateid="QT" plateName="其他" number="100" ratio="20">
+	            <stageData  id="" label="已登记" number="20"  ratio="20"/>
+	            <stageData  id="" label="审批中" number="40"  ratio="40"/>
+	            <stageData  id="" label="待验收" number="20"  ratio="20"/>
+	            <stageData  id="" label="已验收" number="20"  ratio="20"/>
+            </plateData>
+          </levelData>
+      
+      
+      <!-- 
+        <plateData order="1" plateid="" plateName="油田" >
+          <levelData id="ALL"  label="小计">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="一般变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="重大变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+        </plateData> 
+        <plateData order="2" plateid="" plateName="炼化" >
+          <levelData id="ALL"  label="小计">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="一般变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="重大变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+        </plateData> 
+        <plateData order="3" plateid="" plateName="销售" >
+          <levelData id="ALL"  label="小计">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="一般变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="重大变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+        </plateData> 
+        <plateData order="1" plateid="" plateName="工程" >
+          <levelData id="ALL"  label="小计">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="一般变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="重大变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+        </plateData> 
+        <plateData order="1" plateid="" plateName="其它" >
+          <levelData id="ALL"  label="小计">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="一般变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="重大变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+        </plateData> 
+        <plateData order="1" plateid="00000000" plateName="合计" >
+          <levelData id="ALL"  label="小计">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="一般变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+          <levelData id="" label="重大变更">
+            <stageData  id="" label="已登记" number=""  ratio=""/>
+            <stageData  id="" label="审批中" number=""  ratio=""/>
+            <stageData  id="" label="待验收" number=""  ratio=""/>
+            <stageData  id="" label="已验收" number=""  ratio=""/>
+          </levelData>
+        </plateData> 
+         -->
+      </rightChartTableData>
+ </overallData>
+ 
+  <!--三.分板块 -->
+ <byPlate>
+   <!--图形数据,分板块首先是基于分类别的-->
+   <kindData id="ALL" label="全部变更" >
+     <!--3.1左侧两个饼图的数据-->
+      <pieChartData>
+        <!--3.1.1数量构成情况-->
+         <byNumber>
+           <plateData id="YT" label= "油田"  number="67" ratio=""/>
+           <plateData id="LH" label= "炼化"  number="128" ratio=""/>
+           <plateData id="XS" label= "销售"  number="75" ratio=""/>
+           <plateData id="GC" label= "工程"  number="22" ratio=""/>
+           <plateData id="QT" label= "其它"  number="17" ratio=""/>
+         </byNumber>
+         <!--3.1.2费用构成情况-->
+         <byCost>
+           <plateData id="YT" label= "油田"  number="1167" ratio=""/>
+           <plateData id="LH" label= "炼化"  number="1952" ratio=""/>
+           <plateData id="XS" label= "销售"  number="688" ratio=""/>
+           <plateData id="GC" label= "工程"  number="403" ratio=""/>
+           <plateData id="QT" label= "其它"  number="292" ratio=""/>
+         </byCost>
+      </pieChartData>   
+    <!--3.2右侧两个条状图的数据，此时第二个条状堆积图依赖于第一个条状堆积图，因此具有联动关系-->
+      <barChartData> 
+        <!--3.2.1分级别的第一个图-->
+        <byLevelData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid="zhongda"  label="重大变更" number="211" />
+          <levelData levelid="yiban"  label="一般变更" number="75" />
+        </byLevelData>  
+        <byLevelData  plateid="" plateName="油田"  number="67">
+          <levelData levelid="zhongda"  label="重大变更" number="41" />
+          <levelData levelid="yiban"  label="一般变更" number="26" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="炼化"  number="128">
+          <levelData levelid=""  label="重大变更" number="101" />
+          <levelData levelid=""  label="一般变更" number="27" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="销售"  number="57">
+          <levelData levelid=""  label="重大变更" number="45" />
+          <levelData levelid=""  label="一般变更" number="12" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="工程"  number="22">
+          <levelData levelid=""  label="重大变更" number="16" />
+          <levelData levelid=""  label="一般变更" number="6" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="其它"  number="12">
+          <levelData levelid=""  label="重大变更" number="8" />
+          <levelData levelid=""  label="一般变更" number="4" />
+        </byLevelData> 
+        
+        <!--3.2.2分阶段的第二个图-->
+        <byStageData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid="zhongda"  label="重大变更" number="211">
+            <stageData id="yidengji" label="已登记" number="27" />
+            <stageData id="shenpizhong" label="审批中" number="56" />
+            <stageData id="daiyanshou" label="待验收" number="80" />
+            <stageData id="yiyanshou" label="已验收" number="48" />
+          </levelData>
+          <levelData levelid="yiban"  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="油田"  number="">
+          <levelData levelid="zhongda"  label="重大变更" number="211">
+            <stageData id="yidengji" label="已登记" number="37" />
+            <stageData id="shenpizhong" label="审批中" number="66" />
+            <stageData id="daiyanshou" label="待验收" number="70" />
+            <stageData id="yiyanshou" label="已验收" number="38" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="炼化"  number="">
+          <levelData levelid="zhongda"  label="重大变更" number="211">
+            <stageData id="yidengji" label="已登记" number="23" />
+            <stageData id="shenpizhong" label="审批中" number="46" />
+            <stageData id="daiyanshou" label="待验收" number="90" />
+            <stageData id="yiyanshou" label="已验收" number="48" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="销售"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="工程"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="其它"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+      </barChartData> 
+   </kindData>
+   <kindData id="guanli" label="管理变更" >
+      <pieChartData>
+         <byNumber>
+           <plateData id="" label= "油田"  number="" ratio=""/>
+           <plateData id="" label= "炼化"  number="" ratio=""/>
+           <plateData id="" label= "销售"  number="" ratio=""/>
+           <plateData id="" label= "工程"  number="" ratio=""/>
+           <plateData id="" label= "其它"  number="" ratio=""/>
+         </byNumber>
+         <byCost>
+           <plateData id="" label= "油田"  number="" ratio=""/>
+           <plateData id="" label= "炼化"  number="" ratio=""/>
+           <plateData id="" label= "销售"  number="" ratio=""/>
+           <plateData id="" label= "工程"  number="" ratio=""/>
+           <plateData id="" label= "其它"  number="" ratio=""/>
+         </byCost>
+      </pieChartData>   
+      <barChartData> 
+        <byLevelData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid=""  label="重大变更" number="211" />
+          <levelData levelid=""  label="一般变更" number="75" />
+        </byLevelData>  
+        <byLevelData  plateid="" plateName="油田"  number="67">
+          <levelData levelid=""  label="重大变更" number="41" />
+          <levelData levelid=""  label="一般变更" number="26" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="炼化"  number="128">
+          <levelData levelid=""  label="重大变更" number="101" />
+          <levelData levelid=""  label="一般变更" number="27" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="销售"  number="57">
+          <levelData levelid=""  label="重大变更" number="45" />
+          <levelData levelid=""  label="一般变更" number="12" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="工程"  number="22">
+          <levelData levelid=""  label="重大变更" number="16" />
+          <levelData levelid=""  label="一般变更" number="6" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="其它"  number="12">
+          <levelData levelid=""  label="重大变更" number="8" />
+          <levelData levelid=""  label="一般变更" number="4" />
+        </byLevelData> 
+        <byStageData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid=""  label="重大变更" number="211">
+            <stageData id="" label="已登记" number="27" />
+            <stageData id="" label="审批中" number="56" />
+            <stageData id="" label="待验收" number="80" />
+            <stageData id="" label="已验收" number="48" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="油田"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="炼化"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="销售"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="工程"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="其它"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+      </barChartData> 
+   </kindData>
+   <kindData id="shebei" label="设备变更" >
+      <pieChartData>
+         <byNumber>
+           <plateData id="" label= "油田"  number="" ratio=""/>
+           <plateData id="" label= "炼化"  number="" ratio=""/>
+           <plateData id="" label= "销售"  number="" ratio=""/>
+           <plateData id="" label= "工程"  number="" ratio=""/>
+           <plateData id="" label= "其它"  number="" ratio=""/>
+         </byNumber>
+         <byCost>
+           <plateData id="" label= "油田"  number="" ratio=""/>
+           <plateData id="" label= "炼化"  number="" ratio=""/>
+           <plateData id="" label= "销售"  number="" ratio=""/>
+           <plateData id="" label= "工程"  number="" ratio=""/>
+           <plateData id="" label= "其它"  number="" ratio=""/>
+         </byCost>
+      </pieChartData>   
+      <barChartData> 
+        <byLevelData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid=""  label="重大变更" number="211" />
+          <levelData levelid=""  label="一般变更" number="75" />
+        </byLevelData>  
+        <byLevelData  plateid="" plateName="油田"  number="67">
+          <levelData levelid=""  label="重大变更" number="41" />
+          <levelData levelid=""  label="一般变更" number="26" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="炼化"  number="128">
+          <levelData levelid=""  label="重大变更" number="101" />
+          <levelData levelid=""  label="一般变更" number="27" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="销售"  number="57">
+          <levelData levelid=""  label="重大变更" number="45" />
+          <levelData levelid=""  label="一般变更" number="12" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="工程"  number="22">
+          <levelData levelid=""  label="重大变更" number="16" />
+          <levelData levelid=""  label="一般变更" number="6" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="其它"  number="12">
+          <levelData levelid=""  label="重大变更" number="8" />
+          <levelData levelid=""  label="一般变更" number="4" />
+        </byLevelData> 
+        <byStageData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid=""  label="重大变更" number="211">
+            <stageData id="" label="已登记" number="27" />
+            <stageData id="" label="审批中" number="56" />
+            <stageData id="" label="待验收" number="80" />
+            <stageData id="" label="已验收" number="48" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="油田"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="炼化"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="销售"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="工程"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="其它"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+      </barChartData> 
+   </kindData>
+   <kindData id="gongyi" label="工艺变更" >
+      <pieChartData>
+         <byNumber>
+           <plateData id="" label= "油田"  number="" ratio=""/>
+           <plateData id="" label= "炼化"  number="" ratio=""/>
+           <plateData id="" label= "销售"  number="" ratio=""/>
+           <plateData id="" label= "工程"  number="" ratio=""/>
+           <plateData id="" label= "其它"  number="" ratio=""/>
+         </byNumber>
+         <byCost>
+           <plateData id="" label= "油田"  number="" ratio=""/>
+           <plateData id="" label= "炼化"  number="" ratio=""/>
+           <plateData id="" label= "销售"  number="" ratio=""/>
+           <plateData id="" label= "工程"  number="" ratio=""/>
+           <plateData id="" label= "其它"  number="" ratio=""/>
+         </byCost>
+      </pieChartData>   
+      <barChartData> 
+        <byLevelData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid=""  label="重大变更" number="211" />
+          <levelData levelid=""  label="一般变更" number="75" />
+        </byLevelData>  
+        <byLevelData  plateid="" plateName="油田"  number="67">
+          <levelData levelid=""  label="重大变更" number="41" />
+          <levelData levelid=""  label="一般变更" number="26" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="炼化"  number="128">
+          <levelData levelid=""  label="重大变更" number="101" />
+          <levelData levelid=""  label="一般变更" number="27" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="销售"  number="57">
+          <levelData levelid=""  label="重大变更" number="45" />
+          <levelData levelid=""  label="一般变更" number="12" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="工程"  number="22">
+          <levelData levelid=""  label="重大变更" number="16" />
+          <levelData levelid=""  label="一般变更" number="6" />
+        </byLevelData> 
+        <byLevelData  plateid="" plateName="其它"  number="12">
+          <levelData levelid=""  label="重大变更" number="8" />
+          <levelData levelid=""  label="一般变更" number="4" />
+        </byLevelData> 
+        <byStageData  plateid="00000000" plateName="全部"  number="286">
+          <levelData levelid=""  label="重大变更" number="211">
+            <stageData id="" label="已登记" number="27" />
+            <stageData id="" label="审批中" number="56" />
+            <stageData id="" label="待验收" number="80" />
+            <stageData id="" label="已验收" number="48" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="油田"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="炼化"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="销售"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="工程"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+        <byStageData  plateid="" plateName="其它"  number="">
+          <levelData levelid=""  label="重大变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+          <levelData levelid=""  label="一般变更" number="">
+            <stageData id="" label="已登记" number="" />
+            <stageData id="" label="审批中" number="" />
+            <stageData id="" label="待验收" number="" />
+            <stageData id="" label="已验收" number="" />
+          </levelData>
+        </byStageData> 
+      </barChartData> 
+   </kindData>
+   
+   <!--左侧图形对应的表格数据-->
+   <leftChartTableData>
+   <!-- 
+   		<kindData id="GL" label="管理变更"  number="500"  ratioOfNumber="30" cost="5000" rationOfCost="30">
+   			<plateData id =""  label = "油田"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="LH"  label = "炼化"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="XS"  label = "销售"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="GC"  label = "工程"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="QT"  label = "其他"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   		</kindData>
+   		<kindData id="SB" label="设备变更"  number="500"  ratioOfNumber="30" cost="5000" rationOfCost="30">
+   			<plateData id =""  label = "油田"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="LH"  label = "炼化"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="XS"  label = "销售"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="GC"  label = "工程"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="QT"  label = "其他"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   		</kindData>
+   		<kindData id="GY" label="工艺变更"  number="500"  ratioOfNumber="30" cost="5000" rationOfCost="30">
+   			<plateData id =""  label = "油田"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="LH"  label = "炼化"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="XS"  label = "销售"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="GC"  label = "工程"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   			<plateData id ="QT"  label = "其他"  number="100"  ratioOfNumber="20" cost="1000" rationOfCost="20">
+   				<corpData order="1" id="" label="胜利"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="2" id="" label="河南"  number="30"  ratioOfNumber="30" cost="300" rationOfCost="30"/>
+   				<corpData order="3" id="" label="江苏"  number="40"  ratioOfNumber="40" cost="400" rationOfCost="40"/>
+   			</plateData>
+   		</kindData>
+   		 -->
+   
+
+    <plateData id ="YT"  label = "油田" number="123"  ratioOfNumber="321" cost="23" rationOfCost="43">
+<!-- 汇总信息 -->
+       <kindData id="" label="工艺变更"  number="53"  ratioOfNumber="234" cost="123" rationOfCost="423"/>
+       <kindData id="" label="设备变更"  number="44"  ratioOfNumber="33" cost="22" rationOfCost="234"/>
+       <kindData id="" label="管理变更"  number="54"  ratioOfNumber="11" cost="33" rationOfCost="123"/>
+    
+<!-- 企业  -->    
+      <corpData order="1" id="" label="胜利"  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="2" id="" label="河南"  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="3" id="" label="江苏"  number="33"  ratioOfNumber="33" cost="33" rationOfCost="33">
+       <kindData id="" label="工艺变更"  number="33"  ratioOfNumber="111" cost="33" rationOfCost="33"/>
+       <kindData id="" label="设备变更"  number="12"  ratioOfNumber="3" cost="12" rationOfCost="53"/>
+       <kindData id="" label="管理变更"  number="23"  ratioOfNumber="11" cost="" rationOfCost="23"/>
+      </corpData>
+    </plateData>  
+    <plateData id ="LH"  label = "炼化" number=""  ratioOfNumber="" cost="" rationOfCost="">
+     <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+    
+      <corpData order="1" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="2" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="3" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+    </plateData> 
+    <plateData id ="XS"  label = "销售" number=""  ratioOfNumber="" cost="" rationOfCost="">
+     <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+    
+      <corpData order="1" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="2" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="3" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+    </plateData> 
+    <plateData id ="GC"  label = "工程" number=""  ratioOfNumber="" cost="" rationOfCost="">
+     <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+    
+      <corpData order="1" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="2" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+      <corpData order="3" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+      </corpData>
+    </plateData> 
+    
+     <plateData id ="QT"  label = "其它" number=""  ratioOfNumber="" cost="" rationOfCost="">
+	       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	      
+	      <corpData order="1" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+	       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	      </corpData>
+	      <corpData order="2" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+	       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	      </corpData>
+	      <corpData order="3" id="" label=""  number=""  ratioOfNumber="" cost="" rationOfCost="">
+	       <kindData id="" label="管理变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="设备变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	       <kindData id="" label="工艺变更"  number=""  ratioOfNumber="" cost="" rationOfCost=""/>
+	      </corpData>
+    </plateData> 
+   </leftChartTableData>
+   
+   <!--右侧图形对应的表格数据-->
+   <rightChartTableData>
+   
+   <!--
+   		 <levelData id="zhongda" label="重大变更">
+            <stageData id="" label="已登记" number="1000" ratio="50" /> 
+            <stageData id="" label="审批中" number="1000" ratio="50" /> 
+            <stageData id="" label="待验收" number="1000" ratio="50" /> 
+            <stageData id="" label="已验收" number="1000" ratio="50" /> 
+            <plateData id ="YT"  label = "油田" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="LH"  label = "炼化" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="XS"  label = "销售" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="GC"  label = "工程" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="QT"  label = "其他" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+         </levelData>
+         <levelData id="yiban" label="一般变更">
+            <stageData id="" label="已登记" number="1000" ratio="50" /> 
+            <stageData id="" label="审批中" number="1000" ratio="50" /> 
+            <stageData id="" label="待验收" number="1000" ratio="50" /> 
+            <stageData id="" label="已验收" number="1000" ratio="50" /> 
+            <plateData id ="YT"  label = "油田" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="LH"  label = "炼化" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="XS"  label = "销售" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="GC"  label = "工程" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+            <plateData id ="QT"  label = "其他" >
+            	<stageData id="" label="已登记" number="200" ratio="20" /> 
+	            <stageData id="" label="审批中" number="200" ratio="20" /> 
+	            <stageData id="" label="待验收" number="200" ratio="20" /> 
+	            <stageData id="" label="已验收" number="200" ratio="20" /> 
+            	<corpData order="1" id="" label="胜利油田"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="河南石油"  >
+            		<stageData id="" label="已登记" number="70" ratio="34" /> 
+		            <stageData id="" label="审批中" number="70" ratio="34" /> 
+		            <stageData id="" label="待验收" number="70" ratio="34" /> 
+		            <stageData id="" label="已验收" number="70" ratio="34" /> 
+            	</corpData>
+            	<corpData order="1" id="" label="江苏油田"  >
+            		<stageData id="" label="已登记" number="60" ratio="33" /> 
+		            <stageData id="" label="审批中" number="60" ratio="33" /> 
+		            <stageData id="" label="待验收" number="60" ratio="33" /> 
+		            <stageData id="" label="已验收" number="60" ratio="33" /> 
+            	</corpData>
+            </plateData>
+         </levelData>
+         
+       <corpData order="1" id="" label="胜利"  >
+         <levelData id="ALL" label="小计">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="一般变更">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      </corpData>
+   
+   -->
+   
+     <plateData id ="YT"  label = "油田">
+     	<levelData id="" label="一般变更" number="43" ratio="234" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      	<levelData id="" label="重大变更" number="23" ratio="32" >
+            <stageData id="" label="已登记" number="123" ratio="123" /> 
+            <stageData id="" label="审批中" number="123" ratio="33" /> 
+            <stageData id="" label="待验收" number="22" ratio="22" /> 
+            <stageData id="" label="已验收" number="11" ratio="33" /> 
+         </levelData>
+         
+      <corpData order="1" id="" label="胜利"  >
+      	<levelData id="" label="一般变更" number="11" ratio="11" >
+            <stageData id="" label="已登记" number="1" ratio="2" /> 
+            <stageData id="" label="审批中" number="1" ratio="2" /> 
+            <stageData id="" label="待验收" number="1" ratio="2" /> 
+            <stageData id="" label="已验收" number="1" ratio="2" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="22" ratio="22" >
+            <stageData id="" label="已登记" number="22" ratio="22" /> 
+            <stageData id="" label="审批中" number="13" ratio="22" /> 
+            <stageData id="" label="待验收" number="123" ratio="32" /> 
+            <stageData id="" label="已验收" number="3" ratio="321" /> 
+         </levelData>
+      </corpData>
+      <corpData order="2" id="" label="河南"  >
+      	 <levelData id="" label="一般变更" number="34" ratio="234">
+            <stageData id="" label="已登记" number="33" ratio="234" /> 
+            <stageData id="" label="审批中" number="234" ratio="234" /> 
+            <stageData id="" label="待验收" number="234" ratio="234" /> 
+            <stageData id="" label="已验收" number="234" ratio="43" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+      <corpData order="3" id="" label="江苏"  >
+      	<levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+    </plateData>  
+    
+    <plateData id ="LH"  label = "炼化">
+         <levelData id="" label="一般变更" number="43" ratio="234" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      	<levelData id="" label="重大变更" number="23" ratio="32" >
+            <stageData id="" label="已登记" number="123" ratio="123" /> 
+            <stageData id="" label="审批中" number="123" ratio="33" /> 
+            <stageData id="" label="待验收" number="22" ratio="22" /> 
+            <stageData id="" label="已验收" number="11" ratio="33" /> 
+         </levelData>
+         
+      <corpData order="1" id="" label="胜利"  >
+      	<levelData id="" label="一般变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      </corpData>
+      <corpData order="2" id="" label="河南"  >
+      	 <levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+      <corpData order="3" id="" label="江苏"  >
+      	<levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+    </plateData>
+    <plateData id ="XS"  label = "销售" >
+    	<levelData id="" label="一般变更" number="43" ratio="234" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      	<levelData id="" label="重大变更" number="23" ratio="32" >
+            <stageData id="" label="已登记" number="123" ratio="123" /> 
+            <stageData id="" label="审批中" number="123" ratio="33" /> 
+            <stageData id="" label="待验收" number="22" ratio="22" /> 
+            <stageData id="" label="已验收" number="11" ratio="33" /> 
+         </levelData>
+         
+      <corpData order="1" id="" label="胜利"  >
+      	<levelData id="" label="一般变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      </corpData>
+      <corpData order="2" id="" label="河南"  >
+      	 <levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+      <corpData order="3" id="" label="江苏"  >
+      	<levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+    </plateData>
+    <plateData id ="GC"  label = "工程">
+    	<levelData id="" label="一般变更" number="43" ratio="234" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      	<levelData id="" label="重大变更" number="23" ratio="32" >
+            <stageData id="" label="已登记" number="123" ratio="123" /> 
+            <stageData id="" label="审批中" number="123" ratio="33" /> 
+            <stageData id="" label="待验收" number="22" ratio="22" /> 
+            <stageData id="" label="已验收" number="11" ratio="33" /> 
+         </levelData>
+         
+      <corpData order="1" id="" label="胜利"  >
+      	<levelData id="" label="一般变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      </corpData>
+      <corpData order="2" id="" label="河南"  >
+      	 <levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+      <corpData order="3" id="" label="江苏"  >
+      	<levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         
+      </corpData>
+    </plateData>
+    
+    <plateData id ="QT"  label = "其它">
+    <levelData id="" label="一般变更" number="43" ratio="234" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      	<levelData id="" label="重大变更" number="23" ratio="32" >
+            <stageData id="" label="已登记" number="123" ratio="123" /> 
+            <stageData id="" label="审批中" number="123" ratio="33" /> 
+            <stageData id="" label="待验收" number="22" ratio="22" /> 
+            <stageData id="" label="已验收" number="11" ratio="33" /> 
+         </levelData>
+         
+      <corpData order="1" id="" label="胜利"  >
+      	<levelData id="" label="一般变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="" >
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      </corpData>
+      <corpData order="2" id="" label="河南"  >
+      	 <levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      </corpData>
+      <corpData order="3" id="" label="江苏"  >
+      	<levelData id="" label="一般变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+         <levelData id="" label="重大变更" number="" ratio="">
+            <stageData id="" label="已登记" number="" ratio="" /> 
+            <stageData id="" label="审批中" number="" ratio="" /> 
+            <stageData id="" label="待验收" number="" ratio="" /> 
+            <stageData id="" label="已验收" number="" ratio="" /> 
+         </levelData>
+      </corpData>
+    </plateData>
+   </rightChartTableData>
+ </byPlate>
+ 
+</model>

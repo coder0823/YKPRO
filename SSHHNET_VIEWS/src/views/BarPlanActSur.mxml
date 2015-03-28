@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" horizontalAlign="center" creationComplete="init(true)">
+	<!--
+	/* *
+	* 名称：条形组件（固定）
+	* 参数：
+	* 作者：孙山虎
+	* 日期：2012年12月29日
+	* */
+	
+	-->
+	<fx:Metadata>
+		[Event(name="PopupClick", type="events.PopupEvent")]
+		[Event(name="PopupDoubleClick", type="events.PopupEvent")]
+	</fx:Metadata>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<!--组件属性-->
+		<fx:String id="title">报表标题</fx:String>
+		<fx:String id="yLabelTxt">测试</fx:String>
+		<fx:String id="actTxt">完成</fx:String>
+		<fx:String id="surTxt">未完成</fx:String>
+		<fx:String id="planTxt">计划</fx:String>
+		<fx:Boolean id="showTitle">true</fx:Boolean>
+		<fx:Boolean id="showLegend">true</fx:Boolean>
+		<fx:Number id="labelRotationY">{CustomVariable.ChartLeftLabelRotation}</fx:Number>
+		<fx:Boolean id="showZoomControlBox">false</fx:Boolean>
+		<fx:Boolean id="showLabelControlBox">false</fx:Boolean>
+		<mx:SeriesSlide id="ss" direction="right" duration="2000"/>
+		<s:NumberFormatter id="numberFormatter" fractionalDigits="0" useGrouping="false"/> 
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.LineChart;
+			import mx.charts.chartClasses.IAxis;
+			import mx.charts.events.ChartItemEvent;
+			import mx.charts.series.BarSeries;
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import events.PopupEvent;
+			
+			[Bindable]
+			public var showDataTips:Boolean=true;
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			private var dataSourceChanged:Boolean=false;
+			[Bindable]
+			public var bColor1:SolidColor=views.CustomColor.BSolidColor[0];
+			[Bindable]
+			public var bColor2:SolidColor=views.CustomColor.BSolidColor[1];
+			[Bindable]
+			public var bColor3:SolidColor=views.CustomColor.BSolidColor[2];
+
+			
+			[Bindable]
+			private var dataSource:ArrayCollection;
+//			private var dataSource:ArrayCollection = new ArrayCollection([
+//				{label:"油田",plan:200,act:30,sur:40,msgFirst:"油田板块2012年",msgLast:""},
+//				{label:"炼化",plan:400,act:40,sur:50,msgFirst:"油田板块2012年",msgLast:""},
+//				{label:"销售",plan:900,act:90,sur:100,msgFirst:"油田板块2012年",msgLast:""},
+//				{label:"工程",plan:600,act:60,sur:70,msgFirst:"油田板块2012年",msgLast:""},
+//				{label:"其他",plan:600,act:60,sur:70,msgFirst:"油田板块2012年",msgLast:""}
+//			]);
+
+			[Bindable]
+			public var AxisTopUnit:String="%";
+			[Bindable]
+			public var AxisDownUnit:String="";
+			[Bindable]
+			public var AxisBottomTiltle:String="";
+			[Bindable]
+			public var AxisLeftTiltle:String="";
+			[Bindable]
+			public var AxisTopTiltle:String="";
+			[Bindable]
+			public var AxisRightTiltle:String="";
+			
+			protected function init(IfFirst:Boolean=false):void{
+				barChart.dataProvider=dataSource;
+			}
+			protected function refresh(IfFirst:Boolean=false):void{
+				init(IfFirst);
+				if(IfFirst){//如果最大值最小值非外面传入则
+					initAxis();
+				}
+				
+				//添加阴影
+				var chart:LineChart = new LineChart();
+//				barChart.seriesFilters = chart.seriesFilters;
+				barChart.seriesFilters = [];
+			}
+			protected function initAxis():void
+			{
+				var minT:Number=Number.MAX_VALUE;
+				var minB:Number=Number.MAX_VALUE;
+				var maxT:Number=Number.MIN_VALUE;
+				var maxB:Number=Number.MIN_VALUE;
+				for each (var vol:Object in dataSource){
+					var plan:Number=(vol.plan!=null&&vol.plan!="undefined"&&vol.plan!="")?Number(vol.plan):0;
+					var act:Number=(vol.act!=null&&vol.act!="undefined"&&vol.act!="")?Number(vol.act):0;
+					var sur:Number=(vol.sur!=null&&vol.sur!="undefined"&&vol.sur!="")?Number(vol.sur):0;
+					maxT=Math.max(maxT,plan,act,sur);
+					minT=Math.max(minT,plan,act,sur);
+				}
+				if(maxT>8){
+					hTAxis.maximum=Math.round(maxT*CustomVariable.ChartTopAxisMaxCoefficient);
+				}else if(maxT>4){
+					hTAxis.maximum=10;
+				}else{
+					hTAxis.maximum=5;
+				}
+				
+				if(minT<-8){
+					hTAxis.minimum=Math.round(minT*CustomVariable.ChartTopAxisMinCoefficient);
+				}else if(minT<-4){
+					hTAxis.minimum=-10;
+				}else if(minT<0){
+					hTAxis.minimum=-5;
+				}else{
+					hTAxis.minimum=0;				
+				}
+
+				
+			}
+			//上侧X轴显示
+			private function hTAxis_LabelFunction(item:Object, prevValue:Object, axis:IAxis):String {
+				return numberFormatter.format(item)+AxisTopUnit;
+			}
+			//下侧X轴显示
+			private function hDAxis_LabelFunction(item:Object,prevValue:Object,axis:IAxis):String   
+			{  
+				return  numberFormatter.format(item)+AxisDownUnit;  
+			} 
+			public function sortDS(list:ArrayCollection):ArrayCollection {
+				var ds:ArrayCollection = new ArrayCollection();
+				for(var i:int=list.length-1;i>=0;i--){  
+					var o:Object = list.getItemAt(i); 
+					ds.addItem(o);
+				}
+				return ds;
+			}
+			public function get DataSource():ArrayCollection
+			{
+				return dataSource;
+			}
+			public function set DataSource(value:ArrayCollection):void
+			{
+				dataSourceChanged=true;
+				dataSource = sortDS(value);
+				invalidateProperties();
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				init(false);
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (dataSourceChanged)
+				{
+					dataSourceChanged = false;
+					refresh(true);
+					//invalidateDisplayList();  // invalidate in case the titles 
+					
+				}
+			}
+			public function group2_clickHandler(event:MouseEvent,item:Object):void
+			{
+				// TODO Auto-generated method stub
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupClick);  
+				//这里一定跟上面[Event(name="PopupClick", ...)],使用的name相同，否则，派发的事件不会被接收到				
+				eventObj.hitDataItem = item;
+				dispatchEvent(eventObj);	
+			}
+			public function barChart_itemClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=BarSeries(event.hitData.element).displayName;
+				obj.seriesType="barSeries";
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupClick);  
+				//这里一定跟上面[Event(name="PopupClick", ...)],使用的name相同，否则，派发的事件不会被接收到
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);
+			}
+			public function barChart_itemDoubleClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=BarSeries(event.hitData.element).displayName;
+				obj.seriesType="barSeries";
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupDoubleClick);  
+				//这里一定跟上面[Event(name="PopupDoubleClick", ...)],使用的name相同，否则，派发的事件不会被接收到				
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);				
+			}
+			//主程序调用
+			//			 PopupClick="xxxx_lightHandler(event)"
+			//			protected function xxxx_lightHandler(event:events.PopupEvent):void
+			//			{
+			//				// TODO Auto-generated method stub
+			//				var item:Object=event.hitDataItem;
+			//				.....
+			//			}
+			
+			
+			protected function widthDropDown_changeHandler(event:IndexChangeEvent):void  
+			{  
+				totalPage = int(widthDropDown.selectedItem.@value);  
+				hsb.maximum = (totalPage - 1) * 10;  
+				hsb.value = 0;  
+				setDataProvider();  
+			}  
+			protected function hsb_changeHandler(event:Event):void  
+			{  
+				setDataProvider();  
+			}  
+			private var totalPage:int = 1;  
+			protected function zoomin(event:MouseEvent):void  
+			{  
+				if(totalPage >= (1 << 4))  
+					return;  
+				hsb.value = hsb.value * 0.5;  
+				totalPage = totalPage << 1;  
+				hsb.maximum = (totalPage - 1) * 10;  
+				setDataProvider();  
+			}  
+			protected function zoomout(event:MouseEvent):void  
+			{  
+				if(totalPage == 1)  
+					return;  
+				hsb.value = hsb.value * 2;  
+				totalPage = totalPage >> 1;  
+				hsb.maximum = (totalPage - 1) * 10;  
+				setDataProvider();  
+			}  
+			protected function setDataProvider():void  
+			{  
+				var j:int = int(hsb.value / hsb.maximum * (hsb.maximum / 10 / totalPage) * dataSource.length);  
+				var ac:ArrayCollection = new ArrayCollection();  
+				var len:int = Math.ceil(1.0 * dataSource.length / totalPage);  
+				for (var i:int = 0; (i < len) && (i + j) < dataSource.length; i++)   
+				{  
+					ac.addItem(dataSource.getItemAt(i + j));  
+				}  
+				barChart.dataProvider = ac;  
+			}  
+			
+			
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+				init(false);
+			}
+			
+		]]>
+	</fx:Script>
+	<!--标题-->  
+	<mx:Label text="{title}" styleName="titleStyle" visible="{showTitle}"/>
+	<!--控制器-->
+	<s:HGroup width="98%" height="25" horizontalAlign="center" verticalAlign="middle" visible="{this.showZoomControlBox}" includeInLayout="{this.showZoomControlBox}">  
+		<s:ComboBox id="widthDropDown" width="90" change="widthDropDown_changeHandler(event)"  
+					labelField="@label" requireSelection="true">  
+			<s:XMLListCollection>  
+				<fx:XMLList xmlns="">  
+					<node label="原始宽度" value="1"/>  
+					<node label="两倍宽度" value="2"/>  
+					<node label="四倍宽度" value="4"/>  
+				</fx:XMLList>  
+			</s:XMLListCollection>  
+		</s:ComboBox>  
+		<s:Button label="放大" click="zoomin(event)"/>  
+		<s:Button label="缩小" click="zoomout(event)"/>  
+		<s:HScrollBar id="hsb" width="100%" height="20" change="hsb_changeHandler(event)"  
+					  maximum="0" minimum="0" snapInterval="1" value="0"/> 
+		<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)" visible="{this.showLabelControlBox}" includeInLayout="{this.showLabelControlBox}"/>
+	</s:HGroup>
+	<!--统计图-->  
+	<mx:BarChart id="barChart" styleName="chart" dataProvider="{dataSource}" width="100%" height="100%" doubleClickEnabled="true" itemDoubleClick="barChart_itemDoubleClickHandler(event)">    
+		<!--
+		<mx:backgroundElements>
+			<mx:GridLines verticalStroke="{views.CustomColor.AxisSolidColorStroke}" horizontalStroke="{views.CustomColor.AxisSolidColorStroke}"/>
+		</mx:backgroundElements>
+		-->
+		<!--横坐标-->  
+		<mx:horizontalAxis>
+			<mx:LinearAxis id="hTAxis" labelFunction="hDAxis_LabelFunction" baseAtZero="true" title="{AxisTopTiltle}"/>
+		</mx:horizontalAxis>
+		<!--纵坐标1-->  
+		<mx:verticalAxis>
+			<mx:CategoryAxis id="vLAxis" categoryField="label" title="{AxisLeftTiltle}"/>
+		</mx:verticalAxis>
+		<!--横坐标渲染-->  
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer id="axisX1" tickStroke="{views.CustomColor.TickSolidColorStroke}" minorTickStroke="{views.CustomColor.MinorTickSolidColorStroke}" axisStroke="{views.CustomColor.AxisSolidColorStroke}" tickLength="5" tickPlacement="outside" axis="{hTAxis}" placement="top"  labelGap="0"/>
+		</mx:horizontalAxisRenderers>
+		<!--纵坐标渲染-->  
+		<mx:verticalAxisRenderers>  
+			<mx:AxisRenderer id="axisY1" tickStroke="{views.CustomColor.TickSolidColorStroke}" minorTickStroke="{views.CustomColor.MinorTickSolidColorStroke}" axisStroke="{views.CustomColor.AxisSolidColorStroke}" showLine="true" tickLength="5" tickPlacement="outside" placement="left" axis="{vLAxis}"  labelGap="0" labelRotation="{labelRotationY}"/>
+		</mx:verticalAxisRenderers>  
+
+		<mx:series>
+			<mx:BarSeries fontSize="14" yField="label" xField="plan" showDataEffect="{ss}" maxBarWidth="30">
+				<mx:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer dataChange="init()">
+							<fx:Metadata>
+								[Event(name="PopupClick", type="events.PopupEvent")]
+							</fx:Metadata>
+							<fx:Script>
+								<![CDATA[
+									protected function init():void
+									{
+										// TODO Auto-generated method stub
+										if(this.outerDocument.ShowDataLabel){
+											totalTxtRight.visible=true;
+											totalTxtRight.includeInLayout=true;											
+											actLabel.visible=true;
+											actLabel.includeInLayout=true;
+											surLabel.visible=true;
+											surLabel.includeInLayout=true;
+										}else{
+											totalTxtRight.visible=false;
+											totalTxtRight.includeInLayout=false;
+											actLabel.visible=false;
+											actLabel.includeInLayout=false;
+											surLabel.visible=false;
+											surLabel.includeInLayout=false;
+										}
+									}
+									private function getMsg(msg:String,leftMsg:String="",rightMsg:String=""):String{
+										if(msg==null||msg==""||msg=="undefined"){
+											return "";
+										}
+										return leftMsg+msg+rightMsg;
+									}
+									private function getRateMsg(vol:String,total:String):String{
+										if(vol==null||vol==""||vol=="undefined"||total==null||total==""||total=="undefined"){
+											return "";
+										}
+										var n_vol:Number=Number(vol);
+										var n_total:Number=Number(total);
+										if(n_total==0){
+											return "";
+										}
+										return "\n占总数:"+ (n_vol*100/n_total).toFixed(2).toString()+"%";
+									}
+									
+									private function getColumnWidth(data:Object,w:Number,itemName:String):Number{
+										if(data.item[itemName]==null){
+											return 0;
+										}else{
+											return Number(data.xNumber)==0?0:(Number(data.item[itemName])/Number(data.xNumber)*w);
+										}
+									}
+									
+
+									
+								]]>
+							</fx:Script>
+							<s:layout>
+								<s:HorizontalLayout verticalAlign="middle"/>
+							</s:layout>
+							<s:Group width="{getColumnWidth(data,this.width,'plan')}" height="100%" 
+									 toolTip="{getMsg(data.item.msgFirst,'','\n')+this.outerDocument.planTxt+':'+data.item.plan+getMsg(data.item.msgLast,'\n','')}">
+								<s:Rect width="100%" height="100%" fill="{this.outerDocument.bColor1}" alpha="0.5"/>
+								<s:HGroup width="100%" height="90%" gap="0" verticalAlign="middle" paddingTop="2" paddingBottom="2">
+									<s:Group width="{getColumnWidth(data,this.width,'act')}" height="85%" 
+											 toolTip="{getMsg(data.item.msgFirst,'','\n')+this.outerDocument.actTxt+':'+data.item.act+getRateMsg(data.item.act,data.item.plan)+getMsg(data.item.msgLast,'\n','')}">
+										<s:Rect width="100%" height="100%" fill="{views.CommFunction.barFillFun2(this.outerDocument.bColor2.color)}"/> <!-- fill="{this.outerDocument.bColor2}"-->
+										<s:Label id="actLabel" width="100%" textAlign="center" text="{''+data.item.act}" verticalCenter="0" left="2" visible="{this.outerDocument.showDataLabel}" includeInLayout="{this.outerDocument.showDataLabel}"/>
+									</s:Group>
+									<s:Group width="{getColumnWidth(data,this.width,'sur')}" height="85%" 
+											 toolTip="{getMsg(data.item.msgFirst,'','\n')+this.outerDocument.surTxt+':'+data.item.sur+getRateMsg(data.item.sur,data.item.plan)+getMsg(data.item.msgLast,'\n','')}"
+											 click="this.outerDocument.group2_clickHandler(event,data.item)">
+										<s:Rect width="100%" height="100%" fill="{views.CommFunction.barFillFun2(this.outerDocument.bColor3.color)}"/> <!-- fill="{this.outerDocument.bColor3}"-->
+										<s:Label id="surLabel" width="100%" textAlign="center" text="{''+data.item.sur}" verticalCenter="0" left="2" visible="{this.outerDocument.showDataLabel}" includeInLayout="{this.outerDocument.showDataLabel}"/>
+									</s:Group>
+								</s:HGroup>
+							</s:Group>
+							<s:Label id="totalTxtRight" text="{this.outerDocument.planTxt+':'+data.item.plan}" visible="{this.outerDocument.showDataLabel}" includeInLayout="{this.outerDocument.showDataLabel}"/>
+						</s:ItemRenderer>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:BarSeries>
+		</mx:series>
+	</mx:BarChart>
+	<!--图例-->
+	<mx:Canvas id="legend" visible="{showLegend}" includeInLayout="{showLegend}" width="100%">
+		<s:BorderContainer styleName="legendBox" verticalCenter="0" horizontalCenter="0">
+			<mx:Legend horizontalAlign="center" horizontalCenter="0">
+				<s:HGroup>
+					<mx:LegendItem markerHeight="10" markerWidth="10" label="{planTxt}" fill="{bColor1}"/>
+					<mx:LegendItem markerHeight="10" markerWidth="10" label="{actTxt}" fill="{bColor2}"/>
+					<mx:LegendItem markerHeight="10" markerWidth="10" label="{surTxt}" fill="{bColor3}"/>				
+				</s:HGroup>
+			</mx:Legend>
+		</s:BorderContainer>
+	</mx:Canvas>	
+</s:VGroup>

@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-三同时-企业间对比
+		 * 参数：开始年（2012），结束年（2013），板块（plateid），级别（levelid）
+		 * 作者：孙山虎
+		 * 日期：2013年5月8日
+	     *休改 2015年1月18日刘本林
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			
+			import modules.meantime.components.MeantimeStatusDetail;
+			import modules.meantime.components.MeantimeStatusDetail_temp;
+			import modules.meantime.components.MeantimeStatusDetail_temp_byCorp;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			public const _dataPath:String = "assets/data/zb_meantimedata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dataSourceChanged:Boolean = false;
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			[Bindable]
+			private var dataSource:XML = new XML();
+			
+			[Bindable]
+			private var tab1_showTypeCurrSelect:String = "red";
+			private var tab1_showTypeNameCurrSelect:String = "超期报警率";
+			
+			[Bindable]
+			private var tab1_leftTitle:String = "";
+			[Bindable]
+			private var tab1_rightTitle:String = "";
+			
+			[Bindable]
+			private var tab1_showCorpCnt:int = _showCorpCnt;
+			[Bindable]
+			private var tab1_showCorpCntMax:int = 1000;
+			
+			[Bindable]
+			private var tab1_leftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_rightConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_leftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_rightDS:ArrayCollection;
+			
+			protected function init():void
+			{
+				tab1_leftDS = new ArrayCollection();
+				tab1_rightDS = new ArrayCollection();
+				
+//				label1.setStyle("color", "#06B354");
+//				label2.setStyle("color", "#FFFF06");
+//				label3.setStyle("color", "#FF0606");
+//				label1.setStyle("fontWeight", "bold");
+				label2.setStyle("fontWeight", "normal");
+				label3.setStyle("fontWeight", "normal");
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				tab1_leftConfDS = new ArrayCollection([{name: tab1_showTypeNameCurrSelect, field: tab1_showTypeCurrSelect, type: "columnSeries", axis: "left"},]);
+				tab1_rightConfDS = new ArrayCollection([{name: tab1_showTypeNameCurrSelect, field: tab1_showTypeCurrSelect, type: "columnSeries", axis: "left"}]);
+				
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab1_showCorpCnt = getTab1_CorpCntDS();
+				tab1_showCorpCntMax = getTab1_CorpCntMax();
+				tab1_leftDS = getTab1_leftDS();
+				tab1_rightDS = getTab1_rightDS();
+				
+				executeBindTab1Title();
+			}
+			
+			private function executeBindTab1Title():void
+			{
+				if(plateName=="全部"){
+				   tab1_leftTitle =  "中国石化"+dateStr + "年" +profName + "专业" +  tab1_showTypeNameCurrSelect + "情况（前" + tab1_showCorpCnt + "名）";
+				   tab1_rightTitle = "中国石化"+dateStr + "年" +profName + "专业" + tab1_showTypeNameCurrSelect + "情况（后" + tab1_showCorpCnt + "名）";
+				}
+				else{
+					tab1_leftTitle =  plateName+ "板块"+dateStr + "年" +profName + "专业" +  tab1_showTypeNameCurrSelect + "情况（前" + tab1_showCorpCnt + "名）";
+					tab1_rightTitle = plateName+ "板块"+dateStr + "年" +profName + "专业" + tab1_showTypeNameCurrSelect + "情况（后" + tab1_showCorpCnt + "名）";
+					}
+			}
+			
+			private function getTab1_CorpCntDS():int
+			{
+				var _cnt:int = getTab1_CorpCntMax();
+				if (_cnt > _showCorpCnt)
+					_cnt = _showCorpCnt;
+				return _cnt;
+			}
+			
+			private function getTab1_CorpCntMax():int
+			{
+				var _cnt:int = 0;
+				try
+				{
+					if (dataSource != null)
+					{
+						var tmpList:XMLList;
+						tmpList = dataSource.rateDatas.(@rateType == tab1_showTypeCurrSelect).dataset;
+						if (tmpList != null && tmpList.length() > 0)
+						{
+							_cnt = tmpList.length();
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//分左右2部分显示
+				_cnt = Math.floor((_cnt + 1) / 2);
+				return _cnt;
+			}
+			
+			private function getTab1_leftDS():ArrayCollection
+			{
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					if (dataSource != null)
+					{
+						var tmpList:XMLList;
+						tmpList = dataSource.rateDatas.(@rateType == tab1_showTypeCurrSelect).dataset;
+						if (dataSource != null && dataSource.length() > 0)
+						{
+							for each (var xml:XML in tmpList)
+							{
+								var obj:Object = new Object();
+								obj.label = xml.@label;
+								obj[tab1_showTypeCurrSelect] = xml.@numbers;
+								obj.id = xml.@corpid;
+								tmpArrayCollection.addItem(obj);
+							}
+							
+							var sort:Sort = new Sort();
+							sort.fields = [new SortField(tab1_showTypeCurrSelect, true, true)];
+							tmpArrayCollection.sort = sort;
+							tmpArrayCollection.refresh();
+							
+							//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+							var tmpCnt:int = 0;
+							for (var i:int = 0; i < tmpArrayCollection.length; i++)
+							{
+								if (i >= tab1_showCorpCnt)
+									break;
+								tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection2;
+			}
+			
+			private function getTab1_rightDS():ArrayCollection
+			{
+				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					if (dataSource != null)
+					{
+						var tmpList:XMLList;
+						tmpList = dataSource.rateDatas.(@rateType == tab1_showTypeCurrSelect).dataset;
+						if (dataSource != null && dataSource.length() > 0)
+						{
+							for each (var xml:XML in tmpList)
+							{
+								var obj:Object = new Object();
+								obj.label = xml.@label;
+								obj[tab1_showTypeCurrSelect] = xml.@numbers;
+								obj.id = xml.@corpid;
+								tmpArrayCollection.addItem(obj);
+							}
+							
+							var sort:Sort = new Sort();
+							sort.fields = [new SortField(tab1_showTypeCurrSelect, false, true)];
+							tmpArrayCollection.sort = sort;
+							tmpArrayCollection.refresh();
+							
+							//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+							var tmpCnt:int = 0;
+							for (var i:int = 0; i < tmpArrayCollection.length; i++)
+							{
+								if (i >= tab1_showCorpCnt)
+									break;
+								tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+							}
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection2;
+			}
+			
+			public function get DataSource():XML
+			{
+				return dataSource;
+			}
+			
+			public function set DataSource(value:XML):void
+			{
+				dataSourceChanged = true;
+				dataSource = value;
+				invalidateProperties();
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (dataSourceChanged)
+				{
+					dataSourceChanged = false;
+					init();
+				}
+			}
+			
+			protected function numericstepper1_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				tab1_showCorpCnt = int(NumericStepper(event.target).value);
+				tab1_leftDS = getTab1_leftDS();
+				tab1_rightDS = getTab1_rightDS();
+				executeBindTab1Title();
+			
+			}
+			
+			protected function selGreen_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_showTypeCurrSelect = "green";
+				tab1_showTypeNameCurrSelect = "完成率";
+				//label1.setStyle("color","#06B354");
+//				label1.setStyle("fontWeight", "bold");
+				//label2.setStyle("color","#FFFFFF");
+				label2.setStyle("fontWeight", "normal");
+				//label3.setStyle("color","#FFFFFF");
+				label3.setStyle("fontWeight", "normal");
+				refreshData();
+			}
+			
+			protected function selYellow_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_showTypeCurrSelect = "yellow";
+				tab1_showTypeNameCurrSelect = "预警率";
+				//label1.setStyle("color","#FFFFFF");
+//				label1.setStyle("fontWeight", "normal");
+				//label2.setStyle("color","#FFFF06");
+				label2.setStyle("fontWeight", "bold");
+				//label3.setStyle("color","#FFFFFF");
+				label3.setStyle("fontWeight", "normal");
+				refreshData();
+			}
+			
+			protected function selRed_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_showTypeCurrSelect = "red";
+				tab1_showTypeNameCurrSelect = "超期报警率";
+				//label1.setStyle("color","#FFFFFF");
+//				label1.setStyle("fontWeight", "normal");
+				//label2.setStyle("color","#FFFFFF");
+				label2.setStyle("fontWeight", "normal");
+				//label3.setStyle("color","#FF0606");
+				label3.setStyle("fontWeight", "bold");
+				refreshData();
+			}
+			private var meantimeStatusDetail:MeantimeStatusDetail;
+			private var meantimeStatusDetail_temp:MeantimeStatusDetail_temp_byCorp;
+			
+			protected function pop(corpid:String, corpName:String):void
+			{
+				meantimeStatusDetail_temp = new MeantimeStatusDetail_temp_byCorp();
+				var obj:Object = new Object();
+				obj.plateid = plateid;
+				obj.plate = plateName;
+				obj.corpid = corpid;
+				obj.corp = corpName;
+				obj.levelid = levelid;
+				obj.level = levelName;
+				obj.profid = profid;
+				obj.prof = profName;
+				obj.stageid = "";
+				obj.stage = "";
+				
+				meantimeStatusDetail_temp.width = this.width;
+				meantimeStatusDetail_temp.setData(wdsl, dateStr, obj);
+				meantimeStatusDetail_temp.title = obj.prof + "" + obj.stage + "" + "三同时项目进度情况";
+				PopUpManager.addPopUp(meantimeStatusDetail_temp, this, true);
+				PopUpManager.centerPopUp(meantimeStatusDetail_temp);
+				
+//				meantimeStatusDetail.setData(wdsl, dateStr, obj,"");
+//				
+//				meantimeStatusDetail.title = obj.corp + obj.level + "" + obj.prof + "专业" + "所有" + "阶段" + "三同时项目进度情况";
+//				PopUpManager.addPopUp(meantimeStatusDetail, this, true);
+//				PopUpManager.centerPopUp(meantimeStatusDetail);
+			}
+			
+			protected function tab1_left_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				pop(item.id, item.label);
+			}
+			
+			protected function tab1_right_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				pop(item.id, item.label);
+			}
+			
+			[Bindable]
+			private var tab1_leftAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab1_leftAxisMinimum:Number = 0;
+			[Bindable]
+			private var tab1_rightAxisMaximum:Number = 0;
+			[Bindable]
+			private var tab1_rightAxisMinimum:Number = 0;
+			
+			protected function tab1_left_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_leftAxisMaximum = event.getLeftAxisMaximum>tab1_leftAxisMaximum?event.getLeftAxisMaximum:tab1_leftAxisMaximum;
+				tab1_leftAxisMinimum = event.getLeftAxisMinimum<tab1_leftAxisMaximum?event.getLeftAxisMinimum:tab1_leftAxisMinimum;
+				tab1_rightAxisMaximum = event.getRightAxisMaximum>tab1_rightAxisMaximum?event.getLeftAxisMaximum:tab1_rightAxisMaximum;
+				tab1_rightAxisMinimum = event.getRightAxisMinimum<tab1_rightAxisMinimum?event.getLeftAxisMinimum:tab1_rightAxisMinimum;
+			}
+			
+			protected function tab1_right_SetAxisComplateHandler(event:SetAxisComplateEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab1_leftAxisMaximum = event.getLeftAxisMaximum>tab1_leftAxisMaximum?event.getLeftAxisMaximum:tab1_leftAxisMaximum;
+				tab1_leftAxisMinimum = event.getLeftAxisMinimum<tab1_leftAxisMaximum?event.getLeftAxisMinimum:tab1_leftAxisMinimum;
+				tab1_rightAxisMaximum = event.getRightAxisMaximum>tab1_rightAxisMaximum?event.getLeftAxisMaximum:tab1_rightAxisMaximum;
+				tab1_rightAxisMinimum = event.getRightAxisMinimum<tab1_rightAxisMinimum?event.getLeftAxisMinimum:tab1_rightAxisMinimum;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:String id="wdsl"></fx:String>
+		<fx:String id="dateStr">2013</fx:String>
+		<fx:String id="plateid">00</fx:String>
+		<fx:String id="plateName">全部</fx:String>
+		<fx:String id="levelid">00</fx:String>
+		<fx:String id="levelName">全部级别</fx:String>
+		<fx:String id="profid">safety</fx:String>
+		<fx:String id="profName">安全</fx:String>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	<s:HGroup width="100%"
+			  height="30"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+			<s:layout>
+				<s:HorizontalLayout horizontalAlign="right"
+									verticalAlign="middle" />
+			</s:layout>
+			<mx:HBox borderStyle="outset"
+					 styleName="controlBox"
+					 paddingLeft="10"
+					 paddingRight="10">
+				<!--<s:HGroup id="selGreen"
+						  verticalAlign="middle"
+						  buttonMode="true"
+						  click="selGreen_clickHandler(event)">
+					<s:Rect width="18"
+							height="18">
+						<s:fill>
+							<s:SolidColor color="#06B354" />
+						</s:fill>
+						<s:stroke>
+							<s:SolidColorStroke color="#FFFFFF" />
+						</s:stroke>
+					</s:Rect>
+					<s:Label id="label1"
+							 text="完成率"
+							 fontSize="14"
+							 verticalAlign="middle" />
+				</s:HGroup>-->
+				
+				<s:HGroup id="selRed"
+						  verticalAlign="middle"
+						  buttonMode="true"
+						  click="selRed_clickHandler(event)">
+					<s:Rect width="18"
+							height="18">
+						<s:fill>
+							<s:SolidColor color="#FF0606" />
+						</s:fill>
+						<s:stroke>
+							<s:SolidColorStroke color="#FFFFFF" />
+						</s:stroke>
+					</s:Rect>
+					<s:Label id="label3"
+							 text="超期报警率"
+							 fontSize="14"
+							 verticalAlign="middle" />
+				</s:HGroup>
+				<s:HGroup id="selYellow"
+						  verticalAlign="middle"
+						  buttonMode="true"
+						  click="selYellow_clickHandler(event)">
+					<s:Rect width="18"
+							height="18">
+						<s:fill>
+							<s:SolidColor color="#FFFF06" />
+						</s:fill>
+						<s:stroke>
+							<s:SolidColorStroke color="#FFFFFF" />
+						</s:stroke>
+					</s:Rect>
+					<s:Label id="label2"
+							 text="预警率"
+							 fontSize="14"
+							 verticalAlign="middle" />
+				</s:HGroup>
+			</mx:HBox>
+			<s:Label text="显示企业数" />
+			<mx:NumericStepper id="numericstepper1"
+							   value="{tab1_showCorpCnt}"
+							   minimum="0"
+							   maximum="{tab1_showCorpCntMax}"
+							   color="#000000"
+							   change="numericstepper1_changeHandler(event)" />
+		</s:BorderContainer>
+	</s:HGroup>
+	<s:VGroup width="100%"
+			  height="100%"
+			  horizontalAlign="center"
+			  gap="-1">
+		<s:HGroup width="100%"
+				  height="100%"
+				  horizontalAlign="center"
+				  verticalAlign="top"
+				  gap="-1">
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_left"
+								   AxisLeftUnit="%"
+								   labelRotationX="45"
+								   title="{tab1_rightTitle}"
+								   showLegend="true"
+								   DataSourceConf="{tab1_leftConfDS}"
+								   DataSource="{tab1_leftDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}"
+								   PopupDoubleClick="tab1_left_PopupDoubleClickHandler(event)"
+								   SetAxisComplate="tab1_left_SetAxisComplateHandler(event)"
+								   UseCustomAxisMaxMinmum="true"
+								   LeftAxisMaximum="{tab1_leftAxisMaximum}"
+								   LeftAxisMinimum="{tab1_leftAxisMinimum}"
+								   RightAxisMaximum="{tab1_rightAxisMaximum}"
+								   RightAxisMinimum="{tab1_rightAxisMinimum}" />
+			</s:BorderContainer>
+			<s:BorderContainer width="100%"
+							   height="100%"
+							   styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5"
+									  paddingTop="5"
+									  paddingBottom="5"
+									  paddingRight="5"
+									  horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnMulti id="tab1_right"
+								   AxisLeftUnit="%"
+								   labelRotationX="45"
+								   title="{tab1_leftTitle}"
+								   showLegend="true"
+								   DataSourceConf="{tab1_rightConfDS}"
+								   DataSource="{tab1_rightDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}"
+								   PopupDoubleClick="tab1_right_PopupDoubleClickHandler(event)"
+								   SetAxisComplate="tab1_right_SetAxisComplateHandler(event)"
+								   UseCustomAxisMaxMinmum="true"
+								   LeftAxisMaximum="{tab1_leftAxisMaximum}"
+								   LeftAxisMinimum="{tab1_leftAxisMinimum}"
+								   RightAxisMaximum="{tab1_rightAxisMaximum}"
+								   RightAxisMinimum="{tab1_rightAxisMinimum}" />
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

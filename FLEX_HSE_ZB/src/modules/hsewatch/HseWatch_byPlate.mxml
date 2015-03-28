@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="400"
+		 height="300"
+		 xmlns:views="views.*"
+		 creationComplete="init()">
+	<!--
+		 /* *
+		 * 名称：总部仪表盘-HSE观察-总体情况
+		 * 参数：年（2012）
+		 * 作者：孙山虎
+		 * 日期：2013年5月8日
+		 * */
+	-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.events.IndexChangeEvent;
+			import events.PopupEvent;
+			import skins.ButtonBarSkin;
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/zb_contractordata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice"; //localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int = 7;
+			
+			private var isFirstLoad:Boolean = true;
+			private var dateStrChanged:Boolean = false;
+			[Bindable]
+			private var dateStr:String = "2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String = "HSE观察情况";
+			[Bindable]
+			private var tab2_title:String = "观察问题及处理情况";
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String = "";
+			[Bindable]
+			private var tab1_topRightTitle:String = "";
+			[Bindable]
+			private var tab1_downLeftTitle:String = "";
+			[Bindable]
+			private var tab1_downRightTitle:String = "";
+			[Bindable]
+			private var tab2_Title:String = "";
+			
+			[Bindable]
+			private var tab1_mthCurrSelect:String;
+			private var tab1_mthNameCurrSelect:String;
+			[Bindable]
+			private var tab1_mthCurrIndex:int;
+			[Bindable]
+			private var tab1_mthDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab2_mthCurrSelect:String;
+			private var tab2_mthNameCurrSelect:String;
+			[Bindable]
+			private var tab2_mthCurrIndex:int;
+			[Bindable]
+			private var tab2_mthDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab2_ConfDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_downRightDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab2_DS:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();
+			private var loader:URLLoader = new URLLoader();
+			
+			protected function init():void
+			{
+				
+				tab1_topLeftDS = new ArrayCollection();
+				tab1_topRightDS = new ArrayCollection();
+				tab1_downLeftDS = new ArrayCollection();
+				tab1_downRightDS = new ArrayCollection();
+				tab2_DS = new ArrayCollection();
+				
+				tab1_topLeftConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "columnSeries", axis: "left"},]);
+				tab1_topRightConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "columnSeries", axis: "left"},]);
+				tab1_downLeftConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "columnSeries", axis: "left"},]);
+				tab1_downRightConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "columnSeries", axis: "left"},]);
+				
+				tab2_ConfDS = new ArrayCollection([{name: "问题数", field: "vol1", type: "columnSeries", axis: "left"}, {name: "问题处理数", field: "vol2", type: "columnSeries", axis: "left"}, {name: "问题处理率", field: "vol3", type: "lineSeries", axis: "right"},]);
+				
+				refreshData();
+				isFirstLoad = false;
+			}
+			
+			private function refreshData():void
+			{
+				switch (_dataType)
+				{
+					case "remoteWebservice": 
+						loadWSDL();
+						break;
+					case "loccalXMLFile": 
+						loadData();
+						break;
+					case "localStaticData": 
+						loadDemo();
+						break;
+				}
+			}
+			
+			private function loadDemo():void
+			{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				//。。。。。。给其他图赋值，这里省略。。。。。。。
+			}
+			
+			private function loadWSDL():void
+			{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE, loader_wsdl_result_handler);
+			}
+			
+			private function loader_wsdl_result_handler(event:Event):void
+			{
+				ws_init();
+			}
+			
+			private function ws_init():void
+			{
+				try
+				{
+					ws.wsdl = XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetHsewatch(dateStr);
+				}
+				catch (e:Event)
+				{
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			
+			private function loadData():void
+			{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE, loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void
+			{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void
+			{
+				tab1_mthDS = getTab1_mthDS();
+				tab2_mthDS = getTab2_mthDS();
+				
+				tab1_topLeftDS = getTab1_topLeftDS();
+				tab1_topRightDS = getTab1_topRightDS();
+				tab1_downLeftDS = getTab1_downLeftDS();
+				tab1_downRightDS = getTab1_downRightDS();
+				
+				tab2_DS = getTab2_DS();
+				
+				executeBindTab1Title();
+				executeBindTab2Title();
+			
+			}
+			
+			private function executeBindTab1Title():void
+			{
+				tab1_topLeftTitle = "中国石化" + dateStr + "年" + tab1_mthNameCurrSelect + "观察次数对比情况";
+				tab1_topRightTitle = "中国石化" + dateStr + "年" + tab1_mthNameCurrSelect + "不安全行为对比情况";
+				tab1_downLeftTitle = "中国石化" + dateStr + "年" + tab1_mthNameCurrSelect + "不安全状态对比情况";
+				tab1_downRightTitle = "中国石化" + dateStr + "年" + tab1_mthNameCurrSelect + "推荐安全行为对比情况";
+			}
+			
+			private function executeBindTab2Title():void
+			{
+				tab2_Title = "中国石化" + dateStr + "年" + tab2_mthNameCurrSelect + "HSE观察问题处理情况";
+			}
+			
+			private function getTab1_mthDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byPlate.watchData.dataset;
+					if (tmpList.length() > 0)
+					{
+						
+						//tab1_mthCurrSelect=tmpList[tmpList.length()-1].@month;//设置默认选择
+						//tab1_mthNameCurrSelect=tmpList[tmpList.length()-1].@label;
+						//tab1_mthNameCurrSelect=tab1_mthNameCurrSelect==null?"":tab1_mthNameCurrSelect;
+						//for(var i:int=tmpList.length()-1;i>0;i--){
+						//	var xml:XML=tmpList[i];
+						
+						tab1_mthCurrSelect = tmpList[tmpList.length()-1].@month; //设置默认选择
+						tab1_mthNameCurrSelect = tmpList[tmpList.length()-1].@label;
+						tab1_mthNameCurrSelect = tab1_mthNameCurrSelect == null ? "" : tab1_mthNameCurrSelect;
+						
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, value: xml.@month};
+							tmpArrayCollection.addItem(obj);
+						}
+						tab1_mthCurrIndex = tmpArrayCollection.length-1;
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				return tmpArrayCollection;
+			}
+			
+			private function getTab2_mthDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byPlate.problemData.dataset;
+					if (tmpList.length() > 0)
+					{
+						//tab2_mthCurrSelect=tmpList[tmpList.length()-1].@month;//设置默认选择
+						//tab2_mthNameCurrSelect=tmpList[tmpList.length()-1].@label;
+						//tab2_mthNameCurrSelect=tab2_mthNameCurrSelect==null?"":tab2_mthNameCurrSelect;
+						//for(var i:int=tmpList.length()-1;i>0;i--){
+						//	var xml:XML=tmpList[i];
+						tab2_mthCurrSelect = tmpList[tmpList.length()-1].@month; //设置默认选择
+						tab2_mthNameCurrSelect = tmpList[tmpList.length()-1].@label;
+						tab2_mthNameCurrSelect = tab2_mthNameCurrSelect == null ? "" : tab2_mthNameCurrSelect;
+						
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, value: xml.@month};
+							tmpArrayCollection.addItem(obj);
+						}
+						tab2_mthCurrIndex = tmpArrayCollection.length - 1;
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_topLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byPlate.watchData.dataset.(@month == tab1_mthCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, vol1: xml.@watchTimes, id: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_topRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byPlate.watchData.dataset.(@month == tab1_mthCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, vol1: xml.@unsafeActionNumbers, id: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downLeftDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byPlate.watchData.dataset.(@month == tab1_mthCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, vol1: xml.@unsafeStatusNumbers, id: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downRightDS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byPlate.watchData.dataset.(@month == tab1_mthCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, vol1: xml.@recommendSafeActionNumbers, id: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab2_DS():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					var tmpList:XMLList = hseDataXML.byPlate.problemData.dataset.(@month == tab2_mthCurrSelect).plateData;
+					if (tmpList.length() > 0)
+					{
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {label: xml.@label, vol1: xml.@problemNumbers, vol2: xml.@dealedProblemNumbers, vol3: xml.@dealedRation, id: xml.@plateid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			//****************************************************
+			//            企业信息
+			//****************************************************
+			//弹出窗口
+			private var titleWindow3:views.PopupTitleWinDG;
+			
+			private function popupCorpMX1(mth:String, plateid:String, plateName:String):void
+			{
+				titleWindow3 = new views.PopupTitleWinDG();
+				titleWindow3.TitleValue = "中国石化" + plateName + "板块HSE观察情况" + "(" + dateStr + "年" + mth.substr(5,2) + "月) 计量单位：个";
+				titleWindow3.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow3);
+					});
+				titleWindow3.IfShowFirstRecordBgColor = true;
+				titleWindow3.IfShowFrontRecordColor = true;
+				titleWindow3.IfShowBackRecordColor = true;
+				titleWindow3.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "30", textAlign: "center", sortable: false, draggable: false},
+					{headerText: "企业", dataField: "subCorpname", width: "90", textAlign: "left", sortable: true, draggable: true,footHeakerText:"合计",sortByCustomField:"displayindex"},
+					{headerText: "观察次数", dataField: "watchTimes", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "不安全状态数", dataField: "unsafeStatusNumbers", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "不安全行为数", dataField: "unsafeActionNumbers", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "推荐安全行为数", dataField: "recommendSafeActionNumbers", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"}
+				]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.byPlate.watchData.dataset.(@month == mth).plateData;
+					if (plateid != "00")
+					{
+						tmpList = tmpList.(@plateid == plateid);
+					}
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						
+						//合计数据
+						/*组件2自动合计，因此不需要数据计算，注释掉
+						if (plateid != "00")
+						{
+							var obj_total:Object = {subCorpname: tmpList[0].@label + "小计", watchTimes: Number(tmpList[0].@watchTimes), unsafeStatusNumbers: Number(tmpList[0].@unsafeStatusNumbers), unsafeActionNumbers: Number(tmpList[0].@unsafeActionNumbers), recommendSafeActionNumbers: Number(tmpList[0].@recommendSafeActionNumbers), index: 1, order: ""};
+						obj_total.displayindex=0;	
+						tmpArrayCollection2.addItem(obj_total);
+						}
+						*/
+						var order:int = 1;
+						tmpList = tmpList.corpData;
+						var index:Number = 2;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {subCorpname: xml.@subCorpname, watchTimes: Number(xml.@watchTimes), unsafeStatusNumbers: Number(xml.@unsafeStatusNumbers), unsafeActionNumbers: Number(xml.@unsafeActionNumbers), recommendSafeActionNumbers: Number(xml.@recommendSafeActionNumbers), index: index, order: order};
+							obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+						
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("watchTimes", true, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+						
+					}
+					titleWindow3.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow3, this, true);
+				PopUpManager.centerPopUp(titleWindow3);
+			}
+			//****************************************************
+			//            企业信息
+			//****************************************************
+			//弹出窗口
+			private var titleWindow4:views.PopupTitleWinDG;
+			
+			private function popupCorpMX2(mth:String, plateid:String, plateName:String):void
+			{
+				titleWindow4 = new views.PopupTitleWinDG();
+				titleWindow4.TitleValue = "中国石化" + plateName + "板块HSE观察问题及处理情况" + "(" + dateStr + "年" + mth.substr(5,2) + "月) 计量单位：个";
+				titleWindow4.addEventListener(CloseEvent.CLOSE, function closeEV():void
+					{
+						PopUpManager.removePopUp(titleWindow4);
+					});
+				titleWindow4.IfShowFirstRecordBgColor = true;
+				titleWindow4.IfShowFrontRecordColor = true;
+				titleWindow4.IfShowBackRecordColor = true;
+				titleWindow4.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "30", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "企业", dataField: "subCorpname", width: "90", textAlign: "left", sortable: true, draggable: true,footHeakerText:"合计",sortByCustomField:"displayindex"},
+					{headerText: "问题数", dataField: "problemNumbers", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "问题处理数", dataField: "dealedProblemNumbers", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"sum"},
+					{headerText: "问题处理率%", dataField: "dealedRation", width: "40", textAlign: "center", sortable: true, draggable: true,footLblFunEnable:true,footLblFunType:"percent",footLblFunCustomField:"dealedProblemNumbers,problemNumbers"}
+				]);
+				
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList = hseDataXML.byPlate.problemData.dataset.(@month == mth).plateData;
+					if (plateid != "00")
+					{
+						tmpList = tmpList.(@plateid == plateid);
+					}
+					if (tmpList != null && tmpList.length() > 0)
+					{
+						
+						//合计数据
+						/*组件2自动合计，因此不需要数据计算，注释掉
+						if (plateid != "00")
+						{
+							var obj_total:Object = {subCorpname: tmpList[0].@label + "小计", problemNumbers: Number(tmpList[0].@problemNumbers), dealedProblemNumbers: Number(tmpList[0].@dealedProblemNumbers), dealedRation: Number(tmpList[0].@dealedRatio), index: 1, order: ""};
+						obj_total.displayindex=0;	
+						tmpArrayCollection2.addItem(obj_total);
+						}
+						*/
+						var order:int = 1;
+						tmpList = tmpList.corpData;
+						var index:Number = 2;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {subCorpname: xml.@subCorpname, problemNumbers: Number(xml.@problemNumbers), dealedProblemNumbers: Number(xml.@dealedProblemNumbers), dealedRation: Number(xml.@dealedRation), index: index, order: order};
+							obj.displayindex=Number(xml.@displayindex);
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+						
+						var sort:Sort = new Sort();
+						sort.fields = [new SortField("dealedRation", true, true)];
+						tmpArrayCollection.sort = sort;
+						tmpArrayCollection.refresh();
+						var order2:int = 1;
+						for each (var obj2:Object in tmpArrayCollection)
+						{
+							obj2.order = order2;
+							tmpArrayCollection2.addItem(obj2);
+							order2++;
+						}
+						
+					}
+					titleWindow4.DataSource = tmpArrayCollection2;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow4, this, true);
+				PopUpManager.centerPopUp(titleWindow4);
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			
+			public function set DateStr(value:String):void
+			{
+				if (value != dateStr)
+				{
+					dateStrChanged = true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (!isFirstLoad)
+				{
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+							//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				popupCorpMX1(this.tab1_mthCurrSelect, item.id, item.label);
+			}
+			
+			protected function tab1_topRight_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				popupCorpMX1(this.tab1_mthCurrSelect, item.id, item.label);
+			}
+			
+			protected function tab1_downLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				popupCorpMX1(this.tab1_mthCurrSelect, item.id, item.label);
+			}
+			
+			protected function tab1_downRight_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				popupCorpMX1(this.tab1_mthCurrSelect, item.id, item.label);
+			}
+			
+			protected function tab2__PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object = event.hitDataItem;
+				popupCorpMX2(this.tab2_mthCurrSelect, item.id, item.label);
+			}
+			
+			protected function tab1_mthSelect_changeHandler(event:IndexChangeEvent):void
+			{
+				
+				// TODO Auto-generated method stub
+				tab1_mthCurrSelect = ComboBox(event.target).selectedItem.value;
+				tab1_mthNameCurrSelect = ComboBox(event.target).selectedItem.label;
+				tab1_mthNameCurrSelect = tab1_mthNameCurrSelect == null ? "" : tab1_mthNameCurrSelect;
+				
+				tab1_topLeftDS = getTab1_topLeftDS();
+				tab1_topRightDS = getTab1_topRightDS();
+				tab1_downLeftDS = getTab1_downLeftDS();
+				tab1_downRightDS = getTab1_downRightDS();
+				executeBindTab1Title();
+			}
+			
+			protected function tab2_mthSelect_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				tab2_mthCurrSelect = ComboBox(event.target).selectedItem.value;
+				tab2_mthNameCurrSelect = ComboBox(event.target).selectedItem.label;
+				tab2_mthNameCurrSelect = tab2_mthNameCurrSelect == null ? "" : tab2_mthNameCurrSelect;
+				
+				tab2_DS = getTab2_DS();
+				executeBindTab2Title();
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id="hseDataXML" />
+		<mx:WebService id="ws"
+					   showBusyCursor="true"
+					   result="ws_resultHandler(event)"
+					   fault="ws_faultHandler(event)" />
+		<s:RadioButtonGroup id="tab2_plateGrp" />
+		<s:RadioButtonGroup id="tab2_levelGrp" />
+	</fx:Declarations>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"
+						  verticalAlign="middle"
+						  gap="0" />
+	</s:layout>
+	<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+		<s:layout>
+			<s:BasicLayout />
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="25" styleName="tabButtonStyle2" right="5" top="5"/>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack"
+				  width="100%"
+				  height="100%"
+				  y="{buttonBar.height+5-1}"
+				  styleName="tabContentBox"
+				  borderStyle="inset"
+				  left="5"
+				  right="5">
+		<!--标签1-->
+		<s:NavigatorContent id="tab1"
+							width="100%"
+							height="100%"
+							label="{tab1_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left"
+								  verticalAlign="middle"
+								  gap="0" />
+			</s:layout>
+			<s:HGroup width="100%"
+					  height="30"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+					<s:layout>
+						<s:HorizontalLayout horizontalAlign="right"
+											verticalAlign="middle" />
+					</s:layout>
+					<s:Label text="按月筛选" />
+					<s:ComboBox right="5"
+								id="tab1_mthSelect"
+								width="100"
+								fontWeight="normal"
+								labelField="label"
+								selectedIndex="{tab1_mthCurrIndex}"
+								change="tab1_mthSelect_changeHandler(event)"
+								dataProvider="{tab1_mthDS}" />
+				</s:BorderContainer>
+			</s:HGroup>
+			<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_topLeft"
+											   AxisLeftTiltle="观察：次"
+											   showLegend="false" ShowDataLabel="{showDataLabel}"
+											   title="{tab1_topLeftTitle}"
+											   DataSourceConf="{tab1_topLeftConfDS}"
+											   DataSource="{tab1_topLeftDS}"
+											   PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_topRight"
+											   AxisLeftTiltle="不安全行为：个"
+											   showLegend="false" ShowDataLabel="{showDataLabel}"
+											   title="{tab1_topRightTitle}"
+											   DataSourceConf="{tab1_topRightConfDS}"
+											   DataSource="{tab1_topRightDS}"
+											   PopupDoubleClick="tab1_topRight_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+				</s:HGroup>
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_downLeft"
+											   AxisLeftTiltle="不安全状态：个"
+											   showLegend="false" ShowDataLabel="{showDataLabel}"
+											   title="{tab1_downLeftTitle}"
+											   DataSourceConf="{tab1_downLeftConfDS}"
+											   DataSource="{tab1_downLeftDS}"
+											   PopupDoubleClick="tab1_downLeft_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_downRight"
+											   AxisLeftTiltle="推荐安全行为：个"
+											   showLegend="false" ShowDataLabel="{showDataLabel}"
+											   title="{tab1_downRightTitle}"
+											   DataSourceConf="{tab1_downRightConfDS}"
+											   DataSource="{tab1_downRightDS}"
+											   PopupDoubleClick="tab1_downRight_PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<!--标签2-->
+		<s:NavigatorContent id="tab2"
+							width="100%"
+							height="100%"
+							label="{tab2_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left"
+								  verticalAlign="middle"
+								  gap="0" />
+			</s:layout>
+			<s:HGroup width="100%"
+					  height="30"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+					<s:layout>
+						<s:HorizontalLayout horizontalAlign="right"
+											verticalAlign="middle" />
+					</s:layout>
+					<s:Label text="按月筛选" />
+					<s:ComboBox right="5"
+								id="tab2_mthSelect"
+								width="100"
+								fontWeight="normal"
+								labelField="label"
+								selectedIndex="{tab2_mthCurrIndex}"
+								change="tab2_mthSelect_changeHandler(event)"
+								dataProvider="{tab2_mthDS}" />
+				</s:BorderContainer>
+			</s:HGroup>
+			<s:VGroup width="100%"
+					  height="100%"
+					  horizontalAlign="center"
+					  gap="-1">
+				<s:HGroup width="100%"
+						  height="100%"
+						  horizontalAlign="center"
+						  verticalAlign="top"
+						  gap="-1">
+					<s:BorderContainer width="100%"
+									   height="100%"
+									   styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5"
+											  paddingTop="5"
+											  paddingBottom="5"
+											  paddingRight="5"
+											  horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab2_"
+											   AxisLeftTiltle="问题：个"
+											   title="{tab2_Title}"
+											   DataSourceConf="{tab2_ConfDS}"
+											   DataSource="{tab2_DS}" ShowDataLabel="{showDataLabel}"
+											   PopupDoubleClick="tab2__PopupDoubleClickHandler(event)" />
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Group>

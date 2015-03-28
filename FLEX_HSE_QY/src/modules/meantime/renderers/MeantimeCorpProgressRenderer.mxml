@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  focusEnabled="true" dataChange="mxadvanceddatagriditemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function mxadvanceddatagriditemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					if(data['stage'][advancedDataGridListData.dataField] == "NO-START"){
+						currentState = "state0";
+					}else if(data['stage'][advancedDataGridListData.dataField] == "IN-PROCESS"){
+						currentState = "state1";
+					}else if(data['stage'][advancedDataGridListData.dataField] == "FINISHED"){
+						currentState = "state2";
+					}else{
+						currentState = "state_1";
+					}
+				}else{
+					currentState = "state_1";
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="state_1"/>
+		<s:State name="state0"/>
+		<s:State name="state1"/>
+		<s:State name="state2"/>
+	</s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle" paddingBottom="2" paddingLeft="2" paddingRight="2" paddingTop="2"/>
+	</s:layout>
+	<s:Rect width="100%" height="100%" horizontalCenter="0" verticalCenter="0">
+		<s:fill>
+			<s:SolidColor alpha.state_1="0" color.state_1="#FFFFFF" color.state0="#FF0000" color.state1="#E2AE00" color.state2="#00FF00"/>
+		</s:fill>
+	</s:Rect>
+</s:MXAdvancedDataGridItemRenderer>

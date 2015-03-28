@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" xmlns:views="views.*" creationComplete="init()"
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	<fx:Script>
+		<![CDATA[
+			import as_class.SequenceItemRenderer;
+			
+			import events.ExportEvent;
+			import events.PopupEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import views.RowAdvDataGrid;
+			
+			
+			public const _dataPath:String = "assets/data/zb_alterationdata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			private var isFirstLoad:Boolean=true;
+			private var dateStrChanged:Boolean=false;
+			[Bindable]
+			private var dateStr:String="2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			
+			[Bindable]
+			private var tab1_topTitle1:String="";
+			[Bindable]
+			private var tab1_topTitle2:String="";
+			[Bindable]
+			private var tab1_downTitle1:String="";
+			[Bindable]
+			private var tab1_downTitle2:String="";
+			
+			[Bindable]
+			private var tab1_type1CurrSelect:String="";
+			private var tab1_type1NameCurrSelect:String="";
+			
+			[Bindable]
+			private var tab1_type2CurrSelect:String="";
+			private var tab1_type2NameCurrSelect:String="";
+			
+			[Bindable]
+			private var tab1_topDS1:ArrayCollection;	
+			[Bindable]
+			private var tab1_topDS2Conf:ArrayCollection;
+			[Bindable]
+			private var tab1_topDS2:ArrayCollection;
+			[Bindable]
+			private var tab1_downDS1:ArrayCollection;	
+			[Bindable]
+			private var tab1_downDS2Conf:ArrayCollection;
+			[Bindable]
+			private var tab1_downDS2:ArrayCollection;
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			protected function init():void
+			{
+				tab1_topDS1 = new ArrayCollection();
+				tab1_topDS2 = new ArrayCollection();
+				
+				tab1_downDS1 = new ArrayCollection();
+				tab1_downDS2 = new ArrayCollection();
+				tab1_topDS2Conf=new ArrayCollection([
+					{name:"数量",field:"number",type:"columnSeries",axis:"left",color:0x7b9821},
+					{name:"占同类别的百分比",field:"ratioOfKind",type:"columnSeries",axis:"right",color:0x83999e,labelFun:"1"},
+					{name:"占同级别的百分比",field:"ratioOfLevel",type:"columnSeries",axis:"right",color:0xa84d2b,labelFun:"1"},
+				]);
+				tab1_downDS2Conf=new ArrayCollection([
+					{name:"已登记",field:"sub1"},
+					{name:"审批中",field:"sub2"},
+					{name:"待验收",field:"sub3"},
+					{name:"已验收",field:"sub4"}
+				]);
+				
+				refreshData();
+				isFirstLoad=false;
+			}
+			
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.GetChangeData(dateStr);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+//				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			
+			private function executeBind():void{
+				tab1_topDS1=getTab1_topDS1();	
+				tab1_topDS2=getTab1_topDS2();
+				
+				tab1_downDS1=getTab1_downDS1();	
+				tab1_downDS2=getTab1_downDS2();
+				executeBindTab1Title();
+			}
+			
+			
+			
+			private function executeBindTab1Title():void{
+				tab1_topTitle1="中国石化"+ dateStr + "年变更数量构成情况";
+				tab1_topTitle2="中国石化"+ dateStr + "年"+tab1_type1NameCurrSelect+"管理组成情况";
+				tab1_downTitle1="中国石化"+ dateStr + "年变更费用构成情况";
+				tab1_downTitle2="中国石化"+ dateStr + "年"+tab1_type2NameCurrSelect+"项目各阶段情况";
+				
+			}
+			
+			
+			private function getTab1_topDS1():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.alterationNumberData.kinddata;
+					if(tmpList.length()>0)
+					{
+						tab1_type1CurrSelect=tmpList[0].@id;//设置默认选择
+						tab1_type1NameCurrSelect=tmpList[0].@label;
+						tab1_type1NameCurrSelect=tab1_type1NameCurrSelect==null?"":tab1_type1NameCurrSelect;
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,
+								value:xml.@number,
+								id:xml.@id,
+								ratio:xml.@ratio
+							};
+							tmpArrayCollection.addItem(obj); 
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_topDS2():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.alterationNumberData.kinddata.(@id==tab1_type1CurrSelect);
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList.levelData) {  
+							var obj:Object={label:xml.@label,
+								number:xml.@number,
+								ratioOfKind:xml.@ratioOfKind,
+								ratioOfLevel:xml.@ratioOfLevel
+							};
+							tmpArrayCollection.addItem(obj); 
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downDS1():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.alterationCostData.kinddata;
+					if(tmpList.length()>0)
+					{
+						tab1_type2CurrSelect=tmpList[0].@id;//设置默认选择
+						tab1_type2NameCurrSelect=tmpList[0].@label;
+						tab1_type2NameCurrSelect=tab1_type1NameCurrSelect==null?"":tab1_type1NameCurrSelect;
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,
+								value:xml.@cost,
+								id:xml.@id,
+								ratio:xml.@ratio
+							};
+							tmpArrayCollection.addItem(obj); 
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function getTab1_downDS2():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.overallData.alterationCostData.kinddata.(@id==tab1_type2CurrSelect);
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var sum:Number=0;
+							if(xml.levelData.length()>0){
+								for each(var xml_sum:XML in xml.levelData){
+//									sum+=Number(xml_sum.@number);
+									sum=Number(xml_sum.@number)
+								var xml_in_designer:XMLList=xml_sum.stageData.(@id=="yidengji");
+								var xml_wait_construction:XMLList=xml_sum.stageData.(@id=="shenpizhong");
+								var xml_in_construction:XMLList=xml_sum.stageData.(@id=="daiyanshou");
+								var xml_finished:XMLList=xml_sum.stageData.(@id=="yiyanshou");
+								var obj:Object={label:xml_sum.@label,
+									total:sum,
+									sub1:(xml_in_designer!=null&&xml_in_designer.length()>0)?xml_in_designer[0].@number:0,
+									sub2:(xml_wait_construction!=null&&xml_wait_construction.length()>0)?xml_wait_construction[0].@number:0,
+									sub3:(xml_in_construction!=null&&xml_in_construction.length()>0)?xml_in_construction[0].@number:0,
+									sub4:(xml_finished!=null&&xml_in_designer.length()>0)?xml_finished[0].@number:0,
+									msgFirst:"",
+									msgLast:"",
+									id:xml.@id};
+								
+								//格式化数据
+								obj.total=Number(obj.total)<0?0:obj.total;
+								obj.sub1=Number(obj.sub1)<0?0:obj.sub1;
+								obj.sub2=Number(obj.sub2)<0?0:obj.sub2;
+								obj.sub3=Number(obj.sub3)<0?0:obj.sub3;
+								obj.sub4=Number(obj.sub4)<0?0:obj.sub4;
+								
+								tmpArrayCollection.addItem(obj);
+								}
+							}
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			public function get DateStr():String
+			{
+				return dateStr;
+			}
+			public function set DateStr(value:String):void
+			{
+				if(value!=dateStr){
+					dateStrChanged=true;
+					dateStr = value;
+					invalidateProperties();
+				}
+			}	
+			public function get ShowDataLabel():Boolean{
+				return showDataLabel;
+			}
+			public function set ShowDataLabel(value:Boolean):void{
+				showDataLabel = value;
+				executeBind();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if(!isFirstLoad){
+					if (dateStrChanged)
+					{
+						dateStrChanged = false;
+						refreshData();
+						//invalidateDisplayList();  // invalidate in case the titles 
+						
+					}
+				}
+			}
+			
+			
+			protected function piemulti1_PopupClickHandler(event:PopupEvent):void
+			{
+				this.tab1_type1CurrSelect=event.hitDataItem.id;
+				this.tab1_type1NameCurrSelect=event.hitDataItem.label;
+				tab1_type1NameCurrSelect=tab1_type1NameCurrSelect==null?"":tab1_type1NameCurrSelect;
+				
+				tab1_topDS2=getTab1_topDS2();
+				executeBindTab1Title();
+			}
+			protected function piemulti2_PopupClickHandler(event:PopupEvent):void
+			{
+				this.tab1_type2CurrSelect=event.hitDataItem.id;
+				this.tab1_type2NameCurrSelect=event.hitDataItem.label;
+				tab1_type2NameCurrSelect=tab1_type2NameCurrSelect==null?"":tab1_type2NameCurrSelect;
+				
+				tab1_downDS2=getTab1_downDS2();
+				executeBindTab1Title();
+			}
+			
+			//****************************************************
+			//            板块各级别情况
+			//****************************************************
+			//弹出窗口
+			private var titleWindow1:views.PopupTitleWin;
+			[Bindable]
+			private var advancedAc:ArrayCollection = new ArrayCollection();
+			private function popupPlateMX():void
+			{
+				titleWindow1 = new views.PopupTitleWin();
+				titleWindow1.TitleValue = "中国石化变更情况" + "(" + dateStr + "年)"; //tab1_levelNameCurrSelect+
+				titleWindow1.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow1);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupPlateMXADG();
+					advancedAc = createPopupPlateMXData();
+					advancedDataGrid.dataProvider = advancedAc;
+					
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow1.width-2;
+					borderContainer.height =titleWindow1.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow1.Content = group;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+//				titleWindow1.addEventListener(events.PopupEvent.PopupItemClick, popCorpMX);
+//				titleWindow1.addEventListener(events.ExportEvent.ExportClick,DoExoprt1);
+				titleWindow1.addEventListener(events.ExportEvent.ExportClick,exportFun_top);
+				PopUpManager.addPopUp(titleWindow1, this, true);
+				PopUpManager.centerPopUp(titleWindow1);
+			}
+			
+			private function createPopupPlateMXADG():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("rollOverColor", "haloBlue");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					var col:AdvancedDataGridColumn;
+					column = new AdvancedDataGridColumn();
+					column.dataField = "plate";
+					column.showDataTips = true;
+					column.width = 80;
+					column.setStyle("textAlign", "center");
+//					column.headerText = "类别";
+					column.headerText = "变更级别";		//fixed by sunyang@20150327
+//					column.itemRenderer = itemLinkRenderer; //添加链接					
+					column.sortable=false;
+					advancedDataArray.push(column);
+					
+					//合计，数量/占比
+					//一级，数量/占级别比例/占板块比例
+					
+					var columnGP0:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP0.headerText = "小计";
+					var advancedDataGrpArray0:Array = new Array();
+					
+					var columnGP01:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP01.headerText = "变更数量";
+					var advancedDataGrpArray01:Array = new Array();
+					var column1:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column1.dataField = "field1";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray01.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field2";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray01.push(column1);
+					columnGP01.children = advancedDataGrpArray01;
+					
+					var columnGP02:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP02.headerText = "变更费用(万元)";
+					var advancedDataGrpArray02:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field3";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray02.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field4";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray02.push(column1);
+					columnGP02.children = advancedDataGrpArray02;
+					
+				/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */	
+					
+					var columnGP1:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP1.headerText = "管理变更";
+					var advancedDataGrpArray1:Array = new Array();
+					
+					var columnGP11:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP11.headerText = "变更数量";
+					var advancedDataGrpArray11:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field5";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray11.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field6";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray11.push(column1);
+					columnGP11.children = advancedDataGrpArray11;
+					
+					var columnGP12:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP12.headerText = "变更费用(万元)";
+					var advancedDataGrpArray12:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field7";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray12.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field8";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray12.push(column1);
+					columnGP12.children = advancedDataGrpArray12;
+					
+				/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */		
+					
+					
+				/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */	
+					
+					var columnGP2:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP2.headerText = "工艺变更";
+					var advancedDataGrpArray2:Array = new Array();
+					
+					var columnGP21:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP21.headerText = "变更数量";
+					var advancedDataGrpArray21:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field9";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray21.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field10";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray21.push(column1);
+					columnGP21.children = advancedDataGrpArray21;
+					
+					var columnGP22:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP22.headerText = "变更费用(万元)";
+					var advancedDataGrpArray22:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field11";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray22.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field12";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray22.push(column1);
+					columnGP22.children = advancedDataGrpArray22;
+					
+				/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */		
+					
+				/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */	
+					
+					var columnGP3:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP3.headerText = "设备变更";
+					var advancedDataGrpArray3:Array = new Array();
+					
+					var columnGP31:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP31.headerText = "变更数量";
+					var advancedDataGrpArray31:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field13";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray31.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field14";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray31.push(column1);
+					columnGP31.children = advancedDataGrpArray31;
+					
+					var columnGP32:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP32.headerText = "变更费用(万元)";
+					var advancedDataGrpArray32:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field15";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray32.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field16";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray32.push(column1);
+					columnGP32.children = advancedDataGrpArray32;
+					
+				/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */		
+					
+					
+					advancedDataGrpArray0.push(columnGP01);
+					advancedDataGrpArray0.push(columnGP02);
+					advancedDataGrpArray1.push(columnGP11);
+					advancedDataGrpArray1.push(columnGP12);
+					advancedDataGrpArray2.push(columnGP21);
+					advancedDataGrpArray2.push(columnGP22);
+					advancedDataGrpArray3.push(columnGP31);
+					advancedDataGrpArray3.push(columnGP32);
+					columnGP0.children = advancedDataGrpArray0;
+					columnGP1.children = advancedDataGrpArray1;
+					columnGP2.children = advancedDataGrpArray2;
+					columnGP3.children = advancedDataGrpArray3;
+					advancedDataArray.push(columnGP0);
+					advancedDataArray.push(columnGP1);
+					advancedDataArray.push(columnGP2);
+					advancedDataArray.push(columnGP3);
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function createPopupPlateMXData():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//级别
+					var plateList:XMLList = hseDataXML.overallData.leftChartTableData.kinddata[0].plateData;
+					
+					if (plateList != null && plateList.length() > 0)
+					{
+						//Start 合计行开始
+						var sum_obj:Object = new Object();
+						sum_obj['index'] = 1;
+						sum_obj['order'] = "";
+						sum_obj['plate'] = "合计";
+						var sum_sumList:XMLList = hseDataXML.overallData.leftChartTableData.kinddata;
+						if (sum_sumList != null && sum_sumList.length() > 0)
+						{
+							sum_obj['field1'] = sum_sumList[0].@number;
+							sum_obj['field2'] = sum_sumList[0].@ratioOfNumber;
+							sum_obj['field3'] = sum_sumList[0].@cost;
+							sum_obj['field4'] = sum_sumList[0].@rationOfCost;
+							sum_obj['field5'] = sum_sumList[1].@number;
+							sum_obj['field6'] = sum_sumList[1].@ratioOfNumber;
+							sum_obj['field7'] = sum_sumList[1].@cost;
+							sum_obj['field8'] = sum_sumList[1].@rationOfCost;
+							sum_obj['field9'] = sum_sumList[2].@number;
+							sum_obj['field10'] = sum_sumList[2].@ratioOfNumber;
+							sum_obj['field11'] = sum_sumList[2].@cost;
+							sum_obj['field12'] = sum_sumList[2].@rationOfCost;
+							sum_obj['field13'] = sum_sumList[3].@number;
+							sum_obj['field14'] = sum_sumList[3].@ratioOfNumber;
+							sum_obj['field15'] = sum_sumList[3].@cost;
+							sum_obj['field16'] = sum_sumList[3].@rationOfCost;
+						}
+						else
+						{
+							sum_obj['filed1'] = 0;
+						}
+						
+						tmpArrayCollection.addItem(sum_obj);
+						for each (var sum_xml:XML in plateList){
+							
+							var obj:Object = new Object();
+							obj.plate = sum_xml.@plateName;
+							obj['field1'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).@number;
+							obj['field2'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).@ratioOfNumber;
+							obj['field3'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).@cost;
+							obj['field4'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).@rationOfCost;
+							obj['field5'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).@number;
+							obj['field6'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).@ratioOfNumber;
+							obj['field7'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).@cost;
+							obj['field8'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).@rationOfCost;
+							obj['field9'] = sum_sumList[2].plateData.(@plateName == sum_xml.@plateName).@number;
+							obj['field10'] = sum_sumList[2].plateData.(@plateName == sum_xml.@plateName).@ratioOfNumber;
+							obj['field11'] = sum_sumList[2].plateData.(@plateName == sum_xml.@plateName).@cost;
+							obj['field12'] = sum_sumList[2].plateData.(@plateName == sum_xml.@plateName).@rationOfCost;
+							obj['field13'] = sum_sumList[3].plateData.(@plateName == sum_xml.@plateName).@number;
+							obj['field14'] = sum_sumList[3].plateData.(@plateName == sum_xml.@plateName).@ratioOfNumber;
+							obj['field15'] = sum_sumList[3].plateData.(@plateName == sum_xml.@plateName).@cost;
+							obj['field16'] = sum_sumList[3].plateData.(@plateName == sum_xml.@plateName).@rationOfCost;
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			private function colorFunction(item:Object, color:uint):uint
+			{
+				if (item.order == "")
+					color = 0xFFBF00;
+				return color;
+			}  
+			
+			private var titleWindow2:views.PopupTitleWin;
+			private function popupPlateMX2():void
+			{
+				titleWindow2 = new views.PopupTitleWin();
+				titleWindow2.TitleValue = "中国石化变更情况" + "(" + dateStr + "年)"; //tab1_levelNameCurrSelect+
+				titleWindow2.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow2);
+				});
+				var advancedDataGrid:mx.controls.AdvancedDataGrid;
+				try
+				{
+					advancedDataGrid = createPopupPlateMXADG2();
+					advancedAc = createPopupPlateMXData2();
+					advancedDataGrid.dataProvider = advancedAc;
+					
+					var group:Group=new Group();
+					var borderContainer:BorderContainer=new BorderContainer();
+					borderContainer.width = titleWindow2.width-2;
+					borderContainer.height =titleWindow2.height-32;
+					borderContainer.styleName = "tabHeadBox";
+					borderContainer.addElement(advancedDataGrid);
+					group.addElement(borderContainer);
+					titleWindow2.Content = group;
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				//				titleWindow2.addEventListener(events.PopupEvent.PopupItemClick, popCorpMX);
+				//				titleWindow2.addEventListener(events.ExportEvent.ExportClick,DoExoprt1);
+				titleWindow2.addEventListener(events.ExportEvent.ExportClick,exportFun_down);
+				PopUpManager.addPopUp(titleWindow2, this, true);
+				PopUpManager.centerPopUp(titleWindow2);
+			}
+			
+			private function createPopupPlateMXADG2():RowAdvDataGrid
+			{
+				var advancedDataGrid:RowAdvDataGrid = new RowAdvDataGrid();
+				try
+				{
+					advancedDataGrid.percentWidth = 100;
+					advancedDataGrid.percentHeight = 100;
+					advancedDataGrid.setStyle("fontSize", 14);
+					advancedDataGrid.setStyle("textAlign", "center");
+					advancedDataGrid.setStyle("rollOverColor", "haloBlue");
+					advancedDataGrid.setStyle("alternatingItemColors", ['#EDF5F9', '#FFFFFF']);
+					advancedDataGrid.sortExpertMode = true;
+					advancedDataGrid.sortableColumns = true;
+					
+					var advancedDataArray:Array = new Array();
+					
+					var column:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					var col:AdvancedDataGridColumn;
+					column = new AdvancedDataGridColumn();
+					column.dataField = "plate";
+					column.showDataTips = true;
+					column.width = 80;
+					column.setStyle("textAlign", "center");
+					column.headerText = "类别";
+					//					column.itemRenderer = itemLinkRenderer; //添加链接					
+					column.sortable=false;
+					advancedDataArray.push(column);
+					
+					//合计，数量/占比
+					//一级，数量/占级别比例/占板块比例
+					
+					var columnGP0:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP0.headerText = "一般变更";
+					var advancedDataGrpArray0:Array = new Array();
+					
+					var columnGP01:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP01.headerText = "总数";
+					var advancedDataGrpArray01:Array = new Array();
+					var column1:AdvancedDataGridColumn = new AdvancedDataGridColumn();
+					column1.dataField = "field1";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray01.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field2";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray01.push(column1);
+					columnGP01.children = advancedDataGrpArray01;
+					
+					var columnGP02:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP02.headerText = "已登记";
+					var advancedDataGrpArray02:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field3";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray02.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field4";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray02.push(column1);
+					columnGP02.children = advancedDataGrpArray02;
+					
+					var columnGP03:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP03.headerText = "审批中";
+					var advancedDataGrpArray03:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field5";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray03.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field6";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray03.push(column1);
+					columnGP03.children = advancedDataGrpArray03;
+					
+					var columnGP04:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP04.headerText = "待验收";
+					var advancedDataGrpArray04:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field7";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray04.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field8";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray04.push(column1);
+					columnGP04.children = advancedDataGrpArray04;
+					
+					var columnGP05:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP05.headerText = "已验收";
+					var advancedDataGrpArray05:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field9";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray05.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field10";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray05.push(column1);
+					columnGP05.children = advancedDataGrpArray05;
+					
+					/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */	
+					
+					var columnGP1:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP1.headerText = "重大变更";
+					var advancedDataGrpArray1:Array = new Array();
+					
+					var columnGP11:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP11.headerText = "总数";
+					var advancedDataGrpArray11:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field11";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray11.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field12";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray11.push(column1);
+					columnGP11.children = advancedDataGrpArray11;
+					
+					var columnGP12:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP12.headerText = "已登记";
+					var advancedDataGrpArray12:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field13";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray12.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field14";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray12.push(column1);
+					columnGP12.children = advancedDataGrpArray12;
+					
+					var columnGP13:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP13.headerText = "审批中";
+					var advancedDataGrpArray13:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field15";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray13.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field16";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray13.push(column1);
+					columnGP13.children = advancedDataGrpArray13;
+					
+					var columnGP14:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP14.headerText = "待验收";
+					var advancedDataGrpArray14:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field17";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray14.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field18";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray14.push(column1);
+					columnGP14.children = advancedDataGrpArray14;
+					
+					var columnGP15:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+					columnGP15.headerText = "已验收";
+					var advancedDataGrpArray15:Array = new Array();
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field19";
+					column1.headerText = "数量";
+					column1.width = 60;
+					advancedDataGrpArray15.push(column1);
+					column1 = new AdvancedDataGridColumn();
+					column1.dataField = "field20";
+					column1.headerText = "占比(%)";
+					column1.width = 60;
+					advancedDataGrpArray15.push(column1);
+					columnGP15.children = advancedDataGrpArray15;
+					
+					
+					/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */	
+					advancedDataGrpArray0.push(columnGP01);
+					advancedDataGrpArray0.push(columnGP02);
+					advancedDataGrpArray0.push(columnGP03);
+					advancedDataGrpArray0.push(columnGP04);
+					advancedDataGrpArray0.push(columnGP05);
+					advancedDataGrpArray1.push(columnGP11);
+					advancedDataGrpArray1.push(columnGP12);
+					advancedDataGrpArray1.push(columnGP13);
+					advancedDataGrpArray1.push(columnGP14);
+					advancedDataGrpArray1.push(columnGP15);
+					columnGP0.children = advancedDataGrpArray0;
+					columnGP1.children = advancedDataGrpArray1;
+					advancedDataArray.push(columnGP0);
+					advancedDataArray.push(columnGP1);
+					advancedDataGrid.groupedColumns = advancedDataArray;
+					advancedDataGrid.rowColorFunction = colorFunction;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return advancedDataGrid;
+			}
+			
+			private function createPopupPlateMXData2():ArrayCollection
+			{
+				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+				try
+				{
+					//级别
+					var plateList:XMLList = hseDataXML.overallData.rightChartTableData.levelData[0].plateData;
+					
+					if (plateList != null && plateList.length() > 0)
+					{
+						//Start 合计行开始
+						var sum_obj:Object = new Object();
+						sum_obj['index'] = 1;
+						sum_obj['order'] = "";
+						sum_obj['plate'] = "合计";
+						var sum_sumList:XMLList = hseDataXML.overallData.rightChartTableData.levelData;
+						if (sum_sumList != null && sum_sumList.length() > 0)
+						{
+							sum_obj['field1'] = sum_sumList[0].@number;
+							sum_obj['field2'] = sum_sumList[0].@ratio;
+							sum_obj['field3'] = sum_sumList[0].stageData[0].@number;
+							sum_obj['field4'] = sum_sumList[0].stageData[0].@ratio;
+							sum_obj['field5'] = sum_sumList[0].stageData[1].@number;
+							sum_obj['field6'] = sum_sumList[0].stageData[1].@ratio;
+							sum_obj['field7'] = sum_sumList[0].stageData[2].@number;
+							sum_obj['field8'] = sum_sumList[0].stageData[2].@ratio;
+							sum_obj['field9'] = sum_sumList[0].stageData[3].@number;
+							sum_obj['field10'] = sum_sumList[0].stageData[3].@ratio;
+							
+							sum_obj['field11'] = sum_sumList[1].@number;
+							sum_obj['field12'] = sum_sumList[1].@ratio;
+							sum_obj['field13'] = sum_sumList[1].stageData[0].@number;
+							sum_obj['field14'] = sum_sumList[1].stageData[0].@ratio;
+							sum_obj['field15'] = sum_sumList[1].stageData[1].@number;
+							sum_obj['field16'] = sum_sumList[1].stageData[1].@ratio;
+							sum_obj['field17'] = sum_sumList[1].stageData[2].@number;
+							sum_obj['field18'] = sum_sumList[1].stageData[2].@ratio;
+							sum_obj['field19'] = sum_sumList[1].stageData[3].@number;
+							sum_obj['field20'] = sum_sumList[1].stageData[3].@ratio;
+						}
+						else
+						{
+							sum_obj['filed1'] = 0;
+						}
+						tmpArrayCollection.addItem(sum_obj);
+						 for each (var sum_xml:XML in plateList){
+							
+							var obj:Object = new Object();
+							obj.plate = sum_xml.@plateName;
+							obj['field1'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).@number;
+							obj['field2'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).@ratio;
+							obj['field3'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[0].@number;
+							obj['field4'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[0].@ratio;
+							obj['field5'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[1].@number;
+							obj['field6'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[1].@ratio;
+							obj['field7'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[2].@number;
+							obj['field8'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[2].@ratio;
+							obj['field9'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[3].@number;
+							obj['field10'] = sum_sumList[0].plateData.(@plateName == sum_xml.@plateName).stageData[3].@ratio;
+							obj['field11'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).@number;
+							obj['field12'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).@ratio;
+							obj['field13'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[0].@number;
+							obj['field14'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[0].@ratio;
+							obj['field15'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[1].@number;
+							obj['field16'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[1].@ratio;
+							obj['field17'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[2].@number;
+							obj['field18'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[2].@ratio;
+							obj['field19'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[3].@number;
+							obj['field20'] = sum_sumList[1].plateData.(@plateName == sum_xml.@plateName).stageData[3].@ratio;
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+					
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			protected function exportFun_top(event:ExportEvent):void
+			{
+				var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+				titleWindow.title = "中国石化变更情况" + "(" + dateStr + "年)";
+				titleWindow.width=1000;
+				titleWindow.height=800;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"类别",dataField:"plate",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"小计数量",dataField:"field1",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"小计数量占比(%)",dataField:"field2",width1:"140",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"小计费用",dataField:"field3",width1:"100",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"小计费用占比(%)",dataField:"field4",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"工艺数量",dataField:"field5",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"工艺数量占比(%)",dataField:"field6",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"工艺费用",dataField:"field7",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"工艺费用占比(%)",dataField:"field8",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"设备数量",dataField:"field9",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"设备数量占比(%)",dataField:"field10",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"设备费用",dataField:"field11",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"设备费用占比(%)",dataField:"field12",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"管理数量",dataField:"field13",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"管理数量占比(%)",dataField:"field14",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"管理费用",dataField:"field15",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"管理费用占比(%)",dataField:"field16",width1:"90",textAlign:"center",sortable:true,draggable:false} 
+					
+				]);
+				titleWindow.DataSource= advancedAc;
+				titleWindow.exportToExcel();
+				
+			}
+			
+			protected function exportFun_down(event:ExportEvent):void
+			{
+				var titleWindow:views.PopupTitleWinDG = new views.PopupTitleWinDG();  
+				titleWindow.title = "中国石化变更情况" + "(" + dateStr + "年)";
+				titleWindow.width=1000;
+				titleWindow.height=800;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"类别",dataField:"plate",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"一般变更总数",dataField:"field1",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"一般变更占比(%)",dataField:"field2",width1:"140",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"一般变更已登记数量",dataField:"field3",width1:"100",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"一般变更已登记占比(%)",dataField:"field4",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"一般变更审批中数量",dataField:"field5",width1:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"一般变更审批中占比(%)",dataField:"field6",width1:"40",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"一般变更待验收数量",dataField:"field7",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"一般变更待验收占比(%)",dataField:"field8",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"一般变更已验收数量",dataField:"field9",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"一般变更已验收占比(%)",dataField:"field10",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"重大变更总数",dataField:"field11",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"重大变更占比(%)",dataField:"field12",width1:"90",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"重大变更已登记数量",dataField:"field13",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"重大变更已登记占比(%)",dataField:"field14",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"重大变更审批中数量",dataField:"field15",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"重大变更审批中占比(%)",dataField:"field16",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"重大变更待验收数量",dataField:"field15",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"重大变更待验收占比(%)",dataField:"field16",width1:"90",textAlign:"center",sortable:true,draggable:false}, 
+					{headerText:"重大变更已验收数量",dataField:"field15",width1:"90",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"重大变更已验收占比(%)",dataField:"field16",width1:"90",textAlign:"center",sortable:true,draggable:false} 
+					
+				]);
+				titleWindow.DataSource= advancedAc;
+				titleWindow.exportToExcel();
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:PieMulti DataSource="{tab1_topDS1}" title="{tab1_topTitle1}" ShowDataLabel="{showDataLabel}" PopupClick="piemulti1_PopupClickHandler(event)"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:ColumnLineMulti labelRotationX="0" title="{tab1_topTitle2}" width="100%" height="100%" showTitle="true" showLegend="true" 
+									   DataSourceConf="{tab1_topDS2Conf}" DataSource="{tab1_topDS2}" ShowDataLabel="{showDataLabel}" PopupDoubleClick="popupPlateMX()"/>
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:PieMulti DataSource="{tab1_downDS1}" title="{tab1_downTitle1}" ShowDataLabel="{showDataLabel}" PopupClick="piemulti2_PopupClickHandler(event)"/>
+			</s:BorderContainer> 
+			<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+				</s:layout>
+				<views:BarSubTotalMulti id="tab1_down" width="100%" showTitle="true" showLegend="true" xAxisAt="top" yAxisAt="left" title="{tab1_downTitle2}"
+										DataSourceConf="{tab1_downDS2Conf}" DataSource="{tab1_downDS2}" ShowDataLabel="{showDataLabel}" PopupDoubleClick="popupPlateMX2()"/>
+			</s:BorderContainer>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

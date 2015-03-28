@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()">
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.controls.NumericStepper;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
+			import spark.components.RadioButton;
+			
+			import events.PopupEvent;
+			
+			import views.PopupTitleWinDG;
+			public const _dataPath:String = "assets/data/riskdata.xml";//riskdata.xml";
+			public const _wsdlPath:String = "assets/webserviceConf.xml";
+			public const _dataType:String = "remoteWebservice";//localStaticData   loccalXMLFile   remoteWebservice
+			public const _showCorpCnt:int=7;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况";
+			[Bindable]
+			private var tab2_title:String="二级单位排名";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var tab1_topLeftTitle:String="风险构成情况";
+			[Bindable]
+			private var tab1_topRightTitle:String="重大风险处理情况";
+			
+			
+			[Bindable]
+			private var tab1_levelCurrSelect:String;
+			private var tab1_levelNameCurrSelect:String;
+			private var tab1_levelCurrSelect_temp:String;
+			
+			[Bindable]
+			private var tab2_levelCurrSelect:String;
+			private var tab2_levelNameCurrSelect:String;
+			[Bindable]
+			private var tab2_levelDS:ArrayCollection;			
+			[Bindable]
+			private var tab2_showCorpCnt:int=_showCorpCnt;
+			[Bindable]
+			private var tab2_showCorpCntMax:int=1000;
+
+			[Bindable]
+			private var tab1_topLeftDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightConfDS:ArrayCollection;
+			[Bindable]
+			private var tab1_topRightDS:ArrayCollection;
+			
+			[Bindable]
+			private var tab2_topTitle:String="";
+			[Bindable]
+			private var tab2_downTitle:String="";
+			
+			[Bindable]
+			private var tab2_topConfDS:ArrayCollection;
+			[Bindable]
+			private var tab2_topDS:ArrayCollection;
+			[Bindable]
+			private var tab2_downConfDS:ArrayCollection;
+			[Bindable]
+			private var tab2_downDS:ArrayCollection;
+			
+			
+			private var loader_wsdl:URLLoader = new URLLoader();			
+			private var loader:URLLoader = new URLLoader();
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrCol:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					var obj:Object=new Object();
+					obj.name=i+"年";
+					obj.value=i;
+					dateArrCol.addItem(obj);
+				}
+				dateEnd.dataProvider=dateArrCol;
+				dateEnd.selectedIndex = 0;
+				
+				
+				tab1_topLeftDS=new ArrayCollection();
+				tab1_topRightDS=new ArrayCollection();
+				
+				
+				tab1_topRightConfDS=new ArrayCollection([
+					{name:"数量",field:"vol1",type:"columnSeries",axis:"left"}	
+					]);
+				
+				tab2_topConfDS=new ArrayCollection([
+					{name:"数量",field:"vol1",type:"columnSeries",axis:"left"},
+//					{name:"占比",field:"vol2",type:"lineSeries",axis:"right"}
+					
+				]);
+				tab2_downConfDS=new ArrayCollection([
+					{name:"未评审个数",field:"vol1"},
+					{name:"已评审措施已落实",field:"vol2"},
+					{name:"已评审措施未落实",field:"vol3"}
+					
+				]);
+				
+				refreshData();
+			}
+			private function refreshData():void{
+				switch(_dataType){
+					case "remoteWebservice":
+						loadWSDL();
+						break;
+					case "loccalXMLFile":
+						loadData();
+						break;
+					case "localStaticData":
+						loadDemo();
+						break;
+				}
+			}
+			private function loadDemo():void{
+				Alert.show("您现在浏览的为（静态）测试数据");
+				////省略
+				
+			}
+			private function loadWSDL():void{
+				loader_wsdl.load(new URLRequest(this._wsdlPath));
+				loader_wsdl.addEventListener(Event.COMPLETE,loader_wsdl_result_handler);
+			}
+			private function loader_wsdl_result_handler(event:Event):void{
+				ws_init();
+			}
+			private function ws_init():void{
+				try{
+					ws.wsdl=XML(loader_wsdl.data).url;
+					ws.loadWSDL();
+					ws.remoteMethod('5','',this.dateEnd.selectedItem.value);
+				}catch(e:Event){
+					Alert.show("请检查WEBSERVICE配置文件，在./assets/webserviceConf.xml中");
+				}
+			}
+			protected function ws_resultHandler(event:ResultEvent):void
+			{
+				hseDataXML = XML(event.result);
+				executeBind();
+			}
+			protected function ws_faultHandler(event:FaultEvent):void
+			{
+				trace(event);
+			}
+			private function loadData():void{
+				Alert.show("您现在浏览的为（本地XML）测试数据");
+				loader.load(new URLRequest(this._dataPath));
+				loader.addEventListener(Event.COMPLETE,loadDataHandler);
+			}
+			private function loadDataHandler(event:Event):void{
+				hseDataXML = XML(loader.data);
+				executeBind();
+			}
+			private function executeBind():void{
+				tab1_topLeftDS=getTab1_topLeftDS();		
+				tab1_topRightDS=getTab1_topRightDS();	
+				executeBindTab1Title();
+				
+				
+				tab2_levelDS=getTab2_levelDS();	
+				tab2_showCorpCnt = getTab2_CorpCntDS(this.tab2_levelCurrSelect);
+				tab2_showCorpCntMax = getTab2_CorpCntMax(this.tab2_levelCurrSelect);
+				tab2_topDS=gettab2_topDS();	
+				tab2_downDS=getTab2_downDS();
+				executeBindTab2Title();
+			}
+			
+			
+			private function executeBindTab1Title():void{
+				var dept:String="";
+				if(hseDataXML.dataOutline){
+					dept=hseDataXML.dataOutline.@corpname;
+				}
+				tab1_topLeftTitle=dept+this.dateEnd.selectedItem.value+"年风险构成情况";
+				tab1_topRightTitle=dept+this.dateEnd.selectedItem.value+"年"+tab1_levelNameCurrSelect+"落实情况";
+			}
+			private function executeBindTab2Title():void{
+				var dept:String="";
+				if(hseDataXML.dataOutline){
+					dept=hseDataXML.dataOutline.@corpname;
+				}
+				tab2_topTitle=dept+dateEnd.selectedItem.value+ "年"+tab2_levelNameCurrSelect+"分布情况";
+				tab2_downTitle=dept+dateEnd.selectedItem.value+ "年"+tab2_levelNameCurrSelect+"落实情况";
+			}
+			
+			
+			private function getTab1_topLeftDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList=hseDataXML.riskData.dataset;
+					if(tmpList.length()>0)
+					{
+						tab1_levelCurrSelect=tmpList[0].@riskid;//设置默认选择
+						tab1_levelCurrSelect_temp=tmpList[0].@riskid;
+						tab1_levelNameCurrSelect=tmpList[0].@label;
+						tab1_levelNameCurrSelect=tab1_levelNameCurrSelect==null?"":tab1_levelNameCurrSelect;
+						
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,
+								value:xml.@riskNumbers,
+								id:xml.@riskid};
+							
+							//格式化数据
+							obj.value=Number(obj.value)<0?0:obj.value;
+							
+							tmpArrayCollection.addItem(obj);
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab1_topRightDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					
+					var tmpList:XMLList;
+//					if(hseDataXML.majorRiskSolveData.length>1){
+						tmpList=hseDataXML.majorRiskSolveData.(@riskid==tab1_levelCurrSelect).dataset;
+//					}else{
+//						tmpList=hseDataXML.majorRiskSolveData.dataset
+//					}
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,
+								vol1:xml.@numbers,
+								id:xml.@solveid};
+							
+							//格式化数据
+							obj.vol1=Number(obj.vol1)<0?0:obj.vol1;
+							
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			
+			
+			private var titleWindow:views.PopupTitleWinDG;  
+			private function popupTab1_left(id:String,label:String):void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  "风险情况表"+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.IfShowFrontRecordColor=false;
+				titleWindow.IfShowBackRecordColor=false;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"风险级别",dataField:"label",width:"100",textAlign:"left",sortable:true,draggable:false},
+					{headerText:"数量",dataField:"riskNumbers",width:"100",textAlign:"center",sortable:true,draggable:true},
+					{headerText:"状态",dataField:"description",width:"600",textAlign:"center",sortable:true,draggable:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList=hseDataXML.popupTableData.dataset;
+					if(tmpList.length()>0)
+					{
+						var i:int=1;
+						for each (var xml4:XML in tmpList) {  
+							var obj:Object={
+								label:xml4.@label,
+									riskNumbers:Number(xml4.@riskNumbers),
+									description:xml4.@description
+							};
+							tmpArrayCollection.addItem(obj);
+							i++;
+						}
+						
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			private function popupTab1_right(id:String,label:String):void{
+				var showFlag:Boolean=true;
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue =  label+tab1_levelNameCurrSelect+"情况表"+"("+this.dateEnd.selectedItem.name+")";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);});
+				titleWindow.IfShowFirstRecordBgColor=false;
+				titleWindow.IfShowFrontRecordColor=false;
+				titleWindow.IfShowBackRecordColor=false;
+				titleWindow.DataSourceConf=new ArrayCollection([
+					{headerText:"序号",dataField:"order",width:"40",textAlign:"center",sortable:true,draggable:false},
+					{headerText:"单位名称",dataField:"label",width:"150",textAlign:"left",sortable:true,draggable:true,showdatatips:true},
+					{headerText:"作业活动/设备",dataField:"jobActivity",width:"150",textAlign:"left",sortable:true,draggable:true,showdatatips:true},
+					{headerText:"危害",dataField:"harm",width:"160",textAlign:"left",sortable:true,draggable:true,showdatatips:true,showText:true},
+					{headerText:"主要后果",dataField:"consequence",width:"160",textAlign:"left",sortable:true,draggable:true,showdatatips:true,showText:true},
+					{headerText:"评审状态",dataField:"reviewStatus",width:"60",textAlign:"center",sortable:true,draggable:true,showdatatips:true},
+					{headerText:"落实状态",dataField:"workableStatus",width:"60",textAlign:"center",sortable:true,draggable:true,showdatatips:true}
+				]);
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+					
+					var tmpList:XMLList;
+					tmpList=hseDataXML.majorRiskSolveData.(@riskid==tab1_levelCurrSelect);
+					
+					if(tmpList.length()>0)
+					{
+						tmpList=tmpList.dataset.(@solveid==id).corpData;
+						if(tmpList.length()>0)
+						{
+							showFlag=true;
+							for each (var xml4:XML in tmpList) {  
+								var obj:Object={order:xml4.@order,
+									label:xml4.@label,
+									jobActivity:xml4.@jobActivity,
+									harm:xml4.@harm,
+									consequence:xml4.@consequence,
+									reviewStatus:xml4.@reviewStatus,
+									workableStatus:xml4.@workableStatus
+								};
+								tmpArrayCollection.addItem(obj);
+							}
+							
+	//						var sort:Sort=new Sort();  
+	//						sort.fields=[new SortField("order",false,true)];  
+	//						tmpArrayCollection.sort=sort;
+	//						tmpArrayCollection.refresh();
+							var i:int=1;
+							for each (var obj2:Object in tmpArrayCollection) {  
+								obj2.order=i;
+								tmpArrayCollection2.addItem(obj2);
+								i++;
+							}
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection2;
+				}catch(e:Event){
+					trace(e);
+				}
+				if(showFlag){
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+				}else{
+					titleWindow=null;
+				}
+			}
+			
+			
+			protected function btnSearch_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				refreshData();
+			}
+			
+			protected function tab1_topLeft_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				popupTab1_left(item.id,item.label);
+			}
+			
+			protected function tab1_topRight_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				var item:Object=event.hitDataItem;
+				if(tab1_levelCurrSelect==tab1_levelCurrSelect_temp){
+					popupTab1_right(item.id,item.label);
+				}
+			}
+			
+			protected function tab1_topLeft_PopupClickHandler(event:PopupEvent):void
+			{
+//				if(hseDataXML.majorRiskSolveData.length>1){
+					var item:Object=event.hitDataItem;
+					tab1_levelCurrSelect=item.id;//设置默认选择
+					tab1_levelNameCurrSelect=item.label;
+					tab1_levelNameCurrSelect=tab1_levelNameCurrSelect==null?"":tab1_levelNameCurrSelect;
+					tab1_topRightDS=getTab1_topRightDS();	
+					executeBindTab1Title();
+//				}
+				
+			}
+			
+			
+			
+			
+			private function getTab2_levelDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byCorp.riskData;
+					if(tmpList.length()>0)
+					{
+						
+						tab2_levelCurrSelect=tmpList[0].@riskid;//设置默认选择
+						tab2_levelNameCurrSelect=tmpList[0].@label;
+						tab2_levelNameCurrSelect=tab2_levelNameCurrSelect==null?"":tab2_levelNameCurrSelect;
+						for each (var xml:XML in tmpList) {  
+							var obj:Object={label:xml.@label,value:xml.@riskid};
+							tmpArrayCollection.addItem(obj);
+						}
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				return tmpArrayCollection;
+			}
+			private function getTab2_CorpCntDS(riskid:String):int{
+				var _cnt:int=getTab2_CorpCntMax(riskid);
+				if(_cnt>_showCorpCnt) _cnt=_showCorpCnt;
+				return _cnt;
+			}
+			private function getTab2_CorpCntMax(riskid:String):int{
+				var _cnt:int=0;
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byCorp.riskData.(@riskid==riskid).corpData;
+					if(tmpList!=null&&tmpList.length()>0)
+					{
+						_cnt=tmpList.length();
+					}					
+				}catch(e:Event){
+					trace(e);
+				}
+				//分左右2部分显示
+				//_cnt=Math.floor((_cnt+1)/2);	
+				return _cnt;
+			}
+			private function gettab2_topDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byCorp;
+					if(tmpList.length()>0)
+					{
+						for each (var xml:XML in tmpList) {  
+							for each (var xml1:XML in xml.riskData.(@riskid==tab2_levelCurrSelect)) {  
+								for each (var xml2:XML in xml1.corpData){
+									var obj:Object={label:xml2.@subCorpname,vol1:xml2.@riskNumbers,vol2:xml2.@ratio};
+									tmpArrayCollection.addItem(obj);
+								}
+								
+							}							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				
+				var sort:Sort=new Sort();  
+				sort.fields=[new SortField("vol1",true,true)];  
+				tmpArrayCollection.sort=sort;
+				tmpArrayCollection.refresh();
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				var tmpCnt:int=0;
+				for(var i:int=0;i<tmpArrayCollection.length;i++){
+					if(i>=tab2_showCorpCnt) break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			private function getTab2_downDS():ArrayCollection{
+				var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+				try{
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byCorp;
+					
+					if(tmpList.length()>0)
+					{
+						//						var tmpCnt:int=0;
+						for each (var xml:XML in tmpList) {  
+							for each (var xml1:XML in xml.riskData.(@riskid==tab2_levelCurrSelect)) {  
+								for each (var xml2:XML in xml1.corpData){
+									//									tmpCnt++;
+									//									if(tmpCnt>tab2_showCorpCnt) break;
+									var UNREVIEWED:XMLList=xml2.riskSolveData.(@solveid=="UNREVIEWED");
+									var SOLVED:XMLList=xml2.riskSolveData.(@solveid=="SOLVED");
+									var UNSOLVED:XMLList=xml2.riskSolveData.(@solveid=="UNSOLVED");
+									var obj:Object={label:xml2.@subCorpname,
+										vol1:(UNREVIEWED==null||UNREVIEWED.length()==0)?"0":UNREVIEWED[0].@numbers,
+										vol2:(SOLVED==null||SOLVED.length()==0)?"0":SOLVED[0].@numbers,
+										vol3:(UNSOLVED==null||UNSOLVED.length()==0)?"0":UNSOLVED[0].@numbers,
+										vol4:xml2.@riskNumbers
+									};
+									tmpArrayCollection.addItem(obj);
+								}
+							}							
+						} 
+					}
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				
+				var sort:Sort=new Sort();  
+				sort.fields=[new SortField("vol4",true,true)];  
+				tmpArrayCollection.sort=sort;
+				tmpArrayCollection.refresh();
+				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
+				var tmpArrayCollection2:ArrayCollection= new ArrayCollection();
+				var tmpCnt:int=0;
+				for(var i:int=0;i<tmpArrayCollection.length;i++){
+					if(i>=tab2_showCorpCnt) break;
+					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+				}
+				
+				return tmpArrayCollection2;
+			}
+			private function popupTab2():void{
+				titleWindow = new views.PopupTitleWinDG();  
+				titleWindow.TitleValue = ""+tab2_levelNameCurrSelect+"分布及整改情况"+"("+dateEnd.selectedItem.value+"年)";
+				titleWindow.addEventListener(CloseEvent.CLOSE,function closeEV():void{PopUpManager.removePopUp(titleWindow);	});
+				titleWindow.IfShowFirstRecordBgColor=true;
+				titleWindow.IfShowFrontRecordColor=true;
+				titleWindow.IfShowBackRecordColor=true;
+				
+				//				titleWindow.DataSourceConf=new ArrayCollection([
+				//					{headerText:"企业",dataField:"label",width:"90",textAlign:"left",sortable:true,draggable:false},
+				//					{headerText:"重大风险",dataField:"vol1",width:"40",textAlign:"center",sortable:true,draggable:true},
+				//					{headerText:"中等风险",dataField:"vol2",width:"40",textAlign:"center",sortable:true,draggable:true},
+				//					{headerText:"一般风险",dataField:"vol3",width:"40",textAlign:"center",sortable:true,draggable:true},
+				//					{headerText:"未评审个数",dataField:"vol_ch1",width:"40",textAlign:"center",sortable:true,draggable:true},
+				//					{headerText:"已评审措施已落实",dataField:"vol_ch2",width:"40",textAlign:"center",sortable:true,draggable:true},
+				//					{headerText:"已评审措施未落实",dataField:"vol_ch3",width:"40",textAlign:"center",sortable:true,draggable:true},
+				//				]);
+				
+				var tmpHeadConf:ArrayCollection=new ArrayCollection();
+				try{		
+					var obj:Object=new Object();
+					obj.headerText="单位";
+					obj.dataField="label";
+					obj.width="60";
+					obj.textAlign="left";
+					obj.sortable=false;
+					obj.draggable=false;
+					obj.footHeakerText="小计"
+					tmpHeadConf.addItem(obj);
+					var tmpCfgList:XMLList=hseDataXML.byCorp;
+					if(tmpCfgList.length()>0)
+					{
+						var i:int=1;
+						for each (var xml:XML in tmpCfgList[0].riskData) {  
+							obj=new Object();
+							obj.headerText=xml.@label;
+							obj.dataField="vol"+i;
+							obj.width="30";
+							obj.textAlign="center";
+							obj.sortable=false;
+							obj.draggable=false;
+							obj.id=xml.@riskid;
+							obj.footLblFunEnable=true;
+							obj.footLblFunType="sum";
+							
+							tmpHeadConf.addItem(obj);
+							i++;
+						}
+					}
+					tmpHeadConf.addItem({headerText:"未评审个数",enableUrlLink:true,dataField:"vol_ch1",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"});
+					tmpHeadConf.addItem({headerText:"已评审措施已落实",enableUrlLink:true,dataField:"vol_ch2",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"});
+					tmpHeadConf.addItem({headerText:"已评审措施未落实",enableUrlLink:true,dataField:"vol_ch3",width:"50",textAlign:"center",sortable:true,draggable:true,footLblFunEnable:true,footLblFunType:"sum"});
+					titleWindow.DataSourceConf=tmpHeadConf;
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				
+				try{
+					var tmpArrayCollection:ArrayCollection= new ArrayCollection();
+					var tmpList:XMLList;
+					tmpList=hseDataXML.byCorp;
+					if(tmpList.length()>0)
+					{
+						/* var obj0:Object=new Object();
+						obj0.label="小计";
+						for (var k:int=1;k<tmpHeadConf.length-3;k++){ //列
+							var levelData_total:XMLList=tmpList.riskData.(@riskid==tmpHeadConf[k].id);//筛选等级
+							obj0[tmpHeadConf[k].dataField]=(levelData_total==null||levelData_total.length()==0)?"0":levelData_total[0].@riskNumbers;
+						}
+						var currLevelData_total:XMLList=tmpList.riskData.(@riskid==tab2_levelCurrSelect);//筛选等级
+						var UNREVIEWED_total:XMLList=currLevelData_total.riskSolveData.(@solveid=="UNREVIEWED");
+						var SOLVED_total:XMLList=currLevelData_total.riskSolveData.(@solveid=="SOLVED");
+						var UNSOLVED_total:XMLList=currLevelData_total.riskSolveData.(@solveid=="UNSOLVED");
+						obj0.vol_ch1=(UNREVIEWED_total==null||UNREVIEWED_total.length()==0)?"0":UNREVIEWED_total[0].@numbers;
+						obj0.vol_ch2=(SOLVED_total==null||SOLVED_total.length()==0)?"0":SOLVED_total[0].@numbers;
+						obj0.vol_ch3=(UNSOLVED_total==null||UNSOLVED_total.length()==0)?"0":UNSOLVED_total[0].@numbers;
+						obj0.index=1;
+						tmpArrayCollection.addItem(obj0); */
+						
+						var tmpCorp:XMLList=tmpList[0].riskData.(@riskid==tab2_levelCurrSelect).corpData;
+						var index:Number=2;
+						if(tmpCorp!=null&&tmpCorp.length()>0){
+							for each (var xml1:XML in tmpCorp) {  //板块
+								var obj1:Object=new Object();
+								obj1.label=xml1.@subCorpname;
+								for (var j:int=1;j<tmpHeadConf.length-3;j++){ //列
+									var levelData:XMLList=tmpList.riskData.(@riskid==tmpHeadConf[j].id);//筛选等级
+									var corpData:XMLList=levelData.corpData.(@subCorpid==xml1.@subCorpid);//筛选公司
+									obj1[tmpHeadConf[j].dataField]=(corpData==null||corpData.length()==0)?0:Number(corpData[0].@riskNumbers);
+								}
+								var currLevelData:XMLList=tmpList.riskData.(@riskid==tab2_levelCurrSelect);//筛选等级
+								var currCorpData:XMLList=currLevelData.corpData.(@subCorpid==xml1.@subCorpid);//筛选公司
+								var UNREVIEWED:XMLList=currCorpData.riskSolveData.(@solveid=="UNREVIEWED");
+								var SOLVED:XMLList=currCorpData.riskSolveData.(@solveid=="SOLVED");
+								var UNSOLVED:XMLList=currCorpData.riskSolveData.(@solveid=="UNSOLVED");
+								obj1.vol_ch1=(UNREVIEWED==null||UNREVIEWED.length()==0)?0:Number(UNREVIEWED[0].@numbers);
+								obj1.vol_ch1URL = UNREVIEWED[0].url;
+								obj1.vol_ch2=(SOLVED==null||SOLVED.length()==0)?0:Number(SOLVED[0].@numbers);
+								obj1.vol_ch2URL = SOLVED[0].url;
+								obj1.vol_ch3=(UNSOLVED==null||UNSOLVED.length()==0)?0:Number(UNSOLVED[0].@numbers);
+								obj1.vol_ch3URL = UNSOLVED[0].url;
+								obj1.index=index;
+								tmpArrayCollection.addItem(obj1);
+								index++;
+							}
+						}
+					}
+					titleWindow.DataSource= tmpArrayCollection;
+					
+				}catch(e:Event){
+					trace(e);
+				}
+				
+				PopUpManager.addPopUp(titleWindow, this, true);    
+				PopUpManager.centerPopUp(titleWindow); 
+			}
+			
+			protected function radiobutton2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.tab2_levelCurrSelect=RadioButton(event.target).value.toString();
+				this.tab2_levelNameCurrSelect=RadioButton(event.target).label;
+				tab2_levelNameCurrSelect=tab2_levelNameCurrSelect==null?"":tab2_levelNameCurrSelect;
+				tab2_showCorpCnt = getTab2_CorpCntDS(this.tab2_levelCurrSelect);
+				tab2_showCorpCntMax = getTab2_CorpCntMax(this.tab2_levelCurrSelect);
+				tab2_topDS=gettab2_topDS();	
+				tab2_downDS=getTab2_downDS();
+				executeBindTab2Title();
+			}
+			protected function numericstepper1_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				this.tab2_showCorpCnt=int(NumericStepper(event.target).value);
+				tab2_topDS=gettab2_topDS();	
+				tab2_downDS=getTab2_downDS();
+				executeBindTab2Title();
+			}
+			protected function tab2_PopupDoubleClickHandler(event:PopupEvent):void
+			{
+				// TODO Auto-generated method stub
+				popupTab2();
+			}
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<fx:XML id = "hseDataXML"/>
+		<s:RadioButtonGroup id="tab2_levelGrp" />
+		<mx:WebService id="ws" showBusyCursor="true" result="ws_resultHandler(event)" fault="ws_faultHandler(event)"/>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup right="5" top="5" verticalAlign="middle" horizontalAlign="right">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年度"/>
+			<s:ComboBox right="5" id="dateEnd" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearch" label="查询" click="btnSearch_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5">
+		<s:NavigatorContent width="100%" height="100%" label="{tab1_title}">
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:PieMultiWithEffect1 id="tab1_topLeft" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab1_topLeftTitle}" DataSource="{tab1_topLeftDS}" PopupClick="tab1_topLeft_PopupClickHandler(event)"/>
+						<!--PopupDoubleClick="tab1_topLeft_PopupDoubleClickHandler(event)"-->
+					</s:BorderContainer> 
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab1_topRight" ShowDataLabel="{showDataLabel}" showTitle="true" showLegend="true" title="{tab1_topRightTitle}" DataSource="{tab1_topRightDS}" DataSourceConf="{tab1_topRightConfDS}"
+											   PopupDoubleClick="tab1_topRight_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer>
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<!--标签2-->
+	
+		<s:NavigatorContent id="tab2" width="100%" height="100%" label="{tab2_title}">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="left" verticalAlign="middle" gap="0" />
+			</s:layout>
+			<s:HGroup width="100%" height="30" horizontalAlign="center" gap="-1">
+				<s:BorderContainer width="100%" height="35" styleName="tabHead2Box">
+					<s:layout>
+						<s:HorizontalLayout horizontalAlign="right" verticalAlign="middle"/>
+					</s:layout>
+					<mx:HBox borderStyle="outset" styleName="controlBox" paddingLeft="10" paddingRight="10">
+						<mx:Repeater id="tab2_levelRep" dataProvider="{tab2_levelDS}">
+							<s:RadioButton groupName="tab2_levelGrp" label="{tab2_levelRep.currentItem.label}" value="{tab2_levelRep.currentItem.value}" selected="{tab2_levelRep.currentItem.value==tab2_levelCurrSelect}" click="radiobutton2_clickHandler(event)" />
+						</mx:Repeater>	
+					</mx:HBox>
+					<s:Label text="显示单位数"/>
+					<mx:NumericStepper stepSize="1" value="{tab2_showCorpCnt}" minimum="0" maximum="{tab2_showCorpCntMax}" color="#000000" change="numericstepper1_changeHandler(event)"/>
+				</s:BorderContainer>
+			</s:HGroup>
+			
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnLineMulti id="tab2_top" ShowDataLabel="{showDataLabel}" labelRotationX="45" showTitle="true" showLegend="true" title="{tab2_topTitle}" DataSource="{tab2_topDS}" DataSourceConf="{tab2_topConfDS}" PopupDoubleClick="tab2_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer> 
+				</s:HGroup>
+			</s:VGroup>
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="-1">
+				<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="top" gap="-1">
+					<s:BorderContainer width="100%" height="100%" styleName="contentBox">
+						<s:layout>
+							<s:VerticalLayout paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" horizontalAlign="justify" />
+						</s:layout>
+						<views:ColumnMulti id="tab2_down" ShowDataLabel="{showDataLabel}" labelRotationX="45" showTitle="true" showLegend="true" title="{tab2_downTitle}" DataSource="{tab2_downDS}" DataSourceConf="{tab2_downConfDS}" PopupDoubleClick="tab2_PopupDoubleClickHandler(event)"/>
+					</s:BorderContainer> 
+				</s:HGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</s:Application>
+

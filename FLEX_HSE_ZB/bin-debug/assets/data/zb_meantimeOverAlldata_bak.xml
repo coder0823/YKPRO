@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2012-2013" dataStartDate=""
+		dataEndDate="" timestamp=""></dataOutline>
+	<overallData>
+		<dataset label="安全" order="1" typeid="F7D83BF2CF88314980709A5C4BDB6890"
+			projectNumber="111" nostartNumber="9" inprocessNumber="55"
+			finishedNumber="47">
+			<stagedata sequence="1" label="设立阶段" projectNumber="50" stageid="新添加的id"
+				nostartNumber="3" inprocessNumber="25" finishedNumber="22">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="1">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="1" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="4">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="1" />
+					<statusData status="FINISHED" ratio="" number="3" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="45">
+					<statusData status="NO-START" ratio="" number="3" />
+					<statusData status="IN-PROCESS" ratio="" number="23" />
+					<statusData status="FINISHED" ratio="" number="19" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+			<stagedata sequence="2" label="设计阶段" projectNumber="32" stageid="新添加的id"
+				nostartNumber="2" inprocessNumber="17" finishedNumber="13">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="3">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="2" />
+					<statusData status="FINISHED" ratio="" number="1" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="29">
+					<statusData status="NO-START" ratio="" number="2" />
+					<statusData status="IN-PROCESS" ratio="" number="15" />
+					<statusData status="FINISHED" ratio="" number="12" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+			<stagedata sequence="3" label="试生产阶段" projectNumber="11"
+				nostartNumber="1" inprocessNumber="6" finishedNumber="4">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="1">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="1" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="10">
+					<statusData status="NO-START" ratio="" number="1" />
+					<statusData status="IN-PROCESS" ratio="" number="6" />
+					<statusData status="FINISHED" ratio="" number="3" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+			<stagedata sequence="4" label="验收阶段" projectNumber="18"
+				nostartNumber="3" inprocessNumber="7" finishedNumber="8">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="1">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="1" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="17">
+					<statusData status="NO-START" ratio="" number="3" />
+					<statusData status="IN-PROCESS" ratio="" number="6" />
+					<statusData status="FINISHED" ratio="" number="8" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+		</dataset>
+		<dataset label="环保" order="2" typeid="8CF4CEDA5DE35E47A11D39E963321AA3"
+			projectNumber="40" nostartNumber="3" inprocessNumber="20"
+			finishedNumber="17">
+			<stagedata sequence="1" label="环境影响评价" projectNumber="27"
+				nostartNumber="3" inprocessNumber="12" finishedNumber="12">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="6">
+					<statusData status="NO-START" ratio="" number="1" />
+					<statusData status="IN-PROCESS" ratio="" number="2" />
+					<statusData status="FINISHED" ratio="" number="3" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="21">
+					<statusData status="NO-START" ratio="" number="2" />
+					<statusData status="IN-PROCESS" ratio="" number="10" />
+					<statusData status="FINISHED" ratio="" number="9" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+			<stagedata sequence="3" label="试生产" projectNumber="7"
+				nostartNumber="0" inprocessNumber="4" finishedNumber="3">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="2">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="2" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="5">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="4" />
+					<statusData status="FINISHED" ratio="" number="1" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+			<stagedata sequence="4" label="竣工验收" projectNumber="6"
+				nostartNumber="0" inprocessNumber="4" finishedNumber="2">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="1">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="1" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="5">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="3" />
+					<statusData status="FINISHED" ratio="" number="2" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+		</dataset>
+		<dataset label="职业卫生" order="3" typeid="2795184C992F02448EAA3DD0BF2F605A"
+			projectNumber="3" nostartNumber="3" inprocessNumber="0"
+			finishedNumber="0">
+			<stagedata sequence="1" label="职业病危害预评价" projectNumber="3"
+				nostartNumber="3" inprocessNumber="0" finishedNumber="0">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="3">
+					<statusData status="NO-START" ratio="" number="3" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+			<stagedata sequence="7" label="辐射环境影响竣工验收评价" projectNumber="0"
+				nostartNumber="0" inprocessNumber="0" finishedNumber="0">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+		</dataset>
+		<dataset label="消防" order="4" typeid="82AF4497076858418903664EEA1F74C1"
+			projectNumber="37" nostartNumber="4" inprocessNumber="21"
+			finishedNumber="12">
+			<stagedata sequence="1" label="基础设计" projectNumber="23"
+				nostartNumber="4" inprocessNumber="18" finishedNumber="1">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="1">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="1" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="2">
+					<statusData status="NO-START" ratio="" number="2" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="20">
+					<statusData status="NO-START" ratio="" number="2" />
+					<statusData status="IN-PROCESS" ratio="" number="17" />
+					<statusData status="FINISHED" ratio="" number="1" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+			<stagedata sequence="3" label="竣工验收" projectNumber="14"
+				nostartNumber="0" inprocessNumber="3" finishedNumber="11">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="1">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="1" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="13">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="3" />
+					<statusData status="FINISHED" ratio="" number="10" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+		</dataset>
+		<dataset label="抗震" order="5" typeid="B884EABAF66C7F4E8DE2D0FE6BEE4495"
+			projectNumber="8" nostartNumber="1" inprocessNumber="2"
+			finishedNumber="5">
+			<stagedata sequence="1" label="地震安全性评价" projectNumber="8"
+				nostartNumber="1" inprocessNumber="2" finishedNumber="5">
+				<plateData order="1" plateid="A92CEB0344C88641AE1D0B005866E82D"
+					plateLabel="油田" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="2" plateid="5D364D1F48772949BDBF427F9257FCEE"
+					plateLabel="炼化" ratio="" projectNumber="3">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="3" />
+				</plateData>
+				<plateData order="3" plateid="B0DFA43AD68C5E4BA2B805EDA3827FB3"
+					plateLabel="销售" ratio="" projectNumber="5">
+					<statusData status="NO-START" ratio="" number="1" />
+					<statusData status="IN-PROCESS" ratio="" number="2" />
+					<statusData status="FINISHED" ratio="" number="2" />
+				</plateData>
+				<plateData order="4" plateid="3150A04E70FA7945AEC1DB033F80563D"
+					plateLabel="工程建设" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+				<plateData order="5" plateid="39DB73CB8A36A848BC2C31099D7D46E7"
+					plateLabel="其它" ratio="" projectNumber="0">
+					<statusData status="NO-START" ratio="" number="0" />
+					<statusData status="IN-PROCESS" ratio="" number="0" />
+					<statusData status="FINISHED" ratio="" number="0" />
+				</plateData>
+			</stagedata>
+		</dataset>
+	</overallData>
+	
+
+</model>

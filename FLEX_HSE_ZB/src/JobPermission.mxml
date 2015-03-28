@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()" xmlns:jobpermission="modules.jobpermission.*">
+	<!--
+	/* *
+	* 名称：总部仪表盘-作业许可
+	* 参数：查询条件修改成 年月（2012-12） 分企业是 年（2013)
+	* 作者：孙山虎
+	* 日期：2013年5月8日
+	* */
+	-->
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import as_class.Menu_as;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.DateField;
+			import mx.events.FlexEvent;
+			import mx.events.IndexChangedEvent;
+			
+			import skins.ButtonBarSkin;
+			
+			[Bindable]
+			private var tab1_title:String="总体情况"; 
+			[Bindable]
+			private var tab2_title:String="分板块";
+			[Bindable]
+			private var tab3_title:String="分企业";
+			
+			[Bindable]
+			private var DateStrYearMth:String="2012-12";
+			[Bindable]
+			private var DateStrYear:String="2012";
+			[Bindable]
+			private var showDataLabel:Boolean=true;
+			
+			[Bindable]
+			private var dateYearMth_visible:Boolean=true;
+			[Bindable]
+			private var dateYear_visible:Boolean=false;
+			
+			private var dateCurrYear:int=int(DateField.dateToString(new Date(),'YYYY'));
+			private var dateCurrMth:int=int(DateField.dateToString(new Date(),'MM'));
+			private var dateArrColYearMth:ArrayCollection=new ArrayCollection();
+			private var dateArrColYear:ArrayCollection=new ArrayCollection();
+			protected function init():void{
+				this.contextMenu = Menu_as.Instance.add_menu(this,viewStack);
+				this.styleManager.loadStyleDeclarations2("./assets/fonts/WB_SimSun.swf");
+				for(var i:int=dateCurrYear;i>=dateCurrYear-10;i--){
+					for(var j:int=12;j>0;j--)
+					{
+						if(!(i==dateCurrYear&&j>dateCurrMth)){
+							var obj:Object=new Object();
+							obj.name=i+"年"+j+"月";
+							obj.value=i+"-"+(j<10?"0"+j.toString():j.toString());
+							dateArrColYearMth.addItem(obj);
+						}
+					}
+					var obj2:Object=new Object();
+					obj2.name=i+"年";
+					obj2.value=i;
+					dateArrColYear.addItem(obj2);
+				}
+				
+				dateYearMth.dataProvider=dateArrColYearMth;
+				dateYearMth.selectedIndex = 0;
+				DateStrYearMth=dateYearMth.selectedItem.value;
+				
+				dateYear.dataProvider=dateArrColYear;
+				dateYear.selectedIndex = 0;
+				DateStrYear=dateYear.selectedItem.value;
+				
+				
+			}
+			
+			
+			protected function btnSearchYearMth_clickHandler(event:MouseEvent):void
+			{
+				DateStrYearMth=dateYearMth.selectedItem.value;
+			}
+			protected function btnSearchYear_clickHandler(event:MouseEvent):void
+			{
+				DateStrYear=dateYear.selectedItem.value;
+			}
+			
+			protected function viewStack_changeHandler(event:IndexChangedEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(event.newIndex == 2){
+					dateYearMth_visible = false;
+					dateYear_visible = true;
+				}else{
+					dateYearMth_visible = true;
+					dateYear_visible = false;
+				}
+			}
+			protected function chkShowVol_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol.selected;
+			}
+			protected function chkShowVol2_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				showDataLabel=chkShowVol2.selected;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" gap="0"/>
+	</s:layout>
+	<s:BorderContainer width="100%" height="31" styleName="tabHeadBox">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+		<s:ButtonBar id="buttonBar" dataProvider="{viewStack}" height="100%" styleName="tabButtonStyle1" left="0" top="0"/>
+		<s:HGroup width="100%" verticalAlign="middle" horizontalAlign="right" top="5" right="5" visible="{dateYearMth_visible}" includeInLayout="{dateYearMth_visible}">
+			<s:CheckBox id="chkShowVol" label="显示数值" selected="{showDataLabel}" change="chkShowVol_changeHandler(event)"/>
+			<s:Label text="年月" />
+			<s:ComboBox right="5" id="dateYearMth" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearchYearMth" label="查询" click="btnSearchYearMth_clickHandler(event)"/>
+		</s:HGroup>
+		<s:HGroup width="100%" verticalAlign="middle" horizontalAlign="right" top="5" right="5" visible="{dateYear_visible}" includeInLayout="{dateYear_visible}">
+			<s:CheckBox id="chkShowVol2" label="显示数值" selected="{showDataLabel}" change="chkShowVol2_changeHandler(event)"/>
+			<s:Label text="年" />
+			<s:ComboBox right="5" id="dateYear" width="100" fontWeight="normal" labelField="name"/>
+			<s:Button id="btnSearchYear" label="查询" click="btnSearchYear_clickHandler(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" y="{buttonBar.height+5-1}" styleName="tabContentBox" borderStyle="inset" left="5" right="5" creationPolicy="auto"  change="viewStack_changeHandler(event)">
+		<s:NavigatorContent width="100%" height="100%" label="{tab1_title}">
+			<jobpermission:Jobpermission_overAll width="100%" height="100%" id="overAll" DateStr="{DateStrYearMth}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>			
+		<s:NavigatorContent width="100%" height="100%" label="{tab2_title}">
+			<jobpermission:Jobpermission_byPlate width="100%" height="100%" id="byPlate" DateStr="{DateStrYearMth}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent width="100%" height="100%" label="{tab3_title}">
+			<jobpermission:Jobpermission_byCorp width="100%" height="100%" id="byCorp" DateStr="{DateStrYear}" ShowDataLabel="{showDataLabel}"/>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+	
+</s:Application>
+

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2012" dataDate="" corpid="10000002"
+		corpname="河南石油" timestamp="" />
+	<healthCheckupData>
+		<dataset id="employeeTotal" label="职工总数" numbers="14619" />
+		<dataset id="employeePosion" label="接触有毒有害因素职工数" numbers="13750" />
+		<dataset id="planCheckup" label="应检人数" numbers="13750" />
+		<dataset id="actualCheckup" label="实检人数" numbers="13750" />
+		<dataset id="rate" label="体检率" numbers2="100.0" />
+		<detaildata order="1" subCorpName="合计" subCorpid="heji"
+			employeeTotalNumbers="14619" employeePosionNumbsers="13750"
+			planCheckupNumbers="13750" actualCheckupNumbers="13750" checkupRate="100.0" />
+		<detaildata order="2" subCorpid="zhenzhou" subCorpName="郑州石油分公司"
+			employeeTotalNumbers="2425" employeePosionNumbsers="2089" newOccupationalDiseases="11"
+			planCheckupNumbers="2089" actualCheckupNumbers="2089" checkupRate="100.0" >
+			<data order="1" corpName="郑州石油分公司" personName="毕红清" zybName="职业病" /> 
+  			<data order="2" corpName="郑州石油分公司" personName="李春华" zybName="职业病" /> 
+  			<data order="3" corpName="郑州石油分公司" personName="宋乐德" zybName="职业病" /> 
+  			<data order="4" corpName="郑州石油分公司" personName="王专水" zybName="职业病" /> 
+  			<data order="5" corpName="郑州石油分公司" personName="张多佳" zybName="职业病" /> 
+
+		</detaildata>	
+		<detaildata order="3" subCorpName="洛阳石油分公司" subCorpid=""
+			employeeTotalNumbers="1620" employeePosionNumbsers="1570"
+			planCheckupNumbers="1570" actualCheckupNumbers="1570" checkupRate="100.0" />
+		<detaildata order="4" subCorpName="南阳石油分公司" subCorpid=""
+			employeeTotalNumbers="1231" employeePosionNumbsers="1139"
+			planCheckupNumbers="1139" actualCheckupNumbers="1139" checkupRate="100.0" />
+		<detaildata order="5" subCorpName="新乡石油分公司" subCorpid=""
+			employeeTotalNumbers="1047" employeePosionNumbsers="1047"
+			planCheckupNumbers="1047" actualCheckupNumbers="1047" checkupRate="100.0" />
+		<detaildata order="6" subCorpName="商丘石油分公司" subCorpid=""
+			employeeTotalNumbers="924" employeePosionNumbsers="912"
+			planCheckupNumbers="912" actualCheckupNumbers="912" checkupRate="100.0" />
+		<detaildata order="7" subCorpName="信阳石油分公司" subCorpid=""
+			employeeTotalNumbers="871" employeePosionNumbsers="871"
+			planCheckupNumbers="871" actualCheckupNumbers="871" checkupRate="100.0" />
+		<detaildata order="8" subCorpName="安阳石油分公司" subCorpid=""
+			employeeTotalNumbers="864" employeePosionNumbsers="864"
+			planCheckupNumbers="864" actualCheckupNumbers="864" checkupRate="100.0" />
+		<detaildata order="9" subCorpName="平顶山分公司" subCorpid=""
+			employeeTotalNumbers="780" employeePosionNumbsers="789"
+			planCheckupNumbers="789" actualCheckupNumbers="789" checkupRate="100.0" />
+		<detaildata order="10" subCorpName="周口石油分公司" subCorpid=""
+			employeeTotalNumbers="778" employeePosionNumbsers="736"
+			planCheckupNumbers="736" actualCheckupNumbers="736" checkupRate="100.0" />
+		<detaildata order="11" subCorpName="焦作石油分公司" subCorpid=""
+			employeeTotalNumbers="719" employeePosionNumbsers="719"
+			planCheckupNumbers="719" actualCheckupNumbers="719" checkupRate="100.0" />
+		<detaildata order="12" subCorpName="三门峡石油分公司" subCorpid=""
+			employeeTotalNumbers="700" employeePosionNumbsers="700"
+			planCheckupNumbers="700" actualCheckupNumbers="700" checkupRate="100.0" />
+		<detaildata order="13" subCorpName="中原石油分公司" subCorpid=""
+			employeeTotalNumbers="704" employeePosionNumbsers="570"
+			planCheckupNumbers="570" actualCheckupNumbers="570" checkupRate="100.0" />
+		<detaildata order="14" subCorpName="济源石油分公司" subCorpid=""
+			employeeTotalNumbers="563" employeePosionNumbsers="524"
+			planCheckupNumbers="524" actualCheckupNumbers="524" checkupRate="100.0" />
+		<detaildata order="15" subCorpName="漯河石油分公司" subCorpid=""
+			employeeTotalNumbers="613" employeePosionNumbsers="516"
+			planCheckupNumbers="516" actualCheckupNumbers="516" checkupRate="100.0" />
+		<detaildata order="16" subCorpName="濮阳石油分公司" subCorpid=""
+			employeeTotalNumbers="547" employeePosionNumbsers="503"
+			planCheckupNumbers="503" actualCheckupNumbers="503" checkupRate="100.0" />
+		<detaildata order="17" subCorpName="开封石油分公司" subCorpid=""
+			employeeTotalNumbers="472" employeePosionNumbsers="472"
+			planCheckupNumbers="472" actualCheckupNumbers="472" checkupRate="100.0" />
+		<detaildata order="18" subCorpName="鹤壁石油分公司" subCorpid=""
+			employeeTotalNumbers="480" employeePosionNumbsers="448"
+			planCheckupNumbers="448" actualCheckupNumbers="448" checkupRate="100.0" />
+		<detaildata order="19" subCorpName="洛阳第四十八站" subCorpid=""
+			employeeTotalNumbers="0" employeePosionNumbsers="0"
+			planCheckupNumbers="0" actualCheckupNumbers="0" checkupRate="0.0" />
+	</healthCheckupData>
+	<monitorData newOccupationalDiseases="1">
+		<dataset id="monitorTotal" label="总监测点数" numbers="154" />
+		<dataset id="monitorActual" label="实际监测点数" numbers="154" />
+		<dataset id="rate" label="监测率" numbers2="100.0" />
+		<detaildata order="1" subCorpName="合计" monitorTotalNumbers="154"
+			monitorActualNumbsers="154" qualifiedNumbers="154" monitorRate="100.0"
+			qualifiedRate="100.0" />
+		<detaildata order="2" subCorpName="信阳石油分公司"
+			monitorTotalNumbers="18" monitorActualNumbsers="18" qualifiedNumbers="18"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="3" subCorpName="商丘石油分公司"
+			monitorTotalNumbers="12" monitorActualNumbsers="12" qualifiedNumbers="12"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="4" subCorpName="洛阳石油分公司"
+			monitorTotalNumbers="11" monitorActualNumbsers="11" qualifiedNumbers="11"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="5" subCorpName="漯河石油分公司"
+			monitorTotalNumbers="11" monitorActualNumbsers="11" qualifiedNumbers="11"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="6" subCorpName="周口石油分公司"
+			monitorTotalNumbers="11" monitorActualNumbsers="11" qualifiedNumbers="11"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="7" subCorpName="郑州石油分公司"
+			monitorTotalNumbers="10" monitorActualNumbsers="10" qualifiedNumbers="10"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="8" subCorpName="开封石油分公司"
+			monitorTotalNumbers="9" monitorActualNumbsers="9" qualifiedNumbers="9"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="9" subCorpName="鹤壁石油分公司"
+			monitorTotalNumbers="9" monitorActualNumbsers="9" qualifiedNumbers="9"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="10" subCorpName="平顶山分公司"
+			monitorTotalNumbers="9" monitorActualNumbsers="9" qualifiedNumbers="9"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="11" subCorpName="南阳石油分公司"
+			monitorTotalNumbers="9" monitorActualNumbsers="9" qualifiedNumbers="9"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="12" subCorpName="新乡石油分公司"
+			monitorTotalNumbers="8" monitorActualNumbsers="8" qualifiedNumbers="8"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="13" subCorpName="焦作石油分公司"
+			monitorTotalNumbers="8" monitorActualNumbsers="8" qualifiedNumbers="8"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="14" subCorpName="安阳石油分公司"
+			monitorTotalNumbers="8" monitorActualNumbsers="8" qualifiedNumbers="8"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="15" subCorpName="濮阳石油分公司"
+			monitorTotalNumbers="8" monitorActualNumbsers="8" qualifiedNumbers="8"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="16" subCorpName="三门峡石油分公司"
+			monitorTotalNumbers="8" monitorActualNumbsers="8" qualifiedNumbers="8"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="17" subCorpName="济源石油分公司"
+			monitorTotalNumbers="8" monitorActualNumbsers="8" qualifiedNumbers="8"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="18" subCorpName="中原石油分公司"
+			monitorTotalNumbers="5" monitorActualNumbsers="5" qualifiedNumbers="5"
+			monitorRate="100.0" qualifiedRate="100.0" />
+		<detaildata order="19" subCorpName="洛阳第四十八站"
+			monitorTotalNumbers="0" monitorActualNumbsers="0" qualifiedNumbers="0"
+			monitorRate="0" qualifiedRate="0" />
+	</monitorData>
+</model>

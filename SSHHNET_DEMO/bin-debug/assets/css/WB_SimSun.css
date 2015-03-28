@@ -1,0 +1,22 @@
+/*FZYTK.TTF  EmbeddedArial*/
+/*宋体.TTF  宋体*/
+@font-face{ 
+	fontFamily: 宋体; 
+	src: url("../fonts/Simsun.TTF");  
+	fontStyle: normal;
+	fontWeight: normal;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+} 
+/*
+@font-face 
+{
+	src: local("宋体"); 
+	fontFamily: 宋体;
+	fontStyle: normal;
+	fontWeight: normal;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+	
+}
+*/

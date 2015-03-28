@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Model>
+    <allData>
+        <datagrid_config>
+            <datagrid_head sequence="1" headLabel="安全">
+                <stage label="项目数量" /> 
+                <stage label="已完成"/>
+                <stage label="预警" />
+                <stage label="超期"/>
+            </datagrid_head>
+            <datagrid_head sequence="2" headLabel="环保">
+                <stage label="项目数量" /> 
+                <stage label="已完成"/>
+                <stage label="预警" />
+                <stage label="超期"/>
+            </datagrid_head>
+            <datagrid_head sequence="3" headLabel="职业卫生">
+                <stage label="项目数量" /> 
+                <stage label="已完成"/>
+                <stage label="预警" />
+                <stage label="超期"/>
+            </datagrid_head>
+            <datagrid_head sequence="4" headLabel="消防">
+               <stage label="项目数量" /> 
+                <stage label="已完成"/>
+                <stage label="预警" />
+                <stage label="超期"/>
+            </datagrid_head>
+             <datagrid_head sequence="5" headLabel="抗震">
+               <stage label="项目数量" /> 
+                <stage label="已完成"/>
+                <stage label="预警" />
+                <stage label="超期"/>
+            </datagrid_head>
+        </datagrid_config>
+        <dataset order="1" corpName="合计" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5">
+            <professional_data professional_label="安全" profid="safety" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="环保" profid="environmentalProtection" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="职业卫生" profid="health" projectNum="11" meantimeGreen="10" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="消防" profid="fireControl" projectNum="12" meantimeGreen="20" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="抗震" profid="anti-seismic" projectNum="13" meantimeGreen="30" meantimeYellow="1" meantimeRed="5"/>
+        </dataset>
+        
+         <dataset order="1" corpName="河南油田" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5">
+            <professional_data professional_label="安全" profid="safety" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="环保" profid="environmentalProtection" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="职业卫生" profid="health" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="消防" profid="fireControl" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="抗震" profid="anti-seismic" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+        </dataset>
+        
+         <dataset order="1" corpName="江苏油田" projectNum="6" meantimeGreen="13" meantimeYellow="1" meantimeRed="5">
+            <professional_data professional_label="安全" profid="safety" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="环保" profid="environmentalProtection" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="职业卫生" profid="health" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="消防" profid="fireControl" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+            <professional_data professional_label="抗震" profid="anti-seismic" projectNum="6" meantimeGreen="0" meantimeYellow="1" meantimeRed="5"/>
+        </dataset>
+    </allData>
+    <dataOutline dataYear="2006" dataStartDate="" dataEndDate="" timestamp="">
+    </dataOutline>
+</Model>

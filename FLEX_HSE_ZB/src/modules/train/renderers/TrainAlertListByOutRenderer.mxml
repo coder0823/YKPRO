@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  focusEnabled="true" dataChange="item_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var list:ArrayCollection = new ArrayCollection();			
+			protected function item_dataChangeHandler(event:FlexEvent):void
+			{
+				if (advancedDataGridListData != null) {
+					list = data[advancedDataGridListData.dataField];
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="blank"/>
+		<s:State name="red"/>
+		<s:State name="yellow"/>
+		<s:State name="green"/>
+		<s:State name="black"/>
+	</s:states>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle" paddingBottom="2" paddingLeft="2" paddingRight="2" paddingTop="2"/>
+	</s:layout>
+	<s:List horizontalCenter="0" verticalCenter="0" labelField="leadername"
+										height="100%"
+										dataProvider="{list}"/>
+</s:MXAdvancedDataGridItemRenderer>

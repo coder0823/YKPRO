@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<!-- HSE仪表盘〔关键装置要害部位部分〕xml数据 
+	levelid：关键装置要害部位的级别，取值采用下列枚举值 
+	label：关键装置要害部位级别的显示标签或领导活动的类型的显示标签 
+	deviceNumbers：关键装置要害部位的数量 
+	inspectid：领导活动的类型id,取值采用下列枚举值 
+	planTimes：计划活动次数
+	times：活动次数 
+	problemNumbers：活动发现的问题数 
+	solvedProblemNumbers：已落实的问题数 
+	order:表格中用到的序号 
+	deviceLevelLabel：关键装置要害部位的级别显示名称 
+	deviceNumbersURL：表格中关键装置要害部位对应的业务系统的URL 
+	timesURL：表格中领导活动次数对应的业务系统的URL 
+	problemNumbersURL：表格中问题数的对应的业务系统URL -->
+	<!--1.文件总览 -->
+	<dataOutline dataYear="2012" dataDate="" corpid=""
+		corpname="河南石油" timestamp="" />
+
+	<!--2.级别数据 -->
+	<levelData>
+		<dataset levelid="LEVEL-A" label="一级" deviceNumbers="360" />
+		<dataset levelid="LEVEL-B" label="二级" deviceNumbers="1687" />
+		<dataset levelid="LEVEL-C" label="三级" deviceNumbers="1027" />
+	</levelData>
+
+<!-- 
+2013年8月6日修改：
+注意leaderInspectData下的dataset中的inspectid 为局级或者处级的编码
+同样在popupTableData的dataset中 增加inspectid 同样标识 此人为局级还是初级
+ -->
+
+	<!--3.领导活动数据,目前只有一级才存在领导活动 -->
+	<leaderInspectData>
+		<dataset levelid="LEVEL-A" inspectid="省公司级编码XXXXXX" label="省公司级"
+			planTimes="900" times="968" problemNumbers="1031"
+			solvedProblemNumbers="754" />
+		<dataset levelid="LEVEL-A" inspectid="地市公司级编码YYYYYYY" label="地市公司级"
+			planTimes="1600" times="1545" problemNumbers="4196"
+			solvedProblemNumbers="3500" />
+	</leaderInspectData>
+
+	<!--4.弹出表格数据 -->
+	<popupTableData>
+		<!-- 最近修改：弹出表格数据修改成如下 -->
+		<dataset order="1" inspectid="负责人" deviceName="装置A" leaderName="张三" planTimes="30"
+			times="848" problemNumbers="1660" solvedProblemNumbers="1600" rate="90" 
+			planTimesURL="http://应活动次数链接（保留）"
+			timesURL="http://实际活动次数链接" 
+			problemNumbersURL="http://问题数链接（保留）" 
+			solvedProblemNumbersURL="http://已解决问题链接（保留）"			
+			/>
+		<dataset order="2" inspectid="负责人" deviceName="装置B" leaderName="李四" planTimes="30"
+			times="848" problemNumbers="1660" solvedProblemNumbers="1600" rate="90"
+			planTimesURL="http://应活动次数链接（保留）"
+			timesURL="http://实际活动次数链接" 
+			problemNumbersURL="http://问题数链接（保留）" 
+			solvedProblemNumbersURL="http://已解决问题链接（保留）"			
+			/>
+		<dataset order="3" inspectid="负责人" deviceName="装置C" leaderName="王五" planTimes="30"
+			times="848" problemNumbers="1660" solvedProblemNumbers="1600" rate="90"
+			planTimesURL="http://应活动次数链接（保留）"
+			timesURL="http://实际活动次数链接" 
+			problemNumbersURL="http://问题数链接（保留）" 
+			solvedProblemNumbersURL="http://已解决问题链接（保留）"			
+			/>
+		<dataset order="4" inspectid="负责人" deviceName="装置D" leaderName="刘六" planTimes="30"
+			times="848" problemNumbers="1660" solvedProblemNumbers="1600" rate="90"
+			planTimesURL="http://应活动次数链接（保留）"
+			timesURL="http://实际活动次数链接" 
+			problemNumbersURL="http://问题数链接（保留）" 
+			solvedProblemNumbersURL="http://已解决问题链接（保留）"			
+			/>
+	</popupTableData>
+
+	<!-- 最近修改：添加二级单位排名如下 -->
+	<!-- leaderInspectPlanTimes:领导计划活动次数 leaderInspectFinishedTimes:领导活动完成次数 
+		leaderInspectRemainderTimes：领导活动未完成次数 ratio :完成率 averageFishedRatio：平均完成比例 
+		calendarRatio：日历进度比例 order:排序序号 -->
+	<corpOrderData>
+		<compositionData levelid="LEVEL-0" label="全部"
+			leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+			leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+			calendarRatio="10">
+			<!--本处数据要求按完成率降序排列按照，示意性类出4家 -->
+			<corpData order="1" subCorpid="" subCorpname="二级单位1"
+				leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+				leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+				calendarRatio="10" />
+			<corpData order="2" subCorpid="" subCorpname="二级单位2"
+				leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+				leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+				calendarRatio="10" />
+			<corpData order="3" subCorpid="" subCorpname="二级单位3"
+				leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+				leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+				calendarRatio="10" />
+			<corpData order="4" subCorpid="" subCorpname="二级单位4"
+				leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+				leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+				calendarRatio="10" />
+		</compositionData>
+		<compositionData levelid="LEVEL-A" label="一级"
+			leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+			leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+			calendarRatio="10"/>
+		<compositionData levelid="LEVEL-B" label="二级"
+			leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+			leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+			calendarRatio="10"/>
+		<compositionData levelid="LEVEL-C" label="三级"
+			leaderInspectPlanTimes="33" leaderInspectFinishedTimes="44"
+			leaderInspectRemainderTimes="77" ratio="87" averageFishedRatio="78"
+			calendarRatio="10"/>
+	</corpOrderData>
+
+</model>

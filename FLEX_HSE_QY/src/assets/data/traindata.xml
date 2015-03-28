@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- 2013年6月27日 整理
+ 
+ FinishSchedule 
+  当年初至登陆日已完成培训的人数（班数）/计划到登陆日应完成的人数（班数）
+比如查询的是2013年那么
+进度=2013年1月1日到现登记日期内所有已完成/2013年1月1日到现登记日期内所有计划数
+（新增）planBySchedule="" 		本年截至到当日的计划数 	如果是去年或以前的则planBySchedule==planClasses/planPersons
+（新增）finishedBySchedule="" 	本年截至到当日的完成		如果是去年或以前的则finishedBySchedule==finishedClasses/finishedPersons
+（新增）remainderBySchedule=""	本年截至到当日的剩余		如果是去年或以前的则remainderBySchedule==remainderClasses/remainderPersons
+（新增）FinishSchedule="" 		本年按进度的完成率=finishedBySchedule*100/planBySchedule	同理
+
+       planClasses/planPersons="" 			正常的计划
+       finishedClasses/finishedPersons="" 	正常的完成
+       remainderClasses/remainderPersons="" 正常的剩余
+（新增）FinishRatio=""						完成率    完成/计划  finishedClasses*100/planClasses 或者 finishedPersons*100/planPersons
+ -->
+
+
+<model>
+	<dataOutline dataYear="2012" dataDate="" corpid="10000002"
+		corpname="河南石油分公司" timestamp="" />
+	<overallData enableUrlLink="1">
+		<byClasses planClasses="6087" plansLabel="计划"
+			finishedClasses="4501" finishedLabel="完成" remainderClasses="1586"
+			remainderLabel="未完成" FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10">
+			<dataset order="1" subCorpid="" subCorpname="省公司"
+				planClasses="4" finishedClasses="3" remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="2" subCorpid="10096002" subCorpname="漯河石油分公司"
+				planClasses="1181" finishedClasses="856" remainderClasses="325"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="3" subCorpid="10065002" subCorpname="开封石油分公司"
+				planClasses="31" finishedClasses="22" remainderClasses="9"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="4" subCorpid="10106002" subCorpname="南阳石油分公司"
+				planClasses="1172" finishedClasses="822" remainderClasses="350"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="5" subCorpid="10179002" subCorpname="新乡石油分公司"
+				planClasses="302" finishedClasses="225" remainderClasses="77"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="6" subCorpid="10205002" subCorpname="郑州石油分公司"
+				planClasses="2488" finishedClasses="2024" remainderClasses="464"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="7" subCorpid="10226002" subCorpname="中原石油分公司"
+				planClasses="259" finishedClasses="146" remainderClasses="113"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="8" subCorpid="10033002" subCorpname="鹤壁石油分公司"
+				planClasses="40" finishedClasses="15" remainderClasses="25"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="9" subCorpid="10042002" subCorpname="济源石油分公司"
+				planClasses="3" finishedClasses="1" remainderClasses="2"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="10" subCorpid="10050002" subCorpname="焦作石油分公司"
+				planClasses="7" finishedClasses="3" remainderClasses="4"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="11" subCorpid="10165002" subCorpname="商丘石油分公司"
+				planClasses="24" finishedClasses="1" remainderClasses="23"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="12" subCorpid="10238002" subCorpname="周口石油分公司"
+				planClasses="1" finishedClasses="0" remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="13" subCorpid="10127002" subCorpname="平顶山分公司"
+				planClasses="19" finishedClasses="7" remainderClasses="12"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="14" subCorpid="10004002" subCorpname="信阳石油分公司"
+				planClasses="24" finishedClasses="12" remainderClasses="12"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="15" subCorpid="10022002" subCorpname="安阳石油分公司"
+				planClasses="23" finishedClasses="12" remainderClasses="11"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="16" subCorpid="10141002" subCorpname="濮阳石油分公司"
+				planClasses="388" finishedClasses="280" remainderClasses="108"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="17" subCorpid="10077002" subCorpname="洛阳石油分公司"
+				planClasses="8" finishedClasses="6" remainderClasses="2"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="18" subCorpid="10153002" subCorpname="三门峡石油分公司"
+				planClasses="8" finishedClasses="2" remainderClasses="6"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="19" subCorpid="10194002" subCorpname="许昌石油分公司"
+				planClasses="89" finishedClasses="54" remainderClasses="35"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="20" subCorpid="10254002" subCorpname="驻马店石油分公司"
+				planClasses="16" finishedClasses="10" remainderClasses="6"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+		</byClasses>
+		<byPersons planPersons="57642" plansLabel="计划"
+			finishedPersons="44027" finishedLabel="完成" remainderPersons="13615"
+			remainderLabel="未完成"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10">
+			<dataset order="1" subCorpid="" subCorpname="省公司"
+				planPersons="126" finishedPersons="125" remainderPersons="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="2" subCorpid="10096002" subCorpname="漯河石油分公司"
+				planPersons="7924" finishedPersons="6212" remainderPersons="1712"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="3" subCorpid="10065002" subCorpname="开封石油分公司"
+				planPersons="374" finishedPersons="135" remainderPersons="239"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="4" subCorpid="10106002" subCorpname="南阳石油分公司"
+				planPersons="8181" finishedPersons="5862" remainderPersons="2319"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="5" subCorpid="10179002" subCorpname="新乡石油分公司"
+				planPersons="2333" finishedPersons="2015" remainderPersons="318"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="6" subCorpid="10205002" subCorpname="郑州石油分公司"
+				planPersons="24981" finishedPersons="18584" remainderPersons="6397"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="7" subCorpid="10226002" subCorpname="中原石油分公司"
+				planPersons="3650" finishedPersons="3550" remainderPersons="100"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="8" subCorpid="10033002" subCorpname="鹤壁石油分公司"
+				planPersons="700" finishedPersons="197" remainderPersons="503"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="9" subCorpid="10042002" subCorpname="济源石油分公司"
+				planPersons="250" finishedPersons="112" remainderPersons="138"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="10" subCorpid="10050002" subCorpname="焦作石油分公司"
+				planPersons="261" finishedPersons="246" remainderPersons="15"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="11" subCorpid="10165002" subCorpname="商丘石油分公司"
+				planPersons="1510" finishedPersons="849" remainderPersons="661"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="12" subCorpid="10238002" subCorpname="周口石油分公司"
+				planPersons="45" finishedPersons="32" remainderPersons="13"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="13" subCorpid="10127002" subCorpname="平顶山分公司"
+				planPersons="517" finishedPersons="514" remainderPersons="3"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="14" subCorpid="10004002" subCorpname="信阳石油分公司"
+				planPersons="593" finishedPersons="589" remainderPersons="4"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="15" subCorpid="10022002" subCorpname="安阳石油分公司"
+				planPersons="846" finishedPersons="265" remainderPersons="581"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="16" subCorpid="10141002" subCorpname="濮阳石油分公司"
+				planPersons="3280" finishedPersons="2895" remainderPersons="385"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="17" subCorpid="10077002" subCorpname="洛阳石油分公司"
+				planPersons="179" finishedPersons="108" remainderPersons="71"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="18" subCorpid="10153002" subCorpname="三门峡石油分公司"
+				planPersons="642" finishedPersons="666" remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="19" subCorpid="10194002" subCorpname="许昌石油分公司"
+				planPersons="812" finishedPersons="651" remainderPersons="161"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			<dataset order="20" subCorpid="10254002" subCorpname="驻马店石油分公司"
+				planPersons="438" finishedPersons="420" remainderPersons="18"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+		</byPersons>
+	</overallData>
+	<byKindData>
+		<byClasses>
+			<compositionData>
+				<dataset kindid="1" label="地方政府" planClasses="5"
+					finishedClasses="4"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="2" label="集团公司" planClasses="3"
+					finishedClasses="3"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" label="省公司" planClasses="6"
+					finishedClasses="4"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" label="地市公司" planClasses="5229"
+					finishedClasses="3750"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" label="其他" planClasses="844"
+					finishedClasses="740"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</compositionData>
+			<detailData>
+				<dataset kindid="2" order="0" subCorpid="" subCorpname="省公司"
+					planClasses="1" finishedClasses="1" remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" order="0" subCorpid="" subCorpname="省公司"
+					planClasses="3" finishedClasses="2" remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="1" order="1" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planClasses="1" finishedClasses="0"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="1" order="2" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planClasses="2" finishedClasses="2"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="1" order="3" subCorpid="10254002"
+					subCorpname="驻马店石油分公司" planClasses="2" finishedClasses="2"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="2" order="1" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planClasses="1" finishedClasses="1"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="2" order="2" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planClasses="1" finishedClasses="1"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" order="1" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planClasses="2" finishedClasses="1"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" order="2" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planClasses="1" finishedClasses="1"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="1" subCorpid="10194002"
+					subCorpname="许昌石油分公司" planClasses="89" finishedClasses="54"
+					remainderClasses="35"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="2" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planClasses="37" finishedClasses="14"
+					remainderClasses="23"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="3" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planClasses="6" finishedClasses="5"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="4" subCorpid="10042002"
+					subCorpname="济源石油分公司" planClasses="3" finishedClasses="1"
+					remainderClasses="2"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="5" subCorpid="10022002"
+					subCorpname="安阳石油分公司" planClasses="23" finishedClasses="12"
+					remainderClasses="11"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="6" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planClasses="387" finishedClasses="279"
+					remainderClasses="108"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="7" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planClasses="1166" finishedClasses="847"
+					remainderClasses="319"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="8" subCorpid="10050002"
+					subCorpname="焦作石油分公司" planClasses="6" finishedClasses="2"
+					remainderClasses="4"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="9" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planClasses="1730" finishedClasses="1342"
+					remainderClasses="388"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="10" subCorpid="10165002"
+					subCorpname="商丘石油分公司" planClasses="24" finishedClasses="1"
+					remainderClasses="23"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="11" subCorpid="10065002"
+					subCorpname="开封石油分公司" planClasses="29" finishedClasses="20"
+					remainderClasses="9"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="12" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planClasses="295" finishedClasses="220"
+					remainderClasses="75"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="13" subCorpid="10127002"
+					subCorpname="平顶山分公司" planClasses="19" finishedClasses="7"
+					remainderClasses="12"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="14" subCorpid="10226002"
+					subCorpname="中原石油分公司" planClasses="210" finishedClasses="110"
+					remainderClasses="100"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="15" subCorpid="10004002"
+					subCorpname="信阳石油分公司" planClasses="24" finishedClasses="12"
+					remainderClasses="12"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="16" subCorpid="10153002"
+					subCorpname="三门峡石油分公司" planClasses="8" finishedClasses="2"
+					remainderClasses="6"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="17" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planClasses="1158" finishedClasses="814"
+					remainderClasses="344"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="18" subCorpid="10238002"
+					subCorpname="周口石油分公司" planClasses="1" finishedClasses="0"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="19" subCorpid="10254002"
+					subCorpname="驻马店石油分公司" planClasses="14" finishedClasses="8"
+					remainderClasses="6"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="1" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planClasses="14" finishedClasses="8"
+					remainderClasses="6"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="2" subCorpid="10050002"
+					subCorpname="焦作石油分公司" planClasses="1" finishedClasses="1"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="3" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planClasses="6" finishedClasses="4"
+					remainderClasses="2"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="4" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planClasses="2" finishedClasses="1"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="5" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planClasses="753" finishedClasses="678"
+					remainderClasses="75"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="6" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planClasses="1" finishedClasses="0"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="7" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planClasses="15" finishedClasses="9"
+					remainderClasses="6"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="8" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planClasses="1" finishedClasses="1"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="9" subCorpid="10226002"
+					subCorpname="中原石油分公司" planClasses="49" finishedClasses="36"
+					remainderClasses="13"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="10" subCorpid="10065002"
+					subCorpname="开封石油分公司" planClasses="2" finishedClasses="2"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</detailData>
+		</byClasses>
+		<byPersons>
+			<kindData>
+				<dataset kindid="1" label="地方政府" planPersons="167"
+					finishedPersons="7"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="2" label="集团公司" planPersons="13"
+					finishedPersons="13"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" label="省公司" planPersons="141"
+					finishedPersons="141"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" label="地市公司" planPersons="50400"
+					finishedPersons="37611"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" label="其他" planPersons="6921"
+					finishedPersons="6255"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</kindData>
+			<detailData>
+				<dataset kindid="2" order="0" subCorpid="" subCorpname="省公司"
+					planPersons="2" finishedPersons="2" remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" order="0" subCorpid="" subCorpname="省公司"
+					planPersons="124" finishedPersons="123" remainderPersons="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="1" order="1" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planPersons="160" finishedPersons="0"
+					remainderPersons="160"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="1" order="2" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planPersons="2" finishedPersons="2"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="1" order="3" subCorpid="10254002"
+					subCorpname="驻马店石油分公司" planPersons="5" finishedPersons="5"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="2" order="1" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planPersons="8" finishedPersons="8"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="2" order="2" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planPersons="3" finishedPersons="3"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" order="1" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planPersons="7" finishedPersons="8"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="3" order="2" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planPersons="10" finishedPersons="10"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="1" subCorpid="10194002"
+					subCorpname="许昌石油分公司" planPersons="812" finishedPersons="651"
+					remainderPersons="161"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="2" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planPersons="437" finishedPersons="193"
+					remainderPersons="244"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="3" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planPersons="109" finishedPersons="69"
+					remainderPersons="40"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="4" subCorpid="10042002"
+					subCorpname="济源石油分公司" planPersons="250" finishedPersons="112"
+					remainderPersons="138"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="5" subCorpid="10022002"
+					subCorpname="安阳石油分公司" planPersons="846" finishedPersons="265"
+					remainderPersons="581"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="6" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planPersons="3278" finishedPersons="2893"
+					remainderPersons="385"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="7" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planPersons="7801" finishedPersons="6106"
+					remainderPersons="1695"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="8" subCorpid="10050002"
+					subCorpname="焦作石油分公司" planPersons="255" finishedPersons="240"
+					remainderPersons="15"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="9" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planPersons="19061" finishedPersons="13105"
+					remainderPersons="5956"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="10" subCorpid="10165002"
+					subCorpname="商丘石油分公司" planPersons="1510" finishedPersons="849"
+					remainderPersons="661"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="11" subCorpid="10065002"
+					subCorpname="开封石油分公司" planPersons="370" finishedPersons="131"
+					remainderPersons="239"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="12" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planPersons="2294" finishedPersons="1986"
+					remainderPersons="308"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="13" subCorpid="10127002"
+					subCorpname="平顶山分公司" planPersons="517" finishedPersons="514"
+					remainderPersons="3"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="14" subCorpid="10226002"
+					subCorpname="中原石油分公司" planPersons="3059" finishedPersons="3005"
+					remainderPersons="54"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="15" subCorpid="10004002"
+					subCorpname="信阳石油分公司" planPersons="593" finishedPersons="589"
+					remainderPersons="4"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="16" subCorpid="10153002"
+					subCorpname="三门峡石油分公司" planPersons="642" finishedPersons="666"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="17" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planPersons="8088" finishedPersons="5790"
+					remainderPersons="2298"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="18" subCorpid="10238002"
+					subCorpname="周口石油分公司" planPersons="45" finishedPersons="32"
+					remainderPersons="13"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="4" order="19" subCorpid="10254002"
+					subCorpname="驻马店石油分公司" planPersons="433" finishedPersons="415"
+					remainderPersons="18"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="1" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planPersons="93" finishedPersons="72"
+					remainderPersons="21"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="2" subCorpid="10050002"
+					subCorpname="焦作石油分公司" planPersons="6" finishedPersons="6"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="3" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planPersons="36" finishedPersons="26"
+					remainderPersons="10"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="4" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planPersons="103" finishedPersons="4"
+					remainderPersons="99"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="5" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planPersons="5903" finishedPersons="5461"
+					remainderPersons="442"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="6" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planPersons="60" finishedPersons="29"
+					remainderPersons="31"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="7" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planPersons="123" finishedPersons="106"
+					remainderPersons="17"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="8" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planPersons="2" finishedPersons="2"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="9" subCorpid="10226002"
+					subCorpname="中原石油分公司" planPersons="591" finishedPersons="545"
+					remainderPersons="46"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset kindid="5" order="10" subCorpid="10065002"
+					subCorpname="开封石油分公司" planPersons="4" finishedPersons="4"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</detailData>
+		</byPersons>
+	</byKindData>
+	<byPostData>
+		<byClasses>
+			<postData>
+				<dataset postid="15" label="上岗培训" planClasses="866"
+					finishedClasses="607"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" label="转岗培训" planClasses="412"
+					finishedClasses="266"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</postData>
+			<detailData>
+				<dataset postid="15" order="0" subCorpid="" subCorpname="省公司"
+					planClasses="1" finishedClasses="0" remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="1" subCorpid="10254002"
+					subCorpname="驻马店石油分公司" planClasses="7" finishedClasses="5"
+					remainderClasses="2"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="2" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planClasses="287" finishedClasses="195"
+					remainderClasses="92"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="3" subCorpid="10050002"
+					subCorpname="焦作石油分公司" planClasses="1" finishedClasses="0"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="4" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planClasses="3" finishedClasses="2"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="5" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planClasses="96" finishedClasses="74"
+					remainderClasses="22"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="6" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planClasses="55" finishedClasses="38"
+					remainderClasses="17"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="7" subCorpid="10065002"
+					subCorpname="开封石油分公司" planClasses="1" finishedClasses="0"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="8" subCorpid="10194002"
+					subCorpname="许昌石油分公司" planClasses="16" finishedClasses="9"
+					remainderClasses="7"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="9" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planClasses="7" finishedClasses="5"
+					remainderClasses="2"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="10" subCorpid="10165002"
+					subCorpname="商丘石油分公司" planClasses="1" finishedClasses="0"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="11" subCorpid="10226002"
+					subCorpname="中原石油分公司" planClasses="50" finishedClasses="37"
+					remainderClasses="13"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="12" subCorpid="10127002"
+					subCorpname="平顶山分公司" planClasses="8" finishedClasses="0"
+					remainderClasses="8"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="13" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planClasses="3" finishedClasses="2"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="14" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planClasses="330" finishedClasses="240"
+					remainderClasses="90"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="1" subCorpid="10194002"
+					subCorpname="许昌石油分公司" planClasses="1" finishedClasses="1"
+					remainderClasses="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="2" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planClasses="124" finishedClasses="81"
+					remainderClasses="43"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="3" subCorpid="10127002"
+					subCorpname="平顶山分公司" planClasses="2" finishedClasses="1"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="4" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planClasses="9" finishedClasses="4"
+					remainderClasses="5"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="5" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planClasses="88" finishedClasses="65"
+					remainderClasses="23"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="6" subCorpid="10022002"
+					subCorpname="安阳石油分公司" planClasses="1" finishedClasses="0"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="7" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planClasses="149" finishedClasses="88"
+					remainderClasses="61"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="8" subCorpid="10226002"
+					subCorpname="中原石油分公司" planClasses="11" finishedClasses="7"
+					remainderClasses="4"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="9" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planClasses="3" finishedClasses="2"
+					remainderClasses="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="10" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planClasses="24" finishedClasses="17"
+					remainderClasses="7"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</detailData>
+		</byClasses>
+		<byPersons>
+			<postData>
+				<dataset postid="15" label="上岗培训" planPersons="6482"
+					finishedPersons="4970"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" label="转岗培训" planPersons="2817"
+					finishedPersons="2035"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</postData>
+			<detailData>
+				<dataset postid="15" order="0" subCorpid="" subCorpname="省公司"
+					planPersons="40" finishedPersons="39" remainderPersons="1"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="1" subCorpid="10254002"
+					subCorpname="驻马店石油分公司" planPersons="46" finishedPersons="49"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="2" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planPersons="2272" finishedPersons="1363"
+					remainderPersons="909"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="3" subCorpid="10050002"
+					subCorpname="焦作石油分公司" planPersons="1" finishedPersons="3"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="4" subCorpid="10033002"
+					subCorpname="鹤壁石油分公司" planPersons="11" finishedPersons="5"
+					remainderPersons="6"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="5" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planPersons="900" finishedPersons="769"
+					remainderPersons="131"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="6" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planPersons="477" finishedPersons="401"
+					remainderPersons="76"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="7" subCorpid="10065002"
+					subCorpname="开封石油分公司" planPersons="18" finishedPersons="2"
+					remainderPersons="16"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="8" subCorpid="10194002"
+					subCorpname="许昌石油分公司" planPersons="69" finishedPersons="58"
+					remainderPersons="11"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="9" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planPersons="66" finishedPersons="57"
+					remainderPersons="9"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="10" subCorpid="10165002"
+					subCorpname="商丘石油分公司" planPersons="40" finishedPersons="30"
+					remainderPersons="10"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="11" subCorpid="10226002"
+					subCorpname="中原石油分公司" planPersons="482" finishedPersons="489"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="12" subCorpid="10127002"
+					subCorpname="平顶山分公司" planPersons="203" finishedPersons="231"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="13" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planPersons="70" finishedPersons="39"
+					remainderPersons="31"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="15" order="14" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planPersons="1787" finishedPersons="1435"
+					remainderPersons="352"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="1" subCorpid="10194002"
+					subCorpname="许昌石油分公司" planPersons="7" finishedPersons="7"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="2" subCorpid="10096002"
+					subCorpname="漯河石油分公司" planPersons="804" finishedPersons="624"
+					remainderPersons="180"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="3" subCorpid="10127002"
+					subCorpname="平顶山分公司" planPersons="59" finishedPersons="68"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="4" subCorpid="10179002"
+					subCorpname="新乡石油分公司" planPersons="194" finishedPersons="160"
+					remainderPersons="34"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="5" subCorpid="10205002"
+					subCorpname="郑州石油分公司" planPersons="706" finishedPersons="437"
+					remainderPersons="269"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="6" subCorpid="10022002"
+					subCorpname="安阳石油分公司" planPersons="10" finishedPersons="0"
+					remainderPersons="10"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="7" subCorpid="10106002"
+					subCorpname="南阳石油分公司" planPersons="721" finishedPersons="463"
+					remainderPersons="258"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="8" subCorpid="10226002"
+					subCorpname="中原石油分公司" planPersons="100" finishedPersons="96"
+					remainderPersons="4" FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10" />
+				<dataset postid="16" order="9" subCorpid="10077002"
+					subCorpname="洛阳石油分公司" planPersons="44" finishedPersons="4"
+					remainderPersons="40"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+				<dataset postid="16" order="10" subCorpid="10141002"
+					subCorpname="濮阳石油分公司" planPersons="172" finishedPersons="176"
+					remainderPersons="0"  FinishRatio="80" FinishSchedule="90" planBySchedule="100" finishedBySchedule="90" remainderBySchedule="10"/>
+			</detailData>
+		</byPersons>
+	</byPostData>
+</model>

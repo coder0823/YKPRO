@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Model>
+    <corps>
+        <corpData corpType="企业对比总体情况">
+            <rateDatas rateType="yellow" label="黄色">
+                <dataset label="" corpid="" numbers="" />
+                <dataset label="安庆石化" corpid="200355" numbers="0" />
+                <dataset label="巴陵石化" corpid="200340" numbers="0" />
+                <dataset label="北海炼化" corpid="200435" numbers="0" />
+                <dataset label="北京石油" corpid="200101" numbers="0" />
+                <dataset label="长岭炼化" corpid="200345" numbers="0" />
+                <dataset label="高桥石化" corpid="200315" numbers="0" />
+                <dataset label="管道分公司" corpid="200105" numbers="0" />
+                <dataset label="广东石油" corpid="200106" numbers="0" />
+                <dataset label="广州石化" corpid="200107" numbers="0" />
+                <dataset label="海南炼化" corpid="200480" numbers="0" />
+                <dataset label="河南石油" corpid="200525" numbers="55.6" />
+                <dataset label="河南油田" corpid="200530" numbers="20.0" />
+                <dataset label="湖北化肥" corpid="200400" numbers="0" />
+                <dataset label="济南炼化" corpid="200390" numbers="0" />
+                <dataset label="江苏油田" corpid="200100" numbers="0" />
+                <dataset label="金陵石化" corpid="200320" numbers="0" />
+                <dataset label="九江石化" corpid="200380" numbers="0" />
+                <dataset label="洛阳分公司" corpid="200108" numbers="0" />
+                <dataset label="茂名石化" corpid="200111" numbers="0" />
+                <dataset label="南化公司" corpid="200330" numbers="0" />
+                <dataset label="齐鲁石化" corpid="200335" numbers="0" />
+                <dataset label="青岛炼化" corpid="200485" numbers="0" />
+                <dataset label="青岛石化" corpid="200425" numbers="0" />
+                <dataset label="山东石油" corpid="200109" numbers="0" />
+                <dataset label="上海石化" corpid="200450" numbers="0" />
+                <dataset label="石家庄炼化" corpid="200112" numbers="0" />
+                <dataset label="塔河炼化" corpid="200445" numbers="0" />
+                <dataset label="天津石化" corpid="200310" numbers="0" />
+                <dataset label="武汉分公司" corpid="200395" numbers="0" />
+                <dataset label="西安石化" corpid="200440" numbers="0" />
+                <dataset label="燕山石化" corpid="200130" numbers="0" />
+                <dataset label="扬子石化" corpid="200325" numbers="100" />
+                <dataset label="湛江东兴" corpid="200465" numbers="0" />
+                <dataset label="浙江石油分公司" corpid="200535" numbers="68.4" />
+                <dataset label="镇海炼化" corpid="200223" numbers="89.5" />
+                <dataset label="中国石化集团四川维尼纶厂" corpid="200370" numbers="0" />
+                <dataset label="中国石化仪征化纤公司" corpid="200460" numbers="0" />
+            </rateDatas>
+            <rateDatas rateType="red" label="红色">
+                <dataset label="" corpid="" numbers="" />
+                <dataset label="安庆石化" corpid="200355" numbers="100" />
+                <dataset label="巴陵石化" corpid="200340" numbers="100" />
+                <dataset label="北海炼化" corpid="200435" numbers="100" />
+                <dataset label="北京石油" corpid="200101" numbers="100" />
+                <dataset label="长岭炼化" corpid="200345" numbers="100" />
+                <dataset label="高桥石化" corpid="200315" numbers="100" />
+                <dataset label="管道分公司" corpid="200105" numbers="100" />
+                <dataset label="广东石油" corpid="200106" numbers="100" />
+                <dataset label="广州石化" corpid="200107" numbers="100" />
+                <dataset label="海南炼化" corpid="200480" numbers="100" />
+                <dataset label="河南石油" corpid="200525" numbers="44.4" />
+                <dataset label="河南油田" corpid="200530" numbers="80.0" />
+                <dataset label="湖北化肥" corpid="200400" numbers="0" />
+                <dataset label="济南炼化" corpid="200390" numbers="100" />
+                <dataset label="江苏油田" corpid="200100" numbers="100" />
+                <dataset label="金陵石化" corpid="200320" numbers="100" />
+                <dataset label="九江石化" corpid="200380" numbers="100" />
+                <dataset label="洛阳分公司" corpid="200108" numbers="100" />
+                <dataset label="茂名石化" corpid="200111" numbers="90.9" />
+                <dataset label="南化公司" corpid="200330" numbers="100" />
+                <dataset label="齐鲁石化" corpid="200335" numbers="0" />
+                <dataset label="青岛炼化" corpid="200485" numbers="0" />
+                <dataset label="青岛石化" corpid="200425" numbers="0" />
+                <dataset label="山东石油" corpid="200109" numbers="94.2" />
+                <dataset label="上海石化" corpid="200450" numbers="100" />
+                <dataset label="石家庄炼化" corpid="200112" numbers="100" />
+                <dataset label="塔河炼化" corpid="200445" numbers="100" />
+                <dataset label="天津石化" corpid="200310" numbers="100" />
+                <dataset label="武汉分公司" corpid="200395" numbers="100" />
+                <dataset label="西安石化" corpid="200440" numbers="0" />
+                <dataset label="燕山石化" corpid="200130" numbers="100" />
+                <dataset label="扬子石化" corpid="200325" numbers="0" /> 
+                <dataset label="湛江东兴" corpid="200465" numbers="100" />
+                <dataset label="浙江石油分公司" corpid="200535" numbers="21.1" />
+                <dataset label="镇海炼化" corpid="200223" numbers="10.5" />
+                <dataset label="中国石化集团四川维尼纶厂" corpid="200370" numbers="100" />
+                <dataset label="中国石化仪征化纤公司" corpid="200460" numbers="100" />
+            </rateDatas>
+        </corpData>
+    </corps>
+    <dataOutline dataYear="2014" dataStartDate="" dataEndDate="" timestamp="">
+    </dataOutline>
+</Model>

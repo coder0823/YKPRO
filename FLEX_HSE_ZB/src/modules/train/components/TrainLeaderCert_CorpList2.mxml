@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   skinClass="skins.popWinStyle_noExport" mouseEnabled="true"
+			   xmlns:views="views.*"
+			   creationComplete="init()"
+			   width="1200" height="400"
+			   close="titlewindow1_closeHandler(event)">	
+	<fx:Declarations>
+		<fx:XML id="hseDataXML" />
+		<s:Parallel id="par">
+			<s:Fade alphaFrom="0.0" alphaTo="1.0" duration="2000"/>
+		</s:Parallel>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import events.PopupEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import renderers.MyADGILinkRenderer;
+			
+			import skins.popWinStyle;
+			
+			import spark.components.TitleWindow;
+			
+			import views.PopupTitleWinDG;
+			[Bindable]
+			public var DataSource:mx.collections.ArrayCollection;
+			[Bindable]
+			public var PlateName:String = "";
+			[Bindable]
+			public var LevelName:String = "";
+			[Bindable]
+			public var CertTypeName:String = "";
+			[Bindable]
+			public var TypeName:String = "";
+			[Bindable]
+			public var LeaderLevelName:String = "";
+			[Bindable]
+			public var DateStr:String = "";
+			[Bindable]
+			public var ShowTitle:Boolean = true;
+			public var fun_call:Function = new Function();
+			public var fun_back:Function = new Function();
+			[Bindable]
+			[Embed(source="assets/images/back3.png")]
+			private var icon:Class;
+			
+			private var renderers:IFactory = new ClassFactory(MyADGILinkRenderer);
+			
+			protected function init():void
+			{
+				this.addEventListener(events.PopupEvent.PopupItemClick, popLeaderMX);
+			}
+			private var titleWin:TitleWindow = new TitleWindow;
+			private var obj_event:Object;
+			private function popLeaderMX(event:events.PopupEvent):void
+			{
+				obj_event = event.hitDataItem;
+				
+				if (obj_event.item == "plateLabel")
+				{
+					if(obj_event.plateLabel=="合计"){
+						navigate(obj_event.totalCorpURL);
+					}else{
+						navigate(obj_event.corpURL);
+					}
+					return;
+				}
+				else{
+					//					popLeaderMX_titleWin(obj_event);
+					switch(obj_event.item)
+					{
+						case "effectiveCert12":
+						{
+							navigate(obj_event.effectiveCert12URL);  
+							break;
+						}
+						case "effectiveCert6":
+						{
+							navigate(obj_event.effectiveCert6URL);  
+							break;
+						}
+						case "effectiveCert3":
+						{
+							navigate(obj_event.effectiveCert3URL);  
+							break;
+						}
+						/*
+						case "beover":
+						{
+							navigate(obj_event.beoverURL);  
+							break;
+						}*/
+							
+						case "unChangeNum":
+						{
+							navigate(obj_event.unChangeNumURL);  
+							break;
+						}
+						case "unCheckNum":
+						{
+							navigate(obj_event.unCheckNumURL);  
+							break;
+						}
+					}
+				}
+			}
+			
+			private function navigate(url:String):void{
+				if(url!=""&&null!=url){
+					navigateToURL(new URLRequest(url),"_blank");   
+				}
+				
+			}
+			
+			private var titleWindow1:views.PopupTitleWinDG;
+			[Bindable]
+			private var CertText:String = "";
+			protected function popLeaderMX_titleWin(obj:Object):void
+			{
+				titleWindow1 = new views.PopupTitleWinDG();
+				titleWindow1.addEventListener(CloseEvent.CLOSE, function closeEV():void
+				{
+					PopUpManager.removePopUp(titleWindow1);
+				});
+				titleWindow1.IfShowFirstRecordBgColor = true;
+				titleWindow1.IfShowFrontRecordColor = false;
+				titleWindow1.IfShowBackRecordColor = false;
+				titleWindow1.tw_width = 700;
+				titleWindow1.DataSourceConf = new ArrayCollection([
+					{headerText: "序号", dataField: "order", width: "20", textAlign: "center", sortable: false, draggable: false}, 
+					{headerText: "姓名", dataField: "leadername", width: "80", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "证书名称", dataField: "certName", width: "170", textAlign: "center", sortable: true, draggable: true},
+					{headerText: "证书编号", dataField: "certID", width: "100", textAlign: "center", sortable: true, draggable: true}, 
+					{headerText: "下次复审日期",enableUrlLink: false, dataField: "certReexamine", width: "80", textAlign: "center", sortable: true, draggable: true},
+					{headerText: "下次换证日期", dataField: "certExpirationDate", width: "80", textAlign: "center", sortable: true, draggable: true}
+				]);
+				try
+				{
+					var tmpArrayCollection:ArrayCollection = new ArrayCollection();
+					var tmpList:XMLList;
+					if (obj.item == "effectiveCert12")
+					{
+						//CertText = "一年内到期";
+						CertText = "一年内到期";
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==obj.id).effectiveCert12.leaderData;
+					}
+					else if(obj.item == "effectiveCert6")
+					{
+						CertText = "半年内到期";
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==obj.id).effectiveCert6.leaderData;
+					}
+					else if(obj.item == "effectiveCert3")
+					{
+						CertText = "三个月内到期";
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==obj.id).effectiveCert3.leaderData;
+					}
+					/*
+					else if(obj.item == "beover")
+					{
+						CertText = "过期";
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==obj.id).beover.leaderData;
+					}*/
+					else if(obj.item == "unChangeNum")
+					{
+						CertText = "过期";
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==obj.id).unChangeNum.leaderData;
+					}
+					else if(obj.item == "unCheckNum")
+					{
+						CertText = "未评审";
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==obj.id).unCheckNum.leaderData;
+					}
+					else if(obj.item == "remainderCert")
+					{
+						CertText = "未持证";
+						titleWindow1.tw_width = 500;
+						titleWindow1.DataSourceConf = new ArrayCollection([
+							{headerText: "序号", dataField: "order", width: "40", textAlign: "center", sortable: false, draggable: false}, 
+							{headerText: "姓名", dataField: "leadername", width: "40", textAlign: "center", sortable: true, draggable: true}, 
+							{headerText: "证书名称", dataField: "certName", width: "40", textAlign: "center", sortable: true, draggable: true},
+						]);
+						
+						tmpList = hseDataXML.byLeaderCertData.plateData.corpData.(@subCorpid==obj.id).remainderCert.leaderData;
+					}
+					
+					if (tmpList.length() > 0)
+					{
+						var index:int = 2;
+						var order:int = 1;
+						for each (var xml:XML in tmpList)
+						{
+							var obj:Object = {leadername: xml.@leadername, certName: xml.@certName, certID: xml.@certID, certReexamine: xml.@certReexamine,certExpirationDate: xml.@certExpirationDate,index: index, id: xml.@leaderid, order: order};
+							tmpArrayCollection.addItem(obj);
+							index++;
+							order++;
+						}
+					}
+						
+					titleWindow1.DataSource = tmpArrayCollection;
+				}
+				catch (e:Event)
+				{
+					trace(e);
+				}
+//				titleWindow1.addEventListener(events.PopupEvent.PopupItemClick, popClassCorp);
+				if (tmpList.length() > 0)
+				PopUpManager.addPopUp(titleWindow1, this.root, true);
+				PopUpManager.centerPopUp(titleWindow1);
+				titleWindow1.TitleValue = obj_event.plateLabel+LeaderLevelName+CertText+"证书统计表(" + DateStr + ")";
+			}
+			private function remainderCertTip(item:Object):String
+			{
+				return "企业未录入局级领导证书信息（根据总部要求，每家企业至少应有2个局级领导取得安全资格证）";
+			}
+			
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup horizontalAlign="center"
+			  verticalAlign="middle"
+			  gap="0"
+			  width="100%"
+			  height="100%">
+		<!--text="{PlateName}{DateStr}{LevelName}{CertTypeName}{LeaderLevelName}{TypeName}培训完成情况"-->
+		<mx:Label width="100%"
+				  height="30"
+				  text="{PlateName}{DateStr}{LevelName}安全资格证{LeaderLevelName}培训完成情况"
+				  styleName="titleStyle"
+				  visible="{ShowTitle}"
+				  includeInLayout="{ShowTitle}" />
+		<mx:AdvancedDataGrid id="adg"
+							 styleName="CusAdvancedDataGrid"
+							 width="100%"
+							 height="100%"
+							 sortExpertMode="true"
+							 sortableColumns="false"
+							 selectionMode="none"
+							 horizontalGridLines="false"
+							 dataProvider="{DataSource}"
+							 textAlign="center"
+							 borderVisible="false">
+			<mx:groupedColumns>
+				<mx:AdvancedDataGridColumn width="60"
+										   dataField="order"
+										   headerText="序号" />
+				<mx:AdvancedDataGridColumn width="100" dataField="plateLabel" id="plate_renderer"
+										   headerText="名称" itemRenderer="renderers.MyADGILinkRenderer"
+										  />
+				<!--李希敏要求隐藏 20150212
+				<mx:AdvancedDataGridColumn dataField="certNum"
+										   headerText="应持证人数"
+										   />
+				<mx:AdvancedDataGridColumn dataField="realityCertNum"
+										   headerText="实际持证人数"
+										 />
+				<mx:AdvancedDataGridColumn dataField="certRation"
+										   headerText="持证率%"
+										   />
+				-->
+				<mx:AdvancedDataGridColumn dataField="certNum1"
+										   headerText="证书数量"
+										   />
+				<mx:AdvancedDataGridColumn dataField="effectiveCertNum"
+										   headerText="有效证" /> 
+				<mx:AdvancedDataGridColumnGroup headerText="预警证">
+					<!--<mx:AdvancedDataGridColumn dataField="effectiveCert12"
+											   headerText="一年内到期" itemRenderer="renderers.MyADGILinkRenderer"  />-->
+					<mx:AdvancedDataGridColumn dataField="effectiveCert12"
+											   headerText="一年内到期" itemRenderer="renderers.MyADGILinkRenderer"  />
+					<mx:AdvancedDataGridColumn dataField="effectiveCert6"
+											   headerText="半年内到期" itemRenderer="renderers.MyADGILinkRenderer" />
+					<mx:AdvancedDataGridColumn dataField="effectiveCert3"
+											   headerText="三个月内到期" itemRenderer="renderers.MyADGILinkRenderer" />
+				</mx:AdvancedDataGridColumnGroup>
+				<!--
+				<mx:AdvancedDataGridColumn dataField="beover"
+										   headerText="过期证" itemRenderer="renderers.MyADGILinkRenderer" 
+										   />-->
+				<mx:AdvancedDataGridColumn dataField="unChangeNum"
+										   headerText="过期证" itemRenderer="renderers.MyADGILinkRenderer" 
+										   />
+				<mx:AdvancedDataGridColumn dataField="unCheckNum"
+										   headerText="未评审" itemRenderer="renderers.MyADGILinkRenderer" 
+										   />
+				<mx:AdvancedDataGridColumn dataField="realityRation"
+										   headerText="证书有效率%"
+										   />
+				<!--李希敏要求隐藏 20150212
+				<mx:AdvancedDataGridColumn dataField="remainderCert" showDataTips="true" dataTipFunction="remainderCertTip"
+										   headerText="未持证"
+										   />
+				-->
+			</mx:groupedColumns>
+		</mx:AdvancedDataGrid>
+	</s:VGroup>
+</s:TitleWindow>

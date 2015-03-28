@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+ <!-- 总部HSE仪表盘〔事故管理部分〕xml数据 　设计：肖丰斌  Version:1.0 日期：2013-1-11  -->
+ <!--一.文件总览 -->
+ <dataOutline dataYear="2012"  dataStartDate=""  dataEndDate=""  timestamp=""/>
+<!--
+  *******************************************************************
+  2013年10月21日 孙山虎 
+  根据三期总部提出钻取要求进行修改：期中"......"的地方表示有扩展，请开发人员按实际输出
+  文档结构如下：
+  accidentData 					事故数据：
+  	|_yearData					年度数据：	yearid年度编号，label年度显示
+		|_monthData				月度数据：	monthid月度编号，label月份显示
+  			|_plateData 		板块数据：	plateid板块代码，plateLabel板块名称
+  				|_corpData 		企业数据：	order序号，subCorpid企业编码，subCorpname企业名称
+  					|_accident 	事故数据：	order序号,accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数"  accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态"
+公共属性：
+monthAccidentNumbers	="事故数量" 
+yearAccidentNumbers		="年累计事故数量" 
+monthUnaccidentNumbers	="未遂事件数量" 
+yearUnaccidentNumbers	="年累计未遂事件数量"
+
+  *******************************************************************
+  -->
+ <accidentData currentYearid="2008" currentMonthid="01">
+ 		<yearData yearid="2008" label="2008"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+        	<plateData   plateid="YT" plateLabel="油田"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+				<corpData  order="1" subCorpid="aaa" subCorpname="企业A" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL=""/>
+	           	<corpData  order="2" subCorpid="bbb" subCorpname="企业2" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL=""/>
+	           	<corpData  order="3" subCorpid="ccc" subCorpname="企业3" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL=""/>
+	        	<!-- ...... -->
+			</plateData>
+        	<plateData   plateid="LH" plateLabel="炼化"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44"/>
+        	<plateData   plateid="XS" plateLabel="销售"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44"/>
+        	<plateData   plateid="GC" plateLabel="工程"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44"/>
+        	<plateData   plateid="QT" plateLabel="其他"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44"/>
+        	
+        	<monthData monthid="01" label="1月"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+        		<plateData   plateid="YT" plateLabel="油田"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+	        		<corpData  order="1" subCorpid="aaa" subCorpname="企业A" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态"/>
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	        		</corpData>
+	           		<corpData  order="2" subCorpid="bbb" subCorpname="企业2" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	           			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	           		</corpData>
+	           		<corpData  order="3" subCorpid="ccc" subCorpname="企业3" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	           			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	           		</corpData>
+	        		<!-- ...... -->
+	        	</plateData>
+	        	<!-- ...... -->
+        	</monthData>
+        	<monthData monthid="02" label="2月"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+        		<plateData   plateid="YT" plateLabel="油田"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+	        		<corpData  order="1" subCorpid="aaa" subCorpname="企业A" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	        		</corpData>
+	           		<corpData  order="2" subCorpid="bbb" subCorpname="企业2" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	           			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	           		</corpData>
+	           		<corpData  order="3" subCorpid="ccc" subCorpname="企业3" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	           			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	           		</corpData>
+	        		<!-- ...... -->
+	        	</plateData>
+	        	<!-- ...... -->
+        	</monthData>
+        	<monthData monthid="03" label="3月"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+        		<plateData   plateid="YT" plateLabel="油田"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44">
+	        		<corpData  order="1" subCorpid="aaa" subCorpname="企业A" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	        		</corpData>
+	           		<corpData  order="2" subCorpid="bbb" subCorpname="企业2" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	           			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	           		</corpData>
+	           		<corpData  order="3" subCorpid="ccc" subCorpname="企业3" monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44" URL="">
+	           			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" accRegOrg="登记部门" ifOutSide="是否境外" ifBeiAn="是否备案" accStats="状态" />
+	        			<!-- ...... -->
+	           		</corpData>
+	        		<!-- ...... -->
+	        	</plateData>
+	        	<!-- ...... -->
+        	</monthData>
+			<!-- ...... -->
+        </yearData>
+		<yearData yearid="2009" label="2009"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44"/>
+		<yearData yearid="2010" label="2010"  monthAccidentNumbers="11" yearAccidentNumbers="22" monthUnaccidentNumbers="33" yearUnaccidentNumbers="44"/>
+        <!-- ...... -->
+ </accidentData>
+ 
+ 
+ 
+ 
+ 
+  <!-- 已下是旧版本，备份--> 
+ 
+  <!--*************************一、字段说明如下*************************************************************************************
+        yearid:年度id                                           label:年、月、板块或企业的显示标签
+        accidentNumbers：事故数                                       unaccidentNumbers：未遂事件数
+        plateid:板块id                                           subCorpid：企业ID
+        subCorpname：企业名称                                          monthid:月度id
+        monthAccidentNumbers：月事故数                                yearAccidentNumbers：年累计事故数
+        monthUnaccidentNumbers：月未遂事件数                          yearUnaccidentNumbers：年累计未遂事件数
+        URL:某条对应企业记录的URL
+  *********************二、其它说明*************************************************************************************************
+        1.flex程序无法直接从xml获得的数据，flex需要进行程序处理计算，某个计算合计项的数据
+        2.WebService处理明细的企业，带有order字段时，应严格按照其完成率降序排列数据,且所有字段值一律不准写null值   
+  -->
+ 
+ <!--二.总体情况 -->
+ <overallData>
+    <dataset yearid="2008" label="2008" accidentNumbers="21" unaccidentNumbers="" >
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="02" label="2月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="03" label="3月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+ <!--
+ 2013年5月20日添加 事故台账
+ 序号  事故名称  事故类别  事故级别 发生单位名称  事故发生时间  事故经过 事故处理情况 事故教育情况  伤亡人数
+order accName accType accLevel accFromCorp accFromTime accDesc accDeal accTrain accCasualties
+-->
+    	<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="2" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="3" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    </dataset>
+    
+    <dataset yearid="2009" label="2009" accidentNumbers="20" unaccidentNumbers="" >
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="02" label="2月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="03" label="3月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+        <accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="2" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="3" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    </dataset>
+    
+    <dataset yearid="2010" label="2010" accidentNumbers="18" unaccidentNumbers="" >
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="02" label="2月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="03" label="3月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+    	<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="2" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="3" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    </dataset>
+    
+    <dataset yearid="2011" label="2011" accidentNumbers="15" unaccidentNumbers="" >
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="02" label="2月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="03" label="3月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+       <monthData monthid="01" label="1月" accidentNumbers="" unaccidentNumbers="">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+        <accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="2" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="3" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    </dataset>
+    <!--本处为选定的年度开始倒推5年的数据-->
+    <dataset yearid="2012" label="2012" accidentNumbers="5" unaccidentNumbers="" >
+       <monthData monthid="01" label="1月" accidentNumbers="2" unaccidentNumbers="1000">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="02" label="2月" accidentNumbers="3" unaccidentNumbers="2000">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <monthData monthid="03" label="3月" accidentNumbers="4" unaccidentNumbers="3000">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+       <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+       <monthData monthid="01" label="12月" accidentNumbers="3" unaccidentNumbers="3000">
+         <plateData   plateid="" label="油田" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="炼化" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="销售" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="工程" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="其它" accidentNumbers="" unaccidentNumbers="" />
+         <plateData   plateid="" label="小计" accidentNumbers="" unaccidentNumbers="" />
+       </monthData>
+    	<accident order="1" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="2" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    	<accident order="3" accName="事故名称" accType="事故类别" accLevel="事故级别" accFromCorp="发生单位名称" accFromTime="事故发生时间" accDesc="事故经过" accDeal="事故处理情况" accTrain="事故教育情况" accCasualties="伤亡人数" />
+    </dataset>
+ </overallData>
+ 
+   <!--三、分板块数据，分企业也使用本块数据-->
+   <byPlate>
+     <plateData   plateid="" label="油田">
+       <yearData yearid="2008" label="2008" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname="石家庄"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2009" label="2009" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2010" label="2010" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2011" label="2011" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="1" yearAccidentNumbers="1" monthUnaccidentNumbers="11" yearUnaccidentNumbers="11">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2012" label="2012" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="0" yearAccidentNumbers="0" monthUnaccidentNumbers="500" yearUnaccidentNumbers="5000">
+           <corpData  order="1" subCorpid="" subCorpname="石家庄"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="1" yearAccidentNumbers="2" monthUnaccidentNumbers="3" yearUnaccidentNumbers="4">
+           <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+     </plateData>
+     
+     <plateData   plateid="" label="炼化">
+       <yearData yearid="2008" label="2008" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2009" label="2009" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2010" label="2010" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2011" label="2011" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="1" yearAccidentNumbers="1" monthUnaccidentNumbers="11" yearUnaccidentNumbers="22">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2012" label="2012" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="1" yearAccidentNumbers="1" monthUnaccidentNumbers="600" yearUnaccidentNumbers="3000">
+           <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="4" yearAccidentNumbers="3" monthUnaccidentNumbers="2" yearUnaccidentNumbers="1">
+           <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+     </plateData>
+     
+     <plateData   plateid="" label="销售">
+       <yearData yearid="2008" label="2008" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2009" label="2009" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2010" label="2010" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2011" label="2011" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="11" yearAccidentNumbers="11" monthUnaccidentNumbers="22" yearUnaccidentNumbers="22">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="2" yearAccidentNumbers="3" monthUnaccidentNumbers="4" yearUnaccidentNumbers="1">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2012" label="2012" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="2" yearAccidentNumbers="2" monthUnaccidentNumbers="300" yearUnaccidentNumbers="3000">
+           <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="2" yearAccidentNumbers="3" monthUnaccidentNumbers="4" yearUnaccidentNumbers="1">
+            <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+     </plateData>
+     
+     <plateData   plateid="" label="工程">
+       <yearData yearid="2008" label="2008" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2009" label="2009" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2010" label="2010" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2011" label="2011" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="3" yearAccidentNumbers="3" monthUnaccidentNumbers="33" yearUnaccidentNumbers="33">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2012" label="2012" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="1" yearAccidentNumbers="0" monthUnaccidentNumbers="700" yearUnaccidentNumbers="2000">
+            <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="1" yearAccidentNumbers="2" monthUnaccidentNumbers="3" yearUnaccidentNumbers="4">
+            <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+     </plateData>
+     
+     <plateData   plateid="" label="其它">
+       <yearData yearid="2008" label="2008" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2009" label="2009" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2010" label="2010" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2011" label="2011" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="2" yearAccidentNumbers="2" monthUnaccidentNumbers="11" yearUnaccidentNumbers="22">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+       
+       <yearData yearid="2012" label="2012" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+         <monthData monthid="01" label="1月" monthAccidentNumbers="2" yearAccidentNumbers="1" monthUnaccidentNumbers="300" yearUnaccidentNumbers="2600">
+            <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <monthData monthid="02" label="2月" monthAccidentNumbers="2" yearAccidentNumbers="2" monthUnaccidentNumbers="222" yearUnaccidentNumbers="222">
+            <corpData  order="1" subCorpid="" subCorpname="石家庄1"  monthAccidentNumbers="1" yearAccidentNumbers="4" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="4000" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname="齐鲁1"  monthAccidentNumbers="2" yearAccidentNumbers="5" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="3000" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname="燕山1"  monthAccidentNumbers="3" yearAccidentNumbers="6" monthUnaccidentNumbers="1000" yearUnaccidentNumbers="2000" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname="镇海1"  monthAccidentNumbers="4" yearAccidentNumbers="7" monthUnaccidentNumbers="2000" yearUnaccidentNumbers="3000" URL=""/>
+         </monthData>
+         <!--本处示意性列出4个月的数据，实际为12个月的数据，哪怕最新年度还未发生到某些月度，也要给出数据，但相关数据项值为0-->
+         <monthData monthid="03" label="12月" monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="">
+           <corpData  order="1" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="2" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="3" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+           <corpData  order="4" subCorpid="" subCorpname=""  monthAccidentNumbers="" yearAccidentNumbers="" monthUnaccidentNumbers="" yearUnaccidentNumbers="" URL=""/>
+         </monthData>
+       </yearData>
+     </plateData>
+   </byPlate>
+  
+   
+ 
+ 
+</model>

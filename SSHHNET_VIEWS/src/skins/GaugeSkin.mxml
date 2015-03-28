@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="skin1_creationCompleteHandler(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("views.Gauge")]
+	</fx:Metadata>
+	<fx:Declarations>
+		<s:Animate id="animate" duration="1000" target="{pointer}">
+			<s:SimpleMotionPath property="rotation" valueFrom="-30" valueTo="{hostComponent.pointerAngle}"/>
+		</s:Animate>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.events.FlexEvent;
+			
+			protected function skin1_creationCompleteHandler(event:FlexEvent):void
+			{
+				BindingUtils.bindSetter(function (v:Number):void{animate.play()},hostComponent,"pointerAngle");
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<!-- 表盘背景 -->
+	<s:Ellipse width="200" height="200">
+		<s:stroke>
+			<s:LinearGradientStroke weight="7" rotation="90">
+				<s:GradientEntry color="#A8A8A8"/>
+				<s:GradientEntry color="#797979"/>
+				<s:GradientEntry color="#4B4B4B"/>
+				<s:GradientEntry color="#212121"/>
+				<s:GradientEntry color="#4B4B4B"/>
+				<s:GradientEntry color="#797979"/>
+				<s:GradientEntry color="#A8A8A8"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="#010101"/>
+				<s:GradientEntry color="#6A6A6A"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Ellipse>
+	<s:Ellipse width="193" height="193" x="3" y="3">
+		<s:stroke>
+			<s:LinearGradientStroke rotation="90" weight="1.5">
+				<s:GradientEntry color="#C8C8C8" alpha="0"/>
+				<s:GradientEntry color="#C8C8C8" alpha="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+	</s:Ellipse>
+	<!-- 表盘单位信息 -->
+	<s:Label id="gaugeUnit" text="{hostComponent.gaugeUnitText}" x="50" y="120" width="100" textAlign="center" fontWeight="bold" fontSize="18" color="#FFFFFF"/>
+	<!-- 色带部分 -->
+	<s:SkinnableContainer id="alerts"/>
+	<!-- 刻度部分 -->
+	<s:SkinnableContainer id="ticks"/>
+	<!-- 刻度值部分 -->
+	<s:SkinnableContainer id="tickValues"/>
+	<!-- 指针 -->
+	<s:Path id="pointer" data="M 0 5 L 2 7 L 100 10 L 98 5 L 100 0 L 2 3 L 0 5 Z" x="18" y="96" transformX="82" transformY="4" transformZ="0">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="#FFF724"/>
+				<s:GradientEntry color="#D00000"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Path>
+	<!-- 表盘中心轴 -->
+	<s:Ellipse width="18" height="18" x="91" y="91">
+		<s:stroke>
+			<s:SolidColorStroke color="#ffffff" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="haloBlue"/>
+				<s:GradientEntry color="#191919"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Ellipse>
+</s:Skin>

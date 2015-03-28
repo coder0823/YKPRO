@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:views="views.*"
+			   minWidth="1000" minHeight="500" creationComplete="init()" backgroundColor="#000000">
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.chartClasses.IAxis;
+			import events.PopupEvent;
+			import mx.charts.events.ChartItemEvent;
+			import mx.charts.LegendItem;
+			import mx.graphics.SolidColor;
+			import mx.charts.renderers.CircleItemRenderer;
+			import views.CustomVariable;
+			import mx.collections.ArrayCollection;
+			
+			import views.CustomColor;
+			
+			private var dataSourceConfChanged:Boolean=false;
+			private var dataSourceChanged:Boolean=false;
+			
+			//注意，默认field:    label：为名称，total:总数
+			[Bindable]
+			private var dataSourceConf:ArrayCollection=new ArrayCollection([
+				{name:"正在设计",field:"sub1"},
+				{name:"等待施工",field:"sub2"},
+				{name:"正在施工",field:"sub3"},
+				{name:"已完成",field:"sub4"}
+			]);
+			[Bindable]
+			private var dataSource:ArrayCollection = new ArrayCollection([
+				{label:"油田",total:180,sub1:30,sub2:40,sub3:50,sub4:60,msgFirst:"",msgLast:""},
+				{label:"炼化",total:180,sub1:30,sub2:40,sub3:50,sub4:60,msgFirst:"",msgLast:""},
+				{label:"销售",total:180,sub1:30,sub2:40,sub3:50,sub4:60,msgFirst:"",msgLast:""},
+				{label:"工程",total:180,sub1:30,sub2:40,sub3:50,sub4:60,msgFirst:"",msgLast:""},
+				{label:"其他",total:180,sub1:30,sub2:40,sub3:50,sub4:60,msgFirst:"",msgLast:""}
+			]);
+			
+			[Bindable]
+			public var BSolidColor:Array=views.CustomColor.BSolidColor;
+			[Bindable]
+			public var BSolidColorStroke:Array=views.CustomColor.BSolidColorStroke;
+			
+			[Bindable]
+			public var AxisTopUnit:String="%";
+			[Bindable]
+			public var AxisDownUnit:String="";
+			
+			protected function init():void{
+				
+				initLegend();
+				refresh();
+			}
+			protected function refresh():void{
+				initAxis();
+				barChart.dataProvider=dataSource;
+			}
+			protected function initAxis():void
+			{
+				var minT:Number=Number.MAX_VALUE;
+				var minB:Number=Number.MAX_VALUE;
+				var maxT:Number=Number.MIN_VALUE;
+				var maxB:Number=Number.MIN_VALUE;
+				if(dataSourceConf!=null&&dataSourceConf.length>0){
+					for each (var obj:Object in dataSourceConf) {  
+						for each (var vol:Object in dataSource){
+							if(obj.axis=="bottom"){
+								maxB=Math.max(maxB,vol['total'],isNaN(Number(vol[obj.field]))?0:Number(vol[obj.field]));
+								minB=Math.max(minB,vol['total'],isNaN(Number(vol[obj.field]))?0:Number(vol[obj.field]));
+							}else{
+								maxT=Math.max(maxT,vol['total'],isNaN(Number(vol[obj.field]))?0:Number(vol[obj.field]));
+								minT=Math.max(minT,vol['total'],isNaN(Number(vol[obj.field]))?0:Number(vol[obj.field]));
+							}
+						}
+					}
+				}
+				if(maxT>8){
+					hTAxis.maximum=Math.round(maxT*CustomVariable.ChartTopAxisMaxCoefficient);
+				}else if(maxT>4){
+					hTAxis.maximum=10;
+				}else{
+					hTAxis.maximum=5;
+				}
+				
+				if(minT<-8){
+					hTAxis.minimum=Math.round(minT*CustomVariable.ChartTopAxisMinCoefficient);
+				}else if(minT<-4){
+					hTAxis.minimum=-10;
+				}else if(minT<0){
+					hTAxis.minimum=-5;
+				}else{
+					hTAxis.minimum=0;				
+				}
+				
+			}
+			//上侧X轴显示
+			private function hTAxis_LabelFunction(item:Object, prevValue:Object, axis:IAxis):String {
+				return numberFormatter.format(item)+AxisTopUnit;
+			}
+			//下侧X轴显示
+			private function hDAxis_LabelFunction(item:Object,prevValue:Object,axis:IAxis):String   
+			{  
+				return  numberFormatter.format(item)+AxisDownUnit;  
+			} 
+			public function sortDS(list:ArrayCollection):ArrayCollection {
+				var ds:ArrayCollection = new ArrayCollection();
+				for(var i:int=list.length-1;i>=0;i--){  
+					var o:Object = list.getItemAt(i); 
+					ds.addItem(o);
+				}
+				return ds;
+			}
+			protected function initLegend():void{
+				legend1.removeAllElements();
+				var legendItem_total:LegendItem=new LegendItem();
+				legendItem_total.label="总计";
+				legendItem_total.setStyle("fill", BSolidColor[0]);	
+				legendItem_total.setStyle("itemRenderer", new ClassFactory(CircleItemRenderer));
+				legend1.addElement(legendItem_total);
+				
+				if(dataSourceConf!=null){
+					var indexCol:int=1;
+					for(var i:int=0;i<dataSourceConf.length;i++){  
+						var o:Object = dataSourceConf.getItemAt(i);  
+						var legendItem:LegendItem=new LegendItem();
+						legendItem.label=o["name"].toString();
+						legendItem.setStyle("fill", (o["color"]!=null)?new SolidColor(o["color"],1):BSolidColor[indexCol]);	
+						indexCol++;
+						legendItem.setStyle("itemRenderer", new ClassFactory(CircleItemRenderer));
+						legend1.addElement(legendItem);
+					}  
+				}
+			}
+			
+			
+			public function get DataSourceConf():ArrayCollection
+			{
+				return dataSourceConf;
+			}
+			public function set DataSourceConf(value:ArrayCollection):void
+			{
+				dataSourceConfChanged=true;
+				dataSourceConf = value;
+				invalidateProperties();
+			}	
+			public function get DataSource():ArrayCollection
+			{
+				return dataSource;
+			}
+			public function set DataSource(value:ArrayCollection):void
+			{
+				dataSourceChanged=true;
+				invalidateProperties();
+			}
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				if (dataSourceChanged)
+				{
+					dataSourceChanged = false;
+					refresh();
+				}
+				if (dataSourceConfChanged)
+				{
+					dataSourceConfChanged = false;
+					init();
+				}
+			}
+			
+			
+
+			
+			
+			public function barChart_itemClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=BarSeries(event.hitData.element).displayName;
+				obj.seriesType="barSeries";
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupClick);  
+				//这里一定跟上面[Event(name="PopupClick", ...)],使用的name相同，否则，派发的事件不会被接收到
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);
+			}
+			public function barChart_itemDoubleClickHandler(event:ChartItemEvent):void
+			{
+				// TODO Auto-generated method stub
+				var obj:Object=new Object();
+				obj=event.hitData.item;
+				obj.displayName=BarSeries(event.hitData.element).displayName;
+				obj.seriesType="barSeries";
+				var eventObj:PopupEvent = new PopupEvent(PopupEvent.PopupDoubleClick);  
+				//这里一定跟上面[Event(name="PopupDoubleClick", ...)],使用的name相同，否则，派发的事件不会被接收到				
+				eventObj.hitDataItem = obj;
+				dispatchEvent(eventObj);				
+			}
+			//主程序调用
+			//			 PopupClick="xxxx_lightHandler(event)"
+			//			protected function xxxx_lightHandler(event:events.PopupEvent):void
+			//			{
+			//				// TODO Auto-generated method stub
+			//				var item:Object=event.hitDataItem;
+			//				.....
+			//			}
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<mx:BarChart id="barChart"  width="100%" height="100%" doubleClickEnabled="true" itemDoubleClick="barChart_itemDoubleClickHandler(event)"
+				 showDataTips="false" seriesFilters="[]">    
+		<!--横坐标-->  
+		<mx:horizontalAxis>
+			<mx:LinearAxis id="hTAxis" labelFunction="hDAxis_LabelFunction" baseAtZero="true" direction="inverted"/><!--direction="inverted"   normal-->
+		</mx:horizontalAxis>
+		<!--纵坐标1-->  
+		<mx:verticalAxis>
+			<mx:CategoryAxis id="vLAxis" categoryField="label"/>
+		</mx:verticalAxis>
+		<!--横坐标渲染-->  
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer id="axisX1" tickStroke="{views.CustomColor.TickSolidColorStroke}" minorTickStroke="{views.CustomColor.MinorTickSolidColorStroke}" axisStroke="{views.CustomColor.AxisSolidColorStroke}" tickLength="5" tickPlacement="outside" axis="{hTAxis}" placement="top"  labelGap="0" labelRotation="0"/>
+		</mx:horizontalAxisRenderers>
+		<!--纵坐标渲染-->  
+		<mx:verticalAxisRenderers>  
+			<mx:AxisRenderer id="axisY1" tickStroke="{views.CustomColor.TickSolidColorStroke}" minorTickStroke="{views.CustomColor.MinorTickSolidColorStroke}" axisStroke="{views.CustomColor.AxisSolidColorStroke}" showLine="true" tickLength="5" tickPlacement="outside" placement="right" axis="{vLAxis}"  labelGap="0"/>
+		</mx:verticalAxisRenderers>  
+		<mx:series>
+			<mx:BarSeries fontSize="14" yField="label" xField="total" showDataEffect="{sl}">
+				<mx:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer creationComplete="init()">
+							
+							
+							<fx:Script>
+								<![CDATA[
+									import mx.controls.Label;
+									import mx.controls.Alert;
+									import mx.collections.ArrayCollection;
+									
+									protected function init():void
+									{
+										totalBox.width=this.width;
+										var dataSourceConf:ArrayCollection=this.outerDocument.DataSourceConf;
+										if(dataSourceConf!=null){
+											var indexBar:int=1;
+											for(var i:int=0;i<dataSourceConf.length;i++){  
+												var o:Object = dataSourceConf.getItemAt(i);  
+												var itemName:String=o["name"].toString();
+												var itemField:String=o["field"].toString();
+												
+												var group:Group=new Group();
+												//group.percentWidth=Number(data.item[totalField])==0?0:Number(data.item[itemField])*100/Number(data.item[totalField]);
+												group.width=Number(data.item[itemField])*this.width/Number(data.item['total']);
+												group.percentHeight=85;
+												
+												var rect:Rect=new Rect();
+												rect.percentWidth=100;
+												rect.percentHeight=100;
+												rect.fill=this.outerDocument.BSolidColor[indexBar];
+												var label:Label=new Label();
+												label.percentWidth=100;
+												label.setStyle("textAlign","center");
+												label.text=''+data.item[itemField];
+												label.verticalCenter=0;
+												label.left=2;
+												label.setStyle("color","#FFFFFF");
+												group.addElement(rect);
+												group.addElement(label);
+												subBox.addElement(group);
+												indexBar++;
+											}  
+										}
+									}
+									
+
+									
+									protected function totalBox_clickHandler(event:MouseEvent):void
+									{
+										// TODO Auto-generated method stub
+										Alert.show(totalBox.width.toString())
+									}
+									
+								]]>
+							</fx:Script>
+							<s:layout>
+								<s:VerticalLayout verticalAlign="middle" horizontalAlign="right"/>
+							</s:layout>
+								<s:Group id="totalBox" height="100%" width="100%" click="totalBox_clickHandler(event)">
+									<s:Rect width="100%" height="100%">
+										<s:stroke>
+											<s:SolidColorStroke color="#44576E"/>
+										</s:stroke>
+										<s:fill>
+											<s:SolidColor color="#293055"/>
+										</s:fill>
+									</s:Rect>
+									<s:HGroup id="subBox" width="100%" height="67%" gap="1" verticalAlign="middle" verticalCenter="0" horizontalAlign="right" paddingTop="1" paddingBottom="2" paddingLeft="1" paddingRight="1">
+									</s:HGroup>
+								</s:Group>
+						</s:ItemRenderer>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:BarSeries>
+		</mx:series>
+	</mx:BarChart>
+	<!--图例-->
+	<mx:Canvas id="legend">
+		<mx:Legend id="legend1" height="20" bottom="8"/>
+		<!--<mx:Legend dataProvider="{columnChart}" markerHeight="10" markerWidth="10" horizontalAlign="center" horizontalCenter="0" direction="horizontal"/>-->
+	</mx:Canvas>		
+	<fx:Declarations>
+		<mx:SeriesSlide id="sl" direction="left" duration="1000"/>
+		<s:NumberFormatter id="numberFormatter" fractionalDigits="0" useGrouping="false"/> 
+	</fx:Declarations>
+</s:Application>

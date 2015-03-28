@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								  xmlns:s="library://ns.adobe.com/flex/spark" 
+								  xmlns:mx="library://ns.adobe.com/flex/mx" 
+								  width="100%" height="100%" rollOverColor="#FFFFFF" 
+								  autoDrawBackground="true" dataChange="itemrenderer1_dataChangeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import modules.meantime.events.MeantimeOverAllStatusEvent;
+			[Bindable]
+			private var txt:String = "";
+			protected function itemrenderer1_dataChangeHandler(event:FlexEvent):void
+			{
+				if(advancedDataGridListData != null){
+					txt = data[advancedDataGridListData.dataField];
+					if(txt=="合计"){
+						this.currentState = "total";
+					}else{
+						this.currentState = "other";
+					}
+				}else{
+					txt = "";
+				}
+			}
+			protected function lblData_clickHandler(event:MouseEvent):void
+			{
+				this.dispatchEvent(new MeantimeOverAllStatusEvent(MeantimeOverAllStatusEvent.STATUS_CLICK,data,""));
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="total"/>
+		<s:State name="other"/>
+	</s:states>
+	<s:Label text="{txt}" includeIn="total" textAlign="center" width="100%" verticalCenter="0"/>
+	<s:Label id="lblData" fontFamily="微软雅黑" text="{txt}" includeIn="other" buttonMode="false" textAlign="left" paddingLeft="5" width="100%" verticalCenter="0"/>
+</s:MXAdvancedDataGridItemRenderer>

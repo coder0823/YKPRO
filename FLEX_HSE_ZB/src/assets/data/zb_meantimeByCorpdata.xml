@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<dataOutline dataYear="2012-2013" dataStartDate=""
+		dataEndDate="" timestamp=""></dataOutline>
+<!-- 
+ws.GetMeantime(dataType,dateYear,plateid,corpid,levelid,profid,stageid,statusid);
+第一个参数：dataType:	数据类型：	overAll/overAllDetails/byCorp/majorSupervision（作废）
+第二个参数：dateYear:	年度：		2013
+第三个参数：plateid:		板块：		00/YT/LH/XS/GC/QT
+第四个参数：corpid：		企业：		(空)/id.....(取某个企业)
+第五个参数：levelid:		级别：		00（全部级别）/LEVEL-0（集团公司级）/LEVEL-1（事业部级）/LEVEL-2（企业级）
+第六个参数：profid:		专业id		(空为所有)/safety（安全）/environmentalProtection（环保）/health（职业卫生）/fireControl（消防）/anti-seismic（抗震）
+第七个参数：stageid:		阶段id		(空)/阶段编码yyyy
+第八个参数: statusid:	状态id		暂时不用(空表示所有)/NO-START/IN-PROCESS/FINISHED
+
+实例一：
+获取总体概况和分板块：ws.GetMeantime("overAll","2013","00","","00","","","");
+
+实例二：
+获取总统概况钻取数据：ws.GetMeantime("overAllDetails","2013","00","","00","safety","","");
+
+实例三：
+获取分企业数据：		ws.GetMeantime("byCorp","2013","00","","00","safety","","");
+
+实例四，弹出：
+获取分企业数据：		ws.GetMeantime("overAllDetails","2013","00","企业编码","00","safety","","");
+
+
+
+实例五，重点监管
+获取数据：			ws.GetMeantime("majorSupervision","2013","00","","00","safety","","");
+ -->
+ 
+<!-- xml数据 Version:3.0 日期：2013-8-8 
+corpData 分专业企业数据集合
+	rateDatas 完成，警报，未完成率
+		dataset 企业信息
+			numbers 率
+ -->
+	
+	<corps>
+	<corpData corpType="全部">
+			<rateDatas rateType="green" label="绿色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="yellow" label="黄色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="red" label="红色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+		</corpData>
+		<corpData corpType="安全">
+			<rateDatas rateType="green" label="绿色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="yellow" label="黄色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="red" label="红色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+		</corpData>
+		<corpData corpType="环保">
+			<rateDatas rateType="green" label="绿色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="yellow" label="黄色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="red" label="红色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+		</corpData>
+		<corpData corpType="职业卫生">
+			<rateDatas rateType="green" label="绿色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="yellow" label="黄色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="red" label="红色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+		</corpData>
+		<corpData corpType="消防">
+			<rateDatas rateType="green" label="绿色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="yellow" label="黄色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="red" label="红色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+		</corpData>
+		<corpData corpType="抗震">
+			<rateDatas rateType="green" label="绿色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="yellow" label="黄色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+			<rateDatas rateType="red" label="红色">
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+				<dataset corpid="" label="浙江石油分公司" numbers="23.3" />
+			</rateDatas>
+		</corpData>
+	</corps>
+</model>
