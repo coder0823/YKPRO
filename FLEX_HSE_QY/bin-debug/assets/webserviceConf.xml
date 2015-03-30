@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <webserviceConf>
-<url>http://10.5.89.55:9011/Report/ReportDataWebService.asmx?wsdl</url>
+<!-- <url>http://10.5.89.55:9011/Report/ReportDataWebService.asmx?wsdl</url> -->
+<!-- 金陵石化 -->
+<url>http://10.108.60.74/Report/ReportDataWebService.asmx?wsdl</url>
 <!-- gdfgs_admin 1234-->
 </webserviceConf>
