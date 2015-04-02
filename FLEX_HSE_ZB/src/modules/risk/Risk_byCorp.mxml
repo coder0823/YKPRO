@@ -970,7 +970,7 @@
 									  horizontalAlign="justify" />
 				</s:layout>
 				<views:ColumnMulti id="tab2_topLeft"
-								   AxisLeftTiltle="风 险：个"
+								   AxisLeftTiltle="风  险：个"
 								   labelRotationX="45"
 								   showTitle="true"
 								   showLegend="true" ShowDataLabel="{showDataLabel}"
@@ -990,7 +990,7 @@
 									  horizontalAlign="justify" />
 				</s:layout>
 				<views:ColumnLineMulti id="tab2_topRight"
-									   AxisLeftTiltle="风 险：个"
+									   AxisLeftTiltle="风  险：个"
 									   labelRotationX="45"
 									   showTitle="true"
 									   showLegend="true"
@@ -1016,7 +1016,7 @@
 									  horizontalAlign="justify" />
 				</s:layout>
 				<views:ColumnMulti id="tab2_down"
-								   AxisLeftTiltle="风 险：个"
+								   AxisLeftTiltle="风  险：个"
 								   labelRotationX="45"
 								   showTitle="true"
 								   showLegend="true"

@@ -18,6 +18,8 @@
 		<![CDATA[
 			import events.PopupEvent;
 			
+			import manager.StringManager;
+			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.events.CloseEvent;
@@ -361,7 +363,11 @@
 										//增加排序字段,企业显示顺序
 										displayindex:Number(xml2.@displayindex)
 									};
-									  
+									
+									/************************add by sunyang@20150331 加入首字母字段，为首字母排序所用*****************************/
+									obj["first_name"] = StringManager.convertChar(xml2.@subCorpname);
+									/************************add by sunyang@20150331 加入首字母字段，为首字母排序所用*****************************/
+									
 									tmpArrayCollection.addItem(obj);
 									index++;
 									order++;
@@ -370,7 +376,12 @@
 						}
 						
 						var sort:Sort = new Sort();
-						sort.fields = [new SortField("act", true, true),new SortField("displayindex", false, true)];
+//						sort.fields = [new SortField("act", true, true),new SortField("displayindex", false, true)];	//fixed by sunyang@20150331
+						
+						/*****************************add by sunyang@20150331*************************************/
+						sort.fields = [new SortField("first_name", false)];
+						/*****************************add by sunyang@20150331*************************************/
+						
 						tmpArrayCollection.sort = sort;
 						tmpArrayCollection.refresh();
 						var order2:int = 1;
@@ -560,6 +571,11 @@
 								for each (var xml2:XML in contractors)
 								{ //承包商
 									var obj:Object = {corpname: xml.@subCorpname,unqualifiedURL:xml2.@unqualifiedURL, contractor: xml2.@contractorName, index: index, order: index,unqualified: xml2.@unqualified};
+									
+									/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
+									//obj["first_name"] = StringManager.convertChar(xml2.@subCorpname);
+									/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
+									
 									tmpArrayCollection.addItem(obj);
 									index++;
 								}
@@ -568,7 +584,12 @@
 					}
 					//排序：承包商按照名称首字母顺序排序
 					var sort:Sort = new Sort();
-					sort.fields = [new SortField("contractor", false, true)];
+					sort.fields = [new SortField("contractor", false, true)];		//fixed by sunyang@20150331
+					
+					/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
+					//sort.fields = [new SortField("first_name", false)];
+					/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
+					
 					tmpArrayCollection.sort = sort;
 					tmpArrayCollection.refresh();
 					/////////////////////////////////////////////////////////

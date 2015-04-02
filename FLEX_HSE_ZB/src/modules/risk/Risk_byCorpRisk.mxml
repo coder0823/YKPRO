@@ -16,10 +16,12 @@
 	-->
 	<fx:Script>
 		<![CDATA[
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.events.CloseEvent;
-			
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
 			import mx.rpc.events.FaultEvent;
@@ -27,9 +29,6 @@
 			
 			import spark.collections.Sort;
 			import spark.collections.SortField;
-			
-			import events.PopupEvent;
-			import events.SetAxisComplateEvent;
 			
 			import views.PopupTitleWinDG;
 			public const _dataPath:String = "assets/data/zb_riskdata.xml";
@@ -532,7 +531,7 @@
 						for each (var xml1:XML in tmpCorp.corpData)
 						{
 							var obj1:Object = new Object();
-							var qymc=xml1.@subCorpname;
+							var qymc:String = xml1.@subCorpname;
 							if(qymc==qy_name){
 							obj1.label = xml1.@subCorpname;
 							obj1.order = order;

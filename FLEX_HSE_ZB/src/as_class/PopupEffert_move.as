@@ -56,10 +56,10 @@ package as_class{
 			zoom.zoomWidthTo=0; 
 			parallel.addChild(mHideEffect); 
 			parallel.addChild(zoom); 
-			mHideEffect.addEventListener(TweenEvent.TWEEN_END,function(){ 
+			mHideEffect.addEventListener(TweenEvent.TWEEN_END,function():void{ 
 				PopUpManager.removePopUp(control); 
 			}); 
-			zoom.addEventListener(TweenEvent.TWEEN_END,function(){ 
+			zoom.addEventListener(TweenEvent.TWEEN_END,function():void{ 
 				PopUpManager.removePopUp(control); 
 			}); 
 			parallel.duration=1000; 
