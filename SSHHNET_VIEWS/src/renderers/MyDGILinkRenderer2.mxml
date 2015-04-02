@@ -9,8 +9,10 @@
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[
-			import mx.events.FlexEvent;
 			import events.PopupEvent;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
 			[Bindable]
 			private var txt:String="";
 			[Bindable]
@@ -63,6 +65,7 @@
 			//private var titleWindow:PopupTitleWinIframe=new PopupTitleWinIframe();
 			private function popupDetails(targetURL:String):void{
 //				navigateToURL(new URLRequest(targetURL),"_blank");   
+				//Alert.show("向js传递的地址-----------" + targetURL);			//add by sunyang@20150401
 				ExternalInterface.call("top.addModuleTab", "","数据钻取","",targetURL,"true");
 				//子窗口ExternalInterface.call("function(){var Result=window.showModalDialog('"+targetURL+"','','dialogHeight:423px;dialogWidth:859px;center:yes;help:no;resizable:no;status:no;scroll:no;');}"); 
 			//iframe	

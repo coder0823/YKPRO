@@ -9,8 +9,10 @@
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[
-			import mx.events.FlexEvent;
 			import events.PopupEvent;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
 			[Bindable]
 			private var txt:String="";
 			[Bindable]
@@ -63,7 +65,8 @@
 			//private var titleWindow:PopupTitleWinIframe=new PopupTitleWinIframe();
 			private function popupDetails(targetURL:String):void{
 //				getURL("javascript:parent.addModuleTab('','','',targetURL,true)");
-//原始				navigateToURL(new URLRequest(targetURL),"_blank");   
+//原始				navigateToURL(new URLRequest(targetURL),"_blank");  
+				//Alert.show("向js传递的地址-----------" + targetURL);			//add by sunyang@20150401
 				ExternalInterface.call("top.addModuleTab", "","数据钻取","",targetURL,"true");
 				
 				//子窗口
