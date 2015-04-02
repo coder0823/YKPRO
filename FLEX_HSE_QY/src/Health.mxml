@@ -514,8 +514,8 @@
 						var order:int = 1;
 						for each (var xml:XML in tmpList)
 						{
-							var obj:Object = {order: order, corpName: xml.@corpName, personName: xml.@personName, zybName: xml.@zybName=="职业病"?"未填写职业病具体名称":xml.@zybName, index: index};
-							tmpArrayCollection.addItem(obj);
+							var obj1:Object = {order: order, corpName: xml.@corpName, personName: xml.@personName, zybName: xml.@zybName=="职业病"?"未填写职业病具体名称":xml.@zybName, index: index};
+							tmpArrayCollection.addItem(obj1);
 							index++;
 							order++;
 						}
