@@ -206,9 +206,32 @@
 				      tab3_downRightTitle = "" + tab3_down_corpNameCurrSelect + "" + dateStr + "年职业病危害因素监测情况";
 				}else{
 					 tab3_topLeftTitle =  tab3_plateNameCurrSelect + "板块" + dateStr + "年职业卫生健康体检情况";
-					 tab3_topRightTitle = "" + tab3_top_corpNameCurrSelect + "" + dateStr + "年职业卫生健康体检情况";
+					 //tab3_topRightTitle = "" + tab3_top_corpNameCurrSelect + "" + dateStr + "年职业卫生健康体检情况";
+					 
+					 /***************************************add by sunyang@20150409**************************************/
+					 if (tab3_top_corpNameCurrSelect)
+					 {
+					 	tab3_topRightTitle = "" + tab3_top_corpNameCurrSelect + "" + dateStr + "年职业卫生健康体检情况";
+					 }
+					 else
+					 {
+						 tab3_topRightTitle = "暂无";
+					 }
+					 /*****************************************************************************************************/
+					 
 					 tab3_downLeftTitle = tab3_plateNameCurrSelect + "板块" + dateStr + "年职业病危害因素监测情况";
-					 tab3_downRightTitle = "" + tab3_down_corpNameCurrSelect + "" + dateStr + "年职业病危害因素监测情况";
+					 //tab3_downRightTitle = "" + tab3_down_corpNameCurrSelect + "" + dateStr + "年职业病危害因素监测情况";
+					 
+					 /***************************************add by sunyang@20150409**************************************/
+					 if (tab3_down_corpNameCurrSelect)
+					 {
+					 	tab3_downRightTitle = "" + tab3_down_corpNameCurrSelect + "" + dateStr + "年职业病危害因素监测情况";
+					 }
+					 else
+					 {
+						 tab3_downRightTitle = "暂无";
+					 }
+					 /*****************************************************************************************************/
 				}
 			}
 			
@@ -289,6 +312,14 @@
 						tmpList = hseDataXML.healthData.plateData.(@plateid == tab3_plateCurrSelect).corpData;
 					}
 					
+					/**********************************add by sunyang@20150409**************************/
+					if (tmpList.length() == 0)
+					{
+						this.tab3_top_corpCurrSelect = null; 
+						this.tab3_top_corpNameCurrSelect = null;
+					}
+					/**********************************************************************************/
+					
 					if (tmpList.length() > 0)
 					{
 						
@@ -347,6 +378,10 @@
 				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
 				try
 				{
+					/*****************************add by sunyang@20150409*********************************/
+					if (!tab3_top_corpCurrSelect) return tmpArrayCollection;
+					/*************************************************************************************/
+					
 					var tmpList:XMLList = hseDataXML.healthData.plateData.corpData.(@subCorpid == tab3_top_corpCurrSelect);
 					if (tmpList.length() > 0)
 					{
@@ -384,6 +419,14 @@
 					{
 						tmpList = hseDataXML.healthData.plateData.(@plateid == tab3_plateCurrSelect).corpData;
 					}
+					
+					/************************add by sunyang@20150409****************************/
+					if(tmpList.length() == 0)
+					{
+						this.tab3_down_corpCurrSelect = null;
+						this.tab3_down_corpNameCurrSelect = null;
+					}
+					/**********************************************************************/
 					
 					if (tmpList.length() > 0)
 					{
@@ -443,6 +486,9 @@
 				var tmpArrayCollection:ArrayCollection = new ArrayCollection();
 				try
 				{
+					/***********************add by sunyang@20150409****************/
+					if (!tab3_down_corpCurrSelect) return tmpArrayCollection;
+					/**************************************************************/
 					var tmpList:XMLList = hseDataXML.healthData.plateData.corpData.(@subCorpid == tab3_down_corpCurrSelect);
 					if (tmpList.length() > 0)
 					{

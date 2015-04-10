@@ -129,7 +129,10 @@
 		</s:HGroup>
 		<s:HGroup width="100%" verticalAlign="middle" horizontalAlign="right" top="5" right="5" visible="{dateYear_visible}" includeInLayout="{dateYear_visible}">
 			<s:CheckBox id="chkShowVol2" label="显示数值" selected="{showDataLabel}" change="chkShowVol2_changeHandler(event)"/>
-			<s:Label text="年" />
+			
+			<!--<s:Label text="年" />-->
+			<s:Label text="年度" />	<!--fixed by sunyang@20150409-->
+			
 			<s:ComboBox right="5" id="dateYear" width="100" fontWeight="normal" labelField="name"/>
 			<s:Button id="btnSearchYear" label="查询" click="btnSearchYear_clickHandler(event)"/>
 		</s:HGroup>

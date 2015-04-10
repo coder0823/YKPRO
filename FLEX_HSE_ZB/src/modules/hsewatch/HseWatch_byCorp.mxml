@@ -1272,13 +1272,13 @@
 							
 							tmpList = tmpList.corpData;
 							var index:Number = 2;
-							for each (var xml:XML in tmpList)
+							for each (var xml1:XML in tmpList)
 							{
-								var obj:Object = {subCorpname: xml.@subCorpname, employeeTotal: Number(xml.@employeeTotal), watchTimes: Number(xml.@watchTimes), perCapitaWatchTimes: Number(xml.@perCapitaWatchTimes), 
-									//averagePerCapitaWatchTimes: Number(xml.@averagePerCapitaWatchTimes), 
+								var obj:Object = {subCorpname: xml1.@subCorpname, employeeTotal: Number(xml1.@employeeTotal), watchTimes: Number(xml1.@watchTimes), perCapitaWatchTimes: Number(xml1.@perCapitaWatchTimes), 
+									//averagePerCapitaWatchTimes: Number(xml1.@averagePerCapitaWatchTimes), 
 									averagePerCapitaWatchTimes: vv3,
 									index: index, order: order};
-								obj.displayindex=Number(xml.@displayindex);
+								obj.displayindex=Number(xml1.@displayindex);
 								tmpArrayCollection.addItem(obj);
 								index++;
 								order++;

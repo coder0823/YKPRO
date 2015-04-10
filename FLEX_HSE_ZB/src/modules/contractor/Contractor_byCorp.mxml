@@ -279,7 +279,7 @@
 						{
 							var obj:Object = {label: xml.@subCorpname, plan: xml.@contractorNumbers, act: xml.@qualifiedNumbers, sur: xml.@unqualifiedNumbers, msgFirst: xml.@subCorpname + dateStr + "年承包商：", msgLast: "", id: xml.@subCorpid};
 							
-							obj["first_name"] = StringManager.convertChar(obj["msgFirst"]);		// add by sunyang,加入首字母字段，为首字母排序所用
+							//obj["first_name"] = StringManager.convertChar(obj["msgFirst"]);		// add by sunyang,加入首字母字段，为首字母排序所用
 							
 							tmpArrayCollection.addItem(obj);
 						}
@@ -289,13 +289,12 @@
 				{
 					trace(e);
 				}
-				//按照合格承包商排序
-//				var sort:Sort = new Sort();
-//				sort.fields = [new SortField("act", true, true)];
 				
-				//按承包商首字母排序		@sunyang20150327	
+				/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
 				var sort:Sort = new Sort();
-				sort.fields = [new SortField("first_name", false)];
+				sort.fields = [new SortField("act", true, true)];
+				//sort.fields = [new SortField("first_name", false)];
+				/***************************************************************************** ******************************/
 				
 				tmpArrayCollection.sort = sort;
 				tmpArrayCollection.refresh();
@@ -393,7 +392,7 @@
 									
 									/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
 									obj["first_name"] = StringManager.convertChar(xml2.@subCorpname[0]);
-									/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
+									/************************************************************************************************************/
 									
 									tmpArrayCollection.addItem(obj);
 									index++;
@@ -402,15 +401,12 @@
 							}
 						}
 						
+						/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
 						var sort:Sort = new Sort();
 						//sort.fields = [new SortField("act", true, true)];
-						
-						//暂且注释掉by孙洋20150327
 						//sort.fields = [new SortField("act", true, true),new SortField("displayindex", false, true)];
-						
-						/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
 						sort.fields = [new SortField("first_name", false)];
-						/*******************************  add by sunyang@20150327,加入首字母字段，为首字母排序所用 ******************************/
+						/************************************************************************************************************/
 						
 						tmpArrayCollection.sort = sort;
 						tmpArrayCollection.refresh();

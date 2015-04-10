@@ -398,8 +398,7 @@
 					column.showDataTips = true;
 					column.width = 80;
 					column.setStyle("textAlign", "center");
-//					column.headerText = "类别";
-					column.headerText = "变更级别";		//fixed by sunyang@20150327
+					column.headerText = "类别";
 //					column.itemRenderer = itemLinkRenderer; //添加链接					
 					column.sortable=false;
 					advancedDataArray.push(column);
@@ -723,7 +722,12 @@
 					column.showDataTips = true;
 					column.width = 80;
 					column.setStyle("textAlign", "center");
-					column.headerText = "类别";
+					//column.headerText = "类别";
+					
+					/****************************fixed by sunyang@20150408***********************************************/
+					column.headerText = "级别";
+					/****************************************************************************************************/
+					
 					//					column.itemRenderer = itemLinkRenderer; //添加链接					
 					column.sortable=false;
 					advancedDataArray.push(column);

@@ -84,7 +84,11 @@
 				
 				tab1_topLeftConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "lineSeries", axis: "left"},]);
 				tab1_topRightConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "lineSeries", axis: "left"},]);
-				tab1_downConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "lineSeries", axis: "left",color:"0xB69942"},]);
+				//tab1_downConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "lineSeries", axis: "left",color:"0xB69942"},]);
+				
+				/*****************************************修改曲线的颜色 fixed by sunyang@20150407****************************************************************************/
+				tab1_downConfDS = new ArrayCollection([{name: "数量", field: "vol1", type: "lineSeries", axis: "left",color:"0x000080"},]);
+				/*******************************************************************************************************************************************************/
 				
 				refreshData();
 				isFirstLoad = false;

@@ -323,6 +323,7 @@
 						for each (var xml:XML in tmpList)
 						{
 							var obj:Object = {label: xml.@subCorpname, leaderInspectPlanTimes: xml.@leaderInspectPlanTimes, leaderInspectFinishedTimes: xml.@leaderInspectFinishedTimes, deviceNumbers: xml.@deviceNumbers, fishedRatio: xml.@fishedRatio, averageFishedRatio: xml.@averageFishedRatio};
+							
 							tmpArrayCollection.addItem(obj);
 						}
 					}
@@ -336,14 +337,20 @@
 				sort.fields = [new SortField("fishedRatio", true, true)];
 				tmpArrayCollection.sort = sort;
 				tmpArrayCollection.refresh();
+				
 				//筛选记录数，由于先筛选再排序，造成数据不准，所以这里再排序之后进行筛选
 				var tmpArrayCollection2:ArrayCollection = new ArrayCollection();
 				var tmpCnt:int = 0;
 				for (var i:int = 0; i < tmpArrayCollection.length; i++)
 				{
+					/****************************************add by sunyang@20150407*************************************************/
+						var obj1:Object = tmpArrayCollection.getItemAt(i);
+						obj1["order_index"] = i;
+					/****************************************************************************************************************/
+					
 					if (i >= tab2_showCorpCnt)
 						break;
-					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
+					tmpArrayCollection2.addItem(obj1);
 				}
 				
 				return tmpArrayCollection2;
@@ -387,6 +394,11 @@
 				var tmpCnt:int = 0;
 				for (var i:int = 0; i < tmpArrayCollection.length; i++)
 				{
+					/********************************************add by sunyang@20150407*************************************************/
+					var obj1:Object = tmpArrayCollection.getItemAt(i);
+					obj1["order_index"] = i;
+					/********************************************************************************************************************/
+					
 					if (i >= tab2_showCorpCnt)
 						break;
 					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
@@ -515,11 +527,12 @@
 			//弹出窗口
 			private var titleWindow3:views.PopupTitleWin;
 			private var title_plateid:String = "00";
-			private function popupCorpMX2(plateid:String, platename:String, levelid:String, levelname:String):void
+			private function popupCorpMX2(plateid:String, platename:String, levelid:String, levelname:String, itemIndex:int = -1):void
 			{
 				title_plateid = plateid;
 				titleWindow3 = new views.PopupTitleWin();
 				titleWindow3.TitleValue = platename + "板块" + levelname + "关键装置/要害部位领导活动情况" + "(" + dateStr + "年)"; //tab1_levelNameCurrSelect+
+				
 				titleWindow3.addEventListener(CloseEvent.CLOSE, function closeEV():void
 				{
 					PopUpManager.removePopUp(titleWindow3);
@@ -530,6 +543,21 @@
 					advancedDataGrid = createPopupCorpMX2ADG();
 					var advancedAc:ArrayCollection = createPopupCorpMX2Data(plateid, platename, levelid, levelname);
 					advancedDataGrid.dataProvider = advancedAc;
+					
+					/************************************************add by sunyang@20150407*******************************************************/
+					if (itemIndex != -1)
+					{
+						var intervalId:uint = setTimeout(onStretchFun, 200);	//这里加个定时器,指定过了一定时间间隔后跳到指定选项
+						
+						function onStretchFun():void
+						{
+							clearTimeout(intervalId);
+							//因为第一项是合计，所以 索引要再加1
+							advancedDataGrid.selectedIndex = itemIndex + 1;
+							advancedDataGrid.scrollToIndex(itemIndex + 1);  
+						}
+					}
+					/******************************************************************************************************************************/
 					
 					var group:Group=new Group();
 					var borderContainer:BorderContainer=new BorderContainer();
@@ -1368,7 +1396,13 @@
 			protected function tab2_PopupDoubleClickHandler(event:PopupEvent):void
 			{
 				// TODO Auto-generated method stub
-				popupCorpMX2(tab2_plateCurrSelect, tab2_plateNameCurrSelect, tab2_levelCurrSelect, tab2_levelNameCurrSelect);
+				//popupCorpMX2(tab2_plateCurrSelect, tab2_plateNameCurrSelect, tab2_levelCurrSelect, tab2_levelNameCurrSelect);
+				
+				/******************************************add by sunyang@20150407****************************************************************************/
+				var obj:Object = event.hitDataItem;
+				var select_index:int = int(obj["order_index"]);
+				popupCorpMX2(tab2_plateCurrSelect, tab2_plateNameCurrSelect, tab2_levelCurrSelect, tab2_levelNameCurrSelect, select_index);
+				/*********************************************************************************************************************************************/
 			}
 		]]>
 	</fx:Script>

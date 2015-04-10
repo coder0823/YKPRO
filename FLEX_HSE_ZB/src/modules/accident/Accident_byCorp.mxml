@@ -16,6 +16,10 @@
 	-->
 	<fx:Script>
 		<![CDATA[
+			import events.PopupEvent;
+			
+			import modules.accident.components.AccidentInfo;
+			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.controls.DateField;
@@ -26,16 +30,12 @@
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			
+			import skins.popWinStyle;
+			
 			import spark.collections.Sort;
 			import spark.collections.SortField;
 			import spark.components.TitleWindow;
 			import spark.events.IndexChangeEvent;
-			
-			import events.PopupEvent;
-			
-			import modules.accident.components.AccidentInfo;
-			
-			import skins.popWinStyle;
 			
 			import views.PopupTitleWinDG;
 			public const _dataPath:String = "assets/data/zb_accidentdata.xml";
@@ -367,6 +367,13 @@
 					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
 				}
 				
+				/********************add by sunyang@20150403这里要再加一个排序按照当月从大到小排序,这里根据vol1判断******************/
+				var sort1:Sort = new Sort();
+				sort.fields = [new SortField("vol1", true, true)];
+				tmpArrayCollection2.sort = sort;
+				tmpArrayCollection2.refresh();
+				/*************************************************************************************************/
+				
 				return tmpArrayCollection2;
 			}
 			
@@ -416,6 +423,13 @@
 						break;
 					tmpArrayCollection2.addItem(tmpArrayCollection.getItemAt(i));
 				}
+				
+				/********************add by sunyang@20150403这里要再加一个排序按照当月从大到小排序,这里根据vol1判断*****************/
+				var sort1:Sort = new Sort();
+				sort.fields = [new SortField("vol1", true, true)];
+				tmpArrayCollection2.sort = sort;
+				tmpArrayCollection2.refresh();
+				/*************************************************************************************************/
 				
 				return tmpArrayCollection2;
 			}
@@ -936,6 +950,7 @@
 				<views:ColumnMulti id="tab1_top"
 								 AxisLeftTiltle="事故：起"
 								 labelRotationX="45"
+								 isShowNullNum="true"
 								 title="{tab1_topTitle}"
 								 DataSourceConf="{tab1_topConfDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}" 
 								 DataSource="{tab1_topDS}"
@@ -960,6 +975,7 @@
 				<views:ColumnMulti id="tab1_down"
 								 AxisLeftTiltle="未遂事件：起"
 								 labelRotationX="45"
+								 isShowNullNum="true"
 								 title="{tab1_downTitle}"
 								 DataSourceConf="{tab1_downConfDS}" showZoomControlBox="true" ShowDataLabel="{showDataLabel}" 
 								 DataSource="{tab1_downDS}"

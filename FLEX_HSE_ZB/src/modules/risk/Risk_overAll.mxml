@@ -16,6 +16,8 @@
 	-->
 	<fx:Script>
 		<![CDATA[
+			import events.PopupEvent;
+			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.events.CloseEvent;
@@ -23,8 +25,6 @@
 			import mx.managers.PopUpManager;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
-			
-			import events.PopupEvent;
 			
 			import views.PopupTitleWinDG;
 			public const _dataPath:String = "assets/data/zb_riskdata.xml";
@@ -852,32 +852,45 @@
 			protected function popCorpList_corp(event:events.PopupEvent):void
 			{
 				var obj:Object = event.hitDataItem;
+				var select_index:int = -1;
 				if (obj.item == "vol1")
 				{
 					if (obj.corpid != "00")
 					{
-						popupPlateMXCorp_node(obj.id, obj.label,"red", "重大风险");
+						/***************************add by sunyang@20150403*************************************/
+						select_index = int(obj.order) - 1;
+						popupPlateMXCorp_node(obj.id, obj.label,"red", "重大风险", select_index);
+						/**************************************************************************************/
 					}
 				}
 				if (obj.item == "vol2")
 				{
 					if (obj.corpid != "00")
 					{
-						popupPlateMXCorp_node(obj.id, obj.label,"yellow", "中等风险");
+						/***************************add by sunyang@20150403*************************************/
+						select_index = int(obj.order) - 1;
+						popupPlateMXCorp_node(obj.id, obj.label,"yellow", "中等风险", select_index);
+						/**************************************************************************************/
 					}
 				}
 				if (obj.item == "vol3")
 				{
 					if (obj.corpid != "00")
 					{
-						popupPlateMXCorp_node(obj.id, obj.label,"blue", "一般风险");
+						//popupPlateMXCorp_node(obj.id, obj.label,"blue", "一般风险");
+						
+						/***************************add by sunyang@20150403*************************************/
+						select_index = int(obj.order) - 1;
+						popupPlateMXCorp_node(obj.id, obj.label,"blue", "一般风险", select_index);	
+						/**************************************************************************************/
 					}
 				}
 			}
 			
 			private var titleWindow2_node:views.PopupTitleWinDG;
 			
-			private function popupPlateMXCorp_node(plateid:String, platename:String, levelid:String, levelname:String):void
+			/******************sunyang@20150403 加入了itemIndex，是为了跳转定位*****************/
+			private function popupPlateMXCorp_node(plateid:String, platename:String, levelid:String, levelname:String, itemIndex:int = -1):void
 			{
 				titleWindow2_node = new views.PopupTitleWinDG();
 				titleWindow2_node.TitleValue = "中国石化" + platename + "板块" + "各企业" + levelname + "分布及落实情况" + "(" + dateStartName + "-" + dateEndName + ") 计量单位：个";
@@ -888,6 +901,11 @@
 				titleWindow2_node.IfShowFirstRecordBgColor = true;
 				titleWindow2_node.IfShowFrontRecordColor = true;
 				titleWindow2_node.IfShowBackRecordColor = true;
+				
+				/***************************add by sunyang@20140403**************************************/
+				titleWindow2_node.select_index = itemIndex;
+				/****************************************************************************************/
+				
 				var tmpHeadConf:ArrayCollection = new ArrayCollection();
 				try
 				{
@@ -1084,7 +1102,7 @@
 									  horizontalAlign="justify" />
 				</s:layout>
 				<views:ColumnMulti id="tab1_topLeft"
-								   AxisLeftTiltle="风   险：个"
+								   AxisLeftTiltle="风 险：个"
 								   showTitle="true"
 								   showLegend="false" ShowDataLabel="{showDataLabel}"
 								   title="{tab1_topLeftTitle}"
@@ -1104,7 +1122,7 @@
 									  horizontalAlign="justify" />
 				</s:layout>
 				<views:ColumnLineMulti id="tab1_topRight"
-									   AxisLeftTiltle="风   险：个"
+									   AxisLeftTiltle="风 险：个"
 									   showTitle="true"
 									   showLegend="true" ShowDataLabel="{showDataLabel}"
 									   title="{tab1_topRightTitle}"
@@ -1129,10 +1147,11 @@
 									  horizontalAlign="justify" />
 				</s:layout>
 				<views:ColumnMulti id="tab1_down"
-								   AxisLeftTiltle="风  险：个"
+								   AxisLeftTiltle="风 险：个"
 								   showTitle="true"
 								   showLegend="true" ShowDataLabel="{showDataLabel}"
 								   title="{tab1_downTitle}"
+								   isShowNullNum = "true"
 								   DataSource="{tab1_downDS}"
 								   DataSourceConf="{tab1_downConfDS}"
 								   PopupDoubleClick="tab1_PopupDoubleClickHandler(event)" />
