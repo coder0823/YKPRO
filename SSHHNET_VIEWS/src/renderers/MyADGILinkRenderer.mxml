@@ -78,5 +78,8 @@
 			
 		]]>
 	</fx:Script>
-	<s:Label id="lblData" text="{txt}" color="{color}" backgroundAlpha="0" buttonMode="true" textDecoration="{url==''?'none':'underline'}" textAlign="center" width="100%" verticalCenter="0" click="lblData_clickHandler(event)"/>
+<!--	<s:Label id="lblData" text="{txt}" color="{color}" backgroundAlpha="0" buttonMode="true" textDecoration="{url==''?'none':'underline'}" textAlign="center" width="100%" verticalCenter="0" click="lblData_clickHandler(event)"/>
+-->	
+	<s:Label id="lblData" text="{txt}" color="{color}" backgroundAlpha="0" buttonMode="true" textDecoration="underline" textAlign="center" width="100%" verticalCenter="0" click="lblData_clickHandler(event)"/>
+
 </s:MXAdvancedDataGridItemRenderer>

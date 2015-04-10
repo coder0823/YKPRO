@@ -29,6 +29,8 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import events.PopupEvent;
+			
 			import mx.charts.HitData;
 			import mx.charts.LegendItem;
 			import mx.charts.events.ChartItemEvent;
@@ -37,8 +39,6 @@
 			import mx.collections.ArrayCollection;
 			import mx.effects.easing.Back;
 			import mx.effects.easing.Elastic;
-			
-			import events.PopupEvent;
 
 			public var dataUnit:String="";
 			public var IfShowVolInLabel:Boolean=true;
@@ -131,8 +131,8 @@
 						sum+=Number(oo["value"]);
 					}
 					
-					
-					for(var i:int=0;i<dataSource.length;i++){  
+					var len:int = dataSource.length;
+					for(var i:int = 0;i < len; i++){  
 						var o:Object = dataSource.getItemAt(i);  
 						var legendItem:LegendItem=new LegendItem();
 						if(o["label"].toString()!="disabled")
@@ -160,6 +160,11 @@
 							legend1.addElement(legendItem);
 						}
 					}  
+					
+					/************************add by sunyang 修复显示企业过多，饼形图被移出显示屏幕的问题**********************/
+					var ChartLegendWide:int = len > 20 ? 1400 : 70 * len;
+					ChartLegend.width = ChartLegendWide;
+					/*****************************************************************************************/
 				}
 			}
 
@@ -279,7 +284,7 @@
 		</mx:series>
 	</mx:PieChart>  
 	<!--图例-->
-	<mx:Canvas id="ChartLegend" visible="{showLegend}" includeInLayout="{showLegend}">
+	<mx:Canvas id="ChartLegend" visible="{showLegend}" includeInLayout="{showLegend}" height="60">
 		<s:BorderContainer styleName="legendBox" verticalCenter="0" horizontalCenter="0">
 			<mx:Legend id="legend1" height="20" bottom="8" horizontalGap="1" itemClick="legend1_itemClickHandler(event)"/>
 		</s:BorderContainer>

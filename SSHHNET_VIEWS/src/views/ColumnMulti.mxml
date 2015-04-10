@@ -8,6 +8,7 @@
 	* 参数：
 	* 作者：孙山虎
 	* 日期：2012年12月29日
+	* fixed by sunyang@20150403
 	* */
 	-->
 	<fx:Metadata>
@@ -32,6 +33,9 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import events.PopupEvent;
+			import events.SetAxisComplateEvent;
+			
 			import mx.charts.ChartItem;
 			import mx.charts.HitData;
 			import mx.charts.LegendItem;
@@ -48,9 +52,6 @@
 			import mx.utils.StringUtil;
 			
 			import spark.events.IndexChangeEvent;
-			
-			import events.PopupEvent;
-			import events.SetAxisComplateEvent;
 			
 			[Bindable]
 			public var showDataTips:Boolean=true;
@@ -103,6 +104,13 @@
 			private var rightAxisMaximum:Number=0;
 			[Bindable]
 			private var rightAxisMinimum:Number=0;
+			
+			/********************add by sunyang@20150403************************************************************/
+			private var _isShowNullNum:Boolean = false;			//true:纵坐标数据为0时，显示数字0；false:纵坐标数据为0时，不显示数字
+			private static const NULLNUM:Number = 0.01;			//设置自定义初始值
+			private var isDataAllGet:Boolean = false;			//一个标示位
+			/*******************************************************************************************************/
+			
 			public function get LeftAxisMaximum():Number
 			{
 				return leftAxisMaximum;
@@ -136,8 +144,19 @@
 				rightAxisMinimum = value;
 			}
 			
+			public function set isShowNullNum(value:Boolean):void
+			{
+				_isShowNullNum = value;
+			}
 			
+			public function get isShowNullNum():Boolean
+			{
+				return _isShowNullNum;
+			}
+			
+			//根据配置自动加入柱状图数组（加注释sunyang@20150403）
 			protected function init(IfFirst:Boolean=false):void{
+				var aa:ArrayCollection = dataSource;
 				if(dataSourceConf!=null&&dataSourceConf.length>0){
 					var array:Array = new Array();  
 					var cntLeft:int=0;
@@ -155,7 +174,8 @@
 							columnSeries.setStyle("labelPosition","outside");
 						}else{
 							columnSeries.setStyle("labelPosition", "none");	
-						}					
+						}	
+						
 						columnSeries.setStyle("fill", o["color"]!=null?o["color"]:CSolidColor[indexCol]);
 						//渐变色
 						columnSeries.fillFunction=views.CommFunction.colFillFun(o["color"]!=null?o["color"]:views.CustomColor.CColor[indexCol]);
@@ -261,6 +281,11 @@
 			private function columnSeries_labelFunc(chartItem:ChartItem, series:Series):String {
 				var col:String = ColumnSeries(chartItem.element).yField;
 				//return  numberFormatter.format(chartItem.item[col]);
+				
+				/************************************add by sunyang@20150403***********************************/
+				if (isShowNullNum && Number(chartItem.item[col]) == NULLNUM) return "0";
+				/*********************************************************************************************/
+				
 				return chartItem.item[col];
 				//return  ColumnSeries(chartItem.element).displayName+numberFormatter.format(chartItem.item[col]);
 			}
@@ -270,8 +295,14 @@
 				var col:String = ColumnSeries(item.element).yField;
 				var label:String=ColumnSeries(item.element).displayName;//cSI.item.label;
 				
+				var Ynum:String = numberFormatter.format(cSI.item[col]);
+				
+				/** add by sunyang@20150403(这里暂时不需要，因为numberFormatter.format()方法对小数做了处理，但是为了保险起见还是再做一次验证) **/
+				if (isShowNullNum && Number(Ynum) == NULLNUM) Ynum = "0";
+				/****************************************************************************************************/
+				
 				//return StringUtil.substitute("<b>{0}</b><br>{1}: {2}",label , col, numberFormatter.format(cSI.item[col]));
-				return StringUtil.substitute("<b>{0}:</b>\n{1}\n{2}",label,cSI.xValue , numberFormatter.format(cSI.item[col]));
+				return StringUtil.substitute("<b>{0}:</b>\n{1}\n{2}",label,cSI.xValue , Ynum);
 			}
 
 			protected function initLegend():void{
@@ -306,6 +337,7 @@
 			{
 				dataSourceChanged=true;
 				dataSource = value;
+
 				invalidateProperties();
 			}
 			public function get ShowDataLabel():Boolean{
@@ -315,11 +347,14 @@
 				showDataLabel = value;
 				init(false);
 			}
+			
 			override protected function commitProperties():void
 			{
 				super.commitProperties();
+				
 				if (dataSourceChanged)
 				{
+					isDataAllGet = true;
 					dataSourceChanged = false;
 					refresh(true);
 					//invalidateDisplayList();  // invalidate in case the titles 
@@ -327,11 +362,49 @@
 				}
 				if (dataSourceConfChanged)
 				{
+					isDataAllGet = true;
 					dataSourceConfChanged = false;
 					init(true);
 					//invalidateDisplayList();  // invalidate in case the titles 
 					
+				}			
+				
+				/*******************************add by sunyang@20150403**********************************/
+				if (!isShowNullNum) return;
+				if (isDataAllGet)
+				{
+					if (dataSource && dataSourceConf)
+					{
+						var len_source:int = dataSource.length;
+						var len_source_conf:int = dataSourceConf.length;
+						
+						if (len_source > 0 && len_source_conf > 0)
+						{
+							isDataAllGet = false;
+							
+							var obj_source:Object = null;
+							var obj_source_conf:Object = null;
+							for (var i:int = 0; i < len_source; i++)
+							{
+								obj_source = dataSource.getItemAt(i);
+								
+								for (var j:int = 0; j < len_source_conf; j++)
+								{
+									obj_source_conf = dataSourceConf.getItemAt(j);
+									var field_key:String = obj_source_conf["field"];
+									
+									if (Number(obj_source[field_key]) == 0)
+									{
+										obj_source[field_key] = NULLNUM;
+									}
+								}
+							}
+						}
+					}
+
 				}
+				/*************************************************************************************/
+				
 			}
 			protected function columnChart_itemClickHandler(event:ChartItemEvent):void
 			{

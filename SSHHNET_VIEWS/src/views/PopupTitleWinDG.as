@@ -12,21 +12,16 @@
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.FileReference;
-	import flash.system.Capabilities;
 	import flash.utils.ByteArray;
+	import flash.utils.clearTimeout;
+	import flash.utils.setTimeout;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
-	import mx.controls.Alert;
-	import mx.controls.Button;
-	import mx.controls.DataGrid;
 	import mx.controls.dataGridClasses.DataGridColumn;
-	import mx.core.Application;
 	import mx.core.ClassFactory;
 	import mx.core.FlexGlobals;
 	import mx.core.IFactory;
-	import mx.events.DataGridEvent;
-	import mx.managers.PopUpManager;
 	import mx.utils.ObjectUtil;
 	
 	import renderers.MyDGILinkRenderer;
@@ -62,7 +57,7 @@
 		private var _tw_width:Number = FlexGlobals.topLevelApplication.stage.stageWidth-300;
 		private var _tw_height:Number = FlexGlobals.topLevelApplication.stage.stageHeight-60;
 		
-		private var _select_index:Number = 0;
+		private var _select_index:Number = -1;
 		[Bindable]
 		private var titleValue:String="详细信息";
 		[Bindable]
@@ -133,9 +128,13 @@
 				dataGrid = new FooterDataGrid();
 				
 				dataGrid.variableRowHeight=true;
-				dataGrid.addEventListener(MouseEvent.DOUBLE_CLICK,rowClickHandle);
-				dataGrid.addEventListener(MouseEvent.DOUBLE_CLICK,rowDoubleClickHandle);
-				dataGrid.doubleClickEnabled=true;
+				
+				/*******************************这里注释掉，事故事件模块点击之后会报错 fixed by sunyang@20150408****************************************/
+//				dataGrid.addEventListener(MouseEvent.DOUBLE_CLICK,rowClickHandle);
+//				dataGrid.addEventListener(MouseEvent.DOUBLE_CLICK,rowDoubleClickHandle);
+//				dataGrid.doubleClickEnabled=true;
+				/************************************************************************************************************************/
+				
 				dataGrid.percentWidth=100;
 				dataGrid.percentHeight=100;
 				var flag:Boolean = true;
@@ -187,8 +186,23 @@
 							}
 						}
 					}
-					dataGrid.dataProvider =dataSource;
-
+					dataGrid.dataProvider = dataSource;
+					
+					/********************************************add by sunyang@20150403******************************************/
+					if (select_index != -1)
+					{
+						var intervalId:uint = setTimeout(onStretchFun, 200);	//这里加个定时器,指定过了一定时间间隔后跳到指定选项
+						
+						function onStretchFun():void
+						{
+							clearTimeout(intervalId);
+							
+							dataGrid.selectedIndex = select_index;
+							dataGrid.scrollToIndex(select_index);  
+						}
+					}
+					/*************************************************************************************************************/
+					
 				var columns:Array = new Array();
 				var colFoot:FooterDataGridColumn;
 				var col:DataGridColumn;
@@ -236,7 +250,7 @@
 						colFoot.labelFunction=numFunction;
 						colFoot.sortable=false;
 //						colFoot.width=15;
-						colFoot.width = 50;	//fixed by sunyang@20150327
+						colFoot.width = 30;	//fixed by sunyang@20150327
 						colFoot.setStyle("textAlign","center");
 					}
 					// pjy：企业列统一居中显示
@@ -466,9 +480,9 @@
 
 		
 		
-		import com.as3xls.xls.Cell; 
+		import com.as3xls.xls.Cell;
+		import com.as3xls.xls.ExcelFile;
 		import com.as3xls.xls.Sheet; 
-		import com.as3xls.xls.ExcelFile; 
 		private var fileReference:FileReference; 
 		private var xls:Class; 
 		private var sheet:Sheet; 

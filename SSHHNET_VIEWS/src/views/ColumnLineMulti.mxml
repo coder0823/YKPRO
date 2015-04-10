@@ -448,7 +448,13 @@
 			protected function zoomin(event:MouseEvent):void  
 			{  
 				if(totalPage >= (1 << 4))  
+				{
+					/**********************add by sunyang@20150409***********************/
+					Alert.show("已放到最大值")
+					/********************************************************************/
+					
 					return;  
+				}
 				hsb.value = hsb.value * 0.5;  
 				totalPage = totalPage << 1;  
 				hsb.maximum = (totalPage - 1) * 10;  
@@ -457,7 +463,13 @@
 			protected function zoomout(event:MouseEvent):void  
 			{  
 				if(totalPage == 1)  
-					return;  
+				{
+					/**********************add by sunyang@20150409***********************/
+					Alert.show("已放到最小值");
+					/********************************************************************/
+					
+					return;
+				}
 				hsb.value = hsb.value * 2;  
 				totalPage = totalPage >> 1;  
 				hsb.maximum = (totalPage - 1) * 10;  
